@@ -1,0 +1,31 @@
+slug: tell-me-about-a-conflict
+title: Disagreement with a colleague or manager
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+- conflict
+leetcode: null
+prompt: |
+  Describe a disagreement with a colleague or manager, how you resolved it and the outcome.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/
+- company: microsoft
+  role: SDE II
+  round: AA round
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/
+- company: microsoft
+  role: SDE II (L62)
+  round: R4 AA
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/

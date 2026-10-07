@@ -1,0 +1,21 @@
+slug: grid-paths-with-checkpoints
+title: Count grid paths (right / diagonal moves) through checkpoints
+type: DSA
+difficulty: medium
+tags:
+- dynamic-programming
+- matrix
+leetcode: null
+prompt: |
+  In an n x m grid start at (n-1,0) and reach (n-1,m-1) moving right, diagonally up-right or diagonally down-right; count the paths.
+follow_ups:
+- Count only paths that visit all given checkpoints.
+- Checkpoints must be visited in order; optimise space.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525084/

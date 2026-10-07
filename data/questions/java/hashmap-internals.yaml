@@ -1,0 +1,26 @@
+slug: hashmap-internals
+title: HashMap internals and complexity
+type: JAVA
+difficulty: medium
+tags:
+- hashmap
+- collections
+- java
+leetcode: null
+prompt: |
+  What is a HashMap; time complexity of insert/delete/get, reasoned from how it is implemented.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: R1 coding
+  seen_on: 2024-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/4937133/
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 2 (Java rapid-fire, 45 min)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

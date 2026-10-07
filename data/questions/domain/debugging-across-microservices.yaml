@@ -1,0 +1,19 @@
+slug: debugging-across-microservices
+title: Debugging requests across microservices
+type: DOMAIN
+difficulty: medium
+tags:
+- observability
+- correlation-id
+leetcode: null
+prompt: |
+  Handling multiple correlation IDs when a request spans microservices; deployment on pods and debugging; how cloud authentication works.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: Unknown (consolidated from LeetCode Discuss)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6403987/

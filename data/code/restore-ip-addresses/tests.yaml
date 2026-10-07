@@ -1,0 +1,53 @@
+method: restoreIpAddresses
+tests:
+- name: Example 1
+  input: |
+    "25525511135"
+  expected: |
+    ["255.255.11.135","255.255.111.35"]
+- name: Example 2
+  input: |
+    "0000"
+  expected: |
+    ["0.0.0.0"]
+- name: Example 3
+  input: |
+    "101023"
+  expected: |
+    ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
+- name: Too short
+  hidden: true
+  input: |
+    "123"
+  expected: |
+    []
+- name: Too long
+  hidden: true
+  input: |
+    "1234567890123"
+  expected: |
+    []
+- name: Leading zeros
+  hidden: true
+  input: |
+    "010010"
+  expected: |
+    ["0.10.0.10","0.100.1.0"]
+- name: All 255
+  hidden: true
+  input: |
+    "255255255255"
+  expected: |
+    ["255.255.255.255"]
+- name: Over 255
+  hidden: true
+  input: |
+    "256256256256"
+  expected: |
+    []
+- name: Twelve ones
+  hidden: true
+  input: |
+    "111111111111"
+  expected: |
+    ["111.111.111.111"]

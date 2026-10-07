@@ -1,0 +1,19 @@
+slug: design-jira-concurrent-edits
+title: Design JIRA with Conflicting Edits
+type: HLD
+difficulty: medium
+tags:
+- optimistic-locking
+- concurrency
+leetcode: null
+prompt: |
+  Design JIRA; two people update the same issue description - how is the second told their edit conflicts?
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62, Noida)
+  round: R2 Design (45 min)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7770532/

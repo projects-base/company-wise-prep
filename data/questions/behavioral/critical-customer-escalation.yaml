@@ -1,0 +1,19 @@
+slug: critical-customer-escalation
+title: Critical customer issues and escalations
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- customer-obsession
+- pressure
+leetcode: null
+prompt: |
+  How do you handle critical customer issues and high-pressure escalations? Plus conflict resolution within a team.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R4 Hiring manager (AA)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7523946/

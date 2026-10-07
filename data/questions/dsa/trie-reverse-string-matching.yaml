@@ -1,0 +1,19 @@
+slug: trie-reverse-string-matching
+title: Trie Problem Solved by Processing Strings Backwards
+type: DSA
+difficulty: medium
+tags:
+- trie
+- string
+leetcode: null
+prompt: |
+  A trie problem (not on LeetCode) whose expected complexity required inserting/processing strings in reverse (suffix-style matching). Exact statement not published.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2 (C++ Developer)
+  round: Round 1
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1702584/

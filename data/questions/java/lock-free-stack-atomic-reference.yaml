@@ -1,0 +1,21 @@
+slug: lock-free-stack-atomic-reference
+title: Synchronized Stack Using Only AtomicReference
+type: JAVA
+difficulty: hard
+tags:
+- concurrency
+- lock-free
+- cas
+leetcode: null
+prompt: |
+  Implement a thread-safe stack without primitive locks, using only atomic references (CAS / Treiber stack).
+follow_ups:
+- ABA problem and how to avoid it.
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2
+  round: Round 3 (LLD)
+  seen_on: 2022-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1867832/

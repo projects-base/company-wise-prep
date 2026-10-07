@@ -1,0 +1,20 @@
+slug: cpu-cache-hierarchy
+title: 'CPU Cache Hierarchy: Why L1 Is Fast and Small'
+type: DOMAIN
+difficulty: medium
+tags:
+- cpu-cache
+- threads
+- hardware
+leetcode: null
+prompt: |
+  Explain threads and L1/L2/L3 caches: why L1 is fast, its typical size, and why we don't simply make it bigger.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: Technical 1
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/

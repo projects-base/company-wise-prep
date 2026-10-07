@@ -1,0 +1,20 @@
+slug: forward-token-routing-game
+title: Forward Token Routing Game
+type: DSA
+difficulty: hard
+tags:
+- game-theory
+- nim
+- sprague-grundy
+leetcode: null
+prompt: |
+  N nodes with A[i] tokens; a move takes one token from node i to any node j>i. Players alternate; the player who cannot move loses. Who wins?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE-1 (2026 grad)
+  round: Online assessment
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8214911/

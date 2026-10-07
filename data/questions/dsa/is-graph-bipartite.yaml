@@ -1,0 +1,20 @@
+slug: is-graph-bipartite
+title: Is Graph Bipartite?
+type: DSA
+difficulty: medium
+tags:
+- graph
+- bfs
+- coloring
+leetcode: is-graph-bipartite
+prompt: |
+  Question similar to checking whether a graph is bipartite.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure, Bengaluru)
+  round: Online assessment
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7613494/

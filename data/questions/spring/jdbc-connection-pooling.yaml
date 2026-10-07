@@ -1,0 +1,20 @@
+slug: jdbc-connection-pooling
+title: Connection Pooling and the DB Connection Process
+type: SPRING
+difficulty: medium
+tags:
+- spring-boot
+- jdbc
+- connection-pool
+leetcode: null
+prompt: |
+  What connection pooling is, how a database connection is established, and which Spring Boot classes manage connections.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 2 (Java rapid-fire, 45 min)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

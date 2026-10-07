@@ -1,0 +1,20 @@
+slug: valid-parentheses
+title: Valid Parentheses
+type: DSA
+difficulty: easy
+tags:
+- stack
+- string
+leetcode: valid-parentheses
+prompt: |
+  Check whether a bracket string is balanced.
+follow_ups:
+- Minimum number of reversals needed to balance it (8099724).
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R2 DSA (60 min)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7541629/

@@ -1,0 +1,41 @@
+method: letterCombinations
+tests:
+- name: Example 1
+  input: |
+    "23"
+  expected: |
+    ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+- name: Example 2
+  input: |
+    ""
+  expected: |
+    []
+- name: Example 3
+  input: |
+    "2"
+  expected: |
+    ["a","b","c"]
+- name: Four-letter keys
+  hidden: true
+  input: |
+    "79"
+  expected: |
+    ["pw","px","py","pz","qw","qx","qy","qz","rw","rx","ry","rz","sw","sx","sy","sz"]
+- name: Four digits
+  hidden: true
+  input: |
+    "2345"
+  expected: |
+    ["adgj","adgk","adgl","adhj","adhk","adhl","adij","adik","adil","aegj","aegk","aegl","aehj","aehk","aehl","aeij","aeik","aeil","afgj","afgk","afgl","afhj","afhk","afhl","afij","afik","afil","bdgj","bdgk","bdgl","bdhj","bdhk","bdhl","bdij","bdik","bdil","begj","begk","begl","behj","behk","behl","beij","beik","beil","bfgj","bfgk","bfgl","bfhj","bfhk","bfhl","bfij","bfik","bfil","cdgj","cdgk","cdgl","cdhj","cdhk","cdhl","cdij","cdik","cdil","cegj","cegk","cegl","cehj","cehk","cehl","ceij","ceik","ceil","cfgj","cfgk","cfgl","cfhj","cfhk","cfhl","cfij","cfik","cfil"]
+- name: Repeated digit
+  hidden: true
+  input: |
+    "99"
+  expected: |
+    ["ww","wx","wy","wz","xw","xx","xy","xz","yw","yx","yy","yz","zw","zx","zy","zz"]
+- name: Longest input with 7 and 9
+  hidden: true
+  input: |
+    "7979"
+  expected: |
+    ["pwpw","pwpx","pwpy","pwpz","pwqw","pwqx","pwqy","pwqz","pwrw","pwrx","pwry","pwrz","pwsw","pwsx","pwsy","pwsz","pxpw","pxpx","pxpy","pxpz","pxqw","pxqx","pxqy","pxqz","pxrw","pxrx","pxry","pxrz","pxsw","pxsx","pxsy","pxsz","pypw","pypx","pypy","pypz","pyqw","pyqx","pyqy","pyqz","pyrw","pyrx","pyry","pyrz","pysw","pysx","pysy","pysz","pzpw","pzpx","pzpy","pzpz","pzqw","pzqx","pzqy","pzqz","pzrw","pzrx","pzry","pzrz","pzsw","pzsx","pzsy","pzsz","qwpw","qwpx","qwpy","qwpz","qwqw","qwqx","qwqy","qwqz","qwrw","qwrx","qwry","qwrz","qwsw","qwsx","qwsy","qwsz","qxpw","qxpx","qxpy","qxpz","qxqw","qxqx","qxqy","qxqz","qxrw","qxrx","qxry","qxrz","qxsw","qxsx","qxsy","qxsz","qypw","qypx","qypy","qypz","qyqw","qyqx","qyqy","qyqz","qyrw","qyrx","qyry","qyrz","qysw","qysx","qysy","qysz","qzpw","qzpx","qzpy","qzpz","qzqw","qzqx","qzqy","qzqz","qzrw","qzrx","qzry","qzrz","qzsw","qzsx","qzsy","qzsz","rwpw","rwpx","rwpy","rwpz","rwqw","rwqx","rwqy","rwqz","rwrw","rwrx","rwry","rwrz","rwsw","rwsx","rwsy","rwsz","rxpw","rxpx","rxpy","rxpz","rxqw","rxqx","rxqy","rxqz","rxrw","rxrx","rxry","rxrz","rxsw","rxsx","rxsy","rxsz","rypw","rypx","rypy","rypz","ryqw","ryqx","ryqy","ryqz","ryrw","ryrx","ryry","ryrz","rysw","rysx","rysy","rysz","rzpw","rzpx","rzpy","rzpz","rzqw","rzqx","rzqy","rzqz","rzrw","rzrx","rzry","rzrz","rzsw","rzsx","rzsy","rzsz","swpw","swpx","swpy","swpz","swqw","swqx","swqy","swqz","swrw","swrx","swry","swrz","swsw","swsx","swsy","swsz","sxpw","sxpx","sxpy","sxpz","sxqw","sxqx","sxqy","sxqz","sxrw","sxrx","sxry","sxrz","sxsw","sxsx","sxsy","sxsz","sypw","sypx","sypy","sypz","syqw","syqx","syqy","syqz","syrw","syrx","syry","syrz","sysw","sysx","sysy","sysz","szpw","szpx","szpy","szpz","szqw","szqx","szqy","szqz","szrw","szrx","szry","szrz","szsw","szsx","szsy","szsz"]

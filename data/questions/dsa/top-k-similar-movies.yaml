@@ -1,0 +1,23 @@
+slug: top-k-similar-movies
+title: Top K highest-rated similar movies
+type: DSA
+difficulty: medium
+tags:
+- graph
+- bfs
+- heap
+- union-find
+leetcode: null
+prompt: |
+  Movies have ratings and a similarity graph (connected = similar); for a given movie return the top N similar movies by rating.
+follow_ups:
+- Movies are added dynamically between queries.
+- Target O(K) space and near O(log K) per update.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6796476/

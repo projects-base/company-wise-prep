@@ -1,0 +1,19 @@
+slug: design-ticket-booking
+title: Design a Ticket Booking System
+type: HLD
+difficulty: hard
+tags:
+- race-conditions
+- failure-handling
+leetcode: null
+prompt: |
+  Ticket booking with emphasis on dropped requests and race conditions on seats.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Unknown (hiring event)
+  round: R2 System design + coding
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7554394/

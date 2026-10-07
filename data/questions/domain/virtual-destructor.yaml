@@ -1,0 +1,20 @@
+slug: virtual-destructor
+title: Virtual Destructors in C++
+type: DOMAIN
+difficulty: medium
+tags:
+- cpp
+- oop
+- memory
+leetcode: null
+prompt: |
+  Why base classes need a virtual destructor and what goes wrong without one.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Unknown (aggregated question bank)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://quantvault.org/tower-research-interview-questions.html

@@ -1,0 +1,25 @@
+slug: alien-dictionary
+title: Alien Dictionary
+type: DSA
+difficulty: hard
+tags:
+- graph
+- topological-sort
+leetcode: alien-dictionary
+prompt: |
+  Derive letter order from a sorted alien-language word list; 45 min HackerRank live coding (only round).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: HackerRank live coding screen
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8461584/
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://www.techprep.app/blog/tower-research-interview-process

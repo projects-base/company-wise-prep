@@ -1,0 +1,21 @@
+slug: search-suggestions-system
+title: Top-3 Words by Prefix (with wildcard)
+type: DSA
+difficulty: medium
+tags:
+- trie
+- design
+- string
+leetcode: search-suggestions-system
+prompt: |
+  Implement addWord(word) and getWords(pattern) returning the three lexicographically smallest words starting with the pattern.
+follow_ups:
+- Pattern may contain '.' matching any letter; still return the three smallest matches efficiently.
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R2
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326149/

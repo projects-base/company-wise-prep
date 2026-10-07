@@ -1,0 +1,20 @@
+slug: design-map-shortest-path-and-landmarks
+title: '2D Map Graph: Shortest Path and Nearby Landmarks'
+type: LLD
+difficulty: hard
+tags:
+- graph
+- dijkstra
+- spatial-index
+leetcode: null
+prompt: |
+  Design a 2-D graph structure that returns shortest distance between two points and nearest landmarks (schools, hospitals).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure Compute, Bangalore)
+  round: R2 LLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498710/

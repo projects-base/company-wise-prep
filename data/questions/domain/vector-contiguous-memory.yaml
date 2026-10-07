@@ -1,0 +1,20 @@
+slug: vector-contiguous-memory
+title: Is std::vector Memory Contiguous? Why and How?
+type: DOMAIN
+difficulty: easy
+tags:
+- cpp
+- stl
+- memory
+leetcode: null
+prompt: |
+  Is vector storage contiguous? Why, and how is growth implemented?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: Technical 1
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/

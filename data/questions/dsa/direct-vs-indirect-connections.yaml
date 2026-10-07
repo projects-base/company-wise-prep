@@ -1,0 +1,20 @@
+slug: direct-vs-indirect-connections
+title: areConnected vs areRelated over partnerships
+type: DSA
+difficulty: medium
+tags:
+- union-find
+- hashmap
+leetcode: null
+prompt: |
+  Given direct partnerships, implement areConnected(x,y) (direct link) and areRelated(x,y) (same network but not direct).
+follow_ups:
+- Answer both in O(1) after preprocessing.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 2
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6584641/

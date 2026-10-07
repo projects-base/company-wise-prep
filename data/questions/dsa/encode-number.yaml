@@ -1,0 +1,20 @@
+slug: encode-number
+title: Encode Number (math + string)
+type: DSA
+difficulty: medium
+tags:
+- math
+- string
+- bit-manipulation
+leetcode: encode-number
+prompt: |
+  Encode a non-negative integer using the hidden pattern (binary of n+1 without leading 1); reported as a close match to the round.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 2
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6782644/

@@ -1,0 +1,19 @@
+slug: longest-substring-with-at-least-k-repeating-characters
+title: Longest Substring with At Least K Repeating Characters
+type: DSA
+difficulty: medium
+tags:
+- divide-and-conquer
+- sliding-window
+leetcode: longest-substring-with-at-least-k-repeating-characters
+prompt: |
+  Longest substring in which every character appears at least k times.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61, Hyderabad)
+  round: R3 DSA (60 min)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://roundz.substack.com/p/interview-experience-68-microsoft-l61

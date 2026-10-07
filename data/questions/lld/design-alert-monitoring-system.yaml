@@ -1,0 +1,26 @@
+slug: design-alert-monitoring-system
+title: Design an Alert Monitoring System
+type: LLD
+difficulty: medium
+tags:
+- oop
+- state-machine
+- observer-pattern
+leetcode: null
+prompt: |
+  Machines with sensors (temperature, pressure) each with thresholds; out-of-range values raise alerts; users view alerts and move them through Acknowledged/Resolved/Ignored.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 System design (HLD/LLD)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7523946/
+- company: microsoft
+  role: SDE II (L61/62, Noida)
+  round: R2 LLD
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7423217/

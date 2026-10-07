@@ -1,0 +1,20 @@
+slug: evaluate-division
+title: Evaluate Division
+type: DSA
+difficulty: medium
+tags:
+- graph
+- union-find
+- dfs
+leetcode: evaluate-division
+prompt: |
+  Given equations a/b = k, answer division queries or -1 if undeterminable.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Unknown (LeetCode company tag list)
+  round: Unknown
+  seen_on: 2025-06
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems

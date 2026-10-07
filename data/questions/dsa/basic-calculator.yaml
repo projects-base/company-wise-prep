@@ -1,0 +1,28 @@
+slug: basic-calculator
+title: Calculator / expression evaluation variant
+type: DSA
+difficulty: hard
+tags:
+- stack
+- string
+- recursion
+- parsing
+leetcode: basic-calculator
+prompt: |
+  Vague calculator-style expression evaluation; clarify grammar first.
+follow_ups:
+- How would this scale on distributed systems / caching / parallelism?
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5529760/
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

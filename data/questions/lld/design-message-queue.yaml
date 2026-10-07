@@ -1,0 +1,20 @@
+slug: design-message-queue
+title: Design a Message Queue (producer-consumer)
+type: LLD
+difficulty: hard
+tags:
+- concurrency
+- producer-consumer
+- semaphore
+leetcode: null
+prompt: |
+  Message queue with producers and consumers; deep dive on synchronisation, mutex vs semaphore, deadlock prevention.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: Loop LLD
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7563238/

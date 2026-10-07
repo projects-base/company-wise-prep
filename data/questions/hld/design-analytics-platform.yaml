@@ -1,0 +1,20 @@
+slug: design-analytics-platform
+title: Design a User-action Analytics Platform
+type: HLD
+difficulty: hard
+tags:
+- olap
+- partitioning
+- count-min-sketch
+leetcode: null
+prompt: |
+  Track user actions, 18-month retention, 5-minute granularity, filter by geo/language; schema, partitioning, SQL vs time-series, approximate structures.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer
+  round: R4 HM + bar raiser
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7748215/

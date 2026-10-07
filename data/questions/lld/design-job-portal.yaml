@@ -1,0 +1,20 @@
+slug: design-job-portal
+title: Design a Job Posting Service
+type: LLD
+difficulty: medium
+tags:
+- oop
+- matching
+- ranking
+leetcode: null
+prompt: |
+  Recruiters post jobs, candidates apply, profiles hold skills/YOE; show top candidates per job and top eligible jobs per candidate. Executable code.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R2 LLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498754/

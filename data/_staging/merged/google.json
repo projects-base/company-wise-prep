@@ -1,0 +1,2822 @@
+[
+ {
+  "slug": "two-sum",
+  "title": "Two Sum",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "array",
+   "hashmap"
+  ],
+  "leetcode": "two-sum",
+  "prompt": "Return indices of two numbers that add up to a target; walk from brute force to sort+two-pointers to hashmap.",
+  "follow_ups": [
+   "Discuss integer overflow and test cases."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Screening DSA",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8551877/"
+  }
+ },
+ {
+  "slug": "grid-paths-with-checkpoints",
+  "title": "Count grid paths (right / diagonal moves) through checkpoints",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dynamic-programming",
+   "matrix"
+  ],
+  "leetcode": null,
+  "prompt": "In an n x m grid start at (n-1,0) and reach (n-1,m-1) moving right, diagonally up-right or diagonally down-right; count the paths.",
+  "follow_ups": [
+   "Count only paths that visit all given checkpoints.",
+   "Checkpoints must be visited in order; optimise space."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525084/"
+  }
+ },
+ {
+  "slug": "shortest-path-escape-from-chaser",
+  "title": "Shortest path, nodes on any shortest path, and escaping a chaser",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "bfs"
+  ],
+  "leetcode": null,
+  "prompt": "In an undirected unweighted graph find Alice's shortest path to a destination.",
+  "follow_ups": [
+   "Return every node that lies on some shortest path.",
+   "Bob starts elsewhere and moves simultaneously; can Alice reach the destination along a shortest path without being caught?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525084/"
+  }
+ },
+ {
+  "slug": "the-earliest-moment-when-everyone-become-friends",
+  "title": "Earliest timestamp when all users are connected",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "union-find",
+   "graph",
+   "sorting"
+  ],
+  "leetcode": "the-earliest-moment-when-everyone-become-friends",
+  "prompt": "Given timestamped 'A connects to B' logs and n users, return the earliest time at which everyone is connected.",
+  "follow_ups": [
+   "Also require max connections between any two nodes <= k.",
+   "Logs can contain 'unfriend' events (dynamic connectivity / DSU with rollback)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 2",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525084/"
+  }
+ },
+ {
+  "slug": "binary-tree-root-with-alternating-colors",
+  "title": "Pick a root that turns a degree<=3 tree into an alternating-colour binary tree",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "graph",
+   "dfs",
+   "rerooting"
+  ],
+  "leetcode": null,
+  "prompt": "Given an undirected acyclic connected graph where every node has at most 3 edges, find a node that, as root, makes it a binary tree.",
+  "follow_ups": [
+   "Nodes are Black/White: find a root so colours alternate by depth, in O(N) without BFS from every node.",
+   "Three colours with a fixed repeating sequence by depth."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Screening DSA",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "binary-tree-root-with-alternating-colors",
+  "title": "Pick a root that turns a degree<=3 tree into an alternating-colour binary tree",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "graph",
+   "dfs",
+   "rerooting"
+  ],
+  "leetcode": null,
+  "prompt": "Given an undirected acyclic connected graph where every node has at most 3 edges, find a node that, as root, makes it a binary tree.",
+  "follow_ups": [
+   "Nodes are Black/White: find a root so colours alternate by depth, in O(N) without BFS from every node.",
+   "Three colours with a fixed repeating sequence by depth."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6522571/"
+  }
+ },
+ {
+  "slug": "binary-tree-root-with-alternating-colors",
+  "title": "Pick a root that turns a degree<=3 tree into an alternating-colour binary tree",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "graph",
+   "dfs",
+   "rerooting"
+  ],
+  "leetcode": null,
+  "prompt": "Given an undirected acyclic connected graph where every node has at most 3 edges, find a node that, as root, makes it a binary tree.",
+  "follow_ups": [
+   "Nodes are Black/White: find a root so colours alternate by depth, in O(N) without BFS from every node.",
+   "Three colours with a fixed repeating sequence by depth."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6479105/"
+  }
+ },
+ {
+  "slug": "count-lakes-in-island",
+  "title": "Count lakes inside a given island",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "matrix",
+   "dfs",
+   "bfs"
+  ],
+  "leetcode": null,
+  "prompt": "Grid of land/water with ocean outside; given a coordinate on one island, return how many enclosed water regions (lakes) that island contains.",
+  "follow_ups": [
+   "What if there is land (another island) inside a lake?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "maximum-profit-in-job-scheduling",
+  "title": "Maximum Profit in Job Scheduling",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dynamic-programming",
+   "binary-search",
+   "sorting"
+  ],
+  "leetcode": "maximum-profit-in-job-scheduling",
+  "prompt": "Choose non-overlapping jobs (start, end, profit) to maximise total profit; expected O(N log N).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "course-schedule-ii",
+  "title": "Course Schedule II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "topological-sort"
+  ],
+  "leetcode": "course-schedule-ii",
+  "prompt": "Return a valid order to finish all courses given prerequisite pairs, or empty if a cycle exists.",
+  "follow_ups": [
+   "Report the tasks involved in cyclic dependencies."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Screening DSA",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8265899/"
+  }
+ },
+ {
+  "slug": "course-schedule-ii",
+  "title": "Course Schedule II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "topological-sort"
+  ],
+  "leetcode": "course-schedule-ii",
+  "prompt": "Return a valid order to finish all courses given prerequisite pairs, or empty if a cycle exists.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen (dependency resolution)",
+   "seen_on": "2026-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8355549/"
+  }
+ },
+ {
+  "slug": "earliest-arrival-with-flight-schedule",
+  "title": "Can a package reach the destination via timed flights (earliest arrival)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dijkstra"
+  ],
+  "leetcode": null,
+  "prompt": "Flights have source, destination, departure and arrival times; a connection is valid only if departure >= arrival at that airport. Decide reachability and the minimum arrival time.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2026-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8355549/"
+  }
+ },
+ {
+  "slug": "earliest-arrival-with-flight-schedule",
+  "title": "Can a package reach the destination via timed flights (earliest arrival)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dijkstra"
+  ],
+  "leetcode": null,
+  "prompt": "Flights have source, destination, departure and arrival times; a connection is valid only if departure >= arrival at that airport. Decide reachability and the minimum arrival time.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "longest-increasing-subsequence-ii",
+  "title": "Longest increasing subsequence with bounded difference",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dynamic-programming",
+   "segment-tree",
+   "coordinate-compression"
+  ],
+  "leetcode": "longest-increasing-subsequence-ii",
+  "prompt": "Find the longest increasing subsequence whose adjacent difference is exactly 1.",
+  "follow_ups": [
+   "Difference at most d (segment tree over values)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 2",
+   "seen_on": "2026-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8355549/"
+  }
+ },
+ {
+  "slug": "lfu-cache",
+  "title": "LFU Cache (variant with score-based eviction)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "design",
+   "hashmap",
+   "linked-list"
+  ],
+  "leetcode": "lfu-cache",
+  "prompt": "LFU-like cache where values carry a score that increments on access; eviction follows LFU order but may only evict entries whose score is even.",
+  "follow_ups": [
+   "Feedback: handle edge cases and use classes cleanly."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding (in person)",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8265899/"
+  }
+ },
+ {
+  "slug": "expand-template-variables-with-cycle-detection",
+  "title": "Expand %KEY% template variables (string replacement library)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "recursion",
+   "dfs",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Given a map of key -> value and a string, replace every %KEY% with its value; values can themselves contain %KEYS%.",
+  "follow_ups": [
+   "Missing keys: return an error.",
+   "Detect cycles (A -> %B%, B -> %A%) and fail cleanly.",
+   "Handle literal % characters."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding (in person)",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8218498/"
+  }
+ },
+ {
+  "slug": "expand-template-variables-with-cycle-detection",
+  "title": "Expand %KEY% template variables (string replacement library)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "recursion",
+   "dfs",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Given a map of key -> value and a string, replace every %KEY% with its value; values can themselves contain %KEYS%.",
+  "follow_ups": [
+   "Detect cycles and throw an error."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6634286/"
+  }
+ },
+ {
+  "slug": "range-assignment-queries",
+  "title": "Range assignment queries",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "segment-tree",
+   "lazy-propagation",
+   "union-find"
+  ],
+  "leetcode": null,
+  "prompt": "Array of 1e5 elements and 1e5 queries (l, r, k) each setting arr[l..r] = k; output the final array.",
+  "follow_ups": [
+   "Variation where k is the same for every query vs different per query."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7624444/"
+  }
+ },
+ {
+  "slug": "meeting-rooms-iii",
+  "title": "Meeting Rooms III (variation)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "sorting",
+   "simulation"
+  ],
+  "leetcode": "meeting-rooms-iii",
+  "prompt": "Allocate meetings to the lowest-numbered free room, delaying meetings when all rooms are busy; report the most-used room.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7631077/"
+  }
+ },
+ {
+  "slug": "meeting-rooms-iii",
+  "title": "Meeting Rooms III",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "sorting",
+   "simulation"
+  ],
+  "leetcode": "meeting-rooms-iii",
+  "prompt": "Allocate meetings to the lowest-numbered free room, delaying meetings when all rooms are busy; report the most-used room.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "count-dice-outcomes-one-higher",
+  "title": "Count dice outcomes where one die beats the other",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "math",
+   "combinatorics",
+   "dynamic-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Two n-faced dice are rolled; count outcomes in which one die shows a strictly higher value than the other.",
+  "follow_ups": [
+   "Generalise efficiently to k dice."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7164554/"
+  }
+ },
+ {
+  "slug": "russian-doll-envelopes",
+  "title": "Russian Doll / box stacking (with rotation)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dynamic-programming",
+   "binary-search",
+   "sorting"
+  ],
+  "leetcode": "russian-doll-envelopes",
+  "prompt": "Modified Russian-doll / box-stacking: maximise the nesting chain.",
+  "follow_ups": [
+   "Boxes may be rotated."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7164554/"
+  }
+ },
+ {
+  "slug": "swim-in-rising-water",
+  "title": "Swim in Rising Water (variation)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "dijkstra",
+   "binary-search",
+   "union-find"
+  ],
+  "leetcode": "swim-in-rising-water",
+  "prompt": "Minimum time T at which you can travel from top-left to bottom-right when you can only enter cells with elevation <= T.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6846591/"
+  }
+ },
+ {
+  "slug": "assign-volunteers-by-skill-tags",
+  "title": "Assign questions to volunteers by matching skill tags",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "bipartite-matching",
+   "greedy"
+  ],
+  "leetcode": null,
+  "prompt": "Optimally assign questions to volunteers where each question and volunteer has tags and a volunteer can only take questions matching their tags.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6846591/"
+  }
+ },
+ {
+  "slug": "moving-average-from-data-stream",
+  "title": "Moving average of last n values (excluding k largest)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "queue",
+   "heap",
+   "design",
+   "sliding-window"
+  ],
+  "leetcode": "moving-average-from-data-stream",
+  "prompt": "For a stream of floats, return the mean of the last n values.",
+  "follow_ups": [
+   "Exclude the k highest values in the window from the mean."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6796476/"
+  }
+ },
+ {
+  "slug": "moving-average-from-data-stream",
+  "title": "Moving average of last n values",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "queue",
+   "design",
+   "sliding-window"
+  ],
+  "leetcode": "moving-average-from-data-stream",
+  "prompt": "For a stream of numbers, return the mean of the last n values.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "top-k-similar-movies",
+  "title": "Top K highest-rated similar movies",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "heap",
+   "union-find"
+  ],
+  "leetcode": null,
+  "prompt": "Movies have ratings and a similarity graph (connected = similar); for a given movie return the top N similar movies by rating.",
+  "follow_ups": [
+   "Movies are added dynamically between queries.",
+   "Target O(K) space and near O(log K) per update."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6796476/"
+  }
+ },
+ {
+  "slug": "minimum-window-substring",
+  "title": "Minimum Window Substring",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "string",
+   "sliding-window",
+   "hashmap"
+  ],
+  "leetcode": "minimum-window-substring",
+  "prompt": "Smallest substring of s containing every character of t (with multiplicity). Asked verbatim.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6796476/"
+  }
+ },
+ {
+  "slug": "merge-n-ary-trees-by-key",
+  "title": "Merge two keyed n-ary trees",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "recursion",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Merge two n-ary trees whose nodes are (key, value): matching keys merge recursively with B's value winning; child order is A's children then B's remaining children.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6796476/"
+  }
+ },
+ {
+  "slug": "build-a-matrix-with-conditions",
+  "title": "Build a Matrix With Conditions",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "topological-sort",
+   "matrix"
+  ],
+  "leetcode": "build-a-matrix-with-conditions",
+  "prompt": "Place 1..k in a k x k matrix so that given row-above and column-left constraints hold (two topological sorts).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6782644/"
+  }
+ },
+ {
+  "slug": "encode-number",
+  "title": "Encode Number (math + string)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "math",
+   "string",
+   "bit-manipulation"
+  ],
+  "leetcode": "encode-number",
+  "prompt": "Encode a non-negative integer using the hidden pattern (binary of n+1 without leading 1); reported as a close match to the round.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6782644/"
+  }
+ },
+ {
+  "slug": "serialize-deserialize-directed-graph",
+  "title": "Encode and decode a directed graph",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dfs",
+   "bfs",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Serialise a directed graph (int-valued nodes with neighbour lists, possibly cyclic) to a string and reconstruct it preserving node identity.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6775581/"
+  }
+ },
+ {
+  "slug": "water-and-jug-problem",
+  "title": "Reach a target volume with N jugs",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "math",
+   "state-space-search"
+  ],
+  "leetcode": "water-and-jug-problem",
+  "prompt": "With jugs of given capacities and fill/empty/pour operations, decide if exactly the target volume can be measured (generalised to N jugs).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6775581/"
+  }
+ },
+ {
+  "slug": "minimum-combined-travel-cost-meeting-point",
+  "title": "Destination minimising combined travel cost of two people",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dijkstra"
+  ],
+  "leetcode": null,
+  "prompt": "Alice and Bob start at different nodes in a weighted graph; pick a destination minimising the sum of their shortest-path costs.",
+  "follow_ups": [
+   "k friends instead of two."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6775581/"
+  }
+ },
+ {
+  "slug": "minimum-combined-travel-cost-meeting-point",
+  "title": "Shortest distance between friends / best meeting node",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dijkstra",
+   "bfs"
+  ],
+  "leetcode": null,
+  "prompt": "Friends live at nodes of a graph; find the shortest distance between two of them.",
+  "follow_ups": [
+   "Given k friends, find the node minimising the total distance for all of them."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5898854/"
+  }
+ },
+ {
+  "slug": "merge-intervals",
+  "title": "Merge car-rental booking intervals",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "sorting"
+  ],
+  "leetcode": "merge-intervals",
+  "prompt": "Merge overlapping rental bookings and return the consolidated schedule.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6775581/"
+  }
+ },
+ {
+  "slug": "find-common-free-days",
+  "title": "Days when everyone (or at least P people) is available",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "line-sweep",
+   "prefix-sum"
+  ],
+  "leetcode": null,
+  "prompt": "Each person has blocks of unavailable days (personId, startDay, endDay); return all days when everyone is available.",
+  "follow_ups": [
+   "Days when at least P people are available.",
+   "Periods of at least X consecutive days with P people available."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6735411/"
+  }
+ },
+ {
+  "slug": "top-k-chat-users-by-message-count",
+  "title": "Top K users in a chat stream",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "hashmap",
+   "string"
+  ],
+  "leetcode": null,
+  "prompt": "Given a stream of [user, message] pairs and K, return the K users with the most messages.",
+  "follow_ups": [
+   "Rank by total word count instead of message count."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6634286/"
+  }
+ },
+ {
+  "slug": "swap-adjacent-in-lr-string",
+  "title": "Swap Adjacent in LR String (L/R pieces)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "two-pointers",
+   "string"
+  ],
+  "leetcode": "swap-adjacent-in-lr-string",
+  "prompt": "L pieces move only left, R only right, pieces can't jump each other; decide whether the final state is reachable from the initial state.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6634286/"
+  }
+ },
+ {
+  "slug": "router-broadcast-minimum-time",
+  "title": "Minimum time for all routers to turn on",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "geometry"
+  ],
+  "leetcode": null,
+  "prompt": "N routers in 2D share radius R; switching one on pings all routers within R, which then switch on. Find the minimum time until all are on.",
+  "follow_ups": [
+   "Each router has its own radius (directed reachability)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6634286/"
+  }
+ },
+ {
+  "slug": "detonate-the-maximum-bombs",
+  "title": "Detonate the Maximum Bombs (BFS on geometric graph)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "geometry"
+  ],
+  "leetcode": "detonate-the-maximum-bombs",
+  "prompt": "Reported as similar to LC 2101: build a directed reachability graph from radii and BFS from each start.",
+  "follow_ups": [
+   "Follow-up was solved in the same round."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 2",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5885342/"
+  }
+ },
+ {
+  "slug": "binary-search-in-space-separated-string",
+  "title": "Binary search directly over a space-separated sorted string",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-search",
+   "string"
+  ],
+  "leetcode": null,
+  "prompt": "A string holds space-separated sorted numbers (possibly too large for numeric types); decide if a target is present without parsing the whole string.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6668243/"
+  }
+ },
+ {
+  "slug": "worker-shift-schedule-intervals",
+  "title": "Build a schedule of who is on shift per interval",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "line-sweep",
+   "sorting"
+  ],
+  "leetcode": null,
+  "prompt": "Given shifts [name, start, end], output consecutive time intervals with the set of workers present in each.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6522571/"
+  }
+ },
+ {
+  "slug": "range-module",
+  "title": "Range Module",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "design",
+   "ordered-map",
+   "intervals"
+  ],
+  "leetcode": "range-module",
+  "prompt": "Track ranges with add/remove; initial query was a single point.",
+  "follow_ups": [
+   "Query becomes a range."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6522571/"
+  }
+ },
+ {
+  "slug": "generate-parentheses",
+  "title": "Generate Parentheses",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "backtracking",
+   "string"
+  ],
+  "leetcode": "generate-parentheses",
+  "prompt": "Generate all well-formed combinations of n pairs of parentheses (asked as a similar problem).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6522449/"
+  }
+ },
+ {
+  "slug": "basic-calculator-ii",
+  "title": "Basic Calculator II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "string",
+   "math"
+  ],
+  "leetcode": "basic-calculator-ii",
+  "prompt": "Evaluate an expression with + - * / and non-negative integers.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6596001/"
+  }
+ },
+ {
+  "slug": "basic-calculator",
+  "title": "Calculator / expression evaluation variant",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "stack",
+   "string",
+   "recursion"
+  ],
+  "leetcode": "basic-calculator",
+  "prompt": "Vague calculator-style expression evaluation; clarify grammar first.",
+  "follow_ups": [
+   "How would this scale on distributed systems / caching / parallelism?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5529760/"
+  }
+ },
+ {
+  "slug": "huffman-coding",
+  "title": "Huffman coding",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "greedy",
+   "tree"
+  ],
+  "leetcode": null,
+  "prompt": "Build Huffman codes for given symbol frequencies (reported as close to a Google onsite Huffman problem).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6349651/"
+  }
+ },
+ {
+  "slug": "direct-vs-indirect-connections",
+  "title": "areConnected vs areRelated over partnerships",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "union-find",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Given direct partnerships, implement areConnected(x,y) (direct link) and areRelated(x,y) (same network but not direct).",
+  "follow_ups": [
+   "Answer both in O(1) after preprocessing."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6584641/"
+  }
+ },
+ {
+  "slug": "first-bad-version",
+  "title": "First failing version",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "binary-search"
+  ],
+  "leetcode": "first-bad-version",
+  "prompt": "A check passes at version a and fails at b and stays failing; find the first failing version.",
+  "follow_ups": [
+   "Speed it up with multiple threads.",
+   "Avoid overflow when l/r are huge."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6584641/"
+  }
+ },
+ {
+  "slug": "sliding-window-maximum",
+  "title": "Sliding Window Maximum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "deque",
+   "sliding-window",
+   "heap"
+  ],
+  "leetcode": "sliding-window-maximum",
+  "prompt": "Maximum of every window of k consecutive elements.",
+  "follow_ups": [
+   "O(n log k) time with O(1) extra space."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6584641/"
+  }
+ },
+ {
+  "slug": "maximum-retention-cap-per-category",
+  "title": "Largest per-category cap X under a global entry limit",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-search",
+   "sorting",
+   "greedy"
+  ],
+  "leetcode": null,
+  "prompt": "Entries grouped by category; keep all entries of categories with <= X entries and the latest X otherwise. Maximise X so total retained <= max_entries.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6584641/"
+  }
+ },
+ {
+  "slug": "lru-cache",
+  "title": "LRU Cache",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "design",
+   "hashmap",
+   "linked-list"
+  ],
+  "leetcode": "lru-cache",
+  "prompt": "Implement get/put in O(1) with least-recently-used eviction.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6492044/"
+  }
+ },
+ {
+  "slug": "pacific-atlantic-water-flow",
+  "title": "Pacific Atlantic Water Flow",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "matrix",
+   "dfs",
+   "bfs"
+  ],
+  "leetcode": "pacific-atlantic-water-flow",
+  "prompt": "Return cells from which water can flow to both oceans.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6492044/"
+  }
+ },
+ {
+  "slug": "cheapest-flights-within-k-stops",
+  "title": "Cheapest Flights Within K Stops",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bellman-ford",
+   "dijkstra"
+  ],
+  "leetcode": "cheapest-flights-within-k-stops",
+  "prompt": "Cheapest price from src to dst with at most k stops.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 2",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6492044/"
+  }
+ },
+ {
+  "slug": "linked-list-cycle-ii",
+  "title": "Linked List Cycle II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "linked-list",
+   "two-pointers"
+  ],
+  "leetcode": "linked-list-cycle-ii",
+  "prompt": "Return the node where the cycle begins.",
+  "follow_ups": [
+   "Prove why Floyd's meeting-point trick works."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Phone screen",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6492044/"
+  }
+ },
+ {
+  "slug": "ip-address-wildcard-matching",
+  "title": "Match IPs against wildcard patterns",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "trie",
+   "string"
+  ],
+  "leetcode": null,
+  "prompt": "Given patterns like 192.124.168.* and exact IPs, answer whether a query IP matches any pattern.",
+  "follow_ups": [
+   "Multiple pattern lists and pairs of IPs processed together."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6372760/"
+  }
+ },
+ {
+  "slug": "redact-banned-words-in-large-file",
+  "title": "Redact banned words in a large text file",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "hashset",
+   "streaming"
+  ],
+  "leetcode": null,
+  "prompt": "Replace every banned word in a text file with REDACTED.",
+  "follow_ups": [
+   "The file is too large for memory: process in chunks (word boundaries across chunks)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Onsite coding 3",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6372760/"
+  }
+ },
+ {
+  "slug": "universal-escape-sequence",
+  "title": "One instruction sequence that reaches the exit from any start",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "bfs",
+   "matrix",
+   "simulation"
+  ],
+  "leetcode": null,
+  "prompt": "Grid of empty cells, walls and an exit; produce a sequence of U/D/L/R moves that leads to the exit no matter which empty cell you start from.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 2",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5898854/"
+  }
+ },
+ {
+  "slug": "logger-rate-limiter",
+  "title": "Logger Rate Limiter (suppress duplicates in both directions)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "queue",
+   "design",
+   "streaming"
+  ],
+  "leetcode": "logger-rate-limiter",
+  "prompt": "Messages arrive in timestamp order; print only messages unique within the last 10 seconds.",
+  "follow_ups": [
+   "Suppress a message if a duplicate occurs within 10 s in the past OR future (requires buffering)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 3",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5898854/"
+  }
+ },
+ {
+  "slug": "logger-rate-limiter",
+  "title": "Message display with retrospective duplicate suppression",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "queue",
+   "design",
+   "streaming"
+  ],
+  "leetcode": "logger-rate-limiter",
+  "prompt": "Process a live stream of (timestamp, message); show a message only if the same message does not appear within any 10-second window, hiding both duplicates.",
+  "follow_ups": [
+   "What production bottlenecks would this have?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "extend-rhyme-scheme",
+  "title": "Extend a short rhyme scheme to match a long one",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "hashmap",
+   "pattern-matching"
+  ],
+  "leetcode": null,
+  "prompt": "Given a short rhyme scheme and a long one, extend the short one so the two are equivalent (same letter-equality structure), or report impossible.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6479105/"
+  }
+ },
+ {
+  "slug": "min-stack",
+  "title": "Stack with push/pop/min",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "design"
+  ],
+  "leetcode": "min-stack",
+  "prompt": "Implement push, pop and min in O(1).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6552739/"
+  }
+ },
+ {
+  "slug": "find-the-safest-path-in-a-grid",
+  "title": "Mouse to treat staying far from the cat",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "bfs",
+   "binary-search",
+   "dijkstra",
+   "matrix"
+  ],
+  "leetcode": "find-the-safest-path-in-a-grid",
+  "prompt": "Grid with water, start S, treat T and cat C; find an S->T path maximising the minimum distance to the cat along the path.",
+  "follow_ups": [
+   "Plain S->T reachability first."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "minimum-area-rectangle-ii",
+  "title": "Minimum Area Rectangle II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "geometry",
+   "hashmap"
+  ],
+  "leetcode": "minimum-area-rectangle-ii",
+  "prompt": "Smallest-area rectangle (any orientation) from a set of points.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "minimum-area-rectangle",
+  "title": "Largest/smallest axis-parallel rectangle from points",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "geometry",
+   "hashmap"
+  ],
+  "leetcode": "minimum-area-rectangle",
+  "prompt": "Given 2D points, find the rectangle formed from four of them with the max (reported) or min area, axes parallel.",
+  "follow_ups": [
+   "Rectangle need not be axis-parallel."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "watchtower-max-profit",
+  "title": "Watchtower height that maximises profit",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "geometry",
+   "sorting",
+   "greedy"
+  ],
+  "leetcode": null,
+  "prompt": "Tower at origin costs H per unit height and covers houses within horizontal distance equal to its height; each covered house pays C. Maximise profit.",
+  "follow_ups": [
+   "Tower location given; coordinates and costs may be floats."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "sentence-similarity-iii",
+  "title": "Do two sentences differ by one inserted phrase?",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "two-pointers"
+  ],
+  "leetcode": "sentence-similarity-iii",
+  "prompt": "Return true if one sentence can be obtained from the other by inserting a single contiguous phrase.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "hand-of-straights",
+  "title": "Split array into groups of 5 consecutive numbers",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "greedy",
+   "hashmap",
+   "sorting"
+  ],
+  "leetcode": "hand-of-straights",
+  "prompt": "Decide whether the array can be partitioned into groups of size 5 of consecutive increasing numbers, using every element once.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "min-machines-for-earliest-completion",
+  "title": "Earliest completion time and minimum CPUs needed",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-search",
+   "greedy",
+   "scheduling"
+  ],
+  "leetcode": null,
+  "prompt": "Equal-length tasks on a set of machines: find the earliest time all complete.",
+  "follow_ups": [
+   "Find the minimum number of CPUs that still achieves that earliest time."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "word-ladder",
+  "title": "Word Ladder (min single-character transformations)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "bfs",
+   "string"
+  ],
+  "leetcode": "word-ladder",
+  "prompt": "Minimum number of one-character edits to turn source into target where every intermediate word is in the dictionary.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "decode-ways",
+  "title": "Decode Ways",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dynamic-programming",
+   "string"
+  ],
+  "leetcode": "decode-ways",
+  "prompt": "Count the interpretations of a digit string under 1->a ... 26->z.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "longest-substring-first-char-less-than-last",
+  "title": "Longest substring whose first char < last char",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "greedy"
+  ],
+  "leetcode": null,
+  "prompt": "For a 1e5-length lowercase string, return the maximum length of a substring whose first character is lexicographically smaller than its last, in linear time.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "maximum-product-of-k-elements",
+  "title": "Maximum product of K chosen elements",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "sorting",
+   "heap",
+   "greedy",
+   "math"
+  ],
+  "leetcode": null,
+  "prompt": "Select K elements from an integer array (negatives allowed) to maximise their product.",
+  "follow_ups": [
+   "No extra space after sorting.",
+   "Without sorting (use priority queues)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "simplify-algebraic-expression",
+  "title": "Simplify a +/- expression with one level of parentheses",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "stack",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Simplify e.g. a+b+a+c-b-b-b+(d+c) to 2a-2b+2c+d.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "islands-in-binary-tree",
+  "title": "Number of islands in a 0/1 binary tree",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "dfs"
+  ],
+  "leetcode": null,
+  "prompt": "Nodes hold 0/1; count connected groups of 1-nodes (islands).",
+  "follow_ups": [
+   "Return the sizes of unique islands."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "make-the-string-great",
+  "title": "Remove bad pairs (xX) from a string",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "stack",
+   "string"
+  ],
+  "leetcode": "make-the-string-great",
+  "prompt": "Repeatedly remove adjacent pairs of the same letter in different case.",
+  "follow_ups": [
+   "Write unit tests as if shipping a feature.",
+   "Solve without a stack."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "maximum-distance-with-energy-and-wind",
+  "title": "Maximum distance with energy budget and wind",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dynamic-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Each day either move A[i] (energy -1) or rest (energy +1, capped at k); energy may never go negative. Maximise distance after n days.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "text-justification",
+  "title": "Text Justification",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "string",
+   "simulation"
+  ],
+  "leetcode": "text-justification",
+  "prompt": "Fully justify words into lines of width maxWidth.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "number-of-distinct-islands",
+  "title": "Number of Distinct Islands",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "matrix",
+   "dfs",
+   "hashing"
+  ],
+  "leetcode": "number-of-distinct-islands",
+  "prompt": "Count island shapes that are distinct up to translation (no rotation/mirror).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "permutation-sequence",
+  "title": "Permutation Sequence",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "math",
+   "combinatorics"
+  ],
+  "leetcode": "permutation-sequence",
+  "prompt": "Return the k-th permutation of 1..n.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "android-unlock-patterns",
+  "title": "Android Unlock Patterns",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "backtracking"
+  ],
+  "leetcode": "android-unlock-patterns",
+  "prompt": "Count valid unlock patterns of length m..n on a 3x3 keypad.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "last-day-where-you-can-still-cross",
+  "title": "Last Day Where You Can Still Cross / when towers connect first and last column",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "union-find",
+   "binary-search",
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "last-day-where-you-can-still-cross",
+  "prompt": "Cells are added one per day; find when a left-to-right (or top-to-bottom) connection first appears or disappears.",
+  "follow_ups": [
+   "API variant: a tower is built each day; tell when the first column connects to the last."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "group-items-by-shared-attributes",
+  "title": "Group items sharing at least one attribute",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "union-find",
+   "graph",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Items have multiple tags; group together all items connected through shared tags (accounts-merge style).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "maximum-subarray",
+  "title": "Kadane's algorithm with hashmap follow-up",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "array",
+   "dynamic-programming",
+   "kadane"
+  ],
+  "leetcode": "maximum-subarray",
+  "prompt": "Standard maximum-subarray (Kadane) question.",
+  "follow_ups": [
+   "Hashmap-based optimisation follow-up."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "number-of-islands",
+  "title": "Number of Islands (with dynamic constraints)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "matrix",
+   "dfs",
+   "bfs",
+   "union-find"
+  ],
+  "leetcode": "number-of-islands",
+  "prompt": "Count islands; reported as an opener followed by constraints added mid-round.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "partition-equal-subset-sum",
+  "title": "Partition Equal Subset Sum",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dynamic-programming",
+   "knapsack"
+  ],
+  "leetcode": "partition-equal-subset-sum",
+  "prompt": "Can the array be split into two equal-sum subsets?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "dungeon-game",
+  "title": "Dungeon Game",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dynamic-programming",
+   "matrix"
+  ],
+  "leetcode": "dungeon-game",
+  "prompt": "Minimum initial health to reach the bottom-right cell.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "split-array-largest-sum",
+  "title": "Split Array Largest Sum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-search",
+   "greedy",
+   "dynamic-programming"
+  ],
+  "leetcode": "split-array-largest-sum",
+  "prompt": "Split into k subarrays minimising the largest sum; DP first, then binary search + greedy check.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "longest-consecutive-sequence",
+  "title": "Longest Consecutive Sequence",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashset",
+   "union-find"
+  ],
+  "leetcode": "longest-consecutive-sequence",
+  "prompt": "Length of the longest consecutive-integer run in O(n).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "count-of-smaller-numbers-after-self",
+  "title": "Count of Smaller Numbers After Self",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "fenwick-tree",
+   "merge-sort",
+   "segment-tree"
+  ],
+  "leetcode": "count-of-smaller-numbers-after-self",
+  "prompt": "For each element, count smaller elements to its right.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "minimum-time-to-finish-the-race",
+  "title": "Minimum Time to Finish the Race",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dynamic-programming"
+  ],
+  "leetcode": "minimum-time-to-finish-the-race",
+  "prompt": "Choose tyre changes to minimise total race time.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8546037/"
+  }
+ },
+ {
+  "slug": "trapping-rain-water",
+  "title": "Trapping Rain Water",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "two-pointers",
+   "monotonic-stack"
+  ],
+  "leetcode": "trapping-rain-water",
+  "prompt": "Appears in Google's LeetCode company tag (last-three-months list).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Google/2.%20Three%20Months.csv"
+  }
+ },
+ {
+  "slug": "median-of-two-sorted-arrays",
+  "title": "Median of Two Sorted Arrays",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-search"
+  ],
+  "leetcode": "median-of-two-sorted-arrays",
+  "prompt": "Appears in Google's LeetCode company tag (last-three-months list).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Google/2.%20Three%20Months.csv"
+  }
+ },
+ {
+  "slug": "meeting-rooms-ii",
+  "title": "Meeting Rooms II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "heap",
+   "line-sweep"
+  ],
+  "leetcode": "meeting-rooms-ii",
+  "prompt": "Appears in Google's LeetCode company tag (last-three-months list).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "Unknown",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Google/2.%20Three%20Months.csv"
+  }
+ },
+ {
+  "slug": "design-out-of-order-frame-reorder-buffer",
+  "title": "API that forwards out-of-order video frames in order",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "hashmap",
+   "buffering",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "A service receives video frames out of order and must forward them downstream strictly in timestamp order; design SaveFrame()/GetFrame().",
+  "follow_ups": [
+   "Make it thread-safe (mutexes, double-checked locking)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding 1",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5885342/"
+  }
+ },
+ {
+  "slug": "design-completable-future",
+  "title": "Implement a CompletableFuture-like primitive",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "java",
+   "futures",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Design and implement a custom variation of Java's CompletableFuture, then use it in a data-processing step that splits an array across tasks.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Onsite coding",
+   "seen_on": "2026-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8323418/"
+  }
+ },
+ {
+  "slug": "design-ad-server-with-cooldown",
+  "title": "Ad server: highest-score ad without consecutive repeats",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "hashmap",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Implement insertAd(content, score) and getAd(): getAd returns the highest-scored ad, then decreases its score, never returning the same ad twice in a row.",
+  "follow_ups": [
+   "Add a cooldown gap before the same ad can reappear, keeping operations near O(1)."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "design-stream-deduplicator",
+  "title": "Deduplicate a stream of device events within a time window",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "streaming",
+   "hashmap",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Devices emit events like 'Battery at 10%'; drop repeats of the same event within 10 s (or one minute) of each other.",
+  "follow_ups": [
+   "Time/space complexity.",
+   "What bottlenecks appear when deployed to production, and how would you handle them?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "design-order-book-auction",
+  "title": "Order book / auction matching (lowest bid executes)",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "ordered-map",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Design an order-book/auction system that accepts bids and executes the lowest bid price.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "design-image-hosting-service",
+  "title": "Design an image/GIF/video hosting service (no sign-up)",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "blob-storage",
+   "cdn",
+   "metadata-db",
+   "async-processing"
+  ],
+  "leetcode": null,
+  "prompt": "Design a small anonymous image/GIF/video hosting platform: upload, store, serve in multiple formats.",
+  "follow_ups": [
+   "SQL vs NoSQL for metadata.",
+   "Background transcoding for slow networks.",
+   "Interviewer adds new requirements mid-round."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6668243/"
+  }
+ },
+ {
+  "slug": "design-image-hosting-service",
+  "title": "Design an image hosting system",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "blob-storage",
+   "cdn",
+   "metadata-db"
+  ],
+  "leetcode": null,
+  "prompt": "Design an image hosting system.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5576037/"
+  }
+ },
+ {
+  "slug": "design-google-sheets",
+  "title": "Design Google Sheets",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "collaborative-editing",
+   "realtime",
+   "consistency"
+  ],
+  "leetcode": null,
+  "prompt": "Design a collaborative spreadsheet (Google Sheets).",
+  "follow_ups": [
+   "Justify each design choice."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5285771/"
+  }
+ },
+ {
+  "slug": "design-distributed-cache",
+  "title": "Design a distributed cache optimised for a given task",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "caching",
+   "sharding",
+   "replication",
+   "consistent-hashing"
+  ],
+  "leetcode": null,
+  "prompt": "Design a distributed cache tuned to a workload the interviewer pastes in.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6349651/"
+  }
+ },
+ {
+  "slug": "design-short-video-news-feed",
+  "title": "Design a TikTok-style Google News",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "feed",
+   "ranking",
+   "recommendation",
+   "cdn"
+  ],
+  "leetcode": null,
+  "prompt": "Design a short-form, swipeable news feed (TikTok-style Google News).",
+  "follow_ups": [
+   "Interviewer changes the problem statement once the first design is done."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "Additional system design",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6349651/"
+  }
+ },
+ {
+  "slug": "design-social-feed-indexing-service",
+  "title": "Index an entire Twitter news feed",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "crawling",
+   "search-index",
+   "streaming"
+  ],
+  "leetcode": null,
+  "prompt": "Design a service that interacts with Twitter and indexes its entire news-feed data.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5885342/"
+  }
+ },
+ {
+  "slug": "design-inventory-management-system",
+  "title": "Design an inventory management system",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "consistency",
+   "transactions",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Design inventory management: storage, stock updates, consistency.",
+  "follow_ups": [
+   "Revisit for high concurrency, multithreading and scale."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6552739/"
+  }
+ },
+ {
+  "slug": "design-central-hr-system-integration",
+  "title": "Integrate a central HR system with many local HR systems",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "integration",
+   "event-driven",
+   "data-sync",
+   "security"
+  ],
+  "leetcode": null,
+  "prompt": "Integrate a central HR system with multiple local HR systems with data synchronisation and secure communication.",
+  "follow_ups": [
+   "Central ERP integrated with many local business applications."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System integration",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6552739/"
+  }
+ },
+ {
+  "slug": "design-news-summary-app",
+  "title": "Design Inshorts (news summaries)",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "crawling",
+   "dedup",
+   "feed"
+  ],
+  "leetcode": null,
+  "prompt": "Design an Inshorts-style news summary app.",
+  "follow_ups": [
+   "How do you avoid duplicate summaries of the same story from different sources?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Unknown",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525983/"
+  }
+ },
+ {
+  "slug": "design-employee-cab-service",
+  "title": "Design Google's employee cab transport service",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "routing",
+   "scheduling",
+   "optimisation",
+   "geo"
+  ],
+  "leetcode": null,
+  "prompt": "Design an end-to-end system for employee cab allocation, routing and scheduling to cut wait and travel time at scale.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "System design",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7469970/"
+  }
+ },
+ {
+  "slug": "design-assistant-multi-device-dedup",
+  "title": "Avoid duplicate Assistant responses across nearby devices",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "distributed-coordination",
+   "dedup",
+   "latency"
+  ],
+  "leetcode": null,
+  "prompt": "When 'Hey Google' wakes several nearby devices that all send the query, design the backend so the user hears only one response.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "Unknown",
+   "round": "System design",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7020053/"
+  }
+ },
+ {
+  "slug": "design-event-aggregator-and-ticketing",
+  "title": "Event aggregator (scraping) with search, booking and ratings",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "web-crawler",
+   "entity-resolution",
+   "search",
+   "booking"
+  ],
+  "leetcode": null,
+  "prompt": "Scrape events from news/social sources and let users search, book tickets and rate events.",
+  "follow_ups": [
+   "Turn unstructured scraped data into structured events at scale.",
+   "Detect the same event from two sources.",
+   "Update event status from later news.",
+   "Judge event correctness."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L5",
+   "round": "System design",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5534774/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Disagreement with a colleague or manager",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Describe a disagreement with a colleague or manager, how you resolved it and the outcome.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "giving-critical-feedback",
+  "title": "Giving critical feedback",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Have you given critical feedback to someone? How did they take it and what was the situation?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "helping-an-underperforming-teammate",
+  "title": "Helping an underperforming teammate",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Describe a situation where you helped an underperforming team member improve.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "manager-unreasonable-demands",
+  "title": "Reasonable vs unreasonable demands from a manager",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Tell me about a time your manager set reasonable demands.",
+  "follow_ups": [
+   "Now describe a situation with unreasonable demands."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "disagree-with-majority-decision",
+  "title": "People who disagree with the majority decision",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "How would you handle people who disagree with the majority decision on a non-work matter?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8522064/"
+  }
+ },
+ {
+  "slug": "someone-took-credit-for-your-work",
+  "title": "Someone takes credit for your work",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "How would you handle a conflict where someone takes credit for your work?",
+  "follow_ups": [
+   "What if it keeps happening in a four-person team?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8525084/"
+  }
+ },
+ {
+  "slug": "handling-ambiguity",
+  "title": "Handling an ambiguous situation",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Describe an ambiguous situation and how you made progress.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8551877/"
+  }
+ },
+ {
+  "slug": "receiving-negative-feedback",
+  "title": "Receiving negative feedback",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Talk about negative feedback you received and what you did with it.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8551877/"
+  }
+ },
+ {
+  "slug": "everything-is-p0",
+  "title": "Overwhelmed and everything is P0",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "If you are overwhelmed and everything is P0, how do you tackle it?",
+  "follow_ups": [
+   "You could not handle multiple tasks: how did you react and make amends?"
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7093123/"
+  }
+ },
+ {
+  "slug": "helping-someone-fit-in-diverse-team",
+  "title": "Helping someone fit into a culturally diverse team",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Tell me about someone who struggled to fit into a culturally diverse team and how you helped. Is it a team problem or the person's?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7093123/"
+  }
+ },
+ {
+  "slug": "biggest-disappointment",
+  "title": "Biggest disappointment",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "What is your biggest disappointment, why did it happen, and what did you learn?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7093123/"
+  }
+ },
+ {
+  "slug": "why-google",
+  "title": "Why Google?",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "googleyness"
+  ],
+  "leetcode": null,
+  "prompt": "Why Google?",
+  "follow_ups": [
+   "Conflicts with other teams."
+  ],
+  "sighting": {
+   "company": "google",
+   "role": "L4",
+   "round": "Googleyness & Leadership",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7093091/"
+  }
+ }
+]

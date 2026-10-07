@@ -1,0 +1,21 @@
+slug: router-broadcast-minimum-time
+title: Minimum time for all routers to turn on
+type: DSA
+difficulty: medium
+tags:
+- graph
+- bfs
+- geometry
+leetcode: null
+prompt: |
+  N routers in 2D share radius R; switching one on pings all routers within R, which then switch on. Find the minimum time until all are on.
+follow_ups:
+- Each router has its own radius (directed reachability).
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 2
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6634286/

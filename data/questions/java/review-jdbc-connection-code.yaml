@@ -1,0 +1,20 @@
+slug: review-jdbc-connection-code
+title: 'Code review: Java/SQL connection snippet'
+type: JAVA
+difficulty: medium
+tags:
+- code-review
+- jdbc
+- resource-handling
+leetcode: null
+prompt: |
+  Review a Java/SQL connection snippet and comment on resource handling, error cases and correctness.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R5 Engineering group director
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7451130/

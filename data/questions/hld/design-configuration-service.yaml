@@ -1,0 +1,19 @@
+slug: design-configuration-service
+title: Design a Configuration Service
+type: HLD
+difficulty: medium
+tags:
+- config-push
+- microservices
+leetcode: null
+prompt: |
+  Service that updates configuration across n microservices.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63/L64, Azure Storage)
+  round: R2 (taken by hiring manager)
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8300781/

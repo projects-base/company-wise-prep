@@ -1,0 +1,20 @@
+slug: java-volatile-and-synchronized
+title: volatile and synchronized across CPU architectures
+type: JAVA
+difficulty: hard
+tags:
+- concurrency
+- memory-model
+- jmm
+leetcode: null
+prompt: |
+  Process communication, critical sections, how 'volatile' behaves across CPU architectures, synchronized blocks - down to CPU cache/register level.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (63, Hyderabad)
+  round: R2 Coding + multi-threading
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://roundz.substack.com/p/microsoft-senior-software-engineer-63

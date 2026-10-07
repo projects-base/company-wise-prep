@@ -1,0 +1,21 @@
+slug: redact-banned-words-in-large-file
+title: Redact banned words in a large text file
+type: DSA
+difficulty: medium
+tags:
+- string
+- hashset
+- streaming
+leetcode: null
+prompt: |
+  Replace every banned word in a text file with REDACTED.
+follow_ups:
+- 'The file is too large for memory: process in chunks (word boundaries across chunks).'
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 3
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6372760/

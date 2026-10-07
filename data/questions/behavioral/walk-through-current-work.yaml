@@ -1,0 +1,18 @@
+slug: walk-through-current-work
+title: Walk Me Through Your Current Work / Projects
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- resume-deep-dive
+leetcode: null
+prompt: |
+  Walk through your current work and projects; follow-ups probe depth on whatever you mention.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 3 (techno-managerial)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

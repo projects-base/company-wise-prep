@@ -1,0 +1,20 @@
+slug: copy-on-write-page-counts
+title: Copy-on-Write Page Counts
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- fork
+- copy-on-write
+leetcode: null
+prompt: |
+  Coding exercise: track how many physical pages exist as processes fork and write under copy-on-write.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Developer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.tradermath.org/articles/tower-research-capital-interview-guide

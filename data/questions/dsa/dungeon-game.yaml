@@ -1,0 +1,19 @@
+slug: dungeon-game
+title: Dungeon Game
+type: DSA
+difficulty: hard
+tags:
+- dynamic-programming
+- matrix
+leetcode: dungeon-game
+prompt: |
+  Minimum initial health to reach the bottom-right cell.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

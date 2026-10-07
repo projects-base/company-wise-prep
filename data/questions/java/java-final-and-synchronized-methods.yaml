@@ -1,0 +1,20 @@
+slug: java-final-and-synchronized-methods
+title: final Methods and synchronized Method Access
+type: JAVA
+difficulty: easy
+tags:
+- java
+- concurrency
+- oop
+leetcode: null
+prompt: |
+  Semantics of the final keyword on methods; which threads can enter synchronized methods of the same object concurrently.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Online assessment (theory)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

@@ -1,0 +1,20 @@
+slug: restore-ip-addresses
+title: Restore IP Addresses
+type: DSA
+difficulty: medium
+tags:
+- backtracking
+- string
+leetcode: restore-ip-addresses
+prompt: |
+  Generate valid IPv4 addresses from a digit string on HackerRank without provided tests; supply 5-6 edge cases yourself.
+follow_ups:
+- Line-by-line alternatives (ternary vs if/else) - do they still work?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure Data Factory)
+  round: Interview 1 (Principal Architect)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7417317/

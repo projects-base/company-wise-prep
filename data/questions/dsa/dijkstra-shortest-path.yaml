@@ -1,0 +1,20 @@
+slug: dijkstra-shortest-path
+title: Shortest Path Between Two Vertices in a Weighted Graph
+type: DSA
+difficulty: medium
+tags:
+- graph
+- dijkstra
+- heap
+leetcode: null
+prompt: |
+  Weighted undirected graph and two vertices; find the shortest path between them.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Intern (telephonic round)
+  round: Telephonic round
+  seen_on: 2016-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/?p=131014

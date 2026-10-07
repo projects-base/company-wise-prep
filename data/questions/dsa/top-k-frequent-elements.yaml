@@ -1,0 +1,20 @@
+slug: top-k-frequent-elements
+title: Top K Frequent Elements
+type: DSA
+difficulty: medium
+tags:
+- heap
+- hashmap
+- bucket-sort
+leetcode: top-k-frequent-elements
+prompt: |
+  Return the k most frequent elements (10-12 minute coding slot after resume discussion).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: R1 (resume + coding + rate-limiter HLD)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7422741/

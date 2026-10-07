@@ -1,0 +1,35 @@
+slug: binary-tree-root-with-alternating-colors
+title: Pick a root that turns a degree<=3 tree into an alternating-colour binary tree
+type: DSA
+difficulty: hard
+tags:
+- tree
+- graph
+- dfs
+- rerooting
+leetcode: null
+prompt: |
+  Given an undirected acyclic connected graph where every node has at most 3 edges, find a node that, as root, makes it a binary tree.
+follow_ups:
+- 'Nodes are Black/White: find a root so colours alternate by depth, in O(N) without BFS from every node.'
+- Three colours with a fixed repeating sequence by depth.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Screening DSA
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/
+- company: google
+  role: L5
+  round: Onsite coding 2
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6522571/
+- company: google
+  role: L5
+  round: Onsite coding 2
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6479105/

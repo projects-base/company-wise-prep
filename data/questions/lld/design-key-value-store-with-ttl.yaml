@@ -1,0 +1,20 @@
+slug: design-key-value-store-with-ttl
+title: In-memory KV Store with Expiry
+type: LLD
+difficulty: medium
+tags:
+- hashmap
+- ttl
+- concurrency
+leetcode: null
+prompt: |
+  Simple get/put/delete KV store; then per-key expiry; then race conditions during expiry deletion; then LRU with expiry. AI allowed for code, not logic.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Windows)
+  round: R5 LLD
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8273079/

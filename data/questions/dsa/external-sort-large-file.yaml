@@ -1,0 +1,20 @@
+slug: external-sort-large-file
+title: Sort a File Too Large for Memory
+type: DSA
+difficulty: medium
+tags:
+- external-sort
+- k-way-merge
+- heap
+leetcode: null
+prompt: |
+  Sort a huge file of integers that does not fit in RAM; write running code (chunk, sort, k-way merge).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R5 Project discussion + coding
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5299198/

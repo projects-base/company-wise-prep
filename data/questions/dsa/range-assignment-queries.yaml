@@ -1,0 +1,21 @@
+slug: range-assignment-queries
+title: Range assignment queries
+type: DSA
+difficulty: hard
+tags:
+- segment-tree
+- lazy-propagation
+- union-find
+leetcode: null
+prompt: |
+  Array of 1e5 elements and 1e5 queries (l, r, k) each setting arr[l..r] = k; output the final array.
+follow_ups:
+- Variation where k is the same for every query vs different per query.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7624444/

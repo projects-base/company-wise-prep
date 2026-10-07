@@ -1,0 +1,20 @@
+slug: cheapest-flights-within-k-stops
+title: Cheapest Flights Within K Stops
+type: DSA
+difficulty: medium
+tags:
+- graph
+- bellman-ford
+- dijkstra
+leetcode: cheapest-flights-within-k-stops
+prompt: |
+  Cheapest price from src to dst with at most k stops.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 2
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6492044/

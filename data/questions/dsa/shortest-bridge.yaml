@@ -1,0 +1,33 @@
+slug: shortest-bridge
+title: Shortest Bridge
+type: DSA
+difficulty: medium
+tags:
+- graph
+- bfs
+- dfs
+- matrix
+leetcode: shortest-bridge
+prompt: |
+  Binary grid with exactly two islands; return the minimum number of 0s to flip to connect them.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: Technical 1 (DSA + problem solving)
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/
+- company: tower-research
+  role: SDE 2
+  round: Round 2 (DSA)
+  seen_on: 2022-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1867832/
+- company: tower-research
+  role: Unknown (LeetCode company tag list)
+  round: Unknown
+  seen_on: 2025-06
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems

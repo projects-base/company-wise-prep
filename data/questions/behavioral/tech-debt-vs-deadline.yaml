@@ -1,0 +1,18 @@
+slug: tech-debt-vs-deadline
+title: Technical debt under a deadline
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- prioritisation
+leetcode: null
+prompt: |
+  How do you handle technical debt when there is a deadline?
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R4 AA / hiring manager
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7711794/

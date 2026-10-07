@@ -1,0 +1,27 @@
+slug: design-distributed-key-value-store
+title: Design a Distributed Key-Value Store
+type: HLD
+difficulty: hard
+tags:
+- sharding
+- replication
+- consistency
+- cap
+leetcode: null
+prompt: |
+  Key-value store like DynamoDB with in-depth alternatives.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R3 HLD
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326149/
+- company: microsoft
+  role: SDE II (L61/62, Bengaluru)
+  round: R3 HLD
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7769548/

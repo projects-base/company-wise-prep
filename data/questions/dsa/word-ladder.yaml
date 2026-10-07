@@ -1,0 +1,19 @@
+slug: word-ladder
+title: Word Ladder (min single-character transformations)
+type: DSA
+difficulty: hard
+tags:
+- bfs
+- string
+leetcode: word-ladder
+prompt: |
+  Minimum number of one-character edits to turn source into target where every intermediate word is in the dictionary.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

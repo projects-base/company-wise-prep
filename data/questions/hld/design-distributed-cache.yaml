@@ -1,0 +1,29 @@
+slug: design-distributed-cache
+title: Design a distributed cache optimised for a given task
+type: HLD
+difficulty: hard
+tags:
+- caching
+- sharding
+- replication
+- consistent-hashing
+- lru
+- tdd
+leetcode: null
+prompt: |
+  Design a distributed cache tuned to a workload the interviewer pastes in.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: System design
+  seen_on: 2025-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6349651/
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R3 System design (75 min)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7541629/

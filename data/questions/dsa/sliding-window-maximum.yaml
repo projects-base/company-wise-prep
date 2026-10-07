@@ -1,0 +1,36 @@
+slug: sliding-window-maximum
+title: Sliding Window Maximum
+type: DSA
+difficulty: hard
+tags:
+- deque
+- sliding-window
+- heap
+- aggregate-list
+- monotonic-queue
+- streaming
+leetcode: sliding-window-maximum
+prompt: |
+  Maximum of every window of k consecutive elements.
+follow_ups:
+- O(n log k) time with O(1) extra space.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6584641/
+- company: microsoft
+  role: Unknown (LeetCode company tag)
+  round: 'Unknown (aggregate-list: LeetCode ''Microsoft'' tag, last 6 months)'
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

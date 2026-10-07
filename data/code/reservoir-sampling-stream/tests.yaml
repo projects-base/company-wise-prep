@@ -1,0 +1,63 @@
+method: StreamSampler
+tests:
+- name: Example 1
+  input: |
+    [10,20,30,40]
+    [1,2,4]
+    20000
+    1
+  expected: |
+    ["uniform","uniform","uniform"]
+- name: Example 2
+  input: |
+    [7,7,9]
+    [3]
+    30000
+    2
+  expected: |
+    ["uniform"]
+- name: Single element
+  hidden: true
+  input: |
+    [42]
+    [1]
+    1000
+    3
+  expected: |
+    ["uniform"]
+- name: Many checkpoints on one stream
+  hidden: true
+  input: |
+    [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129]
+    [1,2,3,5,8,13,21,30]
+    30000
+    4
+  expected: |
+    ["uniform","uniform","uniform","uniform","uniform","uniform","uniform","uniform"]
+- name: Negative and repeated values
+  hidden: true
+  input: |
+    [-1,-1,-1,5,-2,5]
+    [2,4,6]
+    30000
+    5
+  expected: |
+    ["uniform","uniform","uniform"]
+- name: Stream of 60 values
+  hidden: true
+  input: |
+    [581,435,660,-889,465,387,65,-199,-53,718,48,-592,-273,596,-400,-288,-947,-910,-227,-615,389,-594,-353,-993,638,-363,842,-406,147,-698,294,840,164,1,-391,-546,526,88,-328,653,-523,-292,657,-446,825,595,-672,287,-772,817,-271,-638,639,-173,-551,449,-519,-900,371,-51]
+    [60]
+    40000
+    6
+  expected: |
+    ["uniform"]
+- name: 100 million elements, O(1) memory
+  hidden: true
+  input: |
+    100000000
+    [100000000]
+    1
+    7
+  expected: |
+    ["valid"]

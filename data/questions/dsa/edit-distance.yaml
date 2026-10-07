@@ -1,0 +1,19 @@
+slug: edit-distance
+title: Edit Distance
+type: DSA
+difficulty: medium
+tags:
+- dp
+- string
+leetcode: edit-distance
+prompt: |
+  Minimum insert/delete/replace operations to convert one string into another.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Noida)
+  round: Screening
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498667/

@@ -1,0 +1,18 @@
+slug: reverse-nodes-in-k-group
+title: Reverse Nodes in k-Group
+type: DSA
+difficulty: hard
+tags:
+- linked-list
+leetcode: reverse-nodes-in-k-group
+prompt: |
+  Reverse a linked list k nodes at a time; code expected to run and be optimised.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 DSA + CS fundamentals (Principal Engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

@@ -1,0 +1,18 @@
+slug: minimum-difficulty-of-a-job-schedule
+title: Minimum Difficulty of a Job Schedule
+type: DSA
+difficulty: hard
+tags:
+- dp
+leetcode: minimum-difficulty-of-a-job-schedule
+prompt: |
+  Reworded but same concept: split jobs over d days minimising the sum of daily maxima.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: Online assessment (HackerRank)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7589414/

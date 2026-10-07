@@ -1,0 +1,26 @@
+slug: streaming-top-k-sum
+title: Online Top-K Sum with Updates and Deletes
+type: DSA
+difficulty: hard
+tags:
+- heap
+- ordered-set
+- streaming
+leetcode: null
+prompt: |
+  Maintain the sum of the K largest values in a stream that supports inserts and arbitrary deletes, each in O(log N).
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Unknown (aggregated question bank)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://quantvault.org/tower-research-interview-questions.html
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://www.quantt.co.uk/resources/tower-research-interview

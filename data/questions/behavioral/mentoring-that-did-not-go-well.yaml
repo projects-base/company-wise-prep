@@ -1,0 +1,19 @@
+slug: mentoring-that-did-not-go-well
+title: Mentoring that didn't go well
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- mentoring
+- growth-mindset
+leetcode: null
+prompt: |
+  Tell me about a time you mentored a junior and it didn't go well.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R4 AA / hiring manager
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7711794/

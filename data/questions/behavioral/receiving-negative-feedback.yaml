@@ -1,0 +1,32 @@
+slug: receiving-negative-feedback
+title: Receiving negative feedback
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+- growth-mindset
+- feedback
+leetcode: null
+prompt: |
+  Talk about negative feedback you received and what you did with it.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8551877/
+- company: microsoft
+  role: SDE II (L61)
+  round: R2 DSA + behavioural
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8099724/
+- company: microsoft
+  role: SWE II
+  round: R4 Senior manager
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7619101/

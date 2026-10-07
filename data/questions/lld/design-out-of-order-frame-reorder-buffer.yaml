@@ -1,0 +1,22 @@
+slug: design-out-of-order-frame-reorder-buffer
+title: API that forwards out-of-order video frames in order
+type: LLD
+difficulty: medium
+tags:
+- concurrency
+- hashmap
+- buffering
+- design
+leetcode: null
+prompt: |
+  A service receives video frames out of order and must forward them downstream strictly in timestamp order; design SaveFrame()/GetFrame().
+follow_ups:
+- Make it thread-safe (mutexes, double-checked locking).
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5885342/

@@ -1,0 +1,21 @@
+slug: design-employee-cab-service
+title: Design Google's employee cab transport service
+type: HLD
+difficulty: hard
+tags:
+- routing
+- scheduling
+- optimisation
+- geo
+leetcode: null
+prompt: |
+  Design an end-to-end system for employee cab allocation, routing and scheduling to cut wait and travel time at scale.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: System design
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7469970/

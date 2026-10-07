@@ -1,0 +1,23 @@
+slug: first-unique-number
+title: Oldest Unique Painting
+type: DSA
+difficulty: medium
+tags:
+- queue
+- hashmap
+- design
+- concurrency
+leetcode: first-unique-number
+prompt: |
+  Artists add integer paintings; enthusiasts consume the oldest painting that is still unique. Implement both operations.
+follow_ups:
+- Calls happen concurrently from millions of callers - how?
+- Synchronisation serialises consumers - how to make it faster?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure Compute, Bangalore)
+  round: R1 DSA
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498710/

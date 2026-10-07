@@ -1,0 +1,20 @@
+slug: kth-smallest-element-in-a-bst
+title: Kth Smallest Element in a BST
+type: DSA
+difficulty: medium
+tags:
+- tree
+- bst
+- inorder
+leetcode: kth-smallest-element-in-a-bst
+prompt: |
+  Return the k-th smallest value in a binary search tree.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 1 (resume + coding, 75 min)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

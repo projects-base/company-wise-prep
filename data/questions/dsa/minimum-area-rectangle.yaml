@@ -1,0 +1,20 @@
+slug: minimum-area-rectangle
+title: Largest/smallest axis-parallel rectangle from points
+type: DSA
+difficulty: medium
+tags:
+- geometry
+- hashmap
+leetcode: minimum-area-rectangle
+prompt: |
+  Given 2D points, find the rectangle formed from four of them with the max (reported) or min area, axes parallel.
+follow_ups:
+- Rectangle need not be axis-parallel.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

@@ -1,0 +1,19 @@
+slug: design-unique-id-generator
+title: Design a Distributed Unique ID Generator
+type: HLD
+difficulty: medium
+tags:
+- snowflake
+- ordering
+leetcode: null
+prompt: |
+  Highly available unique IDs at massive throughput with time ordering and no latency bottleneck.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R4 Technical deep dive (60 min)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7625252/

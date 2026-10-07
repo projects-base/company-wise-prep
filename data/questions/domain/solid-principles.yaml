@@ -1,0 +1,19 @@
+slug: solid-principles
+title: SOLID principles and dependency inversion
+type: DOMAIN
+difficulty: easy
+tags:
+- oop
+- design-principles
+leetcode: null
+prompt: |
+  SOLID principles; advantages of the dependency inversion principle.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: Unknown (consolidated from LeetCode Discuss)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6403987/

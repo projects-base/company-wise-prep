@@ -1,0 +1,20 @@
+slug: minimum-cost-to-reach-destination-in-time
+title: Minimum Cost to Reach Destination in Time
+type: DSA
+difficulty: hard
+tags:
+- graph
+- dijkstra
+- dp
+leetcode: minimum-cost-to-reach-destination-in-time
+prompt: |
+  Slightly more complicated variation of min passing-fee path within a time budget.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: Online assessment (HackerRank)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7589414/

@@ -1,0 +1,42 @@
+slug: meeting-rooms-ii
+title: Meeting Rooms II
+type: DSA
+difficulty: medium
+tags:
+- intervals
+- heap
+- line-sweep
+- sorting
+- two-pointers
+leetcode: meeting-rooms-ii
+prompt: |
+  Appears in Google's LeetCode company tag (last-three-months list).
+follow_ups:
+- Implement both the priority-queue and the two-pointer (sorted starts/ends) versions.
+- A follow-up variant (not specified).
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Google/2.%20Three%20Months.csv
+- company: microsoft
+  role: SDE II
+  round: R1 DSA (60 min)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7620569/
+- company: microsoft
+  role: SWE II
+  round: R2 DSA
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7619101/
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R2 DSA
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7545165/

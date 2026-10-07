@@ -1,0 +1,27 @@
+slug: minimum-window-substring
+title: Minimum Window Substring
+type: DSA
+difficulty: hard
+tags:
+- string
+- sliding-window
+- hashmap
+leetcode: minimum-window-substring
+prompt: |
+  Smallest substring of s containing every character of t (with multiplicity). Asked verbatim.
+follow_ups:
+- Optimise and clean the code.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 2
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6796476/
+- company: microsoft
+  role: SDE II (L61/62, Noida)
+  round: R1 DSA (with shadow interviewer)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7423217/

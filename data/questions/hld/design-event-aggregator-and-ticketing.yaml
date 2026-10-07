@@ -1,0 +1,25 @@
+slug: design-event-aggregator-and-ticketing
+title: Event aggregator (scraping) with search, booking and ratings
+type: HLD
+difficulty: hard
+tags:
+- web-crawler
+- entity-resolution
+- search
+- booking
+leetcode: null
+prompt: |
+  Scrape events from news/social sources and let users search, book tickets and rate events.
+follow_ups:
+- Turn unstructured scraped data into structured events at scale.
+- Detect the same event from two sources.
+- Update event status from later news.
+- Judge event correctness.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: System design
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5534774/

@@ -1,0 +1,18 @@
+slug: delete-and-earn
+title: Delete and Earn
+type: DSA
+difficulty: medium
+tags:
+- dp
+leetcode: delete-and-earn
+prompt: |
+  Maximise points where taking x deletes all x-1 and x+1 (house-robber on values).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure, Bengaluru)
+  round: Online assessment
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7613494/

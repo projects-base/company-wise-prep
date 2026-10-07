@@ -1,0 +1,26 @@
+slug: design-proximity-service
+title: Design a Proximity Service
+type: HLD
+difficulty: hard
+tags:
+- geospatial
+- geohash
+- quadtree
+leetcode: null
+prompt: |
+  Customers search the nearest stores in an area.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62, Hyderabad)
+  round: R3 HLD (senior manager)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7423217/
+- company: microsoft
+  role: SDE II (Windows)
+  round: R3 HLD
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8462091/

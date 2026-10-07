@@ -1,0 +1,22 @@
+slug: max-area-after-filling-row-or-column
+title: Largest Connected Component After Filling One Row or Column
+type: DSA
+difficulty: hard
+tags:
+- graph
+- union-find
+- matrix
+leetcode: null
+prompt: |
+  Binary grid; you may set every cell of one chosen row or column to 1. Return the largest possible connected component of 1s.
+follow_ups:
+- 'Avoid the O(R*C*(R+C)) brute force: label components once and, per row/column, sum distinct adjacent
+  component sizes.'
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 1 (follow-up to Max Area of Island)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

@@ -1,0 +1,23 @@
+slug: maximum-product-of-k-elements
+title: Maximum product of K chosen elements
+type: DSA
+difficulty: medium
+tags:
+- sorting
+- heap
+- greedy
+- math
+leetcode: null
+prompt: |
+  Select K elements from an integer array (negatives allowed) to maximise their product.
+follow_ups:
+- No extra space after sorting.
+- Without sorting (use priority queues).
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

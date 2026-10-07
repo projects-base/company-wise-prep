@@ -1,0 +1,18 @@
+slug: why-tower-research
+title: Why Tower Research?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- motivation
+leetcode: null
+prompt: |
+  Why do you want to join Tower Research?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: HR
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/

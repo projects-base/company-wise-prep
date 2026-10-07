@@ -1,0 +1,28 @@
+slug: minimum-combined-travel-cost-meeting-point
+title: Destination minimising combined travel cost of two people
+type: DSA
+difficulty: medium
+tags:
+- graph
+- dijkstra
+- bfs
+leetcode: null
+prompt: |
+  Alice and Bob start at different nodes in a weighted graph; pick a destination minimising the sum of their shortest-path costs.
+follow_ups:
+- k friends instead of two.
+- Given k friends, find the node minimising the total distance for all of them.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6775581/
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5898854/

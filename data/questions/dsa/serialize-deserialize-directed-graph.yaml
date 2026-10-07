@@ -1,0 +1,21 @@
+slug: serialize-deserialize-directed-graph
+title: Encode and decode a directed graph
+type: DSA
+difficulty: medium
+tags:
+- graph
+- dfs
+- bfs
+- design
+leetcode: null
+prompt: |
+  Serialise a directed graph (int-valued nodes with neighbour lists, possibly cyclic) to a string and reconstruct it preserving node identity.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6775581/

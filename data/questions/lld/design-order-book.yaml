@@ -1,0 +1,29 @@
+slug: design-order-book
+title: Design an Order Book
+type: LLD
+difficulty: hard
+tags:
+- order-book
+- data-structures
+- low-latency
+- trading
+- matching-engine
+leetcode: null
+prompt: |
+  Sketch a limit order book and defend the data structures under the bid and ask sides.
+follow_ups:
+- 'Matching engine: price-time priority, cancel/modify in O(1).'
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://www.techprep.app/blog/tower-research-interview-process

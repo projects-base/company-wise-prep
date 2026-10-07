@@ -1,0 +1,20 @@
+slug: group-items-by-shared-attributes
+title: Group items sharing at least one attribute
+type: DSA
+difficulty: medium
+tags:
+- union-find
+- graph
+- hashmap
+leetcode: null
+prompt: |
+  Items have multiple tags; group together all items connected through shared tags (accounts-merge style).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

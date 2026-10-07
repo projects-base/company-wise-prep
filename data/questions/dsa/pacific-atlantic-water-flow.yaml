@@ -1,0 +1,20 @@
+slug: pacific-atlantic-water-flow
+title: Pacific Atlantic Water Flow
+type: DSA
+difficulty: medium
+tags:
+- matrix
+- dfs
+- bfs
+leetcode: pacific-atlantic-water-flow
+prompt: |
+  Return cells from which water can flow to both oceans.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6492044/

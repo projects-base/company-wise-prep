@@ -1,0 +1,21 @@
+slug: binary-searchable-numbers-in-an-unsorted-array
+title: Binary Searchable Numbers in an Unsorted Array
+type: DSA
+difficulty: medium
+tags:
+- array
+- prefix-max
+- binary-search
+leetcode: binary-searchable-numbers-in-an-unsorted-array
+prompt: |
+  Count elements guaranteed to be found by randomized-pivot binary search; explain brute force, better and optimal.
+follow_ups:
+- What if duplicates are allowed?
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R2 DSA & problem solving (1 h)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7451130/

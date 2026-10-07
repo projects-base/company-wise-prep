@@ -1,0 +1,21 @@
+slug: longest-increasing-subsequence-ii
+title: Longest increasing subsequence with bounded difference
+type: DSA
+difficulty: hard
+tags:
+- dynamic-programming
+- segment-tree
+- coordinate-compression
+leetcode: longest-increasing-subsequence-ii
+prompt: |
+  Find the longest increasing subsequence whose adjacent difference is exactly 1.
+follow_ups:
+- Difference at most d (segment tree over values).
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 2
+  seen_on: 2026-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8355549/

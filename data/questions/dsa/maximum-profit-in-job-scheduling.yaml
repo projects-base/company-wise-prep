@@ -1,0 +1,20 @@
+slug: maximum-profit-in-job-scheduling
+title: Maximum Profit in Job Scheduling
+type: DSA
+difficulty: hard
+tags:
+- dynamic-programming
+- binary-search
+- sorting
+leetcode: maximum-profit-in-job-scheduling
+prompt: |
+  Choose non-overlapping jobs (start, end, profit) to maximise total profit; expected O(N log N).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/

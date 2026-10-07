@@ -1,0 +1,19 @@
+slug: sql-injection-prevention
+title: Preventing SQL Injection
+type: DOMAIN
+difficulty: easy
+tags:
+- security
+- database
+leetcode: null
+prompt: |
+  How to prevent SQL injection.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Online assessment (theory)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

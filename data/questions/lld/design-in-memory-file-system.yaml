@@ -1,0 +1,20 @@
+slug: design-in-memory-file-system
+title: Design In-Memory File System
+type: LLD
+difficulty: hard
+tags:
+- design
+- trie
+- oop
+leetcode: design-in-memory-file-system
+prompt: |
+  Design an in-memory file system with ls, mkdir, addContentToFile, readContentFromFile.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://www.techprep.app/blog/tower-research-interview-process

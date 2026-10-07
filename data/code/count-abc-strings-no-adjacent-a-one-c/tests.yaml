@@ -1,0 +1,53 @@
+method: countStrings
+tests:
+- name: Example 1
+  input: |
+    1
+  expected: |
+    3
+- name: Example 2
+  input: |
+    2
+  expected: |
+    7
+- name: Example 3
+  input: |
+    3
+  expected: |
+    15
+- name: k = 5
+  hidden: true
+  input: |
+    5
+  expected: |
+    58
+- name: k = 10
+  hidden: true
+  input: |
+    10
+  expected: |
+    1164
+- name: k = 40 (answer already exceeds the modulus)
+  hidden: true
+  input: |
+    40
+  expected: |
+    981564817
+- name: k = 100 (exceeds 64-bit without the modulus)
+  hidden: true
+  input: |
+    100
+  expected: |
+    451038911
+- name: k = 199
+  hidden: true
+  input: |
+    199
+  expected: |
+    561502910
+- name: k = 200
+  hidden: true
+  input: |
+    200
+  expected: |
+    351876969

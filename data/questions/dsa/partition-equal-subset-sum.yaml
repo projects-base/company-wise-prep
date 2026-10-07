@@ -1,0 +1,19 @@
+slug: partition-equal-subset-sum
+title: Partition Equal Subset Sum
+type: DSA
+difficulty: medium
+tags:
+- dynamic-programming
+- knapsack
+leetcode: partition-equal-subset-sum
+prompt: |
+  Can the array be split into two equal-sum subsets?
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

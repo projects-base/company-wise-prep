@@ -1,0 +1,20 @@
+slug: llm-cost-caching-and-observability
+title: Caching to reduce LLM cost; LLM observability
+type: DOMAIN
+difficulty: medium
+tags:
+- llm
+- caching
+- observability
+leetcode: null
+prompt: |
+  Recruiter-announced focus for an AI-team R1: logic for reducing AI cost via caching and observability for LLMs; R2: design and evaluate an AI application.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (AI team)
+  round: R1/R2 (recruiter guidance)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7494384/

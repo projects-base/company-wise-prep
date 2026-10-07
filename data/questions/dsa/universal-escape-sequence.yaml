@@ -1,0 +1,20 @@
+slug: universal-escape-sequence
+title: One instruction sequence that reaches the exit from any start
+type: DSA
+difficulty: hard
+tags:
+- bfs
+- matrix
+- simulation
+leetcode: null
+prompt: |
+  Grid of empty cells, walls and an exit; produce a sequence of U/D/L/R moves that leads to the exit no matter which empty cell you start from.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 2
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5898854/

@@ -1,0 +1,19 @@
+slug: why-google
+title: Why Google?
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  Why Google?
+follow_ups:
+- Conflicts with other teams.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7093091/

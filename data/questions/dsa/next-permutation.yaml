@@ -1,0 +1,19 @@
+slug: next-permutation
+title: Next Bigger Number with Same Digits
+type: DSA
+difficulty: medium
+tags:
+- array
+- two-pointers
+leetcode: next-permutation
+prompt: |
+  Return the next greater number with the same digits, or the same number if none exists (115 -> 151).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer
+  round: R1 DSA
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8112963/

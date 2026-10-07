@@ -1,0 +1,19 @@
+slug: meeting-rooms
+title: Meeting Rooms
+type: DSA
+difficulty: easy
+tags:
+- intervals
+- sorting
+leetcode: meeting-rooms
+prompt: |
+  Given meeting intervals, decide whether a person can attend all meetings.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R1 DSA
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6471202/

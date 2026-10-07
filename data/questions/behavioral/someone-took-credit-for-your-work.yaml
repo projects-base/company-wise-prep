@@ -1,0 +1,19 @@
+slug: someone-took-credit-for-your-work
+title: Someone takes credit for your work
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  How would you handle a conflict where someone takes credit for your work?
+follow_ups:
+- What if it keeps happening in a four-person team?
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525084/

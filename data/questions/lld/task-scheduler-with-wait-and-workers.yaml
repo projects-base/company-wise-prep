@@ -1,0 +1,20 @@
+slug: task-scheduler-with-wait-and-workers
+title: Task Scheduler with wait() and a Fixed Worker Pool
+type: LLD
+difficulty: medium
+tags:
+- concurrency
+- thread-pool
+- queue
+leetcode: null
+prompt: |
+  Implement a Task class where task() schedules work and wait() blocks until done; extend to 3 workers with tasks arriving continuously, then further follow-ups under time pressure.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 2 (design/coding)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

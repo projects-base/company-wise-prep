@@ -1,0 +1,19 @@
+slug: design-tic-tac-toe
+title: Tic-Tac-Toe (working game)
+type: DSA
+difficulty: medium
+tags:
+- simulation
+- design
+leetcode: design-tic-tac-toe
+prompt: |
+  Write a complete working Tic-Tac-Toe playGame; then compare with ChatGPT's version.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61, Noida)
+  round: AA round
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7423217/

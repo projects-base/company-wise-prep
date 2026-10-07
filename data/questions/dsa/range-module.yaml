@@ -1,0 +1,21 @@
+slug: range-module
+title: Range Module
+type: DSA
+difficulty: hard
+tags:
+- design
+- ordered-map
+- intervals
+leetcode: range-module
+prompt: |
+  Track ranges with add/remove; initial query was a single point.
+follow_ups:
+- Query becomes a range.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 3
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6522571/

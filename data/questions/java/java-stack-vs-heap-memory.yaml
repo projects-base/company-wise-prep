@@ -1,0 +1,20 @@
+slug: java-stack-vs-heap-memory
+title: 'Stack vs Heap: What Happens on int a = 10?'
+type: JAVA
+difficulty: medium
+tags:
+- java
+- jvm
+- memory
+leetcode: null
+prompt: |
+  Heap vs stack memory; where primitives and objects live; what happens when you execute int a = 10.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 2 (Java rapid-fire, 45 min)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

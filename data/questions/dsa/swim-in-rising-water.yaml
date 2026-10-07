@@ -1,0 +1,21 @@
+slug: swim-in-rising-water
+title: Swim in Rising Water (variation)
+type: DSA
+difficulty: hard
+tags:
+- graph
+- dijkstra
+- binary-search
+- union-find
+leetcode: swim-in-rising-water
+prompt: |
+  Minimum time T at which you can travel from top-left to bottom-right when you can only enter cells with elevation <= T.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2025-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6846591/

@@ -1,0 +1,20 @@
+slug: design-data-access-layer
+title: Data Access Layer with Runtime-switchable Source
+type: LLD
+difficulty: medium
+tags:
+- dependency-injection
+- strategy-pattern
+- factory-pattern
+leetcode: null
+prompt: |
+  Data retrieval/update where the source (DB, API, file) can change at runtime; keep it loosely coupled using DI, Factory or Strategy.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R1 DSA + LLD (Principal Engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

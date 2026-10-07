@@ -1,0 +1,21 @@
+slug: count-lakes-in-island
+title: Count lakes inside a given island
+type: DSA
+difficulty: medium
+tags:
+- matrix
+- dfs
+- bfs
+leetcode: null
+prompt: |
+  Grid of land/water with ocean outside; given a coordinate on one island, return how many enclosed water regions (lakes) that island contains.
+follow_ups:
+- What if there is land (another island) inside a lake?
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/

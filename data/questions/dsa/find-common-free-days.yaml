@@ -1,0 +1,22 @@
+slug: find-common-free-days
+title: Days when everyone (or at least P people) is available
+type: DSA
+difficulty: medium
+tags:
+- intervals
+- line-sweep
+- prefix-sum
+leetcode: null
+prompt: |
+  Each person has blocks of unavailable days (personId, startDay, endDay); return all days when everyone is available.
+follow_ups:
+- Days when at least P people are available.
+- Periods of at least X consecutive days with P people available.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6735411/

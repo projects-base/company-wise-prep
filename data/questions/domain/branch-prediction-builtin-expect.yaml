@@ -1,0 +1,21 @@
+slug: branch-prediction-builtin-expect
+title: Branch Prediction and __builtin_expect
+type: DOMAIN
+difficulty: hard
+tags:
+- cpu
+- branch-prediction
+- low-latency
+- cpp
+leetcode: null
+prompt: |
+  Optimise branch prediction in a tight loop, e.g. with compiler hints like __builtin_expect.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://www.quantt.co.uk/resources/tower-research-interview

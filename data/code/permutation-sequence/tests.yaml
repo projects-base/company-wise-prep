@@ -1,0 +1,55 @@
+method: getPermutation
+tests:
+- name: Example 1
+  input: |
+    3
+    3
+  expected: |
+    "213"
+- name: Example 2
+  input: |
+    4
+    9
+  expected: |
+    "2314"
+- name: Example 3
+  input: |
+    3
+    1
+  expected: |
+    "123"
+- name: n = 1
+  hidden: true
+  input: |
+    1
+    1
+  expected: |
+    "1"
+- name: Last permutation of 9
+  hidden: true
+  input: |
+    9
+    362880
+  expected: |
+    "987654321"
+- name: Middle of 9
+  hidden: true
+  input: |
+    9
+    181440
+  expected: |
+    "549876321"
+- name: n = 9, k = 54494
+  hidden: true
+  input: |
+    9
+    54494
+  expected: |
+    "248716395"
+- name: Last permutation of 2
+  hidden: true
+  input: |
+    2
+    2
+  expected: |
+    "21"

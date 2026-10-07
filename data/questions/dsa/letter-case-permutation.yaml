@@ -1,0 +1,19 @@
+slug: letter-case-permutation
+title: Letter Case Permutation
+type: DSA
+difficulty: medium
+tags:
+- backtracking
+- string
+leetcode: letter-case-permutation
+prompt: |
+  Generate all strings obtained by toggling the case of each letter (e.g. a2z2 -> a2z2, a2Z2, A2z2, A2Z2).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R1 DSA
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6471202/

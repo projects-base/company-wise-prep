@@ -1,0 +1,47 @@
+method: encode
+tests:
+- name: Example 1
+  input: |
+    23
+  expected: |
+    "1000"
+- name: Example 2
+  input: |
+    107
+  expected: |
+    "101100"
+- name: Example 3
+  input: |
+    0
+  expected: |
+    ""
+- name: One
+  hidden: true
+  input: |
+    1
+  expected: |
+    "0"
+- name: Last string of length 3
+  hidden: true
+  input: |
+    14
+  expected: |
+    "111"
+- name: First string of length 4
+  hidden: true
+  input: |
+    15
+  expected: |
+    "0000"
+- name: Power of two minus one
+  hidden: true
+  input: |
+    1048575
+  expected: |
+    "00000000000000000000"
+- name: Max input
+  hidden: true
+  input: |
+    1000000000
+  expected: |
+    "11011100110101100101000000001"

@@ -1,0 +1,20 @@
+slug: single-threaded-cpu
+title: Single-Threaded CPU
+type: DSA
+difficulty: medium
+tags:
+- heap
+- sorting
+- simulation
+leetcode: single-threaded-cpu
+prompt: |
+  Simulate a single-threaded CPU picking the shortest available task; return the processing order.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Noida)
+  round: R4 Hiring manager
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498667/

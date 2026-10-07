@@ -1,0 +1,22 @@
+slug: connected-component-size-queries
+title: Reachable Nodes per Query (component size)
+type: DSA
+difficulty: medium
+tags:
+- graph
+- union-find
+- dfs
+leetcode: null
+prompt: |
+  Graph with disconnected components; for each query node return how many other nodes are reachable. Code both DFS and DSU.
+follow_ups:
+- When is DSU more suitable?
+- Code clarity and reusability.
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R1 Technical (graphs)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7524808/

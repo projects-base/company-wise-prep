@@ -1,0 +1,19 @@
+slug: mutex-vs-semaphore-deadlock
+title: Mutex vs semaphore and deadlock prevention
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- concurrency
+leetcode: null
+prompt: |
+  Synchronisation, mutex vs semaphore, deadlock prevention trade-offs (inside a message-queue LLD).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: Loop LLD
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7563238/

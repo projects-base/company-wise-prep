@@ -1,0 +1,20 @@
+slug: design-document-line-search
+title: Search Matching Lines in a Document
+type: LLD
+difficulty: medium
+tags:
+- inverted-index
+- api-design
+leetcode: null
+prompt: |
+  Return lines matching a multi-word query (e.g. 'Delhi has good food'); expose APIs and discuss trade-offs.
+follow_ups:
+- User may delete lines from results.
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Windows)
+  round: R4 LLD
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8273079/

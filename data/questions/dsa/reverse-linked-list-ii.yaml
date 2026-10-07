@@ -1,0 +1,18 @@
+slug: reverse-linked-list-ii
+title: Reverse Linked List II
+type: DSA
+difficulty: medium
+tags:
+- linked-list
+leetcode: reverse-linked-list-ii
+prompt: |
+  Reverse the nodes of a linked list between positions left and right in one pass.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://www.techprep.app/blog/tower-research-interview-process

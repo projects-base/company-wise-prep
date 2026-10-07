@@ -1,0 +1,53 @@
+method: simplifyPath
+tests:
+- name: Example 1
+  input: |
+    "/home/"
+  expected: |
+    "/home"
+- name: Example 2
+  input: |
+    "/home//foo/"
+  expected: |
+    "/home/foo"
+- name: Example 3
+  input: |
+    "/a/./b/../../c/"
+  expected: |
+    "/c"
+- name: Above the root
+  hidden: true
+  input: |
+    "/../"
+  expected: |
+    "/"
+- name: Triple dots are a name
+  hidden: true
+  input: |
+    "/.../a/../b/c/../d/./"
+  expected: |
+    "/.../b/d"
+- name: Just the root
+  hidden: true
+  input: |
+    "/"
+  expected: |
+    "/"
+- name: Names that start with dots
+  hidden: true
+  input: |
+    "/..hidden/.config//..//x_1/...."
+  expected: |
+    "/..hidden/x_1/...."
+- name: Many slashes and dots
+  hidden: true
+  input: |
+    "///./././/..//usr///local/../bin/"
+  expected: |
+    "/usr/bin"
+- name: Long random path (3000 chars)
+  hidden: true
+  input: |
+    "/..a/Dir9/bb/a/../..///bb/.x/..a/Dir9/./bb/.x/Dir9/..//../c_1/../../..a/../c_1/../../...//./../.x/Dir9/./../c_1/.././a/...//.../../c_1/./a/.../c_1/a/bb//.../..//c_1//c_1/..a/..//.../c_1/.././Dir9//./Dir9/.../.../bb//./../.x//.x/./Dir9/..a/.x/.../c_1/./c_1/...//./../Dir9/../../Dir9/..///a/.x//Dir9/../../a/../Dir9//./../c_1/.../../Dir9/.x//../bb//.x/Dir9/Dir9/.././bb/./Dir9/bb/..a/.../c_1/.../Dir9/..//c_1/Dir9/bb//c_1/./.../.../..a/a/bb/./a//a/./.x///c_1/.x/c_1/..a/bb/../.../Dir9/.././c_1//..././c_1/.x/bb/.x/bb/..//a/../../a///../a/.././Dir9/..////..a/.../c_1/a/Dir9//bb/a/../..a/.x/a/.././../.x/a/../././c_1/..a/../../.x/c_1/Dir9/..//../a/Dir9/Dir9/..a/bb/.//a/.x/../..//./../...//.../../..a/..a/Dir9/.x/.x/c_1/./../.x/..a/Dir9/a/.x/.///Dir9/Dir9/c_1/.x/a/.x/.x/.x//.//Dir9/.x/a/./../.../../../././../..a/..a//..a//..///Dir9//bb/.../..a/.../bb/../Dir9/Dir9/..a/...//Dir9/Dir9/./Dir9///c_1/c_1/Dir9/././...//Dir9/../././/bb/Dir9/..a/.x/.x/..a//.././bb/./bb//..a/..a/Dir9/../c_1/..a/.././bb//.../..a/../.../.../././/././/./bb/./..//..a//.x/.../bb//./...//a/.x//...//..a/a/Dir9//./.x/c_1//a/..a/bb/Dir9/...////a/../a//../bb/c_1//a/.//bb/..a/.../c_1/Dir9/bb/..a/Dir9/bb/c_1/c_1/..././a/a/..a/..a/Dir9/Dir9/..a/..a/c_1/../bb/c_1//bb/./../bb/.x//.../.../../bb//..//./bb/..a/Dir9/Dir9//../c_1/.../../.x/bb/.///.x/c_1/..a/.../../bb/.x/.x/./..a/..//a/.x/..././...//bb//./../bb/../.././.x/c_1//c_1/c_1/Dir9/.x/../.x/../bb/bb/a/.../bb/c_1/Dir9/../Dir9/../Dir9/..//a///a/..a/.x//c_1/./a/a/../.x/..a/..a//.../../bb/../..//bb/../Dir9//.x/a/bb//Dir9/../.x//./..a/../bb/.../../.x/../c_1/.../.x/...//Dir9/c_1//.x//../bb/..a/bb//bb/c_1/..a/c_1//../.../.x/./../Dir9/./bb/a/.../..a/.x/../.x///.x/bb//.../..///../Dir9/Dir9/...//bb/a/../../bb/a/c_1//./c_1/.../..a/..a/..//bb/../../Dir9/../...///.x/Dir9/c_1/.x/../c_1//c_1/../a/c_1/..a/../..///Dir9/./.x/..a/.x/a/a/bb/Dir9/bb/.x//.../..///.x/..a/a/./...//.../..a/.././a/a/a/...//..///c_1/a/bb//bb/bb/.x/../.x///../../..././/...//a/../..a/bb/bb/.x/../././../c_1/../c_1/..//.../Dir9/../.x/Dir9/c_1/bb/..//...//bb/../.x/.x/c_1//../.x/bb/a/..a/a/a/c_1/.x/c_1/.././/bb/..///.../c_1/a/bb/..a/bb/./c_1/.x/../.././/./..//bb/c_1/..a//a/c_1/./c_1/a/.../Dir9/..a/../Dir9//.../a/..//.x/./Dir9/Dir9//.../..a/Dir9/./c_1/.x/a/../.././.x/.x//a/../../c_1/../.../a/..a/a//../..a/.x//bb//.x/..a//Dir9/.x//../..a/././c_1/../bb/./..a/../Dir9/.x/Dir9/..//..a/../c_1/.x/..a/./Dir9/.x//../a/..a/../Dir9/./Dir9/../a/.x/../a//bb/.x/../..a/.x/bb/bb/../../../bb/../../bb/bb/..a/./bb/../a/./Dir9/a/a//Dir9/c_1/..a/./a/c_1/.../..a/a/c_1/..a/.x//.../..//./Dir9/./././/a//..a/a//..a/../../.././a/././../a//bb/a/.../.../../..//../.../..a/Dir9/.x/.../c_1/..//a/..a/.../c_1/.././a/a/../../../..//Dir9/Dir9/c_1/../..a/..a/./Dir9/./Dir9/c_1/c_1/.x/bb/../.../bb/.../bb/.x//./././/bb/Dir9/..a/bb//...//..a/.x////..a/a//Dir9/bb/../bb/./a/.../a/Dir9/../c_1/.//.../Dir9/..///../../Dir9/.//c_1/../c_1/../../../a/Dir9//..a/./c_1/../a/.//.x/../../..a/.x/a//bb/./Dir9/Dir9//a//.//.../..a/.x/../../.x//bb/a"
+  expected: |
+    "/..a/Dir9/bb/.x/..a/.x/a/.../c_1/a/.../c_1/a/bb/c_1/c_1/.../Dir9/Dir9/.../.../.x/.x/Dir9/..a/.x/.../c_1/a/c_1/Dir9/bb/.x/Dir9/bb/Dir9/bb/..a/.../c_1/.../c_1/Dir9/bb/c_1/.../.../..a/a/bb/a/a/.x/c_1/.x/c_1/..a/.../c_1/.../c_1/.x/bb/..a/.../c_1/a/Dir9/bb/..a/.x/.x/a/Dir9/Dir9/..a/.../..a/..a/Dir9/.x/.x/.x/..a/Dir9/a/.x/Dir9/Dir9/c_1/.x/a/.x/.x/.x/..a/..a/Dir9/bb/.../..a/.../Dir9/Dir9/..a/.../Dir9/Dir9/Dir9/c_1/c_1/Dir9/.../bb/Dir9/..a/.x/.x/bb/bb/..a/..a/c_1/bb/.../.../.../..a/.x/.../bb/.../a/.x/.../..a/a/Dir9/.x/c_1/a/..a/bb/Dir9/.../bb/c_1/a/bb/..a/.../c_1/Dir9/bb/..a/Dir9/bb/c_1/c_1/.../a/a/..a/..a/Dir9/Dir9/..a/..a/bb/c_1/bb/.x/.../bb/..a/Dir9/c_1/.x/bb/.x/c_1/..a/bb/.x/.x/a/.x/.../.x/c_1/c_1/c_1/Dir9/bb/bb/a/.../bb/c_1/a/a/..a/.x/c_1/a/.x/..a/Dir9/.x/a/bb/.x/bb/c_1/.../.x/.../Dir9/c_1/bb/..a/bb/bb/c_1/..a/.../Dir9/bb/a/.../..a/.x/.x/Dir9/Dir9/.../bb/a/c_1/c_1/.../.../.x/Dir9/c_1/c_1/a/Dir9/.x/..a/.x/a/a/bb/Dir9/bb/.x/.x/..a/a/.../.../a/a/a/c_1/a/bb/bb/.../.../..a/bb/.../.x/Dir9/c_1/.../.x/.x/.x/bb/a/..a/a/a/c_1/.x/.../c_1/a/bb/..a/bb/c_1/..a/a/c_1/c_1/a/.../Dir9/Dir9/.../.x/Dir9/Dir9/.../..a/Dir9/c_1/.x/.../a/..a/..a/.x/bb/.x/..a/Dir9/..a/bb/Dir9/.x/c_1/.x/..a/Dir9/a/Dir9/a/a/bb/bb/bb/..a/a/Dir9/a/a/Dir9/c_1/..a/a/c_1/.../..a/a/c_1/..a/.x/Dir9/a/a/bb/.../..a/Dir9/.x/.../a/Dir9/Dir9/..a/..a/Dir9/Dir9/c_1/c_1/.x/.../bb/.../bb/.x/bb/Dir9/..a/bb/.../..a/.x/..a/a/Dir9/bb/a/.../a/Dir9/..a/..a/.x/a/bb/Dir9/Dir9/a/.../.x/bb/a"

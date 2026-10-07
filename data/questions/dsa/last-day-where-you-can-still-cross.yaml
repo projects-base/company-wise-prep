@@ -1,0 +1,22 @@
+slug: last-day-where-you-can-still-cross
+title: Last Day Where You Can Still Cross / when towers connect first and last column
+type: DSA
+difficulty: hard
+tags:
+- union-find
+- binary-search
+- bfs
+- matrix
+leetcode: last-day-where-you-can-still-cross
+prompt: |
+  Cells are added one per day; find when a left-to-right (or top-to-bottom) connection first appears or disappears.
+follow_ups:
+- 'API variant: a tower is built each day; tell when the first column connects to the last.'
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

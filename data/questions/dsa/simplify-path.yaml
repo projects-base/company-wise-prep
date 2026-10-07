@@ -1,0 +1,19 @@
+slug: simplify-path
+title: Simplify Path (variant)
+type: DSA
+difficulty: medium
+tags:
+- stack
+- string
+leetcode: simplify-path
+prompt: |
+  Variant of canonicalising a Unix path; production-ready compilable code with tests expected.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61, Hyderabad)
+  round: R2 DSA (60 min)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://roundz.substack.com/p/interview-experience-68-microsoft-l61

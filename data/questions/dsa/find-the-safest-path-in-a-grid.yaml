@@ -1,0 +1,22 @@
+slug: find-the-safest-path-in-a-grid
+title: Mouse to treat staying far from the cat
+type: DSA
+difficulty: hard
+tags:
+- bfs
+- binary-search
+- dijkstra
+- matrix
+leetcode: find-the-safest-path-in-a-grid
+prompt: |
+  Grid with water, start S, treat T and cat C; find an S->T path maximising the minimum distance to the cat along the path.
+follow_ups:
+- Plain S->T reachability first.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

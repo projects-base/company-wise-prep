@@ -1,0 +1,18 @@
+slug: helping-someone-fit-in-diverse-team
+title: Helping someone fit into a culturally diverse team
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  Tell me about someone who struggled to fit into a culturally diverse team and how you helped. Is it a team problem or the person's?
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7093123/

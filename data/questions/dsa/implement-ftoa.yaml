@@ -1,0 +1,20 @@
+slug: implement-ftoa
+title: Implement ftoa (float to string)
+type: DSA
+difficulty: medium
+tags:
+- math
+- string
+- implementation
+leetcode: null
+prompt: |
+  Convert a float to a string with a given precision without library conversion functions; handle negatives, precision 0, rounding error.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer
+  round: R1 DSA
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8112963/

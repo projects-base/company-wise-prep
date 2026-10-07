@@ -1,0 +1,18 @@
+slug: koko-eating-bananas
+title: Koko Eating Bananas
+type: DSA
+difficulty: medium
+tags:
+- binary-search-on-answer
+leetcode: koko-eating-bananas
+prompt: |
+  Minimum eating speed to finish all piles within h hours.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior SDE
+  round: Tech screen
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7537838/

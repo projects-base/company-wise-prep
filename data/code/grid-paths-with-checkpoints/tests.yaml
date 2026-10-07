@@ -1,0 +1,87 @@
+method: countPaths
+tests:
+- name: Example 1
+  input: |
+    3
+    4
+    []
+  expected: |
+    4
+- name: Example 2
+  input: |
+    3
+    4
+    [[1,1]]
+  expected: |
+    2
+- name: Example 3
+  input: |
+    3
+    5
+    [[0,2]]
+  expected: |
+    1
+- name: Single cell
+  hidden: true
+  input: |
+    1
+    1
+    [[0,0]]
+  expected: |
+    1
+- name: One row
+  hidden: true
+  input: |
+    1
+    6
+    [[0,3]]
+  expected: |
+    1
+- name: Two checkpoints in one column
+  hidden: true
+  input: |
+    2
+    5
+    [[0,1],[1,1]]
+  expected: |
+    0
+- name: Unreachable checkpoint
+  hidden: true
+  input: |
+    3
+    5
+    [[0,1]]
+  expected: |
+    0
+- name: Checkpoint off the start
+  hidden: true
+  input: |
+    4
+    6
+    [[2,0]]
+  expected: |
+    0
+- name: Repeated checkpoints, unsorted
+  hidden: true
+  input: |
+    5
+    9
+    [[2,6],[3,2],[2,6],[4,0],[3,3]]
+  expected: |
+    12
+- name: 1000 x 1000, no checkpoints
+  hidden: true
+  input: |
+    1000
+    1000
+    []
+  expected: |
+    812718674
+- name: 1000 x 1000, 40 checkpoints
+  hidden: true
+  input: |
+    1000
+    1000
+    [[993,709],[986,838],[992,43],[998,749],[993,330],[999,3],[991,44],[986,177],[994,567],[990,203],[986,165],[984,802],[994,734],[994,586],[982,950],[994,25],[990,516],[986,813],[990,93],[986,869],[982,237],[999,348],[983,808],[993,99],[987,822],[985,867],[991,991],[990,779],[991,131],[986,172],[988,170],[991,285],[994,29],[993,332],[998,621],[993,636],[982,218],[998,354],[992,315],[994,699]]
+  expected: |
+    610843410

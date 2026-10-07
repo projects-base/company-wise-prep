@@ -1,0 +1,20 @@
+slug: count-abc-strings-no-adjacent-a-one-c
+title: 'Count Strings over {a,b,c}: no ''aa'', at most one ''c'''
+type: DSA
+difficulty: medium
+tags:
+- dp
+- combinatorics
+- modulo
+leetcode: null
+prompt: |
+  Count strings of length k (k<=200) over a,b,c with no two adjacent 'a' and at most one 'c', mod 1e9+7.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Campus hire (SDE)
+  round: Online assessment (campus)
+  seen_on: 2023-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/3933506/

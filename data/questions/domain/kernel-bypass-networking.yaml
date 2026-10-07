@@ -1,0 +1,20 @@
+slug: kernel-bypass-networking
+title: Kernel-Bypass Networking
+type: DOMAIN
+difficulty: hard
+tags:
+- networking
+- low-latency
+- kernel-bypass
+leetcode: null
+prompt: |
+  What kernel bypass is and why low-latency trading uses it.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

@@ -1,0 +1,21 @@
+slug: design-meeting-scheduler
+title: Design a Meeting Scheduler
+type: LLD
+difficulty: medium
+tags:
+- intervals
+- oop
+- concurrency
+leetcode: null
+prompt: |
+  Schedule meetings with participants and reject on conflict (overlap and a shared participant).
+follow_ups:
+- Locks, optimisations, trade-offs, some HLD.
+academy: []
+sightings:
+- company: microsoft
+  role: Unknown
+  round: LLD
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7418482/

@@ -1,0 +1,18 @@
+slug: max-consecutive-ones-iii
+title: Max Consecutive Ones III
+type: DSA
+difficulty: medium
+tags:
+- sliding-window
+leetcode: max-consecutive-ones-iii
+prompt: |
+  Longest run of 1s if at most K zeros may be flipped.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Software Engineer (3+ YOE)
+  round: R3 DSA (3 problems in 1 h)
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8551527/

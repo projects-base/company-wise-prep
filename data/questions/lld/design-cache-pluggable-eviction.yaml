@@ -1,0 +1,28 @@
+slug: design-cache-pluggable-eviction
+title: Cache Service with Pluggable Eviction
+type: LLD
+difficulty: medium
+tags:
+- strategy-pattern
+- lru
+- lfu
+- fifo
+- distributed-cache
+leetcode: null
+prompt: |
+  Cache class accepting an eviction-strategy interface; implement LRU fully.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R2 System design & LLD
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7433909/
+- company: microsoft
+  role: Software Engineer
+  round: R2 System design
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8099933/

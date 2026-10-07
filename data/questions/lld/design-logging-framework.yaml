@@ -1,0 +1,21 @@
+slug: design-logging-framework
+title: Design a Multi-module Logging Framework
+type: LLD
+difficulty: hard
+tags:
+- concurrency
+- producer-consumer
+- buffer
+leetcode: null
+prompt: |
+  Modules push log data; framework thread reads a buffer and streams to file/tool with acknowledgements.
+follow_ups:
+- Write three threads exchanging data (read/write).
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R2 DSA + LLD (Principal Engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

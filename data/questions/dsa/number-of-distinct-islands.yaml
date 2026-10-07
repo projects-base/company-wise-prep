@@ -1,0 +1,20 @@
+slug: number-of-distinct-islands
+title: Number of Distinct Islands
+type: DSA
+difficulty: medium
+tags:
+- matrix
+- dfs
+- hashing
+leetcode: number-of-distinct-islands
+prompt: |
+  Count island shapes that are distinct up to translation (no rotation/mirror).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

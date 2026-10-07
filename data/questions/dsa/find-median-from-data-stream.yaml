@@ -1,0 +1,19 @@
+slug: find-median-from-data-stream
+title: Find Median from Data Stream
+type: DSA
+difficulty: hard
+tags:
+- heap
+- design
+leetcode: find-median-from-data-stream
+prompt: |
+  Support addNum and findMedian on a stream (two heaps).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure, Bengaluru)
+  round: R1
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7613494/

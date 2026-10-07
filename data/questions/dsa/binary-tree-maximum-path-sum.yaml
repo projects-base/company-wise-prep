@@ -1,0 +1,28 @@
+slug: binary-tree-maximum-path-sum
+title: Binary Tree Maximum Path Sum
+type: DSA
+difficulty: hard
+tags:
+- tree
+- dfs
+- recursion
+leetcode: binary-tree-maximum-path-sum
+prompt: |
+  Maximum sum of any path in a binary tree.
+follow_ups:
+- All-negative trees.
+- How would you unit-test these edge cases?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62, Hyderabad/Noida)
+  round: R1 DSA
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7711794/
+- company: microsoft
+  role: Senior Software Engineer (63, Hyderabad)
+  round: R1 Coding (60 min)
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://roundz.substack.com/p/microsoft-senior-software-engineer-63

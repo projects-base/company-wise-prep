@@ -1,0 +1,19 @@
+slug: count-subarrays-with-fixed-bounds
+title: Count Subarrays With Fixed Bounds
+type: DSA
+difficulty: hard
+tags:
+- sliding-window
+- two-pointers
+leetcode: count-subarrays-with-fixed-bounds
+prompt: |
+  Count subarrays whose min is minK and max is maxK.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer
+  round: Coding
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7425597/

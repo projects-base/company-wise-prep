@@ -1,0 +1,19 @@
+slug: max-stack
+title: Max Stack (without popMax)
+type: DSA
+difficulty: medium
+tags:
+- stack
+- design
+leetcode: max-stack
+prompt: |
+  Stack with push/pop/top/peekMax; give linear and O(1) solutions.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62, Noida Xbox)
+  round: R4 extra DSA round
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7770532/

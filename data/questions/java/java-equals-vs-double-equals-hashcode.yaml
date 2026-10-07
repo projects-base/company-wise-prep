@@ -1,0 +1,20 @@
+slug: java-equals-vs-double-equals-hashcode
+title: == vs equals() and the equals/hashCode Contract
+type: JAVA
+difficulty: easy
+tags:
+- java
+- object
+- hashmap
+leetcode: null
+prompt: |
+  Difference between == and equals in Java, and how equals and hashCode must relate.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 2 (Java rapid-fire, 45 min)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

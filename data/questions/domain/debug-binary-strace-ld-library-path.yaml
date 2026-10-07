@@ -1,0 +1,19 @@
+slug: debug-binary-strace-ld-library-path
+title: Debug a C Binary on Linux (strace, LD_LIBRARY_PATH)
+type: DOMAIN
+difficulty: medium
+tags:
+- linux
+- debugging
+leetcode: null
+prompt: |
+  Run a provided C binary to extract data: fix the shared-library path via LD_LIBRARY_PATH and use strace to find the config file it is looking for.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: HackerRank test
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

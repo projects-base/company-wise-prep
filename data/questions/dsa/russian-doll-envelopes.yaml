@@ -1,0 +1,21 @@
+slug: russian-doll-envelopes
+title: Russian Doll / box stacking (with rotation)
+type: DSA
+difficulty: hard
+tags:
+- dynamic-programming
+- binary-search
+- sorting
+leetcode: russian-doll-envelopes
+prompt: |
+  Modified Russian-doll / box-stacking: maximise the nesting chain.
+follow_ups:
+- Boxes may be rotated.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 3
+  seen_on: 2025-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7164554/

@@ -1,0 +1,22 @@
+slug: 3sum
+title: 3Sum
+type: DSA
+difficulty: medium
+tags:
+- two-pointers
+- sorting
+- array
+leetcode: 3sum
+prompt: |
+  Find all unique triplets summing to zero.
+follow_ups:
+- Extend to 4Sum and then K-Sum.
+- How would you test your code; what tests would you write?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R2 DSA
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5299198/

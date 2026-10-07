@@ -1,0 +1,19 @@
+slug: most-challenging-project
+title: Most challenging project, end to end
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- ownership
+- deep-dive
+leetcode: null
+prompt: |
+  Walk through your most challenging project: your role, design considerations, challenges, what you would do differently.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62)
+  round: R4 AA
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/

@@ -1,0 +1,19 @@
+slug: java-inheritance-oa
+title: Implement Inheritance from a Java Template
+type: JAVA
+difficulty: easy
+tags:
+- oop
+- inheritance
+leetcode: null
+prompt: |
+  OA coding task: implement a class hierarchy using inheritance in a given Java template to pass test cases.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Online assessment (coding)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

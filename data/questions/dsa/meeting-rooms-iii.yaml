@@ -1,0 +1,26 @@
+slug: meeting-rooms-iii
+title: Meeting Rooms III (variation)
+type: DSA
+difficulty: hard
+tags:
+- heap
+- sorting
+- simulation
+leetcode: meeting-rooms-iii
+prompt: |
+  Allocate meetings to the lowest-numbered free room, delaying meetings when all rooms are busy; report the most-used room.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7631077/
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

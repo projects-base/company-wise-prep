@@ -1,0 +1,20 @@
+slug: sliding-window-median
+title: Sliding Window Median
+type: DSA
+difficulty: hard
+tags:
+- heap
+- two-heaps
+- sliding-window
+leetcode: sliding-window-median
+prompt: |
+  Return the median of every window of size k.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Unknown (aggregated question bank)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://quantvault.org/tower-research-interview-questions.html

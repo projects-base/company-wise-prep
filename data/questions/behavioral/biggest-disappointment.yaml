@@ -1,0 +1,18 @@
+slug: biggest-disappointment
+title: Biggest disappointment
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  What is your biggest disappointment, why did it happen, and what did you learn?
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7093123/

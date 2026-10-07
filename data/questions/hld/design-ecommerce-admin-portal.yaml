@@ -1,0 +1,20 @@
+slug: design-ecommerce-admin-portal
+title: Design an E-commerce Admin Portal
+type: HLD
+difficulty: medium
+tags:
+- rbac
+- search
+- analytics
+leetcode: null
+prompt: |
+  Portal for admins, support, sellers, finance: search users, fulfil/refund/cancel orders, manage catalogue, dashboards.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (Bangalore)
+  round: R3 HLD
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6603526/

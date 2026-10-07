@@ -1,0 +1,19 @@
+slug: everything-is-p0
+title: Overwhelmed and everything is P0
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  If you are overwhelmed and everything is P0, how do you tackle it?
+follow_ups:
+- 'You could not handle multiple tasks: how did you react and make amends?'
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7093123/

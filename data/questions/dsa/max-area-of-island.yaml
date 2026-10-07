@@ -1,0 +1,23 @@
+slug: max-area-of-island
+title: Max Area of Island
+type: DSA
+difficulty: medium
+tags:
+- graph
+- dfs
+- bfs
+- matrix
+leetcode: max-area-of-island
+prompt: |
+  Return the size of the largest 4-connected island of 1s in a binary grid.
+follow_ups:
+- 'Interviewer then changed it: you may set one entire row or column to 1s; maximise the largest component
+  (see max-area-after-filling-row-or-column).'
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 1 (DSA, 1 hr)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

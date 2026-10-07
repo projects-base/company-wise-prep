@@ -1,0 +1,20 @@
+slug: taxicab-number-check
+title: Taxicab Number Check (debug)
+type: DSA
+difficulty: easy
+tags:
+- math
+- debugging
+- cpp
+leetcode: null
+prompt: |
+  Fix a buggy C++ function that checks whether n is a sum of two positive cubes in exactly two distinct ways (e.g. 1729).
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Senior Software Engineer (C++)
+  round: Online test (fix-the-bug, 60 min)
+  seen_on: 2022-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/2717817/

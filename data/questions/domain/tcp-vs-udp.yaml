@@ -1,0 +1,35 @@
+slug: tcp-vs-udp
+title: TCP vs UDP
+type: DOMAIN
+difficulty: easy
+tags:
+- networking
+- tcp
+- udp
+- multicast
+leetcode: null
+prompt: |
+  TCP vs UDP; also throughput vs bandwidth vs latency, process vs thread, virtual memory.
+follow_ups:
+- Walk through the TCP three-way handshake.
+- Why are market-data feeds UDP multicast?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: Unknown (aggregated)
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://www.codingkaro.in/jobs-internships/leetcode-interview-experience/Microsoft
+- company: tower-research
+  role: SDE 2 (C++ Developer)
+  round: Round 1 (45 min networking)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1702584/
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

@@ -1,0 +1,25 @@
+server:
+  port: 8090
+  # Single-user and unauthenticated for now: listen on this machine only.
+  address: 127.0.0.1
+
+spring:
+  application:
+    name: company-wise-prep
+  datasource:
+    # Progress lives here; content is re-imported from data/ on every start.
+    url: jdbc:h2:file:./.local/prep;AUTO_SERVER=TRUE
+    username: sa
+    password: ""
+  web:
+    resources:
+      # The freshly built UI on disk first (no restart after npm run build), then the packaged copy.
+      static-locations: file:./src/main/resources/static/,classpath:/static/
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+prep:
+  # Repo-relative; the app is started from the repo root.
+  data-dir: ./data

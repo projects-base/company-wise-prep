@@ -1,0 +1,20 @@
+slug: implement-linux-cp
+title: How would you implement the Linux cp command?
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- file-io
+- systems
+leetcode: null
+prompt: |
+  Implement `cp`, then deep OS and low-level questions from there.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Windows)
+  round: R4 OS and C++
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8462091/

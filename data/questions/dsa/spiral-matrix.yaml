@@ -1,0 +1,22 @@
+slug: spiral-matrix
+title: Spiral Matrix (LLD style)
+type: DSA
+difficulty: medium
+tags:
+- matrix
+- simulation
+- strategy-pattern
+leetcode: spiral-matrix
+prompt: |
+  Return elements in spiral order, but structured as classes: Matrix, TraversalStrategy, SpiralTraversal.
+follow_ups:
+- Support future traversal patterns (zigzag, diagonal) via a factory; Open/Closed principle.
+- How does in-app search work; tries, inverted indexes, caching, personalisation.
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R2 LLD + coding
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7524808/

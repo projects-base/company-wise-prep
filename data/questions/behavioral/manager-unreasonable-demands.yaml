@@ -1,0 +1,19 @@
+slug: manager-unreasonable-demands
+title: Reasonable vs unreasonable demands from a manager
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  Tell me about a time your manager set reasonable demands.
+follow_ups:
+- Now describe a situation with unreasonable demands.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/

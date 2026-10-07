@@ -1,0 +1,21 @@
+slug: low-latency-word-count-over-slow-api
+title: 'Book API: Cut Word-Count Latency from ~1 s to 400 µs'
+type: HLD
+difficulty: hard
+tags:
+- low-latency
+- caching
+- indexing
+- precomputation
+leetcode: null
+prompt: |
+  getBooks() takes 500 ms (1k books); getText(book) returns up to 1B words in 1000 ms. Answer 'count of word W in book B' in 400 µs. What caching / data structures?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (new grad)
+  round: Unknown
+  seen_on: 2023-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/4177746/

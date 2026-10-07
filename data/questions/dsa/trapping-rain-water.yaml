@@ -1,0 +1,27 @@
+slug: trapping-rain-water
+title: Trapping Rain Water
+type: DSA
+difficulty: hard
+tags:
+- two-pointers
+- monotonic-stack
+- stack
+- aggregate-list
+leetcode: trapping-rain-water
+prompt: |
+  Appears in Google's LeetCode company tag (last-three-months list).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Google/2.%20Three%20Months.csv
+- company: microsoft
+  role: Unknown (LeetCode company tag)
+  round: 'Unknown (aggregate-list: LeetCode ''Microsoft'' tag, last 6 months)'
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv

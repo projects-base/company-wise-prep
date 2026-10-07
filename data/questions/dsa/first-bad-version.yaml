@@ -1,0 +1,20 @@
+slug: first-bad-version
+title: First failing version
+type: DSA
+difficulty: easy
+tags:
+- binary-search
+leetcode: first-bad-version
+prompt: |
+  A check passes at version a and fails at b and stays failing; find the first failing version.
+follow_ups:
+- Speed it up with multiple threads.
+- Avoid overflow when l/r are huge.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6584641/

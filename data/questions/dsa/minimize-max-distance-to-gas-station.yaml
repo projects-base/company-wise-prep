@@ -1,0 +1,19 @@
+slug: minimize-max-distance-to-gas-station
+title: Minimize Max Distance to Gas Station
+type: DSA
+difficulty: hard
+tags:
+- binary-search-on-answer
+leetcode: minimize-max-distance-to-gas-station
+prompt: |
+  Binary-search problem resembling minimising the maximum gap after adding k stations.
+follow_ups:
+- Multithreading basics, DBMS replica vs snapshot vs checkpoint, deadlock detection and prevention.
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: R1 DSA + CS fundamentals
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected

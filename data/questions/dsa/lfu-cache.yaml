@@ -1,0 +1,34 @@
+slug: lfu-cache
+title: LFU Cache (variant with score-based eviction)
+type: DSA
+difficulty: hard
+tags:
+- design
+- hashmap
+- linked-list
+- generics
+leetcode: lfu-cache
+prompt: |
+  LFU-like cache where values carry a score that increments on access; eviction follows LFU order but may only evict entries whose score is even.
+follow_ups:
+- 'Feedback: handle edge cases and use classes cleanly.'
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding (in person)
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8265899/
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R4 LLD
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5299198/
+- company: tower-research
+  role: SDE 2
+  round: Round 1 (coding + C++)
+  seen_on: 2022-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1890926/

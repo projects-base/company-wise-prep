@@ -1,0 +1,20 @@
+slug: design-current-project-without-cloud
+title: Re-architect Your Current Project Without Public Cloud
+type: HLD
+difficulty: medium
+tags:
+- system-design
+- on-prem
+- resume-deep-dive
+leetcode: null
+prompt: |
+  How would you implement your current project without any public cloud services?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 3 (techno-managerial)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

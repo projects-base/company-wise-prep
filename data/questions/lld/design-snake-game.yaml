@@ -1,0 +1,19 @@
+slug: design-snake-game
+title: Design Snake & Food
+type: LLD
+difficulty: medium
+tags:
+- strategy-pattern
+- factory-pattern
+leetcode: null
+prompt: |
+  Design snake game with extensible design (Strategy, Factory); then optimisation questions.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SWE II
+  round: R3 LLD
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7619101/

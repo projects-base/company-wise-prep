@@ -1,0 +1,26 @@
+slug: rotting-oranges
+title: Rotting Oranges
+type: DSA
+difficulty: medium
+tags:
+- bfs
+- matrix
+- multi-source-bfs
+leetcode: rotting-oranges
+prompt: |
+  Minimum minutes until all fresh oranges rot (multi-source BFS).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R4 HLD + DSA (2 h)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7451130/
+- company: microsoft
+  role: Senior Software Engineer (Azure)
+  round: R1 DSA + OS
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8477884/

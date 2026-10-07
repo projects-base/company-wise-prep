@@ -1,0 +1,19 @@
+slug: pass-by-value-vs-reference
+title: Pass-by-Value vs Pass-by-Reference
+type: DOMAIN
+difficulty: easy
+tags:
+- cpp
+- language-fundamentals
+leetcode: null
+prompt: |
+  Explain the difference between pass-by-value and pass-by-reference and their costs.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: Technical 1
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/

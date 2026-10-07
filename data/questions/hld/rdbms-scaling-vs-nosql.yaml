@@ -1,0 +1,20 @@
+slug: rdbms-scaling-vs-nosql
+title: Scaling an RDBMS and When to Use NoSQL
+type: HLD
+difficulty: medium
+tags:
+- database
+- scaling
+- nosql
+leetcode: null
+prompt: |
+  RDBMS scaling issues, how to handle them, and when NoSQL is the better choice.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 2
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

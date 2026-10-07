@@ -1,0 +1,39 @@
+slug: design-notification-system
+title: Design a Notification System
+type: LLD
+difficulty: medium
+tags:
+- observer-pattern
+- extensibility
+- hld
+- ai-assisted
+leetcode: null
+prompt: |
+  Notification module other services can use to notify targeted users; jumping to Observer was not what the interviewer wanted.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Software Engineer (L60)
+  round: R1 LLD
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7606563/
+- company: microsoft
+  role: SDE II (Windows)
+  round: R2 LLD (AI-assisted)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8462091/
+- company: microsoft
+  role: SDE II
+  round: AA round
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/
+- company: microsoft
+  role: SWE II
+  round: R4 Senior manager
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7619101/

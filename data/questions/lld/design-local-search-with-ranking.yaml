@@ -1,0 +1,20 @@
+slug: design-local-search-with-ranking
+title: Local Search with Ranking
+type: LLD
+difficulty: hard
+tags:
+- trie
+- inverted-index
+- ranking
+leetcode: null
+prompt: |
+  Instant search over many local items: prefix match in name ranks highest, then substring in name, then content; filter by type; incremental updates without full rebuild.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer
+  round: R1 LLD (screening)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7507538/

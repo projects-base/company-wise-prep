@@ -1,0 +1,20 @@
+slug: using-a-robot-to-print-the-lexicographically-smallest-string
+title: Using a Robot to Print the Lexicographically Smallest String
+type: DSA
+difficulty: medium
+tags:
+- stack
+- greedy
+- string
+leetcode: using-a-robot-to-print-the-lexicographically-smallest-string
+prompt: |
+  Move characters from s to a stack t and from t to paper to produce the lexicographically smallest output.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Unknown (LeetCode company tag list)
+  round: Unknown
+  seen_on: 2025-06
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems

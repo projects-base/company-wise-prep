@@ -1,0 +1,31 @@
+slug: expand-template-variables-with-cycle-detection
+title: Expand %KEY% template variables (string replacement library)
+type: DSA
+difficulty: medium
+tags:
+- string
+- recursion
+- dfs
+- hashmap
+leetcode: null
+prompt: |
+  Given a map of key -> value and a string, replace every %KEY% with its value; values can themselves contain %KEYS%.
+follow_ups:
+- 'Missing keys: return an error.'
+- Detect cycles (A -> %B%, B -> %A%) and fail cleanly.
+- Handle literal % characters.
+- Detect cycles and throw an error.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding (in person)
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8218498/
+- company: google
+  role: L4
+  round: Onsite coding 3
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6634286/

@@ -1,0 +1,52 @@
+slug: lru-cache
+title: LRU Cache
+type: DSA
+difficulty: medium
+tags:
+- design
+- hashmap
+- linked-list
+- doubly-linked-list
+leetcode: lru-cache
+prompt: |
+  Implement get/put in O(1) with least-recently-used eviction.
+follow_ups:
+- Make it thread-safe.
+- Make the class a singleton and justify why.
+- Inheritance vs composition.
+- How would you add concurrency?
+- If misses exceed hits, how do you tell whether cache size or eviction policy is the problem?
+- Extend it to a priority-based cache.
+- Optimise and handle edge cases.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6492044/
+- company: microsoft
+  role: SDE II (L62)
+  round: R1 coding
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/
+- company: microsoft
+  role: Senior Software Engineer (L63/L64, Azure Storage)
+  round: R1 DSA coding
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8300781/
+- company: microsoft
+  role: SDE II (Azure, Hyderabad)
+  round: R1
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5299357/
+- company: microsoft
+  role: SDE II
+  round: R1 technical (coding + C++ fundamentals)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7523946/

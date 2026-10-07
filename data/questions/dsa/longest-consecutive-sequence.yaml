@@ -1,0 +1,19 @@
+slug: longest-consecutive-sequence
+title: Longest Consecutive Sequence
+type: DSA
+difficulty: medium
+tags:
+- hashset
+- union-find
+leetcode: longest-consecutive-sequence
+prompt: |
+  Length of the longest consecutive-integer run in O(n).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

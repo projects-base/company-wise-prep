@@ -1,0 +1,20 @@
+slug: bellman-ford-shortest-path
+title: Shortest Paths with Bellman-Ford
+type: DSA
+difficulty: easy
+tags:
+- graph
+- bellman-ford
+- shortest-path
+leetcode: null
+prompt: |
+  An easy OA problem solvable directly with Bellman-Ford (single-source shortest paths with possible negative edges).
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2 (C++ Developer)
+  round: Online test
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1702584/

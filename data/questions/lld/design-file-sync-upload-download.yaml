@@ -1,0 +1,19 @@
+slug: design-file-sync-upload-download
+title: Design File Upload/Download Sync
+type: LLD
+difficulty: medium
+tags:
+- state-pattern
+- chain-of-responsibility
+leetcode: null
+prompt: |
+  Upload/download APIs exist; model entities and triggers to sync files between local and host. Solved with State + Chain of Responsibility; class and sequence diagrams.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: R2 LLD
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7422741/

@@ -1,0 +1,20 @@
+slug: rdtsc-serialized-vs-non-serialized
+title: Serialized vs Non-Serialized RDTSC
+type: DOMAIN
+difficulty: hard
+tags:
+- cpu
+- timestamping
+- low-latency
+leetcode: null
+prompt: |
+  Explain the difference between serialized (RDTSCP / fenced) and non-serialized RDTSC timestamps and why it matters for latency measurement.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Senior Software Engineer
+  round: Online test (subjective)
+  seen_on: 2022-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1764282/

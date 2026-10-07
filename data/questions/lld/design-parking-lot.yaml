@@ -1,0 +1,35 @@
+slug: design-parking-lot
+title: Design a (Multi-level) Parking Lot
+type: LLD
+difficulty: medium
+tags:
+- oop
+- design-patterns
+- hld
+- database
+- indexing
+- partitioning
+leetcode: null
+prompt: |
+  Multi-level parking lot with Vehicle, Ticket, Floor, Slot; basic working Java implementation on HackerRank, not over-engineered.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SWE II
+  round: R1 LLD
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7619101/
+- company: microsoft
+  role: SDE II
+  round: R2 System design/LLD (75 min)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7620569/
+- company: microsoft
+  role: SDE II (L62)
+  round: R4 AA / hiring manager (1.5 h)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/

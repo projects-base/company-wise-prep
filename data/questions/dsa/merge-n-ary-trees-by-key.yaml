@@ -1,0 +1,20 @@
+slug: merge-n-ary-trees-by-key
+title: Merge two keyed n-ary trees
+type: DSA
+difficulty: medium
+tags:
+- tree
+- recursion
+- hashmap
+leetcode: null
+prompt: |
+  Merge two n-ary trees whose nodes are (key, value): matching keys merge recursively with B's value winning; child order is A's children then B's remaining children.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 3
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6796476/

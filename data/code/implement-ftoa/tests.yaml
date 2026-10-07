@@ -1,0 +1,76 @@
+method: ftoa
+tests:
+- name: Example 1
+  input: |
+    3.14159
+    2
+  expected: |
+    "3.14"
+- name: Example 2
+  input: |
+    -2.5
+    0
+  expected: |
+    "-3"
+- name: Example 3
+  input: |
+    0.0625
+    3
+  expected: |
+    "0.063"
+- name: Positive half at precision 0
+  hidden: true
+  input: |
+    2.5
+    0
+  expected: |
+    "3"
+- name: Padding with trailing zeros
+  hidden: true
+  input: |
+    1.5
+    3
+  expected: |
+    "1.500"
+- name: Carry into the integer part
+  hidden: true
+  input: |
+    9.996
+    2
+  expected: |
+    "10.00"
+- name: Negative that rounds to zero
+  hidden: true
+  input: |
+    -0.004
+    2
+  expected: |
+    "0.00"
+- name: Negative zero
+  hidden: true
+  input: |
+    -0.0
+    1
+  expected: |
+    "0.0"
+- name: Small value below 1
+  hidden: true
+  input: |
+    0.000123
+    5
+  expected: |
+    "0.00012"
+- name: Large magnitude, full precision
+  hidden: true
+  input: |
+    -9876543.21875
+    6
+  expected: |
+    "-9876543.218750"
+- name: Negative exact half at precision 3
+  hidden: true
+  input: |
+    -1234.5625
+    3
+  expected: |
+    "-1234.563"

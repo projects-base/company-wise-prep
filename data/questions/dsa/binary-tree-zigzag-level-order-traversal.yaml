@@ -1,0 +1,19 @@
+slug: binary-tree-zigzag-level-order-traversal
+title: Binary Tree Zigzag Level Order Traversal
+type: DSA
+difficulty: medium
+tags:
+- tree
+- bfs
+leetcode: binary-tree-zigzag-level-order-traversal
+prompt: |
+  Level-order traversal with zig-zag and reverse variants; extensible with minimal modification.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61, Hyderabad)
+  round: R3 DSA (60 min)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://roundz.substack.com/p/interview-experience-68-microsoft-l61

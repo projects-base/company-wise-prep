@@ -1,0 +1,53 @@
+method: romanToInt
+tests:
+- name: Example 1
+  input: |
+    "III"
+  expected: |
+    3
+- name: Example 2
+  input: |
+    "LVIII"
+  expected: |
+    58
+- name: Example 3
+  input: |
+    "MCMXCIV"
+  expected: |
+    1994
+- name: Single symbol
+  hidden: true
+  input: |
+    "M"
+  expected: |
+    1000
+- name: All subtractive pairs
+  hidden: true
+  input: |
+    "CMXCIV"
+  expected: |
+    994
+- name: Maximum 3999
+  hidden: true
+  input: |
+    "MMMCMXCIX"
+  expected: |
+    3999
+- name: Subtractive at the start
+  hidden: true
+  input: |
+    "CDXLIV"
+  expected: |
+    444
+- name: Longest numeral (3888)
+  hidden: true
+  input: |
+    "MMMDCCCLXXXVIII"
+  expected: |
+    3888
+- name: Nine
+  hidden: true
+  input: |
+    "IX"
+  expected: |
+    9

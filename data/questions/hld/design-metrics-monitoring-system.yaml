@@ -1,0 +1,35 @@
+slug: design-metrics-monitoring-system
+title: Design a Metrics Aggregator / Monitoring System
+type: HLD
+difficulty: hard
+tags:
+- time-series
+- aggregation
+- scalability
+- storage
+- telemetry
+- data-pipeline
+leetcode: null
+prompt: |
+  Metrics aggregator and monitoring system.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure Compute, Bangalore)
+  round: R3 HLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498710/
+- company: microsoft
+  role: SDE II
+  round: R3 HLD
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7576877/
+- company: microsoft
+  role: SDE II (L62)
+  round: R3 Design
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/

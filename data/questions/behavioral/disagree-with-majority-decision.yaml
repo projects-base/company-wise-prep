@@ -1,0 +1,18 @@
+slug: disagree-with-majority-decision
+title: People who disagree with the majority decision
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  How would you handle people who disagree with the majority decision on a non-work matter?
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/

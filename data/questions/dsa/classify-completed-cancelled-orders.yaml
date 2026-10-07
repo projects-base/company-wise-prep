@@ -1,0 +1,20 @@
+slug: classify-completed-cancelled-orders
+title: Classify Completed and Cancelled Orders
+type: DSA
+difficulty: easy
+tags:
+- hashmap
+- oop
+- simulation
+leetcode: null
+prompt: |
+  Given order status events (placed, processed, shipped, delivered, cancelled), identify completed orders (all stages) and cancelled orders; model it with clean classes.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: Technical 2 (DSA + OOP)
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/

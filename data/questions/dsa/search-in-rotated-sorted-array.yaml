@@ -1,0 +1,18 @@
+slug: search-in-rotated-sorted-array
+title: Search in Rotated Sorted Array
+type: DSA
+difficulty: medium
+tags:
+- binary-search
+leetcode: search-in-rotated-sorted-array
+prompt: |
+  Find a target in a rotated sorted array in O(log n); hidden test cases on Codility.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Bangalore)
+  round: R1
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5256862/

@@ -1,0 +1,20 @@
+slug: reservoir-sampling-stream
+title: Uniform Random Element from a Stream in O(1) Space
+type: DSA
+difficulty: medium
+tags:
+- randomized
+- reservoir-sampling
+- probability
+leetcode: null
+prompt: |
+  An infinite stream is stopped at an arbitrary point; return one of the elements seen so far uniformly at random using O(1) space.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Intern (telephonic round)
+  round: Telephonic round
+  seen_on: 2016-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/?p=131014

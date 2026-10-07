@@ -1,0 +1,22 @@
+slug: design-stream-deduplicator
+title: Deduplicate a stream of device events within a time window
+type: LLD
+difficulty: medium
+tags:
+- streaming
+- hashmap
+- design
+leetcode: null
+prompt: |
+  Devices emit events like 'Battery at 10%'; drop repeats of the same event within 10 s (or one minute) of each other.
+follow_ups:
+- Time/space complexity.
+- What bottlenecks appear when deployed to production, and how would you handle them?
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

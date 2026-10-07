@@ -1,0 +1,20 @@
+slug: implement-trie-ii-prefix-tree
+title: Multilingual Dictionary on a Trie
+type: DSA
+difficulty: medium
+tags:
+- trie
+- design
+leetcode: implement-trie-ii-prefix-tree
+prompt: |
+  Dictionary of words across languages: insert, update/remove, count a word's frequency, prefix queries; implement the trie from scratch.
+follow_ups:
+- What test cases would you write?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: R1 DSA problem solving
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8099724/

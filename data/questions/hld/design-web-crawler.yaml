@@ -1,0 +1,19 @@
+slug: design-web-crawler
+title: Design a Web Crawler
+type: HLD
+difficulty: hard
+tags:
+- crawler
+- inverted-index
+leetcode: null
+prompt: |
+  Web crawler system design plus inverted indexing.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (Azure)
+  round: AA (second team, 30 min)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8477884/

@@ -1,0 +1,20 @@
+slug: linked-list-cycle-ii
+title: Linked List Cycle II
+type: DSA
+difficulty: medium
+tags:
+- linked-list
+- two-pointers
+leetcode: linked-list-cycle-ii
+prompt: |
+  Return the node where the cycle begins.
+follow_ups:
+- Prove why Floyd's meeting-point trick works.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6492044/

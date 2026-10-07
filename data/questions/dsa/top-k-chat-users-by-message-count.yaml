@@ -1,0 +1,21 @@
+slug: top-k-chat-users-by-message-count
+title: Top K users in a chat stream
+type: DSA
+difficulty: medium
+tags:
+- heap
+- hashmap
+- string
+leetcode: null
+prompt: |
+  Given a stream of [user, message] pairs and K, return the K users with the most messages.
+follow_ups:
+- Rank by total word count instead of message count.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6634286/

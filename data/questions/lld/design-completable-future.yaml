@@ -1,0 +1,21 @@
+slug: design-completable-future
+title: Implement a CompletableFuture-like primitive
+type: LLD
+difficulty: hard
+tags:
+- concurrency
+- java
+- futures
+- design
+leetcode: null
+prompt: |
+  Design and implement a custom variation of Java's CompletableFuture, then use it in a data-processing step that splits an array across tasks.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding
+  seen_on: 2026-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8323418/

@@ -1,0 +1,21 @@
+slug: make-the-string-great
+title: Remove bad pairs (xX) from a string
+type: DSA
+difficulty: easy
+tags:
+- stack
+- string
+leetcode: make-the-string-great
+prompt: |
+  Repeatedly remove adjacent pairs of the same letter in different case.
+follow_ups:
+- Write unit tests as if shipping a feature.
+- Solve without a stack.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

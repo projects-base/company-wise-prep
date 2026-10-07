@@ -1,0 +1,22 @@
+slug: insert-delete-getrandom-o1
+title: Insert Delete GetRandom O(1)
+type: DSA
+difficulty: medium
+tags:
+- hashmap
+- array
+- randomized
+- design
+leetcode: insert-delete-getrandom-o1
+prompt: |
+  Design a set supporting insert, delete and getRandom in O(1) average time.
+follow_ups:
+- Make it thread-safe and explain what that costs.
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

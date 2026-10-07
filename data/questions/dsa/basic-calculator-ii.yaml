@@ -1,0 +1,20 @@
+slug: basic-calculator-ii
+title: Basic Calculator II
+type: DSA
+difficulty: medium
+tags:
+- stack
+- string
+- math
+leetcode: basic-calculator-ii
+prompt: |
+  Evaluate an expression with + - * / and non-negative integers.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6596001/

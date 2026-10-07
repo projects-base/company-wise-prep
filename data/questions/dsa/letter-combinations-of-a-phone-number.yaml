@@ -1,0 +1,19 @@
+slug: letter-combinations-of-a-phone-number
+title: Letter Combinations of a Phone Number
+type: DSA
+difficulty: medium
+tags:
+- backtracking
+- string
+leetcode: letter-combinations-of-a-phone-number
+prompt: |
+  Return all letter combinations a digit string can represent on a phone keypad.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R1 DSA
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498754/

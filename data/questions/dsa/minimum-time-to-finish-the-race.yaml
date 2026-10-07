@@ -1,0 +1,18 @@
+slug: minimum-time-to-finish-the-race
+title: Minimum Time to Finish the Race
+type: DSA
+difficulty: hard
+tags:
+- dynamic-programming
+leetcode: minimum-time-to-finish-the-race
+prompt: |
+  Choose tyre changes to minimise total race time.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

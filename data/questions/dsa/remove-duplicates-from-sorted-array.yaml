@@ -1,0 +1,20 @@
+slug: remove-duplicates-from-sorted-array
+title: Remove Duplicates from Sorted Array
+type: DSA
+difficulty: easy
+tags:
+- two-pointers
+- array
+leetcode: remove-duplicates-from-sorted-array
+prompt: |
+  Remove duplicates in place from a sorted array.
+follow_ups:
+- Extend to retain duplicates up to an allowed frequency in O(n) time, O(1) space.
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R2 DSA (60 min)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7541629/

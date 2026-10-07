@@ -1,0 +1,19 @@
+slug: design-warehouse-inventory
+title: Design a Warehouse / Inventory System
+type: LLD
+difficulty: medium
+tags:
+- oop
+- concurrency
+leetcode: null
+prompt: |
+  LLD of a warehouse inventory system (30 minutes); candidate added concurrency and notifications.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 LLD
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435236/

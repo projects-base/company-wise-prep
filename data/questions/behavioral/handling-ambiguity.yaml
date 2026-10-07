@@ -1,0 +1,18 @@
+slug: handling-ambiguity
+title: Handling an ambiguous situation
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  Describe an ambiguous situation and how you made progress.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8551877/

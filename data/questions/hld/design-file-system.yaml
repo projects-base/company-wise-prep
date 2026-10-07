@@ -1,0 +1,20 @@
+slug: design-file-system
+title: Design a File System (storage basics)
+type: HLD
+difficulty: hard
+tags:
+- storage
+- bitmap
+- os
+leetcode: null
+prompt: |
+  How a file is stored on disk, free-space tracking (bitmaps, chunks) - storage fundamentals rather than scale buzzwords.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63/L64, Azure Storage)
+  round: R3 System design (Principal Engineer)
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8300781/

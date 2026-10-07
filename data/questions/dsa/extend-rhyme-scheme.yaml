@@ -1,0 +1,20 @@
+slug: extend-rhyme-scheme
+title: Extend a short rhyme scheme to match a long one
+type: DSA
+difficulty: medium
+tags:
+- string
+- hashmap
+- pattern-matching
+leetcode: null
+prompt: |
+  Given a short rhyme scheme and a long one, extend the short one so the two are equivalent (same letter-equality structure), or report impossible.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6479105/

@@ -1,0 +1,21 @@
+slug: tree-path-mex-prime-sums
+title: Sum of Path MEX-P over a Tree
+type: DSA
+difficulty: hard
+tags:
+- tree
+- number-theory
+- rerooting
+- dp
+leetcode: null
+prompt: |
+  MEX-P(S) = smallest prime that fails to divide some element of S. For each node u of a valued tree, output the sum over all v of MEX-P of the values on the u-v path.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SWE 1 (2026 grad)
+  round: Online assessment
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8395109/

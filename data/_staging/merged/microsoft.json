@@ -1,0 +1,4117 @@
+[
+ {
+  "slug": "lru-cache",
+  "title": "LRU Cache",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "doubly-linked-list",
+   "design"
+  ],
+  "leetcode": "lru-cache",
+  "prompt": "Implement get/put in O(1) with fixed capacity and least-recently-used eviction; identify the methods and data structures yourself, then test.",
+  "follow_ups": [
+   "Make it thread-safe.",
+   "Make the class a singleton and justify why.",
+   "Inheritance vs composition."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R1 coding",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "lru-cache",
+  "title": "LRU Cache",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "doubly-linked-list",
+   "design"
+  ],
+  "leetcode": "lru-cache",
+  "prompt": "Implement an LRU cache with a TTL per entry on HackerRank, with test cases.",
+  "follow_ups": [
+   "How would you add concurrency?",
+   "If misses exceed hits, how do you tell whether cache size or eviction policy is the problem?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63/L64, Azure Storage)",
+   "round": "R1 DSA coding",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8300781/"
+  }
+ },
+ {
+  "slug": "lru-cache",
+  "title": "LRU Cache",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "doubly-linked-list",
+   "design"
+  ],
+  "leetcode": "lru-cache",
+  "prompt": "Running implementation of an LRU cache.",
+  "follow_ups": [
+   "Extend it to a priority-based cache."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure, Hyderabad)",
+   "round": "R1",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5299357/"
+  }
+ },
+ {
+  "slug": "lru-cache",
+  "title": "LRU Cache",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "doubly-linked-list",
+   "design"
+  ],
+  "leetcode": "lru-cache",
+  "prompt": "Implementation-heavy LRU cache problem framed as a HackerRank-style story.",
+  "follow_ups": [
+   "Optimise and handle edge cases."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 technical (coding + C++ fundamentals)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7523946/"
+  }
+ },
+ {
+  "slug": "meeting-rooms-ii",
+  "title": "Meeting Rooms II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "heap",
+   "sorting",
+   "two-pointers"
+  ],
+  "leetcode": "meeting-rooms-ii",
+  "prompt": "Given meeting intervals, return the minimum number of rooms required.",
+  "follow_ups": [
+   "Implement both the priority-queue and the two-pointer (sorted starts/ends) versions."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 DSA (60 min)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7620569/"
+  }
+ },
+ {
+  "slug": "meeting-rooms-ii",
+  "title": "Meeting Rooms II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "heap",
+   "sorting"
+  ],
+  "leetcode": "meeting-rooms-ii",
+  "prompt": "Minimum meeting rooms; code must run in a single Solution.java on HackerRank.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SWE II",
+   "round": "R2 DSA",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7619101/"
+  }
+ },
+ {
+  "slug": "meeting-rooms-ii",
+  "title": "Meeting Rooms II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "heap",
+   "sorting"
+  ],
+  "leetcode": "meeting-rooms-ii",
+  "prompt": "Variation of minimum meeting rooms required, coded in Java because the resume was Java.",
+  "follow_ups": [
+   "A follow-up variant (not specified)."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R2 DSA",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7545165/"
+  }
+ },
+ {
+  "slug": "meeting-rooms",
+  "title": "Meeting Rooms",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "intervals",
+   "sorting"
+  ],
+  "leetcode": "meeting-rooms",
+  "prompt": "Given meeting intervals, decide whether a person can attend all meetings.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R1 DSA",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6471202/"
+  }
+ },
+ {
+  "slug": "letter-case-permutation",
+  "title": "Letter Case Permutation",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "backtracking",
+   "string"
+  ],
+  "leetcode": "letter-case-permutation",
+  "prompt": "Generate all strings obtained by toggling the case of each letter (e.g. a2z2 -> a2z2, a2Z2, A2z2, A2Z2).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R1 DSA",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6471202/"
+  }
+ },
+ {
+  "slug": "number-of-islands",
+  "title": "Number of Islands",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dfs",
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "number-of-islands",
+  "prompt": "Count connected groups of 1s in a grid.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Noida)",
+   "round": "R1 DSA",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498667/"
+  }
+ },
+ {
+  "slug": "number-of-islands",
+  "title": "Number of Islands",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dfs",
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "number-of-islands",
+  "prompt": "Told as a story: 1s are people, 0s empty; virus spreads 4-directionally; how many people must be infected separately so everyone is infected.",
+  "follow_ups": [
+   "Why use a graph for a matrix problem?",
+   "Solve with BFS as well as DFS.",
+   "If the matrix does not fit in one machine's memory, how do you handle it?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure Data Factory)",
+   "round": "Interview 2",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7417317/"
+  }
+ },
+ {
+  "slug": "number-of-islands",
+  "title": "Number of Islands",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dfs",
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "number-of-islands",
+  "prompt": "Count islands in a grid.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R1 DSA",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498754/"
+  }
+ },
+ {
+  "slug": "letter-combinations-of-a-phone-number",
+  "title": "Letter Combinations of a Phone Number",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "backtracking",
+   "string"
+  ],
+  "leetcode": "letter-combinations-of-a-phone-number",
+  "prompt": "Return all letter combinations a digit string can represent on a phone keypad.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R1 DSA",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498754/"
+  }
+ },
+ {
+  "slug": "contains-duplicate-ii",
+  "title": "Contains Duplicate II (print pairs within distance k)",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hashmap",
+   "sliding-window"
+  ],
+  "leetcode": "contains-duplicate-ii",
+  "prompt": "Modified version: print the duplicate elements whose indices are within distance k.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Noida)",
+   "round": "Screening",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498667/"
+  }
+ },
+ {
+  "slug": "edit-distance",
+  "title": "Edit Distance",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dp",
+   "string"
+  ],
+  "leetcode": "edit-distance",
+  "prompt": "Minimum insert/delete/replace operations to convert one string into another.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Noida)",
+   "round": "Screening",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498667/"
+  }
+ },
+ {
+  "slug": "single-threaded-cpu",
+  "title": "Single-Threaded CPU",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "sorting",
+   "simulation"
+  ],
+  "leetcode": "single-threaded-cpu",
+  "prompt": "Simulate a single-threaded CPU picking the shortest available task; return the processing order.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Noida)",
+   "round": "R4 Hiring manager",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498667/"
+  }
+ },
+ {
+  "slug": "3sum",
+  "title": "3Sum",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "two-pointers",
+   "sorting",
+   "array"
+  ],
+  "leetcode": "3sum",
+  "prompt": "Find all unique triplets summing to zero.",
+  "follow_ups": [
+   "Extend to 4Sum and then K-Sum.",
+   "How would you test your code; what tests would you write?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R2 DSA",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5299198/"
+  }
+ },
+ {
+  "slug": "search-in-rotated-sorted-array",
+  "title": "Search in Rotated Sorted Array",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-search"
+  ],
+  "leetcode": "search-in-rotated-sorted-array",
+  "prompt": "Find a target in a rotated sorted array in O(log n); hidden test cases on Codility.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Bangalore)",
+   "round": "R1",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5256862/"
+  }
+ },
+ {
+  "slug": "top-k-frequent-elements",
+  "title": "Top K Frequent Elements",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "hashmap",
+   "bucket-sort"
+  ],
+  "leetcode": "top-k-frequent-elements",
+  "prompt": "Return the k most frequent elements (10-12 minute coding slot after resume discussion).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "R1 (resume + coding + rate-limiter HLD)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7422741/"
+  }
+ },
+ {
+  "slug": "top-k-frequent-words",
+  "title": "Top K Frequent Error Codes",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "hashmap",
+   "sorting"
+  ],
+  "leetcode": "top-k-frequent-words",
+  "prompt": "From log lines with error codes, return the top K most frequent codes; ties broken by ascending code.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 DSA + LLD (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "permutation-in-string",
+  "title": "Permutation in String",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "sliding-window",
+   "hashmap",
+   "string"
+  ],
+  "leetcode": "permutation-in-string",
+  "prompt": "Return true if s2 contains a permutation of s1; a brute-force permutation answer was treated as a red flag for SDE II.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 DSA (1 h)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7433909/"
+  }
+ },
+ {
+  "slug": "sort-colors",
+  "title": "Sort Colors",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "two-pointers",
+   "dutch-national-flag"
+  ],
+  "leetcode": "sort-colors",
+  "prompt": "Sort an array of 0s, 1s, 2s in one pass and O(1) space without a library sort.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R4 Engineering manager",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7433909/"
+  }
+ },
+ {
+  "slug": "minimum-window-substring",
+  "title": "Minimum Window Substring",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "sliding-window",
+   "hashmap",
+   "string"
+  ],
+  "leetcode": "minimum-window-substring",
+  "prompt": "Shortest substring of s containing all characters of t (lowercase only).",
+  "follow_ups": [
+   "Optimise and clean the code."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Noida)",
+   "round": "R1 DSA (with shadow interviewer)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7423217/"
+  }
+ },
+ {
+  "slug": "binary-tree-maximum-path-sum",
+  "title": "Binary Tree Maximum Path Sum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "dfs",
+   "recursion"
+  ],
+  "leetcode": "binary-tree-maximum-path-sum",
+  "prompt": "Maximum sum of any path in a binary tree.",
+  "follow_ups": [
+   "All-negative trees.",
+   "How would you unit-test these edge cases?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Hyderabad/Noida)",
+   "round": "R1 DSA",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7711794/"
+  }
+ },
+ {
+  "slug": "binary-tree-maximum-path-sum",
+  "title": "Binary Tree Maximum Path Sum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "dfs",
+   "recursion"
+  ],
+  "leetcode": "binary-tree-maximum-path-sum",
+  "prompt": "Maximum path sum in a binary tree, handling negative values.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (63, Hyderabad)",
+   "round": "R1 Coding (60 min)",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/microsoft-senior-software-engineer-63"
+  }
+ },
+ {
+  "slug": "trapping-rain-water-ii",
+  "title": "Trapping Rain Water II",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "trapping-rain-water-ii",
+  "prompt": "Reported as similar to 3D trapping rain water on a height map.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Hyderabad/Noida)",
+   "round": "R1 DSA",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7711794/"
+  }
+ },
+ {
+  "slug": "course-schedule-ii",
+  "title": "Course Schedule II (package install order)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "topological-sort"
+  ],
+  "leetcode": "course-schedule-ii",
+  "prompt": "Given packages with dependencies [a, b] (a needs b first), return an installation order.",
+  "follow_ups": [
+   "Open discussion: reducing latency, handling high throughput, scalability and fault tolerance."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R1",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326149/"
+  }
+ },
+ {
+  "slug": "course-schedule-ii",
+  "title": "Course Schedule II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "topological-sort",
+   "cycle-detection"
+  ],
+  "leetcode": "course-schedule-ii",
+  "prompt": "Graph problem similar to Course Schedule II (topological sort / cycle detection) on HackerRank.",
+  "follow_ups": [
+   "Follow-up on the same problem in pseudocode."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 DSA",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7576877/"
+  }
+ },
+ {
+  "slug": "search-suggestions-system",
+  "title": "Top-3 Words by Prefix (with wildcard)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "trie",
+   "design",
+   "string"
+  ],
+  "leetcode": "search-suggestions-system",
+  "prompt": "Implement addWord(word) and getWords(pattern) returning the three lexicographically smallest words starting with the pattern.",
+  "follow_ups": [
+   "Pattern may contain '.' matching any letter; still return the three smallest matches efficiently."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R2",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326149/"
+  }
+ },
+ {
+  "slug": "binary-searchable-numbers-in-an-unsorted-array",
+  "title": "Binary Searchable Numbers in an Unsorted Array",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "array",
+   "prefix-max",
+   "binary-search"
+  ],
+  "leetcode": "binary-searchable-numbers-in-an-unsorted-array",
+  "prompt": "Count elements guaranteed to be found by randomized-pivot binary search; explain brute force, better and optimal.",
+  "follow_ups": [
+   "What if duplicates are allowed?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R2 DSA & problem solving (1 h)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "rotting-oranges",
+  "title": "Rotting Oranges",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "matrix",
+   "multi-source-bfs"
+  ],
+  "leetcode": "rotting-oranges",
+  "prompt": "Minimum minutes until all fresh oranges rot (multi-source BFS).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R4 HLD + DSA (2 h)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "rotting-oranges",
+  "title": "Rotting Oranges",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "rotting-oranges",
+  "prompt": "Rotting oranges, 30-minute slot, followed by OS concepts.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Azure)",
+   "round": "R1 DSA + OS",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8477884/"
+  }
+ },
+ {
+  "slug": "implement-min-heap",
+  "title": "Implement a PriorityQueue (min-heap) without libraries",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "java",
+   "implementation"
+  ],
+  "leetcode": null,
+  "prompt": "Implement Java's PriorityQueue as a min-heap from scratch (offer/poll/peek, sift up/down).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R5 Engineering group director",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "merge-intervals",
+  "title": "Merge Intervals",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "sorting"
+  ],
+  "leetcode": "merge-intervals",
+  "prompt": "Merge all overlapping intervals.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior SDE",
+   "round": "Tech screen",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7537838/"
+  }
+ },
+ {
+  "slug": "koko-eating-bananas",
+  "title": "Koko Eating Bananas",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-search-on-answer"
+  ],
+  "leetcode": "koko-eating-bananas",
+  "prompt": "Minimum eating speed to finish all piles within h hours.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior SDE",
+   "round": "Tech screen",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7537838/"
+  }
+ },
+ {
+  "slug": "min-stack",
+  "title": "Min Stack",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "design"
+  ],
+  "leetcode": "min-stack",
+  "prompt": "Stack supporting push/pop/top/getMin in O(1), with a clean API.",
+  "follow_ups": [
+   "OOP follow-up solved with a Factory pattern."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R1 DSA + LLD (60 min)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7541629/"
+  }
+ },
+ {
+  "slug": "remove-duplicates-from-sorted-array",
+  "title": "Remove Duplicates from Sorted Array",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "two-pointers",
+   "array"
+  ],
+  "leetcode": "remove-duplicates-from-sorted-array",
+  "prompt": "Remove duplicates in place from a sorted array.",
+  "follow_ups": [
+   "Extend to retain duplicates up to an allowed frequency in O(n) time, O(1) space."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R2 DSA (60 min)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7541629/"
+  }
+ },
+ {
+  "slug": "generate-parentheses",
+  "title": "Generate Parentheses",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "backtracking",
+   "recursion"
+  ],
+  "leetcode": "generate-parentheses",
+  "prompt": "Generate all well-formed combinations of n pairs of parentheses (asked after Valid Parentheses).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R2 DSA (60 min)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7541629/"
+  }
+ },
+ {
+  "slug": "valid-parentheses",
+  "title": "Valid Parentheses",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "stack",
+   "string"
+  ],
+  "leetcode": "valid-parentheses",
+  "prompt": "Check whether a bracket string is balanced.",
+  "follow_ups": [
+   "Minimum number of reversals needed to balance it (8099724)."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R2 DSA (60 min)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7541629/"
+  }
+ },
+ {
+  "slug": "find-the-duplicate-number",
+  "title": "Find the Duplicate Number",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "cycle-detection",
+   "two-pointers"
+  ],
+  "leetcode": "find-the-duplicate-number",
+  "prompt": "Find the duplicate in an array of n+1 numbers in O(n) time and O(1) space (Floyd's cycle detection).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R4 AA (30 min)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7541629/"
+  }
+ },
+ {
+  "slug": "heaters",
+  "title": "Heaters",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-search",
+   "sorting"
+  ],
+  "leetcode": "heaters",
+  "prompt": "Minimum heater radius so every house is warmed.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62, Noida Xbox)",
+   "round": "R1 DSA (45 min)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7770532/"
+  }
+ },
+ {
+  "slug": "add-strings",
+  "title": "Add Two Large Numbers as Strings",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "string",
+   "math"
+  ],
+  "leetcode": "add-strings",
+  "prompt": "Add two large non-negative integers given as strings without any BigInteger library.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62, Noida Xbox)",
+   "round": "R1 DSA (45 min)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7770532/"
+  }
+ },
+ {
+  "slug": "max-stack",
+  "title": "Max Stack (without popMax)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "design"
+  ],
+  "leetcode": "max-stack",
+  "prompt": "Stack with push/pop/top/peekMax; give linear and O(1) solutions.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62, Noida Xbox)",
+   "round": "R4 extra DSA round",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7770532/"
+  }
+ },
+ {
+  "slug": "find-median-from-data-stream",
+  "title": "Find Median from Data Stream",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "design"
+  ],
+  "leetcode": "find-median-from-data-stream",
+  "prompt": "Support addNum and findMedian on a stream (two heaps).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure, Bengaluru)",
+   "round": "R1",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7613494/"
+  }
+ },
+ {
+  "slug": "delete-and-earn",
+  "title": "Delete and Earn",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dp"
+  ],
+  "leetcode": "delete-and-earn",
+  "prompt": "Maximise points where taking x deletes all x-1 and x+1 (house-robber on values).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure, Bengaluru)",
+   "round": "Online assessment",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7613494/"
+  }
+ },
+ {
+  "slug": "is-graph-bipartite",
+  "title": "Is Graph Bipartite?",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "coloring"
+  ],
+  "leetcode": "is-graph-bipartite",
+  "prompt": "Question similar to checking whether a graph is bipartite.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure, Bengaluru)",
+   "round": "Online assessment",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7613494/"
+  }
+ },
+ {
+  "slug": "minimum-difficulty-of-a-job-schedule",
+  "title": "Minimum Difficulty of a Job Schedule",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dp"
+  ],
+  "leetcode": "minimum-difficulty-of-a-job-schedule",
+  "prompt": "Reworded but same concept: split jobs over d days minimising the sum of daily maxima.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7589414/"
+  }
+ },
+ {
+  "slug": "minimum-cost-to-reach-destination-in-time",
+  "title": "Minimum Cost to Reach Destination in Time",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "dijkstra",
+   "dp"
+  ],
+  "leetcode": "minimum-cost-to-reach-destination-in-time",
+  "prompt": "Slightly more complicated variation of min passing-fee path within a time budget.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7589414/"
+  }
+ },
+ {
+  "slug": "reverse-nodes-in-k-group",
+  "title": "Reverse Nodes in k-Group",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "linked-list"
+  ],
+  "leetcode": "reverse-nodes-in-k-group",
+  "prompt": "Reverse a linked list k nodes at a time; code expected to run and be optimised.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 DSA + CS fundamentals (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "longest-substring-without-repeating-characters",
+  "title": "Longest Substring Without Repeating Characters",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "sliding-window",
+   "hashmap"
+  ],
+  "leetcode": "longest-substring-without-repeating-characters",
+  "prompt": "Length of the longest substring without repeated characters, sliding window.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 DSA + CS fundamentals (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "connected-component-size-queries",
+  "title": "Reachable Nodes per Query (component size)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "union-find",
+   "dfs"
+  ],
+  "leetcode": null,
+  "prompt": "Graph with disconnected components; for each query node return how many other nodes are reachable. Code both DFS and DSU.",
+  "follow_ups": [
+   "When is DSU more suitable?",
+   "Code clarity and reusability."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R1 Technical (graphs)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7524808/"
+  }
+ },
+ {
+  "slug": "spiral-matrix",
+  "title": "Spiral Matrix (LLD style)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "matrix",
+   "simulation",
+   "strategy-pattern"
+  ],
+  "leetcode": "spiral-matrix",
+  "prompt": "Return elements in spiral order, but structured as classes: Matrix, TraversalStrategy, SpiralTraversal.",
+  "follow_ups": [
+   "Support future traversal patterns (zigzag, diagonal) via a factory; Open/Closed principle.",
+   "How does in-app search work; tries, inverted indexes, caching, personalisation."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R2 LLD + coding",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7524808/"
+  }
+ },
+ {
+  "slug": "max-consecutive-ones-iii",
+  "title": "Max Consecutive Ones III",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "sliding-window"
+  ],
+  "leetcode": "max-consecutive-ones-iii",
+  "prompt": "Longest run of 1s if at most K zeros may be flipped.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Software Engineer (3+ YOE)",
+   "round": "R3 DSA (3 problems in 1 h)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8551527/"
+  }
+ },
+ {
+  "slug": "amount-of-time-for-binary-tree-to-be-infected",
+  "title": "Time to Burn a Binary Tree",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "bfs"
+  ],
+  "leetcode": "amount-of-time-for-binary-tree-to-be-infected",
+  "prompt": "Time for fire starting at a target node to spread to the whole tree (nodes had parent pointers).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Software Engineer (3+ YOE)",
+   "round": "R3 DSA (3 problems in 1 h)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8551527/"
+  }
+ },
+ {
+  "slug": "logger-rate-limiter",
+  "title": "Message Filtering in a K-second Window",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hashmap",
+   "design"
+  ],
+  "leetcode": "logger-rate-limiter",
+  "prompt": "Given timestamps and messages, return a boolean per message: accept unless the same message was accepted in the last K seconds.",
+  "follow_ups": [
+   "Should suppressed messages update the timestamp?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Software Engineer (3+ YOE)",
+   "round": "R3 DSA (3 problems in 1 h)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8551527/"
+  }
+ },
+ {
+  "slug": "next-permutation",
+  "title": "Next Bigger Number with Same Digits",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "array",
+   "two-pointers"
+  ],
+  "leetcode": "next-permutation",
+  "prompt": "Return the next greater number with the same digits, or the same number if none exists (115 -> 151).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "R1 DSA",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8112963/"
+  }
+ },
+ {
+  "slug": "implement-ftoa",
+  "title": "Implement ftoa (float to string)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "math",
+   "string",
+   "implementation"
+  ],
+  "leetcode": null,
+  "prompt": "Convert a float to a string with a given precision without library conversion functions; handle negatives, precision 0, rounding error.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "R1 DSA",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8112963/"
+  }
+ },
+ {
+  "slug": "alien-dictionary",
+  "title": "Alien Dictionary",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "topological-sort"
+  ],
+  "leetcode": "alien-dictionary",
+  "prompt": "Derive letter order from a sorted alien-language word list; 45 min HackerRank live coding (only round).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "HackerRank live coding screen",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8461584/"
+  }
+ },
+ {
+  "slug": "longest-repeating-character-replacement",
+  "title": "Longest Repeating Character Replacement",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "sliding-window"
+  ],
+  "leetcode": "longest-repeating-character-replacement",
+  "prompt": "Variation; discuss brute force and optimal.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R1 DSA",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8462091/"
+  }
+ },
+ {
+  "slug": "smallest-range-ii",
+  "title": "Smallest Range II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "greedy",
+   "sorting"
+  ],
+  "leetcode": "smallest-range-ii",
+  "prompt": "Each element must be changed by +k or -k exactly once; minimise max - min.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Bangalore)",
+   "round": "R2 LLD",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6603526/"
+  }
+ },
+ {
+  "slug": "best-time-to-buy-and-sell-stock",
+  "title": "Best Time to Buy and Sell Stock",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "array",
+   "dp"
+  ],
+  "leetcode": "best-time-to-buy-and-sell-stock",
+  "prompt": "Maximum profit with at most one transaction.",
+  "follow_ups": [
+   "Also print buy and sell days.",
+   "At most two transactions (Stock III)."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Bangalore)",
+   "round": "R1 Coding",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6603526/"
+  }
+ },
+ {
+  "slug": "binary-tree-zigzag-level-order-traversal",
+  "title": "Binary Tree Zigzag Level Order Traversal",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "bfs"
+  ],
+  "leetcode": "binary-tree-zigzag-level-order-traversal",
+  "prompt": "Level-order traversal with zig-zag and reverse variants; extensible with minimal modification.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61, Hyderabad)",
+   "round": "R3 DSA (60 min)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-68-microsoft-l61"
+  }
+ },
+ {
+  "slug": "longest-substring-with-at-least-k-repeating-characters",
+  "title": "Longest Substring with At Least K Repeating Characters",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "divide-and-conquer",
+   "sliding-window"
+  ],
+  "leetcode": "longest-substring-with-at-least-k-repeating-characters",
+  "prompt": "Longest substring in which every character appears at least k times.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61, Hyderabad)",
+   "round": "R3 DSA (60 min)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-68-microsoft-l61"
+  }
+ },
+ {
+  "slug": "simplify-path",
+  "title": "Simplify Path (variant)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "string"
+  ],
+  "leetcode": "simplify-path",
+  "prompt": "Variant of canonicalising a Unix path; production-ready compilable code with tests expected.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61, Hyderabad)",
+   "round": "R2 DSA (60 min)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-68-microsoft-l61"
+  }
+ },
+ {
+  "slug": "minimize-max-distance-to-gas-station",
+  "title": "Minimize Max Distance to Gas Station",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-search-on-answer"
+  ],
+  "leetcode": "minimize-max-distance-to-gas-station",
+  "prompt": "Binary-search problem resembling minimising the maximum gap after adding k stations.",
+  "follow_ups": [
+   "Multithreading basics, DBMS replica vs snapshot vs checkpoint, deadlock detection and prevention."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R1 DSA + CS fundamentals",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected"
+  }
+ },
+ {
+  "slug": "count-subarrays-with-fixed-bounds",
+  "title": "Count Subarrays With Fixed Bounds",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "sliding-window",
+   "two-pointers"
+  ],
+  "leetcode": "count-subarrays-with-fixed-bounds",
+  "prompt": "Count subarrays whose min is minK and max is maxK.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "Coding",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7425597/"
+  }
+ },
+ {
+  "slug": "lfu-cache",
+  "title": "LFU Cache (generic, configurable)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "hashmap",
+   "linked-list",
+   "design",
+   "generics"
+  ],
+  "leetcode": "lfu-cache",
+  "prompt": "Running implementation of an LFU cache with generic, configurable key and value types (after a distributed-cache LLD discussion).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R4 LLD",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5299198/"
+  }
+ },
+ {
+  "slug": "external-sort-large-file",
+  "title": "Sort a File Too Large for Memory",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "external-sort",
+   "k-way-merge",
+   "heap"
+  ],
+  "leetcode": null,
+  "prompt": "Sort a huge file of integers that does not fit in RAM; write running code (chunk, sort, k-way merge).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R5 Project discussion + coding",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5299198/"
+  }
+ },
+ {
+  "slug": "restore-ip-addresses",
+  "title": "Restore IP Addresses",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "backtracking",
+   "string"
+  ],
+  "leetcode": "restore-ip-addresses",
+  "prompt": "Generate valid IPv4 addresses from a digit string on HackerRank without provided tests; supply 5-6 edge cases yourself.",
+  "follow_ups": [
+   "Line-by-line alternatives (ternary vs if/else) - do they still work?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure Data Factory)",
+   "round": "Interview 1 (Principal Architect)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7417317/"
+  }
+ },
+ {
+  "slug": "first-unique-number",
+  "title": "Oldest Unique Painting",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "queue",
+   "hashmap",
+   "design",
+   "concurrency"
+  ],
+  "leetcode": "first-unique-number",
+  "prompt": "Artists add integer paintings; enthusiasts consume the oldest painting that is still unique. Implement both operations.",
+  "follow_ups": [
+   "Calls happen concurrently from millions of callers - how?",
+   "Synchronisation serialises consumers - how to make it faster?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure Compute, Bangalore)",
+   "round": "R1 DSA",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498710/"
+  }
+ },
+ {
+  "slug": "design-tic-tac-toe",
+  "title": "Tic-Tac-Toe (working game)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "simulation",
+   "design"
+  ],
+  "leetcode": "design-tic-tac-toe",
+  "prompt": "Write a complete working Tic-Tac-Toe playGame; then compare with ChatGPT's version.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61, Noida)",
+   "round": "AA round",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7423217/"
+  }
+ },
+ {
+  "slug": "implement-trie-ii-prefix-tree",
+  "title": "Multilingual Dictionary on a Trie",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "trie",
+   "design"
+  ],
+  "leetcode": "implement-trie-ii-prefix-tree",
+  "prompt": "Dictionary of words across languages: insert, update/remove, count a word's frequency, prefix queries; implement the trie from scratch.",
+  "follow_ups": [
+   "What test cases would you write?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R1 DSA problem solving",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8099724/"
+  }
+ },
+ {
+  "slug": "rank-of-node-in-bst",
+  "title": "Rank of a Node in a BST",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bst",
+   "augmented-tree"
+  ],
+  "leetcode": null,
+  "prompt": "Find a node's rank in a BST; optimise beyond in-order traversal by storing subtree sizes in each node.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R2 DSA",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8273079/"
+  }
+ },
+ {
+  "slug": "k-stacks-in-single-array",
+  "title": "N Stacks in One Fixed-size Array",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "array",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Implement N stacks sharing a single fixed-size array.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R6 AA (Group Engineering Manager)",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8273079/"
+  }
+ },
+ {
+  "slug": "two-sum",
+  "title": "Two Sum",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "array",
+   "hashmap",
+   "aggregate-list"
+  ],
+  "leetcode": "two-sum",
+  "prompt": "Indices of two numbers adding to target.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "longest-palindromic-substring",
+  "title": "Longest Palindromic Substring",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "string",
+   "dp",
+   "expand-around-center",
+   "aggregate-list"
+  ],
+  "leetcode": "longest-palindromic-substring",
+  "prompt": "Longest palindromic substring.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "trapping-rain-water",
+  "title": "Trapping Rain Water",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "two-pointers",
+   "stack",
+   "aggregate-list"
+  ],
+  "leetcode": "trapping-rain-water",
+  "prompt": "Water trapped between bars.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "maximum-subarray",
+  "title": "Maximum Subarray",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dp",
+   "kadane",
+   "aggregate-list"
+  ],
+  "leetcode": "maximum-subarray",
+  "prompt": "Largest-sum contiguous subarray.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "subarray-sum-equals-k",
+  "title": "Subarray Sum Equals K",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "prefix-sum",
+   "hashmap",
+   "aggregate-list"
+  ],
+  "leetcode": "subarray-sum-equals-k",
+  "prompt": "Count subarrays summing to k.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "container-with-most-water",
+  "title": "Container With Most Water",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "two-pointers",
+   "greedy",
+   "aggregate-list"
+  ],
+  "leetcode": "container-with-most-water",
+  "prompt": "Two lines holding the most water.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "median-of-two-sorted-arrays",
+  "title": "Median of Two Sorted Arrays",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-search",
+   "aggregate-list"
+  ],
+  "leetcode": "median-of-two-sorted-arrays",
+  "prompt": "Median of two sorted arrays in O(log(m+n)).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "merge-k-sorted-lists",
+  "title": "Merge k Sorted Lists",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "linked-list",
+   "aggregate-list"
+  ],
+  "leetcode": "merge-k-sorted-lists",
+  "prompt": "Merge k sorted linked lists.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "sliding-window-maximum",
+  "title": "Sliding Window Maximum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "deque",
+   "sliding-window",
+   "aggregate-list"
+  ],
+  "leetcode": "sliding-window-maximum",
+  "prompt": "Max of each window of size k.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (LeetCode company tag)",
+   "round": "Unknown (aggregate-list: LeetCode 'Microsoft' tag, last 6 months)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiting",
+   "token-bucket",
+   "strategy-pattern",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Design a rate limiter (classes, then code one algorithm).",
+  "follow_ups": [
+   "Different APIs with different limits and windows.",
+   "One limit shared by two APIs combined."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Noida)",
+   "round": "R2 LLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498667/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiting",
+   "multi-tenant",
+   "strategy-pattern"
+  ],
+  "leetcode": null,
+  "prompt": "Implement an extensible, multi-tenant rate limiter with pluggable algorithms - all classes, interfaces and algorithms in ~20 minutes.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R4 AA",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7518104/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiting",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "HLD of a rate limiter; interviewer focused on algorithms and trade-offs (token bucket for bursts) and a rough code sketch.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "R1 (coding + HLD)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7422741/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiting",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Design a rate limiter, HLD and LLD, trade-offs between strategies and limitations; rejected for not enough HLD depth for SDE II.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure, Bengaluru)",
+   "round": "R2 Design",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7613494/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiting",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Design a rate limiter plus general server debugging (logs, monitoring).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "System design (senior engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7635697/"
+  }
+ },
+ {
+  "slug": "design-parking-lot",
+  "title": "Design a (Multi-level) Parking Lot",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "design-patterns"
+  ],
+  "leetcode": null,
+  "prompt": "Multi-level parking lot with Vehicle, Ticket, Floor, Slot; basic working Java implementation on HackerRank, not over-engineered.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SWE II",
+   "round": "R1 LLD",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7619101/"
+  }
+ },
+ {
+  "slug": "design-parking-lot",
+  "title": "Design a (Multi-level) Parking Lot",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "design-patterns"
+  ],
+  "leetcode": null,
+  "prompt": "Multi-floor parking lot; most time on implementation details and class structure after project deep dive.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R2 System design/LLD (75 min)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7620569/"
+  }
+ },
+ {
+  "slug": "design-parking-lot",
+  "title": "Design a (Multi-level) Parking Lot",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "hld",
+   "database",
+   "indexing",
+   "partitioning"
+  ],
+  "leetcode": null,
+  "prompt": "HLD of car parking, then DB selection, indexing, partitioning, query optimisation, writing queries and transactions.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R4 AA / hiring manager (1.5 h)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "design-vending-machine",
+  "title": "Design a Vending Machine",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "state-pattern",
+   "solid"
+  ],
+  "leetcode": null,
+  "prompt": "Vending machine (or parking lot) LLD with deep dive on SOLID and State/Strategy patterns.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Bengaluru)",
+   "round": "R2 LLD",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7769548/"
+  }
+ },
+ {
+  "slug": "design-notification-system",
+  "title": "Design a Notification System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "observer-pattern",
+   "extensibility",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Notification module other services can use to notify targeted users; jumping to Observer was not what the interviewer wanted.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Software Engineer (L60)",
+   "round": "R1 LLD",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7606563/"
+  }
+ },
+ {
+  "slug": "design-notification-system",
+  "title": "Design a Notification System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "ai-assisted",
+   "extensibility"
+  ],
+  "leetcode": null,
+  "prompt": "Notification system for Windows where apps raise and display notifications; candidate had to use AI during the round - prompting and evaluation were assessed.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R2 LLD (AI-assisted)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8462091/"
+  }
+ },
+ {
+  "slug": "design-notification-system",
+  "title": "Design a Notification System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Design a notification system, both HLD and LLD.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "AA round",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "design-notification-system",
+  "title": "Design a Notification System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "System design: notification service (behavioural + design round with senior manager).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SWE II",
+   "round": "R4 Senior manager",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7619101/"
+  }
+ },
+ {
+  "slug": "design-job-completion-notifier-with-daily-limit",
+  "title": "Job-completion Notifier with Per-user Daily Limit",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "observer-pattern",
+   "strategy-pattern",
+   "rate-limiting"
+  ],
+  "leetcode": null,
+  "prompt": "N jobs, each tied to a user; on completion notify via email or SMS; configurable limit (initially 2/day/user); overflow notifications retried next day.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R3 LLD",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5299198/"
+  }
+ },
+ {
+  "slug": "design-cache-pluggable-eviction",
+  "title": "Cache Service with Pluggable Eviction",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "strategy-pattern",
+   "lru",
+   "lfu",
+   "fifo"
+  ],
+  "leetcode": null,
+  "prompt": "Cache class accepting an eviction-strategy interface; implement LRU fully.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R2 System design & LLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7433909/"
+  }
+ },
+ {
+  "slug": "design-cache-pluggable-eviction",
+  "title": "Cache Service with Pluggable Eviction",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "distributed-cache",
+   "lru",
+   "lfu",
+   "fifo"
+  ],
+  "leetcode": null,
+  "prompt": "Design a distributed cache, discuss FIFO/LRU/LFU eviction, then implement a FIFO cache.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Software Engineer",
+   "round": "R2 System design",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8099933/"
+  }
+ },
+ {
+  "slug": "design-key-value-store-with-ttl",
+  "title": "In-memory KV Store with Expiry",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "ttl",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Simple get/put/delete KV store; then per-key expiry; then race conditions during expiry deletion; then LRU with expiry. AI allowed for code, not logic.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R5 LLD",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8273079/"
+  }
+ },
+ {
+  "slug": "design-alert-monitoring-system",
+  "title": "Design an Alert Monitoring System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "state-machine",
+   "observer-pattern"
+  ],
+  "leetcode": null,
+  "prompt": "Machines with sensors (temperature, pressure) each with thresholds; out-of-range values raise alerts; users view alerts and move them through Acknowledged/Resolved/Ignored.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 System design (HLD/LLD)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7523946/"
+  }
+ },
+ {
+  "slug": "design-alert-monitoring-system",
+  "title": "Design an Alert System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop"
+  ],
+  "leetcode": null,
+  "prompt": "Design an alert system: class definitions and the logic for sending alerts to downstream services.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Noida)",
+   "round": "R2 LLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7423217/"
+  }
+ },
+ {
+  "slug": "design-meeting-scheduler",
+  "title": "Design a Meeting Scheduler",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "intervals",
+   "oop",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Schedule meetings with participants and reject on conflict (overlap and a shared participant).",
+  "follow_ups": [
+   "Locks, optimisations, trade-offs, some HLD."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown",
+   "round": "LLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7418482/"
+  }
+ },
+ {
+  "slug": "design-file-sync-upload-download",
+  "title": "Design File Upload/Download Sync",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "state-pattern",
+   "chain-of-responsibility"
+  ],
+  "leetcode": null,
+  "prompt": "Upload/download APIs exist; model entities and triggers to sync files between local and host. Solved with State + Chain of Responsibility; class and sequence diagrams.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "R2 LLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7422741/"
+  }
+ },
+ {
+  "slug": "design-music-player",
+  "title": "Design a Music App like Spotify",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop"
+  ],
+  "leetcode": null,
+  "prompt": "Classes, interfaces and enums for a music player; pseudocode only.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R3 LLD",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7545165/"
+  }
+ },
+ {
+  "slug": "design-snake-game",
+  "title": "Design Snake & Food",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "strategy-pattern",
+   "factory-pattern"
+  ],
+  "leetcode": null,
+  "prompt": "Design snake game with extensible design (Strategy, Factory); then optimisation questions.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SWE II",
+   "round": "R3 LLD",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7619101/"
+  }
+ },
+ {
+  "slug": "design-undo-redo-text-editor",
+  "title": "Undo/Redo for a Text Editor",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "command-pattern"
+  ],
+  "leetcode": null,
+  "prompt": "Undo/redo with configurable history limits; emphasis on choosing data structures.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 System design/LLD (60 min)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7620569/"
+  }
+ },
+ {
+  "slug": "design-task-scheduler",
+  "title": "Design a Task Scheduler (Cron/Airflow-like)",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "observer-pattern",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "One-time and recurring tasks, dependencies (B after A), thread-safe concurrent execution.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R2 LLD / machine coding",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7711794/"
+  }
+ },
+ {
+  "slug": "design-message-queue",
+  "title": "Design a Message Queue (producer-consumer)",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "producer-consumer",
+   "semaphore"
+  ],
+  "leetcode": null,
+  "prompt": "Message queue with producers and consumers; deep dive on synchronisation, mutex vs semaphore, deadlock prevention.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "Loop LLD",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7563238/"
+  }
+ },
+ {
+  "slug": "design-logging-framework",
+  "title": "Design a Multi-module Logging Framework",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "producer-consumer",
+   "buffer"
+  ],
+  "leetcode": null,
+  "prompt": "Modules push log data; framework thread reads a buffer and streams to file/tool with acknowledgements.",
+  "follow_ups": [
+   "Write three threads exchanging data (read/write)."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R2 DSA + LLD (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "design-data-access-layer",
+  "title": "Data Access Layer with Runtime-switchable Source",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "dependency-injection",
+   "strategy-pattern",
+   "factory-pattern"
+  ],
+  "leetcode": null,
+  "prompt": "Data retrieval/update where the source (DB, API, file) can change at runtime; keep it loosely coupled using DI, Factory or Strategy.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 DSA + LLD (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "design-job-portal",
+  "title": "Design a Job Posting Service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "matching",
+   "ranking"
+  ],
+  "leetcode": null,
+  "prompt": "Recruiters post jobs, candidates apply, profiles hold skills/YOE; show top candidates per job and top eligible jobs per candidate. Executable code.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R2 LLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498754/"
+  }
+ },
+ {
+  "slug": "design-local-search-with-ranking",
+  "title": "Local Search with Ranking",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "trie",
+   "inverted-index",
+   "ranking"
+  ],
+  "leetcode": null,
+  "prompt": "Instant search over many local items: prefix match in name ranks highest, then substring in name, then content; filter by type; incremental updates without full rebuild.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "R1 LLD (screening)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7507538/"
+  }
+ },
+ {
+  "slug": "design-elevator-system",
+  "title": "Design an Elevator System",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "oop",
+   "scheduling",
+   "uml"
+  ],
+  "leetcode": null,
+  "prompt": "UML, functional code, scheduling strategy and handling multiple requests.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R3 LLD",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected"
+  }
+ },
+ {
+  "slug": "design-leaderboard",
+  "title": "Design a Leaderboard",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "sorted-set",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Leaderboard design; priority queue approach, sorted set mentioned.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Hyderabad)",
+   "round": "R2 LLD",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6471202/"
+  }
+ },
+ {
+  "slug": "design-leaderboard",
+  "title": "Design a Gaming Leaderboard",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "sorted-set",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Leaderboard across n games; user sees own rank and the top 10/50/100.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Noida)",
+   "round": "R3 HLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498667/"
+  }
+ },
+ {
+  "slug": "design-map-shortest-path-and-landmarks",
+  "title": "2D Map Graph: Shortest Path and Nearby Landmarks",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "dijkstra",
+   "spatial-index"
+  ],
+  "leetcode": null,
+  "prompt": "Design a 2-D graph structure that returns shortest distance between two points and nearest landmarks (schools, hospitals).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure Compute, Bangalore)",
+   "round": "R2 LLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498710/"
+  }
+ },
+ {
+  "slug": "design-document-line-search",
+  "title": "Search Matching Lines in a Document",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "inverted-index",
+   "api-design"
+  ],
+  "leetcode": null,
+  "prompt": "Return lines matching a multi-word query (e.g. 'Delhi has good food'); expose APIs and discuss trade-offs.",
+  "follow_ups": [
+   "User may delete lines from results."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R4 LLD",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8273079/"
+  }
+ },
+ {
+  "slug": "design-warehouse-inventory",
+  "title": "Design a Warehouse / Inventory System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "LLD of a warehouse inventory system (30 minutes); candidate added concurrency and notifications.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 LLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435236/"
+  }
+ },
+ {
+  "slug": "design-agentic-workflow",
+  "title": "Design an Agentic Workflow",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "llm",
+   "agents",
+   "workflow"
+  ],
+  "leetcode": null,
+  "prompt": "LLD of an agentic (AI agent) workflow.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R2 DSA + LLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7392060/"
+  }
+ },
+ {
+  "slug": "design-url-shortener",
+  "title": "Design a URL Shortener",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "hashing",
+   "base62",
+   "caching"
+  ],
+  "leetcode": null,
+  "prompt": "URL shortener where the interviewer rejected textbook answers and pushed into components and scenarios.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R1 HLD + DSA",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7392060/"
+  }
+ },
+ {
+  "slug": "design-url-shortener",
+  "title": "Design a URL Shortener",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "capacity-estimation",
+   "ddos"
+  ],
+  "leetcode": null,
+  "prompt": "Requirements, capacity estimation, APIs, diagram.",
+  "follow_ups": [
+   "How do you prevent a DDoS on this system?"
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R2 Design",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "design-url-shortener",
+  "title": "Design a URL Shortener",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "id-generation",
+   "multi-region",
+   "snowflake"
+  ],
+  "leetcode": null,
+  "prompt": "Deep dive on multi-region deployment and ID generation (Snowflake, ID service, Base62 of auto-increment).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R4 HLD",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7545165/"
+  }
+ },
+ {
+  "slug": "design-collaborative-editor",
+  "title": "Design Google Docs (Collaborative Editor)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "websocket",
+   "ot",
+   "crdt"
+  ],
+  "leetcode": null,
+  "prompt": "Google Docs HLD: websockets, OT vs CRDT in depth, data structures for storing documents.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62, Noida)",
+   "round": "R3 HLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7770532/"
+  }
+ },
+ {
+  "slug": "design-collaborative-editor",
+  "title": "Design Google Docs (Collaborative Editor)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "api-design",
+   "caching",
+   "permissions"
+  ],
+  "leetcode": null,
+  "prompt": "Google Docs architecture: APIs, databases, caching, real-time sync, permissions (45 min, two senior engineers).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61, Hyderabad)",
+   "round": "R4 AA (design)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-68-microsoft-l61"
+  }
+ },
+ {
+  "slug": "design-collaborative-editor",
+  "title": "Design a Real-time Collaborative App",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "consistency",
+   "conflict-resolution",
+   "crdt"
+  ],
+  "leetcode": null,
+  "prompt": "Real-time collaborative app steered into state synchronisation and conflict resolution: prove convergence under delays and out-of-order updates.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 HLD (60 min)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7625252/"
+  }
+ },
+ {
+  "slug": "design-collaborative-editor",
+  "title": "Design a Collaborative Editor (text + images)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "websocket"
+  ],
+  "leetcode": null,
+  "prompt": "Online editor supporting collaborative editing of text and images.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63, Bangalore)",
+   "round": "R4 HLD",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-157-microsoft-sde-l63"
+  }
+ },
+ {
+  "slug": "design-distributed-key-value-store",
+  "title": "Design a Distributed Key-Value Store",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "sharding",
+   "replication",
+   "consistency"
+  ],
+  "leetcode": null,
+  "prompt": "Key-value store like DynamoDB with in-depth alternatives.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R3 HLD",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326149/"
+  }
+ },
+ {
+  "slug": "design-distributed-key-value-store",
+  "title": "Design a Distributed Key-Value Store",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "sharding",
+   "replication",
+   "cap"
+  ],
+  "leetcode": null,
+  "prompt": "Distributed KV store like Redis: sharding, replication, consistency vs availability.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Bengaluru)",
+   "round": "R3 HLD",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7769548/"
+  }
+ },
+ {
+  "slug": "design-distributed-cache",
+  "title": "Design a Distributed LRU Cache",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "caching",
+   "lru",
+   "tdd"
+  ],
+  "leetcode": null,
+  "prompt": "Distributed LRU cache with O(1) ops: unit tests and TDD, HLD with diagrams, then LLD, NFRs (scale, concurrency, extensibility).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61, Hyderabad)",
+   "round": "R3 System design (75 min)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7541629/"
+  }
+ },
+ {
+  "slug": "design-otp-service",
+  "title": "Design a Scalable OTP Service",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "multi-channel",
+   "cqrs",
+   "multi-tenant"
+  ],
+  "leetcode": null,
+  "prompt": "OTP over SMS/WhatsApp/email, multiple clients per user, unique per user per request; separate generation, validation and notification services.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "R3 HLD",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7422741/"
+  }
+ },
+ {
+  "slug": "design-otp-service",
+  "title": "Design a Multi-tenant OTP + Notification Service",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "multi-tenant",
+   "notification"
+  ],
+  "leetcode": null,
+  "prompt": "Multi-tenant OTP service plus notification service (1.5 h).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Azure)",
+   "round": "R3 HLD",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8477884/"
+  }
+ },
+ {
+  "slug": "design-proximity-service",
+  "title": "Design a Proximity Service",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "geospatial",
+   "geohash",
+   "quadtree"
+  ],
+  "leetcode": null,
+  "prompt": "Customers search the nearest stores in an area.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Hyderabad)",
+   "round": "R3 HLD (senior manager)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7423217/"
+  }
+ },
+ {
+  "slug": "design-proximity-service",
+  "title": "Design a Proximity Service",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "geospatial"
+  ],
+  "leetcode": null,
+  "prompt": "Find restaurants within 10 km for food delivery; expanding follow-ups, then code part of it.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R3 HLD",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8462091/"
+  }
+ },
+ {
+  "slug": "design-payment-system",
+  "title": "Design a Payment Service",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "transactions",
+   "idempotency"
+  ],
+  "leetcode": null,
+  "prompt": "Payment service like Google Pay; evolved into class/data code and concurrency of debit/credit on both users.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62, Noida)",
+   "round": "R3 HLD (Senior PE)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7423217/"
+  }
+ },
+ {
+  "slug": "design-payment-system",
+  "title": "Design a Payment System (Razorpay-like)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "idempotency",
+   "retries",
+   "fraud"
+  ],
+  "leetcode": null,
+  "prompt": "Full payment flow (app, gateway, bank, OTP/3DS); idempotency, retries, timeouts, double-charge prevention, fraud, rate limiting, observability.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "R3 System design",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7748215/"
+  }
+ },
+ {
+  "slug": "design-job-scheduler",
+  "title": "Design a Distributed Job Scheduler",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "locking",
+   "leader-election",
+   "fault-tolerance"
+  ],
+  "leetcode": null,
+  "prompt": "Manage n job types, unique jobRunId per request, some types must never run concurrently; parallelism, no SPOF, Redis locks/leader election, observability.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R4 HLD + DSA (2 h)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "design-job-scheduler",
+  "title": "Design a Cloud Job Scheduler",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "microservices",
+   "metrics",
+   "alerting"
+  ],
+  "leetcode": null,
+  "prompt": "Cloud-based job scheduler, plus stateless vs stateful microservices and metrics/alerting.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (63, Hyderabad)",
+   "round": "R4 Bar-raiser (90 min)",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/microsoft-senior-software-engineer-63"
+  }
+ },
+ {
+  "slug": "design-metrics-monitoring-system",
+  "title": "Design a Metrics Aggregator / Monitoring System",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "time-series",
+   "aggregation"
+  ],
+  "leetcode": null,
+  "prompt": "Metrics aggregator and monitoring system.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure Compute, Bangalore)",
+   "round": "R3 HLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7498710/"
+  }
+ },
+ {
+  "slug": "design-metrics-monitoring-system",
+  "title": "Design a Distributed Monitoring System",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "scalability",
+   "storage"
+  ],
+  "leetcode": null,
+  "prompt": "Distributed monitoring system: components, scalability, storage, APIs.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 HLD",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7576877/"
+  }
+ },
+ {
+  "slug": "design-metrics-monitoring-system",
+  "title": "Design a Data Telemetry System",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "telemetry",
+   "data-pipeline"
+  ],
+  "leetcode": null,
+  "prompt": "Data telemetry system for a data-heavy team.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R3 Design",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "design-unique-id-generator",
+  "title": "Design a Distributed Unique ID Generator",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "snowflake",
+   "ordering"
+  ],
+  "leetcode": null,
+  "prompt": "Highly available unique IDs at massive throughput with time ordering and no latency bottleneck.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R4 Technical deep dive (60 min)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7625252/"
+  }
+ },
+ {
+  "slug": "design-chat-application",
+  "title": "Design Microsoft Teams Messaging",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "websocket",
+   "partitioning",
+   "ordering"
+  ],
+  "leetcode": null,
+  "prompt": "Teams messaging: WebSockets vs long polling, 10k+ member groups, chat-history partitioning, sequence numbers vs timestamps for ordering.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R3 HLD",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7711794/"
+  }
+ },
+ {
+  "slug": "design-chat-application",
+  "title": "Design a Chat Application",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "offline-sync",
+   "schema"
+  ],
+  "leetcode": null,
+  "prompt": "Vague HLD/LLD chat app: server connection, offline updates, DB schema, classes, client-side code.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R1 LLD",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7518104/"
+  }
+ },
+ {
+  "slug": "design-ticket-booking",
+  "title": "Design a Ticket Booking System",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "race-conditions",
+   "failure-handling"
+  ],
+  "leetcode": null,
+  "prompt": "Ticket booking with emphasis on dropped requests and race conditions on seats.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (hiring event)",
+   "round": "R2 System design + coding",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7554394/"
+  }
+ },
+ {
+  "slug": "design-travel-booking",
+  "title": "Design a Travel Booking Site (MMT/ClearTrip)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "search",
+   "booking"
+  ],
+  "leetcode": null,
+  "prompt": "Build a travel booking site like MakeMyTrip/ClearTrip.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "Design round 2",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7425597/"
+  }
+ },
+ {
+  "slug": "design-jira-concurrent-edits",
+  "title": "Design JIRA with Conflicting Edits",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "optimistic-locking",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Design JIRA; two people update the same issue description - how is the second told their edit conflicts?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62, Noida)",
+   "round": "R2 Design (45 min)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7770532/"
+  }
+ },
+ {
+  "slug": "design-configuration-service",
+  "title": "Design a Configuration Service",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "config-push",
+   "microservices"
+  ],
+  "leetcode": null,
+  "prompt": "Service that updates configuration across n microservices.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63/L64, Azure Storage)",
+   "round": "R2 (taken by hiring manager)",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8300781/"
+  }
+ },
+ {
+  "slug": "design-file-system",
+  "title": "Design a File System (storage basics)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "storage",
+   "bitmap",
+   "os"
+  ],
+  "leetcode": null,
+  "prompt": "How a file is stored on disk, free-space tracking (bitmaps, chunks) - storage fundamentals rather than scale buzzwords.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63/L64, Azure Storage)",
+   "round": "R3 System design (Principal Engineer)",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8300781/"
+  }
+ },
+ {
+  "slug": "design-web-crawler",
+  "title": "Design a Web Crawler",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "crawler",
+   "inverted-index"
+  ],
+  "leetcode": null,
+  "prompt": "Web crawler system design plus inverted indexing.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Azure)",
+   "round": "AA (second team, 30 min)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8477884/"
+  }
+ },
+ {
+  "slug": "design-ecommerce-admin-portal",
+  "title": "Design an E-commerce Admin Portal",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "rbac",
+   "search",
+   "analytics"
+  ],
+  "leetcode": null,
+  "prompt": "Portal for admins, support, sellers, finance: search users, fulfil/refund/cancel orders, manage catalogue, dashboards.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Bangalore)",
+   "round": "R3 HLD",
+   "seen_on": "2025-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6603526/"
+  }
+ },
+ {
+  "slug": "design-software-fleet-policy",
+  "title": "Design Software Version and Blocklist Enforcement for a Fleet",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "policy-engine",
+   "fleet-management"
+  ],
+  "leetcode": null,
+  "prompt": "Machines come and go; auto-install new software versions; flag blocked software with priority-based actions (RED auto-remove, YELLOW notify user).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure, Hyderabad)",
+   "round": "R3 HLD",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5299357/"
+  }
+ },
+ {
+  "slug": "design-analytics-platform",
+  "title": "Design a User-action Analytics Platform",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "olap",
+   "partitioning",
+   "count-min-sketch"
+  ],
+  "leetcode": null,
+  "prompt": "Track user actions, 18-month retention, 5-minute granularity, filter by geo/language; schema, partitioning, SQL vs time-series, approximate structures.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer",
+   "round": "R4 HM + bar raiser",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7748215/"
+  }
+ },
+ {
+  "slug": "design-idempotent-api",
+  "title": "Design an Idempotent API",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "consistency",
+   "failure-handling"
+  ],
+  "leetcode": null,
+  "prompt": "Design an API that handles idempotency: duplicate requests, data consistency, failure scenarios.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R5 Hiring manager",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7576877/"
+  }
+ },
+ {
+  "slug": "design-idempotent-api",
+  "title": "Idempotency in Checkout",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "transactions"
+  ],
+  "leetcode": null,
+  "prompt": "Write pseudocode showing exactly where idempotency is handled during checkout (idempotency key, unique index, cache).",
+  "follow_ups": [
+   "Lifecycle of the transaction."
+  ],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R5 HM round",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7545165/"
+  }
+ },
+ {
+  "slug": "why-are-you-looking-for-a-change",
+  "title": "Why are you looking for a change?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Motivation for changing jobs; why not move within your current organisation; what do you expect from Microsoft.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R5 Engineering group director",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "why-are-you-looking-for-a-change",
+  "title": "Why are you looking for a change?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why are you looking for a change? How do you handle work you don't like?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R4 Engineering manager",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7433909/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-failure",
+  "title": "A time you failed to do what you were supposed to",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "failure",
+   "ownership"
+  ],
+  "leetcode": null,
+  "prompt": "Tell me about an instance where you failed to deliver what you were supposed to and how you handled it.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R5 Engineering group director",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Disagreement with manager or teammate",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "leetcode": null,
+  "prompt": "Disagreement with your manager and teammates and how you resolved it.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "AA round",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Working with difficult people",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "leetcode": null,
+  "prompt": "How do you handle people who are not easy to work with; a time you disagreed with a co-worker.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R4 AA",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project, end to end",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "ownership",
+   "deep-dive"
+  ],
+  "leetcode": null,
+  "prompt": "Walk through your most challenging project: your role, design considerations, challenges, what you would do differently.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R4 AA",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "mentoring-that-did-not-go-well",
+  "title": "Mentoring that didn't go well",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "mentoring",
+   "growth-mindset"
+  ],
+  "leetcode": null,
+  "prompt": "Tell me about a time you mentored a junior and it didn't go well.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R4 AA / hiring manager",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7711794/"
+  }
+ },
+ {
+  "slug": "tech-debt-vs-deadline",
+  "title": "Technical debt under a deadline",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "prioritisation"
+  ],
+  "leetcode": null,
+  "prompt": "How do you handle technical debt when there is a deadline?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61/62)",
+   "round": "R4 AA / hiring manager",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7711794/"
+  }
+ },
+ {
+  "slug": "critical-customer-escalation",
+  "title": "Critical customer issues and escalations",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "customer-obsession",
+   "pressure"
+  ],
+  "leetcode": null,
+  "prompt": "How do you handle critical customer issues and high-pressure escalations? Plus conflict resolution within a team.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R4 Hiring manager (AA)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7523946/"
+  }
+ },
+ {
+  "slug": "delivering-with-little-guidance",
+  "title": "Delivering with little guidance",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "ambiguity",
+   "ownership"
+  ],
+  "leetcode": null,
+  "prompt": "Example of delivering with little guidance, with deep follow-ups on prioritisation, rollout and A/B testing.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Unknown (hiring event)",
+   "round": "R3 BQ + coding",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7554394/"
+  }
+ },
+ {
+  "slug": "feedback-you-received",
+  "title": "Feedback you received and acted on",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "growth-mindset",
+   "feedback"
+  ],
+  "leetcode": null,
+  "prompt": "What would you improve in yourself based on feedback you received? How would seniors/teammates describe you?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R2 DSA + behavioural",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8099724/"
+  }
+ },
+ {
+  "slug": "feedback-you-received",
+  "title": "Non-technical feedback you received",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "growth-mindset",
+   "feedback"
+  ],
+  "leetcode": null,
+  "prompt": "Describe non-technical feedback you received.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SWE II",
+   "round": "R4 Senior manager",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7619101/"
+  }
+ },
+ {
+  "slug": "strengths-and-weaknesses-three-perspectives",
+  "title": "Strengths and weaknesses from manager, peers and self",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "self-awareness"
+  ],
+  "leetcode": null,
+  "prompt": "Write down your strengths and weaknesses as your manager, your peers and you would see them.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R4 Hiring manager",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326149/"
+  }
+ },
+ {
+  "slug": "innovation-you-drove",
+  "title": "An innovative idea you implemented",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "innovation"
+  ],
+  "leetcode": null,
+  "prompt": "What innovative ideas have you implemented in the team? Where do you see yourself in 3-5 years?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R2 DSA + behavioural",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8099724/"
+  }
+ },
+ {
+  "slug": "how-you-use-ai-tools",
+  "title": "How are AI tools helping you?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ai",
+   "why-microsoft"
+  ],
+  "leetcode": null,
+  "prompt": "Why Microsoft? How are AI tools helping you in your projects? One non-technical skill you want to improve.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "AA round",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "system-failure-and-fault-tolerance-story",
+  "title": "A system failure you handled",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "incident",
+   "fault-tolerance"
+  ],
+  "leetcode": null,
+  "prompt": "A situation of system failure in your experience and your fault-tolerance strategy; does it cover every aspect?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Azure Data Factory)",
+   "round": "Interview 3 (team lead)",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7417317/"
+  }
+ },
+ {
+  "slug": "java-volatile-and-synchronized",
+  "title": "volatile and synchronized across CPU architectures",
+  "type": "JAVA",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "memory-model",
+   "jmm"
+  ],
+  "leetcode": null,
+  "prompt": "Process communication, critical sections, how 'volatile' behaves across CPU architectures, synchronized blocks - down to CPU cache/register level.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (63, Hyderabad)",
+   "round": "R2 Coding + multi-threading",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/microsoft-senior-software-engineer-63"
+  }
+ },
+ {
+  "slug": "review-jdbc-connection-code",
+  "title": "Code review: Java/SQL connection snippet",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "code-review",
+   "jdbc",
+   "resource-handling"
+  ],
+  "leetcode": null,
+  "prompt": "Review a Java/SQL connection snippet and comment on resource handling, error cases and correctness.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R5 Engineering group director",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7451130/"
+  }
+ },
+ {
+  "slug": "inheritance-vs-composition",
+  "title": "Inheritance vs composition",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "oop"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between inheritance and composition (after making an LRU cache thread-safe and singleton).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L62)",
+   "round": "R1 coding",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7435112/"
+  }
+ },
+ {
+  "slug": "hashmap-internals",
+  "title": "HashMap internals and complexity",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "collections"
+  ],
+  "leetcode": null,
+  "prompt": "What is a HashMap; time complexity of insert/delete/get, reasoned from how it is implemented.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R1 coding",
+   "seen_on": "2024-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/4937133/"
+  }
+ },
+ {
+  "slug": "process-vs-thread",
+  "title": "Process vs thread, shared variables and race conditions",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Process vs thread; are read-only shared variables safe; heap vs stack variables across threads; what exactly causes race conditions.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 DSA + CS fundamentals (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "microservices-communication-grpc-vs-rest-eda",
+  "title": "Microservices communication: gRPC vs REST vs events",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "microservices",
+   "grpc",
+   "event-driven"
+  ],
+  "leetcode": null,
+  "prompt": "Microservices vs monolith; how services on different VMs communicate; why gRPC over REST; event-driven architecture, events, benefits and trade-offs.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "R3 DSA + CS fundamentals (Principal Engineer)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7636712/"
+  }
+ },
+ {
+  "slug": "mutex-vs-semaphore-deadlock",
+  "title": "Mutex vs semaphore and deadlock prevention",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Synchronisation, mutex vs semaphore, deadlock prevention trade-offs (inside a message-queue LLD).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "Loop LLD",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7563238/"
+  }
+ },
+ {
+  "slug": "producer-consumer-problem",
+  "title": "Producer-consumer problem",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "OS producer-consumer problem and its high-level implementation (10-15 min).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SE II (L61)",
+   "round": "R4 Tech + HM",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7422741/"
+  }
+ },
+ {
+  "slug": "virtual-memory-and-paging",
+  "title": "Virtual memory, paging and physical vs virtual addressing",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "memory"
+  ],
+  "leetcode": null,
+  "prompt": "Paging and virtual memory; how physical and virtual addressing work across RAM, SSD and disk.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (Azure)",
+   "round": "R2 DSA + OS / AA",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8477884/"
+  }
+ },
+ {
+  "slug": "cap-theorem",
+  "title": "CAP theorem",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "What is the CAP theorem (alongside thread vs process and network-protocol questions).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63)",
+   "round": "R4 Hiring manager",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326149/"
+  }
+ },
+ {
+  "slug": "diagnose-low-cache-hit-ratio",
+  "title": "Diagnosing a low cache hit ratio",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "caching",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "If cache misses exceed hits, how do you determine whether the cache size or the eviction policy is the problem?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "Senior Software Engineer (L63/L64, Azure Storage)",
+   "round": "R2 (hiring manager)",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8300781/"
+  }
+ },
+ {
+  "slug": "implement-linux-cp",
+  "title": "How would you implement the Linux cp command?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "file-io",
+   "systems"
+  ],
+  "leetcode": null,
+  "prompt": "Implement `cp`, then deep OS and low-level questions from there.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (Windows)",
+   "round": "R4 OS and C++",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8462091/"
+  }
+ },
+ {
+  "slug": "debugging-across-microservices",
+  "title": "Debugging requests across microservices",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "observability",
+   "correlation-id"
+  ],
+  "leetcode": null,
+  "prompt": "Handling multiple correlation IDs when a request spans microservices; deployment on pods and debugging; how cloud authentication works.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "Unknown (consolidated from LeetCode Discuss)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6403987/"
+  }
+ },
+ {
+  "slug": "solid-principles",
+  "title": "SOLID principles and dependency inversion",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "oop",
+   "design-principles"
+  ],
+  "leetcode": null,
+  "prompt": "SOLID principles; advantages of the dependency inversion principle.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "Unknown (consolidated from LeetCode Discuss)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6403987/"
+  }
+ },
+ {
+  "slug": "tcp-vs-udp",
+  "title": "TCP vs UDP",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "networking"
+  ],
+  "leetcode": null,
+  "prompt": "TCP vs UDP; also throughput vs bandwidth vs latency, process vs thread, virtual memory.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "Unknown (aggregated)",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://www.codingkaro.in/jobs-internships/leetcode-interview-experience/Microsoft"
+  }
+ },
+ {
+  "slug": "oauth-and-jwt",
+  "title": "OAuth and JWT tokens",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "security",
+   "auth"
+  ],
+  "leetcode": null,
+  "prompt": "Explain OAuth and JWT tokens (alongside Docker containers/images and sidecar architecture).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II",
+   "round": "Unknown (aggregated)",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://www.codingkaro.in/jobs-internships/leetcode-interview-experience/Microsoft"
+  }
+ },
+ {
+  "slug": "dbms-replica-snapshot-checkpoint",
+  "title": "Replica vs snapshot vs checkpoint; deadlock detection",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "database",
+   "os"
+  ],
+  "leetcode": null,
+  "prompt": "DBMS: replica vs snapshot vs checkpoint; deadlock detection and prevention; multithreading basics.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (L61)",
+   "round": "R1 DSA + CS fundamentals",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected"
+  }
+ },
+ {
+  "slug": "llm-cost-caching-and-observability",
+  "title": "Caching to reduce LLM cost; LLM observability",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "llm",
+   "caching",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Recruiter-announced focus for an AI-team R1: logic for reducing AI cost via caching and observability for LLMs; R2: design and evaluate an AI application.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "microsoft",
+   "role": "SDE II (AI team)",
+   "round": "R1/R2 (recruiter guidance)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7494384/"
+  }
+ }
+]

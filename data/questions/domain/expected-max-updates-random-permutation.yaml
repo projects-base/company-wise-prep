@@ -1,0 +1,20 @@
+slug: expected-max-updates-random-permutation
+title: Expected Number of Max Updates over a Random Permutation
+type: DOMAIN
+difficulty: medium
+tags:
+- puzzle
+- probability
+- expectation
+leetcode: null
+prompt: |
+  Scanning a uniformly random permutation of n distinct numbers while tracking the running maximum, what is the expected number of updates?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Intern (telephonic round)
+  round: Telephonic round
+  seen_on: 2016-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/?p=131014

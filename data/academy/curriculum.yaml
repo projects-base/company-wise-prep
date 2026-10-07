@@ -1,0 +1,143 @@
+# The Academy: tracks → modules (one ~25-minute lesson each) with prerequisite edges.
+# Lessons live in data/academy/lessons/<module-id>.md. Design: docs/CURRICULUM.md.
+
+tracks:
+  - id: S
+    title: The Story of Backend
+    description: How we got from CGI scripts to AI-native systems — each era's pain, invention and new pain, with labs and real industry cases.
+    modules:
+      - {id: S0, title: "Foundations: computers, programs, networks, the request", level: 1, minutes: 25, prerequisites: []}
+      - {id: S1, title: "CGI: a process per request", level: 2, minutes: 25, prerequisites: [S0]}
+      - {id: S2, title: "Servlets & JSP: a thread per request", level: 2, minutes: 25, prerequisites: [S1]}
+      - {id: S3, title: "MVC & Struts: the front controller", level: 2, minutes: 25, prerequisites: [S2]}
+      - {id: S4, title: "J2EE & EJB 2: the heavyweight container", level: 2, minutes: 25, prerequisites: [S3]}
+      - {id: S5, title: "Spring & Hibernate: POJOs, DI, AOP, ORM", level: 2, minutes: 25, prerequisites: [S4]}
+      - {id: S6, title: "Annotations, Java config & Maven", level: 2, minutes: 25, prerequisites: [S5]}
+      - {id: S7, title: "Spring Boot: convention over configuration", level: 2, minutes: 25, prerequisites: [S6]}
+      - {id: S7B, title: "SOA & the enterprise service bus", level: 4, minutes: 25, prerequisites: [S7]}
+      - {id: S8, title: "Microservices: why, how, and what it costs", level: 4, minutes: 30, prerequisites: [S7B]}
+      - {id: S9, title: "Cloud native & event-driven systems", level: 5, minutes: 30, prerequisites: [S8]}
+      - {id: S10, title: "The pendulum: modular monoliths", level: 5, minutes: 25, prerequisites: [S9]}
+      - {id: S11, title: "Reactive programming → virtual threads", level: 4, minutes: 25, prerequisites: [S10]}
+      - {id: S12, title: "AI-native applications", level: 5, minutes: 25, prerequisites: [S11]}
+      - {id: S13, title: "What's next, and how to keep up", level: 5, minutes: 20, prerequisites: [S12]}
+
+  - id: A
+    title: Java & the JVM
+    description: How Java actually runs — bytecode, class loading, JIT, memory areas, garbage collection, the memory model, versions 8 to 25.
+    modules:
+      - {id: A1, title: "How Java runs: javac, bytecode, interpreter, JIT", level: 1, minutes: 25, prerequisites: []}
+      - {id: A2, title: "JVM memory areas: heap, stack, metaspace", level: 2, minutes: 25, prerequisites: [A1]}
+      - {id: A3, title: "Class loading and delegation", level: 3, minutes: 25, prerequisites: [A1]}
+      - {id: A4, title: "Garbage collection: generations and collectors", level: 3, minutes: 30, prerequisites: [A2]}
+      - {id: A5, title: "Diagnosing GC and memory leaks", level: 3, minutes: 25, prerequisites: [A4]}
+      - {id: A6, title: "The Java Memory Model: happens-before and volatile", level: 3, minutes: 25, prerequisites: [A2]}
+      - {id: A7, title: "Java 8 → 11 → 17 → 21 → 25: what changed and why", level: 2, minutes: 30, prerequisites: [A1]}
+      - {id: A8, title: "Profiling: JFR, flame graphs, JMH", level: 3, minutes: 25, prerequisites: [A4]}
+
+  - id: B
+    title: Threads & Concurrency
+    description: From the thread lifecycle to executors, CompletableFuture and virtual threads — plus the classic concurrency problems interviewers ask.
+    modules:
+      - {id: B1, title: "Threads: lifecycle, creation, interruption", level: 2, minutes: 25, prerequisites: []}
+      - {id: B2, title: "Locks: synchronized, ReentrantLock, deadlock", level: 3, minutes: 25, prerequisites: [B1, A6]}
+      - {id: B3, title: "Atomics, CAS and concurrent collections", level: 3, minutes: 25, prerequisites: [B2]}
+      - {id: B4, title: "Executors and sizing thread pools", level: 3, minutes: 25, prerequisites: [B2]}
+      - {id: B5, title: "CompletableFuture and async composition", level: 3, minutes: 25, prerequisites: [B4]}
+      - {id: B6, title: "Virtual threads and structured concurrency", level: 3, minutes: 25, prerequisites: [B4]}
+      - {id: B7, title: "Classic problems: producer-consumer, bounded queue, concurrent LRU, rate limiter", level: 4, minutes: 30, prerequisites: [B3, B4]}
+
+  - id: C
+    title: Time & Memory on Coding Problems
+    description: Read the constraints, know where time and memory really go in Java, and optimise out loud.
+    modules:
+      - {id: C1, title: "From constraints to the expected complexity", level: 1, minutes: 20, prerequisites: []}
+      - {id: C2, title: "Where memory goes in Java solutions", level: 2, minutes: 25, prerequisites: [C1]}
+      - {id: C3, title: "Hidden time costs", level: 2, minutes: 20, prerequisites: [C1]}
+      - {id: C4, title: "The optimisation playbook: brute force to optimal, out loud", level: 3, minutes: 25, prerequisites: [C2, C3]}
+      - {id: C5, title: "Amortised analysis", level: 3, minutes: 20, prerequisites: [C1]}
+
+  - id: D
+    title: Spring & Spring Boot
+    description: From writing your own DI container to extending Spring and shipping a feature with confidence.
+    modules:
+      - {id: D1, title: "Build your own DI container", level: 2, minutes: 30, prerequisites: []}
+      - {id: D2, title: "Spring core: IoC container, scopes, profiles", level: 2, minutes: 25, prerequisites: [D1]}
+      - {id: D3, title: "Spring AOP and the proxy traps", level: 3, minutes: 25, prerequisites: [D2]}
+      - {id: D4, title: "Spring Boot internals: auto-configuration and starters", level: 2, minutes: 25, prerequisites: [D2]}
+      - {id: D5, title: "Spring MVC: the request pipeline", level: 2, minutes: 25, prerequisites: [D4]}
+      - {id: D6, title: "Data: JPA, Hibernate and @Transactional", level: 3, minutes: 30, prerequisites: [D3]}
+      - {id: D7, title: "Spring Security: filter chain and JWT", level: 3, minutes: 25, prerequisites: [D5]}
+      - {id: D8, title: "Production readiness: Actuator, metrics, testing", level: 3, minutes: 25, prerequisites: [D5]}
+      - {id: D9, title: "Extending Spring: post-processors, custom starters", level: 4, minutes: 30, prerequisites: [D4]}
+      - {id: D10, title: "Shipping a feature: the playbook", level: 4, minutes: 25, prerequisites: [D6, D8]}
+      - {id: D11, title: "Spring Boot annotations, grouped by job", level: 2, minutes: 25, prerequisites: [D4]}
+
+  - id: E
+    title: SOLID → Design Patterns → LLD
+    description: Principles, the patterns they lead to (and where Spring and the JDK use them), and a method for low-level design rounds.
+    modules:
+      - {id: E1, title: "SOLID, by violation and refactor", level: 2, minutes: 30, prerequisites: []}
+      - {id: E2, title: "Creational patterns", level: 3, minutes: 25, prerequisites: [E1]}
+      - {id: E3, title: "Structural patterns", level: 3, minutes: 25, prerequisites: [E1]}
+      - {id: E4, title: "Behavioural patterns", level: 3, minutes: 30, prerequisites: [E1]}
+      - {id: E5, title: "The LLD interview method", level: 4, minutes: 25, prerequisites: [E2, E3, E4]}
+      - {id: E6, title: "LLD case studies: parking lot, LRU cache, rate limiter, notification system", level: 4, minutes: 30, prerequisites: [E5]}
+
+  - id: F
+    title: HLD & System Design
+    description: Building blocks, distributed-systems theory, a repeatable method, and the case studies interviewers ask.
+    modules:
+      - {id: F1, title: "Building blocks: load balancers, caches, queues, databases", level: 4, minutes: 30, prerequisites: []}
+      - {id: F2, title: "Distributed theory: CAP, consistency, consensus", level: 5, minutes: 30, prerequisites: [F1]}
+      - {id: F3, title: "The system design method and estimation", level: 4, minutes: 25, prerequisites: [F1]}
+      - {id: F4, title: "Case studies: URL shortener, rate limiter, notification system", level: 4, minutes: 30, prerequisites: [F3]}
+      - {id: F5, title: "Case studies: chat, news feed, collaborative editor", level: 5, minutes: 30, prerequisites: [F4, F2]}
+      - {id: F6, title: "Case studies: distributed cache, metrics & monitoring", level: 5, minutes: 30, prerequisites: [F4]}
+      - {id: F7, title: "DAGs: workflow orchestration and schedulers", level: 5, minutes: 25, prerequisites: [F3]}
+
+  - id: G
+    title: AI Engineering
+    description: Using LLMs in real systems — models, RAG, MCP, agents and DAG workflows, evals and safety, in Java.
+    modules:
+      - {id: G1, title: "How LLMs work, enough to reason about them", level: 3, minutes: 25, prerequisites: []}
+      - {id: G2, title: "Using the models: prompting, structured output, tools, caching", level: 3, minutes: 30, prerequisites: [G1]}
+      - {id: G3, title: "RAG: retrieval-augmented generation", level: 4, minutes: 30, prerequisites: [G2]}
+      - {id: G4, title: "MCP: the Model Context Protocol", level: 4, minutes: 25, prerequisites: [G2]}
+      - {id: G5, title: "Agents and DAG workflows", level: 4, minutes: 25, prerequisites: [G2]}
+      - {id: G6, title: "Evals and safety", level: 5, minutes: 25, prerequisites: [G3]}
+      - {id: G7, title: "Spring AI and the Claude Java SDK", level: 4, minutes: 25, prerequisites: [G2, D4]}
+
+  - id: L
+    title: Lifecycles
+    description: Step-by-step lifecycles with the gotcha at each stage — the "explain how X works" questions.
+    modules:
+      - {id: L1, title: "Java program and class lifecycle", level: 1, minutes: 20, prerequisites: [A1]}
+      - {id: L2, title: "Object and GC lifecycle", level: 3, minutes: 20, prerequisites: [A4]}
+      - {id: L3, title: "Thread lifecycle", level: 2, minutes: 20, prerequisites: [B1]}
+      - {id: L4, title: "Spring bean lifecycle", level: 2, minutes: 25, prerequisites: [D2]}
+      - {id: L5, title: "Spring Boot startup", level: 2, minutes: 20, prerequisites: [D4]}
+      - {id: L6, title: "HTTP request lifecycle in Spring MVC", level: 2, minutes: 20, prerequisites: [D5]}
+      - {id: L7, title: "JPA entity and transaction lifecycle", level: 3, minutes: 25, prerequisites: [D6]}
+
+  - id: H
+    title: Tips & Tricks
+    description: Small things that save interviews and production incidents.
+    modules:
+      - {id: H1, title: "Java idioms for coding interviews", level: 1, minutes: 20, prerequisites: []}
+      - {id: H2, title: "Interview technique: think aloud, test, recover", level: 1, minutes: 20, prerequisites: []}
+      - {id: H3, title: "Debugging and production habits", level: 2, minutes: 20, prerequisites: []}
+
+paths:
+  - id: zero-to-pro
+    title: Zero to Pro (start here)
+    description: One gentle route through everything — each module only uses what earlier ones taught. Levels rise from 1 (Explorer) to 5 (Architect).
+    modules: [S0, A1, L1, C1, H1, A2, C3, C2, E1, B1, L3, S1, S2, S3, D1, S4, S5, D2, L4, D3, S6, S7, D4, L5, D11, D5, L6, D6, L7, A7, A3, A4, L2, A6, B2, B3, B4, C4, C5, H2, E2, E3, E4, E5, E6, B5, B6, B7, D7, D8, H3, F1, F3, S7B, S8, F2, F4, S9, F7, F6, F5, S10, S11, A5, A8, D9, D10, G1, G2, G3, G4, G5, G6, G7, S12, S13]
+  - id: microsoft
+    title: Microsoft interview path
+    description: The modules that pay off most for the Microsoft loop (DSA, LLD, HLD, Senior-level Java concurrency), in study order.
+    modules: [H2, C1, C3, C2, C4, H1, E1, E5, E6, B1, B2, B4, B7, F1, F3, F4, F6, F5, F2, A6, A2, A4]
+  - id: backend-from-scratch
+    title: Backend from scratch
+    description: The full story, start to finish — why each technology exists, then how it works.
+    modules: [S0, S1, S2, S3, S4, S5, D1, S6, S7, D2, D3, D4, D5, D6, S7B, S8, S9, S10, S11, S12, S13]

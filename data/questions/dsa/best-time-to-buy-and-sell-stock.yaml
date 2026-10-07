@@ -1,0 +1,21 @@
+slug: best-time-to-buy-and-sell-stock
+title: Best Time to Buy and Sell Stock
+type: DSA
+difficulty: easy
+tags:
+- array
+- dp
+leetcode: best-time-to-buy-and-sell-stock
+prompt: |
+  Maximum profit with at most one transaction.
+follow_ups:
+- Also print buy and sell days.
+- At most two transactions (Stock III).
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (Bangalore)
+  round: R1 Coding
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6603526/

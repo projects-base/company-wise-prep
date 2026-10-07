@@ -1,0 +1,21 @@
+slug: design-ad-server-with-cooldown
+title: 'Ad server: highest-score ad without consecutive repeats'
+type: LLD
+difficulty: medium
+tags:
+- heap
+- hashmap
+- design
+leetcode: null
+prompt: |
+  Implement insertAd(content, score) and getAd(): getAd returns the highest-scored ad, then decreases its score, never returning the same ad twice in a row.
+follow_ups:
+- Add a cooldown gap before the same ad can reappear, keeping operations near O(1).
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

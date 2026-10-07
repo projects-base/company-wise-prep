@@ -1,0 +1,706 @@
+slug: microsoft
+name: Microsoft
+aliases: [MSFT, Microsoft IDC, Microsoft India Development Center, Microsoft India]
+researched_on: 2026-10-07
+domain_notes: >-
+  India engineering (IDC) sits mainly in Hyderabad, Bengaluru and Noida, across Azure (Compute,
+  Storage, AI Search, Data Factory), Microsoft 365 / Copilot (M365 Core, Connectors, ODSP),
+  Windows + Devices (Windows, Xbox, Surface ops), Core AI, Microsoft AI / Ads, CO+I and Commercial
+  Sales Experiences. Primary stacks in current India postings are C#/.NET and C++; Java appears as an
+  explicit stack only in some teams (Azure AI Search builds "in C#, C++, and Java"; WPX Family
+  services want "C# or Java"; Devices Ops lists Java). Every posting's minimum qualification lists
+  "C, C++, C#, Java, JavaScript, or Python", and interviewers let you code in your resume language
+  (one 2026 candidate was asked to use Java because the resume was Java). Postings stress live-site
+  ownership (DRI on-call), observability, security, and AI-assisted engineering (GitHub Copilot,
+  agents, MCP). Some 2026 loops are explicitly AI-assisted: candidates were told to use AI in an LLD
+  round and judged on prompting and verification. Levels (third-party): 59-60 SDE, 61-62 SDE II /
+  Software Engineer II, 63-64 Senior Software Engineer; down-levelling (62 -> 61, 63 -> 62) after one
+  weak round or for low YOE is commonly reported.
+values:
+  - name: Growth mindset
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: Customer obsessed
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: Diverse and inclusive
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: One Microsoft (collaboration across teams)
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: Respect
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: Integrity
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: Accountability
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+  - name: Making a difference / mission ("empower every person and every organization on the planet to achieve more")
+    source: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+
+official:
+  hiring_process:
+    - step: Explore open jobs
+      detail: Search by keyword, location or job ID; the portal shows AI-powered "good"/"strong" match recommendations.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+    - step: Submit application
+      detail: Create a profile, answer required questions, upload a resume, submit per posting.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+    - step: Application review
+      detail: >-
+        The hiring team reviews applications; some roles include a brief screening conversation
+        before interviews. Microsoft says it usually cannot give individual feedback to candidates
+        not selected.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+    - step: Interview
+      detail: >-
+        "Typically 2-4 conversations" of up to one hour each, by phone, Microsoft Teams or in person.
+        Steps vary by role and can include meeting teammates and cross-functional colleagues, coding
+        exercises, portfolio reviews or work-sample presentations. Interview requests are accepted
+        and scheduled in the candidate's Action Center.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+    - step: Technical interview format
+      detail: >-
+        Technical interviews assess problem solving (how you break a problem down), design of new
+        systems, coding in your strongest language (clean, bug-free) and testing (writing tests,
+        finding edge cases). The format "typically runs 45 minutes".
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing
+    - step: Offer
+      detail: Offer documents arrive by email, Action Center or a secure link; "Total Rewards" framing (salary, bonus, stock, benefits).
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+    - step: Pre-onboard and hired
+      detail: Recruiting confirms start date and pre-hire requirements (background check); new hires get an onboarding plan and buddy.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+  interview_tips:
+    - text: Research the role, industry trends and Microsoft's competitive position; prepare questions to ask - the interview is "a two-way conversation".
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html
+    - text: Map your experience to the job description and prepare specific examples using STAR(R) - Situation, Task, Action, Result, Reflection (what you learned).
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html
+    - text: Understand Microsoft culture before interviewing - growth mindset, diversity and inclusion, One Microsoft collaboration, customer obsession, values and manager expectations.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html
+    - text: Show your thinking - ask clarifying questions, state assumptions and explain reasoning; "We want to see not only what you know, but also how you think."
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html
+    - text: Be authentic ("come as you are"); afterwards ask about timelines and send a thank-you note via the recruiter.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html
+    - text: Prepare algorithms (e.g. quicksort, merge sort), data structures (arrays, linked lists, trees, hash maps, graphs) and system design (distributed systems, auto-scaling, CAP); "Practice, practice, practice".
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing
+    - text: In coding interviews, ask clarifying questions, plan before implementing, and test your solution thoroughly before finishing.
+      source: https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing
+    - text: >-
+        (Microsoft Life article, 2016 - dated) Talk out loud, diagram before coding, check your work
+        without prompting, consider efficiency; interviewers look for care for product quality and
+        customer experience, adaptability to changing requirements and responsiveness to feedback.
+      source: https://news.microsoft.com/life/how-to-ace-a-technical-interview-at-microsoft/
+  conflicts_with_reports:
+    - >-
+      Microsoft says 2-4 conversations of up to an hour (technical ~45 min). India SDE II / Senior
+      reports from 2025-2026 consistently describe an online assessment (Codility or HackerRank,
+      70-135 min) plus 3-6 interviews, several running 75-120 minutes, scheduled as a "hiring
+      drive" where R3/R4 depend on R1/R2 feedback.
+    - >-
+      Microsoft's pages do not name the "AA (As Appropriate)" round; every India loop report has a
+      final senior-leader round called AA or hiring-manager round, and recruiters describe it as
+      behavioural/culture-fit, yet many reports include coding or design in it.
+    - >-
+      Microsoft does not mention online assessments; nearly all external India SDE II / Senior
+      candidates report one (referrals and recruiter-sourced candidates sometimes skip it).
+  job_postings:
+    - title: Software Engineer II
+      team: M365 Core Platform - Connectors (Graph Connectors / Federated Copilot Connectors)
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557016876
+      accessed: 2026-10-07
+      required: [BS CS + 2+ yrs coding in C/C++/C#/Java/JS/Python, Microsoft Cloud background check]
+      preferred: [3+ yrs shipping production software or cloud services, DSA + APIs + distributed systems + cloud fundamentals, AI-assisted engineering with validation, prototyping and data-driven learning, Microsoft Graph / enterprise search / identity / data ingestion a plus]
+      skills: [distributed-systems, dsa, api-design, ai-assisted-dev, identity-auth, rag-search, observability, security, testing, live-site-on-call]
+    - title: Senior Software Engineer
+      team: M365 Core Platform - Connectors (Graph Connectors / Federated Copilot Connectors)
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557016875
+      accessed: 2026-10-07
+      required: [BS CS + 4+ yrs coding, Microsoft Cloud background check]
+      preferred: [6+ yrs designing and operating production distributed services, DSA + API design + distributed systems, AI-native development practices, cross-team co-development, navigate ambiguity, mentoring via design/code reviews]
+      skills: [distributed-systems, dsa, api-design, ai-assisted-dev, identity-auth, rag-search, observability, security, testing, live-site-on-call, mentoring]
+    - title: Senior Software Engineer - Backend
+      team: M365 Core IDC - COSMIC & M365 Deployments (managed container platform)
+      location: Noida
+      url: https://apply.careers.microsoft.com/careers/job/1970393556982388
+      accessed: 2026-10-07
+      required: [BS CS + 4+ yrs coding, Microsoft Cloud background check]
+      preferred: [7+ yrs, systems thinking and architecture, leading geo-distributed initiatives, operating highly available distributed systems, cloud infrastructure / developer platforms, AI for infra problems, mentoring and influence]
+      skills: [distributed-systems, kubernetes-containers, cloud-infrastructure, ci-cd, observability, security, ai-agents, mentoring, architecture-reviews]
+    - title: Software Engineer II
+      team: Core AI - Agentic Core Services
+      location: Bengaluru / Hyderabad / Noida
+      url: https://apply.careers.microsoft.com/careers/job/1970393556985473
+      accessed: 2026-10-07
+      required: [BS CS + 3+ yrs coding, 3+ yrs designing/operating production services at scale, Microsoft Cloud background check]
+      preferred: [distributed systems / AI-ML infra / developer platforms / cloud services, customer engagement during integration]
+      skills: [distributed-systems, cloud-native, llm-genai, ai-agents, live-site-on-call, design-docs, customer-engagement]
+    - title: Software Engineer II
+      team: Azure AI Search - AI Knowledge (observability, operational intelligence, deployment)
+      location: Hyderabad / Bengaluru
+      url: https://apply.careers.microsoft.com/careers/job/1970393556992505
+      accessed: 2026-10-07
+      required: [3+ yrs, C#/C++/Java/Python, shipping and supporting cloud services or distributed systems, telemetry/monitoring/alerting/incident systems, distributed systems fundamentals, own features design to production]
+      preferred: [SRE / service engineering, deployment pipelines and safe rollout, event-driven architectures, AI-assisted engineering, search / vector DB / RAG, troubleshoot across compute-network-storage-caching-messaging-LB]
+      skills: [distributed-systems, observability, incident-management, ci-cd, java, csharp-dotnet, cpp, python, rag-search, ai-assisted-dev, event-driven, caching]
+    - title: Senior Software Engineer
+      team: Azure AI Search - AI Knowledge (retrieval platform)
+      location: Bengaluru / Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393556992543
+      accessed: 2026-10-07
+      required: [BS + 7+ yrs, design/coding/debugging in C#/C++/Java or another OO language, operating large-scale distributed systems, concurrency/fault tolerance/consistency/networking/storage fundamentals, mentoring, Lucene/Elasticsearch/OpenSearch]
+      preferred: [semantic / vector search, RAG, agentic AI, Azure, observability and capacity planning, incident coordination, AI-assisted development]
+      skills: [distributed-systems, concurrency, java, csharp-dotnet, cpp, rag-search, observability, live-site-on-call, mentoring, architecture-reviews, ai-assisted-dev, caching]
+    - title: Software Engineer II
+      team: Windows (commercial features)
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393556963032
+      accessed: 2026-10-07
+      required: [5+ yrs coding (or MS + 4+), excellent design/coding/debugging, customer-focused mindset]
+      preferred: [cross-group design and coordination]
+      skills: [cpp, design-docs, live-site-on-call, observability, ai-assisted-dev, mentoring]
+    - title: Software Engineer-II
+      team: Windows People eXperiences (Family Safety cloud services)
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557007255
+      accessed: 2026-10-07
+      required: [BS CS + 4+ yrs coding]
+      preferred: [4+ yrs cloud-native distributed microservices, API management, database development, proficiency in C# or Java, ASP.NET Web API, Azure, OOP + algorithms + data structures, TDD, React/TypeScript]
+      skills: [csharp-dotnet, java, azure, microservices, distributed-systems, sql-nosql, dsa, oop-design-patterns, testing, typescript-react]
+    - title: Software Engineer II
+      team: Commercial Sales Experiences (CSX) - seller AI experiences
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557007986
+      accessed: 2026-10-07
+      required: [BS + 5+ yrs in C#/Java/JS/TS/Python, ship features in a team, web apps / backend services / distributed systems, APIs + data stores + cloud, DSA/debugging/testing/secure coding fundamentals]
+      preferred: [own a feature area to production, Copilot / agents / conversational AI, Dynamics 365 / Power Platform, C#/.NET/ASP.NET Core, React + TypeScript, Azure messaging/serverless/containers, SQL/NoSQL, identity and authZ, compare design trade-offs]
+      skills: [csharp-dotnet, java, typescript-react, python, azure, dynamics-power-platform, llm-genai, copilot, sql-nosql, identity-auth, security, testing, live-site-on-call, ai-assisted-dev, dsa]
+    - title: Software Engineer II
+      team: Commercial Sales Experiences (CSX) - enterprise apps with AI
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557002362
+      accessed: 2026-10-07
+      required: [BS CS + 5+ yrs coding in C#/JavaScript/Python]
+      preferred: [cloud design patterns and microservices, C#/.NET/REST/React/TS, AI dev tools (GitHub Copilot, Copilot CLI, Claude CLI, MCP servers), Azure AI Foundry agents, AKS/Functions/APIM/Service Bus/Event Hub/Cosmos DB/Azure SQL, CI/CD]
+      skills: [csharp-dotnet, microservices, rest-api, typescript-react, azure, ci-cd, ai-assisted-dev, llm-genai, ai-agents, dynamics-power-platform, observability, live-site-on-call, sql-nosql]
+    - title: Software Engineer 2
+      team: Microsoft Devices Operations (Surface / Xbox supply-chain services)
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557018991
+      accessed: 2026-10-07
+      required: [7+ yrs coding in C#/ASP.NET/Java/JS/Python, 7+ yrs running large-scale cloud services on .NET, distributed systems and event-driven architecture, OOD + patterns + testing, REST microservices with SQL and NoSQL, Azure/AWS, AI coding tools]
+      preferred: []
+      skills: [csharp-dotnet, java, distributed-systems, event-driven, typescript-react, rest-api, microservices, sql-nosql, azure, ci-cd, live-site-on-call, ai-assisted-dev, oop-design-patterns, security]
+    - title: Software Engineer II - Full Stack Developer
+      team: Cloud Operations + Innovation (datacenter planning and construction tooling)
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557023029
+      accessed: 2026-10-07
+      required: [BS + 4+ yrs production software, CI/CD or release pipelines for distributed systems, troubleshoot build/test/release failures, automation and observability]
+      preferred: [C#/Python/Java/JS/TS, cloud apps/APIs/distributed services, OOD + DSA + design patterns + system design fundamentals, LLMs/prompting/embeddings/RAG/agents, Azure OpenAI/AI Foundry/AKS/Cosmos DB, Kubernetes + IaC, microservices + event-driven + caching]
+      skills: [ci-cd, observability, oop-design-patterns, dsa, llm-genai, ai-agents, azure, kubernetes-containers, microservices, event-driven, caching, distributed-systems]
+    - title: Software Engineer II
+      team: Core OS - PlayReady (DRM / content protection)
+      location: Bengaluru / Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393556958009
+      accessed: 2026-10-07
+      required: [BS CS + 4+ yrs coding, Microsoft Cloud background check]
+      preferred: [Smart TV / set-top / streaming devices, security-sensitive or cryptographic systems]
+      skills: [security, cryptography, testing, live-site-on-call, code-review, architecture-reviews, mentoring]
+    - title: Senior Software Engineer
+      team: Microsoft AI - Advertising CRM
+      location: Bengaluru
+      url: https://apply.careers.microsoft.com/careers/job/1970393556941673
+      accessed: 2026-10-07
+      required: [BS CS + 8+ yrs coding, 5+ yrs enterprise apps and cloud services, Dynamics 365 CRM / Dataverse / Power Platform]
+      preferred: [C#/.NET/React/TypeScript/REST, Azure microservices and distributed systems, design patterns + DevOps + CI/CD, Copilot / generative AI integration]
+      skills: [distributed-systems, azure, csharp-dotnet, typescript-react, rest-api, microservices, llm-genai, copilot, dynamics-power-platform, ci-cd, observability, security, mentoring, oop-design-patterns]
+    - title: Senior Software Engineer - Data Platform
+      team: Microsoft Ads (Bing ads data and streaming)
+      location: Bengaluru / Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393556960679
+      accessed: 2026-10-07
+      required: [BS CS + 4+ yrs coding]
+      preferred: [8+ yrs (or MS + 6+), large-scale big data (Cosmos, Hadoop), streaming pipelines, Spark and Scala]
+      skills: [big-data-streaming, spark-scala, distributed-systems, observability, live-site-on-call, machine-learning]
+    - title: Senior Software Engineer - Search Platform
+      team: Windows Platform and Developer - Search and AI Platform
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557018979
+      accessed: 2026-10-07
+      required: [8+ yrs, C/C++ systems programming, multithreading and memory management, Windows internals / NTFS, search/indexing or DB internals, design specs and consensus, telemetry, embedding retrieval / LLM APIs, kernel and user-mode debugging]
+      preferred: []
+      skills: [cpp, concurrency, windows-os-internals, rag-search, observability, design-docs, llm-genai, mentoring, ai-assisted-dev]
+    - title: Senior Software Engineer - AI Platform
+      team: Windows AI Platform Engineering
+      location: Hyderabad
+      url: https://apply.careers.microsoft.com/careers/job/1970393557018986
+      accessed: 2026-10-07
+      required: [BS CS + 8+ yrs, C++/C#/Python, software and API design + testing + DSA, shipping developer platforms / cloud services / distributed systems, lead execution across teams]
+      preferred: [AI/ML platforms, model serving, agent frameworks, evaluation infrastructure, Azure + CI/CD + observability, Windows SDK / WinAppSDK, responsible AI]
+      skills: [cpp, csharp-dotnet, python, api-design, dsa, distributed-systems, llm-genai, ai-agents, observability, ci-cd, security, mentoring, ai-assisted-dev]
+  skill_frequency:       # across the 17 India postings above; "java" counted only where named as a team stack, not the boilerplate language list every posting carries
+    distributed-systems: 12
+    observability: 12
+    live-site-on-call: 10
+    ai-assisted-dev: 10
+    csharp-dotnet: 8
+    security: 8
+    mentoring: 8
+    llm-genai: 7
+    ci-cd: 7
+    azure: 6
+    dsa: 6
+    java: 5
+    cpp: 5
+    typescript-react: 5
+    microservices: 5
+    testing: 5
+    ai-agents: 5
+    rag-search: 5
+    oop-design-patterns: 4
+    sql-nosql: 4
+    rest-api: 3
+    event-driven: 3
+    caching: 3
+    identity-auth: 3
+    api-design: 3
+    design-docs: 3
+    architecture-reviews: 3
+    dynamics-power-platform: 3
+    python: 3
+    kubernetes-containers: 2
+    concurrency: 2
+    copilot: 2
+    big-data-streaming: 1
+    spark-scala: 1
+    cryptography: 1
+    code-review: 1
+    windows-os-internals: 1
+    incident-management: 1
+
+roles:
+  - role: Software Engineer II (SDE II)
+    level: "61-62"
+    loop:
+      - round: Online assessment
+        type: DSA
+        duration_min: 90
+        assesses: >-
+          2 problems (sometimes 3) on Codility or HackerRank, usually one medium plus one
+          medium-hard/hard (DP, graph, binary search). Hidden test cases; skipped for some referral or
+          recruiter-sourced candidates. Durations reported 70-135 min.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7541629/
+        seen_on: 2026-02
+      - round: Recruiter / phone screen (some loops)
+        type: DSA
+        duration_min: 45
+        assesses: One medium DSA problem with a short resume discussion; in some 2026 loops a single HackerRank live-coding screen gates the drive.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8461584/
+        seen_on: 2026-08
+      - round: R1 - DSA (hiring drive, same day as R2)
+        type: DSA
+        duration_min: 60
+        assesses: >-
+          1-2 LeetCode-medium problems (sometimes hard), often story-wrapped; code must compile and run
+          on HackerRank/Codility with your own main() and tests; brute force -> optimal, complexity,
+          edge cases, "how would you test this". Often 10-20 min of project discussion first.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7518104/
+        seen_on: 2026-01
+      - round: R2 - LLD / machine coding (or second DSA)
+        type: LLD
+        duration_min: 60
+        assesses: >-
+          Classes, interfaces, patterns (Strategy, Factory, Observer, State), SOLID, extensibility and
+          concurrency on problems like rate limiter, parking lot, notification system, cache with
+          pluggable eviction; sometimes runnable code, sometimes pseudocode/class diagrams. Some 2026
+          rounds are AI-assisted (judged on prompts and verification).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7620569/
+        seen_on: 2026-03
+      - round: R3 - HLD (scheduled only if R1 and R2 are positive)
+        type: HLD
+        duration_min: 60
+        assesses: >-
+          Classic system design (URL shortener, rate limiter, Google Docs, KV store, chat, proximity,
+          payment, monitoring) with requirements, APIs, data model, scaling, consistency and failure
+          handling; interviewers push past textbook answers. Some candidates get extra DSA/design
+          rounds when a round was borderline.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7435112/
+        seen_on: 2025-12
+      - round: AA ("As Appropriate") / hiring manager
+        type: HIRING_MANAGER
+        duration_min: 60
+        assesses: >-
+          Senior manager/director: deep project dive (architecture, trade-offs, "why" at every step),
+          behavioural (conflict, failure, mentoring, customer escalations, why Microsoft, AI tools),
+          and frequently a coding or design question aimed at the weakest earlier round. Runs 30-100
+          min; decides hire/no-hire and level.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7636712/
+        seen_on: 2026-03
+    bar: >-
+      Reports say SDE II needs optimal solutions to mediums quickly, in clean, runnable code with
+      tests: a brute-force-first answer was "a major red flag" (7433909), and slow implementation
+      sank an L60 loop. Design rounds expect an extensible OO model plus enough HLD depth to defend
+      trade-offs; one Azure rejection cited "expected more detailed HLD for SDE2". The level
+      (61 vs 62) is decided by YOE and the AA/HM verdict, and a single weak round often means a
+      down-level rather than a rejection.
+  - role: Senior Software Engineer
+    level: "63-64"
+    loop:
+      - round: Online assessment
+        type: DSA
+        duration_min: 90
+        assesses: 2-3 problems (DP, graph, rerooting-DP-level hards reported); HackerRank or Codility, 90-135 min.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7451130/
+        seen_on: 2025-12
+      - round: R1 - DSA / coding (sometimes with LRU-style implementation)
+        type: DSA
+        duration_min: 60
+        assesses: Medium-hard trees/graphs/sliding window; concurrency follow-ups (e.g. LRU with TTL, then thread safety).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8300781/
+        seen_on: 2026-05
+      - round: R2 - Coding + multithreading / LLD
+        type: JAVA
+        duration_min: 60
+        assesses: Coding plus deep concurrency (volatile, synchronized, critical sections, CPU cache effects) or an LLD problem with Java interfaces.
+        confidence: claimed
+        source: https://roundz.substack.com/p/microsoft-senior-software-engineer-63
+        seen_on: 2025-03
+      - round: R3 - System design (+ coding), often 90 min with a principal engineer
+        type: HLD
+        duration_min: 90
+        assesses: >-
+          Team-relevant system design (Azure Storage -> file system internals; scheduler; KV store;
+          analytics) plus a deep dive into your current system's design, throughput and latency.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7451130/
+        seen_on: 2025-12
+      - round: AA / hiring manager / director
+        type: HIRING_MANAGER
+        duration_min: 90
+        assesses: >-
+          Project deep dive, behavioural (failure, motivation, conflict), sometimes code review of a
+          Java/SQL snippet or implementing a data structure from scratch; checks the senior bar
+          (scope, ownership, influence) and may offer a downgrade to 62.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7451130/
+        seen_on: 2025-12
+    bar: >-
+      At senior level the loop expects you to own architecture end to end: you draw your current
+      system with throughput, latency, failure modes and blast radius, and justify each choice. Design
+      answers have to go deep in the team's domain, such as storage internals for Azure Storage or
+      ads and data infra for Ads. A 2025 report shows a 4.5-YOE candidate who did well being
+      offered a downgrade from 63, and a 2026 rejection cited a lack of practical, large-system design
+      depth even though the DSA was strong.
+
+sources:
+  - url: https://careers.microsoft.com/v2/global/en/hiring-tips.html
+    title: Microsoft Careers - Hiring process (7 steps)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips.html
+    title: Microsoft Careers - Interview tips
+    accessed: 2026-10-07
+    kind: official
+  - url: https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing
+    title: Microsoft Careers - Technical interviewing
+    accessed: 2026-10-07
+    kind: official
+  - url: https://careers.microsoft.com/v2/global/en/life-at-microsoft/culture.html
+    title: Microsoft Careers - Culture
+    accessed: 2026-10-07
+    kind: official
+  - url: https://careers.microsoft.com/v2/global/en/hiringfaqs.html
+    title: Microsoft Careers - Hiring FAQs (only Action Center scheduling info)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://news.microsoft.com/life/how-to-ace-a-technical-interview-at-microsoft/
+    title: Microsoft Life - How to ace a technical interview at Microsoft (Jan 2016)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://apply.careers.microsoft.com/careers?query=Software%20Engineer%20II&location=India
+    title: Microsoft careers portal - India SE II / Senior SE search (17 postings fetched, listed under official.job_postings)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://leetcode.com/discuss/post/8030174/
+    title: "[2026] Microsoft SDE 2 Interview experiences compiled (index of ~60 posts)"
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/7435112/
+    title: Microsoft | India | SDE 2 (L62) | Selected (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7392060/
+    title: Microsoft | SDE2 (L62) | Interview Loop | Offer accepted (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7770532/
+    title: Microsoft L62 | Hyderabad | Selected (Apr 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7636712/
+    title: Selected - Microsoft SDE2 Interview Experience (Mar 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7541629/
+    title: Interview Experience - Microsoft SDE 2 (L61) Hyderabad (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7524808/
+    title: Interview Experience Microsoft L61 Hyderabad (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7523946/
+    title: Interview Experience Microsoft SDE 2 (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7518104/
+    title: Microsoft SDE-2 hiring drive (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7498667/
+    title: Microsoft SDE 2 Noida Rejected (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7498710/
+    title: Microsoft SDE 2 Azure Compute Bangalore Rejected (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7498754/
+    title: Microsoft SDE 2 Hyderabad Rejected (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7433909/
+    title: Microsoft SDE-2 India Dec 2025 Rejected
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7423217/
+    title: Microsoft L61/62 Hyderabad + Noida, selected and rejected (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7422741/
+    title: Microsoft SE2 L61 (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7417317/
+    title: Microsoft SDE-2 Azure Data Factory (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7435236/
+    title: Microsoft SDE2 Rejected (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7418482/
+    title: Microsoft LLD - meeting scheduler (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7545165/
+    title: Microsoft SDE 2 L61/62 (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7563238/
+    title: Microsoft SE2 (L61) Offer (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7576877/
+    title: Microsoft SDE-2 (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7589414/
+    title: Microsoft SDE-2 OA (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7606563/
+    title: Microsoft L60 (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7613494/
+    title: Microsoft SDE2 Bengaluru Azure (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7619101/
+    title: Microsoft SWE-II (Feb/Mar 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7620569/
+    title: Microsoft SDE II (Mar 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7625252/
+    title: Microsoft SDE 2 (Mar 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7635697/
+    title: Microsoft SDE2 (Mar 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7711794/
+    title: Microsoft SDE2 Hyderabad/Noida Selected (Mar 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7769548/
+    title: Microsoft SDE 2 (L61/L62) India 2026
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8099724/
+    title: Microsoft SDE II L61 (Apr 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8099933/
+    title: Multiple companies incl. Microsoft (Apr 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8273079/
+    title: Microsoft SDE2 Windows Selected (May 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8462091/
+    title: SDE 2 Microsoft Windows (Aug 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8461584/
+    title: Microsoft L61 HackerRank live coding (Aug 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8551527/
+    title: Microsoft 3+ YOE Rejected (Oct 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7326149/
+    title: Microsoft India SDE3 L63 (Nov 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7451130/
+    title: Microsoft SSE L63 India Selected (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7403844/
+    title: Microsoft SSE interview experience (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7425597/
+    title: Microsoft SSE interview + system design (Dec 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7537838/
+    title: Microsoft tech screen Senior SDE (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7507538/
+    title: Microsoft SSE LLD (Jan 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7652247/
+    title: Microsoft SSE 2026 Rejected
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7748215/
+    title: Microsoft Senior interview experience (Apr 2026, Ads)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8112963/
+    title: Microsoft SSE R1 failed (Apr 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8300781/
+    title: Microsoft Senior SE (L63/L64) Azure Storage (Mar 2026, posted May 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8477884/
+    title: Interview summary incl. Microsoft Azure Senior SE (Aug 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6603526/
+    title: Microsoft Senior Software Engineer Bangalore (Mar 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6402065/
+    title: Microsoft Senior SE Bengaluru Rejected (Feb 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6403987/
+    title: Microsoft SDE-2 Recent questions 2025 consolidated
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/6471202/
+    title: Microsoft SDE 2 Hyderabad (Feb 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6186125/
+    title: Microsoft SDE2 India - downlevelled 62 -> 61 (Dec 2024)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5299198/
+    title: Microsoft SDE-2 Hyderabad (Jun 2024)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5299357/
+    title: Microsoft SDE-2 Hyderabad Azure (Jun 2024)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5256862/
+    title: Microsoft SDE2 Bangalore May 2024 Reject
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5360483/
+    title: Microsoft L62 Bangalore (Jun 2024)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/4937133/
+    title: Microsoft SDE2 L61 (Mar 2024)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7494384/
+    title: Microsoft AI interview for SDE-2 - recruiter focus areas (Jan 2026)
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/7554394/
+    title: Sharing my failure at Microsoft hiring event (Feb 2026)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8401640/
+    title: Microsoft AA round (M365 Copilot) - recruiter says behavioural (Jul 2026)
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://roundz.substack.com/p/interview-experience-68-microsoft-l61
+    title: Roundz - Microsoft SDE 2 L61 Hyderabad (May 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://roundz.substack.com/p/microsoft-senior-software-engineer-63
+    title: Roundz - Microsoft Senior SE 63 Hyderabad (Mar 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://roundz.substack.com/p/interview-experience-157-microsoft-sde-l63
+    title: Roundz - Microsoft Senior SE L63 Bangalore (Aug 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected
+    title: interviewexperiences.in - Microsoft SDE II L61 selected (Nov 2025)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.codingkaro.in/jobs-internships/leetcode-interview-experience/Microsoft
+    title: CodingKaro - aggregated Microsoft LeetCode experiences (Nov-Dec 2025)
+    accessed: 2026-10-07
+    kind: article
+  - url: https://github.com/liquidslr/leetcode-company-wise-problems/tree/main/Microsoft
+    title: liquidslr/leetcode-company-wise-problems - Microsoft lists (updated 2026-08-16)
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.jointaro.com/interviews/companies/microsoft/experiences/sde-2-hyderabad-june-9-2024-accepted-offer-positive-cb6d5395/
+    title: Taro - Microsoft SDE-2 Hyderabad Jun 2024 (HLD Twitter; thin)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.geeksforgeeks.org/interview-experiences/microsoft-interview-experience-for-sde-2-5-years/
+    title: GeeksforGeeks - Microsoft SDE-2 (5+ yrs) - undated original, not used for questions
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.glassdoor.co.in/Interview/Microsoft-Senior-Software-Engineer-Interview-Questions-EI_IE1651.0,9_KO10,34.htm
+    title: Glassdoor - Microsoft Senior SE interviews (search snippets only; not fetched)
+    accessed: 2026-10-07
+    kind: forum

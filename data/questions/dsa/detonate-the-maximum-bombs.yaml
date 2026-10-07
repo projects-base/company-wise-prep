@@ -1,0 +1,21 @@
+slug: detonate-the-maximum-bombs
+title: Detonate the Maximum Bombs (BFS on geometric graph)
+type: DSA
+difficulty: medium
+tags:
+- graph
+- bfs
+- geometry
+leetcode: detonate-the-maximum-bombs
+prompt: |
+  Reported as similar to LC 2101: build a directed reachability graph from radii and BFS from each start.
+follow_ups:
+- Follow-up was solved in the same round.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 2
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5885342/

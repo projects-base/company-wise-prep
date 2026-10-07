@@ -1,0 +1,18 @@
+slug: innovation-you-drove
+title: An innovative idea you implemented
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- innovation
+leetcode: null
+prompt: |
+  What innovative ideas have you implemented in the team? Where do you see yourself in 3-5 years?
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: R2 DSA + behavioural
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8099724/

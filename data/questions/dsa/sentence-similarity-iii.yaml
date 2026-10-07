@@ -1,0 +1,19 @@
+slug: sentence-similarity-iii
+title: Do two sentences differ by one inserted phrase?
+type: DSA
+difficulty: medium
+tags:
+- string
+- two-pointers
+leetcode: sentence-similarity-iii
+prompt: |
+  Return true if one sentence can be obtained from the other by inserting a single contiguous phrase.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

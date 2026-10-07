@@ -1,0 +1,20 @@
+slug: permutation-in-string
+title: Permutation in String
+type: DSA
+difficulty: medium
+tags:
+- sliding-window
+- hashmap
+- string
+leetcode: permutation-in-string
+prompt: |
+  Return true if s2 contains a permutation of s1; a brute-force permutation answer was treated as a red flag for SDE II.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R1 DSA (1 h)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7433909/

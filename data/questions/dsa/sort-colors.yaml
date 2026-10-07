@@ -1,0 +1,19 @@
+slug: sort-colors
+title: Sort Colors
+type: DSA
+difficulty: medium
+tags:
+- two-pointers
+- dutch-national-flag
+leetcode: sort-colors
+prompt: |
+  Sort an array of 0s, 1s, 2s in one pass and O(1) space without a library sort.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R4 Engineering manager
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7433909/

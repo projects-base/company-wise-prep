@@ -1,0 +1,28 @@
+slug: design-idempotent-api
+title: Design an Idempotent API
+type: HLD
+difficulty: medium
+tags:
+- idempotency
+- consistency
+- failure-handling
+- transactions
+leetcode: null
+prompt: |
+  Design an API that handles idempotency: duplicate requests, data consistency, failure scenarios.
+follow_ups:
+- Lifecycle of the transaction.
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R5 Hiring manager
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7576877/
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R5 HM round
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7545165/

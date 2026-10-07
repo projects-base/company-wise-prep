@@ -1,0 +1,19 @@
+slug: add-strings
+title: Add Two Large Numbers as Strings
+type: DSA
+difficulty: easy
+tags:
+- string
+- math
+leetcode: add-strings
+prompt: |
+  Add two large non-negative integers given as strings without any BigInteger library.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62, Noida Xbox)
+  round: R1 DSA (45 min)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7770532/

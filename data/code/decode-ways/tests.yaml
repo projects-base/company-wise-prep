@@ -1,0 +1,59 @@
+method: numDecodings
+tests:
+- name: Example 1
+  input: |
+    "12"
+  expected: |
+    2
+- name: Example 2
+  input: |
+    "226"
+  expected: |
+    3
+- name: Example 3
+  input: |
+    "06"
+  expected: |
+    0
+- name: Single zero
+  hidden: true
+  input: |
+    "0"
+  expected: |
+    0
+- name: Zero after 2 and after 3
+  hidden: true
+  input: |
+    "2030"
+  expected: |
+    0
+- name: Only 10 and 20 work
+  hidden: true
+  input: |
+    "1020"
+  expected: |
+    1
+- name: 27 is not a letter
+  hidden: true
+  input: |
+    "2727"
+  expected: |
+    1
+- name: 45 ones (largest Fibonacci that fits)
+  hidden: true
+  input: |
+    "111111111111111111111111111111111111111111111"
+  expected: |
+    1836311903
+- name: Length 100, random
+  hidden: true
+  input: |
+    "1454311732737637176581421211233766872523324676319816396223916771323321042325942327335296112324148428"
+  expected: |
+    61931520
+- name: Length 100, zero with a valid pair before it
+  hidden: true
+  input: |
+    "2221221222212122211202455856694976915823926628211462596544923492955683199123527145726193614421242659"
+  expected: |
+    2078208000

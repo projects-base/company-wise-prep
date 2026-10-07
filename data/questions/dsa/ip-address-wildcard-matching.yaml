@@ -1,0 +1,20 @@
+slug: ip-address-wildcard-matching
+title: Match IPs against wildcard patterns
+type: DSA
+difficulty: medium
+tags:
+- trie
+- string
+leetcode: null
+prompt: |
+  Given patterns like 192.124.168.* and exact IPs, answer whether a query IP matches any pattern.
+follow_ups:
+- Multiple pattern lists and pairs of IPs processed together.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6372760/

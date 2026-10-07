@@ -1,0 +1,20 @@
+slug: k-stacks-in-single-array
+title: N Stacks in One Fixed-size Array
+type: DSA
+difficulty: medium
+tags:
+- stack
+- array
+- design
+leetcode: null
+prompt: |
+  Implement N stacks sharing a single fixed-size array.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Windows)
+  round: R6 AA (Group Engineering Manager)
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8273079/

@@ -1,0 +1,18 @@
+slug: helping-an-underperforming-teammate
+title: Helping an underperforming teammate
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- googleyness
+leetcode: null
+prompt: |
+  Describe a situation where you helped an underperforming team member improve.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Googleyness & Leadership
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8522064/

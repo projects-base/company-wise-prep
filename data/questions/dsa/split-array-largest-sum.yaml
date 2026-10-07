@@ -1,0 +1,20 @@
+slug: split-array-largest-sum
+title: Split Array Largest Sum
+type: DSA
+difficulty: hard
+tags:
+- binary-search
+- greedy
+- dynamic-programming
+leetcode: split-array-largest-sum
+prompt: |
+  Split into k subarrays minimising the largest sum; DP first, then binary search + greedy check.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

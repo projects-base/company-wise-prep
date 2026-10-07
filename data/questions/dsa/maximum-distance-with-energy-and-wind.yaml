@@ -1,0 +1,18 @@
+slug: maximum-distance-with-energy-and-wind
+title: Maximum distance with energy budget and wind
+type: DSA
+difficulty: medium
+tags:
+- dynamic-programming
+leetcode: null
+prompt: |
+  Each day either move A[i] (energy -1) or rest (energy +1, capped at k); energy may never go negative. Maximise distance after n days.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

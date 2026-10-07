@@ -1,0 +1,20 @@
+slug: db-indexing-partitioning-sharding
+title: Indexes, Partitioning and Sharding
+type: DOMAIN
+difficulty: medium
+tags:
+- database
+- indexing
+- sharding
+leetcode: null
+prompt: |
+  Why not add many indexes? What is partitioning, and what is sharding?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Core Software Engineer Intern
+  round: Technical 1
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6939917/

@@ -1,0 +1,21 @@
+slug: cpp-virtual-functions-vtable
+title: C++ Virtual Functions and vtables
+type: DOMAIN
+difficulty: hard
+tags:
+- cpp
+- oop
+- vtable
+leetcode: null
+prompt: |
+  In-depth: how classes, virtual functions and vtables/vptrs work at a granular level.
+follow_ups:
+- Cost of a virtual call vs. a direct call; devirtualisation.
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2 (C++ Developer)
+  round: Round 2
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1702584/

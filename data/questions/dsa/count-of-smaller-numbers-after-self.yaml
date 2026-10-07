@@ -1,0 +1,20 @@
+slug: count-of-smaller-numbers-after-self
+title: Count of Smaller Numbers After Self
+type: DSA
+difficulty: hard
+tags:
+- fenwick-tree
+- merge-sort
+- segment-tree
+leetcode: count-of-smaller-numbers-after-self
+prompt: |
+  For each element, count smaller elements to its right.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

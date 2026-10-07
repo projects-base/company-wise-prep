@@ -1,0 +1,20 @@
+slug: design-assistant-multi-device-dedup
+title: Avoid duplicate Assistant responses across nearby devices
+type: HLD
+difficulty: hard
+tags:
+- distributed-coordination
+- dedup
+- latency
+leetcode: null
+prompt: |
+  When 'Hey Google' wakes several nearby devices that all send the query, design the backend so the user hears only one response.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: System design
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7020053/

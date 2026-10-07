@@ -1,0 +1,431 @@
+slug: tower-research
+name: Tower Research Capital
+aliases: [Tower, TRC, Tower Research]
+researched_on: 2026-10-07
+domain_notes: >-
+  Quantitative / high-frequency trading firm. Core Engineering builds a shared platform (market
+  data, execution, risk, compute) that independent trading teams plug into ("hub-and-spoke").
+  Tower's own answer on languages: C++ for latency-sensitive systems (market data, execution,
+  low-level infra), Python for research and orchestration, Rust increasingly for infra/services
+  (https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/).
+  Java does not appear as a requirement in any current Gurugram posting (checked 2026-10-07), but
+  Java/Spring backend hires have happened in post-trade (LeetCode reports 2021 and 2025). Interviews
+  probe below the framework: OS (virtual memory, page faults, deadlock), networking (TCP vs UDP,
+  multicast, congestion control), CPU cache/TLB/RDTSC, and C++ object model even for non-C++ seats.
+  Positioning for a Java/Spring engineer: target post-trade / shared-services / platform roles,
+  present yourself as a systems engineer who happens to write Java — be ready to talk JVM memory,
+  GC pauses, lock-free (CAS, AtomicReference), false sharing, and why a hot path avoids allocation —
+  and close the C++/OS/networking gap rather than leaning on Spring Boot experience.
+values:
+  - name: Excellence
+    source: https://tower-research.com/about-us/
+  - name: Respect
+    source: https://tower-research.com/about-us/
+  - name: Innovation
+    source: https://tower-research.com/about-us/
+  - name: Integrity
+    source: https://tower-research.com/about-us/
+  - name: Teamwork
+    source: https://tower-research.com/about-us/
+  - name: Entrepreneurial spirit
+    source: https://tower-research.com/careers/
+  - name: Passion
+    source: https://tower-research.com/careers/
+  - name: Clear communication
+    source: https://tower-research.com/careers/
+  - name: Calm and focus when the unexpected occurs
+    source: https://tower-research.com/careers/
+  - name: Take ownership
+    source: https://tower-research.com/engineering/
+  - name: Innovate constantly
+    source: https://tower-research.com/engineering/
+  - name: Drive success
+    source: https://tower-research.com/engineering/
+  - name: Drive / Communication / Collaboration / Passion (engineering "qualities we prize")
+    source: https://tower-research.com/engineering/
+
+official:
+  hiring_process:
+    - step: Interview philosophy (no step list published)
+      detail: >-
+        Tower says it strives for "a straightforward interview and hiring process" with "no gotcha
+        questions, random logic problems, or abstract, overly academic discussions" — a thoughtful
+        conversation about you, your past roles and what you can achieve. Tower does not publish
+        round names, counts or durations; everything about the loop below comes from third parties.
+        Note the contradiction: candidate reports describe timed HackerRank OAs, CS-theory MCQs and
+        (older, campus/intern) maths puzzles.
+      source: https://tower-research.com/careers/
+    - step: Applications
+      detail: Open roles are listed on tower-research.com/open-positions (Greenhouse board "towerresearchcapital").
+      source: https://tower-research.com/careers/
+    - step: What Tower says it looks for in candidates
+      detail: >-
+        Strong fundamentals in probability, statistics, algorithms and coding; people who can
+        collaborate, communicate and keep improving under pressure. No single academic path required.
+      source: https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/
+  job_postings:
+    - title: Low Latency Developer
+      team: Quantitative Research & Trading
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=4357723
+      accessed: 2026-10-07
+      required: [3-5 yrs finance-industry experience, CS degree, strong C/C++ and Python, Linux knowledge, strong troubleshooting]
+      preferred: [C++ development experience shown via work/research/open source]
+      skills: [cpp, c, python, linux, low-latency, high-throughput, market-data, simulation, troubleshooting, finance-domain]
+    - title: Quantitative Developer
+      team: Quantitative Research & Trading
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=7102180
+      accessed: 2026-10-07
+      required: [2+ yrs software development preferably C++, CS degree, strong C/C++ and Python, Linux knowledge, troubleshooting]
+      preferred: [financial experience not required]
+      skills: [cpp, c, python, linux, low-latency, high-throughput, market-data, simulation, production-monitoring, troubleshooting]
+    - title: Python Developer
+      team: Quantitative Research & Trading
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=6629676
+      accessed: 2026-10-07
+      required: [3-5 yrs, Python with NumPy/Pandas/Polars/Cython, Linux fundamentals, C++ compile/link/load process]
+      preferred: [SCM, CI/CD, ELK and observability frameworks]
+      skills: [python, linux, cpp, etl, data-pipelines, ci-cd, observability, low-latency, high-availability]
+    - title: Platform as a Service Engineer
+      team: Infrastructure Engineering
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=8036383
+      accessed: 2026-10-07
+      required: [MS/PhD in CS, 3-7 yrs Kubernetes user+admin, one of Python/Rust/Go/C++ with systems programming, Linux, IaC/config management, observability, Kafka/etcd, DNS/networking/security/storage]
+      preferred: [GPU operations]
+      skills: [kubernetes, python, rust, go, cpp, linux, systems-programming, iac, observability, kafka, distributed-systems, networking, security, storage]
+    - title: Software Engineer III
+      team: Shared Services
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=8029768
+      accessed: 2026-10-07
+      required: [3+ yrs, Rust (required), Go and/or Python, Linux and shell, relational + non-relational DBs, full-stack/web, microservices, Kafka, data pipelines, IaC, DevOps and on-call, office 4 days/week]
+      preferred: [product mindset, stable career history]
+      skills: [rust, go, python, linux, bash, sql, nosql, web, microservices, kafka, data-pipelines, iac, devops, distributed-systems]
+    - title: Software Engineer II
+      team: Core AI and Machine Learning
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=8132180
+      accessed: 2026-10-07
+      required: [2-6 yrs, large-scale deep learning, sequence/time-series models, Python with PyTorch/TensorFlow, Git, CI/CD, MLOps, Linux/SQL/Bash]
+      preferred: []
+      skills: [python, machine-learning, pytorch, time-series, mlops, ci-cd, linux, sql, bash, data-pipelines]
+    - title: Information Security Engineer III
+      team: Information Security and Enterprise Engineering
+      location: Gurugram
+      url: https://www.tower-research.com/open-positions/?gh_jid=7746119
+      accessed: 2026-10-07
+      required: [5+ yrs enterprise security, Unix/Linux, Python and Bash, SIEM/threat hunting, network and information security technologies]
+      preferred: [reverse engineering, web app vulns, exploit development, C/C++]
+      skills: [python, bash, linux, security, networking, cpp]
+  skill_frequency:       # across the 7 Gurugram engineering postings above (accessed 2026-10-07)
+    python: 7
+    linux: 7
+    cpp: 5
+    low-latency: 3
+    data-pipelines: 3
+    bash: 3
+    c: 2
+    high-throughput: 2
+    market-data: 2
+    simulation: 2
+    troubleshooting: 2
+    rust: 2
+    go: 2
+    kafka: 2
+    distributed-systems: 2
+    iac: 2
+    observability: 2
+    ci-cd: 2
+    networking: 2
+    security: 2
+    sql: 2
+    kubernetes: 1
+    microservices: 1
+    machine-learning: 1
+    java: 0
+
+roles:
+  - role: Senior Software Engineer / SDE-2 (Gurugram; C++ and core engineering)
+    level: Software Engineer II-III / L5 (Tower titles; L5 named in a 2021 LeetCode post)
+    loop:
+      - round: Online test (HackerRank)
+        type: DSA
+        duration_min: 90
+        assesses: >-
+          Format varies. 2022 Senior SWE: 7 fix-the-bug C++ tasks + 4 subjective systems questions
+          (virtual-memory aliasing, reliable multicast, RDTSC, CPU load path) in 90 min. Another 2022
+          Senior SWE (C++) test: 7 fix-the-bug tasks in 60 min. 2021 SDE-2 C++: 7 MCQs (DS/OOP/OS/
+          networking) + 2 debugging + 2 coding (one easy, one LeetCode-hard).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/1764282/
+        seen_on: 2022-02
+      - round: Technical 1
+        type: DOMAIN
+        duration_min: 60
+        assesses: TCP vs UDP discussion (~45 min), spotting errors in a C++ snippet, then a trie coding problem; other reports had LFU Cache or Shortest Bridge plus C++ (smart pointers).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/1702584/
+        seen_on: 2022-01
+      - round: Technical 2
+        type: LLD
+        duration_min: null
+        assesses: Deep C++ object model (classes, virtual functions, vtables) then LLD of an HFT system (callbacks, observers). Another SDE-2 report had a multi-threaded buffered queue, a lock-free stack with AtomicReference, and payment idempotency.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/1867832/
+        seen_on: 2022-03
+      - round: Techno-managerial (experienced hires)
+        type: HIRING_MANAGER
+        duration_min: 60
+        assesses: Current work, why change, re-design your project without public cloud, RDBMS depth questions derived from your answers.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/1689730/
+        seen_on: 2022-01
+    bar: >-
+      Reports agree that for C++ seats they want deep language and OOP understanding (vtables,
+      memory) on top of DSA, plus solid OS and networking. All rounds are reported as elimination
+      rounds. Interviewers push on speed ("implement this quickly") and on follow-ups after the
+      first working answer. No senior-level (2023–2026) report from Gurugram was found, so the
+      senior bar is inferred from 2021–2022 SDE-2 reports.
+  - role: SDE 1 (Backend, Post Trade — Java)
+    level: Software Engineer I
+    loop:
+      - round: Online assessment (HackerRank)
+        type: DSA
+        duration_min: 135
+        assesses: 2 coding (Java inheritance template + one medium DSA) and 4 theory questions (OS, DBMS, networking, Java/Python language).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6375258/
+        seen_on: 2025-02
+      - round: Technical 1
+        type: DSA
+        duration_min: 60
+        assesses: Max Area of Island, then modified to allow filling one row or column.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6375258/
+        seen_on: 2025-02
+      - round: Technical 2
+        type: JAVA
+        duration_min: 45
+        assesses: Rapid-fire Java/DB internals — ==/equals/hashCode, HashMap internals, String immutability, stack vs heap, connection pooling, Spring Boot connection classes.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6375258/
+        seen_on: 2025-02
+    bar: >-
+      The only Java-track report (candidate rejected after round 2) shows the language round is
+      fast and goes deep on internals, not frameworks. HR did not say how many rounds there were.
+  - role: Software Engineer (third-party aggregated guides; not Gurugram-specific)
+    level: unknown
+    loop:
+      - round: Online assessment
+        type: DSA
+        duration_min: 120
+        assesses: 2-5 algorithm problems in 90-135 min on HackerRank, sometimes with MCQs on OS/networking/DBMS.
+        confidence: claimed
+        source: https://www.techprep.app/blog/tower-research-interview-process
+        seen_on: "2026"   # undated page; year from its title
+      - round: Phone screen(s)
+        type: DSA
+        duration_min: 60
+        assesses: Live coding; standard problem modified mid-solve; C++ and CS fundamentals probing.
+        confidence: claimed
+        source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/
+        seen_on: 2026-07
+      - round: Super Day
+        type: DOMAIN
+        duration_min: null
+        assesses: 4-6 back-to-back rounds with 2-3 trading teams mixing algorithms, C++ internals, OS/networking, LLD/HLD and past projects.
+        confidence: claimed
+        source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/
+        seen_on: 2026-07
+      - round: HR / culture fit
+        type: BEHAVIORAL
+        duration_min: 25
+        assesses: Logistics and motivation ("Why Tower?").
+        confidence: claimed
+        source: https://www.techprep.app/blog/tower-research-interview-process
+        seen_on: "2026"   # undated page; year from its title
+    bar: >-
+      These guides cite no primary sources and describe a mainly US Super Day format. Treat them
+      as weak signals. India reports show 2-3 interview rounds after the OA rather than a
+      Super Day.
+
+sources:
+  - url: https://tower-research.com/careers/
+    title: 'Tower careers (qualities sought, "A Practical Process")'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://tower-research.com/about-us/
+    title: 'Tower About Us (values)'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://tower-research.com/culture/
+    title: 'Tower Culture'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://tower-research.com/engineering/
+    title: 'Tower Engineering (qualities prized, languages)'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://tower-research.com/internships/
+    title: 'Tower Internships'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/
+    title: 'Ask Tower Anything (CppCon 2025 AMA, May 2026)'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://boards-api.greenhouse.io/v1/boards/towerresearchcapital/jobs
+    title: 'Tower Greenhouse job board (93 postings, 7 Gurugram engineering)'
+    accessed: 2026-10-07
+    kind: official
+  - url: https://leetcode.com/discuss/post/6375258/
+    title: 'SDE 1 (Backend Post Trade) interview experience, Jan 2025'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6939917/
+    title: 'Core SWE Intern interview experience, Jul 2025'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/1702584/
+    title: 'SDE 2 (C++ Developer) Gurgaon, Nov 2021'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/1689730/
+    title: 'SDE (Dev Tools) India 2021, 9 YOE'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/1764282/
+    title: 'Online Test, Senior Software Engineer (subjective), Feb 2022'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/2717817/
+    title: 'Online Test, Senior Software Engineer (C++), Oct 2022'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/1867832/
+    title: 'SDE2, Mar 2022 (ghosted)'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/1890926/
+    title: 'SDE2 Gurgaon Round-1 coding, Mar 2022'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/959223/
+    title: 'Software Engineer II Round-1, Dec 2020'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/988571/
+    title: 'System Design round, Dec 2020'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5620964/
+    title: 'SDE Intern OA + interview, Aug 2024'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/3933506/
+    title: 'On-campus OA question, Aug 2023'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/1537141/
+    title: 'Software Engineer 2 Gurugram OA (3 coding + 1 MCQ in 75 min), Oct 2021'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8214911/
+    title: 'SDE-1 2026 grad OA question, May 2026'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8395109/
+    title: 'OA question, Jul 2026'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8472422/
+    title: 'SWE1 2026 grad OA question, Aug 2026'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/4177746/
+    title: 'Latency 1000 ms to 400 us question, Oct 2023'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6834791/
+    title: 'SWE New Grad thread (comment with topic advice), Jun 2025'
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/1476358/
+    title: 'Uber L5A vs Tower L5 Post-Trade (Java, 9 YOE), Sep 2021'
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/1583793/
+    title: 'Senior Software Engineer Gurgaon offer, Nov 2021'
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/7447700/
+    title: 'Senior SRE interview help thread, Dec 2025 (no content)'
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/7862015/
+    title: 'Senior SWE insights thread, Apr 2026 (no answers)'
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://www.geeksforgeeks.org/?p=131014
+    title: 'GfG Tower Research telephonic internship round (2016)'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.geeksforgeeks.org/?p=117608
+    title: 'GfG Tower Research interview (Strategist; puzzles, no specific questions)'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/
+    title: 'How Tower Research Capital Interviews Its Low-Latency Engineers (2026-07, no sources cited)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.techinterview.org/companies/tower-research-capital-interview-guide/
+    title: 'Tower Research Capital Interview Guide (2026-07)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.techprep.app/blog/tower-research-interview-process
+    title: 'Tower Research''s Interview Process (2026, undated)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.quantt.co.uk/resources/tower-research-interview
+    title: 'Quantt Tower Research interview (2026-05)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.tradermath.org/articles/tower-research-capital-interview-guide
+    title: 'Tradermath Tower guide (2026-07)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://quantvault.org/tower-research-interview-questions.html
+    title: 'QuantVault Tower question bank (undated per question)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.interviewquery.com/interview-guides/tower-research-capital-software-engineer
+    title: 'InterviewQuery SWE guide (fetch rate-limited; search snippets only)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://dataford.io/interview-guides/tower-research-capital/software-engineer
+    title: 'Dataford SWE guide (search snippets only)'
+    accessed: 2026-10-07
+    kind: article
+  - url: https://github.com/liquidslr/leetcode-company-wise-problems
+    title: 'Company-wise LeetCode list: Tower Research Capital (3 problems)'
+    accessed: 2026-10-07
+    kind: aggregate-list
+  - url: https://github.com/snehasishroy/leetcode-companywise-interview-questions/tree/master/tower-research
+    title: 'Company-wise LeetCode list: tower-research (same 3 problems)'
+    accessed: 2026-10-07
+    kind: aggregate-list
+  - url: https://www.naukri.com/code360/interview-experiences/tower-research-capital/tower-research-capital-interview-experience-software-engineer-mar-2022-exp-0-2-years
+    title: 'Code360 Tower experiences (HTTP 403 / JS-only; not read)'
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.glassdoor.it/Colloquio/Tower-Research-Capital-Colloquio-E143628-RVW103759694.htm
+    title: 'Glassdoor Tower reviews (HTTP 403; not read)'
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://www.1point3acres.com/interview/company/tower-research
+    title: '1point3acres Tower (HTTP 403; not read)'
+    accessed: 2026-10-07
+    kind: forum

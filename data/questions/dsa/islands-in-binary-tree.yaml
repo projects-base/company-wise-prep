@@ -1,0 +1,20 @@
+slug: islands-in-binary-tree
+title: Number of islands in a 0/1 binary tree
+type: DSA
+difficulty: medium
+tags:
+- tree
+- dfs
+leetcode: null
+prompt: |
+  Nodes hold 0/1; count connected groups of 1-nodes (islands).
+follow_ups:
+- Return the sizes of unique islands.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

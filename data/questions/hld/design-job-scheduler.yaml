@@ -1,0 +1,29 @@
+slug: design-job-scheduler
+title: Design a Distributed Job Scheduler
+type: HLD
+difficulty: hard
+tags:
+- locking
+- leader-election
+- fault-tolerance
+- microservices
+- metrics
+- alerting
+leetcode: null
+prompt: |
+  Manage n job types, unique jobRunId per request, some types must never run concurrently; parallelism, no SPOF, Redis locks/leader election, observability.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R4 HLD + DSA (2 h)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7451130/
+- company: microsoft
+  role: Senior Software Engineer (63, Hyderabad)
+  round: R4 Bar-raiser (90 min)
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://roundz.substack.com/p/microsoft-senior-software-engineer-63

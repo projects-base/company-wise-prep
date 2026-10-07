@@ -1,0 +1,19 @@
+slug: deep-vs-shallow-copy
+title: Deep vs Shallow Copy
+type: JAVA
+difficulty: easy
+tags:
+- java
+- oop
+leetcode: null
+prompt: |
+  Explain deep vs shallow copy.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 2 (Java rapid-fire, 45 min)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

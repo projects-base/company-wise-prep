@@ -1,0 +1,56 @@
+slug: design-rate-limiter
+title: Design a Rate Limiter
+type: LLD
+difficulty: medium
+tags:
+- rate-limiting
+- token-bucket
+- strategy-pattern
+- hld
+- multi-tenant
+- rate-limiter
+- sliding-window
+leetcode: null
+prompt: |
+  Design a rate limiter (classes, then code one algorithm).
+follow_ups:
+- Different APIs with different limits and windows.
+- One limit shared by two APIs combined.
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Noida)
+  round: R2 LLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498667/
+- company: microsoft
+  role: SDE II
+  round: R4 AA
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7518104/
+- company: microsoft
+  role: SE II (L61)
+  round: R1 (coding + HLD)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7422741/
+- company: microsoft
+  role: SDE II (Azure, Bengaluru)
+  round: R2 Design
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7613494/
+- company: microsoft
+  role: SDE II
+  round: System design (senior engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7635697/
+- company: tower-research
+  role: Developer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.tradermath.org/articles/tower-research-capital-interview-guide

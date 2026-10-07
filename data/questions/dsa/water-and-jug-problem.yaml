@@ -1,0 +1,20 @@
+slug: water-and-jug-problem
+title: Reach a target volume with N jugs
+type: DSA
+difficulty: medium
+tags:
+- bfs
+- math
+- state-space-search
+leetcode: water-and-jug-problem
+prompt: |
+  With jugs of given capacities and fill/empty/pour operations, decide if exactly the target volume can be measured (generalised to N jugs).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6775581/

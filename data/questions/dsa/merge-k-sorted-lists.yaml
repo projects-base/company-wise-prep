@@ -1,0 +1,20 @@
+slug: merge-k-sorted-lists
+title: Merge k Sorted Lists
+type: DSA
+difficulty: hard
+tags:
+- heap
+- linked-list
+- aggregate-list
+leetcode: merge-k-sorted-lists
+prompt: |
+  Merge k sorted linked lists.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Unknown (LeetCode company tag)
+  round: 'Unknown (aggregate-list: LeetCode ''Microsoft'' tag, last 6 months)'
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv

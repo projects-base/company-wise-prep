@@ -1,0 +1,21 @@
+slug: min-machines-for-earliest-completion
+title: Earliest completion time and minimum CPUs needed
+type: DSA
+difficulty: medium
+tags:
+- binary-search
+- greedy
+- scheduling
+leetcode: null
+prompt: |
+  Equal-length tasks on a set of machines: find the earliest time all complete.
+follow_ups:
+- Find the minimum number of CPUs that still achieves that earliest time.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

@@ -1,0 +1,25 @@
+slug: earliest-arrival-with-flight-schedule
+title: Can a package reach the destination via timed flights (earliest arrival)
+type: DSA
+difficulty: medium
+tags:
+- graph
+- dijkstra
+leetcode: null
+prompt: |
+  Flights have source, destination, departure and arrival times; a connection is valid only if departure >= arrival at that airport. Decide reachability and the minimum arrival time.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2026-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8355549/
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

@@ -1,0 +1,19 @@
+slug: process-vs-thread
+title: Process vs thread, shared variables and race conditions
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- concurrency
+leetcode: null
+prompt: |
+  Process vs thread; are read-only shared variables safe; heap vs stack variables across threads; what exactly causes race conditions.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 DSA + CS fundamentals (Principal Engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

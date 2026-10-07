@@ -1,0 +1,26 @@
+slug: min-stack
+title: Stack with push/pop/min
+type: DSA
+difficulty: medium
+tags:
+- stack
+- design
+leetcode: min-stack
+prompt: |
+  Implement push, pop and min in O(1).
+follow_ups:
+- OOP follow-up solved with a Factory pattern.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6552739/
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R1 DSA + LLD (60 min)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7541629/

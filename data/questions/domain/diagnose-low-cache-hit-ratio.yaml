@@ -1,0 +1,19 @@
+slug: diagnose-low-cache-hit-ratio
+title: Diagnosing a low cache hit ratio
+type: DOMAIN
+difficulty: medium
+tags:
+- caching
+- observability
+leetcode: null
+prompt: |
+  If cache misses exceed hits, how do you determine whether the cache size or the eviction policy is the problem?
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63/L64, Azure Storage)
+  round: R2 (hiring manager)
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8300781/

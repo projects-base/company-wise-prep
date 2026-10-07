@@ -1,0 +1,19 @@
+slug: rank-of-node-in-bst
+title: Rank of a Node in a BST
+type: DSA
+difficulty: medium
+tags:
+- bst
+- augmented-tree
+leetcode: null
+prompt: |
+  Find a node's rank in a BST; optimise beyond in-order traversal by storing subtree sizes in each node.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Windows)
+  round: R2 DSA
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8273079/

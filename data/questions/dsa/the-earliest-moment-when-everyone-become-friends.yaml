@@ -1,0 +1,22 @@
+slug: the-earliest-moment-when-everyone-become-friends
+title: Earliest timestamp when all users are connected
+type: DSA
+difficulty: medium
+tags:
+- union-find
+- graph
+- sorting
+leetcode: the-earliest-moment-when-everyone-become-friends
+prompt: |
+  Given timestamped 'A connects to B' logs and n users, return the earliest time at which everyone is connected.
+follow_ups:
+- Also require max connections between any two nodes <= k.
+- Logs can contain 'unfriend' events (dynamic connectivity / DSU with rollback).
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 2
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525084/

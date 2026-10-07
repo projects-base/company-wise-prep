@@ -1,0 +1,605 @@
+slug: google
+name: Google
+aliases: [Alphabet, Google India, GOOG]
+researched_on: 2026-10-07
+domain_notes: >-
+  Target seats are SWE III (L4) and Senior SWE (L5) in Bengaluru / Hyderabad (most India SWE
+  postings also list Gurugram). In October 2026 the India SWE III / Senior SWE postings were mostly
+  in Google Cloud (AI & Infrastructure, Security/Zero Trust, Storage), Core, Core ML / ML infra,
+  Search (Search Serving Infrastructure) and Corp Eng. A search for Ads- and Payments-titled
+  L4/L5 SWE roles in India turned up nothing (only a Payments Platform engineering-manager role).
+  Interviews do not depend on your language or stack. You code in any mainstream language in a
+  plain Google-Docs-like editor with no autocomplete or run button
+  (https://leetcode.com/discuss/post/6522449/). Java is fine, and one L4 candidate was asked Java
+  questions (ArrayList vs LinkedList) in an extra round (https://leetcode.com/discuss/post/7164554/).
+  Spring Boot experience counts only in system design (L5) and in team-match conversations. Every
+  posting fetched says "In most instances, this position requires in-person interviews as part of
+  the hiring process", and 2026 India candidates report in-person onsites in Bengaluru/Hyderabad.
+values:
+  # Google's careers pages (fetched 2026-10-07) never use the word "Googleyness". They describe what
+  # interviews look for. Google's re:Work structured-interviewing guide names the attribute set.
+  - name: Problem solving (how you break down and reason through complex, open-ended problems)
+    source: https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices
+  - name: Role-related knowledge
+    source: https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices
+  - name: Leadership (emergent leadership for ICs - initiative, collaboration, mobilising others without the title)
+    source: https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices
+  - name: Navigating complexity and ambiguity
+    source: https://www.google.com/about/careers/applications/interview-tips/
+  - name: Working with people and teams (conflict, influencing, driving collaboration)
+    source: https://www.google.com/about/careers/applications/interview-tips/
+  - name: Leadership style (communication and decision-making to mobilise others)
+    source: https://www.google.com/about/careers/applications/interview-tips/
+  # Third-party descriptions of "Googleyness" (said to come from Google's candidate prep packs; not verified on google.com):
+  - name: Thrives in ambiguity
+    source: https://www.educative.io/blog/googleyness-preparation
+  - name: Values feedback (gives and receives it with humility)
+    source: https://www.educative.io/blog/googleyness-preparation
+  - name: Challenges the status quo
+    source: https://www.educative.io/blog/googleyness-preparation
+  - name: Puts the user first
+    source: https://www.educative.io/blog/googleyness-preparation
+  - name: Cares about the team
+    source: https://www.educative.io/blog/googleyness-preparation
+  - name: Does the right thing
+    source: https://www.educative.io/blog/googleyness-preparation
+
+official:
+  hiring_process:
+    - step: Overall timeline
+      detail: >-
+        The process "may differ slightly for each role or team", typically takes roughly 6-8 weeks
+        once interviews start, and a recruiter explains your specific timeline. (2025-26 India
+        reports describe 2-6 months including team matching.)
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Resume / application
+      detail: >-
+        Write a resume for each job, line it up against the minimum qualifications, and state impact
+        as "accomplished [X] as measured by [Y], by doing [Z]". Cover letters are not required.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Assessments
+      detail: >-
+        Before interviews you may take the Google Hiring Assessment (measures "workstyle" skills)
+        and, where relevant, role-related assessments such as a coding exercise.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Recruiter conversations
+      detail: >-
+        One or two short phone/video calls that assess key skills, explain the organisation and team,
+        and collect preferences such as location.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Project work (some roles)
+      detail: A small project before interviews, such as a case study or code/writing samples, for some role types.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Interviews
+      detail: >-
+        A panel of interviews "either over video or in person with a rotating cast of Googlers".
+        Interviews are structured: every candidate for a role is scored on the same rubrics. They
+        use open-ended, role-related questions and no brainteasers.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: In-person requirement (posting level)
+      detail: >-
+        Every India SWE III and Senior SWE posting fetched on 2026-10-07 says "In most instances,
+        this position requires in-person interviews as part of the hiring process."
+      source: https://www.google.com/about/careers/applications/jobs/results/101212497425375942-software-engineer-iii-full-stack-google-cloud
+    - step: AI tools policy
+      detail: >-
+        AI tools are not permitted during interviews. The interview-tips page says Google Search
+        and AI "are not permitted to be used during your interviews".
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Decision and offer
+      detail: >-
+        After interviews Google "bring[s] everything together" from the application and interviews.
+        The decision is described as a "we", taking several perspectives into account. Google's own
+        page does not name the hiring committee; candidate reports do. The recruiter then makes the
+        offer.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+    - step: Reapplying
+      detail: Google typically asks candidates to wait at least a year before reapplying for the same type of role.
+      source: https://www.google.com/about/careers/applications/how-we-hire/
+  interview_tips:
+    - tip: Cross-reference the job description with your resume and build a library of examples to draw on (practise delivering them).
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Expect "Tell me about a time when..." and "How would you approach this situation...?" questions; prepare past accomplishments and lessons learned.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Quantify impact with "Accomplished [X], as measured by [Y], by doing [Z]".
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Think out loud, state your assumptions and whether you are going deep or broad, and expect follow-ups. The thought process matters more than the 'right' answer.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Use STAR (Situation, Task, Activity, Result) and give specific examples, not "I always do X". Keep the stories short.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Questions are deliberately open-ended. Rephrasing, asking for clarity and taking a moment to think are all fine.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Show how you handle ambiguity and decide with an incomplete picture, and how you grow outside your comfort zone.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Show how you work with peers and global cross-functional teams, how you resolve conflict and influence teammates, and when you drove collaboration.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Be ready to describe how your communication and decision-making mobilised others, including when you were not the official leader.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: Come with questions. Interviewing is collaborative, so it is encouraged to clarify, question an assumption and partner with the interviewer.
+      source: https://www.google.com/about/careers/applications/interview-tips/
+    - tip: >-
+        To refresh coding fundamentals, Google points to its own videos: how to prepare for technical
+        interviews, coding and systems-design prep, and mock coding and system-design interviews by
+        Google India engineers. (The old Tech Dev Guide, techdevguide.withgoogle.com, now redirects
+        to this resources page.)
+      source: https://www.google.com/about/careers/applications/buildyourfuture/resources/
+  job_postings:
+    - title: Software Engineer III, Full Stack, Google Cloud
+      team: AI and Infrastructure (Google Cloud)
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/101212497425375942-software-engineer-iii-full-stack-google-cloud
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 2y programming in Java/C++/Python/C#/Go, 2y JavaScript or TypeScript]
+      preferred: [MS/PhD, 2y full-stack (back end + front end), 2y data structures or algorithms, accessible technologies]
+      skills: [java, cpp, python, go, javascript-typescript, full-stack, data-structures-algorithms, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Software Engineer III, AI/ML Infrastructure, Performance Engineering
+      team: Core ML
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/88607973005238982-software-engineer-iii-aiml-infrastructure-performance-engineering
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 2y software development, 1y in an ML specialisation, 1y ML infrastructure (deployment, evaluation, optimisation, data processing)]
+      preferred: [MS/PhD, 2y data structures and algorithms, accessible technologies, kernel debugging and performance tuning a bonus]
+      skills: [ml-infra, performance-optimization, data-structures-algorithms, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Software Engineer III, Security/Privacy
+      team: Google Cloud - Zero Trust security
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/98573059488654022-software-engineer-iii-securityprivacy
+      accessed: 2026-10-07
+      required: [Bachelor's in CS or equivalent, 2y building privacy/security software (e.g. IAM), 2y software development, C++ or Go, cloud security or distributed computing]
+      preferred: [MS/PhD, 2y data structures and algorithms, GCP, IAM and OAuth 2.0, Kubernetes / Cloud Run / load balancers, accessible technologies]
+      skills: [cpp, go, security-iam, distributed-systems, cloud-gcp, data-structures-algorithms, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Software Engineer III, AI/ML
+      team: Corp Eng
+      location: Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/83807658246578886-software-engineer-iii-aiml
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 2y software development, 1y ML specialisation, 1y ML infrastructure]
+      preferred: [MS/PhD, 2y data structures and algorithms, accessible technologies]
+      skills: [ml-infra, data-structures-algorithms, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Software Engineer III, Full Stack, Cloud
+      team: Google Cloud
+      location: Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/131572375555580614-software-engineer-iii-full-stack-cloud
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 2y Java software development, front-end JS framework (Angular or React)]
+      preferred: [MS/PhD, 2y data structures and algorithms, accessible technologies, building and consuming APIs that connect UI to back-end services]
+      skills: [java, javascript-typescript, full-stack, api-design, data-structures-algorithms, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Senior Software Engineer, Storage
+      team: Google Cloud AI/ML storage (GCSFuse)
+      location: Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/119515568058311366-senior-software-engineer-storage
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 5y software development, 3y testing/maintaining/launching products, 1y software design and architecture, file systems and Linux kernel internals]
+      preferred: [AI/ML workloads, cloud platforms (GCP), open source]
+      skills: [file-systems-linux, software-design-architecture, technical-leadership, ml-infra, cloud-gcp]
+    - title: Senior Software Engineer, Search Platforms
+      team: Search Serving Infrastructure
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/135249135996412614-senior-software-engineer-search-platforms
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 5y software development, 3y testing/maintaining/launching products, 1y software design and architecture]
+      preferred: [MS/PhD, 5y data structures and algorithms, 6y C++, 4y large-scale infrastructure and design, 1y tech lead, integrating GenAI / LLM tools into workflows]
+      skills: [cpp, data-structures-algorithms, large-scale-infrastructure, software-design-architecture, technical-leadership, genai-llm, performance-optimization, design-and-code-reviews, debugging-triage]
+    - title: Senior Software Engineer, Infrastructure, Google Cloud
+      team: AI and Infrastructure
+      location: Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/143097213772276422-senior-software-engineer-infrastructure-google-cloud
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 5y C++/Java/Go/Python, 3y testing/maintaining/launching products, 1y software design and architecture, 3y large-scale infrastructure / distributed systems / networks / compute / storage]
+      preferred: [MS/PhD, 5y data structures/algorithms, 1y tech lead, accessible technologies]
+      skills: [java, cpp, go, python, distributed-systems, large-scale-infrastructure, software-design-architecture, data-structures-algorithms, technical-leadership, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Senior Software Engineer, Core
+      team: Core (developer platforms and shared infrastructure)
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/121538506244661958-senior-software-engineer-core
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 5y software development, 3y testing/maintaining/launching products, 1y software design and architecture]
+      preferred: [MS/PhD, 5y data structures/algorithms, 1y tech lead, accessible technologies]
+      skills: [software-design-architecture, data-structures-algorithms, technical-leadership, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Senior Software Engineer, AI/ML, Google Cloud
+      team: Google Cloud
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/136546867881091782-senior-software-engineer-aiml-google-cloud
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 5y Python or C++, 3y testing/maintaining/launching products, 1y software design and architecture, 3y ML specialisation, 3y ML infrastructure]
+      preferred: [MS/PhD, 5y data structures/algorithms, 1y tech lead, accessible technologies]
+      skills: [python, cpp, ml-infra, software-design-architecture, data-structures-algorithms, technical-leadership, accessibility, design-and-code-reviews, debugging-triage]
+    - title: Senior Software Engineer, Search
+      team: Google Search
+      location: Bengaluru / Hyderabad / Gurugram
+      url: https://www.google.com/about/careers/applications/jobs/results/138472965292335814-senior-software-engineer-search
+      accessed: 2026-10-07
+      required: [Bachelor's or equivalent, 5y software development, 3y testing/maintaining/launching products, 1y software design and architecture]
+      preferred: [MS/PhD, 5y data structures and algorithms, 1y tech lead, accessible technologies]
+      skills: [software-design-architecture, data-structures-algorithms, technical-leadership, accessibility, design-and-code-reviews, debugging-triage]
+  skill_frequency:   # across the 11 postings above (5 x SWE III, 6 x Senior SWE)
+    data-structures-algorithms: 10
+    design-and-code-reviews: 10
+    debugging-triage: 10
+    accessibility: 9
+    software-design-architecture: 6
+    technical-leadership: 6
+    cpp: 5
+    ml-infra: 4
+    java: 3
+    python: 3
+    go: 3
+    javascript-typescript: 2
+    full-stack: 2
+    distributed-systems: 2
+    large-scale-infrastructure: 2
+    cloud-gcp: 2
+    performance-optimization: 2
+    security-iam: 1
+    api-design: 1
+    file-systems-linux: 1
+    genai-llm: 1
+
+roles:
+  - role: Software Engineer III
+    level: L4
+    loop:
+      - round: Recruiter screen
+        type: HIRING_MANAGER
+        duration_min: 20
+        assesses: Background, exact years of experience, location preference, CTC expectations; recruiter explains the loop and offers 2-4 weeks to prepare.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6522449/
+        seen_on: 2025-03
+      - round: Google Hiring Assessment (some candidates)
+        type: BEHAVIORAL
+        duration_min: 90
+        assesses: >-
+          Workstyle questionnaire (~30 min), then a proctored DSA OA (~60 min, 2 problems,
+          medium + hard DP) for at least one 2026 India L4 candidate. Failing it means a 6-month
+          cooldown.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8551877/
+        seen_on: 2026-10
+      - round: Technical phone screen
+        type: DSA
+        duration_min: 45
+        assesses: One medium problem plus a follow-up in a shared doc (no IDE). Elimination round. Mostly skipped for candidates who interviewed recently.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8525084/
+        seen_on: 2026-09
+      - round: Googleyness & Leadership (screening stage in 2026 India loops)
+        type: BEHAVIORAL
+        duration_min: 45
+        assesses: >-
+          Roughly 6-10 STAR questions on conflict, feedback, ambiguity, prioritisation, credit-taking,
+          diversity and helping teammates. In 2026 India L4 loops it runs alongside the phone screen
+          as an elimination round. Earlier loops put it after the coding onsites.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8522064/
+        seen_on: 2026-09
+      - round: Onsite coding x2 (in person, Bengaluru/Hyderabad, often same day)
+        type: DSA
+        duration_min: 45
+        assesses: >-
+          Medium-hard problems, often wrapped in a long story that is deliberately vague (clarify
+          first), with one or two follow-ups. Graphs, BFS/Dijkstra, union-find, intervals, DP and
+          binary search on the answer come up most. Interviewers score code quality and modularity
+          (helper functions, classes) and self-driven testing as well as correctness. Older or
+          virtual loops had 3 coding rounds; L4 can also choose 2 coding + 1 system design.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8522064/
+        seen_on: 2026-09
+      - round: Extra / re-round (conditional)
+        type: DSA
+        duration_min: 45
+        assesses: Added when one coding round is weak or the hiring committee asks for more signal.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/7164554/
+        seen_on: 2025-09
+      - round: Team match (hiring-manager calls)
+        type: HIRING_MANAGER
+        duration_min: 30
+        assesses: >-
+          Fit with a specific team: past projects, a deep dive into one project, career goals. Can
+          take days or months, and one HM call per team (several are common). The HM may give a
+          Statement of Support that feeds into the hiring committee.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/8473279/
+        seen_on: 2026-08
+      - round: Hiring committee + offer
+        type: HIRING_MANAGER
+        duration_min: 0
+        assesses: >-
+          Packet review (interviewer write-ups, not just Hire/No Hire scores). Can approve, ask for
+          another round, or down-level (L5 to L4, L4 to L3).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6426991/
+        seen_on: 2025-02
+    bar: >-
+      Solve a medium-hard problem plus its follow-up in about 35 minutes of a 45-minute round. Ask
+      clarifying questions, get to an optimal or near-optimal approach with little help, write clean,
+      modular code (one-function solutions have been marked down for readability), and dry-run your
+      own test cases. Mixed feedback (one Lean Hire / Lean No Hire) can still pass, but packets with
+      repeated "code quality" or "missed edge cases" notes get rejected or down-levelled.
+  - role: Senior Software Engineer
+    level: L5
+    loop:
+      - round: Recruiter screen
+        type: HIRING_MANAGER
+        duration_min: 30
+        assesses: Background and level calibration; explains the format (3 DSA + 1 system design + 1 G&L).
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6668243/
+        seen_on: 2025-04
+      - round: Technical phone screen
+        type: DSA
+        duration_min: 45
+        assesses: One medium graph/tree problem. Sometimes skipped based on a previous Google interview.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/5285771/
+        seen_on: 2024-06
+      - round: Coding x3
+        type: DSA
+        duration_min: 45
+        assesses: >-
+          Same style as L4 but more open-ended, with follow-ups on scaling, concurrency or
+          parallelism (e.g. thread-safe frame buffer, CompletableFuture). Recruiters report SD and
+          G&L are scheduled only after at least 2 Hire calls out of 3.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6668243/
+        seen_on: 2025-04
+      - round: System design
+        type: HLD
+        duration_min: 60
+        assesses: >-
+          The candidate drives a large-scale design end to end: requirements, back-of-envelope
+          estimates, high-level design, deep dives, bottlenecks, then fitting a requirement change.
+          Often a Google-flavoured product (Sheets, image hosting, News feed, cab service,
+          Assistant dedup), drawn in Google Docs/Drawings. A Lean Hire here has ended L5 loops.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6349651/
+        seen_on: 2025-01
+      - round: Googleyness & Leadership
+        type: BEHAVIORAL
+        duration_min: 45
+        assesses: STAR stories showing emergent leadership, conflict handling, mentoring, ambiguity, cross-team influence.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/5576037/
+        seen_on: 2024-08
+      - round: Team match + hiring committee
+        type: HIRING_MANAGER
+        duration_min: 30
+        assesses: >-
+          Several HM calls. Statement of Support from an HM. HC can approve L5, down-level to L4
+          (then L4 team match), or ask for an extra SD/coding round. References may be requested.
+        confidence: claimed
+        source: https://leetcode.com/discuss/post/6639707/
+        seen_on: 2025-04
+    bar: >-
+      L5 needs the L4 coding bar (2 of 3 coding rounds at Hire or better) plus a system design round
+      the candidate drives: scoping, estimates, trade-offs (SQL vs NoSQL, consistency, caching),
+      bottlenecks and absorbing new requirements without starting over. Senior postings add design
+      and architecture plus about a year of tech-lead scope. A strong SD with weak coding has led to
+      down-levelling to L4, and weak SD with strong coding to rejection.
+
+sources:
+  - url: https://www.google.com/about/careers/applications/how-we-hire/
+    title: Our hiring process - Google Careers (rendered in browser)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://www.google.com/about/careers/applications/interview-tips/
+    title: "Interviewing at Google: Best practices, advice, and tips"
+    accessed: 2026-10-07
+    kind: official
+  - url: https://www.google.com/about/careers/applications/buildyourfuture/resources/
+    title: Google Careers Resources (target of techdevguide.withgoogle.com redirect)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices
+    title: Google re:Work - A guide to structured interviewing
+    accessed: 2026-10-07
+    kind: official
+  - url: https://www.google.com/about/careers/applications/jobs/results/?location=Bengaluru%20Karnataka%20India&q=%22Software%20Engineer%20III%22
+    title: Google Careers job search (SWE III / Senior SWE, Bengaluru + Hyderabad; 11 postings fetched, listed under official.job_postings)
+    accessed: 2026-10-07
+    kind: official
+  - url: https://www.cxodigitalpulse.com/google-reinstates-in-person-job-interviews-amid-rising-ai-cheating-concerns/
+    title: Google reinstates in-person job interviews amid AI cheating concerns (reports Pichai town hall / CNBC)
+    accessed: 2026-10-07
+    kind: article
+  - url: https://www.educative.io/blog/googleyness-preparation
+    title: Googleyness preparation (third-party, quotes Google prep-pack attributes) - search snippet only
+    accessed: 2026-10-07
+    kind: article
+  - url: https://igotanoffer.com/blogs/tech/googleyness-leadership-interview-questions
+    title: Googleyness & Leadership interview questions (403 on fetch; snippet only)
+    accessed: 2026-10-07
+    kind: article
+  - url: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Google/2.%20Three%20Months.csv
+    title: LeetCode company-wise problems - Google, last 3 months (repo updated 2026-08-16)
+    accessed: 2026-10-07
+    kind: aggregate-list
+  - url: https://leetcode.com/discuss/post/8525983/
+    title: Questions asked by Google in past 6 months - L3/L4 (compilation, 2026-09)
+    accessed: 2026-10-07
+    kind: aggregate-list
+  - url: https://leetcode.com/discuss/post/8546037/
+    title: Google 2026 interviews - 8 LeetCode problems confirmed sighted (2026-09)
+    accessed: 2026-10-07
+    kind: aggregate-list
+  - url: https://leetcode.com/discuss/post/6596001/
+    title: Google latest interview experiences (March 2025 compilation)
+    accessed: 2026-10-07
+    kind: aggregate-list
+  - url: https://leetcode.com/discuss/post/5963463/
+    title: Googlyness frequently asked questions (2024-10)
+    accessed: 2026-10-07
+    kind: forum
+  - url: https://leetcode.com/discuss/post/8551877/
+    title: Google | L4 | India | Aug 2026 | Reject (OA + Googlyness + DSA screen)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8525084/
+    title: Google L4 | Interview Experience Aug 2026
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8522064/
+    title: Google SWE-III (L4) Interview Experience, India (2026-09)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8473279/
+    title: Google SWE III (L4) - Onsite & Team Matching Timeline, Bangalore (2026-08)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8355549/
+    title: L4 Google | Bangalore (2026-06)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8265899/
+    title: Google L4 Interview || Reject, Bengaluru (2026-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8218498/
+    title: Google L4 In-person Interview, BLR (2026-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/8323418/
+    title: L5 Google | Coding Round | Design CompletableFuture (2026-06)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7631077/
+    title: Extremely sad Google L5 interview experience (2026-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7624444/
+    title: Google L5 Interview Experience (2026-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7469970/
+    title: Google system design rounds - employee cab service (2026-01)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7390147/
+    title: Google system design round turned into behavioral/coding (2025-12)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7164554/
+    title: Google L4 India Interview Experience (HC down-level to L3) (2025-09)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7093123/
+    title: Google G&L (Googleyness) Round | SWE III ML | Bengaluru (2025-08)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7093091/
+    title: Google L4 | Interview Experience | India | Fullstack (2025-08)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/7020053/
+    title: Google system design - Assistant multi-device dedup (2025-07)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6846591/
+    title: "[Google L4 Onsite] DSA Interview Questions + Feedback (2025-06)"
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6796476/
+    title: Google India Software Engineer L4 Interview Experience (2025-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6782644/
+    title: Google L5 Interview Experience (2025-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6775581/
+    title: Google L4 - Interview experience, India (2025-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6743327/
+    title: Google L4 googlyness round (2025-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6735411/
+    title: Google L4 onsite questions (2025-05)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6668243/
+    title: Google India - Sr Software Eng (L5) [Hired] (2025-04)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6639707/
+    title: Google L5 Interview Experience (down-levelled to L4) (2025-04)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6634286/
+    title: Google India L4 Interview Experience (2025-04)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6584641/
+    title: Google L4 Interview Experience, Bangalore (2025-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6552739/
+    title: Google L5 interview experience [Selected] (2025-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6522571/
+    title: Google L5 Interview | January 2025
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6522449/
+    title: Google Phone Screening Round [India] (2025-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6492044/
+    title: Google | L4 | SWE 3 | Bangalore (2025-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6479658/
+    title: Google | L4 | SWE 3 | India | Interview Experience & Journey (2025-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6479105/
+    title: Google L5 interview experience (rejected) (2025-03)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6426991/
+    title: Google | L4 | Hyderabad | Jan 2025 [Offer]
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6372760/
+    title: Google | SWE-III (L4) | Bangalore | Dec 2024 [Offer]
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6349651/
+    title: Google | L5 | Bangalore | Selected (2025-01)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5898854/
+    title: L5 Google | Interview Exp. | Rejected (2024-10)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5946687/
+    title: Google | L5 | Rejected after system design (2024-10)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5885342/
+    title: Google L5 Interview Experience India [Offer] (2024-10)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5576037/
+    title: Google | L5 | Bangalore | July 2024 | Offer (HC, SoS, VP approval notes)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5534774/
+    title: Google System Design | L5 | Reject (2024-07)
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5529760/
+    title: Google | L5 | Bangalore | May 2024
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/5285771/
+    title: Google | L5 | Bangalore | Apr 2024 [Offer]
+    accessed: 2026-10-07
+    kind: interview-report
+  - url: https://www.glassdoor.co.uk/Interview/Google-Interview-E9079-RVW97996598.htm
+    title: Glassdoor Google interview review, Hyderabad May 2025 (search snippet only; not fetched)
+    accessed: 2026-10-07
+    kind: forum

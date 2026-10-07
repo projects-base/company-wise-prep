@@ -1,0 +1,65 @@
+method: isTaxicab
+tests:
+- name: Example 1
+  input: |
+    1729
+  expected: |
+    true
+- name: Example 2
+  input: |
+    2
+  expected: |
+    false
+- name: Example 3
+  input: |
+    87539319
+  expected: |
+    false
+- name: n = 1
+  hidden: true
+  input: |
+    1
+  expected: |
+    false
+- name: 4104 = 2^3+16^3 = 9^3+15^3
+  hidden: true
+  input: |
+    4104
+  expected: |
+    true
+- name: Four ways (6963472309248)
+  hidden: true
+  input: |
+    6963472309248
+  expected: |
+    false
+- name: Five ways (48988659276962496)
+  hidden: true
+  input: |
+    48988659276962496
+  expected: |
+    false
+- name: Large, exactly two ways
+  hidden: true
+  input: |
+    1729000000000000000
+  expected: |
+    true
+- name: 2*10^18 has one way
+  hidden: true
+  input: |
+    2000000000000000000
+  expected: |
+    false
+- name: Large, exactly two ways (not a round number)
+  hidden: true
+  input: |
+    1723818185271000
+  expected: |
+    true
+- name: Large prime-ish, no way
+  hidden: true
+  input: |
+    1999999999999999973
+  expected: |
+    false

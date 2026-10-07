@@ -1,0 +1,22 @@
+slug: design-central-hr-system-integration
+title: Integrate a central HR system with many local HR systems
+type: HLD
+difficulty: medium
+tags:
+- integration
+- event-driven
+- data-sync
+- security
+leetcode: null
+prompt: |
+  Integrate a central HR system with multiple local HR systems with data synchronisation and secure communication.
+follow_ups:
+- Central ERP integrated with many local business applications.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: System integration
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6552739/

@@ -1,0 +1,22 @@
+slug: reliable-multicast-protocol
+title: Design a Reliable Multicast Transfer Protocol
+type: DOMAIN
+difficulty: hard
+tags:
+- networking
+- multicast
+- protocol-design
+- low-latency
+leetcode: null
+prompt: |
+  Multicast packets can be dropped. Design a reliable transfer protocol using multicast to N hosts on a company network.
+follow_ups:
+- Sequence numbers + NACK-based retransmission vs. ACK implosion; gap fill and snapshot recovery.
+academy: []
+sightings:
+- company: tower-research
+  role: Senior Software Engineer
+  round: Online test (subjective)
+  seen_on: 2022-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1764282/

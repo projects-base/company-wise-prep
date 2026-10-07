@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        IO in = IO.stdin();
+        String s = in.nextString();
+        int k = in.nextInt();
+        IO.print(new Solution().characterReplacement(s, k));
+    }
+}

@@ -1,0 +1,19 @@
+slug: oauth-and-jwt
+title: OAuth and JWT tokens
+type: DOMAIN
+difficulty: medium
+tags:
+- security
+- auth
+leetcode: null
+prompt: |
+  Explain OAuth and JWT tokens (alongside Docker containers/images and sidecar architecture).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: Unknown (aggregated)
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://www.codingkaro.in/jobs-internships/leetcode-interview-experience/Microsoft

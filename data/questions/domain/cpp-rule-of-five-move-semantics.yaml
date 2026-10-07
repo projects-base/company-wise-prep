@@ -1,0 +1,28 @@
+slug: cpp-rule-of-five-move-semantics
+title: Rule of Three/Five, Move Semantics and Vector Reallocation
+type: DOMAIN
+difficulty: medium
+tags:
+- cpp
+- move-semantics
+- raii
+- stl
+leetcode: null
+prompt: |
+  When is the move constructor invoked? Count the string copies in a sequence of vector push_back/std::move calls, including reallocation.
+follow_ups:
+- Why vector only moves on reallocation if the move ctor is noexcept.
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/
+- company: tower-research
+  role: Unknown (aggregated question bank)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://quantvault.org/tower-research-interview-questions.html

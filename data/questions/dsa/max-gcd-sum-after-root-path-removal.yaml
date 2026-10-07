@@ -1,0 +1,21 @@
+slug: max-gcd-sum-after-root-path-removal
+title: Maximise Sum of Component GCDs After Removing a Root Path
+type: DSA
+difficulty: hard
+tags:
+- tree
+- gcd
+- dp
+- dfs
+leetcode: null
+prompt: |
+  Rooted tree with values; delete every node on the path from root to some v. Maximise the sum over remaining components of the GCD of each component (mod 1e9+7). N up to 2e5.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SWE 1 (2026 grad)
+  round: Online assessment
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8472422/

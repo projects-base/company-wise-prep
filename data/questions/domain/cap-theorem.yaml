@@ -1,0 +1,18 @@
+slug: cap-theorem
+title: CAP theorem
+type: DOMAIN
+difficulty: medium
+tags:
+- distributed-systems
+leetcode: null
+prompt: |
+  What is the CAP theorem (alongside thread vs process and network-protocol questions).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R4 Hiring manager
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326149/

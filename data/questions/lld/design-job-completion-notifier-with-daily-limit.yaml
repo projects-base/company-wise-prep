@@ -1,0 +1,20 @@
+slug: design-job-completion-notifier-with-daily-limit
+title: Job-completion Notifier with Per-user Daily Limit
+type: LLD
+difficulty: medium
+tags:
+- observer-pattern
+- strategy-pattern
+- rate-limiting
+leetcode: null
+prompt: |
+  N jobs, each tied to a user; on completion notify via email or SMS; configurable limit (initially 2/day/user); overflow notifications retried next day.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R3 LLD
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5299198/

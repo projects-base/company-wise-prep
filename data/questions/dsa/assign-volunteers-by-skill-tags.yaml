@@ -1,0 +1,20 @@
+slug: assign-volunteers-by-skill-tags
+title: Assign questions to volunteers by matching skill tags
+type: DSA
+difficulty: hard
+tags:
+- graph
+- bipartite-matching
+- greedy
+leetcode: null
+prompt: |
+  Optimally assign questions to volunteers where each question and volunteer has tags and a volunteer can only take questions matching their tags.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2025-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6846591/

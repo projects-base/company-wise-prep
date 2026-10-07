@@ -1,0 +1,21 @@
+slug: design-news-summary-app
+title: Design Inshorts (news summaries)
+type: HLD
+difficulty: medium
+tags:
+- crawling
+- dedup
+- feed
+leetcode: null
+prompt: |
+  Design an Inshorts-style news summary app.
+follow_ups:
+- How do you avoid duplicate summaries of the same story from different sources?
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

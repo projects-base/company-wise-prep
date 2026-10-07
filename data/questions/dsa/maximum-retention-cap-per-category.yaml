@@ -1,0 +1,20 @@
+slug: maximum-retention-cap-per-category
+title: Largest per-category cap X under a global entry limit
+type: DSA
+difficulty: medium
+tags:
+- binary-search
+- sorting
+- greedy
+leetcode: null
+prompt: |
+  Entries grouped by category; keep all entries of categories with <= X entries and the latest X otherwise. Maximise X so total retained <= max_entries.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 3
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6584641/

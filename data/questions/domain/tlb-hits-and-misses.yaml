@@ -1,0 +1,20 @@
+slug: tlb-hits-and-misses
+title: Simulate TLB Hits and Misses
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- tlb
+- simulation
+leetcode: null
+prompt: |
+  Coding exercise: given a sequence of memory accesses, count TLB hits and misses.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Developer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.tradermath.org/articles/tower-research-capital-interview-guide

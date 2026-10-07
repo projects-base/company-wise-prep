@@ -1,0 +1,22 @@
+slug: design-short-video-news-feed
+title: Design a TikTok-style Google News
+type: HLD
+difficulty: hard
+tags:
+- feed
+- ranking
+- recommendation
+- cdn
+leetcode: null
+prompt: |
+  Design a short-form, swipeable news feed (TikTok-style Google News).
+follow_ups:
+- Interviewer changes the problem statement once the first design is done.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Additional system design
+  seen_on: 2025-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6349651/

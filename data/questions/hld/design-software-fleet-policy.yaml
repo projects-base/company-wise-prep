@@ -1,0 +1,19 @@
+slug: design-software-fleet-policy
+title: Design Software Version and Blocklist Enforcement for a Fleet
+type: HLD
+difficulty: hard
+tags:
+- policy-engine
+- fleet-management
+leetcode: null
+prompt: |
+  Machines come and go; auto-install new software versions; flag blocked software with priority-based actions (RED auto-remove, YELLOW notify user).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure, Hyderabad)
+  round: R3 HLD
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5299357/

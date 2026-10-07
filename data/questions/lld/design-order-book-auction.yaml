@@ -1,0 +1,20 @@
+slug: design-order-book-auction
+title: Order book / auction matching (lowest bid executes)
+type: LLD
+difficulty: medium
+tags:
+- heap
+- ordered-map
+- design
+leetcode: null
+prompt: |
+  Design an order-book/auction system that accepts bids and executes the lowest bid price.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

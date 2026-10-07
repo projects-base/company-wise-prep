@@ -1,0 +1,19 @@
+slug: design-vending-machine
+title: Design a Vending Machine
+type: LLD
+difficulty: medium
+tags:
+- state-pattern
+- solid
+leetcode: null
+prompt: |
+  Vending machine (or parking lot) LLD with deep dive on SOLID and State/Strategy patterns.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62, Bengaluru)
+  round: R2 LLD
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7769548/

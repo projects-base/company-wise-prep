@@ -1,0 +1,20 @@
+slug: design-task-scheduler
+title: Design a Task Scheduler (Cron/Airflow-like)
+type: LLD
+difficulty: hard
+tags:
+- dag
+- observer-pattern
+- concurrency
+leetcode: null
+prompt: |
+  One-time and recurring tasks, dependencies (B after A), thread-safe concurrent execution.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R2 LLD / machine coding
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7711794/

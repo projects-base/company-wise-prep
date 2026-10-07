@@ -1,0 +1,56 @@
+method: numberOfPatterns
+tests:
+- name: Example 1
+  input: |
+    1
+    1
+  expected: |
+    9
+- name: Example 2
+  input: |
+    1
+    2
+  expected: |
+    65
+- name: Exactly three dots
+  hidden: true
+  input: |
+    3
+    3
+  expected: |
+    320
+- name: Exactly four dots
+  hidden: true
+  input: |
+    4
+    4
+  expected: |
+    1624
+- name: All lengths
+  hidden: true
+  input: |
+    1
+    9
+  expected: |
+    389497
+- name: Full nine-dot patterns only
+  hidden: true
+  input: |
+    9
+    9
+  expected: |
+    140704
+- name: Lengths 4 to 9 (real Android rule)
+  hidden: true
+  input: |
+    4
+    9
+  expected: |
+    389112
+- name: Lengths 2 to 6
+  hidden: true
+  input: |
+    2
+    6
+  expected: |
+    35168

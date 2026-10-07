@@ -1,0 +1,19 @@
+slug: stl-container-internals
+title: How STL Data Structures Are Implemented
+type: DOMAIN
+difficulty: medium
+tags:
+- cpp
+- stl
+leetcode: null
+prompt: |
+  How various STL containers are implemented internally (e.g. vector, map, unordered_map) and their underlying concepts.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE Intern
+  round: Round 1
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5620964/

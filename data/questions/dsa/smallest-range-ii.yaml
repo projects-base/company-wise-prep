@@ -1,0 +1,19 @@
+slug: smallest-range-ii
+title: Smallest Range II
+type: DSA
+difficulty: medium
+tags:
+- greedy
+- sorting
+leetcode: smallest-range-ii
+prompt: |
+  Each element must be changed by +k or -k exactly once; minimise max - min.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (Bangalore)
+  round: R2 LLD
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6603526/

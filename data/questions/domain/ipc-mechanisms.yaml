@@ -1,0 +1,20 @@
+slug: ipc-mechanisms
+title: Inter-Process Communication Methods
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- ipc
+- shared-memory
+leetcode: null
+prompt: |
+  Compare IPC mechanisms (pipes, sockets, shared memory, message queues) and their latency.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

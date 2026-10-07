@@ -1,0 +1,19 @@
+slug: dbms-replica-snapshot-checkpoint
+title: Replica vs snapshot vs checkpoint; deadlock detection
+type: DOMAIN
+difficulty: medium
+tags:
+- database
+- os
+leetcode: null
+prompt: |
+  DBMS: replica vs snapshot vs checkpoint; deadlock detection and prevention; multithreading basics.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: R1 DSA + CS fundamentals
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected

@@ -1,0 +1,26 @@
+slug: virtual-memory-and-paging
+title: Virtual memory, paging and physical vs virtual addressing
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- memory
+- virtual-memory
+leetcode: null
+prompt: |
+  Paging and virtual memory; how physical and virtual addressing work across RAM, SSD and disk.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (Azure)
+  round: R2 DSA + OS / AA
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8477884/
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: 2026-07
+  confidence: claimed
+  source: https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/

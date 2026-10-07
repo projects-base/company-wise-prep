@@ -1,0 +1,20 @@
+slug: cpp-smart-pointers
+title: C++ Smart Pointers
+type: DOMAIN
+difficulty: medium
+tags:
+- cpp
+- memory
+- raii
+leetcode: null
+prompt: |
+  unique_ptr vs shared_ptr vs weak_ptr: ownership, overhead and use cases.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2
+  round: Round 1 (coding + C++)
+  seen_on: 2022-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1890926/

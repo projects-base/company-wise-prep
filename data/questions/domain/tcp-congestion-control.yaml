@@ -1,0 +1,19 @@
+slug: tcp-congestion-control
+title: TCP Congestion Control
+type: DOMAIN
+difficulty: medium
+tags:
+- networking
+- tcp
+leetcode: null
+prompt: |
+  Explain how TCP congestion control works (slow start, congestion avoidance, fast retransmit/recovery).
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Online assessment (theory)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

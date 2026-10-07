@@ -1,0 +1,14 @@
+id: microsoft-2027
+name: Microsoft SDE II / Senior SDE, January 2027
+role: SDE II (62), Senior SDE (63) if HLD mocks land
+companies:
+  microsoft: 1.0
+start: 2026-10-07
+interview: 2027-01-04        # recruiter told: available from the first week of January
+minutes:
+  weekday: 25                # the floor on the worst day; DSA + concepts
+  weekend: 40                # design (LLD/HLD)
+review_days: 3               # the last 3 days: reviews and mocks only
+notes: >-
+  Weekdays DSA, weekends design. Missed days are never "made up": Today resumes the queue.
+  Decide the target level by ~28 Nov on mock evidence. Week of Diwali (~8 Nov) is light.

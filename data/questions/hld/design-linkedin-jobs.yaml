@@ -1,0 +1,20 @@
+slug: design-linkedin-jobs
+title: 'Design LinkedIn Jobs: Posts, Recommendations, Notifications'
+type: HLD
+difficulty: hard
+tags:
+- system-design
+- recommendation
+- notifications
+leetcode: null
+prompt: |
+  Design LinkedIn: how job posts, job recommendations and job notifications work.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Unknown (SDE)
+  round: Round 2
+  seen_on: 2020-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/988571/

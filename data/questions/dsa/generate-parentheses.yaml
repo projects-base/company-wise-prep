@@ -1,0 +1,26 @@
+slug: generate-parentheses
+title: Generate Parentheses
+type: DSA
+difficulty: medium
+tags:
+- backtracking
+- string
+- recursion
+leetcode: generate-parentheses
+prompt: |
+  Generate all well-formed combinations of n pairs of parentheses (asked as a similar problem).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6522449/
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R2 DSA (60 min)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7541629/

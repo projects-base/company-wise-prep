@@ -1,0 +1,21 @@
+slug: watchtower-max-profit
+title: Watchtower height that maximises profit
+type: DSA
+difficulty: medium
+tags:
+- geometry
+- sorting
+- greedy
+leetcode: null
+prompt: |
+  Tower at origin costs H per unit height and covers houses within horizontal distance equal to its height; each covered house pays C. Maximise profit.
+follow_ups:
+- Tower location given; coordinates and costs may be floats.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

@@ -1,0 +1,1946 @@
+[
+ {
+  "slug": "shortest-bridge",
+  "title": "Shortest Bridge",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "dfs",
+   "matrix"
+  ],
+  "leetcode": "shortest-bridge",
+  "prompt": "Binary grid with exactly two islands; return the minimum number of 0s to flip to connect them.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "Technical 1 (DSA + problem solving)",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "shortest-bridge",
+  "title": "Shortest Bridge",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "dfs",
+   "matrix"
+  ],
+  "leetcode": "shortest-bridge",
+  "prompt": "Binary grid with exactly two islands; return the minimum number of 0s to flip to connect them.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2",
+   "round": "Round 2 (DSA)",
+   "seen_on": "2022-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1867832/"
+  }
+ },
+ {
+  "slug": "shortest-bridge",
+  "title": "Shortest Bridge",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "bfs",
+   "dfs",
+   "matrix"
+  ],
+  "leetcode": "shortest-bridge",
+  "prompt": "Binary grid with exactly two islands; return the minimum number of 0s to flip to connect them.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (LeetCode company tag list)",
+   "round": "Unknown",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems"
+  }
+ },
+ {
+  "slug": "max-area-of-island",
+  "title": "Max Area of Island",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dfs",
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "max-area-of-island",
+  "prompt": "Return the size of the largest 4-connected island of 1s in a binary grid.",
+  "follow_ups": [
+   "Interviewer then changed it: you may set one entire row or column to 1s; maximise the largest component (see max-area-after-filling-row-or-column)."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 1 (DSA, 1 hr)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "max-area-after-filling-row-or-column",
+  "title": "Largest Connected Component After Filling One Row or Column",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "union-find",
+   "matrix"
+  ],
+  "leetcode": null,
+  "prompt": "Binary grid; you may set every cell of one chosen row or column to 1. Return the largest possible connected component of 1s.",
+  "follow_ups": [
+   "Avoid the O(R*C*(R+C)) brute force: label components once and, per row/column, sum distinct adjacent component sizes."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 1 (follow-up to Max Area of Island)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "roman-to-integer",
+  "title": "Roman to Integer",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "string",
+   "hashmap"
+  ],
+  "leetcode": "roman-to-integer",
+  "prompt": "Convert a Roman numeral string to its integer value.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 1 (resume + coding, 75 min)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "kth-smallest-element-in-a-bst",
+  "title": "Kth Smallest Element in a BST",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "bst",
+   "inorder"
+  ],
+  "leetcode": "kth-smallest-element-in-a-bst",
+  "prompt": "Return the k-th smallest value in a binary search tree.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 1 (resume + coding, 75 min)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "lfu-cache",
+  "title": "LFU Cache",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "design",
+   "hashmap",
+   "linked-list"
+  ],
+  "leetcode": "lfu-cache",
+  "prompt": "Implement get/put in O(1) with least-frequently-used eviction (LRU among ties).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2",
+   "round": "Round 1 (coding + C++)",
+   "seen_on": "2022-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1890926/"
+  }
+ },
+ {
+  "slug": "shortest-unsorted-continuous-subarray",
+  "title": "Shortest Unsorted Continuous Subarray",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "array",
+   "two-pointers",
+   "monotonic-stack"
+  ],
+  "leetcode": "shortest-unsorted-continuous-subarray",
+  "prompt": "Find the shortest subarray which, if sorted, makes the whole array sorted.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer II",
+   "round": "Round 1 (coding)",
+   "seen_on": "2020-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/959223/"
+  }
+ },
+ {
+  "slug": "subarray-sum-equals-k",
+  "title": "Subarray Sum Equals K",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "prefix-sum",
+   "hashmap",
+   "debugging"
+  ],
+  "leetcode": "subarray-sum-equals-k",
+  "prompt": "Count continuous subarrays whose sum equals a target. In the OA it was a buggy C++ implementation to fix with minimal changes.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer (C++)",
+   "round": "Online test (fix-the-bug, 60 min)",
+   "seen_on": "2022-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/2717817/"
+  }
+ },
+ {
+  "slug": "taxicab-number-check",
+  "title": "Taxicab Number Check (debug)",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "math",
+   "debugging",
+   "cpp"
+  ],
+  "leetcode": null,
+  "prompt": "Fix a buggy C++ function that checks whether n is a sum of two positive cubes in exactly two distinct ways (e.g. 1729).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer (C++)",
+   "round": "Online test (fix-the-bug, 60 min)",
+   "seen_on": "2022-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/2717817/"
+  }
+ },
+ {
+  "slug": "count-abc-strings-no-adjacent-a-one-c",
+  "title": "Count Strings over {a,b,c}: no 'aa', at most one 'c'",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "dp",
+   "combinatorics",
+   "modulo"
+  ],
+  "leetcode": null,
+  "prompt": "Count strings of length k (k<=200) over a,b,c with no two adjacent 'a' and at most one 'c', mod 1e9+7.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Campus hire (SDE)",
+   "round": "Online assessment (campus)",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/3933506/"
+  }
+ },
+ {
+  "slug": "forward-token-routing-game",
+  "title": "Forward Token Routing Game",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "game-theory",
+   "nim",
+   "sprague-grundy"
+  ],
+  "leetcode": null,
+  "prompt": "N nodes with A[i] tokens; a move takes one token from node i to any node j>i. Players alternate; the player who cannot move loses. Who wins?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE-1 (2026 grad)",
+   "round": "Online assessment",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8214911/"
+  }
+ },
+ {
+  "slug": "tree-path-mex-prime-sums",
+  "title": "Sum of Path MEX-P over a Tree",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "number-theory",
+   "rerooting",
+   "dp"
+  ],
+  "leetcode": null,
+  "prompt": "MEX-P(S) = smallest prime that fails to divide some element of S. For each node u of a valued tree, output the sum over all v of MEX-P of the values on the u-v path.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SWE 1 (2026 grad)",
+   "round": "Online assessment",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8395109/"
+  }
+ },
+ {
+  "slug": "max-gcd-sum-after-root-path-removal",
+  "title": "Maximise Sum of Component GCDs After Removing a Root Path",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "gcd",
+   "dp",
+   "dfs"
+  ],
+  "leetcode": null,
+  "prompt": "Rooted tree with values; delete every node on the path from root to some v. Maximise the sum over remaining components of the GCD of each component (mod 1e9+7). N up to 2e5.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SWE 1 (2026 grad)",
+   "round": "Online assessment",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/8472422/"
+  }
+ },
+ {
+  "slug": "classify-completed-cancelled-orders",
+  "title": "Classify Completed and Cancelled Orders",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hashmap",
+   "oop",
+   "simulation"
+  ],
+  "leetcode": null,
+  "prompt": "Given order status events (placed, processed, shipped, delivered, cancelled), identify completed orders (all stages) and cancelled orders; model it with clean classes.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "Technical 2 (DSA + OOP)",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "trie-reverse-string-matching",
+  "title": "Trie Problem Solved by Processing Strings Backwards",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "trie",
+   "string"
+  ],
+  "leetcode": null,
+  "prompt": "A trie problem (not on LeetCode) whose expected complexity required inserting/processing strings in reverse (suffix-style matching). Exact statement not published.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2 (C++ Developer)",
+   "round": "Round 1",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1702584/"
+  }
+ },
+ {
+  "slug": "bellman-ford-shortest-path",
+  "title": "Shortest Paths with Bellman-Ford",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "graph",
+   "bellman-ford",
+   "shortest-path"
+  ],
+  "leetcode": null,
+  "prompt": "An easy OA problem solvable directly with Bellman-Ford (single-source shortest paths with possible negative edges).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2 (C++ Developer)",
+   "round": "Online test",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1702584/"
+  }
+ },
+ {
+  "slug": "uuid-log-search",
+  "title": "UUID Log Search",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "parsing",
+   "string"
+  ],
+  "leetcode": null,
+  "prompt": "Simple parsing program: search a log for entries matching a UUID.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "HackerRank test",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "debug-tree-inorder-nested-maps",
+  "title": "Debug Inorder Traversal of a Map-Based Binary Tree",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "tree",
+   "debugging"
+  ],
+  "leetcode": null,
+  "prompt": "A binary tree implemented with nested maps has a bug in its inorder traversal; find and fix it.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "HackerRank test",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "reservoir-sampling-stream",
+  "title": "Uniform Random Element from a Stream in O(1) Space",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "randomized",
+   "reservoir-sampling",
+   "probability"
+  ],
+  "leetcode": null,
+  "prompt": "An infinite stream is stopped at an arbitrary point; return one of the elements seen so far uniformly at random using O(1) space.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Intern (telephonic round)",
+   "round": "Telephonic round",
+   "seen_on": "2016-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/?p=131014"
+  }
+ },
+ {
+  "slug": "dijkstra-shortest-path",
+  "title": "Shortest Path Between Two Vertices in a Weighted Graph",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dijkstra",
+   "heap"
+  ],
+  "leetcode": null,
+  "prompt": "Weighted undirected graph and two vertices; find the shortest path between them.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Intern (telephonic round)",
+   "round": "Telephonic round",
+   "seen_on": "2016-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/?p=131014"
+  }
+ },
+ {
+  "slug": "insert-delete-getrandom-o1",
+  "title": "Insert Delete GetRandom O(1)",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "array",
+   "randomized",
+   "design"
+  ],
+  "leetcode": "insert-delete-getrandom-o1",
+  "prompt": "Design a set supporting insert, delete and getRandom in O(1) average time.",
+  "follow_ups": [
+   "Make it thread-safe and explain what that costs."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "sliding-window-maximum",
+  "title": "Sliding Window Maximum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "deque",
+   "monotonic-queue",
+   "streaming"
+  ],
+  "leetcode": "sliding-window-maximum",
+  "prompt": "Given a stream of prices, maintain the rolling maximum over the last k ticks.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "basic-calculator",
+  "title": "Basic Calculator (expression evaluation)",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "stack",
+   "parsing"
+  ],
+  "leetcode": "basic-calculator",
+  "prompt": "Parse and evaluate an arithmetic expression string.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "alien-dictionary",
+  "title": "Alien Dictionary",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "topological-sort"
+  ],
+  "leetcode": "alien-dictionary",
+  "prompt": "Derive a letter order from a sorted list of words in an unknown alphabet.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://www.techprep.app/blog/tower-research-interview-process"
+  }
+ },
+ {
+  "slug": "reverse-linked-list-ii",
+  "title": "Reverse Linked List II",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "linked-list"
+  ],
+  "leetcode": "reverse-linked-list-ii",
+  "prompt": "Reverse the nodes of a linked list between positions left and right in one pass.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://www.techprep.app/blog/tower-research-interview-process"
+  }
+ },
+ {
+  "slug": "median-of-two-sorted-arrays",
+  "title": "Median of Two Sorted Arrays",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-search",
+   "array"
+  ],
+  "leetcode": "median-of-two-sorted-arrays",
+  "prompt": "Find the median of two sorted arrays in O(log(m+n)).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://www.techprep.app/blog/tower-research-interview-process"
+  }
+ },
+ {
+  "slug": "convert-binary-search-tree-to-sorted-doubly-linked-list",
+  "title": "Convert BST to Sorted Doubly Linked List",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "linked-list",
+   "inorder"
+  ],
+  "leetcode": "convert-binary-search-tree-to-sorted-doubly-linked-list",
+  "prompt": "Convert a BST in place into a sorted circular doubly linked list.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://www.techprep.app/blog/tower-research-interview-process"
+  }
+ },
+ {
+  "slug": "using-a-robot-to-print-the-lexicographically-smallest-string",
+  "title": "Using a Robot to Print the Lexicographically Smallest String",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "stack",
+   "greedy",
+   "string"
+  ],
+  "leetcode": "using-a-robot-to-print-the-lexicographically-smallest-string",
+  "prompt": "Move characters from s to a stack t and from t to paper to produce the lexicographically smallest output.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (LeetCode company tag list)",
+   "round": "Unknown",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems"
+  }
+ },
+ {
+  "slug": "evaluate-division",
+  "title": "Evaluate Division",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "union-find",
+   "dfs"
+  ],
+  "leetcode": "evaluate-division",
+  "prompt": "Given equations a/b = k, answer division queries or -1 if undeterminable.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (LeetCode company tag list)",
+   "round": "Unknown",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems"
+  }
+ },
+ {
+  "slug": "sliding-window-median",
+  "title": "Sliding Window Median",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "two-heaps",
+   "sliding-window"
+  ],
+  "leetcode": "sliding-window-median",
+  "prompt": "Return the median of every window of size k.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (aggregated question bank)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://quantvault.org/tower-research-interview-questions.html"
+  }
+ },
+ {
+  "slug": "streaming-top-k-sum",
+  "title": "Online Top-K Sum with Updates and Deletes",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "ordered-set",
+   "streaming"
+  ],
+  "leetcode": null,
+  "prompt": "Maintain the sum of the K largest values in a stream that supports inserts and arbitrary deletes, each in O(log N).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (aggregated question bank)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://quantvault.org/tower-research-interview-questions.html"
+  }
+ },
+ {
+  "slug": "streaming-top-k-sum",
+  "title": "Online Top-K Sum with Updates and Deletes",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "ordered-set",
+   "streaming"
+  ],
+  "leetcode": null,
+  "prompt": "Maintain the top-K of a stream of updates with O(log N) per update.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://www.quantt.co.uk/resources/tower-research-interview"
+  }
+ },
+ {
+  "slug": "tcp-vs-udp",
+  "title": "TCP vs UDP (and why market data uses UDP multicast)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "networking",
+   "tcp",
+   "udp"
+  ],
+  "leetcode": null,
+  "prompt": "Discussion of TCP and UDP: guarantees, handshake, and trade-offs for trading systems.",
+  "follow_ups": [
+   "Walk through the TCP three-way handshake.",
+   "Why are market-data feeds UDP multicast?"
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2 (C++ Developer)",
+   "round": "Round 1 (45 min networking)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1702584/"
+  }
+ },
+ {
+  "slug": "tcp-vs-udp",
+  "title": "TCP vs UDP (and why market data uses UDP multicast)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "networking",
+   "tcp",
+   "udp",
+   "multicast"
+  ],
+  "leetcode": null,
+  "prompt": "TCP vs UDP; why market-data feeds use UDP multicast; the TCP handshake.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "tcp-congestion-control",
+  "title": "TCP Congestion Control",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "networking",
+   "tcp"
+  ],
+  "leetcode": null,
+  "prompt": "Explain how TCP congestion control works (slow start, congestion avoidance, fast retransmit/recovery).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Online assessment (theory)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "reliable-multicast-protocol",
+  "title": "Design a Reliable Multicast Transfer Protocol",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "networking",
+   "multicast",
+   "protocol-design",
+   "low-latency"
+  ],
+  "leetcode": null,
+  "prompt": "Multicast packets can be dropped. Design a reliable transfer protocol using multicast to N hosts on a company network.",
+  "follow_ups": [
+   "Sequence numbers + NACK-based retransmission vs. ACK implosion; gap fill and snapshot recovery."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer",
+   "round": "Online test (subjective)",
+   "seen_on": "2022-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1764282/"
+  }
+ },
+ {
+  "slug": "virtual-address-aliasing-cache",
+  "title": "Two Virtual Pages Mapped to One Physical Page",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "memory",
+   "virtual-memory",
+   "cpu-cache"
+  ],
+  "leetcode": null,
+  "prompt": "What happens if multiple virtual pages map to the same physical address? Does the CPU cache return stale data if you write via one virtual address and read via the other?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer",
+   "round": "Online test (subjective)",
+   "seen_on": "2022-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1764282/"
+  }
+ },
+ {
+  "slug": "rdtsc-serialized-vs-non-serialized",
+  "title": "Serialized vs Non-Serialized RDTSC",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "cpu",
+   "timestamping",
+   "low-latency"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the difference between serialized (RDTSCP / fenced) and non-serialized RDTSC timestamps and why it matters for latency measurement.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer",
+   "round": "Online test (subjective)",
+   "seen_on": "2022-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1764282/"
+  }
+ },
+ {
+  "slug": "cpu-memory-load-path",
+  "title": "What the CPU Does on a mov from Memory",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "cpu",
+   "memory",
+   "tlb",
+   "cpu-cache"
+  ],
+  "leetcode": null,
+  "prompt": "A read from main memory is a mov from an address to a register. Illustrate the entire process and the CPU parts involved (decode, address translation/TLB, caches, memory controller).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer",
+   "round": "Online test (subjective)",
+   "seen_on": "2022-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1764282/"
+  }
+ },
+ {
+  "slug": "cpu-cache-hierarchy",
+  "title": "CPU Cache Hierarchy: Why L1 Is Fast and Small",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpu-cache",
+   "threads",
+   "hardware"
+  ],
+  "leetcode": null,
+  "prompt": "Explain threads and L1/L2/L3 caches: why L1 is fast, its typical size, and why we don't simply make it bigger.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "Technical 1",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "vector-contiguous-memory",
+  "title": "Is std::vector Memory Contiguous? Why and How?",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "cpp",
+   "stl",
+   "memory"
+  ],
+  "leetcode": null,
+  "prompt": "Is vector storage contiguous? Why, and how is growth implemented?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "Technical 1",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "pass-by-value-vs-reference",
+  "title": "Pass-by-Value vs Pass-by-Reference",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "cpp",
+   "language-fundamentals"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the difference between pass-by-value and pass-by-reference and their costs.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "Technical 1",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "cpp-virtual-functions-vtable",
+  "title": "C++ Virtual Functions and vtables",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "cpp",
+   "oop",
+   "vtable"
+  ],
+  "leetcode": null,
+  "prompt": "In-depth: how classes, virtual functions and vtables/vptrs work at a granular level.",
+  "follow_ups": [
+   "Cost of a virtual call vs. a direct call; devirtualisation."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2 (C++ Developer)",
+   "round": "Round 2",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1702584/"
+  }
+ },
+ {
+  "slug": "virtual-destructor",
+  "title": "Virtual Destructors in C++",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpp",
+   "oop",
+   "memory"
+  ],
+  "leetcode": null,
+  "prompt": "Why base classes need a virtual destructor and what goes wrong without one.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (aggregated question bank)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://quantvault.org/tower-research-interview-questions.html"
+  }
+ },
+ {
+  "slug": "cpp-smart-pointers",
+  "title": "C++ Smart Pointers",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpp",
+   "memory",
+   "raii"
+  ],
+  "leetcode": null,
+  "prompt": "unique_ptr vs shared_ptr vs weak_ptr: ownership, overhead and use cases.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2",
+   "round": "Round 1 (coding + C++)",
+   "seen_on": "2022-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1890926/"
+  }
+ },
+ {
+  "slug": "cpp-rule-of-five-move-semantics",
+  "title": "Rule of Three/Five, Move Semantics and Vector Reallocation",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpp",
+   "move-semantics",
+   "raii",
+   "stl"
+  ],
+  "leetcode": null,
+  "prompt": "When is the move constructor invoked? Count the string copies in a sequence of vector push_back/std::move calls, including reallocation.",
+  "follow_ups": [
+   "Why vector only moves on reallocation if the move ctor is noexcept."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "cpp-rule-of-five-move-semantics",
+  "title": "Rule of Three/Five, Move Semantics and Vector Reallocation",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpp",
+   "move-semantics",
+   "raii",
+   "stl"
+  ],
+  "leetcode": null,
+  "prompt": "C++ rule of five: buffer lifetime, moves and vector growth.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (aggregated question bank)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://quantvault.org/tower-research-interview-questions.html"
+  }
+ },
+ {
+  "slug": "stl-container-internals",
+  "title": "How STL Data Structures Are Implemented",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpp",
+   "stl"
+  ],
+  "leetcode": null,
+  "prompt": "How various STL containers are implemented internally (e.g. vector, map, unordered_map) and their underlying concepts.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE Intern",
+   "round": "Round 1",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5620964/"
+  }
+ },
+ {
+  "slug": "cpp-memory-leak-debugging",
+  "title": "Fix Memory Leaks and Pointer Bugs in C++",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "cpp",
+   "memory",
+   "debugging"
+  ],
+  "leetcode": null,
+  "prompt": "OA 'Pointer Mayhem' / 'Curious Pointers': fix pointer bugs in a string sort and fix leaking memory by editing only allowed parts.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Senior Software Engineer (C++)",
+   "round": "Online test (fix-the-bug)",
+   "seen_on": "2022-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/2717817/"
+  }
+ },
+ {
+  "slug": "virtual-memory-page-faults",
+  "title": "Virtual Memory and Page Faults",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "virtual-memory"
+  ],
+  "leetcode": null,
+  "prompt": "Explain virtual memory, page tables and what happens on a page fault.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "ipc-mechanisms",
+  "title": "Inter-Process Communication Methods",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "ipc",
+   "shared-memory"
+  ],
+  "leetcode": null,
+  "prompt": "Compare IPC mechanisms (pipes, sockets, shared memory, message queues) and their latency.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "kernel-bypass-networking",
+  "title": "Kernel-Bypass Networking",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "networking",
+   "low-latency",
+   "kernel-bypass"
+  ],
+  "leetcode": null,
+  "prompt": "What kernel bypass is and why low-latency trading uses it.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "branch-prediction-builtin-expect",
+  "title": "Branch Prediction and __builtin_expect",
+  "type": "DOMAIN",
+  "difficulty": "hard",
+  "tags": [
+   "cpu",
+   "branch-prediction",
+   "low-latency",
+   "cpp"
+  ],
+  "leetcode": null,
+  "prompt": "Optimise branch prediction in a tight loop, e.g. with compiler hints like __builtin_expect.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://www.quantt.co.uk/resources/tower-research-interview"
+  }
+ },
+ {
+  "slug": "tlb-hits-and-misses",
+  "title": "Simulate TLB Hits and Misses",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "tlb",
+   "simulation"
+  ],
+  "leetcode": null,
+  "prompt": "Coding exercise: given a sequence of memory accesses, count TLB hits and misses.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Developer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.tradermath.org/articles/tower-research-capital-interview-guide"
+  }
+ },
+ {
+  "slug": "copy-on-write-page-counts",
+  "title": "Copy-on-Write Page Counts",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "fork",
+   "copy-on-write"
+  ],
+  "leetcode": null,
+  "prompt": "Coding exercise: track how many physical pages exist as processes fork and write under copy-on-write.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Developer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.tradermath.org/articles/tower-research-capital-interview-guide"
+  }
+ },
+ {
+  "slug": "bankers-algorithm-deadlock",
+  "title": "Banker's Algorithm for Deadlock",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "os",
+   "deadlock"
+  ],
+  "leetcode": null,
+  "prompt": "Apply the Banker's algorithm to decide whether a state is safe / detect deadlock.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Online assessment (theory)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "sql-injection-prevention",
+  "title": "Preventing SQL Injection",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "security",
+   "database"
+  ],
+  "leetcode": null,
+  "prompt": "How to prevent SQL injection.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Online assessment (theory)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "db-indexing-partitioning-sharding",
+  "title": "Indexes, Partitioning and Sharding",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "database",
+   "indexing",
+   "sharding"
+  ],
+  "leetcode": null,
+  "prompt": "Why not add many indexes? What is partitioning, and what is sharding?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "Technical 1",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "debug-binary-strace-ld-library-path",
+  "title": "Debug a C Binary on Linux (strace, LD_LIBRARY_PATH)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "linux",
+   "debugging"
+  ],
+  "leetcode": null,
+  "prompt": "Run a provided C binary to extract data: fix the shared-library path via LD_LIBRARY_PATH and use strace to find the config file it is looking for.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "HackerRank test",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "expected-max-updates-random-permutation",
+  "title": "Expected Number of Max Updates over a Random Permutation",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "puzzle",
+   "probability",
+   "expectation"
+  ],
+  "leetcode": null,
+  "prompt": "Scanning a uniformly random permutation of n distinct numbers while tracking the running maximum, what is the expected number of updates?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Intern (telephonic round)",
+   "round": "Telephonic round",
+   "seen_on": "2016-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/?p=131014"
+  }
+ },
+ {
+  "slug": "race-to-50-game",
+  "title": "Race to 50 (pick 1-10)",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "puzzle",
+   "game-theory"
+  ],
+  "leetcode": null,
+  "prompt": "Two players alternately pick a number from 1 to 10, adding to a running sum; whoever makes the sum exactly 50 wins. Find a winning strategy.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Intern (telephonic round)",
+   "round": "Telephonic round",
+   "seen_on": "2016-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/?p=131014"
+  }
+ },
+ {
+  "slug": "equidistant-points-on-sphere",
+  "title": "Max Equidistant Points on a Sphere",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "puzzle",
+   "geometry"
+  ],
+  "leetcode": null,
+  "prompt": "What is the maximum number of points on a sphere's surface that are all mutually equidistant?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Intern (telephonic round)",
+   "round": "Telephonic round",
+   "seen_on": "2016-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/?p=131014"
+  }
+ },
+ {
+  "slug": "java-inheritance-oa",
+  "title": "Implement Inheritance from a Java Template",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "oop",
+   "inheritance"
+  ],
+  "leetcode": null,
+  "prompt": "OA coding task: implement a class hierarchy using inheritance in a given Java template to pass test cases.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Online assessment (coding)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "java-equals-vs-double-equals-hashcode",
+  "title": "== vs equals() and the equals/hashCode Contract",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "object",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between == and equals in Java, and how equals and hashCode must relate.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 2 (Java rapid-fire, 45 min)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "java-hashmap-internals",
+  "title": "HashMap / Map Implementation",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "hashmap",
+   "collections"
+  ],
+  "leetcode": null,
+  "prompt": "How HashMap and the Map interface are implemented (buckets, hashing, collisions, resize, treeification).",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 2 (Java rapid-fire, 45 min)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "java-string-immutability",
+  "title": "String Immutability and String Storage",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "string",
+   "memory"
+  ],
+  "leetcode": null,
+  "prompt": "Why are Java Strings immutable and where are they stored (string pool / heap)?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 2 (Java rapid-fire, 45 min)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "deep-vs-shallow-copy",
+  "title": "Deep vs Shallow Copy",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "oop"
+  ],
+  "leetcode": null,
+  "prompt": "Explain deep vs shallow copy.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 2 (Java rapid-fire, 45 min)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "java-stack-vs-heap-memory",
+  "title": "Stack vs Heap: What Happens on int a = 10?",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "jvm",
+   "memory"
+  ],
+  "leetcode": null,
+  "prompt": "Heap vs stack memory; where primitives and objects live; what happens when you execute int a = 10.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 2 (Java rapid-fire, 45 min)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "java-final-and-synchronized-methods",
+  "title": "final Methods and synchronized Method Access",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "concurrency",
+   "oop"
+  ],
+  "leetcode": null,
+  "prompt": "Semantics of the final keyword on methods; which threads can enter synchronized methods of the same object concurrently.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Online assessment (theory)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "lock-free-stack-atomic-reference",
+  "title": "Synchronized Stack Using Only AtomicReference",
+  "type": "JAVA",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "lock-free",
+   "cas"
+  ],
+  "leetcode": null,
+  "prompt": "Implement a thread-safe stack without primitive locks, using only atomic references (CAS / Treiber stack).",
+  "follow_ups": [
+   "ABA problem and how to avoid it."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2",
+   "round": "Round 3 (LLD)",
+   "seen_on": "2022-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1867832/"
+  }
+ },
+ {
+  "slug": "jdbc-connection-pooling",
+  "title": "Connection Pooling and the DB Connection Process",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "spring-boot",
+   "jdbc",
+   "connection-pool"
+  ],
+  "leetcode": null,
+  "prompt": "What connection pooling is, how a database connection is established, and which Spring Boot classes manage connections.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 1 (Backend Post Trade, Java)",
+   "round": "Technical 2 (Java rapid-fire, 45 min)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6375258/"
+  }
+ },
+ {
+  "slug": "design-order-book",
+  "title": "Design an Order Book",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "order-book",
+   "data-structures",
+   "low-latency",
+   "trading"
+  ],
+  "leetcode": null,
+  "prompt": "Sketch a limit order book and defend the data structures under the bid and ask sides.",
+  "follow_ups": [
+   "Matching engine: price-time priority, cancel/modify in O(1)."
+  ],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.techinterview.org/post/3233476792/how-tower-research-capital-interviews-engineers/"
+  }
+ },
+ {
+  "slug": "design-order-book",
+  "title": "Design an Order Book",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "order-book",
+   "matching-engine",
+   "trading"
+  ],
+  "leetcode": null,
+  "prompt": "Order Book / matching engine design.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://www.techprep.app/blog/tower-research-interview-process"
+  }
+ },
+ {
+  "slug": "design-hft-system-observer-callbacks",
+  "title": "LLD for a High-Frequency Trading System",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "oop",
+   "observer",
+   "callbacks",
+   "trading"
+  ],
+  "leetcode": null,
+  "prompt": "Give a low-level design for a high-frequency trading system; focus on callbacks, observers and the right classes.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2 (C++ Developer)",
+   "round": "Round 2",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1702584/"
+  }
+ },
+ {
+  "slug": "design-bounded-blocking-queue",
+  "title": "Multi-Threaded Buffered Queue",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "producer-consumer",
+   "queue"
+  ],
+  "leetcode": "design-bounded-blocking-queue",
+  "prompt": "Implement a multi-threaded buffered (bounded blocking) queue.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2",
+   "round": "Round 3 (LLD)",
+   "seen_on": "2022-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1867832/"
+  }
+ },
+ {
+  "slug": "task-scheduler-with-wait-and-workers",
+  "title": "Task Scheduler with wait() and a Fixed Worker Pool",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "thread-pool",
+   "queue"
+  ],
+  "leetcode": null,
+  "prompt": "Implement a Task class where task() schedules work and wait() blocks until done; extend to 3 workers with tasks arriving continuously, then further follow-ups under time pressure.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 2 (design/coding)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "design-in-memory-file-system",
+  "title": "Design In-Memory File System",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "design",
+   "trie",
+   "oop"
+  ],
+  "leetcode": "design-in-memory-file-system",
+  "prompt": "Design an in-memory file system with ls, mkdir, addContentToFile, readContentFromFile.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026",
+   "confidence": "claimed",
+   "source": "https://www.techprep.app/blog/tower-research-interview-process"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Web-Request Throttler (Rate Limiter)",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window"
+  ],
+  "leetcode": null,
+  "prompt": "Implement a web-request throttler that limits requests per client per time window.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Developer (aggregated guide)",
+   "round": "Unknown",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.tradermath.org/articles/tower-research-capital-interview-guide"
+  }
+ },
+ {
+  "slug": "low-latency-word-count-over-slow-api",
+  "title": "Book API: Cut Word-Count Latency from ~1 s to 400 µs",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "low-latency",
+   "caching",
+   "indexing",
+   "precomputation"
+  ],
+  "leetcode": null,
+  "prompt": "getBooks() takes 500 ms (1k books); getText(book) returns up to 1B words in 1000 ms. Answer 'count of word W in book B' in 400 µs. What caching / data structures?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Software Engineer (new grad)",
+   "round": "Unknown",
+   "seen_on": "2023-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/4177746/"
+  }
+ },
+ {
+  "slug": "design-linkedin-jobs",
+  "title": "Design LinkedIn Jobs: Posts, Recommendations, Notifications",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "system-design",
+   "recommendation",
+   "notifications"
+  ],
+  "leetcode": null,
+  "prompt": "Design LinkedIn: how job posts, job recommendations and job notifications work.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Unknown (SDE)",
+   "round": "Round 2",
+   "seen_on": "2020-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/988571/"
+  }
+ },
+ {
+  "slug": "rdbms-scaling-vs-nosql",
+  "title": "Scaling an RDBMS and When to Use NoSQL",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "database",
+   "scaling",
+   "nosql"
+  ],
+  "leetcode": null,
+  "prompt": "RDBMS scaling issues, how to handle them, and when NoSQL is the better choice.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 2",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "idempotency-in-payment-systems",
+  "title": "Idempotency in Payment Systems",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "payments",
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "Discuss how to make payment operations idempotent.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE 2",
+   "round": "Round 3 (LLD)",
+   "seen_on": "2022-03",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1867832/"
+  }
+ },
+ {
+  "slug": "design-current-project-without-cloud",
+  "title": "Re-architect Your Current Project Without Public Cloud",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "system-design",
+   "on-prem",
+   "resume-deep-dive"
+  ],
+  "leetcode": null,
+  "prompt": "How would you implement your current project without any public cloud services?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 3 (techno-managerial)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "why-tower-research",
+  "title": "Why Tower Research?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why do you want to join Tower Research?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "Core Software Engineer Intern",
+   "round": "HR",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6939917/"
+  }
+ },
+ {
+  "slug": "why-looking-for-change",
+  "title": "Why Are You Looking for a Change?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why are you looking to leave your current role?",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 3 (techno-managerial)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ },
+ {
+  "slug": "walk-through-current-work",
+  "title": "Walk Me Through Your Current Work / Projects",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "resume-deep-dive"
+  ],
+  "leetcode": null,
+  "prompt": "Walk through your current work and projects; follow-ups probe depth on whatever you mention.",
+  "follow_ups": [],
+  "sighting": {
+   "company": "tower-research",
+   "role": "SDE (Dev Tools team, 9 YOE)",
+   "round": "Round 3 (techno-managerial)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/1689730/"
+  }
+ }
+]

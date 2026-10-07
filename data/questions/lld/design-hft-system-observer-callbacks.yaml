@@ -1,0 +1,21 @@
+slug: design-hft-system-observer-callbacks
+title: LLD for a High-Frequency Trading System
+type: LLD
+difficulty: hard
+tags:
+- oop
+- observer
+- callbacks
+- trading
+leetcode: null
+prompt: |
+  Give a low-level design for a high-frequency trading system; focus on callbacks, observers and the right classes.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2 (C++ Developer)
+  round: Round 2
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1702584/

@@ -1,0 +1,6 @@
+# Reviewed duplicates: <duplicate-slug>: <canonical-slug>
+# Added when merge_staging.py (or a manual scan of non-LeetCode slugs) finds the same question twice.
+why-looking-for-change: why-are-you-looking-for-a-change
+java-hashmap-internals: hashmap-internals
+virtual-memory-page-faults: virtual-memory-and-paging
+feedback-you-received: receiving-negative-feedback

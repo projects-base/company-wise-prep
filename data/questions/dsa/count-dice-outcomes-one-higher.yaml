@@ -1,0 +1,21 @@
+slug: count-dice-outcomes-one-higher
+title: Count dice outcomes where one die beats the other
+type: DSA
+difficulty: medium
+tags:
+- math
+- combinatorics
+- dynamic-programming
+leetcode: null
+prompt: |
+  Two n-faced dice are rolled; count outcomes in which one die shows a strictly higher value than the other.
+follow_ups:
+- Generalise efficiently to k dice.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7164554/

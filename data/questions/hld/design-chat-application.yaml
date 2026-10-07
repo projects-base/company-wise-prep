@@ -1,0 +1,28 @@
+slug: design-chat-application
+title: Design Microsoft Teams Messaging
+type: HLD
+difficulty: hard
+tags:
+- websocket
+- partitioning
+- ordering
+- offline-sync
+- schema
+leetcode: null
+prompt: |
+  Teams messaging: WebSockets vs long polling, 10k+ member groups, chat-history partitioning, sequence numbers vs timestamps for ordering.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R3 HLD
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7711794/
+- company: microsoft
+  role: SDE II
+  round: R1 LLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7518104/

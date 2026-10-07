@@ -1,0 +1,20 @@
+slug: virtual-address-aliasing-cache
+title: Two Virtual Pages Mapped to One Physical Page
+type: DOMAIN
+difficulty: hard
+tags:
+- memory
+- virtual-memory
+- cpu-cache
+leetcode: null
+prompt: |
+  What happens if multiple virtual pages map to the same physical address? Does the CPU cache return stale data if you write via one virtual address and read via the other?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Senior Software Engineer
+  round: Online test (subjective)
+  seen_on: 2022-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1764282/

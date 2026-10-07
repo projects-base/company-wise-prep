@@ -1,0 +1,20 @@
+slug: cpp-memory-leak-debugging
+title: Fix Memory Leaks and Pointer Bugs in C++
+type: DOMAIN
+difficulty: medium
+tags:
+- cpp
+- memory
+- debugging
+leetcode: null
+prompt: |
+  OA 'Pointer Mayhem' / 'Curious Pointers': fix pointer bugs in a string sort and fix leaking memory by editing only allowed parts.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Senior Software Engineer (C++)
+  round: Online test (fix-the-bug)
+  seen_on: 2022-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/2717817/

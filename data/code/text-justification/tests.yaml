@@ -1,0 +1,69 @@
+method: fullJustify
+tests:
+- name: Example 1
+  input: |
+    ["This","is","an","example","of","text","justification."]
+    16
+  expected: |
+    ["This    is    an","example  of text","justification.  "]
+- name: Example 2
+  input: |
+    ["What","must","be","acknowledgment","shall","be"]
+    16
+  expected: |
+    ["What   must   be","acknowledgment  ","shall be        "]
+- name: Example 3
+  input: |
+    ["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"]
+    20
+  expected: |
+    ["Science  is  what we","understand      well","enough to explain to","a  computer.  Art is","everything  else  we","do                  "]
+- name: Single word exactly the width
+  hidden: true
+  input: |
+    ["hello"]
+    5
+  expected: |
+    ["hello"]
+- name: Every word on its own line
+  hidden: true
+  input: |
+    ["ab","cd","ef"]
+    3
+  expected: |
+    ["ab ","cd ","ef "]
+- name: 'Uneven gaps: left gaps get more'
+  hidden: true
+  input: |
+    ["a","b","c","d","efgh"]
+    9
+  expected: |
+    ["a  b  c d","efgh     "]
+- name: Last line keeps single spaces
+  hidden: true
+  input: |
+    ["x","y","z"]
+    10
+  expected: |
+    ["x y z     "]
+- name: Width 1
+  hidden: true
+  input: |
+    ["a","b","c"]
+    1
+  expected: |
+    ["a","b","c"]
+- name: 300 words, width 100
+  hidden: true
+  input: |
+    ["iicd","iegi","iifjfgeg","abaieahcfjef","dahchaab","jbcihaggdfbh","cjfhhbiha","iahiibi","ihafg","bjjgiedhj","diafheij","difeehci","gcbehacgbii","ejjhhhgae","ggg","fgjfih","ijfhjba","gdg","agifa","eafaehbjh","iicfebhijadg","bja","ijcjhcciig","dhahhgb","abeibjdcb","idhfdhdbbh","dcgdidbci","hh","aadafeebc","ebcacahfb","ig","aigfj","h","aae","faiagfdf","bjghaead","h","icchhbg","jibac","ehdfejh","aadbgcafdce","ddgbgf","eaedadecfbi","jh","ahdjc","bdeggdfdahia","e","eeaid","eeegg","afihcdjgcfd","dbjeicgehaab","jh","fehec","bghe","ffcdfibjddab","fefgbfcdif","bjdihhedi","gdfdfc","hei","jb","jidgih","ifa","bjfedghdc","ifaj","cefafgea","i","dggdajgad","ahfdeaifhh","jadjjcdjhhjc","gadjddf","jgdeebiej","a","ag","ea","jj","e","bgegbi","bggcehbfbfbg","jjjdcbdab","ehffcgge","dbfjegea","hajbejg","hg","bd","egdebjejgd","jca","egfbfe","bdhfcihf","ajcacfbgdc","fcda","jeie","adegjafe","ib","gijigaagjh","ddahjjh","b","fadadega","bd","hij","hi","a","idg","ihcdgbieg","eabejeaighif","i","j","jcffagideh","hjejde","idcgeggbj","debbaddhh","c","deacieegf","ciahfa","h","jheh","acad","jecddb","bjagafae","hchfhhjejj","iei","ggfhch","cbeagi","ehgd","i","dhjcebi","ffdgafghahfh","jdjfb","bcc","gjjgcacd","aiihhe","ha","geebgeaaahe","baj","eh","ga","ejchgihbj","a","ejeddaj","faf","fedgabhceif","ihehjbc","fceff","ghb","cgaggdj","iegfdccbdh","jeehjaf","ibgc","jbcfj","b","gbebigcdb","hc","g","jghbg","eaibf","ddidifae","hjjbejidd","cbaigfi","bbdegfbgiihh","aecbih","fgfie","ecgcfee","i","dj","cahdijehg","gcichf","jgdafe","dedbfgdj","dcbdajadca","djhgidfgaf","ihhajbhef","gdeg","bbbgiiihbbh","dfecajahdgie","gdeeefeege","f","bg","eadhciiicgf","caicaahfibf","daajfeecab","caefjdba","bbjibhcge","cicjcedgfhhb","gcjijicadci","bhajdcbjeibc","hfadi","bjje","ihgagdf","jjg","gicfhgedegf","ajhjaadaeeci","jjheeijhjaa","hdedehch","igijfaffce","hhifb","abjeb","gejcbddgfcfg","djbj","fcd","jcgjbf","jea","jb","ci","ccffeccaaddj","ifgf","dgeeccfjajf","ccafccjehd","fc","ebbffdegijhf","dhjiacgje","deaadjc","beache","f","aaafadfgbbj","bcgeb","ajbejfegiag","cbie","ebdahjd","e","egicbecdccc","jfgjfifccag","eccbcie","jaeje","jchd","cddjhfihcda","eb","fdaaicbadd","ecg","bdjegjaec","ghcjgbe","gj","idjjadddhc","b","igacbeaa","ebfeg","jdjhece","eiecgfifjgc","a","gfaaccbg","iefgajjifgg","hdbfdhaeb","ecfeefa","i","bbfha","hdfdahahbgj","gecgccbdbfa","ddbcg","bggfhhdhcj","aggcjdhcbjia","ddihijccb","hgihfjcfdii","egiecifb","fdhbiiecc","ee","gaicebgfbacd","eaicjad","hbjdf","idcfiehhdecf","hfcegbagd","ef","eheche","dfadghjf","bch","ih","cdeji","jbbcidgdejcb","jiigegdc","j","cfiddahgbj","ige","iihcdbddbj","eeee","chfcdi","hbeeejdjd","fabfjffegfjf","fbcjc","iicdegaegae","idgccefdf","a","hbichdaga","bedaf","fjaggbbcbjhj","ffgdba","eghea","a","cchijbgdeigd","gf","ce","jbjg","cfbgfeji","acejdfafaid","diabhhfedbc","iahi","cbc","aafgagb","cicehjhfjiig","jaeedhc","fhfbgjgh","bdhdeaijae","jfhagihac","gaab"]
+    100
+  expected: |
+    ["iicd  iegi  iifjfgeg  abaieahcfjef  dahchaab jbcihaggdfbh cjfhhbiha iahiibi ihafg bjjgiedhj diafheij","difeehci  gcbehacgbii  ejjhhhgae  ggg fgjfih ijfhjba gdg agifa eafaehbjh iicfebhijadg bja ijcjhcciig","dhahhgb  abeibjdcb  idhfdhdbbh  dcgdidbci  hh aadafeebc ebcacahfb ig aigfj h aae faiagfdf bjghaead h","icchhbg jibac ehdfejh aadbgcafdce ddgbgf eaedadecfbi jh ahdjc bdeggdfdahia e eeaid eeegg afihcdjgcfd","dbjeicgehaab jh fehec bghe ffcdfibjddab fefgbfcdif bjdihhedi gdfdfc hei jb jidgih ifa bjfedghdc ifaj","cefafgea  i  dggdajgad  ahfdeaifhh  jadjjcdjhhjc  gadjddf jgdeebiej a ag ea jj e bgegbi bggcehbfbfbg","jjjdcbdab  ehffcgge  dbfjegea  hajbejg  hg  bd  egdebjejgd  jca egfbfe bdhfcihf ajcacfbgdc fcda jeie","adegjafe  ib  gijigaagjh  ddahjjh  b  fadadega bd hij hi a idg ihcdgbieg eabejeaighif i j jcffagideh","hjejde  idcgeggbj  debbaddhh  c  deacieegf  ciahfa h jheh acad jecddb bjagafae hchfhhjejj iei ggfhch","cbeagi  ehgd  i  dhjcebi ffdgafghahfh jdjfb bcc gjjgcacd aiihhe ha geebgeaaahe baj eh ga ejchgihbj a","ejeddaj  faf  fedgabhceif  ihehjbc  fceff ghb cgaggdj iegfdccbdh jeehjaf ibgc jbcfj b gbebigcdb hc g","jghbg  eaibf  ddidifae  hjjbejidd  cbaigfi  bbdegfbgiihh  aecbih fgfie ecgcfee i dj cahdijehg gcichf","jgdafe  dedbfgdj  dcbdajadca  djhgidfgaf  ihhajbhef  gdeg  bbbgiiihbbh  dfecajahdgie gdeeefeege f bg","eadhciiicgf  caicaahfibf  daajfeecab  caefjdba bbjibhcge cicjcedgfhhb gcjijicadci bhajdcbjeibc hfadi","bjje  ihgagdf  jjg gicfhgedegf ajhjaadaeeci jjheeijhjaa hdedehch igijfaffce hhifb abjeb gejcbddgfcfg","djbj fcd jcgjbf jea jb ci ccffeccaaddj ifgf dgeeccfjajf ccafccjehd fc ebbffdegijhf dhjiacgje deaadjc","beache  f  aaafadfgbbj  bcgeb  ajbejfegiag cbie ebdahjd e egicbecdccc jfgjfifccag eccbcie jaeje jchd","cddjhfihcda eb fdaaicbadd ecg bdjegjaec ghcjgbe gj idjjadddhc b igacbeaa ebfeg jdjhece eiecgfifjgc a","gfaaccbg iefgajjifgg hdbfdhaeb ecfeefa i bbfha hdfdahahbgj gecgccbdbfa ddbcg bggfhhdhcj aggcjdhcbjia","ddihijccb  hgihfjcfdii  egiecifb  fdhbiiecc  ee gaicebgfbacd eaicjad hbjdf idcfiehhdecf hfcegbagd ef","eheche dfadghjf bch ih cdeji jbbcidgdejcb jiigegdc j cfiddahgbj ige iihcdbddbj eeee chfcdi hbeeejdjd","fabfjffegfjf  fbcjc iicdegaegae idgccefdf a hbichdaga bedaf fjaggbbcbjhj ffgdba eghea a cchijbgdeigd","gf  ce  jbjg  cfbgfeji  acejdfafaid  diabhhfedbc  iahi  cbc  aafgagb  cicehjhfjiig  jaeedhc fhfbgjgh","bdhdeaijae jfhagihac gaab                                                                           "]
+- name: 300 words, width 13
+  hidden: true
+  input: |
+    ["iicd","iegi","iifjfgeg","abaieahcfjef","dahchaab","jbcihaggdfbh","cjfhhbiha","iahiibi","ihafg","bjjgiedhj","diafheij","difeehci","gcbehacgbii","ejjhhhgae","ggg","fgjfih","ijfhjba","gdg","agifa","eafaehbjh","iicfebhijadg","bja","ijcjhcciig","dhahhgb","abeibjdcb","idhfdhdbbh","dcgdidbci","hh","aadafeebc","ebcacahfb","ig","aigfj","h","aae","faiagfdf","bjghaead","h","icchhbg","jibac","ehdfejh","aadbgcafdce","ddgbgf","eaedadecfbi","jh","ahdjc","bdeggdfdahia","e","eeaid","eeegg","afihcdjgcfd","dbjeicgehaab","jh","fehec","bghe","ffcdfibjddab","fefgbfcdif","bjdihhedi","gdfdfc","hei","jb","jidgih","ifa","bjfedghdc","ifaj","cefafgea","i","dggdajgad","ahfdeaifhh","jadjjcdjhhjc","gadjddf","jgdeebiej","a","ag","ea","jj","e","bgegbi","bggcehbfbfbg","jjjdcbdab","ehffcgge","dbfjegea","hajbejg","hg","bd","egdebjejgd","jca","egfbfe","bdhfcihf","ajcacfbgdc","fcda","jeie","adegjafe","ib","gijigaagjh","ddahjjh","b","fadadega","bd","hij","hi","a","idg","ihcdgbieg","eabejeaighif","i","j","jcffagideh","hjejde","idcgeggbj","debbaddhh","c","deacieegf","ciahfa","h","jheh","acad","jecddb","bjagafae","hchfhhjejj","iei","ggfhch","cbeagi","ehgd","i","dhjcebi","ffdgafghahfh","jdjfb","bcc","gjjgcacd","aiihhe","ha","geebgeaaahe","baj","eh","ga","ejchgihbj","a","ejeddaj","faf","fedgabhceif","ihehjbc","fceff","ghb","cgaggdj","iegfdccbdh","jeehjaf","ibgc","jbcfj","b","gbebigcdb","hc","g","jghbg","eaibf","ddidifae","hjjbejidd","cbaigfi","bbdegfbgiihh","aecbih","fgfie","ecgcfee","i","dj","cahdijehg","gcichf","jgdafe","dedbfgdj","dcbdajadca","djhgidfgaf","ihhajbhef","gdeg","bbbgiiihbbh","dfecajahdgie","gdeeefeege","f","bg","eadhciiicgf","caicaahfibf","daajfeecab","caefjdba","bbjibhcge","cicjcedgfhhb","gcjijicadci","bhajdcbjeibc","hfadi","bjje","ihgagdf","jjg","gicfhgedegf","ajhjaadaeeci","jjheeijhjaa","hdedehch","igijfaffce","hhifb","abjeb","gejcbddgfcfg","djbj","fcd","jcgjbf","jea","jb","ci","ccffeccaaddj","ifgf","dgeeccfjajf","ccafccjehd","fc","ebbffdegijhf","dhjiacgje","deaadjc","beache","f","aaafadfgbbj","bcgeb","ajbejfegiag","cbie","ebdahjd","e","egicbecdccc","jfgjfifccag","eccbcie","jaeje","jchd","cddjhfihcda","eb","fdaaicbadd","ecg","bdjegjaec","ghcjgbe","gj","idjjadddhc","b","igacbeaa","ebfeg","jdjhece","eiecgfifjgc","a","gfaaccbg","iefgajjifgg","hdbfdhaeb","ecfeefa","i","bbfha","hdfdahahbgj","gecgccbdbfa","ddbcg","bggfhhdhcj","aggcjdhcbjia","ddihijccb","hgihfjcfdii","egiecifb","fdhbiiecc","ee","gaicebgfbacd","eaicjad","hbjdf","idcfiehhdecf","hfcegbagd","ef","eheche","dfadghjf","bch","ih","cdeji","jbbcidgdejcb","jiigegdc","j","cfiddahgbj","ige","iihcdbddbj","eeee","chfcdi","hbeeejdjd","fabfjffegfjf","fbcjc","iicdegaegae","idgccefdf","a","hbichdaga","bedaf","fjaggbbcbjhj","ffgdba","eghea","a","cchijbgdeigd","gf","ce","jbjg","cfbgfeji","acejdfafaid","diabhhfedbc","iahi","cbc","aafgagb","cicehjhfjiig","jaeedhc","fhfbgjgh","bdhdeaijae","jfhagihac","gaab"]
+    13
+  expected: |
+    ["iicd     iegi","iifjfgeg     ","abaieahcfjef ","dahchaab     ","jbcihaggdfbh ","cjfhhbiha    ","iahiibi ihafg","bjjgiedhj    ","diafheij     ","difeehci     ","gcbehacgbii  ","ejjhhhgae ggg","fgjfih       ","ijfhjba   gdg","agifa        ","eafaehbjh    ","iicfebhijadg ","bja          ","ijcjhcciig   ","dhahhgb      ","abeibjdcb    ","idhfdhdbbh   ","dcgdidbci  hh","aadafeebc    ","ebcacahfb  ig","aigfj  h  aae","faiagfdf     ","bjghaead    h","icchhbg jibac","ehdfejh      ","aadbgcafdce  ","ddgbgf       ","eaedadecfbi  ","jh      ahdjc","bdeggdfdahia ","e eeaid eeegg","afihcdjgcfd  ","dbjeicgehaab ","jh fehec bghe","ffcdfibjddab ","fefgbfcdif   ","bjdihhedi    ","gdfdfc hei jb","jidgih    ifa","bjfedghdc    ","ifaj cefafgea","i   dggdajgad","ahfdeaifhh   ","jadjjcdjhhjc ","gadjddf      ","jgdeebiej   a","ag  ea  jj  e","bgegbi       ","bggcehbfbfbg ","jjjdcbdab    ","ehffcgge     ","dbfjegea     ","hajbejg hg bd","egdebjejgd   ","jca    egfbfe","bdhfcihf     ","ajcacfbgdc   ","fcda     jeie","adegjafe   ib","gijigaagjh   ","ddahjjh     b","fadadega   bd","hij  hi a idg","ihcdgbieg    ","eabejeaighif ","i           j","jcffagideh   ","hjejde       ","idcgeggbj    ","debbaddhh   c","deacieegf    ","ciahfa h jheh","acad   jecddb","bjagafae     ","hchfhhjejj   ","iei    ggfhch","cbeagi ehgd i","dhjcebi      ","ffdgafghahfh ","jdjfb     bcc","gjjgcacd     ","aiihhe     ha","geebgeaaahe  ","baj   eh   ga","ejchgihbj   a","ejeddaj   faf","fedgabhceif  ","ihehjbc fceff","ghb   cgaggdj","iegfdccbdh   ","jeehjaf  ibgc","jbcfj       b","gbebigcdb  hc","g jghbg eaibf","ddidifae     ","hjjbejidd    ","cbaigfi      ","bbdegfbgiihh ","aecbih  fgfie","ecgcfee  i dj","cahdijehg    ","gcichf jgdafe","dedbfgdj     ","dcbdajadca   ","djhgidfgaf   ","ihhajbhef    ","gdeg         ","bbbgiiihbbh  ","dfecajahdgie ","gdeeefeege  f","bg           ","eadhciiicgf  ","caicaahfibf  ","daajfeecab   ","caefjdba     ","bbjibhcge    ","cicjcedgfhhb ","gcjijicadci  ","bhajdcbjeibc ","hfadi    bjje","ihgagdf   jjg","gicfhgedegf  ","ajhjaadaeeci ","jjheeijhjaa  ","hdedehch     ","igijfaffce   ","hhifb   abjeb","gejcbddgfcfg ","djbj      fcd","jcgjbf jea jb","ci           ","ccffeccaaddj ","ifgf         ","dgeeccfjajf  ","ccafccjehd fc","ebbffdegijhf ","dhjiacgje    ","deaadjc      ","beache      f","aaafadfgbbj  ","bcgeb        ","ajbejfegiag  ","cbie  ebdahjd","e egicbecdccc","jfgjfifccag  ","eccbcie jaeje","jchd         ","cddjhfihcda  ","eb fdaaicbadd","ecg bdjegjaec","ghcjgbe    gj","idjjadddhc  b","igacbeaa     ","ebfeg jdjhece","eiecgfifjgc a","gfaaccbg     ","iefgajjifgg  ","hdbfdhaeb    ","ecfeefa     i","bbfha        ","hdfdahahbgj  ","gecgccbdbfa  ","ddbcg        ","bggfhhdhcj   ","aggcjdhcbjia ","ddihijccb    ","hgihfjcfdii  ","egiecifb     ","fdhbiiecc  ee","gaicebgfbacd ","eaicjad hbjdf","idcfiehhdecf ","hfcegbagd  ef","eheche       ","dfadghjf  bch","ih      cdeji","jbbcidgdejcb ","jiigegdc    j","cfiddahgbj   ","ige          ","iihcdbddbj   ","eeee   chfcdi","hbeeejdjd    ","fabfjffegfjf ","fbcjc        ","iicdegaegae  ","idgccefdf   a","hbichdaga    ","bedaf        ","fjaggbbcbjhj ","ffgdba  eghea","a            ","cchijbgdeigd ","gf   ce  jbjg","cfbgfeji     ","acejdfafaid  ","diabhhfedbc  ","iahi      cbc","aafgagb      ","cicehjhfjiig ","jaeedhc      ","fhfbgjgh     ","bdhdeaijae   ","jfhagihac    ","gaab         "]

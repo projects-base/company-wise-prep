@@ -1,0 +1,28 @@
+slug: moving-average-from-data-stream
+title: Moving average of last n values (excluding k largest)
+type: DSA
+difficulty: medium
+tags:
+- queue
+- heap
+- design
+- sliding-window
+leetcode: moving-average-from-data-stream
+prompt: |
+  For a stream of floats, return the mean of the last n values.
+follow_ups:
+- Exclude the k highest values in the window from the mean.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Phone screen
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6796476/
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/

@@ -1,0 +1,30 @@
+slug: design-image-hosting-service
+title: Design an image/GIF/video hosting service (no sign-up)
+type: HLD
+difficulty: medium
+tags:
+- blob-storage
+- cdn
+- metadata-db
+- async-processing
+leetcode: null
+prompt: |
+  Design a small anonymous image/GIF/video hosting platform: upload, store, serve in multiple formats.
+follow_ups:
+- SQL vs NoSQL for metadata.
+- Background transcoding for slow networks.
+- Interviewer adds new requirements mid-round.
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: System design
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6668243/
+- company: google
+  role: L5
+  round: System design
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5576037/

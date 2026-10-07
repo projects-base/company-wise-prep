@@ -1,0 +1,19 @@
+slug: longest-substring-without-repeating-characters
+title: Longest Substring Without Repeating Characters
+type: DSA
+difficulty: medium
+tags:
+- sliding-window
+- hashmap
+leetcode: longest-substring-without-repeating-characters
+prompt: |
+  Length of the longest substring without repeated characters, sliding window.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 DSA + CS fundamentals (Principal Engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

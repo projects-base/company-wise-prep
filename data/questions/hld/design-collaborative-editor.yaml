@@ -1,0 +1,43 @@
+slug: design-collaborative-editor
+title: Design Google Docs (Collaborative Editor)
+type: HLD
+difficulty: hard
+tags:
+- websocket
+- ot
+- crdt
+- api-design
+- caching
+- permissions
+- consistency
+- conflict-resolution
+leetcode: null
+prompt: |
+  Google Docs HLD: websockets, OT vs CRDT in depth, data structures for storing documents.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62, Noida)
+  round: R3 HLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7770532/
+- company: microsoft
+  role: SDE II (L61, Hyderabad)
+  round: R4 AA (design)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://roundz.substack.com/p/interview-experience-68-microsoft-l61
+- company: microsoft
+  role: SDE II
+  round: R3 HLD (60 min)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7625252/
+- company: microsoft
+  role: Senior Software Engineer (L63, Bangalore)
+  round: R4 HLD
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://roundz.substack.com/p/interview-experience-157-microsoft-sde-l63

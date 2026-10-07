@@ -1,0 +1,22 @@
+slug: shortest-path-escape-from-chaser
+title: Shortest path, nodes on any shortest path, and escaping a chaser
+type: DSA
+difficulty: hard
+tags:
+- graph
+- bfs
+leetcode: null
+prompt: |
+  In an undirected unweighted graph find Alice's shortest path to a destination.
+follow_ups:
+- Return every node that lies on some shortest path.
+- Bob starts elsewhere and moves simultaneously; can Alice reach the destination along a shortest path
+  without being caught?
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525084/

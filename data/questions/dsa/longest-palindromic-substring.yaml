@@ -1,0 +1,21 @@
+slug: longest-palindromic-substring
+title: Longest Palindromic Substring
+type: DSA
+difficulty: medium
+tags:
+- string
+- dp
+- expand-around-center
+- aggregate-list
+leetcode: longest-palindromic-substring
+prompt: |
+  Longest palindromic substring.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Unknown (LeetCode company tag)
+  round: 'Unknown (aggregate-list: LeetCode ''Microsoft'' tag, last 6 months)'
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv

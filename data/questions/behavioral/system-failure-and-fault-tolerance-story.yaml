@@ -1,0 +1,19 @@
+slug: system-failure-and-fault-tolerance-story
+title: A system failure you handled
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- incident
+- fault-tolerance
+leetcode: null
+prompt: |
+  A situation of system failure in your experience and your fault-tolerance strategy; does it cover every aspect?
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Azure Data Factory)
+  round: Interview 3 (team lead)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7417317/

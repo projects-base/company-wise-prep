@@ -1,0 +1,19 @@
+slug: swap-adjacent-in-lr-string
+title: Swap Adjacent in LR String (L/R pieces)
+type: DSA
+difficulty: medium
+tags:
+- two-pointers
+- string
+leetcode: swap-adjacent-in-lr-string
+prompt: |
+  L pieces move only left, R only right, pieces can't jump each other; decide whether the final state is reachable from the initial state.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding 1
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6634286/

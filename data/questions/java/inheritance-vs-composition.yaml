@@ -1,0 +1,18 @@
+slug: inheritance-vs-composition
+title: Inheritance vs composition
+type: JAVA
+difficulty: easy
+tags:
+- oop
+leetcode: null
+prompt: |
+  Difference between inheritance and composition (after making an LRU cache thread-safe and singleton).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62)
+  round: R1 coding
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/

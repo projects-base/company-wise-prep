@@ -1,0 +1,43 @@
+slug: number-of-islands
+title: Number of Islands (with dynamic constraints)
+type: DSA
+difficulty: medium
+tags:
+- matrix
+- dfs
+- bfs
+- union-find
+- graph
+leetcode: number-of-islands
+prompt: |
+  Count islands; reported as an opener followed by constraints added mid-round.
+follow_ups:
+- Why use a graph for a matrix problem?
+- Solve with BFS as well as DFS.
+- If the matrix does not fit in one machine's memory, how do you handle it?
+academy: []
+sightings:
+- company: google
+  role: Unknown
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8546037/
+- company: microsoft
+  role: SDE II (Noida)
+  round: R1 DSA
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498667/
+- company: microsoft
+  role: SDE II (Azure Data Factory)
+  round: Interview 2
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7417317/
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R1 DSA
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498754/

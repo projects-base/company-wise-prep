@@ -1,0 +1,21 @@
+slug: cpu-memory-load-path
+title: What the CPU Does on a mov from Memory
+type: DOMAIN
+difficulty: hard
+tags:
+- cpu
+- memory
+- tlb
+- cpu-cache
+leetcode: null
+prompt: |
+  A read from main memory is a mov from an address to a register. Illustrate the entire process and the CPU parts involved (decode, address translation/TLB, caches, memory controller).
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Senior Software Engineer
+  round: Online test (subjective)
+  seen_on: 2022-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1764282/

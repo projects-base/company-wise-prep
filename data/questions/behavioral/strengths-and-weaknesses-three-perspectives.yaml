@@ -1,0 +1,18 @@
+slug: strengths-and-weaknesses-three-perspectives
+title: Strengths and weaknesses from manager, peers and self
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- self-awareness
+leetcode: null
+prompt: |
+  Write down your strengths and weaknesses as your manager, your peers and you would see them.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R4 Hiring manager
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326149/

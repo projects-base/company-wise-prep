@@ -1,0 +1,41 @@
+slug: course-schedule-ii
+title: Course Schedule II
+type: DSA
+difficulty: medium
+tags:
+- graph
+- topological-sort
+- cycle-detection
+leetcode: course-schedule-ii
+prompt: |
+  Return a valid order to finish all courses given prerequisite pairs, or empty if a cycle exists.
+follow_ups:
+- Report the tasks involved in cyclic dependencies.
+- 'Open discussion: reducing latency, handling high throughput, scalability and fault tolerance.'
+- Follow-up on the same problem in pseudocode.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Screening DSA
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8265899/
+- company: google
+  role: L4
+  round: Phone screen (dependency resolution)
+  seen_on: 2026-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8355549/
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R1
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326149/
+- company: microsoft
+  role: SDE II
+  round: R1 DSA
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7576877/

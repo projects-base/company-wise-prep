@@ -1,0 +1,29 @@
+slug: maximum-subarray
+title: Kadane's algorithm with hashmap follow-up
+type: DSA
+difficulty: medium
+tags:
+- array
+- dynamic-programming
+- kadane
+- dp
+- aggregate-list
+leetcode: maximum-subarray
+prompt: |
+  Standard maximum-subarray (Kadane) question.
+follow_ups:
+- Hashmap-based optimisation follow-up.
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/
+- company: microsoft
+  role: Unknown (LeetCode company tag)
+  round: 'Unknown (aggregate-list: LeetCode ''Microsoft'' tag, last 6 months)'
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv

@@ -1,0 +1,19 @@
+slug: producer-consumer-problem
+title: Producer-consumer problem
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- concurrency
+leetcode: null
+prompt: |
+  OS producer-consumer problem and its high-level implementation (10-15 min).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: R4 Tech + HM
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7422741/

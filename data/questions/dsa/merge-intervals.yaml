@@ -1,0 +1,25 @@
+slug: merge-intervals
+title: Merge car-rental booking intervals
+type: DSA
+difficulty: medium
+tags:
+- intervals
+- sorting
+leetcode: merge-intervals
+prompt: |
+  Merge overlapping rental bookings and return the consolidated schedule.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Onsite coding
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6775581/
+- company: microsoft
+  role: Senior SDE
+  round: Tech screen
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7537838/

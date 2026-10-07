@@ -1,0 +1,19 @@
+slug: amount-of-time-for-binary-tree-to-be-infected
+title: Time to Burn a Binary Tree
+type: DSA
+difficulty: medium
+tags:
+- tree
+- bfs
+leetcode: amount-of-time-for-binary-tree-to-be-infected
+prompt: |
+  Time for fire starting at a target node to spread to the whole tree (nodes had parent pointers).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Software Engineer (3+ YOE)
+  round: R3 DSA (3 problems in 1 h)
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8551527/

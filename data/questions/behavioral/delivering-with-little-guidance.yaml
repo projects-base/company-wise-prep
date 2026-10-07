@@ -1,0 +1,19 @@
+slug: delivering-with-little-guidance
+title: Delivering with little guidance
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- ambiguity
+- ownership
+leetcode: null
+prompt: |
+  Example of delivering with little guidance, with deep follow-ups on prioritisation, rollout and A/B testing.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Unknown (hiring event)
+  round: R3 BQ + coding
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7554394/

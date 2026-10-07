@@ -1,0 +1,18 @@
+slug: longest-repeating-character-replacement
+title: Longest Repeating Character Replacement
+type: DSA
+difficulty: medium
+tags:
+- sliding-window
+leetcode: longest-repeating-character-replacement
+prompt: |
+  Variation; discuss brute force and optimal.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Windows)
+  round: R1 DSA
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8462091/

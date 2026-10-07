@@ -1,0 +1,20 @@
+slug: microservices-communication-grpc-vs-rest-eda
+title: 'Microservices communication: gRPC vs REST vs events'
+type: DOMAIN
+difficulty: medium
+tags:
+- microservices
+- grpc
+- event-driven
+leetcode: null
+prompt: |
+  Microservices vs monolith; how services on different VMs communicate; why gRPC over REST; event-driven architecture, events, benefits and trade-offs.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 DSA + CS fundamentals (Principal Engineer)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

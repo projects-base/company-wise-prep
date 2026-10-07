@@ -1,0 +1,18 @@
+slug: design-music-player
+title: Design a Music App like Spotify
+type: LLD
+difficulty: medium
+tags:
+- oop
+leetcode: null
+prompt: |
+  Classes, interfaces and enums for a music player; pseudocode only.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R3 LLD
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7545165/

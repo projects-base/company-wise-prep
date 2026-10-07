@@ -1,0 +1,20 @@
+slug: convert-binary-search-tree-to-sorted-doubly-linked-list
+title: Convert BST to Sorted Doubly Linked List
+type: DSA
+difficulty: medium
+tags:
+- tree
+- linked-list
+- inorder
+leetcode: convert-binary-search-tree-to-sorted-doubly-linked-list
+prompt: |
+  Convert a BST in place into a sorted circular doubly linked list.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Software Engineer (aggregated guide)
+  round: Unknown
+  seen_on: '2026'
+  confidence: claimed
+  source: https://www.techprep.app/blog/tower-research-interview-process

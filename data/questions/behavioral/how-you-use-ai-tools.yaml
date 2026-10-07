@@ -1,0 +1,19 @@
+slug: how-you-use-ai-tools
+title: How are AI tools helping you?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- ai
+- why-microsoft
+leetcode: null
+prompt: |
+  Why Microsoft? How are AI tools helping you in your projects? One non-technical skill you want to improve.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: AA round
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7636712/

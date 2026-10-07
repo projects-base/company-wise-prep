@@ -1,0 +1,28 @@
+slug: design-payment-system
+title: Design a Payment Service
+type: HLD
+difficulty: hard
+tags:
+- concurrency
+- transactions
+- idempotency
+- retries
+- fraud
+leetcode: null
+prompt: |
+  Payment service like Google Pay; evolved into class/data code and concurrency of debit/credit on both users.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62, Noida)
+  round: R3 HLD (Senior PE)
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7423217/
+- company: microsoft
+  role: Senior Software Engineer
+  round: R3 System design
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7748215/

@@ -1,0 +1,19 @@
+slug: longest-substring-first-char-less-than-last
+title: Longest substring whose first char < last char
+type: DSA
+difficulty: medium
+tags:
+- string
+- greedy
+leetcode: null
+prompt: |
+  For a 1e5-length lowercase string, return the maximum length of a substring whose first character is lexicographically smaller than its last, in linear time.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

@@ -1,0 +1,20 @@
+slug: simplify-algebraic-expression
+title: Simplify a +/- expression with one level of parentheses
+type: DSA
+difficulty: medium
+tags:
+- string
+- stack
+- hashmap
+leetcode: null
+prompt: |
+  Simplify e.g. a+b+a+c-b-b-b+(d+c) to 2a-2b+2c+d.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

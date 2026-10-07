@@ -1,0 +1,19 @@
+slug: equidistant-points-on-sphere
+title: Max Equidistant Points on a Sphere
+type: DOMAIN
+difficulty: easy
+tags:
+- puzzle
+- geometry
+leetcode: null
+prompt: |
+  What is the maximum number of points on a sphere's surface that are all mutually equidistant?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: Intern (telephonic round)
+  round: Telephonic round
+  seen_on: 2016-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/?p=131014

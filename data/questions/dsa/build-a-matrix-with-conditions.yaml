@@ -1,0 +1,20 @@
+slug: build-a-matrix-with-conditions
+title: Build a Matrix With Conditions
+type: DSA
+difficulty: hard
+tags:
+- graph
+- topological-sort
+- matrix
+leetcode: build-a-matrix-with-conditions
+prompt: |
+  Place 1..k in a k x k matrix so that given row-above and column-left constraints hold (two topological sorts).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 3
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6782644/

@@ -1,0 +1,19 @@
+slug: binary-search-in-space-separated-string
+title: Binary search directly over a space-separated sorted string
+type: DSA
+difficulty: medium
+tags:
+- binary-search
+- string
+leetcode: null
+prompt: |
+  A string holds space-separated sorted numbers (possibly too large for numeric types); decide if a target is present without parsing the whole string.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2025-04
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6668243/

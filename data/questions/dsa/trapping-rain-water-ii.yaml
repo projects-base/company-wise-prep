@@ -1,0 +1,20 @@
+slug: trapping-rain-water-ii
+title: Trapping Rain Water II
+type: DSA
+difficulty: hard
+tags:
+- heap
+- bfs
+- matrix
+leetcode: trapping-rain-water-ii
+prompt: |
+  Reported as similar to 3D trapping rain water on a height map.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61/62, Hyderabad/Noida)
+  round: R1 DSA
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7711794/

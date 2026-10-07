@@ -1,0 +1,55 @@
+method: firstBadVersion
+tests:
+- name: Example 1
+  input: |
+    5
+    4
+  expected: |
+    4
+- name: Example 2
+  input: |
+    1
+    1
+  expected: |
+    1
+- name: Example 3
+  input: |
+    10
+    1
+  expected: |
+    1
+- name: Last version is the first bad one
+  hidden: true
+  input: |
+    10
+    10
+  expected: |
+    10
+- name: Two versions, second bad
+  hidden: true
+  input: |
+    2
+    2
+  expected: |
+    2
+- name: Max n, last version bad (overflow trap)
+  hidden: true
+  input: |
+    2147483647
+    2147483647
+  expected: |
+    2147483647
+- name: Max n, first version bad
+  hidden: true
+  input: |
+    2147483647
+    1
+  expected: |
+    1
+- name: Huge n, bad in the middle
+  hidden: true
+  input: |
+    2147483646
+    1702766719
+  expected: |
+    1702766719

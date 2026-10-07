@@ -1,0 +1,19 @@
+slug: design-undo-redo-text-editor
+title: Undo/Redo for a Text Editor
+type: LLD
+difficulty: medium
+tags:
+- stack
+- command-pattern
+leetcode: null
+prompt: |
+  Undo/redo with configurable history limits; emphasis on choosing data structures.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II
+  round: R3 System design/LLD (60 min)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7620569/

@@ -1,0 +1,19 @@
+slug: uuid-log-search
+title: UUID Log Search
+type: DSA
+difficulty: easy
+tags:
+- parsing
+- string
+leetcode: null
+prompt: |
+  Simple parsing program: search a log for entries matching a UUID.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: HackerRank test
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

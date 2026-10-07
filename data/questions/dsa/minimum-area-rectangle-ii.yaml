@@ -1,0 +1,19 @@
+slug: minimum-area-rectangle-ii
+title: Minimum Area Rectangle II
+type: DSA
+difficulty: medium
+tags:
+- geometry
+- hashmap
+leetcode: minimum-area-rectangle-ii
+prompt: |
+  Smallest-area rectangle (any orientation) from a set of points.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

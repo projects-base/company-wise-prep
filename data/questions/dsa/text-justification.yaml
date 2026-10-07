@@ -1,0 +1,19 @@
+slug: text-justification
+title: Text Justification
+type: DSA
+difficulty: hard
+tags:
+- string
+- simulation
+leetcode: text-justification
+prompt: |
+  Fully justify words into lines of width maxWidth.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/

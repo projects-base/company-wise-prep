@@ -1,0 +1,27 @@
+slug: subarray-sum-equals-k
+title: Subarray Sum Equals K
+type: DSA
+difficulty: medium
+tags:
+- prefix-sum
+- hashmap
+- aggregate-list
+- debugging
+leetcode: subarray-sum-equals-k
+prompt: |
+  Count subarrays summing to k.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Unknown (LeetCode company tag)
+  round: 'Unknown (aggregate-list: LeetCode ''Microsoft'' tag, last 6 months)'
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv
+- company: tower-research
+  role: Senior Software Engineer (C++)
+  round: Online test (fix-the-bug, 60 min)
+  seen_on: 2022-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/2717817/

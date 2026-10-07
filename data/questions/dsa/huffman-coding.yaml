@@ -1,0 +1,20 @@
+slug: huffman-coding
+title: Huffman coding
+type: DSA
+difficulty: medium
+tags:
+- heap
+- greedy
+- tree
+leetcode: null
+prompt: |
+  Build Huffman codes for given symbol frequencies (reported as close to a Google onsite Huffman problem).
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2025-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6349651/

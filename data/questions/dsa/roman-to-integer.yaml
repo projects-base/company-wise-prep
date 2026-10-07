@@ -1,0 +1,19 @@
+slug: roman-to-integer
+title: Roman to Integer
+type: DSA
+difficulty: easy
+tags:
+- string
+- hashmap
+leetcode: roman-to-integer
+prompt: |
+  Convert a Roman numeral string to its integer value.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 1 (resume + coding, 75 min)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

@@ -1,0 +1,20 @@
+slug: worker-shift-schedule-intervals
+title: Build a schedule of who is on shift per interval
+type: DSA
+difficulty: medium
+tags:
+- intervals
+- line-sweep
+- sorting
+leetcode: null
+prompt: |
+  Given shifts [name, start, end], output consecutive time intervals with the set of workers present in each.
+follow_ups: []
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 1
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6522571/

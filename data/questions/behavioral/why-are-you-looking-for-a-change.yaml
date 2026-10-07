@@ -1,0 +1,30 @@
+slug: why-are-you-looking-for-a-change
+title: Why are you looking for a change?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- motivation
+leetcode: null
+prompt: |
+  Motivation for changing jobs; why not move within your current organisation; what do you expect from Microsoft.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R5 Engineering group director
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7451130/
+- company: microsoft
+  role: SDE II
+  round: R4 Engineering manager
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7433909/
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: Round 3 (techno-managerial)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

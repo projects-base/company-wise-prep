@@ -1,0 +1,19 @@
+slug: debug-tree-inorder-nested-maps
+title: Debug Inorder Traversal of a Map-Based Binary Tree
+type: DSA
+difficulty: easy
+tags:
+- tree
+- debugging
+leetcode: null
+prompt: |
+  A binary tree implemented with nested maps has a bug in its inorder traversal; find and fix it.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE (Dev Tools team, 9 YOE)
+  round: HackerRank test
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1689730/

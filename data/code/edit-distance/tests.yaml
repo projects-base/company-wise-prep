@@ -1,0 +1,63 @@
+method: minDistance
+tests:
+- name: Example 1
+  input: |
+    "horse"
+    "ros"
+  expected: |
+    3
+- name: Example 2
+  input: |
+    "intention"
+    "execution"
+  expected: |
+    5
+- name: Both empty
+  hidden: true
+  input: |
+    ""
+    ""
+  expected: |
+    0
+- name: One empty
+  hidden: true
+  input: |
+    ""
+    "abc"
+  expected: |
+    3
+- name: Identical
+  hidden: true
+  input: |
+    "kitten"
+    "kitten"
+  expected: |
+    0
+- name: Completely different
+  hidden: true
+  input: |
+    "abc"
+    "xyz"
+  expected: |
+    3
+- name: Random short
+  hidden: true
+  input: |
+    "bacbaccca"
+    "aaccbbb"
+  expected: |
+    6
+- name: 500 vs ~500, similar strings
+  hidden: true
+  input: |
+    "dbbbbbabcaddaabddcdacbccacabccacabbdcccbadbbcdbbdcbbabccbdbcdadcccbdcbcaadcddaaacdddddbccccbcaacadddccddccadaddabbbbdbbaaaabadabccababadccddddbcabbbbdccbbbacbcdabbddcdbabbbbabccdbccbcdcabccbcbdcaacddcdddbaabacacbbcbabccbcdcbcbdaabdabddbbcaacbbbcbdbcddadccbdbbacbabdcbbacdabbccdbabdcbdbbcdbbacaabcdbacbdcbcabadcbcabdbbdaaacdddaccdddbbcadabadacabcdbcacacccccbbbbbdddadcdacdbdacbbdcbabbcababbbcdbdbdcbdaacbbbdbbcaccdccabcaddddcbbcadadddabbaccbababcabadabdbcdccaaabccbddbaccacbccdbddacaacadbbabbabadacabb"
+    "dbbbbdbcaddbabddcddacbcccaccacabbbcccbaadbbcdbabdcbbabccbabcdaddccbdccbcaadddaaaddddabccccbcaacadddccddcdaddabbbbdbbaaabadabccababadccddddbabbbbdccbbbacbdabbddddbcabdbbbbabccdbccbccabccdbdbdcaaccddcdbaabacacabccabdccbcdcbbaaabdabddbdcaacbbcbdbcddadccbddbbacbaccbdcbbacdabbccdbabdcbdbbddbacabbcdbacbdcbcddadcbcabdbbdaaacdddcbcdddbcadabaaccabddbcadacccccbbbbdbaddadcdaacdbdacbbdcbabbcababbbcdbddbdbdaacbbcdbbcaccdccabcbddddcbbcadadddabbaccbabbcabaddabbdcaaabccbddbaccacbbbdbddacaacadbabbabadcabb"
+  expected: |
+    68
+- name: 500 vs 500, random
+  hidden: true
+  input: |
+    "wiydgdjfaknwukuwvrbepxswojtfaalusvqijuitojcprjzypfnmndpgqbzckxsiqvmpvirvlphgtiiqnhxpnlgcenzpfzbwrymivjlmqzajkrxrdwakbzbbxpilztwochoihgcxypxochbofycpiolcafxjzwmgplsrdyggarwjhhtofpzaqlmqfvmmocioislepoikkozsbiqyjmsaqsqxiydunnxncdijdcenaqluylhifotszqentopuzjfhvvuiawjnrioagstxwazcqtflkawjytvkqzlkovgaitsgrphdnpeuznilvuwingbhmwdzatfmuokbbotfyoshwgnahkpfloymmdlxdvjrzahigmirxjjbrxbdivfphbhmxozrfocnjcxjqljqnlxemhtwviqblwxwfciqpqshmnctadffcsqboozlclsonhwrrnwczhojtwtrygdjwunvcljqssqcscfepapmnuwazoaxlvximeud"
+    "ithjgzereluruomewmfhsjsbjzcqxdtapflqpejlswiiizttqysjdneexjnbmciaggetsfqeyenunocendeuivolfxeofzuubekacvogvrrsqlcxbmxofwlsmqyqytymgkshynzxxziojbxdphqjqlxnnkwpamkhyrbdqkumcwnqsbhviqaopvrchswnbcituhbuoexohyhkgasfnniidueflfgbancsqszfvaooldmcbqgzsuxecuxcswkwhscmzzxsqtmwiicmzbrmccntacdrtrpfqsxvliziimocohaaaiosrqaqqrgxepcphtjwzsxkpvabcprnxvuxzwboklwnjlhbldrkqdppxqltggsywzwfruahgtmizyucdpwsamdklzpytspprjebkjlnliibtgvrhhejrdewopdryrgpjwdkbnsgkogpmookkrbvvfnaxjwimcifgkleccfhakxfofybmpoupqklsosgrxvszzemcqws"
+  expected: |
+    444

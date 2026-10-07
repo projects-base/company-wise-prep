@@ -1,0 +1,20 @@
+slug: idempotency-in-payment-systems
+title: Idempotency in Payment Systems
+type: HLD
+difficulty: medium
+tags:
+- idempotency
+- payments
+- distributed-systems
+leetcode: null
+prompt: |
+  Discuss how to make payment operations idempotent.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2
+  round: Round 3 (LLD)
+  seen_on: 2022-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1867832/

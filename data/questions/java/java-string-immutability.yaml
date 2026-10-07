@@ -1,0 +1,20 @@
+slug: java-string-immutability
+title: String Immutability and String Storage
+type: JAVA
+difficulty: easy
+tags:
+- java
+- string
+- memory
+leetcode: null
+prompt: |
+  Why are Java Strings immutable and where are they stored (string pool / heap)?
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Technical 2 (Java rapid-fire, 45 min)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

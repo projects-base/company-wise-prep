@@ -1,0 +1,20 @@
+slug: design-elevator-system
+title: Design an Elevator System
+type: LLD
+difficulty: hard
+tags:
+- oop
+- scheduling
+- uml
+leetcode: null
+prompt: |
+  UML, functional code, scheduling strategy and handling multiple requests.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L61)
+  round: R3 LLD
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected

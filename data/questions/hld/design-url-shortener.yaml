@@ -1,0 +1,38 @@
+slug: design-url-shortener
+title: Design a URL Shortener
+type: HLD
+difficulty: medium
+tags:
+- hashing
+- base62
+- caching
+- capacity-estimation
+- ddos
+- id-generation
+- multi-region
+- snowflake
+leetcode: null
+prompt: |
+  URL shortener where the interviewer rejected textbook answers and pushed into components and scenarios.
+follow_ups:
+- How do you prevent a DDoS on this system?
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (L62)
+  round: R1 HLD + DSA
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7392060/
+- company: microsoft
+  role: SDE II (L62)
+  round: R2 Design
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7435112/
+- company: microsoft
+  role: SDE II (L61/62)
+  round: R4 HLD
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7545165/

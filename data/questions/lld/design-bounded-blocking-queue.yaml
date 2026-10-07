@@ -1,0 +1,20 @@
+slug: design-bounded-blocking-queue
+title: Multi-Threaded Buffered Queue
+type: LLD
+difficulty: medium
+tags:
+- concurrency
+- producer-consumer
+- queue
+leetcode: design-bounded-blocking-queue
+prompt: |
+  Implement a multi-threaded buffered (bounded blocking) queue.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 2
+  round: Round 3 (LLD)
+  seen_on: 2022-03
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/1867832/

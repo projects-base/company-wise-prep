@@ -1,0 +1,36 @@
+slug: logger-rate-limiter
+title: Logger Rate Limiter (suppress duplicates in both directions)
+type: DSA
+difficulty: medium
+tags:
+- hashmap
+- queue
+- design
+- streaming
+leetcode: logger-rate-limiter
+prompt: |
+  Messages arrive in timestamp order; print only messages unique within the last 10 seconds.
+follow_ups:
+- Suppress a message if a duplicate occurs within 10 s in the past OR future (requires buffering).
+- What production bottlenecks would this have?
+- Should suppressed messages update the timestamp?
+academy: []
+sightings:
+- company: google
+  role: L5
+  round: Onsite coding 3
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/5898854/
+- company: google
+  role: L4
+  round: Unknown
+  seen_on: 2026-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8525983/
+- company: microsoft
+  role: Software Engineer (3+ YOE)
+  round: R3 DSA (3 problems in 1 h)
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8551527/

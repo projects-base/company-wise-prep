@@ -1,0 +1,27 @@
+slug: design-otp-service
+title: Design a Scalable OTP Service
+type: HLD
+difficulty: medium
+tags:
+- multi-channel
+- cqrs
+- multi-tenant
+- notification
+leetcode: null
+prompt: |
+  OTP over SMS/WhatsApp/email, multiple clients per user, unique per user per request; separate generation, validation and notification services.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61)
+  round: R3 HLD
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7422741/
+- company: microsoft
+  role: Senior Software Engineer (Azure)
+  round: R3 HLD
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/8477884/

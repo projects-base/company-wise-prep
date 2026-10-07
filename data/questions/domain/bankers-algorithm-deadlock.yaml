@@ -1,0 +1,19 @@
+slug: bankers-algorithm-deadlock
+title: Banker's Algorithm for Deadlock
+type: DOMAIN
+difficulty: medium
+tags:
+- os
+- deadlock
+leetcode: null
+prompt: |
+  Apply the Banker's algorithm to decide whether a state is safe / detect deadlock.
+follow_ups: []
+academy: []
+sightings:
+- company: tower-research
+  role: SDE 1 (Backend Post Trade, Java)
+  round: Online assessment (theory)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6375258/

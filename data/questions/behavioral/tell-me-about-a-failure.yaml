@@ -1,0 +1,19 @@
+slug: tell-me-about-a-failure
+title: A time you failed to do what you were supposed to
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- failure
+- ownership
+leetcode: null
+prompt: |
+  Tell me about an instance where you failed to deliver what you were supposed to and how you handled it.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer (L63)
+  round: R5 Engineering group director
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7451130/

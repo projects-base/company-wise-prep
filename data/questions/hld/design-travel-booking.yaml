@@ -1,0 +1,19 @@
+slug: design-travel-booking
+title: Design a Travel Booking Site (MMT/ClearTrip)
+type: HLD
+difficulty: hard
+tags:
+- search
+- booking
+leetcode: null
+prompt: |
+  Build a travel booking site like MakeMyTrip/ClearTrip.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: Senior Software Engineer
+  round: Design round 2
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7425597/

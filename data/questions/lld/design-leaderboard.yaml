@@ -1,0 +1,26 @@
+slug: design-leaderboard
+title: Design a Leaderboard
+type: LLD
+difficulty: medium
+tags:
+- heap
+- sorted-set
+- hld
+leetcode: null
+prompt: |
+  Leaderboard design; priority queue approach, sorted set mentioned.
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SDE II (Hyderabad)
+  round: R2 LLD
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6471202/
+- company: microsoft
+  role: SDE II (Noida)
+  round: R3 HLD
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7498667/

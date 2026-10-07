@@ -1,0 +1,19 @@
+slug: find-the-duplicate-number
+title: Find the Duplicate Number
+type: DSA
+difficulty: medium
+tags:
+- cycle-detection
+- two-pointers
+leetcode: find-the-duplicate-number
+prompt: |
+  Find the duplicate in an array of n+1 numbers in O(n) time and O(1) space (Floyd's cycle detection).
+follow_ups: []
+academy: []
+sightings:
+- company: microsoft
+  role: SE II (L61, Hyderabad)
+  round: R4 AA (30 min)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7541629/
