@@ -58,12 +58,13 @@ public class DataImporter implements ApplicationRunner {
 	private final AcademyModuleRepository modules;
 	private final AcademyPathRepository paths;
 	private final CodeChallengeRepository challenges;
+	private final ImportStateRepository state;
 	private final EntityManager em;
 
 	public DataImporter(@Value("${prep.data-dir}") Path dataDir, CompanyRepository companies,
 			QuestionRepository questions, SightingRepository sightings, CampaignRepository campaigns,
 			AcademyTrackRepository tracks, AcademyModuleRepository modules, AcademyPathRepository paths,
-			CodeChallengeRepository challenges, EntityManager em) {
+			CodeChallengeRepository challenges, ImportStateRepository state, EntityManager em) {
 		this.dataDir = dataDir;
 		this.companies = companies;
 		this.questions = questions;
@@ -73,6 +74,7 @@ public class DataImporter implements ApplicationRunner {
 		this.modules = modules;
 		this.paths = paths;
 		this.challenges = challenges;
+		this.state = state;
 		this.em = em;
 	}
 
@@ -87,6 +89,13 @@ public class DataImporter implements ApplicationRunner {
 	@Override
 	@Transactional
 	public void run(ApplicationArguments args) {
+		String fingerprint = fingerprint();
+		ImportState last = state.findById(ImportState.ID).orElse(null);
+		if (last != null && fingerprint.equals(last.getFingerprint()) && questions.count() > 0) {
+			log.info("data/ unchanged since {} — skipping import (POST /api/admin/reload forces one)",
+					last.getImportedAt());
+			return;
+		}
 		Summary s = importAll();
 		log.info("Imported {} companies, {} questions, {} sightings, {} campaigns, {} academy modules ({} with lessons), "
 				+ "{} code challenges from {}", s.companies(), s.questions(), s.sightings(), s.campaigns(), s.modules(),
@@ -126,6 +135,11 @@ public class DataImporter implements ApplicationRunner {
 		modules.saveAll(academy.modules());
 		paths.saveAll(academy.paths());
 		challenges.saveAll(newChallenges);
+
+		ImportState done = state.findById(ImportState.ID).orElseGet(ImportState::new);
+		done.setFingerprint(fingerprint());
+		done.setImportedAt(java.time.Instant.now());
+		state.save(done);
 
 		int sightingCount = newQuestions.stream().mapToInt(q -> q.getSightings().size()).sum();
 		int lessons = (int) academy.modules().stream().filter(m -> !m.getLesson().isBlank()).count();
@@ -270,6 +284,28 @@ public class DataImporter implements ApplicationRunner {
 			out.add(c);
 		}
 		return out;
+	}
+
+	/**
+	 * SHA-256 over every file under data/ (path and bytes, in sorted order), skipping staging.
+	 * Content-based rather than timestamps, so a fresh git clone of the same data still matches.
+	 */
+	String fingerprint() {
+		try (Stream<Path> walk = Files.walk(dataDir)) {
+			java.security.MessageDigest sha = java.security.MessageDigest.getInstance("SHA-256");
+			for (Path f : walk.filter(Files::isRegularFile)
+					.filter(f -> !dataDir.relativize(f).toString().replace('\\', '/').startsWith("_staging/"))
+					.sorted().toList()) {
+				sha.update(dataDir.relativize(f).toString().replace('\\', '/').getBytes(StandardCharsets.UTF_8));
+				sha.update((byte) 0);
+				sha.update(Files.readAllBytes(f));
+			}
+			return java.util.HexFormat.of().formatHex(sha.digest());
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
+		} catch (java.security.NoSuchAlgorithmException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 	/** Directory entries, sorted, skipping "_"-prefixed ones (staging, templates). */

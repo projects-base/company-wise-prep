@@ -25,8 +25,9 @@ from scratch to architect.
 .\run.ps1 -Build   # after changing frontend/
 ```
 
-Needs Java 21 and Node. Progress is stored in `.local/` (H2 file database); questions, companies
-and campaigns are re-read from `data/` on every start. Tests: `.\mvnw.cmd test`.
+Needs Java 21 and Node. **Database:** copy `.env.example` to `.env` and fill in `DB_URL`,
+`DB_USERNAME`, `DB_PASSWORD` to use Neon Postgres; without `.env` it uses a local H2 file in `.local/`.
+Content is imported from `data/` at start-up only when `data/` has changed (`POST /api/admin/reload` forces it). Tests: `.\mvnw.cmd test`.
 
 UI development with hot reload: start the server, then `cd frontend; npm run dev` (port 5180,
 proxies `/api` to 8090).

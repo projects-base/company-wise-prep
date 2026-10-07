@@ -7,10 +7,17 @@ spring:
   application:
     name: company-wise-prep
   datasource:
-    # Progress lives here; content is re-imported from data/ on every start.
-    url: jdbc:h2:file:./.local/prep;AUTO_SERVER=TRUE
-    username: sa
-    password: ""
+    # Neon (Postgres) when DB_URL/DB_USERNAME/DB_PASSWORD are set — run.ps1 loads them from .env.
+    # Otherwise a local H2 file, so tests and offline use need nothing installed.
+    url: ${DB_URL:jdbc:h2:file:./.local/prep;AUTO_SERVER=TRUE}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    hikari:
+      # Neon suspends idle compute; keep the pool small and let connections be recycled.
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 120000
+      max-lifetime: 600000
   web:
     resources:
       # The freshly built UI on disk first (no restart after npm run build), then the packaged copy.
@@ -19,6 +26,11 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    properties:
+      hibernate:
+        # The import writes thousands of rows; batch them (matters over the network to Neon).
+        jdbc.batch_size: 200
+        order_inserts: true
 
 prep:
   # Repo-relative; the app is started from the repo root.
