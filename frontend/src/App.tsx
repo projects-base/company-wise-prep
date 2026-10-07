@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library } from 'lucide-react'
-import { api, type CampaignConfig } from './api'
+import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
+import LoginPage from './pages/LoginPage'
 import { daysBetween, localToday } from './ui'
 import TodayPage from './pages/TodayPage'
 import PlanPage from './pages/PlanPage'
@@ -37,10 +38,22 @@ export default function App() {
     }
   })
   const { pathname } = useLocation()
+  // 'checking' until the server says whether a login is needed (only on the hosted app).
+  const [auth, setAuth] = useState<'checking' | 'login' | 'ok' | 'down'>('checking')
 
   useEffect(() => {
-    api.campaigns().then(setCampaigns).catch(() => setCampaigns([]))
+    api
+      .authStatus()
+      .then((s) => setAuth(s.authRequired && !s.authenticated ? 'login' : 'ok'))
+      .catch(() => setAuth('down'))
+    const onLoggedOut = () => setAuth('login')
+    window.addEventListener(LOGGED_OUT_EVENT, onLoggedOut)
+    return () => window.removeEventListener(LOGGED_OUT_EVENT, onLoggedOut)
   }, [])
+
+  useEffect(() => {
+    if (auth === 'ok') api.campaigns().then(setCampaigns).catch(() => setCampaigns([]))
+  }, [auth])
   // Braces matter: newer Chromium returns a Promise from scrollTo, which React would treat as a cleanup.
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -55,6 +68,22 @@ export default function App() {
       /* private mode: just not remembered */
     }
   }
+  if (auth === 'checking') return <p className="loading" style={{ padding: 40 }}>Loading…</p>
+  if (auth === 'login') return <LoginPage onLoggedIn={() => setAuth('ok')} />
+  if (auth === 'down') {
+    return (
+      <div className="login">
+        <div className="card raised login-card">
+          <h1 style={{ fontSize: '1.3rem' }}>Can't reach the server</h1>
+          <p className="muted" style={{ marginTop: 8 }}>It may be starting up or redeploying. Try again in a minute.</p>
+          <button className="btn primary" style={{ marginTop: 16 }} onClick={() => window.location.reload()}>
+            Retry
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   const daysLeft = campaign ? Math.max(0, daysBetween(localToday(), campaign.interview)) : null
 
   return (

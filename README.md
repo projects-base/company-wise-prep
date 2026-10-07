@@ -16,6 +16,7 @@ from scratch to architect.
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | App design and build order |
 | [docs/CURRICULUM.md](docs/CURRICULUM.md) | The Academy curriculum |
 | [docs/COMPANY-PREP.md](docs/COMPANY-PREP.md) | Data format and the company-prep process |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Hosting: Render (API + code runner) and Netlify (UI) |
 | [docs/STORY-LABS.md](docs/STORY-LABS.md) | Labs, challenges, industry cases and incidents per era |
 
 ## Run it

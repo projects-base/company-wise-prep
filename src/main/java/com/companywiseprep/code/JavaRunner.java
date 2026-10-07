@@ -37,6 +37,26 @@ public class JavaRunner {
 	 */
 	static final int OUTPUT_LIMIT = 16 * 1024 * 1024;
 
+	/** Heap for each test JVM (prep.judge.heap). Several can run at once, so size it to the host. */
+	private final String heap;
+
+	public JavaRunner(@org.springframework.beans.factory.annotation.Value("${prep.judge.heap:512m}") String heap) {
+		this.heap = heap;
+	}
+
+	/**
+	 * The learner's code must not see the server's secrets (DB_PASSWORD, APP_PASSWORD, ...), so the
+	 * child JVM gets only what the OS needs to start a process.
+	 */
+	static void restrictEnvironment(Map<String, String> env) {
+		Map<String, String> keep = new java.util.HashMap<>();
+		for (String k : List.of("PATH", "SystemRoot", "SYSTEMROOT", "TEMP", "TMP", "TMPDIR", "HOME", "LANG")) {
+			if (env.containsKey(k)) keep.put(k, env.get(k));
+		}
+		env.clear();
+		env.putAll(keep);
+	}
+
 	private final String javaBin = Path.of(System.getProperty("java.home"), "bin",
 			System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win") ? "java.exe" : "java").toString();
 
@@ -103,12 +123,14 @@ public class JavaRunner {
 			Path out = work.resolve("out.txt");
 			Path err = work.resolve("err.txt");
 			Files.writeString(in, stdin == null ? "" : stdin, StandardCharsets.UTF_8);
-			ProcessBuilder pb = new ProcessBuilder(javaBin, "-Xmx512m", "-Xss64m", "-XX:+UseSerialGC",
-					"-Xshare:auto", "-Dfile.encoding=UTF-8", "-Dstdout.encoding=UTF-8", "-cp", base.toString(), mainClass)
+			ProcessBuilder pb = new ProcessBuilder(javaBin, "-Xmx" + heap, "-Xss64m", "-XX:+UseSerialGC",
+					"-Xshare:auto", "-Dfile.encoding=UTF-8",
+					"-Dstdout.encoding=UTF-8", "-cp", base.toString(), mainClass)
 					.directory(work.toFile())
 					.redirectInput(in.toFile())
 					.redirectOutput(out.toFile())
 					.redirectError(err.toFile());
+			restrictEnvironment(pb.environment());
 			long start = System.nanoTime();
 			Process p = pb.start();
 			boolean finished = p.waitFor(timeoutMillis, TimeUnit.MILLISECONDS);

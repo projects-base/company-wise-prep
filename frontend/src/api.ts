@@ -222,8 +222,55 @@ export interface PlaygroundResult {
 
 export type Action = 'DONE' | 'UNDO' | 'REMEMBERED' | 'FORGOT' | 'STAR' | 'UNSTAR' | 'NOTES'
 
+/**
+ * Where the API lives. Empty = same origin (local: Spring serves the UI; dev: Vite proxies /api).
+ * On Netlify, VITE_API_BASE is the Render URL.
+ */
+const BASE = ((import.meta.env.VITE_API_BASE as string | undefined) ?? '').replace(/\/$/, '')
+const TOKEN_KEY = 'cwp.token'
+
+/** The hosted app's login token. Locally there is none and the server doesn't ask for one. */
+export const session = {
+  get(): string | null {
+    try {
+      return localStorage.getItem(TOKEN_KEY)
+    } catch {
+      return null
+    }
+  },
+  set(token: string) {
+    try {
+      localStorage.setItem(TOKEN_KEY, token)
+    } catch {
+      /* private mode: the login lasts for this tab only */
+    }
+  },
+  clear() {
+    try {
+      localStorage.removeItem(TOKEN_KEY)
+    } catch {
+      /* nothing stored */
+    }
+  },
+}
+
+export const LOGGED_OUT_EVENT = 'cwp:logged-out'
+
+function request(path: string, init?: RequestInit): Promise<Response> {
+  const headers = new Headers(init?.headers)
+  const token = session.get()
+  if (token) headers.set('Authorization', `Bearer ${token}`)
+  return fetch(BASE + path, { ...init, headers }).then((res) => {
+    if (res.status === 401 && !path.startsWith('/api/auth/')) {
+      session.clear()
+      window.dispatchEvent(new Event(LOGGED_OUT_EVENT))
+    }
+    return res
+  })
+}
+
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(path, init)
+  const res = await request(path, init)
   if (!res.ok) throw new Error(`${init?.method ?? 'GET'} ${path} failed: ${res.status}`)
   return res.json() as Promise<T>
 }
@@ -259,7 +306,7 @@ export const api = {
       body: JSON.stringify({ code, mode, customInput }),
     }),
   saveDraft: (slug: string, code: string) =>
-    fetch(`/api/code/${slug}/draft`, {
+    request(`/api/code/${slug}/draft`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code }),
@@ -270,6 +317,21 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code, stdin }),
     }),
+  authStatus: () => call<{ authRequired: boolean; authenticated: boolean }>('/api/auth/status'),
+  login: async (password: string): Promise<{ ok: true } | { ok: false; message: string }> => {
+    const res = await request('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+    if (res.ok) {
+      const body = (await res.json()) as { token: string }
+      if (body.token) session.set(body.token)
+      return { ok: true }
+    }
+    if (res.status === 429) return { ok: false, message: 'Too many attempts. Wait 10 minutes and try again.' }
+    return { ok: false, message: 'Wrong password.' }
+  },
   reload: () => call<{ companies: number; questions: number }>('/api/admin/reload', { method: 'POST' }),
 }
 

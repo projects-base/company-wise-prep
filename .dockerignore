@@ -1,0 +1,9 @@
+.git
+.env
+.local
+.local-run.log
+target
+frontend
+src/main/resources/static
+data/_staging
+**/*.log

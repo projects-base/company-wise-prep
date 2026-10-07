@@ -1,0 +1,20 @@
+# Netlify: the React UI. The API runs on Render (render.yaml).
+# Set VITE_API_BASE in Netlify → Site configuration → Environment variables to the Render URL,
+# e.g. https://company-wise-prep-api.onrender.com
+[build]
+  base = "frontend"
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  VITE_OUT_DIR = "dist"
+
+# The app uses hash routes (#/academy), so no SPA rewrite rules are needed.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

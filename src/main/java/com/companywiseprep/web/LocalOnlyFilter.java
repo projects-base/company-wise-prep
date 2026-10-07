@@ -31,9 +31,16 @@ public class LocalOnlyFilter extends OncePerRequestFilter {
 	private static final Set<String> LOCAL_HOSTS = Set.of("localhost", "127.0.0.1", "[::1]");
 	private static final Set<String> SAFE_METHODS = Set.of("GET", "HEAD", "OPTIONS");
 
+	/** Hosted (prep.auth.enabled): the password login + CORS allowlist protect the API instead. */
+	private final boolean hosted;
+
+	public LocalOnlyFilter(@org.springframework.beans.factory.annotation.Value("${prep.auth.enabled:false}") boolean hosted) {
+		this.hosted = hosted;
+	}
+
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) {
-		return !request.getRequestURI().startsWith("/api/");
+		return hosted || !request.getRequestURI().startsWith("/api/");
 	}
 
 	@Override

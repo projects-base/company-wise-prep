@@ -41,14 +41,17 @@ public class JudgeService {
 	private final java.nio.file.Path ioLibrary;
 	/** A single user can still click Run twice; keep the machine responsive. */
 	private final Semaphore slots = new Semaphore(2);
-	private final ExecutorService pool = Executors.newFixedThreadPool(Math.max(2, Math.min(4, Runtime.getRuntime().availableProcessors() / 2)));
+	/** Test JVMs running at once per judge request (prep.judge.parallel; 0 = from CPU count). */
+	private final ExecutorService pool;
 
 	public JudgeService(CodeChallengeRepository challenges, JavaRunner runner, ProgressService progress,
-			@Value("${prep.data-dir}") java.nio.file.Path dataDir) {
+			@Value("${prep.data-dir}") java.nio.file.Path dataDir, @Value("${prep.judge.parallel:0}") int parallel) {
 		this.challenges = challenges;
 		this.runner = runner;
 		this.progress = progress;
 		this.ioLibrary = dataDir.resolve("code").resolve("_lib").resolve("IO.java");
+		int threads = parallel > 0 ? parallel : Math.max(2, Math.min(4, Runtime.getRuntime().availableProcessors() / 2));
+		this.pool = Executors.newFixedThreadPool(threads);
 	}
 
 	public enum Mode {

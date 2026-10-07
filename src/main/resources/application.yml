@@ -1,7 +1,8 @@
 server:
-  port: 8090
-  # Single-user and unauthenticated for now: listen on this machine only.
-  address: 127.0.0.1
+  # Render sets PORT; locally it's 8090.
+  port: ${PORT:8090}
+  # Locally: this machine only (no login). Hosted: SERVER_ADDRESS=0.0.0.0 with AUTH_ENABLED=true.
+  address: ${SERVER_ADDRESS:127.0.0.1}
 
 spring:
   application:
@@ -33,5 +34,17 @@ spring:
         order_inserts: true
 
 prep:
-  # Repo-relative; the app is started from the repo root.
-  data-dir: ./data
+  # Repo-relative; the app is started from the repo root (in Docker: /app).
+  data-dir: ${DATA_DIR:./data}
+  auth:
+    # Hosted only. The app runs submitted code, so it refuses to start with auth enabled but no
+    # strong password/secret (see AuthService).
+    enabled: ${AUTH_ENABLED:false}
+    password: ${APP_PASSWORD:}
+    token-secret: ${APP_TOKEN_SECRET:}
+  cors:
+    # The Netlify site, e.g. https://company-wise-prep.netlify.app (comma-separated for several).
+    allowed-origins: ${CORS_ORIGINS:}
+  judge:
+    heap: ${JUDGE_HEAP:512m}
+    parallel: ${JUDGE_PARALLEL:0}

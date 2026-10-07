@@ -1,0 +1,30 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repo.
+# Secrets marked `sync: false` are entered once in the Render dashboard, never committed.
+services:
+  - type: web
+    name: company-wise-prep-api
+    runtime: docker
+    plan: standard            # 2 GB: the code runner starts a JVM per test
+    region: singapore         # same region as the Neon database (ap-southeast-1)
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /api/auth/status
+    envVars:
+      - key: DB_URL
+        sync: false           # jdbc:postgresql://<neon-host>-pooler.../neondb?sslmode=require&channelBinding=require
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: APP_PASSWORD
+        sync: false           # your login password, 12+ characters
+      - key: APP_TOKEN_SECRET
+        generateValue: true   # signs login tokens; Render generates a random one
+      - key: CORS_ORIGINS
+        sync: false           # your Netlify URL, e.g. https://company-wise-prep.netlify.app
+      - key: AUTH_ENABLED
+        value: "true"
+      - key: JUDGE_HEAP
+        value: 384m           # per test JVM
+      - key: JUDGE_PARALLEL
+        value: "2"            # test JVMs at once: 640m app + 2 × ~450m fits in 2 GB

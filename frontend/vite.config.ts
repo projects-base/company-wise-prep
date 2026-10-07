@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// The built UI is served by Spring Boot from the same origin, so no CORS anywhere.
+// Locally the built UI is served by Spring Boot from the same origin (no CORS).
+// On Netlify, VITE_OUT_DIR=dist and VITE_API_BASE points at the Render API (see netlify.toml).
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: '../src/main/resources/static',
+    outDir: process.env.VITE_OUT_DIR ?? '../src/main/resources/static',
     emptyOutDir: true,
   },
   server: {
