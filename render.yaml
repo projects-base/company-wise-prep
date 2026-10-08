@@ -8,6 +8,13 @@ services:
     region: singapore         # same region as the Neon database (ap-southeast-1)
     branch: main
     autoDeploy: true
+    buildFilter:              # monorepo: rebuild the API only when backend files change
+      paths:
+        - src/**
+        - data/**
+        - pom.xml
+        - Dockerfile
+        - .mvn/**
     healthCheckPath: /api/auth/status
     envVars:
       - key: DB_URL

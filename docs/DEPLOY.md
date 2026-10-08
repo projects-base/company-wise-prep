@@ -64,7 +64,11 @@ and save — Render restarts the service. Open the Netlify URL and sign in.
 
 ## Updating
 
-Push to `main`: Netlify rebuilds the UI and Render rebuilds the API (`autoDeploy`). New
+One repo, two deploys. Render builds only the backend (the Dockerfile copies `pom.xml`, `src/`,
+`data/`; `.dockerignore` drops `frontend/`) and Netlify builds only `frontend/` (`base` in
+netlify.toml). Push to `main`: each one rebuilds only when its own files changed — Render's
+`buildFilter` watches `src/`, `data/`, `pom.xml`, `Dockerfile`; Netlify's `ignore` watches
+`frontend/`. New
 companies from `/prep-company` land in `data/`, so the next Render start imports them.
 
 ## Memory
