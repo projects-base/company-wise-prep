@@ -17,3 +17,9 @@ sightings:
   seen_on: 2025-02
   confidence: claimed
   source: https://leetcode.com/discuss/post/6403987/
+- company: t-mobile
+  role: Associate Software Engineer (Hyderabad)
+  round: Round 1 (run by a third party)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm

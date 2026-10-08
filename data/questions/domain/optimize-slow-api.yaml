@@ -1,0 +1,28 @@
+slug: optimize-slow-api
+title: How would you optimise a slow API?
+type: DOMAIN
+difficulty: medium
+tags:
+- performance
+- api
+- latency
+- sre
+- observability
+leetcode: null
+prompt: |
+  Optimising an API (reported with binary search in the same round). Expect: measure first (p95/p99, traces), find the bottleneck (DB, downstream calls, serialisation, pool exhaustion), then fix and verify.
+follow_ups:
+- Which metrics and traces would you look at first?
+- How do you stop a slow dependency from taking the API down (timeouts, circuit breaker, bulkhead)?
+- 'Caching: what, where, and how do you invalidate?'
+academy:
+- Q7
+- F1
+- H3
+sightings:
+- company: t-mobile
+  role: Senior Software Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2025-10
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm

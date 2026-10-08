@@ -1,0 +1,25 @@
+slug: oop-four-pillars
+title: The four OOP principles
+type: JAVA
+difficulty: easy
+tags:
+- oop
+- encapsulation
+- inheritance
+- polymorphism
+- abstraction
+leetcode: null
+prompt: |
+  Explain the four principles of OOP (encapsulation, abstraction, inheritance, polymorphism) with Java examples. Reported with simple code-fixing and logic tests in a backend-focused technical round.
+follow_ups:
+- Abstract class vs interface in Java 8+.
+- 'Composition over inheritance: when and why?'
+academy:
+- E1
+sightings:
+- company: t-mobile
+  role: Software Engineer (location not stated)
+  round: Technical round
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/T-Mobile-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,26.htm

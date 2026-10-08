@@ -1,0 +1,22 @@
+slug: binary-search
+title: Binary Search
+type: DSA
+difficulty: easy
+tags:
+- binary-search
+- array
+leetcode: binary-search
+prompt: |
+  Binary search (reported as the first question, alongside optimising an API). The reviewer said interviewers cared about fundamentals and how you approach the problem rather than Q&A.
+follow_ups:
+- Lower/upper bound variants (first and last occurrence).
+- Binary search on the answer (e.g. minimum capacity).
+academy:
+- C4
+sightings:
+- company: t-mobile
+  role: Senior Software Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2025-10
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm

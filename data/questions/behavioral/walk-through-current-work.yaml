@@ -16,3 +16,9 @@ sightings:
   seen_on: 2022-01
   confidence: claimed
   source: https://leetcode.com/discuss/post/1689730/
+- company: t-mobile
+  role: Senior Software Engineer (Hyderabad)
+  round: Technical round ("How does your day look like")
+  seen_on: 2025-10
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm

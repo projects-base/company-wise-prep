@@ -1,0 +1,661 @@
+slug: t-mobile
+name: T-Mobile (TMUS Global Solutions)
+aliases: [T-Mobile, TMUS, TMUS Global Solutions, TMUS India Private Limited, T-Mobile India, T-Mobile US]
+researched_on: 2026-10-08
+domain_notes: >-
+  T-Mobile US (NASDAQ: TMUS, Bellevue WA) is the US wireless carrier that calls itself "America's
+  supercharged Un-carrier". TMUS Global Solutions is the trading name of TMUS India Private Limited,
+  its in-house technology centre in Hyderabad. Light Reading (Jun 2026) says it "was established in
+  October 2025 to employ the long-term contractors and vendors" that had supported T-Mobile's tech
+  development, that it "supports internal technology and engineering functions and does not provide
+  customer-facing services", and that it reportedly has about 500 employees, aiming for up to 1,000
+  by 2027 (T-Mobile declined to confirm). A 250,000 sq ft Hyderabad facility opened on 4 Jun 2026.
+  The India careers site describes TMUS Global Solutions as "purpose-built to drive T-Mobile's
+  engineering-led IT transformation" with "bold thinking, radical simplicity, and a relentless 24/7
+  delivery mindset". Every India posting says TMUS Global Solutions "has engaged ANSR, Inc. ("ANSR")
+  as its exclusive recruiting partner"; all communications and offers come only through ANSR and its
+  1Recruit platform, and jobs are listed on ANSR's Talent500 site. No source says ANSR built or
+  operates the centre, so that is not claimed here. The target role (Resiliency team) protects
+  payments, device activations and customer interactions across multiple datacenters: automated
+  failover, cross-datacenter orchestration, observability pipelines and AI Ops, with GitLab CI/CD,
+  Python/Bash/YAML, AWS, Kubernetes and CyberArk/Vault. India SRE postings add Terraform, Ansible,
+  Splunk, Grafana, Prometheus, OpenTelemetry, AppDynamics, Jenkins, ServiceNow/ITIL.
+
+values:
+  - name: "Love our customers (\"We don't just do customer service. We do customer love.\")"
+    source: https://careers.t-mobile.com/culture-and-benefits
+  - name: "One team, together (celebrate, listen to, empower and include each other)"
+    source: https://careers.t-mobile.com/culture-and-benefits
+  - name: "Dream big and deliver (aim high, take smart risks, own our results, act like owners)"
+    source: https://careers.t-mobile.com/culture-and-benefits
+  - name: "Do it the right way. Always. (for customers, shareholders, society and each other)"
+    source: https://careers.t-mobile.com/culture-and-benefits
+  - name: "We won't stop (relentless, never complacent, bust down barriers, make change)"
+    source: https://careers.t-mobile.com/culture-and-benefits
+  - name: >-
+      TMUS Global Solutions framing: "bold thinking, radical simplicity, and a relentless 24/7
+      delivery mindset"; "speed, agility, and scale" for T-Mobile's "digital 'Un-carrier' future"
+    source: https://talent500.com/t-mobile/careers/india/
+  - name: >-
+      Resiliency JD "Who you are": self-driven, first-principles thinker, collaborative, fast learner,
+      independent operator, comfortable with ambiguity, relationship builder, clear communicator,
+      continuous improver, knowledge sharer; "accountability mindset"
+    source: https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/
+
+roles:
+  - role: Senior Software Engineer – Resiliency (recruiter title "Sr Engineer, Software"), TMUS Global Solutions, Hyderabad
+    level: Sr Engineer (5–8 yrs)
+    loop:
+      - round: Application screening questions (Talent500 / 1Recruit)
+        type: HIRING_MANAGER
+        assesses: >-
+          Every TMUS India posting on Talent500 carries multiple-choice screening questions on years of
+          experience in the core skill (for example "How many years of experience do you have in SRE?",
+          "...in Python / Java?"). The Resiliency posting asks about Python / Java. Official, but it is a
+          filter, not an interview.
+        confidence: claimed
+        source: https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/
+        seen_on: 2026-08
+      - round: Round 1, technical (virtual)
+        type: JAVA
+        duration_min: 60
+        assesses: >-
+          Reported for an Associate SE in Hyderabad (2026): a third party ran round 1, covering core Java,
+          Spring Boot, SQL queries, one coding problem, SOLID and system design (polymorphism; can static
+          methods be overridden). For a Senior SE in Hyderabad (Oct 2025): fundamentals and how you approach
+          a problem rather than Q&A; binary search, optimising an API, "how does your day look". Duration
+          is assumed, not reported.
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm
+        seen_on: 2025-10
+      - round: Round 2, HLD of your current project (virtual, interviewer from the US)
+        type: HLD
+        assesses: >-
+          One reply in the Glassdoor "TMUS Global Solutions, India" community: "2nd round: HLD of your
+          current project ... virtual, someone from US". Undated post (the community exists only since
+          TMUS Global Solutions formed in Oct 2025).
+        confidence: claimed
+        source: https://www.glassdoor.com/Community/tmus-global-solutions-india/i-have-r1-interview-for-senior-engineer-role-with-tmus-can-someone-help-with-their-interview-experience-thanks-in
+      - round: Round 3, face to face in Hyderabad (HLD + Kafka scenario + DSA)
+        type: HLD
+        assesses: >-
+          Same reply: "3rd round: f2f HLD, kafka scenario based question, DSA". A separate community post
+          confirms a third technical round held F2F in Hyderabad on 6 March, followed the same day by an
+          HR round; the offer was then put on hold. Read via search-engine snippets only.
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Community/tmus-global-solutions-india/right-after-my-third-round-of-technical-interviews-which-was-f2f-in-hyderabad-on-march-6th-i-had-an-hr-round-they-gave-me-a
+        seen_on: 2026-03
+      - round: HR round (compensation, documents, offer)
+        type: BEHAVIORAL
+        assesses: >-
+          Reported right after the final technical round. Several candidates report offers or profiles put
+          "on hold" after this stage (one Sr SWE was told they were kept as a backup candidate).
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Community/tmus-global-solutions-india/right-after-my-third-round-of-technical-interviews-which-was-f2f-in-hyderabad-on-march-6th-i-had-an-hr-round-they-gave-me-a
+        seen_on: 2026-03
+    bar: >-
+      The posting's own bar: "strong first-principles understanding of distributed systems, fault
+      tolerance, and failure modes — not just framework familiarity, but genuine depth earned through
+      production experience", end-to-end ownership "with minimal hand-holding", and documentation as "a
+      first-class deliverable". A hire can explain why a failover pattern exists, what breaks it
+      (split-brain, replication lag, stale DNS), how they would detect readiness and prove it with
+      dashboards and drills, and can automate it in GitLab CI + Python/Bash on Kubernetes/AWS. This
+      reading is an inference from the JD; no report describes the Resiliency team's own loop.
+
+official:
+  hiring_process:
+    - step: Apply through ANSR (Talent500 / 1Recruit)
+      detail: >-
+        "TMUS India Private Limited, operating as TMUS Global Solutions, has engaged ANSR, Inc. ("ANSR") as
+        its exclusive recruiting partner. That means that any communications regarding TMUS Global
+        Solutions opportunities or employment offers will be issued only through ANSR and the 1Recruit
+        platform." India jobs are listed on talent500.com/t-mobile/careers/india/ (ANSR's Talent500), not
+        on T-Mobile's US Workday site, which returned 0 results for Hyderabad.
+      source: https://talent500.com/t-mobile/careers/india/
+    - step: Screening questions at application
+      detail: Multiple-choice questions on years of experience in the posting's core skill.
+      source: https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/
+    - step: Fraud warning
+      detail: >-
+        TMUS Global Solutions "will never seek any payment or other compensation during the hiring process
+        or request sensitive personal data (such as bank details or government-issued identification
+        numbers) prior to a candidate's acceptance of a formal offer."
+      source: https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/
+    - step: No published interview-process page
+      detail: >-
+        careers.t-mobile.com has a culture page and an internship FAQ (internship interviews run Fall to
+        March) but no general "how we hire" page. Neither site describes the TMUS Global Solutions loop.
+      source: https://careers.t-mobile.com/internship
+  interview_tips:
+    - text: >-
+        No official interview tips exist for TMUS Global Solutions. The Resiliency JD's own wording is the
+        best guide: reason from first principles, own problems end to end, "escalate with context and a
+        proposed path forward", and treat documentation as a deliverable.
+      source: https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/
+  engineering_signals:
+    - text: >-
+        Resiliency team: "millions of payments, device activations, and customer interactions processed
+        every day ... When those systems fail, customers feel it immediately." Building "automated failover,
+        cross-datacenter orchestration, observability pipelines, and AI Ops"; async-first with sync
+        touchpoints across U.S. and India time zones.
+      source: https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/
+      accessed: 2026-10-08
+    - text: >-
+        App SRE postings give concrete expectations: find whether an API outage is Kubernetes pod networking,
+        API gateway misconfig or DB latency; debug Pending pods (node capacity, taints/tolerations,
+        autoscaler logs); Python script to collect pod logs on crash; Prometheus alert rules for DB query
+        spikes; Grafana latency dashboards; smoke tests before promoting deployments; act as incident
+        commander and write RCAs; tune HPA when CPU-throttled; WAF false positives; ChatOps bots.
+      source: https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/
+      accessed: 2026-10-08
+    - text: >-
+        A sibling posting "Software Engineer – Resiliency" (T500-27016, 3+ years) with the same failover /
+        GitLab / Kubernetes / CyberArk text appeared on a job aggregator; it is now removed (404) and was read
+        only through a search snippet.
+      source: https://jobs.joindevops.com/jobs/508869278-engineer-software-devops-automation-t500-27016
+      accessed: 2026-10-08
+  job_postings:
+    - title: Senior Software Engineer – Resiliency (Sr Engineer, Software)
+      team: Resiliency (automated failover, cross-DC orchestration, observability, AI Ops)
+      location: Hyderabad (hybrid), 5–8 yrs
+      url: "recruiter email (ANSR), 2026-10-08"
+      accessed: 2026-10-08
+      required: [5+ yrs hands-on engineering across technologies/languages/layers, first-principles distributed systems + fault tolerance + failure modes, end-to-end ownership of complex features, GitLab CI/CD expertise, Python/Bash scripting + strong YAML, AWS and Kubernetes at production scale, secret management (CyberArk, Vault), accountability mindset, strong documentation]
+      preferred: [Ansible and failover engineering, telecom or large-scale enterprise, observability platforms (Splunk, Grafana, Prometheus, OTEL), AI coding tools (Claude, GitHub Copilot, ChatGPT) in the workflow]
+      skills: [distributed-systems, fault-tolerance, failover-dr, resiliency, gitlab-ci, ci-cd, python, bash-shell, yaml, aws, kubernetes, secrets-management, observability, splunk, grafana, prometheus, opentelemetry, ansible, runbooks, documentation, mentoring, aiops, ai-assisted-dev, telecom]
+      note: Text supplied by the recruiter; treated as the official posting.
+    - title: Sr Engineer, Software — "Senior Software Engineer – Resiliency" (T500-28132)
+      team: Resiliency
+      location: Hyderabad, 5–8 yrs
+      url: https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/
+      accessed: 2026-10-08
+      required: [Same text as the recruiter JD]
+      preferred: [Same as the recruiter JD]
+      skills: [distributed-systems, fault-tolerance, failover-dr, resiliency, gitlab-ci, ci-cd, python, bash-shell, yaml, aws, kubernetes, secrets-management, observability, splunk, grafana, prometheus, opentelemetry, ansible, runbooks, documentation, mentoring, aiops, ai-assisted-dev, telecom, terraform, java, datadog, dynatrace, gcp, azure, jenkins]
+      note: >-
+        Public copy of the same role, opened 2026-08-03. Its Talent500 primary-skill tags add Terraform,
+        "Python or Java", "AWS or GCP or Azure", "Git or CI/CD or Jenkins", "Splunk or Dynatrace or Datadog"
+        and "AI". Screening question: years of Python / Java.
+    - title: Sr Engineer, Site Reliability (TFB) (T500-29902)
+      team: SRE
+      location: Hyderabad, 5–8 yrs
+      url: https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/
+      accessed: 2026-10-08
+      required: [5+ yrs DevOps/SRE/cloud ops/platform, Python/Go/shell, CI/CD (GitLab, Jenkins), Terraform/Ansible IaC, Docker + Kubernetes, Splunk/Grafana/AppDynamics, AWS and Azure, cloud migration + microservices, Jira/Confluence/ServiceNow]
+      preferred: []
+      skills: [kubernetes, openshift, docker, terraform, ansible, iac, gitlab-ci, jenkins, ci-cd, python, go, bash-shell, splunk, grafana, appdynamics, observability, aws, azure, failover-dr, networking, incident-management, itsm, mentoring, ai-assisted-dev, microservices]
+      note: Opened 2026-10-05. Mentions backup and disaster recovery, DNS, load balancing, certificates.
+    - title: Senior Engineer – Site Reliability (Application SRE) (T500-29769)
+      team: Application SRE
+      location: Hyderabad, 5–8 yrs
+      url: https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/
+      accessed: 2026-10-08
+      required: [Kubernetes + container orchestration + API management, WAFs + network security + SQL/NoSQL, Python/Go/Ansible/Terraform, observability, CI/CD + GitOps + IaC, incident command + RCA]
+      preferred: [AWS/Azure/GCP, WAF rules, capacity + HPA tuning, AIOps/ChatOps, hybrid on-prem + cloud]
+      skills: [kubernetes, python, go, bash-shell, ansible, terraform, iac, gitops, jenkins, ci-cd, prometheus, grafana, opentelemetry, splunk, dynatrace, appdynamics, observability, incident-management, itsm, runbooks, self-healing, sql, networking, aiops, aws, azure, gcp, mentoring]
+      note: Opened 2026-09-22.
+    - title: Senior Engineer – Site Reliability (T500-27010)
+      team: SRE
+      location: Hyderabad, 6–9 yrs
+      url: https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-27010/
+      accessed: 2026-10-08
+      required: [Same App-SRE template as T500-29769]
+      preferred: [OpenTelemetry, AI]
+      skills: [kubernetes, python, go, bash-shell, ansible, terraform, ci-cd, datadog, prometheus, appdynamics, splunk, opentelemetry, observability, incident-management, runbooks, self-healing, aws, azure, gcp, ai-assisted-dev]
+      note: Opened 2026-06-25.
+    - title: Engineer, Site Reliability (T500-29903)
+      team: SRE
+      location: Hyderabad, 3–5 yrs
+      url: https://talent500.com/jobs/t-mobile/engineer-site-reliability-hyderabad-T500-29903/
+      accessed: 2026-10-08
+      required: [Python/Go/shell, GitLab/Jenkins, Terraform/Ansible, Splunk/Grafana/AppDynamics, Kubernetes, AWS]
+      preferred: []
+      skills: [kubernetes, terraform, ansible, gitlab-ci, gitops, jenkins, ci-cd, aws, splunk, grafana, appdynamics, python, go, bash-shell, observability]
+      note: Opened 2026-10-05.
+    - title: Sr Engineer Software – Backend (AI platform) (T500-28888)
+      team: AI Platform
+      location: Hyderabad, 6–9 yrs
+      url: https://talent500.com/jobs/t-mobile/sr-engineer-software-backend-hyderabad-T500-28888/
+      accessed: 2026-10-08
+      required: [Java/Python/Go, distributed systems + microservices + REST + event-driven, Kubernetes, CI/CD, production support + RCA, resiliency + performance]
+      preferred: [Terraform, Prometheus/Grafana/Splunk/Datadog/OpenTelemetry, SLIs/SLOs/error budgets, LLM services, MCP, API gateways]
+      skills: [java, python, go, distributed-systems, microservices, kubernetes, gitlab-ci, ci-cd, observability, grafana, splunk, datadog, prometheus, opentelemetry, terraform, slo-error-budgets, incident-management, mentoring, aws, azure, gcp]
+      note: Re-opened 2026-10-05.
+    - title: Sr Engineer, Software – Java (commissions) (T500-28390)
+      team: Commissions platform
+      location: Hyderabad, 7–9 yrs
+      url: https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/
+      accessed: 2026-10-08
+      required: [7+ yrs core Java + JVM, Spring Boot microservices, REST API design, concurrency + performance, Kafka/RabbitMQ, resilience patterns (circuit breaker, retry, idempotency, timeouts), AI coding assistants (Claude, Copilot)]
+      preferred: [commissions/billing/financial systems, Oracle/RDS, Spring Cloud, CI/CD, OpenTelemetry/Zipkin/Jaeger, Python/Shell scripting]
+      skills: [java, spring-boot, microservices, kafka, resilience-patterns, distributed-systems, observability, opentelemetry, ci-cd, python, bash-shell, ai-assisted-dev, sql]
+      note: Opened 2026-08-11. Closest match to Akhil's current profile.
+    - title: Sr Engineer, Software – AIOps (T500-20351)
+      team: AIOps
+      location: Hyderabad, 4–7 yrs
+      url: https://talent500.com/jobs/t-mobile/sr-engineer-software-aiops-hyderabad-T500-20351/
+      accessed: 2026-10-08
+      required: [AIOps/ML, Java + Spring Boot + microservices + API design, CI/CD (GitLab/Jenkins/GitHub Actions), Kubernetes/Docker, SQL/NoSQL, OpenTelemetry/Prometheus/Grafana/Splunk, Python/Go/Bash]
+      preferred: []
+      skills: [aiops, java, spring-boot, microservices, gitlab-ci, jenkins, ci-cd, kubernetes, docker, sql, opentelemetry, prometheus, grafana, splunk, datadog, python, go, bash-shell, observability]
+      note: Opened 2025-09-16; still listed. Shows Java + Spring Boot alongside observability/AIOps.
+    - title: Sr Engineer, Software – Full Stack Engineering (T500-27093)
+      team: Full stack
+      location: Hyderabad, 8–10 yrs
+      url: https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-27093/
+      accessed: 2026-10-08
+      required: [Java + Spring Boot microservices, REST/gRPC, Angular, Kafka/RabbitMQ/Splunk, production debugging]
+      preferred: [Python or .NET scripting, AI/MCP]
+      skills: [java, spring-boot, microservices, sql, kubernetes, python, ci-cd, kafka, splunk, observability]
+      note: Opened 2026-06-27.
+    - title: Principal Engineer, Systems Architecture (T500-29934)
+      team: Infrastructure (on-prem / edge / datacenter)
+      location: Hyderabad, 10–17 yrs
+      url: https://talent500.com/jobs/t-mobile/principal-engineer-systems-architecture-hyderabad-T500-29934/
+      accessed: 2026-10-08
+      required: [Terraform/Ansible Automation Platform, RHEL/Ubuntu, Python/Bash, OpenShift, Prometheus/Grafana/Datadog/Dynatrace, a modern language (Java, Python, Go, JS)]
+      preferred: [datacenter transformation, hardware refresh]
+      skills: [terraform, ansible, linux, python, bash-shell, openshift, prometheus, grafana, datadog, dynatrace, resiliency, documentation, java]
+      note: Opened 2026-10-06. Shows the datacenter and Ansible side of the org.
+  skill_frequency:   # keyword match over the 11 entries above (the recruiter JD and T500-28132 are the same role, so JD skills count twice)
+    python: 11
+    observability: 11
+    kubernetes: 10
+    ci-cd: 10
+    bash-shell: 9
+    aws: 9
+    splunk: 9
+    grafana: 9
+    mentoring: 9
+    documentation: 9
+    resiliency: 8
+    azure: 8
+    ansible: 7
+    prometheus: 7
+    opentelemetry: 7
+    terraform: 7
+    go: 7
+    incident-management: 7
+    gitlab-ci: 6
+    distributed-systems: 6
+    java: 6
+    jenkins: 6
+    gcp: 6
+    microservices: 6
+    iac: 6
+    runbooks: 5
+    aiops: 5
+    datadog: 5
+    gitops: 5
+    appdynamics: 5
+    ai-assisted-dev: 4
+    docker: 4
+    networking: 4
+    sql: 4
+    failover-dr: 3
+    fault-tolerance: 3
+    dynatrace: 3
+    openshift: 3
+    itsm: 3
+    slo-error-budgets: 3
+    self-healing: 3
+    spring-boot: 3
+    kafka: 3
+    yaml: 2
+    secrets-management: 2
+    telecom: 2
+    resilience-patterns: 1
+    linux: 1
+  conflicts_with_reports:
+    - >-
+      No report describes the Resiliency team's own interviews. The reported loops are for Java/backend
+      roles (core Java, Spring Boot, SQL, DSA, HLD, Kafka scenario). Expect a mix: the JD's Python, GitLab,
+      Kubernetes and failover depth may be tested, but the generic TMUS loop leans on Java backend topics,
+      which is Akhil's strength.
+    - >-
+      Reports say several Hyderabad candidates "applied through a staffing agency" or had a "third party"
+      run round 1. That fits ANSR being the exclusive recruiting partner, but no report names ANSR as the
+      interviewer of record.
+    - >-
+      Glassdoor and Fishbowl pages return 403; every report was read through search-engine snippets, so
+      dates and wording are partial.
+
+tech_stack:
+  # ---- Frameworks, languages, platforms ----
+  - name: Python
+    category: scripting
+    importance: core
+    evidence: "JD must-have (Python/Bash scripting); 11/11 postings"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/, https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: Bash / shell
+    category: scripting
+    importance: core
+    evidence: "JD must-have; 9/11 postings"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: YAML (pipelines, Kubernetes manifests, Ansible playbooks)
+    category: scripting
+    importance: core
+    evidence: "JD must-have: \"strong YAML skills\""
+    sources: ["recruiter email (ANSR), 2026-10-08"]
+  - name: Kubernetes (EKS/AKS; OpenShift in some teams)
+    category: infra
+    importance: core
+    evidence: "JD must-have (production scale); 10/11 postings; App SRE examples: Pending pods, HPA, pod networking"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: AWS
+    category: cloud
+    importance: core
+    evidence: "JD must-have (production scale); 9/11 postings; Azure in 8/11"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: Azure
+    category: cloud
+    importance: common
+    evidence: "8/11 postings (\"AWS or Azure\"); not in the Resiliency must-haves"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: Java
+    category: language
+    importance: common
+    evidence: "6/11 postings; the Resiliency posting's tags say \"Python or Java\"; reported rounds test core Java"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/, https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/, https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm]
+  - name: Spring Boot
+    category: framework
+    importance: common
+    evidence: "3/11 postings (Java, AIOps, full stack); reported round-1 topic"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-software-aiops-hyderabad-T500-20351/, https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm]
+  - name: Go
+    category: language
+    importance: common
+    evidence: "7/11 postings list Go as an alternative scripting language"
+    sources: [https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: Docker
+    category: infra
+    importance: common
+    evidence: "4/11 postings"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: SQL / NoSQL databases (Oracle, RDS)
+    category: datastore
+    importance: common
+    evidence: "4/11 postings; App SRE: find slow SQL causing latency; reported round-1 SQL queries"
+    sources: [https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/, https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/]
+  - name: Kafka / RabbitMQ
+    category: messaging
+    importance: common
+    evidence: "3/11 postings; reported round 3 has a Kafka scenario question"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/, https://www.glassdoor.com/Community/tmus-global-solutions-india/i-have-r1-interview-for-senior-engineer-role-with-tmus-can-someone-help-with-their-interview-experience-thanks-in]
+  - name: Linux (RHEL/Ubuntu)
+    category: infra
+    importance: mentioned
+    evidence: "Principal Systems Architecture posting"
+    sources: [https://talent500.com/jobs/t-mobile/principal-engineer-systems-architecture-hyderabad-T500-29934/]
+  - name: AI coding tools (Claude, GitHub Copilot, ChatGPT, Cursor)
+    category: ai-tools
+    importance: common
+    evidence: "JD nice-to-have (\"integrated ... into your workflow\"); Java posting requires Claude/Copilot; SRE postings ask for AI-driven practices"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/]
+  # ---- Architecture patterns ----
+  - name: Active-active / active-passive failover across datacenters
+    category: architecture-pattern
+    importance: core
+    evidence: "JD: \"automated failover, cross-datacenter orchestration\", \"protect ... critical systems across multiple datacenters\", \"failover patterns\""
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/]
+  - name: Health checks and readiness signals (liveness/readiness, failover readiness)
+    category: architecture-pattern
+    importance: core
+    evidence: "JD: \"health-check mechanisms giving real-time visibility into failover readiness and execution\""
+    sources: ["recruiter email (ANSR), 2026-10-08"]
+  - name: Disaster recovery (backup/restore, pilot light, warm standby, RTO/RPO)
+    category: architecture-pattern
+    importance: core
+    evidence: "JD failover focus; SRE posting: backup and disaster recovery"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: DNS / GSLB traffic failover and load balancing
+    category: architecture-pattern
+    importance: common
+    evidence: "JD cross-datacenter orchestration; SRE posting: DNS, load balancing, traffic management"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: Runbook automation and self-healing systems
+    category: architecture-pattern
+    importance: core
+    evidence: "JD: operational runbooks, automation standards; App SRE: self-healing systems, automate runbook steps"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: Resilience patterns (circuit breaker, retry with backoff, timeouts, idempotency, bulkhead)
+    category: architecture-pattern
+    importance: common
+    evidence: "JD: fault tolerance and failure modes; Java posting names circuit breaker, retry, idempotency, timeouts"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/]
+  - name: SLI / SLO / error budgets
+    category: architecture-pattern
+    importance: common
+    evidence: "AI-platform backend posting (nice-to-have); SRE postings: availability, latency, capacity"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-software-backend-hyderabad-T500-28888/]
+  - name: Incident management, postmortems and RCA
+    category: architecture-pattern
+    importance: common
+    evidence: "7/11 postings; App SRE: incident commander, bridge calls, RCA"
+    sources: [https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: Progressive delivery (smoke tests before promotion, blue-green / canary)
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "App SRE example: \"add automated smoke tests before promoting Kubernetes deployments\""
+    sources: [https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: Event-driven microservices
+    category: architecture-pattern
+    importance: common
+    evidence: "6/11 postings mention microservices; Java and AI-platform postings mention event-driven"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/, https://talent500.com/jobs/t-mobile/sr-engineer-software-backend-hyderabad-T500-28888/]
+  - name: Infrastructure as Code / GitOps
+    category: architecture-pattern
+    importance: common
+    evidence: "IaC 6/11, GitOps 5/11"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/, https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  # ---- Tools ----
+  - name: GitLab CI/CD
+    category: ci-cd
+    importance: core
+    evidence: "JD must-have (\"GitLab CI/CD expertise\"); 6/11 postings"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/engineer-site-reliability-hyderabad-T500-29903/]
+  - name: Jenkins
+    category: ci-cd
+    importance: common
+    evidence: "6/11 postings as an alternative"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: HashiCorp Vault / CyberArk
+    category: security
+    importance: core
+    evidence: "JD must-have: \"secret management solutions (CyberArk, Vault)\""
+    sources: ["recruiter email (ANSR), 2026-10-08"]
+  - name: Ansible
+    category: tool
+    importance: common
+    evidence: "JD nice-to-have; 7/11 postings; Ansible Automation Platform in the datacenter posting"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/principal-engineer-systems-architecture-hyderabad-T500-29934/]
+  - name: Terraform
+    category: tool
+    importance: common
+    evidence: "7/11 postings; a primary tag on the Resiliency posting (T500-28132)"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/]
+  - name: Splunk
+    category: observability
+    importance: core
+    evidence: "JD nice-to-have; 9/11 postings"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+  - name: Grafana
+    category: observability
+    importance: core
+    evidence: "JD nice-to-have; 9/11 postings"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: Prometheus
+    category: observability
+    importance: common
+    evidence: "JD nice-to-have; 7/11 postings; \"build Prometheus alert rules\""
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: OpenTelemetry (OTEL)
+    category: observability
+    importance: common
+    evidence: "JD nice-to-have; 7/11 postings"
+    sources: ["recruiter email (ANSR), 2026-10-08", https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/]
+  - name: AppDynamics / Datadog / Dynatrace
+    category: observability
+    importance: common
+    evidence: "AppDynamics 5/11, Datadog 5/11, Dynatrace 3/11"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/, https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/]
+  - name: ServiceNow / Jira / Confluence (ITSM)
+    category: tool
+    importance: mentioned
+    evidence: "SRE posting: Jira, Confluence, ServiceNow for incident, change, problem and release management"
+    sources: [https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/]
+
+frameworks_to_prepare:   # against an assumed profile (data/profile.yaml not present yet): Java 21 / Spring Boot / JPA / REST / PostgreSQL backend, ~5.5 yrs
+  revise:
+    - {name: Distributed systems fundamentals and failure modes, why: "JD must-have: first-principles fault tolerance and failure modes", academy: [F2, F1], plan: "Write a one-page list of failure modes (crash, partition, slow node, clock skew, split-brain, retry storm) with one detection and one mitigation each."}
+    - {name: Resilience patterns (circuit breaker, retry + backoff + jitter, timeouts, bulkhead, idempotency), why: "JD fault tolerance; Java posting names them", academy: [S8, F2], plan: "Re-explain each with a Resilience4j config from your own services and the failure it prevents.", resources: [https://resilience4j.readme.io/docs/circuitbreaker, https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/, https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead]}
+    - {name: Replication, consistency and data failover (sync vs async, replica lag, RPO), why: "Cross-datacenter failover of payment/activation data", academy: [Q8, F2, Q6], plan: "Explain Postgres streaming replication, what is lost on failover (RPO), and how fencing avoids split-brain."}
+    - {name: Spring Boot Actuator health, readiness and metrics, why: "JD health-check mechanisms; Akhil's own production services are the bridge", academy: [D8], plan: "Map /actuator/health liveness/readiness groups to Kubernetes probes and Micrometer metrics to Prometheus.", resources: [https://docs.spring.io/spring-boot/reference/actuator/endpoints.html]}
+    - {name: Event-driven microservices, outbox and Kafka scenarios, why: "Reported round 3 Kafka scenario; 6/11 postings microservices", academy: [S9, S8], plan: "Rehearse: consumer lag spike, poison message, duplicate delivery, rebalance storm, and the outbox fix.", resources: [https://microservices.io/patterns/data/transactional-outbox.html]}
+    - {name: Core Java, OOP, concurrency, JVM, why: "Reported round 1: core Java, polymorphism, static methods, SOLID", academy: [A1, B2, B4, E1], plan: "One evening: OOP pillars, overriding vs hiding, SOLID by example, thread pools and deadlocks."}
+    - {name: Code-level design patterns (strategy, template method, observer, state), why: "Failover runbooks as pluggable strategies; health-state transitions; inferred from the JD's automation standards", academy: [E2, E3, E4], plan: "Sketch a failover orchestrator: Strategy per app type, Template Method for drain → switch → verify, Observer for health events."}
+    - {name: System design method and monitoring case study, why: "Reported HLD rounds; JD observability pipelines", academy: [F3, F6], plan: "Do F6 metrics & monitoring once, then design 'failover readiness dashboard' end to end."}
+    - {name: SQL and slow-query diagnosis, why: "Reported SQL round; App SRE: find slow SQL causing latency", academy: [Q5, Q7], plan: "Revise EXPLAIN and pg_stat_statements; one story of a DB-caused latency incident."}
+  learn:
+    - {name: Cross-datacenter failover (active-active vs active-passive, DNS/GSLB, RTO/RPO, split-brain), why: "The core of the role", academy: [F2, Q8], plan: "Read the AWS DR options whitepaper and Route 53 failover; draw both topologies for a payment API with RTO/RPO numbers.", resources: [https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html, https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html]}
+    - {name: GitLab CI/CD and YAML, why: "JD must-have", academy: [], plan: "Evening build: .gitlab-ci.yml with build/test/package/deploy stages, rules, needs, artifacts, a manual 'failover' job and include/extends templates.", resources: [https://docs.gitlab.com/ci/quick_start/, https://docs.gitlab.com/ci/yaml/]}
+    - {name: Python and Bash for ops automation, why: "JD must-have; 11/11 postings", academy: [], plan: "Write a Python health-check poller (requests + retries + exit codes) and a Bash wrapper with set -euo pipefail, traps and logging.", resources: [https://docs.python.org/3/tutorial/]}
+    - {name: Kubernetes in production (probes, rollouts, HPA, PDB, debugging Pending/CrashLoop), why: "JD must-have at production scale", academy: [S9], plan: "On kind/minikube: deploy a Spring Boot app with liveness/readiness/startup probes, break each probe, fix with kubectl describe/logs/events.", resources: [https://kubernetes.io/docs/tutorials/kubernetes-basics/, https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/]}
+    - {name: Secret management (HashiCorp Vault; CyberArk concepts), why: "JD must-have", academy: [], plan: "Run Vault dev server, store a DB secret, read it from a GitLab job via JWT/OIDC and from a pod; know dynamic secrets, leases and rotation.", resources: [https://developer.hashicorp.com/vault/docs/what-is-vault, https://developer.hashicorp.com/vault/tutorials/get-started, https://docs.gitlab.com/ci/secrets/hashicorp_vault/, https://developer.hashicorp.com/vault/docs/platform/k8s]}
+    - {name: SLI / SLO / error budgets and alerting on symptoms, why: "Failover readiness needs measurable targets; SRE postings", academy: [F6], plan: "Write SLOs for 'payment authorisation' and 'device activation' and a multi-window burn-rate alert.", resources: [https://sre.google/sre-book/service-level-objectives/, https://sre.google/workbook/implementing-slos/, https://prometheus.io/docs/practices/alerting/]}
+    - {name: Observability stack (OpenTelemetry, Prometheus, Grafana, Splunk), why: "JD nice-to-have; 7–9/11 postings", academy: [F6, D8], plan: "Instrument a Spring Boot service with the OTel Java agent, scrape with Prometheus, build a Grafana latency + error panel.", resources: [https://opentelemetry.io/docs/concepts/signals/, https://grafana.com/docs/grafana/latest/getting-started/get-started-grafana-prometheus/]}
+    - {name: Health-check design (shallow vs deep, dependency checks, fail-open), why: "JD health-check mechanisms", academy: [F6], plan: "Read the AWS Builders' Library article and write down which checks gate failover and which only alert.", resources: [https://aws.amazon.com/builders-library/implementing-health-checks/]}
+    - {name: Chaos engineering and failover drills, why: "Proving failover readiness; SRE postings ask for resilience validation", academy: [], plan: "Read the principles; plan a game day: hypothesis, blast radius, abort criteria, metrics.", resources: [https://principlesofchaos.org/]}
+    - {name: Ansible, why: "JD nice-to-have; 7/11 postings", academy: [], plan: "Write one playbook with an inventory, a role and a handler that drains a node and restarts a service.", resources: [https://github.com/ansible/ansible]}
+    - {name: Terraform, why: "7/11 postings; tag on the Resiliency posting", academy: [], plan: "Follow the AWS get-started tutorial; know state, locking, plan/apply, modules.", resources: [https://developer.hashicorp.com/terraform/tutorials/aws-get-started]}
+    - {name: Blue-green / canary and smoke-test gates, why: "App SRE: smoke tests before promotion", academy: [S9], plan: "Add a canary + smoke-test stage to the GitLab pipeline you built.", resources: [https://martinfowler.com/bliki/BlueGreenDeployment.html]}
+
+sources:
+  - url: https://talent500.com/t-mobile/careers/india/
+    title: TMUS Global Solutions India careers site (on ANSR's Talent500); ANSR exclusive-recruiter disclaimer
+    accessed: 2026-10-08
+    kind: official
+  - url: https://prod-warmachine.talent500.co/api/jobs/?company_slug=t-mobile
+    title: Talent500 public jobs API for TMUS Global Solutions (81 active Hyderabad postings)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/sr-engineer-software-hyderabad-T500-28132/
+    title: Senior Software Engineer – Resiliency (T500-28132), public copy of the target role
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/sr-engineer-site-reliability-hyderabad-T500-29902/
+    title: Sr Engineer, Site Reliability (T500-29902)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-29769/
+    title: Senior Engineer – Site Reliability (T500-29769)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/senior-engineer-site-reliability-hyderabad-T500-27010/
+    title: Senior Engineer – Site Reliability (T500-27010)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/engineer-site-reliability-hyderabad-T500-29903/
+    title: Engineer, Site Reliability (T500-29903)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/sr-engineer-software-backend-hyderabad-T500-28888/
+    title: Sr Engineer Software – Backend, AI platform (T500-28888)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-28390/
+    title: Sr Engineer, Software – Java, commissions (T500-28390)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/sr-engineer-software-aiops-hyderabad-T500-20351/
+    title: Sr Engineer, Software – AIOps (T500-20351)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/sr-engineer-software-java-hyderabad-T500-27093/
+    title: Sr Engineer, Software – Full Stack Engineering (T500-27093)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://talent500.com/jobs/t-mobile/principal-engineer-systems-architecture-hyderabad-T500-29934/
+    title: Principal Engineer, Systems Architecture (T500-29934)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://careers.t-mobile.com/culture-and-benefits
+    title: T-Mobile careers - Un-carrier values
+    accessed: 2026-10-08
+    kind: official
+  - url: https://careers.t-mobile.com/internship
+    title: T-Mobile internships FAQ (only interview-process text on the careers site)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://tmobile.wd1.myworkdayjobs.com/en-US/External
+    title: T-Mobile US Workday (0 results for Hyderabad; India jobs are not here)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://ansr.com/careers/top-gcc-jobs-careers/
+    title: ANSR "Top GCC Jobs" page listing TMUS Global Solutions roles (no description of the relationship)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://lightreading.com/operations/t-mobile-expands-tech-development-hub-in-india
+    title: Light Reading - T-Mobile expands tech development hub in India (9 Jun 2026)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://news.outsourceaccelerator.com/t-mobile-hyderabad-gcc/
+    title: Outsource Accelerator - T-Mobile Hyderabad GCC (Jun 2026)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://www.uniindia.com/news/business-economy/tech-tmus-global-centre/3865600.html
+    title: UNI - TMUS Global Solutions inaugurates Hyderabad Global Technology Centre (search snippet)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://www.deccanchronicle.com/southern-states/telangana/t-mobile-us-setting-up-global-tech-hub-in-hyderabad-to-add-300-jobs-by-january-1913009
+    title: Deccan Chronicle - T-Mobile US setting up global tech hub in Hyderabad (search snippet)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm
+    title: Glassdoor - T-Mobile Senior Software Engineer (Hyderabad, Oct 2025 report; 403, snippets only)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm
+    title: Glassdoor - T-Mobile Associate Software Engineer (Hyderabad, 2026 report; snippets only)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.co.in/Interview/T-Mobile-Full-Stack-Developer-Interview-Questions-EI_IE9302.0,8_KO9,29.htm
+    title: Glassdoor - T-Mobile Full Stack Developer (Hyderabad, Aug 2026 reports; snippets only)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.com/Interview/T-Mobile-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,26.htm
+    title: Glassdoor - T-Mobile Software Engineer (Jan 2026 report, location unclear; snippets only)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.com/Interview/T-Mobile-Senior-Software-Developer-Interview-Questions-EI_IE9302.0,8_KO9,34.htm
+    title: Glassdoor - T-Mobile Senior Software Developer (Hyderabad AI role, Oct 2025; snippets only)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.com/Community/tmus-global-solutions-india/i-have-r1-interview-for-senior-engineer-role-with-tmus-can-someone-help-with-their-interview-experience-thanks-in
+    title: Glassdoor/Fishbowl community - TMUS Senior Engineer R1 thread (rounds 2-3 described in a reply; undated; snippets only)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://www.glassdoor.co.in/Community/tmus-global-solutions-india/right-after-my-third-round-of-technical-interviews-which-was-f2f-in-hyderabad-on-march-6th-i-had-an-hr-round-they-gave-me-a
+    title: Glassdoor community - third round F2F in Hyderabad, HR round, offer on hold (snippet only)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://www.fishbowlapp.com/post/hi-i-got-an-offer-from-tmus-global-solutions-i-just-wanted-to-know-about-the-work-environment-and-the-office-location-in
+    title: Fishbowl - TMUS offer thread (mentions L1, L2, R3 face to face; 403, snippet only)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://www.fishbowlapp.com/post/hi-everyone-i-will-have-the-t-mobile-2nd-round-of-interview-for-engineer-software-position-can-anyone-share-their-experiences-that
+    title: Fishbowl - T-Mobile 2nd round for Engineer, Software (asks about core Java, DSA, Spring Boot, system design, k8s; undated; not used for questions)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://leetcode.com/discuss/post/1591871/
+    title: LeetCode Discuss - T-Mobile Senior SE (US, Nov 2021, 4 rounds incl. 3 technical over 2 days; old, not used)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://leetcode.com/discuss/post/7374212/
+    title: LeetCode Discuss - T-Mobile Hyderabad (Nov 2025; no interview content)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://jobs.joindevops.com/jobs/508869278-engineer-software-devops-automation-t500-27016
+    title: Aggregator copy of "Software Engineer – Resiliency" (T500-27016); now 404, snippet only
+    accessed: 2026-10-08
+    kind: official

@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "binary-search",
+    "title": "Binary Search",
+    "type": "DSA",
+    "difficulty": "easy",
+    "tags": ["binary-search", "array"],
+    "leetcode": "binary-search",
+    "prompt": "Binary search (reported as the first question, alongside optimising an API). The reviewer said interviewers cared about fundamentals and how you approach the problem rather than Q&A.",
+    "follow_ups": ["Lower/upper bound variants (first and last occurrence).", "Binary search on the answer (e.g. minimum capacity)."],
+    "academy": ["C4"],
+    "sighting": {"company": "t-mobile", "role": "Senior Software Engineer (Hyderabad)", "round": "Technical round", "seen_on": "2025-10", "confidence": "claimed", "source": "https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm"}
+  },
+  {
+    "slug": "optimize-slow-api",
+    "title": "How would you optimise a slow API?",
+    "type": "DOMAIN",
+    "difficulty": "medium",
+    "tags": ["performance", "api", "latency", "sre", "observability"],
+    "leetcode": null,
+    "prompt": "Optimising an API (reported with binary search in the same round). Expect: measure first (p95/p99, traces), find the bottleneck (DB, downstream calls, serialisation, pool exhaustion), then fix and verify.",
+    "follow_ups": ["Which metrics and traces would you look at first?", "How do you stop a slow dependency from taking the API down (timeouts, circuit breaker, bulkhead)?", "Caching: what, where, and how do you invalidate?"],
+    "academy": ["Q7", "F1", "H3"],
+    "sighting": {"company": "t-mobile", "role": "Senior Software Engineer (Hyderabad)", "round": "Technical round", "seen_on": "2025-10", "confidence": "claimed", "source": "https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm"}
+  },
+  {
+    "slug": "walk-through-current-work",
+    "title": "Walk Me Through Your Current Work / Projects",
+    "type": "BEHAVIORAL",
+    "difficulty": "medium",
+    "tags": ["resume-deep-dive"],
+    "leetcode": null,
+    "prompt": "Walk through your current work and projects; follow-ups probe depth on whatever you mention.",
+    "follow_ups": [],
+    "academy": [],
+    "sighting": {"company": "t-mobile", "role": "Senior Software Engineer (Hyderabad)", "round": "Technical round (\"How does your day look like\")", "seen_on": "2025-10", "confidence": "claimed", "source": "https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm"}
+  },
+  {
+    "slug": "polymorphism-and-static-method-overriding",
+    "title": "Polymorphism, and can static methods be overridden?",
+    "type": "JAVA",
+    "difficulty": "easy",
+    "tags": ["oop", "polymorphism", "static", "method-hiding"],
+    "leetcode": null,
+    "prompt": "Explain polymorphism. Can static methods be overridden? (Static methods are hidden, not overridden: the call is bound at compile time to the reference type.)",
+    "follow_ups": ["Compile-time vs runtime polymorphism.", "Can you override a private or final method?", "What does @Override do if you put it on a static method?"],
+    "academy": ["A1", "E1"],
+    "sighting": {"company": "t-mobile", "role": "Associate Software Engineer (Hyderabad)", "round": "Round 1 (run by a third party)", "seen_on": "2026-08", "confidence": "claimed", "source": "https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm"}
+  },
+  {
+    "slug": "solid-principles",
+    "title": "SOLID principles and dependency inversion",
+    "type": "DOMAIN",
+    "difficulty": "easy",
+    "tags": ["oop", "design-principles"],
+    "leetcode": null,
+    "prompt": "SOLID principles (round 1 also covered core Java, Spring Boot, SQL queries, one coding problem and system design).",
+    "follow_ups": [],
+    "academy": ["E1"],
+    "sighting": {"company": "t-mobile", "role": "Associate Software Engineer (Hyderabad)", "round": "Round 1 (run by a third party)", "seen_on": "2026-08", "confidence": "claimed", "source": "https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm"}
+  },
+  {
+    "slug": "oauth-and-jwt",
+    "title": "OAuth and JWT tokens",
+    "type": "DOMAIN",
+    "difficulty": "medium",
+    "tags": ["security", "auth"],
+    "leetcode": null,
+    "prompt": "API security, including JWT/OAuth libraries (contract full-stack role; mostly resume/project questions plus easy-medium whiteboard coding).",
+    "follow_ups": [],
+    "academy": ["D7"],
+    "sighting": {"company": "t-mobile", "role": "Full Stack Developer, contract (Hyderabad)", "round": "Technical interview", "seen_on": "2026-08", "confidence": "claimed", "source": "https://www.glassdoor.co.in/Interview/T-Mobile-Full-Stack-Developer-Interview-Questions-EI_IE9302.0,8_KO9,29.htm"}
+  },
+  {
+    "slug": "oop-four-pillars",
+    "title": "The four OOP principles",
+    "type": "JAVA",
+    "difficulty": "easy",
+    "tags": ["oop", "encapsulation", "inheritance", "polymorphism", "abstraction"],
+    "leetcode": null,
+    "prompt": "Explain the four principles of OOP (encapsulation, abstraction, inheritance, polymorphism) with Java examples. Reported with simple code-fixing and logic tests in a backend-focused technical round.",
+    "follow_ups": ["Abstract class vs interface in Java 8+.", "Composition over inheritance: when and why?"],
+    "academy": ["E1"],
+    "sighting": {"company": "t-mobile", "role": "Software Engineer (location not stated)", "round": "Technical round", "seen_on": "2026-01", "confidence": "claimed", "source": "https://www.glassdoor.com/Interview/T-Mobile-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,26.htm"}
+  },
+  {
+    "slug": "dijkstra-shortest-path",
+    "title": "Shortest Path Between Two Vertices in a Weighted Graph",
+    "type": "DSA",
+    "difficulty": "medium",
+    "tags": ["graph", "dijkstra", "heap"],
+    "leetcode": null,
+    "prompt": "Weighted undirected graph and two vertices; find the shortest path between them.",
+    "follow_ups": [],
+    "academy": [],
+    "sighting": {"company": "t-mobile", "role": "Software Engineer (location not stated)", "round": "Technical round (write a shortest-path graph algorithm)", "seen_on": "2026-01", "confidence": "claimed", "source": "https://www.glassdoor.com/Interview/T-Mobile-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,26.htm"}
+  }
+]

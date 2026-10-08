@@ -18,3 +18,9 @@ sightings:
   seen_on: 2016-01
   confidence: claimed
   source: https://www.geeksforgeeks.org/?p=131014
+- company: t-mobile
+  role: Software Engineer (location not stated)
+  round: Technical round (write a shortest-path graph algorithm)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/T-Mobile-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,26.htm

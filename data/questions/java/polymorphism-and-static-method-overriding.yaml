@@ -1,0 +1,26 @@
+slug: polymorphism-and-static-method-overriding
+title: Polymorphism, and can static methods be overridden?
+type: JAVA
+difficulty: easy
+tags:
+- oop
+- polymorphism
+- static
+- method-hiding
+leetcode: null
+prompt: |
+  Explain polymorphism. Can static methods be overridden? (Static methods are hidden, not overridden: the call is bound at compile time to the reference type.)
+follow_ups:
+- Compile-time vs runtime polymorphism.
+- Can you override a private or final method?
+- What does @Override do if you put it on a static method?
+academy:
+- A1
+- E1
+sightings:
+- company: t-mobile
+  role: Associate Software Engineer (Hyderabad)
+  round: Round 1 (run by a third party)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm

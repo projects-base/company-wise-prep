@@ -17,3 +17,9 @@ sightings:
   seen_on: 2025-11
   confidence: claimed
   source: https://www.codingkaro.in/jobs-internships/leetcode-interview-experience/Microsoft
+- company: t-mobile
+  role: Full Stack Developer, contract (Hyderabad)
+  round: Technical interview
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/T-Mobile-Full-Stack-Developer-Interview-Questions-EI_IE9302.0,8_KO9,29.htm
