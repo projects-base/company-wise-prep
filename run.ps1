@@ -16,7 +16,13 @@ if (Test-Path .env) {
             if ($value) { [Environment]::SetEnvironmentVariable($Matches[1], $value, 'Process') }
         }
     }
-    if ($env:DB_URL) { Write-Host "Database: $(($env:DB_URL -split '\?')[0])" }
+    if ($env:DB_URL -and (-not $env:DB_USERNAME -or -not $env:DB_PASSWORD)) {
+        # A half-filled .env would fail to connect; run on the local database instead.
+        Write-Host 'Database: local H2 (.local/) — .env has DB_URL but DB_USERNAME/DB_PASSWORD are empty'
+        Remove-Item Env:DB_URL
+    } elseif ($env:DB_URL) {
+        Write-Host "Database: $(($env:DB_URL -split '\?')[0])"
+    }
 } else {
     Write-Host 'Database: local H2 (.local/) — create .env from .env.example to use Neon'
 }
