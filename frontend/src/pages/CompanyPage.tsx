@@ -6,10 +6,11 @@ import { ArrowRight, ExternalLink, Info } from 'lucide-react'
 import { api } from '../api'
 import { fmtDate, Status, useLoad } from '../ui'
 
-type Tab = 'strategy' | 'loop' | 'postings' | 'sources'
+type Tab = 'strategy' | 'loop' | 'stack' | 'postings' | 'sources'
 const TABS: [Tab, string][] = [
   ['strategy', 'Strategy'],
   ['loop', 'Interview loop'],
+  ['stack', 'Tech stack'],
   ['postings', 'Job postings'],
   ['sources', 'Sources'],
 ]
@@ -62,6 +63,7 @@ export default function CompanyPage() {
       )}
 
       {tab === 'loop' && <Loop name={c.name} d={d} official={official} />}
+      {tab === 'stack' && <TechStack d={d} />}
       {tab === 'postings' && <Postings official={official} />}
 
       {tab === 'sources' && (
@@ -180,6 +182,136 @@ function Loop({ name, d, official }: { name: string; d: any; official: any }) {
         </section>
       )}
     </div>
+  )
+}
+
+const GROUPS: { title: string; match: (category: string) => boolean }[] = [
+  { title: 'Patterns', match: (c) => c.endsWith('-pattern') },
+  { title: 'Tools', match: (c) => c === 'tool' },
+  { title: 'Frameworks & languages', match: () => true },
+]
+const IMPORTANCE_ORDER: Record<string, number> = { core: 0, common: 1, mentioned: 2 }
+
+function TechStack({ d }: { d: any }) {
+  const stack: any[] = d.tech_stack ?? []
+  const prep = d.frameworks_to_prepare ?? {}
+  if (!stack.length && !prep.revise && !prep.learn) {
+    return (
+      <p className="muted">
+        No tech stack researched yet. Re-run <code>/prep-company</code> for this company to add it.
+      </p>
+    )
+  }
+  // Each item lands in the first group whose rule matches; frameworks & languages is the catch-all.
+  const grouped = GROUPS.map((g) => ({ title: g.title, items: [] as any[] }))
+  for (const item of stack) {
+    const i = GROUPS.findIndex((g) => g.match(String(item.category ?? '')))
+    grouped[i].items.push(item)
+  }
+  const ordered = [grouped[2], grouped[0], grouped[1]].filter((g) => g.items.length)
+
+  return (
+    <div className="stack" style={{ gap: 32 }}>
+      {(prep.learn?.length > 0 || prep.revise?.length > 0) && (
+        <div className="prep-grid">
+          <PrepList title="Learn" hint="New or weak for you, but this role uses it" items={prep.learn ?? []} tone="learn" />
+          <PrepList title="Revise" hint="You know it — interviewers will go deep" items={prep.revise ?? []} tone="revise" />
+        </div>
+      )}
+      {ordered.map((g) => (
+        <section key={g.title}>
+          <div className="section-head">
+            <h2>{g.title}</h2>
+            <span className="muted" style={{ fontSize: '0.84rem' }}>
+              {g.items.length}
+            </span>
+          </div>
+          <div className="card">
+            {[...g.items]
+              .sort((a, b) => (IMPORTANCE_ORDER[a.importance] ?? 3) - (IMPORTANCE_ORDER[b.importance] ?? 3))
+              .map((t, i) => (
+                <div key={i} className="list-row" style={{ alignItems: 'flex-start' }}>
+                  <div className="grow">
+                    <div className="row" style={{ gap: 8 }}>
+                      <span style={{ fontWeight: 600 }}>{t.name}</span>
+                      <span className={`pill imp-${t.importance}`}>{t.importance}</span>
+                      <span className="muted" style={{ fontSize: '0.8rem' }}>
+                        {String(t.category ?? '').replace(/-/g, ' ')}
+                      </span>
+                    </div>
+                    {t.evidence && (
+                      <div className="dim" style={{ fontSize: '0.86rem', marginTop: 2 }}>
+                        {t.evidence}
+                      </div>
+                    )}
+                  </div>
+                  <SourceLinks sources={t.sources} />
+                </div>
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )
+}
+
+function PrepList({ title, hint, items, tone }: { title: string; hint: string; items: any[]; tone: string }) {
+  return (
+    <section className={`card pad prep-${tone}`}>
+      <div className="section-head" style={{ marginBottom: 4 }}>
+        <h2>{title}</h2>
+        <span className="muted" style={{ fontSize: '0.84rem' }}>
+          {items.length}
+        </span>
+      </div>
+      <p className="muted" style={{ fontSize: '0.84rem', marginBottom: 12 }}>
+        {hint}
+      </p>
+      {items.length === 0 ? (
+        <p className="muted">Nothing here.</p>
+      ) : (
+        <ol className="prep-items">
+          {items.map((x, i) => (
+            <li key={i}>
+              <div style={{ fontWeight: 600 }}>{x.name}</div>
+              {x.why && <div className="dim" style={{ fontSize: '0.86rem' }}>{x.why}</div>}
+              {x.plan && <div style={{ fontSize: '0.86rem', marginTop: 2 }}>→ {x.plan}</div>}
+              <div className="row" style={{ gap: 6, marginTop: 6 }}>
+                {(x.academy ?? []).map((a: string) => (
+                  <Link key={a} to={`/academy/${a}`} className="pill accent">
+                    {a}
+                  </Link>
+                ))}
+                {(x.resources ?? []).map((r: string, j: number) => (
+                  <a key={j} href={r} target="_blank" rel="noreferrer" className="pill">
+                    docs <ExternalLink size={10} />
+                  </a>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
+  )
+}
+
+function SourceLinks({ sources }: { sources: any }) {
+  const list: string[] = Array.isArray(sources) ? sources : sources ? [sources] : []
+  return (
+    <span className="row" style={{ gap: 6, flexShrink: 0 }}>
+      {list.slice(0, 3).map((s, i) =>
+        /^https?:/.test(s) ? (
+          <a key={i} href={s} target="_blank" rel="noreferrer" title={s} className="muted">
+            <ExternalLink size={13} />
+          </a>
+        ) : (
+          <span key={i} className="muted" title={s} style={{ fontSize: '0.78rem' }}>
+            {s.length > 24 ? s.slice(0, 24) + '…' : s}
+          </span>
+        ),
+      )}
+    </span>
   )
 }
 

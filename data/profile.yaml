@@ -1,0 +1,63 @@
+# Akhil's skills profile — /prep-company compares each company's tech stack against this to
+# decide what to REVISE (known, refresh for interviews) vs LEARN (new or weak).
+# Edit freely: move items between levels as you learn. Skills only — no salary or personal details
+# (this repo is on GitHub).
+#
+# Levels: strong = used in production, could teach it · working = used, would need a refresh ·
+#         basic = tried / read about · none = not yet
+
+experience_years: 5.5
+primary_role: Java backend engineer (Spring Boot)
+
+skills:
+  # languages
+  java: strong                 # Java 8–21
+  sql: working
+  javascript-typescript: working
+  python: basic
+  bash: basic
+  # frameworks
+  spring-boot: strong
+  spring-data-jpa-hibernate: strong
+  spring-security: working
+  rest-api-design: strong
+  react: working
+  # datastores
+  postgresql: working
+  mysql: working
+  redis: basic
+  # messaging
+  kafka: basic
+  # cloud / infra
+  aws: basic
+  docker: working
+  kubernetes: basic
+  # ci-cd
+  github-actions: basic
+  gitlab-ci: none
+  maven: strong
+  # observability
+  prometheus-grafana: basic
+  opentelemetry: none
+  splunk: none
+  # security / secrets
+  vault-cyberark: none
+  # automation
+  ansible: none
+  # practices
+  distributed-systems: working
+  system-design: working
+  testing-junit-mockito: strong
+  ai-coding-tools: working     # Claude Code, Copilot
+  # patterns (architecture and design)
+  microservices-patterns: working     # circuit breaker, retries, API gateway
+  event-driven-architecture: basic    # Kafka-based, outbox, saga
+  cqrs-event-sourcing: basic
+  failover-patterns: basic            # active-active / active-passive, DR, RTO/RPO
+  gof-design-patterns: working        # strategy, builder, factory, observer, template method
+  # tools
+  git: strong
+  jira-confluence: strong
+  intellij: strong
+  postman: strong
+  terraform: none

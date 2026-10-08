@@ -514,3 +514,13 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 /* Login (hosted app only) */
 .login { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
 .login-card { width: min(380px, 100%); padding: 32px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+/* Company tech stack */
+.prep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prep-learn { border-top: 3px solid var(--warn); }
+.prep-revise { border-top: 3px solid var(--accent); }
+.prep-items { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 14px; }
+.pill.imp-core { background: var(--accent-soft); color: var(--accent); }
+.pill.imp-common { background: var(--surface-2); color: var(--text-2); }
+.pill.imp-mentioned { background: transparent; color: var(--text-3); border: 1px solid var(--line); }
+@media (max-width: 760px) { .prep-grid { grid-template-columns: 1fr; } }

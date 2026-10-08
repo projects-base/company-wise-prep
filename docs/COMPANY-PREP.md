@@ -57,6 +57,25 @@ official:                          # from the company's own careers portal — t
       skills: [java, distributed-systems, kubernetes]   # normalised keywords
   skill_frequency:                 # keyword → number of postings that ask for it
     distributed-systems: 7
+tech_stack:                        # frameworks, patterns and tools the team uses — each needs a real source
+  - name: Spring Boot
+    category: framework            # frameworks & languages: language | framework | datastore | messaging
+                                   #   | cloud | infra | ci-cd | observability | testing | security
+                                   #   | scripting | ai-tools
+                                   # patterns: architecture-pattern (circuit breaker, saga, outbox, CQRS,
+                                   #   event-driven, active-active failover, blue-green…) | design-pattern
+                                   #   (GoF / code-level: strategy, observer, builder…)
+                                   # tools: tool (GitLab, Terraform, Ansible, Splunk, Grafana, Jira…)
+    importance: core               # core = most postings / JD must-have | common = several sources
+                                   # | mentioned = one source
+    evidence: "9/10 postings; AWS case study"
+    sources: [https://...]
+frameworks_to_prepare:             # gap analysis against data/profile.yaml
+  revise:                          # Akhil has it (strong/working) — refresh for interviews
+    - {name: SQL and indexing, why: "every backend posting", academy: [Q5], plan: "one line"}
+  learn:                           # basic/none for Akhil but core/common here
+    - {name: GitLab CI/CD, why: "JD must-have", academy: [], plan: "one line: what to build in an evening",
+       resources: [https://docs.gitlab.com/ee/ci/]}
 sources:                           # everything consulted, even if nothing was taken from it
   - url: https://...
     title: ...
@@ -76,8 +95,26 @@ Fixed headings, so dossiers compare across companies:
 6. **Company-specific angle** — e.g. latency for Tower, scale for Google, design docs for Microsoft.
 6b. **What the job postings ask for** — top skills by frequency across current postings, and the
     prep they imply beyond DSA. Posting bullets are requirements, never interview questions.
+6c. **Tech stack and frameworks to prepare** — a short table of core/common items for the role,
+    grouped **Frameworks & languages · Patterns · Tools** (patterns may be evidenced by the JD's own
+    wording, e.g. "automated failover" → active-active/passive failover), then
+    **Revise** and **Learn** lists (from `frameworks_to_prepare`), ordered by importance for this
+    role, each with a one-line plan and Academy links.
 7. **Strategy** — what to do in the last 4 weeks, last week, the day before.
 8. **Sources** — dated.
+
+### How `frameworks_to_prepare` is decided
+
+Compare each `tech_stack` item (core and common first) with `data/profile.yaml`:
+
+| Profile level | Importance core/common | → |
+|---|---|---|
+| strong / working | yes | **revise** — interviewers will go deep; refresh internals and trade-offs |
+| basic / none | yes | **learn** — enough to discuss and to have built one small thing |
+| any | mentioned only | skip unless it is cheap and clearly relevant |
+
+`academy` ids must exist in `data/academy/curriculum.yaml`. `resources` are official docs or
+well-known pages that were actually fetched.
 
 ## 3. `questions/<type>/<slug>.yaml`
 
