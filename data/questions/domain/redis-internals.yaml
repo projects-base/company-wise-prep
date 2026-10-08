@@ -1,0 +1,23 @@
+slug: redis-internals
+title: 'Redis: how it works and the algorithms behind it'
+type: DOMAIN
+difficulty: medium
+tags:
+- redis
+- caching
+- eviction
+leetcode: null
+prompt: |
+  Redis questions, reported as 'Redis algorithms' (asked with Kafka architecture, core Java, Spring Boot, SQL).
+follow_ups:
+- Eviction policies (approximate LRU/LFU) and TTL expiry.
+- Cache-aside vs write-through; cache stampede.
+academy:
+- F1
+sightings:
+- company: entain
+  role: SDE 1 (Hyderabad)
+  round: Round 2 technical
+  seen_on: 2024-04
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm

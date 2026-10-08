@@ -1,0 +1,32 @@
+slug: sql-query-optimization
+title: SQL query optimization
+type: SQL
+difficulty: medium
+tags:
+- sql
+- indexing
+- explain
+- performance
+leetcode: null
+prompt: |
+  SQL query optimization: how would you make a slow query fast? (asked with JVM internals)
+follow_ups:
+- 'Read an EXPLAIN plan: sequential vs index scan, join strategy.'
+- Composite index column order; covering indexes.
+- When does an index hurt?
+academy:
+- Q5
+- Q7
+sightings:
+- company: entain
+  role: Senior Software Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2023-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Senior-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,37.htm
+- company: entain
+  role: Software Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-India-Interview-Questions-E257530.htm

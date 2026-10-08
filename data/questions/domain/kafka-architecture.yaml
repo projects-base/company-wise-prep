@@ -1,0 +1,24 @@
+slug: kafka-architecture
+title: Kafka architecture
+type: DOMAIN
+difficulty: medium
+tags:
+- kafka
+- event-driven
+- partitions
+- consumer-groups
+leetcode: null
+prompt: |
+  Explain Kafka's architecture (asked with core Java, Redis, Spring Boot, SQL and system design basics).
+follow_ups:
+- How do partitions trade ordering against parallelism?
+- What happens on a consumer-group rebalance?
+academy:
+- F1
+sightings:
+- company: entain
+  role: SDE 1 (Hyderabad)
+  round: Round 2 technical
+  seen_on: 2024-04
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm

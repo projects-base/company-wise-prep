@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 QUESTIONS = ROOT / "data" / "questions"
 STAGING = ROOT / "data" / "_staging"
 ALIASES = ROOT / "data" / "aliases.yaml"  # duplicate-slug: canonical-slug, decided by review
-TYPES = {"DSA", "LLD", "HLD", "BEHAVIORAL", "DOMAIN", "JAVA", "SPRING"}
+TYPES = {"DSA", "LLD", "HLD", "BEHAVIORAL", "DOMAIN", "JAVA", "SPRING", "SQL"}
 DIFFICULTIES = {"easy", "medium", "hard"}
 FIELD_ORDER = ["slug", "title", "type", "difficulty", "tags", "leetcode",
                "prompt", "follow_ups", "academy", "sightings"]

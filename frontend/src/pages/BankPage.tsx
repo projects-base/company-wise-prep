@@ -11,6 +11,7 @@ const TYPES: [string, string][] = [
   ['DOMAIN', 'Systems'],
   ['JAVA', 'Java'],
   ['SPRING', 'Spring'],
+  ['SQL', 'SQL'],
   ['BEHAVIORAL', 'Behavioural'],
 ]
 

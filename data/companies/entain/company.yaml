@@ -1,0 +1,393 @@
+slug: entain
+name: Entain
+aliases: [Entain India, Entain plc, Ivy, Ivy Comptech, GVC, bwin.party]
+researched_on: 2026-10-08
+domain_notes: >-
+  Entain plc is a London-listed sports betting and gaming group (Ladbrokes, Coral, bwin,
+  Sportingbet, Eurobet, partypoker, Neds; BetMGM is a 50/50 JV with MGM Resorts). Entain India
+  (Hyderabad, plus a small Pune office) is the group's technology centre, formerly Ivy Comptech.
+  The careers site calls it a "global capability centre" in a new Hyderabad office built in 2025.
+  Current India postings are Java-first (SDE I/II/III "Java", Product & Technology team, reporting
+  to an Engineering Manager) and ask for distributed architectures, microservices, event-driven
+  architecture, SQL (indexing, migrations), Docker/Kubernetes, CI/CD, observability, on-call and
+  the RFC process. Some postings also ask for Angular/React, AWS, Redis, Kafka/RabbitMQ and
+  WebSockets/SSE. On AWS, Entain standardised on Amazon EKS as the base of its internal developer
+  platform, moved databases to Amazon Aurora PostgreSQL with AWS DMS ("near-zero downtime"), cut
+  deployment time from weeks to 2 hours, and uses Kiro for code modernisation (AWS case study,
+  2026). A Redpanda (vendor) case study says Entain replaced Confluent Cloud with Redpanda BYOC and
+  streams into Snowflake, for live odds, fraud detection, player safety and personalisation.
+  Postings since Aug 2026 mention AI coding tools (Kiro, Copilot).
+values:
+  - name: Do what's right (customers first, player protection, integrity, safe to speak up)
+    source: https://entaincareers.com/our-offer/mission-values/
+  - name: Keep it simple (clear goals and ownership, remove complexity)
+    source: https://entaincareers.com/our-offer/mission-values/
+  - name: Go beyond (curious, learn from setbacks, embrace change)
+    source: https://entaincareers.com/our-offer/mission-values/
+  - name: Win together (collaborate across teams, share ideas, celebrate wins)
+    source: https://entaincareers.com/our-offer/mission-values/
+  - name: >-
+      Maker Dimensions (Entain India competency set in a 2026 posting): AI fluency, agency and
+      accountability, systems thinking, stakeholder engagement, improve performance,
+      cross-functional versatility, product sense, build capability
+    source: https://jobs.smartrecruiters.com/Entain/744000154403050-portfolio-lead
+
+roles:
+  - role: Software Development Engineer II (Entain India, Hyderabad)
+    level: SDE II
+    loop:
+      - round: Technical round 1 (18 Sep 2026, Microsoft Teams, ~1 h)
+        type: JAVA
+        duration_min: 60
+        assesses: >-
+          Invite topics: Java Concepts, Coding Concepts, Problem Solving. Akhil passed this round.
+        confidence: verified
+        source: interview invite relayed by Akhil, 2026-09
+        seen_on: 2026-09
+      - round: Technical round 2 (13 Oct 2026, 3:00 PM IST, Microsoft Teams)
+        type: HLD
+        duration_min: 60
+        assesses: >-
+          HR-named focus areas: System Design; Database performance and scalability; SQL. The invite
+          lists the Entain India tech recruiter (Boddu V V Rama Pavan Vamsi Krishna Kumar), who is
+          most likely the organiser, not the technical interviewer. The duration is assumed from
+          round 1.
+        focus_areas: [System Design, Database performance and scalability, SQL]
+        confidence: verified
+        source: HR email relayed by Akhil, 2026-10-08
+        seen_on: 2026-10
+      - round: Insider tip on what Entain India interviews focus on
+        type: DOMAIN
+        assesses: >-
+          Event-driven systems, WebSockets, SQL, AWS, multithreading, and casino/betting
+          architecture.
+        confidence: claimed
+        source: insider tip relayed by Akhil, 2026-09-16
+        seen_on: 2026-09
+      - round: Online assessment (HackerRank, reported)
+        type: DSA
+        assesses: Two coding questions; one 2024 SDE 2 candidate reported this as the first step.
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm
+        seen_on: 2024-07
+      - round: Technical round (reported)
+        type: DSA
+        duration_min: 60
+        assesses: >-
+          Live coding (2024 SDE 2 report: three problems including LRU cache and longest consecutive
+          sequence) plus sync vs async calls in Spring Boot and some design. An April 2026 Software
+          Engineer report adds Java concepts (OOP, collections) and SQL queries and optimization.
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm
+        seen_on: 2024-07
+      - round: Design and coding round (reported, senior roles)
+        type: HLD
+        assesses: Design a distributed queue with multiple producers and consumers, plus coding.
+        confidence: claimed
+        source: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm
+        seen_on: 2025-08
+      - round: Techno-managerial round (reported)
+        type: HIRING_MANAGER
+        duration_min: 60
+        assesses: Technical plus behavioural questions about past work.
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm
+        seen_on: 2024-07
+      - round: HR competency round (reported)
+        type: BEHAVIORAL
+        assesses: Competency and fit; benefits discussion.
+        confidence: claimed
+        source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm
+        seen_on: 2024-07
+    bar: >-
+      Postings describe SDE II as someone who designs and delivers "well-defined, moderately complex
+      features" end to end, debugs across environments, is the initial on-call responder, drives the
+      RFC process and mentors juniors. With round 2 focused on system design and databases, the bar is
+      probably a clear, practical design with a sound data model, query and index choices you can
+      justify, and a concrete plan for scaling reads and writes. This is an inference from the
+      postings and the HR email, not something Entain states.
+
+official:
+  hiring_process:
+    - step: Apply via the careers site
+      detail: >-
+        careers.entainindia.com lists India roles; postings are hosted on SmartRecruiters
+        (jobs.smartrecruiters.com/Entain). The careers site has no "how we hire" or interview-process
+        page for tech roles (checked the sitemap). Its job search needs JavaScript; the SmartRecruiters
+        public API was used instead.
+      source: https://careers.entainindia.com/sitemap/
+    - step: Reasonable adjustments
+      detail: Every India posting invites candidates to ask for reasonable adjustments at any stage of the recruitment process.
+      source: https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii
+  interview_tips:
+    - text: >-
+        Entain's Product & Tech recruiter in Hyderabad (Shivani Bisht): understand why Entain builds
+        scalable tech, focus on solving problems at speed, and show how you think, adapt and design
+        for scale. (Recruiters quoted on an Entain employer-branding page, Apr 2025.)
+      source: https://wherewomenwork.com/Career/6660/Entain-careers-recruitment-team-job-interview-advice
+    - text: >-
+        Product & Tech recruiter for UK/Austria/Bulgaria (Ferzana Bham): be concise, explain your
+        motivation with clear examples, and show curiosity and a collaborative mindset without ego.
+      source: https://wherewomenwork.com/Career/6660/Entain-careers-recruitment-team-job-interview-advice
+  engineering_signals:
+    - text: >-
+        Entain standardised on Amazon EKS for its internal developer platform, moved databases to
+        Amazon Aurora (PostgreSQL) with AWS DMS at near-zero downtime, cut deploy time from weeks to
+        2 hours, and sped a soccer simulation model from 2.5 s to 450 ms. "Using open source database
+        technology such as PostgreSQL is a key piece of our modernization journey."
+      source: https://aws.amazon.com/solutions/case-studies/entain-case-study/
+      accessed: 2026-10-08
+    - text: >-
+        Vendor case study: Entain replaced Confluent Cloud with Redpanda BYOC and streams to
+        Snowflake via Redpanda Connect; data uses include live odds, fraud detection, player safety
+        and personalisation. The figures are the vendor's.
+      source: https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale
+      accessed: 2026-10-08
+  job_postings:
+    - title: Software Development Engineer III (Java)
+      team: Product & Technology (reports to Engineering Manager)
+      location: Hyderabad
+      url: https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii
+      accessed: 2026-10-08
+      required: [Expert Java with modern features and frameworks, 5+ yrs distributed architectures, Angular and JavaScript, OO design + algorithms + data structures + SQL, 5+ yrs SDLC + database management + API integration + Swagger, monitoring + logging + version control + testing, CI/CD + Docker/Kubernetes + secure coding, microservices + event-driven + Agile]
+      preferred: []
+      skills: [java, distributed-systems, angular, oop-design, dsa, sql, database-management, api-integration, swagger-openapi, observability, testing, ci-cd, docker-kubernetes, secure-coding, microservices, event-driven, agile, on-call, mentoring, rfc-process]
+    - title: Software Development Engineer II (Java)
+      team: Product & Technology
+      location: Hyderabad
+      url: https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-ii/2607-11073-77
+      accessed: 2026-10-08
+      required: [Expert Java with modern features and frameworks, 2+ yrs distributed architectures, OO design + algorithms + data structures + SQL + AWS, 2+ yrs SDLC + database management + API integration + Swagger, monitoring + logging + version control + testing, CI/CD + Docker/Kubernetes + secure coding, microservices + event-driven + Agile]
+      preferred: []
+      skills: [java, distributed-systems, oop-design, dsa, sql, aws, database-management, api-integration, swagger-openapi, observability, testing, ci-cd, docker-kubernetes, secure-coding, microservices, event-driven, agile, on-call, mentoring, rfc-process]
+      note: Aggregator copy of the Entain India posting, posted 2026-07-25, now closed.
+    - title: Software Development Engineer II (SDE II), full stack
+      team: Product & Tech
+      location: Pune
+      url: https://builtin.com/job/sde-ii/9861243
+      accessed: 2026-10-08
+      required: [4+ yrs Java (11+) and Spring/Spring Boot, REST + Spring MVC + Spring Data JPA + microservices, React or Angular + HTML/CSS/JS, Agile and DevOps]
+      preferred: [Git + CI/CD (Jenkins/GitLab) + Docker, SQL/NoSQL + Redis + Kafka/RabbitMQ + Swagger/OpenAPI, Spring Security/OAuth2/JWT, cloud-native on AWS or Azure, performance tuning + observability, GraphQL / WebSockets / SSE]
+      skills: [java, spring-boot, rest-api, spring-data-jpa, microservices, react, angular, ci-cd, docker-kubernetes, sql, nosql, redis, kafka, swagger-openapi, agile, on-call, mentoring, testing, spring-security, aws, performance-tuning, observability, websockets]
+      note: Built In copy; removed 2026-06-25.
+    - title: P&T - Software Development Engineer II - Java
+      team: Product & Tech
+      location: Hyderabad
+      url: https://builtin.com/job/p-t-software-development-engineer-ii-java-india/6334894
+      accessed: 2026-10-08
+      required: [Clean coding, automation + production troubleshooting, mentoring, Java expertise, problem solving in distributed architectures + OO design, algorithms + data structures, database concepts (SQL, indexing, migrations) + API integration, monitoring + logging + version control + testing, CI/CD + Docker/Kubernetes + secure coding, microservices + event-driven + Agile]
+      preferred: []
+      skills: [java, distributed-systems, oop-design, dsa, sql, sql-indexing-migrations, api-integration, observability, testing, ci-cd, docker-kubernetes, secure-coding, microservices, event-driven, agile, on-call, mentoring, rfc-process]
+      note: Built In copy; removed 2025-06-02 (older, kept because it is the exact SDE II Java role).
+    - title: Software Development Engineer III (backend)
+      team: Product & Technology
+      location: Hyderabad
+      url: https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-iii/2608-9296-57
+      accessed: 2026-10-08
+      required: [Same as SDE II Java above, plus exposure to AI tools such as Kiro and Copilot]
+      preferred: []
+      skills: [java, distributed-systems, oop-design, dsa, sql, sql-indexing-migrations, api-integration, observability, testing, ci-cd, docker-kubernetes, secure-coding, microservices, event-driven, agile, on-call, mentoring, rfc-process, ai-assisted-dev]
+      note: Posted 2026-08-31, now closed.
+    - title: Software Development Engineer III (backend)
+      team: Product & Technology
+      location: Hyderabad
+      url: https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-iii/2609-11073-92
+      accessed: 2026-10-08
+      required: [Java, distributed architectures + OO design, algorithms + data structures, SQL + indexing + migrations + API integration, monitoring + logging + testing, CI/CD + Docker/Kubernetes + secure coding, microservices + event-driven + Agile, AI tools (Kiro, Copilot)]
+      preferred: []
+      skills: [java, distributed-systems, oop-design, dsa, sql, sql-indexing-migrations, api-integration, observability, testing, ci-cd, docker-kubernetes, secure-coding, microservices, event-driven, agile, on-call, mentoring, rfc-process, ai-assisted-dev]
+      note: Posted 2026-09-02, now closed.
+    - title: Software Development Engineer III - Fullstack
+      team: Product & Technology
+      location: Hyderabad
+      url: https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-iii-fullstack/2607-11073-78
+      accessed: 2026-10-08
+      required: [Expert Java, 5+ yrs distributed architectures, Angular + JavaScript, OO design + algorithms + data structures + SQL, database management + API integration + Swagger, monitoring + logging + testing, CI/CD + Docker/Kubernetes + secure coding, microservices + event-driven + Agile]
+      preferred: []
+      skills: [java, distributed-systems, angular, oop-design, dsa, sql, database-management, api-integration, swagger-openapi, observability, testing, ci-cd, docker-kubernetes, secure-coding, microservices, event-driven, agile, on-call, mentoring, rfc-process]
+      note: Posted 2026-07-26, now closed.
+    - title: Principal Software Engineer (CRM platforms)
+      team: CRM
+      location: Hyderabad (hybrid)
+      url: https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer
+      accessed: 2026-10-08
+      required: [10+ yrs Java + Spring (Boot, Data/JPA, Security), distributed + microservices + event-driven with Kafka or similar, 7+ yrs cloud-native + Docker + Kubernetes + CI/CD + relational and NoSQL databases, architecture + API design + DDD, secure coding, AI-assisted engineering + GenAI/LLMs, CRM platforms (Optimove, Salesforce Marketing Cloud, Braze)]
+      preferred: [AI-driven campaign optimisation, segmentation, recommendations]
+      skills: [java, spring-boot, spring-data-jpa, spring-security, distributed-systems, microservices, event-driven, kafka, cloud-native, docker-kubernetes, ci-cd, sql, nosql, api-design, ddd, observability, secure-coding, ai-assisted-dev, llm-genai, mentoring, rfc-process, crm-platforms]
+      note: Posted 2026-08-21.
+    - title: Junior Data Engineer
+      team: Data & AI
+      location: Hyderabad
+      url: https://www.interviewpal.com/jobs/2243970240
+      accessed: 2026-10-08
+      required: [Working SQL, basic-intermediate Python, cloud DWH (Snowflake/BigQuery), data pipeline concepts, Git, Power BI/Tableau, data quality and governance]
+      preferred: [Kafka or Kinesis, Docker, CI/CD (GitHub Actions/GitLab/Jenkins), MLOps, RAG / embeddings / vector databases]
+      skills: [sql, python, snowflake, dbt, data-pipelines, ci-cd, testing, git, bi-tools, data-governance, kafka, docker-kubernetes, llm-genai]
+      note: Posted 2026-07-07.
+    - title: P&T - Software Development Engineer I - Java
+      team: Product & Tech
+      location: Pune
+      url: https://builtin.com/job/p-t-software-development-engineer-i-java-india/6207760
+      accessed: 2026-10-08
+      required: [Java, problem solving in distributed architectures, OO design + design patterns, high-performance low-latency scalable apps, algorithms + data structures + SQL, API integration + Swagger, Agile, debugging + version control + testing, secure coding + CI/CD, scripting]
+      preferred: []
+      skills: [java, distributed-systems, oop-design, low-latency, dsa, sql, api-integration, swagger-openapi, agile, testing, secure-coding, ci-cd, on-call, mentoring, rfc-process]
+      note: Built In copy; removed 2025-05-11.
+  skill_frequency:       # across the 10 India postings above (1 live on SmartRecruiters, 9 aggregator copies)
+    sql: 10
+    ci-cd: 10
+    java: 9
+    testing: 9
+    mentoring: 9
+    docker-kubernetes: 9
+    distributed-systems: 8
+    microservices: 8
+    observability: 8
+    secure-coding: 8
+    on-call: 8
+    agile: 8
+    rfc-process: 8
+    event-driven: 7
+    api-integration: 7
+    dsa: 7
+    oop-design: 7
+    swagger-openapi: 5
+    angular: 3
+    kafka: 3
+    sql-indexing-migrations: 3
+    database-management: 3
+    ai-assisted-dev: 3
+    aws: 2
+    spring-boot: 2
+    spring-data-jpa: 2
+    spring-security: 2
+    nosql: 2
+    llm-genai: 2
+    redis: 1
+    websockets: 1
+    performance-tuning: 1
+    rest-api: 1
+    react: 1
+    cloud-native: 1
+    api-design: 1
+    ddd: 1
+    low-latency: 1
+    crm-platforms: 1
+    python: 1
+    snowflake: 1
+    dbt: 1
+    data-pipelines: 1
+    data-governance: 1
+    bi-tools: 1
+    git: 1
+  conflicts_with_reports:
+    - >-
+      Only one India engineering posting (SDE III) is live on SmartRecruiters on 2026-10-08; the
+      other nine are aggregator copies of recently closed Entain India postings. Their text matches
+      the live one almost word for word, so the requirements are stable.
+    - >-
+      The postings never name system design or database performance as an interview topic, but
+      every one lists SQL, and the backend SDE II/III postings add indexing and migrations. The HR
+      email for round 2 makes databases the centre of the round.
+    - >-
+      Reported loops (Glassdoor) are HackerRank plus two technical rounds, then techno-managerial and
+      HR. Akhil's actual process so far is a Java/coding round, then a system design + database +
+      SQL round. No HackerRank OA was mentioned.
+
+sources:
+  - url: https://careers.entainindia.com/
+    title: Entain India careers home
+    accessed: 2026-10-08
+    kind: official
+  - url: https://careers.entainindia.com/sitemap/
+    title: Entain India careers sitemap (no hiring-process page)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://careers.entainindia.com/locations/hyderabad/
+    title: Entain India - Hyderabad location page
+    accessed: 2026-10-08
+    kind: official
+  - url: https://careers.entainindia.com/job-search/
+    title: Entain India job search (JavaScript; direct curl blocked by Cloudflare)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://api.smartrecruiters.com/v1/companies/Entain/postings
+    title: SmartRecruiters public postings API for Entain (269 postings, 2 in India)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii
+    title: Software Development Engineer III, Hyderabad (live)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://jobs.smartrecruiters.com/Entain/744000154403050-portfolio-lead
+    title: Portfolio Lead, Hyderabad (Maker Dimensions competencies)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://entaincareers.com/our-offer/mission-values/
+    title: Entain mission and values
+    accessed: 2026-10-08
+    kind: official
+  - url: https://aws.amazon.com/solutions/case-studies/entain-case-study/
+    title: AWS case study - Entain (EKS, Aurora PostgreSQL, DMS, Kiro)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale
+    title: Redpanda - Entain streaming to Snowflake (vendor material; via search snippet)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://wherewomenwork.com/Career/6660/Entain-careers-recruitment-team-job-interview-advice
+    title: Entain recruiters' interview advice (Apr 2025)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm
+    title: Glassdoor - Entain India SDE 2 interviews (403 to direct fetch; read via search snippets)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm
+    title: Glassdoor - Entain Hyderabad interviews (SDE1 Apr 2024; Principal Engineer Aug 2025)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.com/Interview/Entain-India-Senior-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,37.htm
+    title: Glassdoor - Entain India Senior Software Engineer interviews
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.co.in/Interview/Entain-India-Interview-Questions-E257530.htm
+    title: Glassdoor - Entain India interviews (Apr 2026 Software Engineer report)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.glassdoor.com/Interview/Entain-India-Test-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,26.htm
+    title: Glassdoor - Entain India Test Engineer interviews (SQL, Mar 2021)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer
+    title: LeetCode Discuss - Ivy Comptech Senior Software Engineer, Sep 2019 (read via GraphQL)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://leetcode.com/discuss/post/6060890/
+    title: LeetCode Discuss - Ivy Comptech CRM team offer question (no interview content)
+    accessed: 2026-10-08
+    kind: forum
+  - url: https://www.geeksforgeeks.org/ivy-comptech-interview-experience
+    title: GeeksforGeeks - Ivy Comptech campus interviews (2018-2019; not used, campus and old)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://www.ambitionbox.com/interviews/entain-india-interview-questions
+    title: AmbitionBox - Entain India interviews (403; not used)
+    accessed: 2026-10-08
+    kind: interview-report
+  - url: https://scoutify.com/companies/entain/interview/
+    title: Scoutify Entain prep guide (unverifiable "database" of outcomes; not used)
+    accessed: 2026-10-08
+    kind: article
+  - url: https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-ii/2607-11073-77
+    title: SDE II Hyderabad (aggregator copy, Jul 2026)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://builtin.com/job/sde-ii/9861243
+    title: SDE II Pune (Built In copy, removed Jun 2026)
+    accessed: 2026-10-08
+    kind: official
+  - url: https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer
+    title: Principal Software Engineer, Hyderabad (Aug 2026)
+    accessed: 2026-10-08
+    kind: official

@@ -1,0 +1,24 @@
+slug: spring-sync-vs-async-calls
+title: Synchronous vs asynchronous calls in Spring Boot
+type: SPRING
+difficulty: medium
+tags:
+- async
+- completablefuture
+- spring-boot
+leetcode: null
+prompt: |
+  Explain synchronous vs asynchronous calls in Spring Boot (asked alongside some design discussion).
+follow_ups:
+- How does @Async work underneath (proxy, executor) and why does self-invocation bypass it?
+- When would you use a message queue instead of an async call?
+academy:
+- D3
+- B5
+sightings:
+- company: entain
+  role: SDE 2 (Hyderabad)
+  round: Technical round 2
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm

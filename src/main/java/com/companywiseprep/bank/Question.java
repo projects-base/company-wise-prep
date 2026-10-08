@@ -25,7 +25,7 @@ public class Question {
 
 	private String title;
 
-	/** DSA | LLD | HLD | BEHAVIORAL | DOMAIN | JAVA | SPRING */
+	/** DSA | LLD | HLD | BEHAVIORAL | DOMAIN | JAVA | SPRING | SQL */
 	private String type;
 
 	/** easy | medium | hard */

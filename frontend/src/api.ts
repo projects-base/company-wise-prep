@@ -1,6 +1,6 @@
 // Types mirror the Java records in com.companywiseprep (field names are the record components).
 
-export type QType = 'DSA' | 'LLD' | 'HLD' | 'BEHAVIORAL' | 'DOMAIN' | 'JAVA' | 'SPRING'
+export type QType = 'DSA' | 'LLD' | 'HLD' | 'BEHAVIORAL' | 'DOMAIN' | 'JAVA' | 'SPRING' | 'SQL'
 
 export interface CampaignConfig {
   id: string

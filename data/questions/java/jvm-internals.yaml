@@ -1,0 +1,24 @@
+slug: jvm-internals
+title: JVM internals and memory allocation
+type: JAVA
+difficulty: medium
+tags:
+- jvm
+- memory
+- gc
+leetcode: null
+prompt: |
+  JVM internals: how memory is allocated in Java and how the JVM manages it.
+follow_ups:
+- Heap generations and GC; why -Xmx does not bound process memory.
+academy:
+- A1
+- A2
+- A4
+sightings:
+- company: entain
+  role: Senior Software Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2023-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Senior-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,37.htm

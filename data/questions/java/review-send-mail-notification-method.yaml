@@ -1,0 +1,32 @@
+slug: review-send-mail-notification-method
+title: 'Code review: method that emails users and updates a DB flag'
+type: JAVA
+difficulty: medium
+tags:
+- code-review
+- jdbc
+- batching
+- transactions
+leetcode: null
+prompt: |
+  What is wrong with this method and how would you improve it?
+
+  public void sendMailNotification(List[] users) {
+    // create DB connection
+    // iterate over users and send mail
+    // update database with emailSendFlag = Yes
+  }
+follow_ups:
+- Connection pooling and closing resources.
+- Batch the updates; transaction boundaries vs the external mail call.
+- Make it async and idempotent so a crash does not double-send.
+academy:
+- Q7
+- D6
+sightings:
+- company: entain
+  role: Senior Software Engineer (Ivy Comptech, Hyderabad)
+  round: Round 2
+  seen_on: 2019-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer

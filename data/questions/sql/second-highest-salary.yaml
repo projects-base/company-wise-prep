@@ -1,0 +1,31 @@
+slug: second-highest-salary
+title: Second Highest Salary
+type: SQL
+difficulty: medium
+tags:
+- sql
+- subquery
+- window-functions
+leetcode: second-highest-salary
+prompt: |
+  Write a SQL query for the second highest salary in a table.
+follow_ups:
+- Generalise to the Nth highest (LeetCode 177 nth-highest-salary) with DENSE_RANK.
+- Handle ties and the no-second-salary case (return NULL).
+academy:
+- Q2
+- Q3
+- Q4
+sightings:
+- company: entain
+  role: Senior Software Engineer (Ivy Comptech, Hyderabad)
+  round: Round 3
+  seen_on: 2019-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer
+- company: entain
+  role: Test Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2021-03
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Test-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,26.htm

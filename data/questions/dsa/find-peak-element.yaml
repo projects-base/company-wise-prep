@@ -1,0 +1,21 @@
+slug: find-peak-element
+title: Find Peak Element
+type: DSA
+difficulty: medium
+tags:
+- binary-search
+- array
+leetcode: find-peak-element
+prompt: |
+  Find a peak element in an array (one coding question, one hour).
+follow_ups:
+- O(log n) with binary search.
+academy:
+- C4
+sightings:
+- company: entain
+  role: SDE 1 (Hyderabad)
+  round: Round 1 coding
+  seen_on: 2024-04
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm

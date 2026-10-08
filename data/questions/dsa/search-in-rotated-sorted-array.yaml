@@ -16,3 +16,9 @@ sightings:
   seen_on: 2024-06
   confidence: claimed
   source: https://leetcode.com/discuss/post/5256862/
+- company: entain
+  role: Senior Software Engineer (Ivy Comptech, Hyderabad)
+  round: Round 1
+  seen_on: 2019-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer

@@ -32,6 +32,7 @@ const TYPE_LABEL: Record<string, string> = {
   DOMAIN: 'Systems',
   JAVA: 'Java',
   SPRING: 'Spring',
+  SQL: 'SQL',
 }
 
 export function TypeTag({ type }: { type: string }) {

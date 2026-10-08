@@ -1,0 +1,27 @@
+slug: design-distributed-message-queue
+title: Design a distributed queue with multiple producers and consumers
+type: HLD
+difficulty: hard
+tags:
+- message-queue
+- kafka
+- partitioning
+- replication
+- producer-consumer
+leetcode: null
+prompt: |
+  Design a distributed queue system with multiple producers and consumers. The round tested system design fundamentals and coding together.
+follow_ups:
+- Ordering per partition; consumer groups and offsets.
+- 'Delivery semantics: at-least-once vs exactly-once; idempotent consumers.'
+- Code a thread-safe bounded blocking queue (see design-bounded-blocking-queue).
+academy:
+- F1
+- B7
+sightings:
+- company: entain
+  role: Principal Engineer (Hyderabad)
+  round: Design & coding round
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm

@@ -5,10 +5,15 @@ difficulty: medium
 tags:
 - hashset
 - union-find
+- hashmap
+- sorting
+- array
 leetcode: longest-consecutive-sequence
 prompt: |
   Length of the longest consecutive-integer run in O(n).
-follow_ups: []
+follow_ups:
+- 'Contiguous variant: longest continuous increasing subarray (LeetCode 674).'
+- Do it in O(n) without sorting.
 academy: []
 sightings:
 - company: google
@@ -17,3 +22,9 @@ sightings:
   seen_on: 2026-09
   confidence: claimed
   source: https://leetcode.com/discuss/post/8546037/
+- company: entain
+  role: SDE 2 (Hyderabad)
+  round: Technical round (coding)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm

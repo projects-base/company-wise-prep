@@ -1,0 +1,21 @@
+slug: store-many-to-one-pairs
+title: Store {(1,a),(2,a),(3,b)} and retrieve efficiently
+type: JAVA
+difficulty: easy
+tags:
+- collections
+- hashmap
+- multimap
+leetcode: null
+prompt: |
+  How would you store {(1,a),(2,a),(3,b)} and retrieve it efficiently?
+follow_ups:
+- Lookup by value as well as by key (reverse index / multimap).
+academy: []
+sightings:
+- company: entain
+  role: Senior Software Engineer (Ivy Comptech, Hyderabad)
+  round: Round 3
+  seen_on: 2019-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer

@@ -1,0 +1,21 @@
+slug: sql-join-types
+title: SQL join types; DDL vs DML
+type: SQL
+difficulty: easy
+tags:
+- sql
+- joins
+leetcode: null
+prompt: |
+  Explain the types of joins (inner, left/right/full outer, cross, self) and the difference between DDL and DML.
+follow_ups:
+- How does the database execute a join (nested loop, hash, merge)?
+academy:
+- Q1
+sightings:
+- company: entain
+  role: Test Engineer (Hyderabad)
+  round: Technical round
+  seen_on: 2021-03
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Test-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,26.htm

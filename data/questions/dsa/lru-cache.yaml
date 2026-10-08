@@ -50,3 +50,9 @@ sightings:
   seen_on: 2026-01
   confidence: claimed
   source: https://leetcode.com/discuss/post/7523946/
+- company: entain
+  role: SDE 2 (Hyderabad)
+  round: Technical round (coding)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-India-SDE-2-Interview-Questions-EI_IE257530.0,12_KO13,18.htm

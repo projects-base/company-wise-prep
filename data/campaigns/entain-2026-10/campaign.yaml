@@ -1,0 +1,17 @@
+id: entain-2026-10
+name: Entain India SDE II, round 2 (13 October 2026)
+role: Software Development Engineer II (Entain India, Hyderabad)
+companies:
+  entain: 1.0
+start: 2026-10-08
+interview: 2026-10-13        # Tue 13 Oct 2026, 3:00 PM IST, Microsoft Teams
+minutes:
+  weekday: 60
+  weekend: 180
+review_days: 1               # Mon 12 Oct: review only
+notes: >-
+  HR email (2026-10-08) names the round's focus areas: System Design, Database performance and
+  scalability, and SQL. Round 1 (18 Sep: Java Concepts, Coding Concepts, Problem Solving) was passed.
+  Prioritise SQL and database internals (indexes, EXPLAIN, transactions/MVCC, replicas, partitioning),
+  then a betting-platform design (bet placement, wallet ledger, settlement, live odds). Academy path:
+  entain. See data/companies/entain/dossier.md section 7 for the day-by-day narrative.

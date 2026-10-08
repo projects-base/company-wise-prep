@@ -1,0 +1,23 @@
+slug: java-create-and-fix-deadlock
+title: Write code that deadlocks, then fix it
+type: JAVA
+difficulty: medium
+tags:
+- concurrency
+- deadlock
+- locks
+leetcode: null
+prompt: |
+  Create a deadlock in Java and then remove it.
+follow_ups:
+- Lock ordering vs tryLock with timeout.
+- How do you detect a deadlock in production (thread dump)?
+academy:
+- B2
+sightings:
+- company: entain
+  role: Senior Software Engineer (Ivy Comptech, Hyderabad)
+  round: Round 2
+  seen_on: 2019-09
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer
