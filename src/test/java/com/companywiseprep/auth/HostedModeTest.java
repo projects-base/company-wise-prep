@@ -28,7 +28,8 @@ import com.companywiseprep.code.JavaRunnerAccess;
 		"prep.auth.enabled=true",
 		"prep.auth.password=correct horse battery",
 		"prep.auth.token-secret=0123456789abcdef0123456789abcdef-test",
-		"prep.cors.allowed-origins=https://cwp.netlify.app"})
+		"prep.cors.allowed-origins=https://cwp.netlify.app",
+		"prep.code-runner.enabled=false"})
 @AutoConfigureMockMvc
 class HostedModeTest {
 
@@ -85,6 +86,19 @@ class HostedModeTest {
 		mvc.perform(get("/api/questions").header("Origin", UI))
 				.andExpect(status().isUnauthorized())
 				.andExpect(header().string("Access-Control-Allow-Origin", UI));
+	}
+
+	@Test
+	void theCodeRunnerIsOffOnTheHostedServerButProblemsStillLoad() throws Exception {
+		String token = login("correct horse battery");
+		mvc.perform(get("/api/auth/status")).andExpect(jsonPath("$.codeRunner", is(false)));
+		mvc.perform(get("/api/code/two-sum").header("Authorization", "Bearer " + token)).andExpect(status().isOk());
+		mvc.perform(post("/api/code/two-sum/run").header("Authorization", "Bearer " + token)
+				.contentType(MediaType.APPLICATION_JSON).content("{\"code\":\"class Solution {}\",\"mode\":\"RUN\"}"))
+				.andExpect(status().isServiceUnavailable());
+		mvc.perform(post("/api/playground/run").header("Authorization", "Bearer " + token)
+				.contentType(MediaType.APPLICATION_JSON).content("{\"code\":\"public class Main{}\",\"stdin\":\"\"}"))
+				.andExpect(status().isServiceUnavailable());
 	}
 
 	@Test

@@ -3,6 +3,7 @@ import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import LoginPage from './pages/LoginPage'
+import { FeaturesContext } from './features'
 import { daysBetween, localToday } from './ui'
 import TodayPage from './pages/TodayPage'
 import PlanPage from './pages/PlanPage'
@@ -40,11 +41,15 @@ export default function App() {
   const { pathname } = useLocation()
   // 'checking' until the server says whether a login is needed (only on the hosted app).
   const [auth, setAuth] = useState<'checking' | 'login' | 'ok' | 'down'>('checking')
+  const [codeRunner, setCodeRunner] = useState(true)
 
   useEffect(() => {
     api
       .authStatus()
-      .then((s) => setAuth(s.authRequired && !s.authenticated ? 'login' : 'ok'))
+      .then((s) => {
+        setCodeRunner(s.codeRunner !== false)
+        setAuth(s.authRequired && !s.authenticated ? 'login' : 'ok')
+      })
       .catch(() => setAuth('down'))
     const onLoggedOut = () => setAuth('login')
     window.addEventListener(LOGGED_OUT_EVENT, onLoggedOut)
@@ -87,6 +92,7 @@ export default function App() {
   const daysLeft = campaign ? Math.max(0, daysBetween(localToday(), campaign.interview)) : null
 
   return (
+    <FeaturesContext.Provider value={{ codeRunner }}>
     <CampaignContext.Provider value={campaign}>
       <div className="shell">
         <aside className="sidebar">
@@ -95,7 +101,7 @@ export default function App() {
             <span className="brand-name">CompanyWisePrep</span>
           </div>
           <nav className="nav" aria-label="Main">
-            {NAV.map(({ to, label, icon: Icon, end }) => (
+            {NAV.filter((n) => codeRunner || n.to !== '/playground').map(({ to, label, icon: Icon, end }) => (
               <NavLink key={to} to={to} end={end} title={label}>
                 <Icon size={18} strokeWidth={1.9} />
                 <span>{label}</span>
@@ -136,5 +142,6 @@ export default function App() {
         </main>
       </div>
     </CampaignContext.Provider>
+    </FeaturesContext.Provider>
   )
 }

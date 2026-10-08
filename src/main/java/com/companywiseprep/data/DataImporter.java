@@ -113,7 +113,9 @@ public class DataImporter implements ApplicationRunner {
 		List<Question> newQuestions = readQuestions();
 		List<Campaign> newCampaigns = readCampaigns();
 		Academy academy = readAcademy();
-		List<CodeChallenge> newChallenges = readChallenges();
+		// Challenges hold ~34 MB of tests, so only their folders are listed here and each one is
+		// read and saved separately below — the import must fit in a 512 MB hosted instance.
+		List<Path> challengeDirs = challengeDirs();
 
 		// Bulk deletes run immediately; the flush stops Hibernate ordering the replacement
 		// inserts ahead of them, where same-id rows would collide on a re-import.
@@ -134,7 +136,16 @@ public class DataImporter implements ApplicationRunner {
 		tracks.saveAll(academy.tracks());
 		modules.saveAll(academy.modules());
 		paths.saveAll(academy.paths());
-		challenges.saveAll(newChallenges);
+		int saved = 0;
+		for (Path dir : challengeDirs) {
+			challenges.save(readChallenge(dir));
+			if (++saved % 10 == 0) {
+				em.flush();
+				em.clear();
+			}
+		}
+		em.flush();
+		em.clear();
 
 		ImportState done = state.findById(ImportState.ID).orElseGet(ImportState::new);
 		done.setFingerprint(fingerprint());
@@ -144,7 +155,7 @@ public class DataImporter implements ApplicationRunner {
 		int sightingCount = newQuestions.stream().mapToInt(q -> q.getSightings().size()).sum();
 		int lessons = (int) academy.modules().stream().filter(m -> !m.getLesson().isBlank()).count();
 		return new Summary(newCompanies.size(), newQuestions.size(), sightingCount, newCampaigns.size(),
-				academy.modules().size(), lessons, newChallenges.size());
+				academy.modules().size(), lessons, challengeDirs.size());
 	}
 
 	private List<Company> readCompanies() {
@@ -261,29 +272,30 @@ public class DataImporter implements ApplicationRunner {
 		return new Academy(trackList, moduleList, pathList);
 	}
 
-	/** data/code/<slug>/ — only complete challenges; a half-written one is skipped, not fatal. */
-	private List<CodeChallenge> readChallenges() {
-		List<CodeChallenge> out = new ArrayList<>();
+	private static final List<String> CHALLENGE_FILES =
+			List.of("problem.md", "Solution.java", "Main.java", "reference/Solution.java", "tests.yaml");
+
+	/** data/code/<slug>/ folders that are complete; a half-written one is skipped, not fatal. */
+	private List<Path> challengeDirs() {
+		List<Path> out = new ArrayList<>();
 		for (Path dir : list(dataDir.resolve("code"), Files::isDirectory)) {
-			Path problem = dir.resolve("problem.md"), starter = dir.resolve("Solution.java"),
-					harness = dir.resolve("Main.java"), reference = dir.resolve("reference").resolve("Solution.java"),
-					tests = dir.resolve("tests.yaml");
-			if (!Stream.of(problem, starter, harness, reference, tests).allMatch(Files::exists)) {
-				log.warn("Skipping incomplete code challenge {}", dir.getFileName());
-				continue;
-			}
-			String testsText = read(tests);
-			CodeChallenge c = new CodeChallenge();
-			c.setSlug(dir.getFileName().toString());
-			c.setMethod(Yaml.str(Yaml.load(testsText).get("method")));
-			c.setProblem(read(problem));
-			c.setStarter(read(starter));
-			c.setHarness(read(harness));
-			c.setReference(read(reference));
-			c.setTests(testsText);
-			out.add(c);
+			if (CHALLENGE_FILES.stream().allMatch(f -> Files.exists(dir.resolve(f)))) out.add(dir);
+			else log.warn("Skipping incomplete code challenge {}", dir.getFileName());
 		}
 		return out;
+	}
+
+	private CodeChallenge readChallenge(Path dir) {
+		String testsText = read(dir.resolve("tests.yaml"));
+		CodeChallenge c = new CodeChallenge();
+		c.setSlug(dir.getFileName().toString());
+		c.setMethod(Yaml.str(Yaml.load(testsText).get("method")));
+		c.setProblem(read(dir.resolve("problem.md")));
+		c.setStarter(read(dir.resolve("Solution.java")));
+		c.setHarness(read(dir.resolve("Main.java")));
+		c.setReference(read(dir.resolve("reference").resolve("Solution.java")));
+		c.setTests(testsText);
+		return c;
 	}
 
 	/**

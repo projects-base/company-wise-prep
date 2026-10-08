@@ -26,10 +26,22 @@ public class CodeController {
 
 	private final JudgeService judge;
 	private final ProgressService progress;
+	/** Off on small hosted instances: each test needs its own JVM. Reading problems still works. */
+	private final boolean runnerEnabled;
 
-	public CodeController(JudgeService judge, ProgressService progress) {
+	public CodeController(JudgeService judge, ProgressService progress,
+			@org.springframework.beans.factory.annotation.Value("${prep.code-runner.enabled:true}") boolean runnerEnabled) {
 		this.judge = judge;
 		this.progress = progress;
+		this.runnerEnabled = runnerEnabled;
+	}
+
+	private void requireRunner() {
+		if (!runnerEnabled) {
+			throw new org.springframework.web.server.ResponseStatusException(
+					org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE,
+					"Running code is turned off on this server — use the local app (.\run.ps1)");
+		}
 	}
 
 	@GetMapping("/code/{slug}")
@@ -48,6 +60,7 @@ public class CodeController {
 
 	@PostMapping(path = "/code/{slug}/run", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public JudgeService.JudgeResult run(@PathVariable String slug, @Valid @RequestBody RunRequest req) {
+		requireRunner();
 		return judge.judge(slug, req.code(), req.mode(), req.customInput());
 	}
 
@@ -64,6 +77,7 @@ public class CodeController {
 
 	@PostMapping(path = "/playground/run", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public JudgeService.PlaygroundResult playground(@Valid @RequestBody PlaygroundRequest req) {
+		requireRunner();
 		return judge.playground(req.code(), req.stdin());
 	}
 }

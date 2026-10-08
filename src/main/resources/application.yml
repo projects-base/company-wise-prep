@@ -45,6 +45,10 @@ prep:
   cors:
     # The Netlify site, e.g. https://company-wise-prep.netlify.app (comma-separated for several).
     allowed-origins: ${CORS_ORIGINS:}
+  code-runner:
+    # Run / Submit / Playground. Off on a small hosted instance (each test needs its own JVM);
+    # problems and the editor still show.
+    enabled: ${CODE_RUNNER_ENABLED:true}
   judge:
     heap: ${JUDGE_HEAP:512m}
     parallel: ${JUDGE_PARALLEL:0}

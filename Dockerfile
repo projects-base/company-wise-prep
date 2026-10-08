@@ -20,12 +20,15 @@ COPY data data
 RUN chown -R app:app /app
 USER app
 
+# Sized for Render's free 512 MB instance with the code runner off. On a 2 GB plan, set
+# CODE_RUNNER_ENABLED=true and raise -Xmx (see docs/DEPLOY.md).
 # Render injects PORT. Listen on all interfaces inside the container; the password login
 # (AUTH_ENABLED=true) and the CORS allowlist protect the API.
 ENV SERVER_ADDRESS=0.0.0.0 \
     DATA_DIR=/app/data \
     AUTH_ENABLED=true \
-    JAVA_OPTS="-Xmx640m -XX:+UseSerialGC -XX:MaxMetaspaceSize=192m"
+    CODE_RUNNER_ENABLED=false \
+    JAVA_OPTS="-Xmx300m -Xss512k -XX:+UseSerialGC -XX:MaxMetaspaceSize=160m -XX:TieredStopAtLevel=1"
 
 EXPOSE 8090
 ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS -jar app.jar"]

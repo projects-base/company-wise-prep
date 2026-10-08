@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, Play } from 'lucide-react'
 import { api, type Ref } from '../api'
 import { LevelChip, Status, useLoad } from '../ui'
+import { useFeatures } from '../features'
 
 const slugify = (s: string) =>
   s
@@ -24,6 +25,7 @@ export default function ModulePage() {
   const { id = '' } = useParams()
   const { data: v, error, reload } = useLoad(() => api.module(id), [id])
   const navigate = useNavigate()
+  const { codeRunner } = useFeatures()
 
   const headings = useMemo(
     () =>
@@ -98,7 +100,7 @@ export default function ModulePage() {
                   const code = textOf(children)
                   const child = Children.toArray(children)[0]
                   const lang = isValidElement<{ className?: string }>(child) ? child.props.className ?? '' : ''
-                  const runnable = lang.includes('language-java') && /static\s+void\s+main\s*\(/.test(code)
+                  const runnable = codeRunner && lang.includes('language-java') && /static\s+void\s+main\s*\(/.test(code)
                   return (
                     <div className="code-block">
                       {runnable && (

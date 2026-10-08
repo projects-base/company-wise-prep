@@ -16,19 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
 	private final AuthService auth;
+	private final boolean codeRunner;
 
-	public AuthController(AuthService auth) {
+	public AuthController(AuthService auth,
+			@org.springframework.beans.factory.annotation.Value("${prep.code-runner.enabled:true}") boolean codeRunner) {
 		this.auth = auth;
+		this.codeRunner = codeRunner;
 	}
 
-	/** Public: tells the UI whether to show a login screen. Also Render's health check. */
-	public record Status(boolean authRequired, boolean authenticated) {
+	/**
+	 * Public: tells the UI whether to show a login screen and which features this server has.
+	 * Also Render's health check.
+	 */
+	public record Status(boolean authRequired, boolean authenticated, boolean codeRunner) {
 	}
 
 	@GetMapping("/status")
 	public Status status(@RequestHeader(name = "Authorization", required = false) String header) {
 		String token = header != null && header.startsWith("Bearer ") ? header.substring(7).trim() : null;
-		return new Status(auth.enabled(), !auth.enabled() || auth.valid(token));
+		return new Status(auth.enabled(), !auth.enabled() || auth.valid(token), codeRunner);
 	}
 
 	public record LoginRequest(String password) {

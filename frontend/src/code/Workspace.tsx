@@ -5,6 +5,7 @@ import remarkBreaks from 'remark-breaks'
 import { CheckCircle2, Eye, Loader2, Play, RotateCcw, Send, XCircle } from 'lucide-react'
 import { api, type Challenge, type JudgeResult, type Verdict } from '../api'
 import CodeEditor from './CodeEditor'
+import { LOCAL_ONLY_NOTE, useFeatures } from '../features'
 
 export const VERDICT_LABEL: Record<Verdict, string> = {
   ACCEPTED: 'Accepted',
@@ -41,6 +42,7 @@ export default function Workspace({
   const [pane, setPane] = useState<Pane>('problem')
   const [solution, setSolution] = useState<string | null>(null)
   const saveTimer = useRef<number | undefined>(undefined)
+  const { codeRunner } = useFeatures()
 
   // Autosave: one second after typing stops.
   useEffect(() => {
@@ -119,17 +121,30 @@ export default function Workspace({
           </button>
         </div>
         <div className="ws-editor">
-          <CodeEditor value={code} onChange={setCode} onRun={() => go('RUN')} onSubmit={() => go('SUBMIT')} />
+          <CodeEditor
+            value={code}
+            onChange={setCode}
+            onRun={codeRunner ? () => go('RUN') : undefined}
+            onSubmit={codeRunner ? () => go('SUBMIT') : undefined}
+          />
         </div>
         <div className="ws-actions">
-          <span className="muted ws-keys">Ctrl+Enter run · Ctrl+Shift+Enter submit</span>
-          <span className="spacer" />
-          <button className="btn" onClick={() => go('RUN')} disabled={!!running}>
-            {running === 'RUN' ? <Loader2 size={15} className="spin" /> : <Play size={15} />} Run
-          </button>
-          <button className="btn primary" onClick={() => go('SUBMIT')} disabled={!!running}>
-            {running === 'SUBMIT' ? <Loader2 size={15} className="spin" /> : <Send size={15} />} Submit
-          </button>
+          {codeRunner ? (
+            <>
+              <span className="muted ws-keys">Ctrl+Enter run · Ctrl+Shift+Enter submit</span>
+              <span className="spacer" />
+              <button className="btn" onClick={() => go('RUN')} disabled={!!running}>
+                {running === 'RUN' ? <Loader2 size={15} className="spin" /> : <Play size={15} />} Run
+              </button>
+              <button className="btn primary" onClick={() => go('SUBMIT')} disabled={!!running}>
+                {running === 'SUBMIT' ? <Loader2 size={15} className="spin" /> : <Send size={15} />} Submit
+              </button>
+            </>
+          ) : (
+            <span className="muted" style={{ fontSize: '0.84rem' }}>
+              {LOCAL_ONLY_NOTE}. Your code here is still saved.
+            </span>
+          )}
         </div>
       </section>
 

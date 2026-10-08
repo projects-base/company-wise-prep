@@ -317,7 +317,8 @@ export const api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code, stdin }),
     }),
-  authStatus: () => call<{ authRequired: boolean; authenticated: boolean }>('/api/auth/status'),
+  authStatus: () =>
+    call<{ authRequired: boolean; authenticated: boolean; codeRunner: boolean }>('/api/auth/status'),
   login: async (password: string): Promise<{ ok: true } | { ok: false; message: string }> => {
     const res = await request('/api/auth/login', {
       method: 'POST',

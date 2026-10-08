@@ -4,7 +4,7 @@ services:
   - type: web
     name: company-wise-prep-api
     runtime: docker
-    plan: standard            # 2 GB: the code runner starts a JVM per test
+    plan: free                # 512 MB, sleeps after ~15 min idle; the code runner stays local-only
     region: singapore         # same region as the Neon database (ap-southeast-1)
     branch: main
     autoDeploy: true
@@ -24,7 +24,6 @@ services:
         sync: false           # your Netlify URL, e.g. https://company-wise-prep.netlify.app
       - key: AUTH_ENABLED
         value: "true"
-      - key: JUDGE_HEAP
-        value: 384m           # per test JVM
-      - key: JUDGE_PARALLEL
-        value: "2"            # test JVMs at once: 640m app + 2 × ~450m fits in 2 GB
+      - key: CODE_RUNNER_ENABLED
+        value: "false"        # Run/Submit/Playground need a JVM per test — use the local app for coding.
+                              # On a 2 GB plan set this to "true" and add JUDGE_HEAP=384m, JUDGE_PARALLEL=2.

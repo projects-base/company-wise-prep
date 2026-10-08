@@ -1,13 +1,17 @@
-# Deploying: Render (API + code runner) and Netlify (UI)
+# Deploying: Render (API) and Netlify (UI)
 
 ```
 Browser ──► Netlify (static React UI)
    │
-   └──► Render: Spring Boot API + Java judge (Docker, 2 GB) ──► Neon Postgres
-        password login · CORS allows only the Netlify site
+   └──► Render free: Spring Boot API (Docker, 512 MB) ──► Neon Postgres
+        password login · CORS allows only the Netlify site · code runner OFF
 ```
 
-Locally nothing changes: `.\run.ps1` still runs everything on localhost with no login.
+**Coding (Run / Submit / Playground) is local-only.** Each test needs its own JVM, which a 512 MB
+free instance can't afford, so the hosted app sets `CODE_RUNNER_ENABLED=false`. Problems, notes,
+the editor and your saved code still show there; the Run buttons are replaced by a note. Use
+`.\run.ps1` on your PC for coding — both point at the same Neon database, so progress is shared.
+Locally nothing else changes: localhost only, no login.
 
 ## What protects the hosted app
 
@@ -28,7 +32,8 @@ Reset the `neondb_owner` password if it was ever shared. Copy the **pooled** con
 ## 2. Render (API)
 
 1. Dashboard → **New → Blueprint** → choose the GitHub repo. Render reads `render.yaml`
-   (Docker, **Standard** plan, Singapore region, health check `/api/auth/status`).
+   (Docker, **free** plan, Singapore region, health check `/api/auth/status`). The free
+   instance sleeps after ~15 minutes idle; the first request after that takes ~1 minute.
 2. Fill the secrets it asks for:
 
    | Variable | Value |
@@ -62,12 +67,15 @@ and save — Render restarts the service. Open the Netlify URL and sign in.
 Push to `main`: Netlify rebuilds the UI and Render rebuilds the API (`autoDeploy`). New
 companies from `/prep-company` land in `data/`, so the next Render start imports them.
 
-## Memory budget (Render Standard, 2 GB)
+## Memory
 
-App JVM `-Xmx640m` (Dockerfile `JAVA_OPTS`) + up to 2 test JVMs at once (`JUDGE_PARALLEL=2`)
-× `JUDGE_HEAP=384m` + JVM overhead. If Submit ever reports out-of-memory on a big test, raise
-`JUDGE_HEAP` and lower `JUDGE_PARALLEL` to 1 rather than the other way round.
+Free plan (512 MB): app JVM `-Xmx300m` (Dockerfile `JAVA_OPTS`), code runner off. The data
+import saves code challenges one at a time so it fits; after the first import, starts skip it
+unless `data/` changed.
+
+To enable coding on the hosted app later: move to a 2 GB plan, set `CODE_RUNNER_ENABLED=true`,
+`JUDGE_HEAP=384m`, `JUDGE_PARALLEL=2`, and raise `JAVA_OPTS` to `-Xmx640m`.
 
 ## Cost
 
-Render Standard ≈ $25/month · Netlify free tier · Neon free tier.
+Render free · Netlify free · Neon free → $0 (Render Standard ≈ $25/month if you enable coding).

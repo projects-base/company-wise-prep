@@ -4,6 +4,7 @@ import { CheckCircle2, Loader2, Play, XCircle } from 'lucide-react'
 import { api, type PlaygroundResult } from '../api'
 import CodeEditor from '../code/CodeEditor'
 import { VERDICT_LABEL } from '../code/Workspace'
+import { LOCAL_ONLY_NOTE, useFeatures } from '../features'
 
 const KEY = 'cwp.playground'
 const DEFAULT = `import java.util.*;
@@ -43,6 +44,8 @@ export default function PlaygroundPage() {
     }
   }
 
+  const { codeRunner } = useFeatures()
+
   const run = useCallback(async () => {
     if (running) return
     setRunning(true)
@@ -55,6 +58,16 @@ export default function PlaygroundPage() {
       setRunning(false)
     }
   }, [code, stdin, running])
+
+  if (!codeRunner) {
+    return (
+      <div className="container">
+        <div className="callout" style={{ marginTop: 24 }}>
+          <span>{LOCAL_ONLY_NOTE}.</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="container wide">
