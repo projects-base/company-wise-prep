@@ -253,6 +253,45 @@ Engineer). The text is nearly identical across the SDE levels.
 
 Posting bullets are requirements, not interview questions.
 
+## 6c. Tech stack and frameworks to prepare
+
+Core and common items only (full list with evidence in `company.yaml` → `tech_stack`). Sources: the
+India postings, the [AWS case study](https://aws.amazon.com/solutions/case-studies/entain-case-study/)
+and the [Redpanda vendor case study](https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale).
+Entain's GitHub orgs have no public repos, and no engineering blog or conference talks were found.
+
+| Group | Core | Common |
+|---|---|---|
+| **Frameworks & languages** | Java · SQL · PostgreSQL on Aurora · Docker · Kubernetes (EKS) · CI/CD · monitoring + logging · testing · secure coding | AWS (EKS, Aurora, DMS) · Spring Boot · Spring Data JPA/Hibernate · Kafka (Redpanda) · Angular/JS (full-stack roles only) · WebSockets/SSE · AI tools (Kiro, Copilot) |
+| **Patterns** | Microservices · event-driven architecture · distributed architectures · database scaling (indexing, replicas, partitioning) · OO design + design patterns | API integration / API-first · zero-downtime database migration |
+| **Tools** | Git | Swagger / OpenAPI |
+
+The order below follows the 13 Oct round's focus: SQL, then database performance and scalability,
+then system design.
+
+**Revise** (Akhil already has these; refresh internals and trade-offs):
+
+1. **SQL query writing** ([Q1](../../academy/lessons/Q1.md)–[Q4](../../academy/lessons/Q4.md)): write top-N-per-group, running-total and gaps-and-islands queries on a bets/wallet schema, out loud.
+2. **PostgreSQL indexes and EXPLAIN** ([Q5](../../academy/lessons/Q5.md)): B-tree, composite, partial and covering indexes on `bets`; read one EXPLAIN ANALYZE before and after.
+3. **Transactions, isolation, locking, MVCC** ([Q6](../../academy/lessons/Q6.md)): wallet debit with `FOR UPDATE` vs a version column; the anomaly each isolation level allows.
+4. **Query performance in practice** ([Q7](../../academy/lessons/Q7.md), [D6](../../academy/lessons/D6.md), [L7](../../academy/lessons/L7.md)): an N+1 or pool-exhaustion story; keyset pagination for bet history.
+5. **System design and distributed architectures** ([F1](../../academy/lessons/F1.md), [F3](../../academy/lessons/F3.md), [F2](../../academy/lessons/F2.md), [F8](../../academy/lessons/F8.md)): run F8 (sports betting platform) end to end in 45 minutes.
+6. **Microservices patterns** ([S8](../../academy/lessons/S8.md)): bet, wallet, odds and settlement services; what happens when wallet is down.
+7. **Java and Spring Boot** ([A7](../../academy/lessons/A7.md), [D4](../../academy/lessons/D4.md), [D8](../../academy/lessons/D8.md)): light touch; Java 17/21 features and Actuator metrics.
+8. **OO design and patterns** ([E1](../../academy/lessons/E1.md), [E4](../../academy/lessons/E4.md)): the strategy pattern for settlement rules by bet type.
+9. **REST API design and OpenAPI** ([D5](../../academy/lessons/D5.md)): the `POST /bets` contract with an idempotency key and error codes.
+10. **Docker and testing** ([D8](../../academy/lessons/D8.md)): a multi-stage image; Testcontainers for Postgres tests.
+
+**Learn** (basic or new for Akhil, core or common here):
+
+1. **Scaling PostgreSQL on Aurora: replicas, failover, partitioning** ([Q8](../../academy/lessons/Q8.md)): read the [replication](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Replication.html) and [HA](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html) pages, then add replicas, date partitioning and replica lag to the F8 design.
+2. **Event-driven architecture with Kafka: outbox, idempotent consumers, saga** ([S9](../../academy/lessons/S9.md)): learn [topics, partitions and consumer groups](https://kafka.apache.org/intro), then draw `BetPlaced` via an [outbox](https://microservices.io/patterns/data/transactional-outbox.html).
+3. **Caching with Redis** ([Q8](../../academy/lessons/Q8.md), [F1](../../academy/lessons/F1.md), [F6](../../academy/lessons/F6.md)): cache-aside vs write-through, TTL and stampede protection ([AWS caching best practices](https://aws.amazon.com/caching/best-practices/)); odds in Redis with a version per selection.
+4. **Zero-downtime schema migrations** (no Academy module): expand-migrate-contract for a column rename, and `CREATE INDEX CONCURRENTLY` ([Flyway](https://documentation.red-gate.com/flyway)).
+5. **Kubernetes on EKS** (no Academy module): pod, deployment, service, HPA and readiness probe, enough to explain kick-off scaling ([overview](https://kubernetes.io/docs/concepts/overview/)).
+6. **Observability** ([D8](../../academy/lessons/D8.md), [F6](../../academy/lessons/F6.md)): RED metrics and trace context; how you find the slow query in production ([OpenTelemetry concepts](https://opentelemetry.io/docs/concepts/)).
+7. **WebSockets / SSE for live odds** ([F5](../../academy/lessons/F5.md), [F8](../../academy/lessons/F8.md)): a gateway that fans out from pub/sub; when SSE is enough ([Spring WebSockets](https://docs.spring.io/spring-framework/reference/web/websocket.html)).
+
 ## 7. Strategy
 
 **Today is Thu 8 Oct. The round is Tue 13 Oct, 3 PM.** Budget: about 60 min on weekdays and

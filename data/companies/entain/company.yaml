@@ -294,6 +294,284 @@ official:
       HR. Akhil's actual process so far is a Java/coding round, then a system design + database +
       SQL round. No HackerRank OA was mentioned.
 
+tech_stack:                # India SDE postings + AWS / Redpanda case studies; researched 2026-10-08
+  # --- frameworks & languages ---
+  - name: Java (modern features)
+    category: language
+    importance: core
+    evidence: "9/10 India postings: 'Expert in Java programming with modern language features and frameworks'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-ii/2607-11073-77]
+  - name: SQL
+    category: language
+    importance: core
+    evidence: "10/10 postings ('object-oriented design, algorithms, data structures, and SQL'); backend SDE II/III add 'SQL, indexing, migrations'; HR named SQL as a round-2 focus"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://builtin.com/job/p-t-software-development-engineer-ii-java-india/6334894, "HR email relayed by Akhil, 2026-10-08"]
+  - name: PostgreSQL on Amazon Aurora
+    category: datastore
+    importance: core
+    evidence: "AWS case study: databases moved to Aurora PostgreSQL; 'open source database technology such as PostgreSQL is a key piece of our modernization journey'. Postings ask for 'database management'; HR named database performance and scalability for round 2"
+    sources: [https://aws.amazon.com/solutions/case-studies/entain-case-study/, https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: Docker
+    category: infra
+    importance: core
+    evidence: "9/10 postings: 'CI/CD, Docker/Kubernetes, and secure coding practices'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: Kubernetes (Amazon EKS)
+    category: infra
+    importance: core
+    evidence: "9/10 postings list Docker/Kubernetes; AWS case study: 'standardized on Amazon EKS as the foundation to build out our Internal Developer Platform'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: CI/CD pipelines
+    category: ci-cd
+    importance: core
+    evidence: "10/10 postings; AWS case study: deploy time cut from weeks to 2 hours"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Application monitoring and logging
+    category: observability
+    importance: core
+    evidence: "8/10 postings: 'Adept in application monitoring, logging, version control, and software testing'; SDE II/III are the initial on-call responder. No specific tool named"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: Software testing (JUnit-style unit and integration tests)
+    category: testing
+    importance: core
+    evidence: "9/10 postings: 'software testing'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: Secure coding
+    category: security
+    importance: core
+    evidence: "8/10 postings: 'secure coding practices'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: AWS (EKS, Aurora, DMS, Lambda)
+    category: cloud
+    importance: common
+    evidence: "SDE II posting lists AWS; full-stack SDE II: 'cloud-native on AWS or Azure'; AWS case study names EKS, Aurora, DMS and planned Lambda"
+    sources: [https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-ii/2607-11073-77, https://builtin.com/job/sde-ii/9861243, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Spring Boot (Spring MVC, REST)
+    category: framework
+    importance: common
+    evidence: "SDE II full-stack (Pune): 'Java (11+) and Spring/Spring Boot, REST + Spring MVC'; Principal SE: 'Java + Spring (Boot, Data/JPA, Security)'. Other postings say 'modern ... frameworks' without naming one"
+    sources: [https://builtin.com/job/sde-ii/9861243, https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer]
+  - name: Spring Data JPA / Hibernate
+    category: framework
+    importance: common
+    evidence: "2 postings (SDE II full-stack, Principal SE)"
+    sources: [https://builtin.com/job/sde-ii/9861243, https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer]
+  - name: Kafka (Kafka-compatible Redpanda)
+    category: messaging
+    importance: common
+    evidence: "3 postings name Kafka (or RabbitMQ); vendor case study: Entain replaced Confluent Cloud with Redpanda BYOC for live odds, fraud detection and player safety"
+    sources: [https://builtin.com/job/sde-ii/9861243, https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer, https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale]
+  - name: Angular / JavaScript
+    category: framework
+    importance: common
+    evidence: "3 full-stack postings ('Experience with frontend framework(Angular) and Javascript'); not in the backend SDE II Java postings"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-iii-fullstack/2607-11073-78]
+  - name: WebSockets / SSE
+    category: framework
+    importance: common
+    evidence: "SDE II full-stack posting (preferred: 'GraphQL / WebSockets / SSE'); the insider tip names WebSockets; live odds fan-out needs push"
+    sources: [https://builtin.com/job/sde-ii/9861243, "insider tip relayed by Akhil, 2026-09-16"]
+  - name: AI coding tools (Kiro, GitHub Copilot)
+    category: ai-tools
+    importance: common
+    evidence: "3 postings since Aug 2026 ask for 'exposure to AI tools such as Kiro and Copilot'; AWS case study: Entain used Kiro to modernise and debug code"
+    sources: [https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-iii/2609-11073-92, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Redis
+    category: datastore
+    importance: mentioned
+    evidence: "1 posting (SDE II full-stack, preferred: 'SQL/NoSQL + Redis')"
+    sources: [https://builtin.com/job/sde-ii/9861243]
+  - name: NoSQL databases
+    category: datastore
+    importance: mentioned
+    evidence: "2 postings (SDE II full-stack preferred, Principal SE: 'relational and NoSQL databases')"
+    sources: [https://builtin.com/job/sde-ii/9861243, https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer]
+  - name: Spring Security / OAuth2 / JWT
+    category: security
+    importance: mentioned
+    evidence: "2 postings (SDE II full-stack preferred, Principal SE)"
+    sources: [https://builtin.com/job/sde-ii/9861243, https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer]
+  - name: RabbitMQ
+    category: messaging
+    importance: mentioned
+    evidence: "1 posting ('Kafka/RabbitMQ')"
+    sources: [https://builtin.com/job/sde-ii/9861243]
+  - name: Snowflake
+    category: datastore
+    importance: mentioned
+    evidence: "Junior Data Engineer posting; Redpanda case study streams into Snowflake"
+    sources: [https://www.interviewpal.com/jobs/2243970240, https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale]
+  - name: React
+    category: framework
+    importance: mentioned
+    evidence: "1 posting ('React or Angular')"
+    sources: [https://builtin.com/job/sde-ii/9861243]
+  - name: Python / scripting
+    category: scripting
+    importance: mentioned
+    evidence: "SDE I posting ('scripting'); Junior Data Engineer ('basic-intermediate Python')"
+    sources: [https://builtin.com/job/p-t-software-development-engineer-i-java-india/6207760, https://www.interviewpal.com/jobs/2243970240]
+  # --- patterns ---
+  - name: Microservices
+    category: architecture-pattern
+    importance: core
+    evidence: "8/10 postings: 'Knowledgeable in Microservices, Event-driven architectures'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: Event-driven architecture
+    category: architecture-pattern
+    importance: core
+    evidence: "7/10 postings; AWS case study describes the Core Racing application's 'event-driven technology stack'; Principal SE: 'event-driven with Kafka or similar'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Distributed architectures
+    category: architecture-pattern
+    importance: core
+    evidence: "8/10 postings: '5+ years of experience with within distributed architectures' (2+ for SDE II)"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://www.talentmate.com/jobs/india/hyderabad/software-development-engineer-ii/2607-11073-77]
+  - name: Database scaling for reads and writes (indexing, replicas, partitioning)
+    category: architecture-pattern
+    importance: core
+    evidence: "HR named 'Database performance and scalability' for round 2; backend postings ask for 'SQL, indexing, migrations'; Aurora PostgreSQL is the target database"
+    sources: ["HR email relayed by Akhil, 2026-10-08", https://builtin.com/job/p-t-software-development-engineer-ii-java-india/6334894, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Object-oriented design and design patterns
+    category: design-pattern
+    importance: core
+    evidence: "7/10 postings: 'Proficient in object-oriented design'; SDE I: 'OO design + design patterns'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://builtin.com/job/p-t-software-development-engineer-i-java-india/6207760]
+  - name: API integration and API-first design
+    category: architecture-pattern
+    importance: common
+    evidence: "7/10 postings: 'database management, API integration, and modern tools like Swagger'; Principal SE: 'API design'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer]
+  - name: Zero-downtime database migration
+    category: architecture-pattern
+    importance: common
+    evidence: "3 backend postings: 'SQL, indexing, migrations'; AWS case study: DMS migration to Aurora 'achieving near-zero downtime'"
+    sources: [https://builtin.com/job/p-t-software-development-engineer-ii-java-india/6334894, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Caching (cache-aside, TTL) for read-heavy paths
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "1 posting names Redis and 'performance tuning'; HR scalability focus makes it likely in the design"
+    sources: [https://builtin.com/job/sde-ii/9861243, "HR email relayed by Akhil, 2026-10-08"]
+  - name: Real-time streaming into a warehouse
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "Redpanda vendor case study: moved from batch ETL to live analytics in Snowflake"
+    sources: [https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale]
+  - name: Containerised internal developer platform
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "AWS case study: internal developer platform on EKS, 'container-based architecture'"
+    sources: [https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Domain-driven design
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "Principal SE posting: 'architecture + API design + DDD'"
+    sources: [https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer]
+  # --- tools ---
+  - name: Git (version control)
+    category: tool
+    importance: core
+    evidence: "8/10 postings: 'version control'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
+  - name: Swagger / OpenAPI
+    category: tool
+    importance: common
+    evidence: "5/10 postings: 'modern tools like Swagger'"
+    sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://builtin.com/job/sde-ii/9861243]
+  - name: AWS DMS
+    category: tool
+    importance: mentioned
+    evidence: "AWS case study: databases migrated to Aurora with DMS"
+    sources: [https://aws.amazon.com/solutions/case-studies/entain-case-study/]
+  - name: Jenkins / GitLab CI
+    category: tool
+    importance: mentioned
+    evidence: "1 posting ('Git + CI/CD (Jenkins/GitLab) + Docker')"
+    sources: [https://builtin.com/job/sde-ii/9861243]
+  - name: Redpanda Connect
+    category: tool
+    importance: mentioned
+    evidence: "Vendor case study: replaced Kafka Connect and custom ingestion code into Snowflake"
+    sources: [https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale]
+frameworks_to_prepare:     # vs data/profile.yaml; weighted to the 13 Oct round (system design, DB performance + scalability, SQL)
+  revise:
+    - name: SQL query writing (joins, aggregation, window functions, interview patterns)
+      why: "Core in 10/10 postings and a named round-2 focus; profile: sql working"
+      academy: [Q1, Q2, Q3, Q4]
+      plan: "Write one top-N-per-group, one running-total and one gaps-and-islands query on a bets/wallet schema, out loud, without an IDE."
+    - name: PostgreSQL indexes and EXPLAIN
+      why: "Round-2 focus (database performance); backend postings ask for 'SQL, indexing'; Entain runs Aurora PostgreSQL; profile: postgresql working"
+      academy: [Q5]
+      plan: "Explain B-tree vs composite vs partial vs covering index on a bets table, and read one EXPLAIN ANALYZE before and after adding the index."
+    - name: Transactions, isolation, row locking and MVCC
+      why: "Wallet debit and bet placement are the betting-domain write path; profile: postgresql working"
+      academy: [Q6]
+      plan: "Sketch the wallet debit two ways (SELECT ... FOR UPDATE vs optimistic version column) and name the anomaly each isolation level allows."
+    - name: Query performance in practice (N+1, pagination, batching, connection pooling)
+      why: "Database performance focus; Java/JPA stack; profile: spring-data-jpa-hibernate strong"
+      academy: [Q7, D6, L7]
+      plan: "Have a 2-minute story for an N+1 or pool-exhaustion fix, and explain keyset vs offset pagination for bet history."
+    - name: System design method and distributed architectures
+      why: "Round-2 focus; 8/10 postings ask for distributed architectures; profile: system-design and distributed-systems working"
+      academy: [F1, F3, F2, F8]
+      plan: "Do F8 (sports betting platform) end to end in 45 min with requirements, estimates, data model and scaling."
+    - name: Microservices patterns (service boundaries, retries, circuit breaker, API gateway)
+      why: "Core in 8/10 postings; profile: microservices-patterns working"
+      academy: [S8]
+      plan: "Name the bet, wallet, odds and settlement services and say what happens when wallet is down (timeouts, retries, circuit breaker, idempotency key)."
+    - name: Java and Spring Boot internals
+      why: "Core language (9/10); round 1 was Java; profile: java and spring-boot strong"
+      academy: [A7, D4, D8]
+      plan: "Light touch only: Java 17/21 features and how Actuator metrics expose a slow endpoint."
+    - name: Object-oriented design and design patterns
+      why: "7/10 postings; profile: gof-design-patterns working"
+      academy: [E1, E4]
+      plan: "Pick the strategy pattern for bet-type settlement rules (single, accumulator) as a ready example."
+    - name: REST API design and OpenAPI
+      why: "API integration (7/10) and Swagger (5/10); profile: rest-api-design strong"
+      academy: [D5]
+      plan: "Write the POST /bets contract with an Idempotency-Key header and the error codes for price-changed and market-suspended."
+    - name: Docker and testing
+      why: "Core in 9/10 postings; profile: docker working, testing-junit-mockito strong"
+      academy: [D8]
+      plan: "One sentence each: multi-stage image for a Spring Boot service; Testcontainers for a Postgres integration test."
+  learn:
+    - name: Scaling PostgreSQL on Aurora (read replicas, failover, partitioning)
+      why: "HR named database scalability; Entain moved to Aurora PostgreSQL; profile: aws basic, failover-patterns basic"
+      academy: [Q8]
+      plan: "Read the Aurora replication and HA pages, then add read replicas, date partitioning of bets and the replica-lag trade-off to your F8 design."
+      resources: [https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Replication.html, https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html, https://www.postgresql.org/docs/current/ddl-partitioning.html]
+    - name: Event-driven architecture with Kafka (outbox, idempotent consumers, saga)
+      why: "Core in 7/10 postings and in the AWS case study; Kafka-compatible Redpanda in production; profile: kafka basic, event-driven-architecture basic"
+      academy: [S9]
+      plan: "Learn topics, partitions, consumer groups and keys, then draw BetPlaced via an outbox table and an idempotent settlement consumer."
+      resources: [https://kafka.apache.org/intro, https://microservices.io/patterns/data/transactional-outbox.html, https://microservices.io/patterns/data/saga.html]
+    - name: Caching with Redis (cache-aside, TTL, invalidation, hot keys)
+      why: "Only 1 posting names Redis, but cheap and clearly relevant: odds reads dwarf bet writes in a scalability round; profile: redis basic"
+      academy: [Q8, F1, F6]
+      plan: "Learn cache-aside vs write-through and stampede protection, then put odds in Redis with a version per selection in the F8 design."
+      resources: [https://aws.amazon.com/caching/best-practices/, https://redis.io/docs/latest/develop/]
+    - name: Zero-downtime schema migrations (expand-and-contract, Flyway)
+      why: "3 backend postings ask for 'migrations'; Entain migrated to Aurora with DMS at near-zero downtime; not in profile"
+      academy: []
+      plan: "Learn the expand-migrate-contract steps for renaming a column on a live table and how CREATE INDEX CONCURRENTLY avoids locks."
+      resources: [https://documentation.red-gate.com/flyway, https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html]
+    - name: Kubernetes on Amazon EKS
+      why: "Core: Docker/Kubernetes in 9/10 postings, EKS is Entain's platform base; profile: kubernetes basic, aws basic"
+      academy: []
+      plan: "Learn pod, deployment, service, HPA and readiness probe well enough to say how the bet service scales at kick-off."
+      resources: [https://kubernetes.io/docs/concepts/overview/, https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html]
+    - name: Observability (metrics, logs, traces)
+      why: "Core: monitoring and logging in 8/10 postings plus on-call; profile: prometheus-grafana basic, opentelemetry none"
+      academy: [D8, F6]
+      plan: "Learn the RED metrics and trace context, and have an answer to 'how do you find the slow query in production'."
+      resources: [https://opentelemetry.io/docs/concepts/, https://prometheus.io/docs/introduction/overview/]
+    - name: WebSockets / SSE for live odds fan-out
+      why: "One posting and the insider tip; in-play odds push is the classic betting design follow-up; not in profile"
+      academy: [F5, F8]
+      plan: "Learn how a WebSocket gateway holds connections and fans out from a pub/sub topic, and when SSE is enough."
+      resources: [https://docs.spring.io/spring-framework/reference/web/websocket.html]
+
 sources:
   - url: https://careers.entainindia.com/
     title: Entain India careers home

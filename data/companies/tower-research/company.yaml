@@ -252,6 +252,190 @@ roles:
       as weak signals. India reports show 2-3 interview rounds after the OA rather than a
       Super Day.
 
+tech_stack:                # 7 Gurugram postings (Greenhouse, re-checked 2026-10-08) + Tower's AMA + interview reports
+  # --- frameworks & languages ---
+  - name: Python
+    category: language
+    importance: core
+    evidence: "7/7 postings; AMA: 'Python is used heavily in research, data analysis, and orchestration'"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=6629676", https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/]
+  - name: Linux (systems, shell, OS internals)
+    category: infra
+    importance: core
+    evidence: "7/7 postings require Linux; interview reports probe virtual memory, page faults, TLB and copy-on-write"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", "https://www.tower-research.com/open-positions/?gh_jid=4357723", https://leetcode.com/discuss/post/1764282/]
+  - name: C / C++
+    category: language
+    importance: core
+    evidence: "5/7 postings ('strong C/C++' required for Quant Dev and Low Latency Dev); AMA: 'C++ powers our most latency-sensitive systems - market data, execution, and low-level infrastructure'; C++ object-model questions even in non-C++ loops"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=7102180", https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/, https://leetcode.com/discuss/post/1867832/]
+  - name: Rust
+    category: language
+    importance: common
+    evidence: "Required in SE III Shared Services; listed in PaaS Engineer; AMA: 'Rust is increasingly used for infrastructure and services'"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", "https://www.tower-research.com/open-positions/?gh_jid=8036383", https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/]
+  - name: Bash / shell scripting
+    category: scripting
+    importance: common
+    evidence: "3/7 postings (SE III 'Linux systems, shell scripting', SE II AI/ML, InfoSec)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", "https://www.tower-research.com/open-positions/?gh_jid=8132180"]
+  - name: Production monitoring and observability
+    category: observability
+    importance: common
+    evidence: "2 postings (Python Developer: 'ELK and observability frameworks'; PaaS); AMA: post-production monitoring of 'latency regressions ... execution slippage'"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=6629676", "https://www.tower-research.com/open-positions/?gh_jid=8036383", https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/]
+  - name: Go
+    category: language
+    importance: mentioned
+    evidence: "2 postings (SE III 'Go and/or Python'; PaaS)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", "https://www.tower-research.com/open-positions/?gh_jid=8036383"]
+  - name: Kafka
+    category: messaging
+    importance: mentioned
+    evidence: "2 postings (SE III Shared Services, PaaS 'Kafka/etcd')"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", "https://www.tower-research.com/open-positions/?gh_jid=8036383"]
+  - name: Relational and non-relational databases
+    category: datastore
+    importance: mentioned
+    evidence: "2 postings (SE III, SE II AI/ML 'SQL'); techno-managerial round asked RDBMS depth"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", https://leetcode.com/discuss/post/1689730/]
+  - name: Kubernetes (bare metal, operators)
+    category: infra
+    importance: mentioned
+    evidence: "1 posting (PaaS: 'operating bare metal Kubernetes clusters, developing Kubernetes operator')"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8036383"]
+  - name: Infrastructure as code and CI/CD
+    category: ci-cd
+    importance: mentioned
+    evidence: "2 postings each (SE III, PaaS for IaC; Python Developer, SE II AI/ML for CI/CD)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768", "https://www.tower-research.com/open-positions/?gh_jid=6629676"]
+  - name: NumPy / Pandas / Polars / Cython
+    category: framework
+    importance: mentioned
+    evidence: "1 posting (Python Developer)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=6629676"]
+  - name: FPGA and hardware acceleration
+    category: infra
+    importance: mentioned
+    evidence: "Company boilerplate in every posting ('low-latency programming, FPGA technology, hardware acceleration'); not a requirement in any"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=4357723"]
+  - name: Java
+    category: language
+    importance: mentioned
+    evidence: "0/7 current postings; Java hires into Post-Trade reported in 2021 and 2025 (Java/DB internals round)"
+    sources: [https://leetcode.com/discuss/post/6375258/, https://leetcode.com/discuss/post/1476358/]
+  # --- patterns ---
+  - name: Low-latency, high-throughput systems
+    category: architecture-pattern
+    importance: core
+    evidence: "3 postings name low latency / high throughput explicitly and every posting's boilerplate names 'low-latency programming'; interview reports: 'answer in 400 microseconds' design, RDTSC timing"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=4357723", "https://www.tower-research.com/open-positions/?gh_jid=7102180", https://leetcode.com/discuss/post/4177746/]
+  - name: Market data handling (UDP multicast, gap recovery)
+    category: architecture-pattern
+    importance: common
+    evidence: "2 postings name market data; AMA: C++ for market data; reports ask TCP vs UDP and reliable multicast design"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=7102180", https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/, https://leetcode.com/discuss/post/1702584/, https://leetcode.com/discuss/post/1764282/]
+  - name: Lock-free concurrency and mechanical sympathy (CAS, false sharing, cache lines)
+    category: design-pattern
+    importance: common
+    evidence: "Interview reports: lock-free stack with AtomicReference, multi-threaded buffered queue; CPU cache/TLB questions; HFT guides cite false sharing"
+    sources: [https://leetcode.com/discuss/post/1867832/, https://leetcode.com/discuss/post/6834791/]
+  - name: Data pipelines and ETL
+    category: architecture-pattern
+    importance: common
+    evidence: "3/7 postings (Python Developer ETL, SE III 'stream processing', SE II AI/ML)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=6629676", "https://www.tower-research.com/open-positions/?gh_jid=8029768"]
+  - name: Observer / callback-driven design (LLD)
+    category: design-pattern
+    importance: mentioned
+    evidence: "1 report: LLD of an HFT system with callbacks and observers"
+    sources: [https://leetcode.com/discuss/post/1867832/]
+  - name: Hub-and-spoke shared platform
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "AMA: 'Core Engineering develops the shared infrastructure while our trading teams plug into that platform'"
+    sources: [https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/]
+  - name: Microservices and stream processing
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "1 posting (SE III: 'web applications ..., stream processing, microservices, and databases')"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=8029768"]
+  - name: Simulation / backtesting
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "2 postings (Quant Dev, Low Latency Dev)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=7102180"]
+  # --- tools ---
+  - name: HackerRank (online test)
+    category: tool
+    importance: common
+    evidence: "Reports: timed HackerRank tests with C++ fix-the-bug tasks, OS/networking MCQs and coding"
+    sources: [https://leetcode.com/discuss/post/1764282/, https://leetcode.com/discuss/post/6375258/]
+  - name: Git / SCM
+    category: tool
+    importance: mentioned
+    evidence: "2 postings (Python Developer 'SCM', SE II AI/ML 'Git')"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=6629676", "https://www.tower-research.com/open-positions/?gh_jid=8132180"]
+  - name: ELK stack
+    category: tool
+    importance: mentioned
+    evidence: "1 posting (Python Developer)"
+    sources: ["https://www.tower-research.com/open-positions/?gh_jid=6629676"]
+frameworks_to_prepare:     # vs data/profile.yaml; Tower interviews go below the framework, so most prep is OS / networking / latency
+  revise:
+    - name: Java concurrency down to CAS and the memory model
+      why: "Lock-free stack and buffered-queue questions in reports; profile: java strong"
+      academy: [A6, B2, B3, B7]
+      plan: "Write a Treiber stack with AtomicReference and explain ABA and happens-before without notes."
+    - name: JVM memory, GC and allocation-free hot paths
+      why: "Low latency is core; a Java engineer must explain GC pauses and allocation; profile: java strong"
+      academy: [A2, A4, A5, A8]
+      plan: "Explain TLABs, young-gen pauses and how to keep a hot path allocation-free; measure one with JMH."
+    - name: Data structures and LLD for trading (order book, observers)
+      why: "LLD of an HFT system with callbacks in reports; profile: gof-design-patterns working"
+      academy: [E4, E5]
+      plan: "Design an order book: justify the structures for bids and asks and the callback interface for fills."
+    - name: RDBMS depth
+      why: "Techno-managerial round asked RDBMS depth; profile: sql, postgresql working"
+      academy: [Q5, Q6]
+      plan: "Explain B-tree index lookups and MVCC visibility in two minutes each."
+  learn:
+    - name: Linux and OS internals (virtual memory, page faults, TLB, scheduling)
+      why: "Core: Linux in 7/7 postings and OS questions in every C++ loop; not in profile (bash basic)"
+      academy: []
+      plan: "Read the kernel memory-management concepts page and explain what happens on a page fault and on a TLB miss."
+      resources: [https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html]
+    - name: Networking for trading (TCP vs UDP, multicast, kernel bypass)
+      why: "Market data is common here; TCP vs UDP took 45 minutes of one round; not in profile"
+      academy: []
+      plan: "Read udp(7), ip(7) multicast options and tcp(7) Nagle; design reliable multicast with sequence numbers and NACK-based gap recovery."
+      resources: [https://man7.org/linux/man-pages/man7/udp.7.html, https://man7.org/linux/man-pages/man7/ip.7.html, https://man7.org/linux/man-pages/man7/tcp.7.html, https://www.kernel.org/doc/html/latest/networking/scaling.html]
+    - name: Mechanical sympathy and latency measurement (false sharing, Disruptor, p99)
+      why: "Low latency is core; reports ask about CPU caches and RDTSC; Java's answer is the Disruptor and @Contended"
+      academy: [A8, B3]
+      plan: "Read the LMAX Disruptor overview and JEP 142; explain cache-line padding and why p99.9 matters more than the mean."
+      resources: [https://lmax-exchange.github.io/disruptor/, https://openjdk.org/jeps/142]
+    - name: C++ object model, enough to discuss
+      why: "Core: C++ in 5/7 postings and vtable/smart-pointer questions even in non-C++ loops; not in profile"
+      academy: []
+      plan: "Learn vtables, move semantics, vector reallocation, RAII and smart pointers, each mapped to its Java equivalent."
+      resources: [https://www.learncpp.com/, https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines]
+    - name: Python for scripting and data work
+      why: "Core: 7/7 postings; profile: python basic"
+      academy: []
+      plan: "Rewrite one small Java utility in Python and learn NumPy array basics."
+      resources: [https://docs.python.org/3/tutorial/index.html, https://numpy.org/doc/stable/user/absolute_beginners.html]
+    - name: Rust (required for SE III Shared Services, the best-fit role)
+      why: "Common: required in the best-fit posting and growing per the AMA; not in profile"
+      academy: []
+      plan: "Read the Rust book chapters on ownership and borrowing, then build a small async HTTP service with tokio."
+      resources: [https://doc.rust-lang.org/book/, https://tokio.rs/tokio/tutorial]
+    - name: Kafka for shared-services work
+      why: "Only 2 postings, but cheap and clearly relevant for SE III / PaaS; profile: kafka basic"
+      academy: [S9]
+      plan: "Learn partitions, consumer groups and ordering guarantees well enough to discuss a trade-event pipeline."
+      resources: [https://kafka.apache.org/intro]
+
 sources:
   - url: https://tower-research.com/careers/
     title: 'Tower careers (qualities sought, "A Practical Process")'

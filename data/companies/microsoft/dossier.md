@@ -229,6 +229,40 @@ are under `official.job_postings` in `company.yaml`.
 5. **Mentoring and design reviews** (8) carry more weight for 62/63. Have a mentoring story, including
    the one that went badly.
 
+## 6c. Tech stack and frameworks to prepare
+
+Core and common items only (full list with evidence in `company.yaml` → `tech_stack`). Sources: the
+17 India postings, Microsoft's [technical interviewing](https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing)
+page and Azure's [safe deployment practice](https://azure.microsoft.com/en-us/blog/advancing-safe-deployment-practices/).
+The stack varies by org; this is the union across India SE II / Senior postings.
+
+| Group | Core | Common |
+|---|---|---|
+| **Frameworks & languages** | Telemetry / monitoring / alerting · AI coding tools (GitHub Copilot, Copilot CLI, Claude CLI, MCP) | C#/.NET · Java · C++ · Python · Azure (AKS, Functions, Service Bus, Event Hubs, Cosmos DB, Azure SQL) · CI/CD · security and identity · LLMs, RAG, agents · TypeScript/React · testing (TDD) · SQL/NoSQL · Dynamics 365 (CRM teams only) |
+| **Patterns** | Distributed systems (fault tolerance, consistency, concurrency) | Safe deployment · microservices + cloud design patterns · OO design + design patterns · high availability / geo-distribution · REST API design · RAG · event-driven · caching |
+| **Tools** | none named in most postings (GitHub appears once) | |
+
+**Revise** (Akhil already has these; refresh internals and trade-offs):
+
+1. **Distributed systems and the HLD method** ([F1](../../academy/lessons/F1.md), [F3](../../academy/lessons/F3.md), [F2](../../academy/lessons/F2.md), [F4](../../academy/lessons/F4.md), [F6](../../academy/lessons/F6.md)): run the monitoring-system design in 45 minutes, giving two options and the trade-off at each step.
+2. **Java for coding rounds, plus concurrency** ([H1](../../academy/lessons/H1.md), [B1](../../academy/lessons/B1.md), [B2](../../academy/lessons/B2.md), [B4](../../academy/lessons/B4.md), [B7](../../academy/lessons/B7.md), [A6](../../academy/lessons/A6.md)): a thread-safe bounded queue and a rate limiter with tests, 30 minutes each.
+3. **OO design and patterns (LLD)** ([E1](../../academy/lessons/E1.md), [E4](../../academy/lessons/E4.md), [E5](../../academy/lessons/E5.md), [E6](../../academy/lessons/E6.md)): one E6 case with an AI tool open, narrating what you accept or reject.
+4. **Testing and edge cases** ([H2](../../academy/lessons/H2.md), [D8](../../academy/lessons/D8.md)): end every practice problem with 5 edge cases and 3 tests.
+5. **AI-assisted engineering** ([G2](../../academy/lessons/G2.md), [G4](../../academy/lessons/G4.md)): a 90-second account of how you prompt, review and verify AI code, with one bug you caught.
+6. **Microservices and resilience patterns** ([S8](../../academy/lessons/S8.md)): map circuit breaker, retry with backoff and bulkhead from the [Azure patterns catalog](https://learn.microsoft.com/en-us/azure/architecture/patterns/) to your Spring work.
+7. **Security and identity** ([D7](../../academy/lessons/D7.md)): the OAuth 2.0 auth-code flow and token validation between services.
+8. **REST API design** ([D5](../../academy/lessons/D5.md)): pagination, idempotency and versioning in your HLD answers.
+9. **SQL and relational modelling** ([Q5](../../academy/lessons/Q5.md), [Q6](../../academy/lessons/Q6.md)): when to choose Azure SQL over Cosmos DB, and why.
+
+**Learn** (basic or new for Akhil, core or common here):
+
+1. **Observability and live-site operations** ([D8](../../academy/lessons/D8.md), [F6](../../academy/lessons/F6.md), [H3](../../academy/lessons/H3.md)): [OpenTelemetry on Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview) and [SLOs](https://sre.google/sre-book/service-level-objectives/); add alerts and a debugging path to every HLD.
+2. **LLMs, RAG and agents** ([G1](../../academy/lessons/G1.md), [G2](../../academy/lessons/G2.md), [G3](../../academy/lessons/G3.md), [G5](../../academy/lessons/G5.md)): chunking, embeddings, vector search and grounding ([Azure AI Search RAG](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)); sketch a RAG service with caching and evals.
+3. **Safe deployment practices** (no Academy module): ring-based rollout with health gates and automatic rollback ([WAF safe deployments](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments)).
+4. **HA, geo-distribution, caching and event-driven patterns** ([F2](../../academy/lessons/F2.md), [Q8](../../academy/lessons/Q8.md), [S9](../../academy/lessons/S9.md)): active-active vs active-passive with RTO/RPO; queue vs event stream.
+5. **Azure core services as AWS/Spring equivalents** (no Academy module): a one-page map of [AKS](https://learn.microsoft.com/en-us/azure/aks/what-is-aks), Functions, [Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) vs Event Hubs, [Cosmos DB consistency](https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels) and Azure SQL.
+6. **C# / .NET for reading team code** (no Academy module): read the [C# tour](https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/) once and note the Java equivalents; interview in Java.
+
 ## 8. Strategy
 
 Interviews in January 2027, at about 25 minutes a day. Order of work follows COMPANY-PREP §4

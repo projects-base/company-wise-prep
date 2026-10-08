@@ -278,6 +278,35 @@ What this means for prep beyond DSA:
 - No posting mentions Spring. Translate Spring Boot experience into generic terms: service design,
   APIs, data stores, reliability.
 
+## 6c. Tech stack and frameworks to prepare
+
+Google interviews do not depend on your stack: the coding rounds use any mainstream language in a
+plain doc editor. This section is for L5 system design depth and team-match conversations. Core and
+common items only (full list with evidence in `company.yaml` → `tech_stack`). Sources: the 11 India
+postings, [Software Engineering at Google](https://abseil.io/resources/swe-book), the
+[SRE book](https://sre.google/sre-book/table-of-contents/) and Google's papers and docs.
+
+| Group | Core | Common |
+|---|---|---|
+| **Frameworks & languages** | Production monitoring and triage (SRE) | C++ · Java · Python · Go · Protocol Buffers + gRPC · Spanner + Bigtable · Borg / Kubernetes · Google Cloud · testing · ML infrastructure |
+| **Patterns** | Large-scale distributed system design · readable, testable, efficient code | none |
+| **Tools** | Plain doc coding editor (interview) | Code review (Critique) and design docs |
+
+**Revise** (Akhil already has these; refresh internals and trade-offs):
+
+1. **Java for interview coding without an IDE** ([H1](../../academy/lessons/H1.md), [C1](../../academy/lessons/C1.md), [C3](../../academy/lessons/C3.md), [C4](../../academy/lessons/C4.md), [H2](../../academy/lessons/H2.md)): one medium a day in a plain text editor, stating complexity and testing by hand.
+2. **Large-scale system design** ([F1](../../academy/lessons/F1.md), [F3](../../academy/lessons/F3.md), [F2](../../academy/lessons/F2.md), [F4](../../academy/lessons/F4.md), [F5](../../academy/lessons/F5.md), [F6](../../academy/lessons/F6.md)): one F5 case at Google scale with estimates stated first.
+3. **Readable, testable code and review habits** ([E1](../../academy/lessons/E1.md), [H2](../../academy/lessons/H2.md)): skim the [Java style guide](https://google.github.io/styleguide/javaguide.html) and [reviewer guide](https://google.github.io/eng-practices/review/); write small named functions.
+4. **Production debugging stories** ([H3](../../academy/lessons/H3.md)): two STAR stories, one incident and one design changed after review.
+
+**Learn** (basic or new for Akhil, common here):
+
+1. **Spanner, Bigtable and consistency** ([F2](../../academy/lessons/F2.md), [Q8](../../academy/lessons/Q8.md)): read the [TrueTime page](https://cloud.google.com/spanner/docs/true-time-external-consistency) and the [Bigtable paper](https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/) abstract; know when to choose each.
+2. **SRE monitoring and SLOs** ([F6](../../academy/lessons/F6.md), [D8](../../academy/lessons/D8.md)): the [SLO](https://sre.google/sre-book/service-level-objectives/) and [monitoring](https://sre.google/sre-book/monitoring-distributed-systems/) chapters (four golden signals), used in every design answer.
+3. **Protocol Buffers and gRPC** (no Academy module): define one `.proto`; explain field numbers, compatibility and streaming ([protobuf](https://protobuf.dev/overview/), [gRPC](https://grpc.io/docs/what-is-grpc/introduction/)).
+4. **Borg / Kubernetes scheduling** (no Academy module): the [Borg paper](https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/) abstract and the Kubernetes overview.
+5. **Monorepo, Bazel and code review culture** (no Academy module): skim SWE book [ch. 9](https://abseil.io/resources/swe-book/html/ch09.html) and [ch. 16](https://abseil.io/resources/swe-book/html/ch16.html) for team-match vocabulary.
+
 ## 7. Strategy
 
 Plan around about 25 minutes a day. Ordering of study items follows COMPANY-PREP.md §4.

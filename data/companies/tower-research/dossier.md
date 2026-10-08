@@ -196,6 +196,37 @@ intern). Tower's own language statement is C++, Python and Rust
 | SE II Core AI/ML, InfoSec III | Not a fit | Different discipline. |
 | Historical Java roles (post-trade) | **Was a fit.** Tower hired Java engineers into its Post-Trade division ([2021, L5](https://leetcode.com/discuss/post/1476358/); [2025, SDE-1](https://leetcode.com/discuss/post/6375258/)). | No such opening is live right now. Ask recruiters or referrers directly about post-trade or back-office Java teams. |
 
+## 6c. Tech stack and frameworks to prepare
+
+Core and common items only (full list with evidence in `company.yaml` → `tech_stack`). Sources: the
+7 Gurugram postings (re-checked on Greenhouse on 2026-10-08), Tower's
+[AMA](https://tower-research.com/ask-tower-anything-questions-and-answers-for-quants-engineers-and-other-prospective-employees/)
+and the interview reports. Tower's GitHub org has no public repos. Tower interviews go below the
+framework, so most of the prep is OS, networking and latency rather than libraries.
+
+| Group | Core | Common |
+|---|---|---|
+| **Frameworks & languages** | Python · Linux (systems, OS internals) · C/C++ | Rust · Bash/shell · production monitoring |
+| **Patterns** | Low-latency, high-throughput systems | Market data (UDP multicast, gap recovery) · lock-free concurrency and mechanical sympathy · data pipelines / ETL |
+| **Tools** | none | HackerRank (online test) |
+
+**Revise** (Akhil already has these; take them down to first principles):
+
+1. **Java concurrency down to CAS and the memory model** ([A6](../../academy/lessons/A6.md), [B2](../../academy/lessons/B2.md), [B3](../../academy/lessons/B3.md), [B7](../../academy/lessons/B7.md)): a Treiber stack with `AtomicReference`; explain ABA and happens-before without notes.
+2. **JVM memory, GC and allocation-free hot paths** ([A2](../../academy/lessons/A2.md), [A4](../../academy/lessons/A4.md), [A5](../../academy/lessons/A5.md), [A8](../../academy/lessons/A8.md)): TLABs, young-gen pauses, an allocation-free hot path measured with JMH.
+3. **Data structures and LLD for trading** ([E4](../../academy/lessons/E4.md), [E5](../../academy/lessons/E5.md)): an order book with justified bid/ask structures and a fill-callback interface.
+4. **RDBMS depth** ([Q5](../../academy/lessons/Q5.md), [Q6](../../academy/lessons/Q6.md)): B-tree lookups and MVCC visibility, two minutes each.
+
+**Learn** (new for Akhil, core or common here):
+
+1. **Linux and OS internals** (no Academy module): page faults, TLB misses, scheduling ([kernel MM concepts](https://www.kernel.org/doc/html/latest/admin-guide/mm/concepts.html)).
+2. **Networking for trading** (no Academy module): [udp(7)](https://man7.org/linux/man-pages/man7/udp.7.html), [ip(7)](https://man7.org/linux/man-pages/man7/ip.7.html) multicast, [tcp(7)](https://man7.org/linux/man-pages/man7/tcp.7.html) Nagle; design reliable multicast with sequence numbers and NACKs.
+3. **Mechanical sympathy and latency measurement** ([A8](../../academy/lessons/A8.md), [B3](../../academy/lessons/B3.md)): the [LMAX Disruptor](https://lmax-exchange.github.io/disruptor/) and [JEP 142](https://openjdk.org/jeps/142) (`@Contended`); p99.9 over the mean.
+4. **C++ object model, enough to discuss** (no Academy module): vtables, move semantics, vector reallocation, RAII and smart pointers, mapped to Java ([learncpp](https://www.learncpp.com/), [Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)).
+5. **Python for scripting and data work** (no Academy module): rewrite one small Java utility in Python; NumPy basics ([tutorial](https://docs.python.org/3/tutorial/index.html)).
+6. **Rust** (no Academy module; required for SE III Shared Services): ownership and borrowing in [the book](https://doc.rust-lang.org/book/), then a small [tokio](https://tokio.rs/tokio/tutorial) service.
+7. **Kafka for shared-services work** ([S9](../../academy/lessons/S9.md)): partitions, consumer groups and ordering for a trade-event pipeline ([intro](https://kafka.apache.org/intro)).
+
 ## 8. Strategy
 
 Daily floor of about 25 minutes. Ordering follows the COMPANY-PREP §4 priority formula. This

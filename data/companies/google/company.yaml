@@ -378,6 +378,167 @@ roles:
       and architecture plus about a year of tech-lead scope. A strong SD with weak coding has led to
       down-levelling to L4, and weak SD with strong coding to rejection.
 
+tech_stack:                # 11 India SWE III / Senior postings + Google's own books, papers and docs; researched 2026-10-08
+  # Interviews are stack-agnostic (any mainstream language, plain doc editor). This list is for
+  # system design depth and team-match conversations, not for the coding rounds.
+  # --- frameworks & languages ---
+  - name: C++
+    category: language
+    importance: common
+    evidence: "5/11 postings (Security, Search Platforms '6y C++', Infrastructure, AI/ML Cloud, Full Stack AI&I)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/135249135996412614-senior-software-engineer-search-platforms, https://www.google.com/about/careers/applications/jobs/results/98573059488654022-software-engineer-iii-securityprivacy]
+  - name: Java
+    category: language
+    importance: common
+    evidence: "3/11 postings (Full Stack Cloud: '2y Java software development'; Infrastructure; Full Stack AI&I); accepted as an interview language"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/131572375555580614-software-engineer-iii-full-stack-cloud, https://www.google.com/about/careers/applications/jobs/results/143097213772276422-senior-software-engineer-infrastructure-google-cloud, https://leetcode.com/discuss/post/6522449/]
+  - name: Python
+    category: language
+    importance: common
+    evidence: "3/11 postings (AI/ML Cloud '5y Python or C++', Infrastructure, Full Stack AI&I)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/136546867881091782-senior-software-engineer-aiml-google-cloud]
+  - name: Go
+    category: language
+    importance: common
+    evidence: "3/11 postings (Security 'C++ or Go', Infrastructure, Full Stack AI&I)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/98573059488654022-software-engineer-iii-securityprivacy, https://www.google.com/about/careers/applications/jobs/results/143097213772276422-senior-software-engineer-infrastructure-google-cloud]
+  - name: Protocol Buffers and gRPC
+    category: framework
+    importance: common
+    evidence: "protobuf.dev: 'Protobuf is the most commonly-used data format at Google. It is used extensively in inter-server communications'; gRPC is Google's open-source RPC framework built on protobuf"
+    sources: [https://protobuf.dev/overview/, https://grpc.io/docs/what-is-grpc/introduction/]
+  - name: Spanner and Bigtable
+    category: datastore
+    importance: common
+    evidence: "Google's own globally distributed SQL database (TrueTime, external consistency) and wide-column store; standard references for Google-scale design"
+    sources: [https://research.google/pubs/spanner-googles-globally-distributed-database-2/, https://cloud.google.com/spanner/docs/true-time-external-consistency, https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/]
+  - name: Borg / Kubernetes (cluster management, compute as a service)
+    category: infra
+    importance: common
+    evidence: "Borg paper; SWE book ch. 25 'Compute as a Service'; Security SWE III prefers 'Kubernetes / Cloud Run / load balancers'"
+    sources: [https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/, https://abseil.io/resources/swe-book/html/ch25.html, https://www.google.com/about/careers/applications/jobs/results/98573059488654022-software-engineer-iii-securityprivacy]
+  - name: Google Cloud Platform
+    category: cloud
+    importance: common
+    evidence: "5/11 postings are in Google Cloud teams; 2 prefer GCP experience explicitly"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/98573059488654022-software-engineer-iii-securityprivacy, https://www.google.com/about/careers/applications/jobs/results/119515568058311366-senior-software-engineer-storage]
+  - name: Testing (unit, integration, launch)
+    category: testing
+    importance: common
+    evidence: "Every L5 posting asks for '3 years of experience testing, maintaining, or launching software products'; SWE book ch. 11 'Testing Overview'"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/121538506244661958-senior-software-engineer-core, https://abseil.io/resources/swe-book/html/ch11.html]
+  - name: Production monitoring and triage (SRE practice)
+    category: observability
+    importance: core
+    evidence: "10/11 postings: 'Triage product or system issues and debug/track/resolve'; Google SRE book chapters on monitoring and SLOs"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/121538506244661958-senior-software-engineer-core, https://sre.google/sre-book/monitoring-distributed-systems/, https://sre.google/sre-book/service-level-objectives/]
+  - name: ML infrastructure (serving, evaluation, data processing)
+    category: ai-tools
+    importance: common
+    evidence: "4/11 postings require ML infrastructure experience (Core ML, Corp Eng, AI/ML Cloud, Storage for AI/ML)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/88607973005238982-software-engineer-iii-aiml-infrastructure-performance-engineering, https://www.google.com/about/careers/applications/jobs/results/136546867881091782-senior-software-engineer-aiml-google-cloud]
+  - name: JavaScript / TypeScript (Angular or React)
+    category: framework
+    importance: mentioned
+    evidence: "2/11 full-stack postings"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/131572375555580614-software-engineer-iii-full-stack-cloud]
+  - name: IAM and OAuth 2.0
+    category: security
+    importance: mentioned
+    evidence: "1 posting (Security/Privacy, Zero Trust)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/98573059488654022-software-engineer-iii-securityprivacy]
+  - name: Linux kernel and file systems
+    category: infra
+    importance: mentioned
+    evidence: "1 posting (Storage, GCSFuse)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/119515568058311366-senior-software-engineer-storage]
+  - name: GenAI / LLM tools in workflows
+    category: ai-tools
+    importance: mentioned
+    evidence: "1 posting (Search Platforms, preferred)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/135249135996412614-senior-software-engineer-search-platforms]
+  # --- patterns ---
+  - name: Software design and architecture for large-scale distributed systems
+    category: architecture-pattern
+    importance: core
+    evidence: "Every L5 posting: '1 year of experience with software design and architecture'; Infrastructure: '3y large-scale infrastructure / distributed systems'; system design round at L5"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/143097213772276422-senior-software-engineer-infrastructure-google-cloud, https://www.google.com/about/careers/applications/jobs/results/135249135996412614-senior-software-engineer-search-platforms]
+  - name: Readable, testable, efficient code (code-level design)
+    category: design-pattern
+    importance: core
+    evidence: "10/11 postings: review code 'with a focus on best practices (e.g., style guidelines, checking code in, accuracy, testability, and efficiency)'; Google style guides and eng-practices"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/121538506244661958-senior-software-engineer-core, https://google.github.io/styleguide/javaguide.html, https://google.github.io/eng-practices/review/]
+  - name: Performance optimisation
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "2/11 postings (Core ML performance engineering, Search Platforms)"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/88607973005238982-software-engineer-iii-aiml-infrastructure-performance-engineering]
+  - name: API design (UI to back-end services)
+    category: architecture-pattern
+    importance: mentioned
+    evidence: "1 posting (Full Stack Cloud: 'building and consuming APIs')"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/131572375555580614-software-engineer-iii-full-stack-cloud]
+  # --- tools ---
+  - name: Plain shared-doc coding editor (interview)
+    category: tool
+    importance: core
+    evidence: "Interview reports: code in a Google-Docs-like editor with no autocomplete or run button"
+    sources: [https://leetcode.com/discuss/post/6522449/]
+  - name: Code review (Critique) and design docs
+    category: tool
+    importance: common
+    evidence: "10/11 postings: 'Participate in, or lead design reviews'; SWE book ch. 9 and ch. 19 describe Critique, Google's code review tool"
+    sources: [https://www.google.com/about/careers/applications/jobs/results/121538506244661958-senior-software-engineer-core, https://abseil.io/resources/swe-book/html/ch19.html, https://abseil.io/resources/swe-book/html/ch09.html]
+  - name: Monorepo (Piper) and Blaze / Bazel builds
+    category: tool
+    importance: mentioned
+    evidence: "SWE book ch. 16 and 18; ch. 19: 'Piper, its monolithic source code repository'; Bazel is the open-source Blaze"
+    sources: [https://abseil.io/resources/swe-book/html/ch16.html, https://abseil.io/resources/swe-book/html/ch18.html, https://bazel.build/about/intro]
+frameworks_to_prepare:     # vs data/profile.yaml; the coding rounds dominate, so stack items are mostly for L5 design and team match
+  revise:
+    - name: Java for interview coding without an IDE
+      why: "DSA is the gate (10/11 postings, every loop); Java accepted; the editor has no autocomplete; profile: java strong"
+      academy: [H1, C1, C3, C4, H2]
+      plan: "Solve one medium a day in a plain text editor, saying complexity and testing by hand before 'running' it in your head."
+    - name: Large-scale system design
+      why: "Core: every L5 posting asks for software design and architecture; profile: system-design and distributed-systems working"
+      academy: [F1, F3, F2, F4, F5, F6]
+      plan: "Do one F5 case (feed or chat) at Google scale with back-of-envelope numbers stated first."
+    - name: Readable, testable code and code review habits
+      why: "Core: 10/11 postings name style, testability and efficiency in code review; interviewers judge code quality; profile: testing-junit-mockito strong"
+      academy: [E1, H2]
+      plan: "Skim Google's Java style guide and the eng-practices reviewer guide; break solutions into small named functions."
+    - name: Production debugging stories
+      why: "Core: 10/11 postings require triage and debugging; team-match HMs ask for them; profile: distributed-systems working"
+      academy: [H3]
+      plan: "Write two STAR stories: one production incident, one design you changed after review."
+  learn:
+    - name: Google-scale datastores (Spanner, Bigtable) and consistency
+      why: "Common reference points in Google system design; profile has no distributed-database depth beyond Postgres/MySQL"
+      academy: [F2, Q8]
+      plan: "Read the TrueTime page and the Bigtable abstract; be able to say when you would pick strong global consistency vs a wide-column store."
+      resources: [https://cloud.google.com/spanner/docs/true-time-external-consistency, https://research.google/pubs/spanner-googles-globally-distributed-database-2/, https://research.google/pubs/bigtable-a-distributed-storage-system-for-structured-data/]
+    - name: SRE monitoring and SLOs
+      why: "Core: triage in 10/11 postings; profile: prometheus-grafana basic, opentelemetry none"
+      academy: [F6, D8]
+      plan: "Read the SRE chapters on SLOs and monitoring (the four golden signals) and use them in every design answer."
+      resources: [https://sre.google/sre-book/service-level-objectives/, https://sre.google/sre-book/monitoring-distributed-systems/]
+    - name: Protocol Buffers and gRPC
+      why: "Google's default wire format and RPC style; not in profile"
+      academy: []
+      plan: "Define one .proto for a service and explain field numbers, backward compatibility and streaming RPCs."
+      resources: [https://protobuf.dev/overview/, https://grpc.io/docs/what-is-grpc/introduction/]
+    - name: Borg / Kubernetes cluster scheduling
+      why: "Compute as a service at Google; one posting prefers Kubernetes; profile: kubernetes basic"
+      academy: []
+      plan: "Read the Borg paper abstract and Kubernetes overview; explain how a job is scheduled and restarted."
+      resources: [https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/, https://kubernetes.io/docs/concepts/overview/]
+    - name: Monorepo, Bazel and code review culture (team-match talking points)
+      why: "Cheap: SWE book describes Piper, Blaze and Critique; helps in HM conversations"
+      academy: []
+      plan: "Skim SWE book chapters 9 and 16 for vocabulary; no hands-on needed."
+      resources: [https://abseil.io/resources/swe-book/html/ch09.html, https://abseil.io/resources/swe-book/html/ch16.html, https://bazel.build/about/intro]
+
 sources:
   - url: https://www.google.com/about/careers/applications/how-we-hire/
     title: Our hiring process - Google Careers (rendered in browser)

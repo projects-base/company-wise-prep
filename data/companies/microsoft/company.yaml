@@ -399,6 +399,215 @@ roles:
       offered a downgrade from 63, and a 2026 rejection cited a lack of practical, large-system design
       depth even though the DSA was strong.
 
+tech_stack:                # 17 India SE II / Senior postings (official.job_postings) + Microsoft docs; researched 2026-10-08
+  # --- frameworks & languages ---
+  - name: Telemetry, monitoring and alerting (Azure Monitor / Application Insights)
+    category: observability
+    importance: core
+    evidence: "12/17 postings ask for observability; 10/17 require live-site (DRI) on-call ownership; Azure AI Search SE II: 'telemetry/monitoring/alerting/incident systems'"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992505, https://apply.careers.microsoft.com/careers/job/1970393557016876]
+  - name: AI coding tools (GitHub Copilot, Copilot CLI, Claude CLI, MCP servers)
+    category: ai-tools
+    importance: core
+    evidence: "10/17 postings ask for AI-assisted engineering; CSX SE II names 'GitHub Copilot, Copilot CLI, Claude CLI, MCP servers'; 2026 loop reports include AI-assisted LLD rounds"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557002362, https://apply.careers.microsoft.com/careers/job/1970393557018991, https://leetcode.com/discuss/post/8273079/]
+  - name: C# / .NET (ASP.NET Core)
+    category: language
+    importance: common
+    evidence: "8/17 postings name C#/.NET as the team stack (WPX: 'ASP.NET Web API'; Devices Ops: '7+ yrs running large-scale cloud services on .NET')"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557007255, https://apply.careers.microsoft.com/careers/job/1970393557018991]
+  - name: Java
+    category: language
+    importance: common
+    evidence: "Named as a team stack in 5/17 (Azure AI Search builds 'in C#, C++, and Java'; WPX 'C# or Java'; Devices Ops); every posting's minimum bar accepts Java; interviewers let you code in your resume language"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992543, https://apply.careers.microsoft.com/careers/job/1970393557007255, https://apply.careers.microsoft.com/careers/job/1970393557018991]
+  - name: C++
+    category: language
+    importance: common
+    evidence: "5/17 postings (Windows, Search Platform, Windows AI Platform, Azure AI Search)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556963032, https://apply.careers.microsoft.com/careers/job/1970393557018979]
+  - name: Azure (AKS, Functions, APIM, Service Bus, Event Hubs, Cosmos DB, Azure SQL, AI Foundry)
+    category: cloud
+    importance: common
+    evidence: "6/17 postings name Azure; CSX SE II lists 'AKS/Functions/APIM/Service Bus/Event Hub/Cosmos DB/Azure SQL'; CO+I lists 'Azure OpenAI/AI Foundry/AKS/Cosmos DB'"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557002362, https://apply.careers.microsoft.com/careers/job/1970393557023029]
+  - name: CI/CD and release pipelines
+    category: ci-cd
+    importance: common
+    evidence: "7/17 postings; CO+I: 'CI/CD or release pipelines for distributed systems, troubleshoot build/test/release failures'"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557023029, https://apply.careers.microsoft.com/careers/job/1970393556992505]
+  - name: Security and identity (OAuth 2.0, Entra ID, authZ, secure coding)
+    category: security
+    importance: common
+    evidence: "8/17 postings ask for security, 3 for identity and auth (Connectors: 'identity'; CSX: 'identity and authZ')"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557016876, https://apply.careers.microsoft.com/careers/job/1970393557007986]
+  - name: LLMs, RAG and AI agents (Azure OpenAI, AI Foundry, vector search)
+    category: ai-tools
+    importance: common
+    evidence: "7/17 postings ask for LLM/GenAI, 5 for RAG/search, 5 for AI agents (Core AI Agentic Core Services, Azure AI Search, CO+I)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556985473, https://apply.careers.microsoft.com/careers/job/1970393556992543, https://apply.careers.microsoft.com/careers/job/1970393557023029]
+  - name: TypeScript / React
+    category: framework
+    importance: common
+    evidence: "5/17 postings (WPX, CSX x2, Devices Ops, Ads CRM)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557007255, https://apply.careers.microsoft.com/careers/job/1970393557002362]
+  - name: Software testing (unit tests, TDD, edge cases)
+    category: testing
+    importance: common
+    evidence: "5/17 postings (WPX: 'TDD'); Microsoft's technical-interviewing page says interviews assess 'writing tests, finding edge cases'"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557007255, https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing]
+  - name: SQL and NoSQL (Azure SQL, Cosmos DB, PostgreSQL)
+    category: datastore
+    importance: common
+    evidence: "4/17 postings ('REST microservices with SQL and NoSQL'); Azure Data posting (Jun 2026, closed) names SQL, PostgreSQL, Cosmos DB"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557018991, https://jobs.anitab.org/companies/microsoft/jobs/81414337-software-engineer-ii]
+  - name: Python
+    category: language
+    importance: common
+    evidence: "3/17 postings name Python as a team stack (CSX, Windows AI Platform, Azure AI Search)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557007986, https://apply.careers.microsoft.com/careers/job/1970393557018986]
+  - name: Dynamics 365 / Power Platform
+    category: framework
+    importance: common
+    evidence: "3/17 postings (CSX x2, Ads CRM); niche to sales/CRM teams"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557007986, https://apply.careers.microsoft.com/careers/job/1970393556941673]
+  - name: Kubernetes / containers
+    category: infra
+    importance: mentioned
+    evidence: "2/17 postings (COSMIC managed container platform; CO+I 'Kubernetes + IaC')"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556982388, https://apply.careers.microsoft.com/careers/job/1970393557023029]
+  - name: Lucene / Elasticsearch / OpenSearch
+    category: datastore
+    importance: mentioned
+    evidence: "1 posting (Azure AI Search Senior, required)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992543]
+  - name: Spark / Scala big-data streaming
+    category: framework
+    importance: mentioned
+    evidence: "1 posting (Microsoft Ads data platform)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556960679]
+  # --- patterns ---
+  - name: Distributed systems (fault tolerance, consistency, concurrency)
+    category: architecture-pattern
+    importance: core
+    evidence: "12/17 postings; Azure AI Search Senior: 'concurrency/fault tolerance/consistency/networking/storage fundamentals'; Microsoft's tech-interview page names 'distributed systems, auto-scaling, CAP'"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992543, https://careers.microsoft.com/v2/global/en/hiring-tips/technical-interviewing]
+  - name: Safe deployment (canary regions, staged rollout, bake time, automated rollback)
+    category: architecture-pattern
+    importance: common
+    evidence: "Azure AI Search SE II: 'deployment pipelines and safe rollout'; Devices Ops posting mentions rollout; Azure's safe deployment practice: 'changes deploy only as long as no negative signals surface'"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992505, https://azure.microsoft.com/en-us/blog/advancing-safe-deployment-practices/]
+  - name: Microservices and cloud design patterns (retry, circuit breaker, resilience)
+    category: architecture-pattern
+    importance: common
+    evidence: "5/17 postings ask for microservices; CSX: 'cloud design patterns and microservices'; Devices Ops posting stresses resilience"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557002362, https://apply.careers.microsoft.com/careers/job/1970393557018991, https://learn.microsoft.com/en-us/azure/architecture/patterns/]
+  - name: Object-oriented design and design patterns
+    category: design-pattern
+    importance: common
+    evidence: "4/17 postings ('OOD + patterns + testing'); LLD is a standard SDE II round in India loop reports"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557018991, https://apply.careers.microsoft.com/careers/job/1970393557023029, https://leetcode.com/discuss/post/8030174/]
+  - name: High availability and geo-distribution
+    category: architecture-pattern
+    importance: common
+    evidence: "COSMIC Senior: 'leading geo-distributed initiatives, operating highly available distributed systems'; Devices Ops and CO+I postings mention high availability"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556982388, https://apply.careers.microsoft.com/careers/job/1970393557018991, https://apply.careers.microsoft.com/careers/job/1970393557023029]
+  - name: API design (REST)
+    category: architecture-pattern
+    importance: common
+    evidence: "3/17 postings ask for API design and 3 for REST (Connectors, Windows AI Platform, CSX, Devices Ops)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557016876, https://apply.careers.microsoft.com/careers/job/1970393557002362]
+  - name: Retrieval-augmented generation (RAG)
+    category: architecture-pattern
+    importance: common
+    evidence: "5/17 postings ask for search / vector DB / RAG (Connectors, Azure AI Search x2, Search Platform)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992543, https://apply.careers.microsoft.com/careers/job/1970393557018979]
+  - name: Event-driven architecture
+    category: architecture-pattern
+    importance: common
+    evidence: "3/17 postings (Azure AI Search SE II, Devices Ops, CO+I)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557018991, https://apply.careers.microsoft.com/careers/job/1970393557023029]
+  - name: Caching
+    category: architecture-pattern
+    importance: common
+    evidence: "3/17 postings (Azure AI Search x2, CO+I); AI-team loops asked about LLM response caching"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393556992543, https://apply.careers.microsoft.com/careers/job/1970393557023029, https://leetcode.com/discuss/post/7494384/]
+  # --- tools ---
+  - name: GitHub
+    category: tool
+    importance: mentioned
+    evidence: "Devices Ops posting names GitHub (alongside Copilot)"
+    sources: [https://apply.careers.microsoft.com/careers/job/1970393557018991]
+frameworks_to_prepare:     # vs data/profile.yaml; ordered for an SDE II loop (DSA + LLD + HLD + AA)
+  revise:
+    - name: Distributed systems and the HLD method
+      why: "Core in 12/17 postings; HLD rounds in every loop report; profile: distributed-systems and system-design working"
+      academy: [F1, F3, F2, F4, F6]
+      plan: "Run the metrics-and-monitoring design (F6) in 45 min, saying two options, the trade-off and your choice at each step."
+    - name: Java for the coding rounds, plus concurrency
+      why: "Interview language (Java accepted everywhere); Azure AI Search Senior asks for concurrency; profile: java strong"
+      academy: [H1, B1, B2, B4, B7, A6]
+      plan: "Write a thread-safe bounded queue and a rate limiter in Java with tests, under 30 minutes each."
+    - name: Object-oriented design and design patterns (LLD)
+      why: "4/17 postings and a standard LLD round; profile: gof-design-patterns working"
+      academy: [E1, E4, E5, E6]
+      plan: "Do one LLD case from E6 with the AI tool open, and narrate what you accept or reject from it."
+    - name: Testing and edge cases
+      why: "Microsoft says technical interviews assess writing tests and finding edge cases; profile: testing-junit-mockito strong"
+      academy: [H2, D8]
+      plan: "End every practice problem by listing 5 edge cases and writing 3 tests before saying 'done'."
+    - name: AI-assisted engineering (Copilot, Claude Code, MCP)
+      why: "Core in 10/17 postings; AI-assisted LLD rounds reported in 2026; profile: ai-coding-tools working"
+      academy: [G2, G4]
+      plan: "Prepare a 90-second account of how you prompt, review and verify AI-generated code, with one bug you caught."
+    - name: Microservices and resilience patterns
+      why: "5/17 postings ask for microservices; CSX names cloud design patterns; profile: microservices-patterns working"
+      academy: [S8]
+      plan: "Map circuit breaker, retry with backoff and bulkhead from the Azure patterns catalog to your Spring Boot experience."
+    - name: Security and identity (OAuth 2.0, JWT)
+      why: "8/17 security + 3 identity; profile: spring-security working"
+      academy: [D7]
+      plan: "Explain the OAuth 2.0 auth-code flow and token validation in a service-to-service call."
+    - name: REST API design
+      why: "API design and REST in 6/17 postings; profile: rest-api-design strong"
+      academy: [D5]
+      plan: "Light touch: pagination, idempotency and versioning for one API in your HLD answer."
+    - name: SQL and relational modelling
+      why: "SQL/NoSQL in 4/17 postings; profile: sql, postgresql working"
+      academy: [Q5, Q6]
+      plan: "Be ready to say when you would pick Azure SQL over Cosmos DB and why."
+  learn:
+    - name: Observability and live-site operations (metrics, logs, traces, SLOs, incident response)
+      why: "Core: 12/17 observability, 10/17 DRI on-call; HLD follow-ups ask how you detect and debug failures; profile: prometheus-grafana basic, opentelemetry none"
+      academy: [D8, F6, H3]
+      plan: "Learn the OpenTelemetry signal types and SLO/error-budget basics, then add alerts and a debugging path to every HLD you practise."
+      resources: [https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview, https://sre.google/sre-book/service-level-objectives/, https://learn.microsoft.com/en-us/kusto/query/]
+    - name: LLMs, RAG and agents
+      why: "7/17 LLM/GenAI, 5 RAG, 5 agents; not in profile beyond using AI tools"
+      academy: [G1, G2, G3, G5]
+      plan: "Learn chunking, embeddings, vector search and grounding, then sketch a RAG service with caching and evals."
+      resources: [https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview, https://modelcontextprotocol.io/introduction]
+    - name: Safe deployment practices (canary, staged rollout, bake time, rollback)
+      why: "CI/CD in 7/17 postings and Azure's own safe deployment practice; profile: github-actions basic"
+      academy: []
+      plan: "Read the WAF safe-deployment page and be able to describe ring-based rollout with health gates and automatic rollback."
+      resources: [https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments, https://azure.microsoft.com/en-us/blog/advancing-safe-deployment-practices/]
+    - name: High availability, geo-distribution, caching and event-driven patterns
+      why: "Each common (3/17); profile: failover-patterns, event-driven-architecture basic"
+      academy: [F2, Q8, S9]
+      plan: "Learn active-active vs active-passive with RTO/RPO, and when to use a queue vs an event stream; use them in one HLD."
+      resources: [https://learn.microsoft.com/en-us/azure/architecture/patterns/, https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker]
+    - name: Azure core services as AWS/Spring equivalents
+      why: "6/17 postings name Azure services; profile: aws basic, no Azure"
+      academy: []
+      plan: "Make a one-page map: AKS, Functions, Service Bus vs Event Hubs, Cosmos DB consistency levels, Azure SQL, and their AWS equivalents."
+      resources: [https://learn.microsoft.com/en-us/azure/aks/what-is-aks, https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview, https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels]
+    - name: C# / .NET for reading team code
+      why: "C#/.NET is the main stack in 8/17 postings; you can interview in Java, but say you can pick up C# quickly"
+      academy: []
+      plan: "Read the C# tour and the ASP.NET Core fundamentals page once; note the Java equivalents (LINQ vs streams, async/await vs CompletableFuture)."
+      resources: [https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/, "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/?view=aspnetcore-9.0"]
+
 sources:
   - url: https://careers.microsoft.com/v2/global/en/hiring-tips.html
     title: Microsoft Careers - Hiring process (7 steps)
