@@ -71,6 +71,18 @@ netlify.toml). Push to `main`: each one rebuilds only when its own files changed
 `frontend/`. New
 companies from `/prep-company` land in `data/`, so the next Render start imports them.
 
+## Staying awake
+
+The free plan stops the service after 15 minutes without requests; the next request then waits
+about a minute. The app keeps itself awake (`KeepAlive`): every 10 minutes it calls its own public
+URL (`RENDER_EXTERNAL_URL`, which Render sets) at `/api/auth/status`. That endpoint needs no login
+and doesn't touch the database, so Neon can still suspend while you're not studying. Nothing to
+configure. To turn it off, add `KEEP_ALIVE_URL` with an empty value; `KEEP_ALIVE_INTERVAL` (e.g.
+`PT5M`) changes the period.
+
+Running all month uses about 744 of the free plan's 750 instance hours, so this fits only if it is
+your only free Render service.
+
 ## Memory
 
 Free plan (512 MB): app JVM `-Xmx300m` (Dockerfile `JAVA_OPTS`), code runner off. The data

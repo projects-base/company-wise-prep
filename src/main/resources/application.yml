@@ -49,6 +49,12 @@ prep:
     # Run / Submit / Playground. Off on a small hosted instance (each test needs its own JVM);
     # problems and the editor still show.
     enabled: ${CODE_RUNNER_ENABLED:true}
+  keep-alive:
+    # Hosted only (see KeepAlive): the app pings its own public URL so Render's free plan doesn't
+    # put it to sleep. Render sets RENDER_EXTERNAL_URL; empty locally, so nothing runs there.
+    # To turn it off on Render, add KEEP_ALIVE_URL with an empty value.
+    url: ${KEEP_ALIVE_URL:${RENDER_EXTERNAL_URL:}}
+    interval: ${KEEP_ALIVE_INTERVAL:PT10M}
   judge:
     heap: ${JUDGE_HEAP:512m}
     parallel: ${JUDGE_PARALLEL:0}
