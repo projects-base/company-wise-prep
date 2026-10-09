@@ -4,7 +4,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ArrowRight, ExternalLink, Info } from 'lucide-react'
 import { api } from '../api'
-import { fmtDate, Status, useLoad } from '../ui'
+import { fmtDate, MdLink, Status, useLoad } from '../ui'
 
 type Tab = 'strategy' | 'loop' | 'stack' | 'postings' | 'sources'
 const TABS: [Tab, string][] = [
@@ -56,7 +56,7 @@ export default function CompanyPage() {
 
       {tab === 'strategy' && (
         <div className="prose">
-          <Markdown remarkPlugins={[remarkGfm]} components={{ a: (p) => <a {...p} target="_blank" rel="noreferrer" /> }}>
+          <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink }}>
             {(c.dossier || '_No dossier yet._').replace(/^# .*\n/, '')}
           </Markdown>
         </div>

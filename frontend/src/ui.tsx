@@ -151,3 +151,30 @@ export function daysBetween(fromIso: string, toIso: string) {
     (new Date(toIso + 'T00:00:00').getTime() - new Date(fromIso + 'T00:00:00').getTime()) / 86_400_000,
   )
 }
+
+/**
+ * Markdown link for dossiers and lessons. They link to data files by relative path so the links
+ * also work on GitHub; inside the app those become routes. Other links open in a new tab.
+ */
+export function MdLink({ href, children }: { href?: string; children?: ReactNode }) {
+  const route = appRoute(href)
+  if (route) return <a href={route}>{children}</a>
+  return (
+    <a href={href} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  )
+}
+
+function appRoute(href?: string): string | null {
+  if (!href) return null
+  if (href.startsWith('#/')) return href
+  if (/^[a-z]+:/i.test(href)) return null
+  const question = href.match(/(?:^|\/)questions\/[^/]+\/([^/#?]+)\.yaml$/)
+  if (question) return `#/q/${question[1]}`
+  const lesson = href.match(/(?:^|\/)academy\/lessons\/([^/#?]+)\.md(#.*)?$/)
+  if (lesson) return `#/academy/${lesson[1]}`
+  const company = href.match(/(?:^|\/)companies\/([^/#?]+)\/(?:dossier\.md|company\.yaml)$/)
+  if (company) return `#/companies/${company[1]}`
+  return null
+}

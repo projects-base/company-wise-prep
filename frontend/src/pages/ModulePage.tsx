@@ -4,7 +4,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, Play } from 'lucide-react'
 import { api, type Ref } from '../api'
-import { LevelChip, Status, useLoad } from '../ui'
+import { LevelChip, Status, useLoad, MdLink } from '../ui'
 import { useFeatures } from '../features'
 
 const slugify = (s: string) =>
@@ -112,14 +112,7 @@ export default function ModulePage() {
                     </div>
                   )
                 },
-                a: ({ href, children }) =>
-                  href?.startsWith('#/') ? (
-                    <a href={href}>{children}</a>
-                  ) : (
-                    <a href={href} target="_blank" rel="noreferrer">
-                      {children}
-                    </a>
-                  ),
+                a: MdLink,
               }}
             >
               {v.lesson}
