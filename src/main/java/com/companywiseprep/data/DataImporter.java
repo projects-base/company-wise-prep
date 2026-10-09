@@ -192,6 +192,8 @@ public class DataImporter implements ApplicationRunner {
 				q.setPrompt(Yaml.str(y.get("prompt")));
 				q.setFollowUps(String.join("\n", Yaml.strings(y.get("follow_ups"))));
 				q.setAcademy(String.join(",", Yaml.strings(y.get("academy"))));
+				Path answer = dataDir.resolve("answers").resolve(q.getSlug() + ".md");
+				q.setAnswer(Files.exists(answer) ? read(answer) : null);
 				for (Map<String, Object> s : Yaml.maps(y.get("sightings"))) {
 					Sighting si = new Sighting();
 					si.setCompany(Yaml.str(s.get("company")));

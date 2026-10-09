@@ -47,7 +47,7 @@ public class BankService {
 	}
 
 	public record QuestionView(String slug, String title, String type, String difficulty, List<String> tags,
-			String leetcode, String prompt, List<String> followUps, List<String> academy,
+			String leetcode, String prompt, String answer, List<String> followUps, List<String> academy,
 			List<SightingView> sightings, ProgressService.View progress, boolean runnable) {
 	}
 
@@ -90,7 +90,7 @@ public class BankService {
 	public QuestionView question(String slug) {
 		Question q = questions.findWithSightings(slug).orElseThrow(() -> new NotFoundException("No question " + slug));
 		return new QuestionView(q.getSlug(), q.getTitle(), q.getType(), q.getDifficulty(), split(q.getTags(), ","),
-				q.getLeetcode(), q.getPrompt(), split(q.getFollowUps(), "\n"), split(q.getAcademy(), ","),
+				q.getLeetcode(), q.getPrompt(), q.getAnswer(), split(q.getFollowUps(), "\n"), split(q.getAcademy(), ","),
 				q.getSightings().stream()
 						.map(s -> new SightingView(s.getCompany(), s.getRole(), s.getRound(), s.getSeenOn(),
 								s.getConfidence(), s.getSource()))

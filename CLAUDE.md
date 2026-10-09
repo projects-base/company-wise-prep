@@ -11,6 +11,7 @@ Read these before doing anything substantial:
 - `docs/LESSON-TEMPLATE.md` — how every Academy lesson is written (smooth-learning-curve rules); the
   curriculum itself is `data/academy/curriculum.yaml` + `data/academy/lessons/<ID>.md`
 - `docs/STORY-LABS.md` — per-era labs (build / break / case / debate / drill) and the incident library
+- `docs/ANSWERS.md` — model answers (`data/answers/<slug>.md`): format per question type and rules
 
 ## Preparing for a new company
 

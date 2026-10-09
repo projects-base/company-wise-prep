@@ -44,6 +44,10 @@ public class Question {
 	@Column(length = 1_000_000)
 	private String followUps;
 
+	/** Model answer in Markdown, from data/answers/<slug>.md; null when none is written yet. */
+	@Column(length = 1_000_000)
+	private String answer;
+
 	/** Comma-separated curriculum module ids. */
 	private String academy;
 

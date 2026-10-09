@@ -524,3 +524,8 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 .pill.imp-common { background: var(--surface-2); color: var(--text-2); }
 .pill.imp-mentioned { background: transparent; color: var(--text-3); border: 1px solid var(--line); }
 @media (max-width: 760px) { .prep-grid { grid-template-columns: 1fr; } }
+
+/* Model answer */
+.answer-hidden { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.answer-note { font-size: 0.8rem; margin-top: 18px; }
+.ws-details .answer { padding-top: 8px; }

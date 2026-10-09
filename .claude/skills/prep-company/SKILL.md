@@ -66,6 +66,8 @@ Use `researched_on: <today>`.
    appends sightings to existing ones (matched by LeetCode slug, then slug after aliases), skips
    exact duplicates, and moves the staging file to `data/_staging/merged/`.
 4. Link `academy:` module ids from `docs/CURRICULUM.md` where obvious.
+5. Write a model answer for every question that has none yet: `data/answers/<slug>.md`, following
+   `docs/ANSWERS.md`. Do the questions this company asks most first.
 
 Prefer fewer, well-sourced questions over many vague ones. Do not invent questions to fill a list.
 

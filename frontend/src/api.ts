@@ -120,6 +120,7 @@ export interface QuestionView {
   tags: string[]
   leetcode: string | null
   prompt: string | null
+  answer: string | null
   followUps: string[]
   academy: string[]
   sightings: Sighting[]

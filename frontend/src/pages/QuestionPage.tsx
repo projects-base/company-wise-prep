@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Check, ExternalLink, Star } from 'lucide-react'
+import { ArrowLeft, Check, ExternalLink, Eye, Star } from 'lucide-react'
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { api, leetcodeUrl, type Action, type Challenge } from '../api'
 import Workspace from '../code/Workspace'
-import { companyLabel, Difficulty, fmtDate, Meta, Status, TypeTag, useLoad } from '../ui'
+import { companyLabel, Difficulty, fmtDate, MdLink, Meta, Status, TypeTag, useLoad } from '../ui'
 
 export default function QuestionPage() {
   const { slug = '' } = useParams()
@@ -85,6 +87,12 @@ export default function QuestionPage() {
             </ul>
           </details>
         )}
+        {q.answer && (
+          <details className="ws-details">
+            <summary>Model answer</summary>
+            <AnswerBody text={q.answer} />
+          </details>
+        )}
         <details className="ws-details">
           <summary>Where it was asked ({q.sightings.length})</summary>
           {q.sightings.map((s, i) => (
@@ -152,6 +160,8 @@ export default function QuestionPage() {
               </ul>
             </section>
           )}
+
+          {q.answer && <Answer key={q.slug} text={q.answer} />}
 
           <section className="section">
             <div className="section-head">
@@ -263,4 +273,44 @@ function hostOf(url: string) {
   } catch {
     return 'source'
   }
+}
+
+/** Hidden until asked for, so you try the question first. */
+function Answer({ text }: { text: string }) {
+  const [shown, setShown] = useState(false)
+  return (
+    <section className="section">
+      <div className="section-head">
+        <h2>Answer</h2>
+        {shown && (
+          <button className="btn sm ghost" onClick={() => setShown(false)}>
+            Hide
+          </button>
+        )}
+      </div>
+      {shown ? (
+        <div className="card pad">
+          <AnswerBody text={text} />
+        </div>
+      ) : (
+        <div className="card pad answer-hidden">
+          <p className="muted">Try it yourself first: say the answer out loud or write it in your notes.</p>
+          <button className="btn" onClick={() => setShown(true)}>
+            <Eye size={15} /> Show answer
+          </button>
+        </div>
+      )}
+    </section>
+  )
+}
+
+function AnswerBody({ text }: { text: string }) {
+  return (
+    <div className="prose answer">
+      <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink }}>
+        {text}
+      </Markdown>
+      <p className="muted answer-note">Written by Claude. Check anything version-specific against the official docs.</p>
+    </div>
+  )
 }
