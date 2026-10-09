@@ -1,0 +1,24 @@
+slug: spring-transactional-management
+title: 'Transactions in Spring: @Transactional'
+type: SPRING
+difficulty: medium
+tags:
+- spring
+- transactions
+- jpa
+leetcode: null
+prompt: |
+  How do you implement transactions in a Spring Boot service? What does @Transactional do under the hood?
+follow_ups:
+- Propagation (REQUIRED vs REQUIRES_NEW) and rollback rules for checked exceptions.
+- Why self-invocation bypasses the proxy.
+academy:
+- D3
+- D6
+sightings:
+- company: cognizant
+  role: Java Developer
+  round: Technical round
+  seen_on: 2021-12
+  confidence: claimed
+  source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm

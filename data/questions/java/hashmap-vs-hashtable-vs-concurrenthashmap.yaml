@@ -1,0 +1,23 @@
+slug: hashmap-vs-hashtable-vs-concurrenthashmap
+title: HashMap vs Hashtable vs ConcurrentHashMap
+type: JAVA
+difficulty: medium
+tags:
+- hashmap
+- concurrency
+- collections
+leetcode: null
+prompt: |
+  Explain HashMap, Hashtable and ConcurrentHashMap: thread safety, locking granularity, null handling, iterator behaviour.
+follow_ups:
+- How does ConcurrentHashMap achieve concurrency in Java 8 (CAS plus per-bin locking)?
+- Fail-fast vs fail-safe iterators.
+academy:
+- B3
+sightings:
+- company: cognizant
+  role: Java (campus/early-career)
+  round: Technical round (core Java)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm

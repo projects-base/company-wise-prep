@@ -1,0 +1,23 @@
+slug: hibernate-save-vs-persist-vs-update-vs-merge
+title: Hibernate save vs persist vs update vs merge
+type: SPRING
+difficulty: medium
+tags:
+- hibernate
+- jpa
+leetcode: null
+prompt: |
+  Differences between Hibernate save/persist and update/merge, and the entity states (transient, persistent, detached).
+follow_ups:
+- N+1 queries and how to fix them.
+- Lazy vs eager loading.
+academy:
+- D6
+- L7
+sightings:
+- company: cognizant
+  role: Java Developer
+  round: Technical round
+  seen_on: 2021-12
+  confidence: claimed
+  source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm

@@ -1,0 +1,27 @@
+slug: java-checked-vs-unchecked-exceptions
+title: Checked vs unchecked exceptions and the exception hierarchy
+type: JAVA
+difficulty: easy
+tags:
+- exceptions
+- java
+leetcode: null
+prompt: |
+  Difference between checked and unchecked exceptions; the root of the exception hierarchy (Throwable, Exception vs Error); what is a NullPointerException; which class is the superclass of all classes.
+follow_ups:
+- Custom exceptions and @ControllerAdvice for REST errors.
+- try-with-resources; finally vs return.
+academy: []
+sightings:
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: Technical round
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+- company: cognizant
+  role: Java (campus/early-career)
+  round: Technical round (core Java)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm

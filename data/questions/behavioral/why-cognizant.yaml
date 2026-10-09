@@ -1,0 +1,19 @@
+slug: why-cognizant
+title: Why do you want to join Cognizant?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- motivation
+- company-fit
+leetcode: null
+prompt: |
+  Why do you want to join Cognizant? Notice period and whether it is negotiable.
+follow_ups: []
+academy: []
+sightings:
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: HR round
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/

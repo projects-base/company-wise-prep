@@ -1,0 +1,23 @@
+slug: group-anagrams
+title: Group Anagrams
+type: DSA
+difficulty: medium
+tags:
+- hashmap
+- string
+- sorting
+- streams
+leetcode: group-anagrams
+prompt: |
+  Group words that are anagrams of each other (reported as a Stream API exercise).
+follow_ups:
+- Write it with Collectors.groupingBy on the sorted key.
+academy:
+- C4
+sightings:
+- company: cognizant
+  role: Software Developer
+  round: Technical round
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm

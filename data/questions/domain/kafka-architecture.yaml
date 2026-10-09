@@ -7,6 +7,7 @@ tags:
 - event-driven
 - partitions
 - consumer-groups
+- messaging
 leetcode: null
 prompt: |
   Explain Kafka's architecture (asked with core Java, Redis, Spring Boot, SQL and system design basics).
@@ -22,3 +23,9 @@ sightings:
   seen_on: 2024-04
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-Hyderabad-Interview-Questions-EI_IE341832.0,6_IL.7,16_IM1076.htm
+- company: cognizant
+  role: Java Developer (weekend drive)
+  round: Technical round
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm

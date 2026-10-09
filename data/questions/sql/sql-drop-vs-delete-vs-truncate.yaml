@@ -1,0 +1,23 @@
+slug: sql-drop-vs-delete-vs-truncate
+title: DROP vs DELETE vs TRUNCATE
+type: SQL
+difficulty: easy
+tags:
+- sql
+- ddl
+- dml
+leetcode: null
+prompt: |
+  Difference between DROP, DELETE and TRUNCATE on a table; what is a schema?
+follow_ups:
+- Which can be rolled back?
+- Which fire triggers?
+academy:
+- Q1
+sightings:
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: Technical round (database)
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/

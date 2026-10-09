@@ -1,0 +1,17 @@
+id: cognizant-2026-10
+name: Cognizant Java MSB + React Full Stack drive (10 October 2026)
+role: Java MSB + React, Full Stack (6+ years)
+companies:
+  cognizant: 1.0
+start: 2026-10-09
+interview: 2026-10-10        # Sat 10 Oct 2026, 9:30 AM - 1 PM, in-person drive, Hyderabad (Kokapet)
+minutes:
+  weekday: 150
+  weekend: 150
+review_days: 0               # one evening only: Fri 9 Oct is the single study day
+notes: >-
+  One-evening sprint before an in-person hiring drive. Reports describe theory-heavy rounds on core
+  Java, collections, Java 8 streams (with a small stream coding task), Spring Boot, Hibernate,
+  microservices patterns and SQL basics, plus React hooks and JavaScript for the Full Stack group,
+  then HR. Follow the revision table in data/companies/cognizant/dossier.md section 7; the plan
+  orders the bank questions for that evening.

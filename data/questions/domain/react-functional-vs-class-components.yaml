@@ -1,0 +1,22 @@
+slug: react-functional-vs-class-components
+title: React functional vs class components and lifecycle with hooks
+type: DOMAIN
+difficulty: medium
+tags:
+- react
+- hooks
+- lifecycle
+leetcode: null
+prompt: |
+  Difference between functional and class components; how to replicate componentDidMount, componentDidUpdate and componentWillUnmount in a functional component with useEffect.
+follow_ups:
+- useEffect dependency array and cleanup; StrictMode double-invoke.
+- useEffect vs useLayoutEffect.
+academy: []
+sightings:
+- company: cognizant
+  role: React Developer
+  round: Technical interview
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm

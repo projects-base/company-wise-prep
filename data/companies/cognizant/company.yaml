@@ -3,9 +3,29 @@ name: Cognizant (CTS)
 aliases: [Cognizant, CTS, Cognizant Technology Solutions]
 researched_on: 2026-10-09
 domain_notes: >-
-  IT services company. Akhil was invited to an in-person weekend hiring drive for experienced Java
-  engineers. Not researched online yet: this entry holds only what the invite says. Questions are
-  added after the drive from what Akhil was actually asked.
+  IT services company (consulting and application development for clients across banking,
+  insurance, healthcare, retail). Akhil was invited to an in-person weekend hiring drive for
+  experienced Java engineers (Java MSB and Java MSB + React Full Stack, 6+ years). Cognizant's
+  own "How we hire" page describes: apply, a short recruiter intro call, interviews with the
+  hiring team (some roles add technical assessments and/or client interviews), then a decision.
+  Current Java full-stack postings ask for Java 8+, Spring Boot, microservices, REST APIs and
+  React.js, often with SQL/PL-SQL and cloud (AWS/Azure/GCP). Candidate reports (Glassdoor,
+  GeeksforGeeks, Naukri Code360) describe service-company style interviews: mostly theory on
+  core Java, collections, Java 8 streams with a small stream coding task, Spring Boot,
+  Hibernate/JPA, microservices patterns, SQL basics and a project walk-through; little or no
+  LeetCode-style DSA. React rounds ask hooks, lifecycle with useEffect, JS closures/hoisting and
+  a small React or JS coding task.
+values:
+  - name: Work as one (rely on colleagues' strengths, succeed as a team)
+    source: https://careers.cognizant.com/india-en/life-at-cognizant/our-culture/
+  - name: Raise the bar (high standards in how work is done and what is delivered)
+    source: https://careers.cognizant.com/india-en/life-at-cognizant/our-culture/
+  - name: Dare to innovate (push boundaries, take calculated risks)
+    source: https://careers.cognizant.com/india-en/life-at-cognizant/our-culture/
+  - name: Do the right thing (honesty, ethical choices)
+    source: https://careers.cognizant.com/india-en/life-at-cognizant/our-culture/
+  - name: Own it (take responsibility for outcomes)
+    source: https://careers.cognizant.com/india-en/life-at-cognizant/our-culture/
 
 roles:
   - role: Java MSB + React, Full Stack (Java + Microservices + Spring Boot + React)
@@ -24,8 +44,269 @@ roles:
         confidence: verified
         source: interview invite relayed by Akhil, 2026-10-09
         seen_on: 2026-10
+      - round: Technical round 1 (reported, weekend interviews, Pune)
+        type: JAVA
+        assesses: >-
+          General questions on Java, Spring Boot, microservices, Kafka and databases. The same
+          report lists a technical-manager round and an HR round after it, held on weekends, and
+          says no response came after clearing them.
+        confidence: claimed
+        source: https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm
+        seen_on: 2025-12
+      - round: Technical round (reported, Java Spring Boot Full Stack Developer)
+        type: JAVA
+        assesses: >-
+          Theory-heavy: Java 8 features, OOP, collections (Array vs List, List vs Set, Set vs Map),
+          checked vs unchecked exceptions, equals/hashCode, comparators, what microservices are,
+          DROP vs DELETE vs TRUNCATE, and one JavaScript question (arrow functions).
+        confidence: claimed
+        source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+        seen_on: 2024-01
+      - round: Single long technical interview (reported, ~1.5 h)
+        type: JAVA
+        duration_min: 90
+        assesses: Java, microservices, Spring Boot, Hibernate, plus a Java stream coding problem and cross-questions.
+        confidence: claimed
+        source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW84676360.htm
+        seen_on: 2024-01
+      - round: Microservices / Spring depth (reported)
+        type: SPRING
+        assesses: Saga pattern, circuit breaker, API gateway, Eureka service discovery, core Java and Spring Boot.
+        confidence: claimed
+        source: https://www.naukri.com/code360/interview-experiences/cognizant/cognizant-interview-experience-by-koushal-goyal-jul-2024-exp-0-2-years
+        seen_on: 2024-07
+      - round: React / JavaScript technical round (reported, front-end walk-in)
+        type: DOMAIN
+        assesses: >-
+          One technical and one HR round. Basic-to-moderate JavaScript, React.js and Redux Toolkit
+          concepts plus coding (first non-repeating character in a string).
+        confidence: claimed
+        source: https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm
+        seen_on: 2025-05
+      - round: React technical interview (reported, 45 min)
+        type: DOMAIN
+        duration_min: 45
+        assesses: >-
+          Functional vs class components, lifecycle methods with hooks, closures, hoisting,
+          var/let/const, a remove-duplicates coding question and a React form with validation.
+        confidence: claimed
+        source: https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm
+        seen_on: 2025-03
+      - round: Technical-manager round (reported)
+        type: HIRING_MANAGER
+        assesses: Project depth, design decisions, real production issues; follows the technical round on drive days.
+        confidence: claimed
+        source: https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm
+        seen_on: 2025-12
+      - round: HR round (reported)
+        type: BEHAVIORAL
+        assesses: >-
+          About yourself, current role, why leave, why Cognizant, notice period, location and
+          salary expectations.
+        confidence: claimed
+        source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+        seen_on: 2024-01
     bar: >-
-      Not known yet. Fill in after the drive.
+      Not known from the invite. Reports suggest a 6+ year hire is expected to answer core Java,
+      Spring Boot and microservices theory confidently, write a short Java 8 stream solution by
+      hand, and explain their own project's architecture and one production problem in depth; the
+      Full Stack group adds React hooks and JavaScript fundamentals. Fill in after the drive.
+
+official:
+  hiring_process:
+    - step: Apply to the right opportunity
+      detail: Find an open role that fits; or join the Talent Community.
+      source: https://careers.cognizant.com/india-en/pathways-to-cognizant/how-we-hire/
+    - step: Connect with your recruiter
+      detail: Short intro call to learn about your experience and fit.
+      source: https://careers.cognizant.com/india-en/pathways-to-cognizant/how-we-hire/
+    - step: Show off your skills
+      detail: Interviews with the hiring team; some roles include technical assessments and/or client interviews.
+      source: https://careers.cognizant.com/india-en/pathways-to-cognizant/how-we-hire/
+    - step: Decision time
+      detail: The team assesses potential to succeed in the role; it "may take some time". Background checks cover education, previous employment and references.
+      source: https://careers.cognizant.com/india-en/pathways-to-cognizant/how-we-hire/
+  interview_tips:
+    - text: Keep the resume current and target roles that match your skills; the page has no interview-specific tips.
+      source: https://careers.cognizant.com/india-en/pathways-to-cognizant/how-we-hire/
+  job_postings:
+    # The four posting pages returned HTTP 404 on 2026-10-09 (closed or moved); details below come
+    # from search-engine snippets of careers.cognizant.com taken the same day.
+    - title: Java Fullstack Developer (job 00067885132)
+      location: PAN India / Hybrid
+      url: https://careers.cognizant.com/india-en/jobs/00067885132/java-fullstack-developer/
+      accessed: 2026-10-09
+      required: ["6-12 years", "Strong expertise in Java, Spring Boot, Microservices, React.js and modern web technologies", "Build RESTful APIs and microservices with Spring Boot"]
+      skills: [java, spring-boot, microservices, react, rest-api]
+    - title: Sr. Java Full Stack Developer (React) (job 00068625692)
+      location: not shown in snippet
+      url: https://careers.cognizant.com/us-en/jobs/00068625692/sr-java-full-stack-developer-react/
+      accessed: 2026-10-09
+      required: ["6-10 years Java", "Spring Boot and microservices", "React.js", "Cloud: AWS, Azure or GCP", "REST APIs with Spring MVC or Hibernate"]
+      skills: [java, spring-boot, microservices, react, rest-api, cloud, hibernate-jpa]
+    - title: Senior Full Stack Data Engineer - Java + Spring Boot + React JS + ETL (job 00068542621)
+      location: Hyderabad (GAR facility)
+      url: https://careers.cognizant.com/us-en/jobs/00068542621/senior-full-stack-data-engineer-java-plus-spring-boot-plus-react-js-plus-etl/
+      accessed: 2026-10-09
+      required: ["6-10 years", "Java 8+", "Spring Boot", "REST APIs", "React JS", "ETL tools", "SQL", "Microservices on AWS"]
+      skills: [java, spring-boot, rest-api, react, sql, microservices, cloud, etl]
+    - title: Technical Lead - Java + React (job 00066236781)
+      location: Chennai / Bangalore / Hyderabad / Pune (hybrid)
+      url: https://careers.cognizant.com/ca-en/jobs/00066236781/technical-lead-java-plus-react/
+      accessed: 2026-10-09
+      required: ["7-12 years", "Core Java, Spring Boot, Microservices, React JS, PL/SQL", "Lead React and Spring Boot application design; oversee microservices integration"]
+      skills: [java, spring-boot, microservices, react, sql]
+  skill_frequency:
+    java: 4
+    spring-boot: 4
+    microservices: 4
+    react: 4
+    rest-api: 3
+    sql: 2
+    cloud: 2
+    hibernate-jpa: 1
+    etl: 1
+
+tech_stack:
+  - name: Java (8+, collections, concurrency, streams)
+    category: language
+    importance: core
+    evidence: "4/4 postings; every interview report"
+    sources: [https://careers.cognizant.com/india-en/jobs/00067885132/java-fullstack-developer/, https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/]
+  - name: Spring Boot (REST, DI, transactions)
+    category: framework
+    importance: core
+    evidence: "4/4 postings; most reports"
+    sources: [https://careers.cognizant.com/india-en/jobs/00067885132/java-fullstack-developer/, https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm]
+  - name: React.js (hooks, Redux Toolkit)
+    category: framework
+    importance: core
+    evidence: "4/4 postings; the invite's Full Stack group; front-end reports ask hooks and Redux Toolkit"
+    sources: [https://careers.cognizant.com/us-en/jobs/00068625692/sr-java-full-stack-developer-react/, https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm]
+  - name: JavaScript (ES6+, closures, promises)
+    category: language
+    importance: core
+    evidence: "Implied by React in 4/4 postings; asked in GfG 2024 and Glassdoor 2025 reports"
+    sources: [https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm]
+  - name: Hibernate / Spring Data JPA
+    category: framework
+    importance: common
+    evidence: "1 posting; 2 interview reports"
+    sources: [https://careers.cognizant.com/us-en/jobs/00068625692/sr-java-full-stack-developer-react/, https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm]
+  - name: SQL / PL-SQL
+    category: datastore
+    importance: common
+    evidence: "2/4 postings; DB questions in several reports"
+    sources: [https://careers.cognizant.com/ca-en/jobs/00066236781/technical-lead-java-plus-react/]
+  - name: AWS / Azure / GCP
+    category: cloud
+    importance: common
+    evidence: "2/4 postings"
+    sources: [https://careers.cognizant.com/us-en/jobs/00068625692/sr-java-full-stack-developer-react/]
+  - name: Kafka
+    category: messaging
+    importance: mentioned
+    evidence: "1 interview report (Pune weekend drive, 2025-12)"
+    sources: [https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm]
+  - name: Microservices architecture
+    category: architecture-pattern
+    importance: core
+    evidence: "4/4 postings; the invite's 'MSB' skill group"
+    sources: [https://careers.cognizant.com/india-en/jobs/00067885132/java-fullstack-developer/]
+  - name: API gateway, service discovery (Eureka), circuit breaker, saga
+    category: architecture-pattern
+    importance: common
+    evidence: "2 interview reports (2024-07, 2025-12)"
+    sources: [https://www.naukri.com/code360/interview-experiences/cognizant/cognizant-interview-experience-by-koushal-goyal-jul-2024-exp-0-2-years, https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm]
+  - name: JWT / Spring Security
+    category: security
+    importance: mentioned
+    evidence: "1 interview report (2021-12)"
+    sources: [https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm]
+
+frameworks_to_prepare:
+  revise:
+    - {name: React hooks and JavaScript fundamentals, why: "core in 4/4 postings and the invite's Full Stack group; React is only 'working' for Akhil", academy: [], plan: "useEffect as lifecycle (deps, cleanup), useMemo/useCallback/useRef/useContext, Redux Toolkit slice; closures, hoisting, event loop; code a fetch-to-table component and a validated form"}
+    - {name: Java 8 streams and collections internals, why: "every report; a stream coding task is the most common hands-on question", academy: [A7, H1, B3], plan: "write 8 stream drills by hand (groupingBy, counting, duplicates, second highest, group anagrams); HashMap vs Hashtable vs ConcurrentHashMap"}
+    - {name: Spring Boot internals and transactions, why: "core in 4/4 postings", academy: [D4, D3, D6, L4], plan: "auto-configuration, DI and @Autowired resolution, @Transactional propagation/rollback and self-invocation, @ControllerAdvice"}
+    - {name: Microservices patterns, why: "core in 4/4 postings; gateway/discovery/circuit breaker/saga asked in reports", academy: [S8, S9], plan: "draw your project with gateway, discovery, config, Resilience4j; explain one saga"}
+    - {name: Hibernate / JPA, why: "common: posting + reports", academy: [D6, L7], plan: "entity states, save/persist/merge, N+1 and fetch joins, lazy vs eager"}
+    - {name: SQL basics, why: "2/4 postings; DB questions in reports", academy: [Q1, Q2], plan: "DROP/DELETE/TRUNCATE, joins, second highest salary, max per department"}
+  learn:
+    - {name: Saga and event-driven design, why: "asked in reports; Akhil is basic on event-driven architecture", academy: [S9], plan: "one choreography and one orchestration saga for an order flow, with compensations, on paper"}
+    - {name: Cloud deployment basics (AWS), why: "2/4 postings; Akhil is basic on AWS", academy: [], plan: "be able to say how a Spring Boot + React app is deployed: container image, ECS/EKS or Beanstalk, RDS, S3 + CloudFront for the React build"}
+    - {name: Kafka basics, why: "mentioned in a 2025 drive report; Akhil is basic", academy: [S9], plan: "topics, partitions, consumer groups, offsets, at-least-once and idempotent consumers"}
 
 sources:
-  - interview invite relayed by Akhil, 2026-10-09
+  - url: interview invite relayed by Akhil
+    title: In-person hiring drive invite (not a URL)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/india-en/pathways-to-cognizant/how-we-hire/
+    title: Cognizant careers - How we hire
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/india-en/life-at-cognizant/our-culture/
+    title: Cognizant careers - Our culture (values)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/india-en/
+    title: Cognizant careers India home (no interview tips beyond How we hire)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/india-en/jobs/00067885132/java-fullstack-developer/
+    title: Java Fullstack Developer (404 on fetch; search snippet)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/us-en/jobs/00068625692/sr-java-full-stack-developer-react/
+    title: Sr. Java Full Stack Developer (React) (404 on fetch; search snippet)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/us-en/jobs/00068542621/senior-full-stack-data-engineer-java-plus-spring-boot-plus-react-js-plus-etl/
+    title: Senior Full Stack Data Engineer, Hyderabad (404 on fetch; search snippet)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://careers.cognizant.com/ca-en/jobs/00066236781/technical-lead-java-plus-react/
+    title: Technical Lead Java + React (404 on fetch; search snippet)
+    accessed: 2026-10-09
+    kind: official
+  - url: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+    title: GfG - Cognizant interview experience, Java Spring Boot Full Stack Developer (updated 2024-01-04)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://www.naukri.com/code360/interview-experiences/cognizant/cognizant-interview-experience-by-koushal-goyal-jul-2024-exp-0-2-years
+    title: Naukri Code360 - Cognizant interview experience (2024; 403 on fetch, search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm
+    title: Glassdoor - Pune weekend interviews, Dec 2025 (403 on fetch, search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm
+    title: Glassdoor - New Delhi, Dec 2021 (search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW84676360.htm
+    title: Glassdoor - Bangalore Jan 2024 and Gurgaon Feb 2026 reviews (search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm
+    title: Glassdoor - Calcutta, Aug 2025, campus Java (search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm
+    title: Glassdoor - Software Developer, Bengaluru, Aug 2025 (search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm
+    title: Glassdoor - React developer interview, Mar 2025 (search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm
+    title: Glassdoor - front-end walk-in, May 2025 (search snippet)
+    accessed: 2026-10-09
+    kind: interview-report
+  - url: https://static.glassdoor.com.ar/Interview/Cognizant-Interview-E8014-RVW3053764.htm
+    title: Glassdoor - Hyderabad/Chennai walk-in reviews, Nov 2025 (format only, no questions)
+    accessed: 2026-10-09
+    kind: interview-report

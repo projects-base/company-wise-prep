@@ -1,0 +1,20 @@
+slug: js-arrow-functions-and-this
+title: JavaScript arrow functions vs regular functions
+type: DOMAIN
+difficulty: easy
+tags:
+- javascript
+- functions
+- this
+leetcode: null
+prompt: |
+  What is an arrow function? How does it differ from a regular function (this binding, arguments, no constructor)? Also: Java vs JavaScript.
+follow_ups: []
+academy: []
+sightings:
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: Technical round (JavaScript)
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/

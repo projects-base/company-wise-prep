@@ -1,0 +1,22 @@
+slug: js-closures-and-hoisting
+title: JavaScript closures, hoisting, var/let/const
+type: DOMAIN
+difficulty: easy
+tags:
+- javascript
+- closures
+- hoisting
+leetcode: null
+prompt: |
+  Explain closures and hoisting; var vs let vs const and the temporal dead zone.
+follow_ups:
+- Loop-with-setTimeout closure bug and its fix.
+- 'Event loop: microtasks vs macrotasks; promises and async/await.'
+academy: []
+sightings:
+- company: cognizant
+  role: React Developer
+  round: Technical interview
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm

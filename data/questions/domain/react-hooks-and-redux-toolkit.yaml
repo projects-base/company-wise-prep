@@ -1,0 +1,23 @@
+slug: react-hooks-and-redux-toolkit
+title: React hooks and state management (Context, Redux Toolkit)
+type: DOMAIN
+difficulty: medium
+tags:
+- react
+- hooks
+- redux
+- state-management
+leetcode: null
+prompt: |
+  Basic-to-moderate concepts on JavaScript, React.js and Redux Toolkit: useState, useEffect, useMemo, useCallback, useRef, useContext; when Context is enough vs Redux Toolkit (slices, store, useSelector, useDispatch).
+follow_ups:
+- useMemo vs useCallback vs React.memo.
+- Why keys matter in lists; virtual DOM and reconciliation.
+academy: []
+sightings:
+- company: cognizant
+  role: Front-end / React developer (walk-in drive)
+  round: Technical round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm

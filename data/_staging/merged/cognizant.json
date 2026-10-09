@@ -1,0 +1,891 @@
+[
+ {
+  "slug": "hashmap-internals",
+  "title": "HashMap internals and complexity",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "collections",
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "How HashSet works internally (it is backed by a HashMap); hashing, buckets, collisions.",
+  "follow_ups": [],
+  "academy": [
+   "A2"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "java-equals-vs-double-equals-hashcode",
+  "title": "== vs equals() and the equals/hashCode Contract",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "object",
+   "hashmap"
+  ],
+  "leetcode": null,
+  "prompt": "Explain equals() and hashCode().",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "polymorphism-and-static-method-overriding",
+  "title": "Polymorphism, and can static methods be overridden?",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "oop",
+   "polymorphism"
+  ],
+  "leetcode": null,
+  "prompt": "Explain polymorphism in Java; method overloading vs overriding.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "oauth-and-jwt",
+  "title": "OAuth and JWT tokens",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "security",
+   "auth"
+  ],
+  "leetcode": null,
+  "prompt": "How does JWT work, and how do you implement Spring Security?",
+  "follow_ups": [],
+  "academy": [
+   "D7"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "why-are-you-looking-for-a-change",
+  "title": "Why are you looking for a change?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why do you want to leave your current company?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "HR round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "walk-through-current-work",
+  "title": "Walk Me Through Your Current Work / Projects",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "resume-deep-dive"
+  ],
+  "leetcode": null,
+  "prompt": "Your current role and responsibilities, and how this position relates to your skill set.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "HR round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "java-create-and-fix-deadlock",
+  "title": "Write code that deadlocks, then fix it",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "deadlock",
+   "locks"
+  ],
+  "leetcode": null,
+  "prompt": "Synchronization and deadlocks in Java.",
+  "follow_ups": [],
+  "academy": [
+   "B2"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java (campus/early-career)",
+   "round": "Technical round (core Java)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm"
+  }
+ },
+ {
+  "slug": "kafka-architecture",
+  "title": "Kafka architecture",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "kafka",
+   "messaging"
+  ],
+  "leetcode": null,
+  "prompt": "General Kafka questions alongside Java, Spring Boot, microservices and DB.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer (weekend drive)",
+   "round": "Technical round",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm"
+  }
+ },
+ {
+  "slug": "microservices-communication-grpc-vs-rest-eda",
+  "title": "Microservices communication: gRPC vs REST vs events",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "microservices"
+  ],
+  "leetcode": null,
+  "prompt": "What are microservices? Types of microservices.",
+  "follow_ups": [],
+  "academy": [
+   "S8"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "java-8-features",
+  "title": "Java 8 features: lambdas, functional interfaces, streams, Optional",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java8",
+   "lambda",
+   "streams",
+   "functional-interface"
+  ],
+  "leetcode": null,
+  "prompt": "List the main Java 8 features. What is a functional interface, and how do lambdas relate to it? Default and static interface methods, Optional, the Stream API, the new Date/Time API.",
+  "follow_ups": [
+   "Which Java 11/17/21 features have you used (records, sealed classes, switch patterns, virtual threads)?",
+   "map vs flatMap; intermediate vs terminal operations; laziness."
+  ],
+  "academy": [
+   "A7"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "java-8-features",
+  "title": "Java 8 features: lambdas, functional interfaces, streams, Optional",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java8",
+   "lambda",
+   "streams",
+   "functional-interface"
+  ],
+  "leetcode": null,
+  "prompt": "List the main Java 8 features. What is a functional interface, and how do lambdas relate to it? Default and static interface methods, Optional, the Stream API, the new Date/Time API.",
+  "follow_ups": [
+   "Which Java 11/17/21 features have you used (records, sealed classes, switch patterns, virtual threads)?",
+   "map vs flatMap; intermediate vs terminal operations; laziness."
+  ],
+  "academy": [
+   "A7"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Software Developer",
+   "round": "Technical round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm"
+  }
+ },
+ {
+  "slug": "java-streams-coding-drills",
+  "title": "Java 8 stream coding drills",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java8",
+   "streams",
+   "collectors",
+   "coding"
+  ],
+  "leetcode": null,
+  "prompt": "Solve small data tasks with the Stream API: filter even numbers from a list, group and count with Collectors.groupingBy, find duplicates, sort a list of employees by a field, max salary per department.",
+  "follow_ups": [
+   "Character frequency of a string with groupingBy(counting()).",
+   "First non-repeated character with a LinkedHashMap collector.",
+   "Second highest number with sorted/skip/findFirst."
+  ],
+  "academy": [
+   "H1",
+   "A7"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round (stream problem)",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW84676360.htm"
+  }
+ },
+ {
+  "slug": "java-streams-coding-drills",
+  "title": "Java 8 stream coding drills",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java8",
+   "streams",
+   "collectors",
+   "coding"
+  ],
+  "leetcode": null,
+  "prompt": "Solve small data tasks with the Stream API: filter even numbers from a list, group and count with Collectors.groupingBy, find duplicates, sort a list of employees by a field, max salary per department.",
+  "follow_ups": [
+   "Character frequency of a string with groupingBy(counting()).",
+   "First non-repeated character with a LinkedHashMap collector.",
+   "Second highest number with sorted/skip/findFirst."
+  ],
+  "academy": [
+   "H1",
+   "A7"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Software Developer",
+   "round": "Technical round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm"
+  }
+ },
+ {
+  "slug": "group-anagrams",
+  "title": "Group Anagrams",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "string",
+   "sorting",
+   "streams"
+  ],
+  "leetcode": "group-anagrams",
+  "prompt": "Group words that are anagrams of each other (reported as a Stream API exercise).",
+  "follow_ups": [
+   "Write it with Collectors.groupingBy on the sorted key."
+  ],
+  "academy": [
+   "C4"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Software Developer",
+   "round": "Technical round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm"
+  }
+ },
+ {
+  "slug": "first-unique-character-in-a-string",
+  "title": "First Unique Character in a String",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hashmap",
+   "string"
+  ],
+  "leetcode": "first-unique-character-in-a-string",
+  "prompt": "Find the first non-repeating character in a given string.",
+  "follow_ups": [
+   "Do it with a Java stream and LinkedHashMap."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Front-end / React developer (walk-in drive)",
+   "round": "Technical round (coding)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm"
+  }
+ },
+ {
+  "slug": "java-checked-vs-unchecked-exceptions",
+  "title": "Checked vs unchecked exceptions and the exception hierarchy",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "exceptions",
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between checked and unchecked exceptions; the root of the exception hierarchy (Throwable, Exception vs Error); what is a NullPointerException; which class is the superclass of all classes.",
+  "follow_ups": [
+   "Custom exceptions and @ControllerAdvice for REST errors.",
+   "try-with-resources; finally vs return."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "java-checked-vs-unchecked-exceptions",
+  "title": "Checked vs unchecked exceptions and the exception hierarchy",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "exceptions",
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between checked and unchecked exceptions; the root of the exception hierarchy (Throwable, Exception vs Error); what is a NullPointerException; which class is the superclass of all classes.",
+  "follow_ups": [
+   "Custom exceptions and @ControllerAdvice for REST errors.",
+   "try-with-resources; finally vs return."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java (campus/early-career)",
+   "round": "Technical round (core Java)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm"
+  }
+ },
+ {
+  "slug": "hashmap-vs-hashtable-vs-concurrenthashmap",
+  "title": "HashMap vs Hashtable vs ConcurrentHashMap",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "hashmap",
+   "concurrency",
+   "collections"
+  ],
+  "leetcode": null,
+  "prompt": "Explain HashMap, Hashtable and ConcurrentHashMap: thread safety, locking granularity, null handling, iterator behaviour.",
+  "follow_ups": [
+   "How does ConcurrentHashMap achieve concurrency in Java 8 (CAS plus per-bin locking)?",
+   "Fail-fast vs fail-safe iterators."
+  ],
+  "academy": [
+   "B3"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java (campus/early-career)",
+   "round": "Technical round (core Java)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm"
+  }
+ },
+ {
+  "slug": "java-collections-hierarchy",
+  "title": "Collection hierarchy: Array vs List, List vs Set, Set vs Map",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "collections",
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the Collection hierarchy. Differences between Array and List, List and Set, Set and Map.",
+  "follow_ups": [
+   "ArrayList vs LinkedList.",
+   "When would you pick TreeMap or LinkedHashMap?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "java-collections-hierarchy",
+  "title": "Collection hierarchy: Array vs List, List vs Set, Set vs Map",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "collections",
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the Collection hierarchy. Differences between Array and List, List and Set, Set and Map.",
+  "follow_ups": [
+   "ArrayList vs LinkedList.",
+   "When would you pick TreeMap or LinkedHashMap?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "comparable-vs-comparator",
+  "title": "Comparable vs Comparator",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "collections",
+   "sorting",
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "What are comparators in Java? Comparable vs Comparator, with an example sorting employees.",
+  "follow_ups": [
+   "Comparator.comparing(...).thenComparing(...).reversed()."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "microservices-design-patterns",
+  "title": "Microservices patterns: API gateway, service discovery, circuit breaker, saga",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "microservices",
+   "api-gateway",
+   "eureka",
+   "circuit-breaker",
+   "saga"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the Saga pattern, the Circuit Breaker, API gateways and Eureka service discovery, and how you used them in a project.",
+  "follow_ups": [
+   "Resilience4j: circuit breaker states; retries with timeouts and backoff.",
+   "Choreography vs orchestration saga.",
+   "How do services authenticate each other behind the gateway?"
+  ],
+  "academy": [
+   "S8",
+   "S9"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Senior Software Engineer (report page tagged 0-2 years)",
+   "round": "Technical round",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.naukri.com/code360/interview-experiences/cognizant/cognizant-interview-experience-by-koushal-goyal-jul-2024-exp-0-2-years"
+  }
+ },
+ {
+  "slug": "microservices-design-patterns",
+  "title": "Microservices patterns: API gateway, service discovery, circuit breaker, saga",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "microservices",
+   "api-gateway",
+   "eureka",
+   "circuit-breaker",
+   "saga"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the Saga pattern, the Circuit Breaker, API gateways and Eureka service discovery, and how you used them in a project.",
+  "follow_ups": [
+   "Resilience4j: circuit breaker states; retries with timeouts and backoff.",
+   "Choreography vs orchestration saga.",
+   "How do services authenticate each other behind the gateway?"
+  ],
+  "academy": [
+   "S8",
+   "S9"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer (weekend drive)",
+   "round": "Technical round",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm"
+  }
+ },
+ {
+  "slug": "spring-autowired-and-dependency-injection",
+  "title": "@Autowired and dependency injection in Spring Boot",
+  "type": "SPRING",
+  "difficulty": "easy",
+  "tags": [
+   "spring",
+   "di",
+   "ioc"
+  ],
+  "leetcode": null,
+  "prompt": "How does @Autowired work? Constructor vs field vs setter injection; what happens with two beans of the same type.",
+  "follow_ups": [
+   "@Qualifier vs @Primary.",
+   "Bean scopes and lifecycle."
+  ],
+  "academy": [
+   "D2",
+   "L4"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "hibernate-save-vs-persist-vs-update-vs-merge",
+  "title": "Hibernate save vs persist vs update vs merge",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "hibernate",
+   "jpa"
+  ],
+  "leetcode": null,
+  "prompt": "Differences between Hibernate save/persist and update/merge, and the entity states (transient, persistent, detached).",
+  "follow_ups": [
+   "N+1 queries and how to fix them.",
+   "Lazy vs eager loading."
+  ],
+  "academy": [
+   "D6",
+   "L7"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "spring-transactional-management",
+  "title": "Transactions in Spring: @Transactional",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "spring",
+   "transactions",
+   "jpa"
+  ],
+  "leetcode": null,
+  "prompt": "How do you implement transactions in a Spring Boot service? What does @Transactional do under the hood?",
+  "follow_ups": [
+   "Propagation (REQUIRED vs REQUIRES_NEW) and rollback rules for checked exceptions.",
+   "Why self-invocation bypasses the proxy."
+  ],
+  "academy": [
+   "D3",
+   "D6"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "debug-java-memory-issues",
+  "title": "Debugging memory issues in a Java application",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "jvm",
+   "memory",
+   "debugging",
+   "gc"
+  ],
+  "leetcode": null,
+  "prompt": "How would you debug memory issues (leak, OutOfMemoryError) in a Java project?",
+  "follow_ups": [
+   "Heap dump with jmap or -XX:+HeapDumpOnOutOfMemoryError, analysed in Eclipse MAT or VisualVM.",
+   "Common leak sources: static collections, caches without eviction, ThreadLocals, unclosed resources."
+  ],
+  "academy": [
+   "A4",
+   "A5"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Developer",
+   "round": "Technical round",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm"
+  }
+ },
+ {
+  "slug": "sql-drop-vs-delete-vs-truncate",
+  "title": "DROP vs DELETE vs TRUNCATE",
+  "type": "SQL",
+  "difficulty": "easy",
+  "tags": [
+   "sql",
+   "ddl",
+   "dml"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between DROP, DELETE and TRUNCATE on a table; what is a schema?",
+  "follow_ups": [
+   "Which can be rolled back?",
+   "Which fire triggers?"
+  ],
+  "academy": [
+   "Q1"
+  ],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round (database)",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "js-arrow-functions-and-this",
+  "title": "JavaScript arrow functions vs regular functions",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "javascript",
+   "functions",
+   "this"
+  ],
+  "leetcode": null,
+  "prompt": "What is an arrow function? How does it differ from a regular function (this binding, arguments, no constructor)? Also: Java vs JavaScript.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "Technical round (JavaScript)",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ },
+ {
+  "slug": "react-functional-vs-class-components",
+  "title": "React functional vs class components and lifecycle with hooks",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "react",
+   "hooks",
+   "lifecycle"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between functional and class components; how to replicate componentDidMount, componentDidUpdate and componentWillUnmount in a functional component with useEffect.",
+  "follow_ups": [
+   "useEffect dependency array and cleanup; StrictMode double-invoke.",
+   "useEffect vs useLayoutEffect."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "React Developer",
+   "round": "Technical interview",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm"
+  }
+ },
+ {
+  "slug": "js-closures-and-hoisting",
+  "title": "JavaScript closures, hoisting, var/let/const",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "javascript",
+   "closures",
+   "hoisting"
+  ],
+  "leetcode": null,
+  "prompt": "Explain closures and hoisting; var vs let vs const and the temporal dead zone.",
+  "follow_ups": [
+   "Loop-with-setTimeout closure bug and its fix.",
+   "Event loop: microtasks vs macrotasks; promises and async/await."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "React Developer",
+   "round": "Technical interview",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm"
+  }
+ },
+ {
+  "slug": "react-form-with-validation",
+  "title": "Build a React form with validation",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "react",
+   "forms",
+   "coding"
+  ],
+  "leetcode": null,
+  "prompt": "Build a controlled React form with field validation and error messages, blocking submit while invalid.",
+  "follow_ups": [
+   "Fetch data from an API and render it in a table with loading and error states.",
+   "Debounce a search input."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "React Developer",
+   "round": "Technical interview (coding)",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm"
+  }
+ },
+ {
+  "slug": "react-hooks-and-redux-toolkit",
+  "title": "React hooks and state management (Context, Redux Toolkit)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "react",
+   "hooks",
+   "redux",
+   "state-management"
+  ],
+  "leetcode": null,
+  "prompt": "Basic-to-moderate concepts on JavaScript, React.js and Redux Toolkit: useState, useEffect, useMemo, useCallback, useRef, useContext; when Context is enough vs Redux Toolkit (slices, store, useSelector, useDispatch).",
+  "follow_ups": [
+   "useMemo vs useCallback vs React.memo.",
+   "Why keys matter in lists; virtual DOM and reconciliation."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Front-end / React developer (walk-in drive)",
+   "round": "Technical round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm"
+  }
+ },
+ {
+  "slug": "why-cognizant",
+  "title": "Why do you want to join Cognizant?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation",
+   "company-fit"
+  ],
+  "leetcode": null,
+  "prompt": "Why do you want to join Cognizant? Notice period and whether it is negotiable.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "cognizant",
+   "role": "Java Spring Boot Full Stack Developer",
+   "round": "HR round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/"
+  }
+ }
+]

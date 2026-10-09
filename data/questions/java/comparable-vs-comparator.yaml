@@ -1,0 +1,21 @@
+slug: comparable-vs-comparator
+title: Comparable vs Comparator
+type: JAVA
+difficulty: easy
+tags:
+- collections
+- sorting
+- java
+leetcode: null
+prompt: |
+  What are comparators in Java? Comparable vs Comparator, with an example sorting employees.
+follow_ups:
+- Comparator.comparing(...).thenComparing(...).reversed().
+academy: []
+sightings:
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: Technical round
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/

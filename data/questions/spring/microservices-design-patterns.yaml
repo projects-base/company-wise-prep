@@ -1,0 +1,33 @@
+slug: microservices-design-patterns
+title: 'Microservices patterns: API gateway, service discovery, circuit breaker, saga'
+type: SPRING
+difficulty: medium
+tags:
+- microservices
+- api-gateway
+- eureka
+- circuit-breaker
+- saga
+leetcode: null
+prompt: |
+  Explain the Saga pattern, the Circuit Breaker, API gateways and Eureka service discovery, and how you used them in a project.
+follow_ups:
+- 'Resilience4j: circuit breaker states; retries with timeouts and backoff.'
+- Choreography vs orchestration saga.
+- How do services authenticate each other behind the gateway?
+academy:
+- S8
+- S9
+sightings:
+- company: cognizant
+  role: Senior Software Engineer (report page tagged 0-2 years)
+  round: Technical round
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.naukri.com/code360/interview-experiences/cognizant/cognizant-interview-experience-by-koushal-goyal-jul-2024-exp-0-2-years
+- company: cognizant
+  role: Java Developer (weekend drive)
+  round: Technical round
+  seen_on: 2025-12
+  confidence: claimed
+  source: https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm

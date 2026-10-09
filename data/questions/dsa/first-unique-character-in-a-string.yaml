@@ -1,0 +1,20 @@
+slug: first-unique-character-in-a-string
+title: First Unique Character in a String
+type: DSA
+difficulty: easy
+tags:
+- hashmap
+- string
+leetcode: first-unique-character-in-a-string
+prompt: |
+  Find the first non-repeating character in a given string.
+follow_ups:
+- Do it with a Java stream and LinkedHashMap.
+academy: []
+sightings:
+- company: cognizant
+  role: Front-end / React developer (walk-in drive)
+  round: Technical round (coding)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://static.glassdoor.at/Interview/Cognizant-Interview-E8014-RVW97532089.htm

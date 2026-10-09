@@ -24,3 +24,9 @@ sightings:
   seen_on: 2026-08
   confidence: claimed
   source: https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: Technical round
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/

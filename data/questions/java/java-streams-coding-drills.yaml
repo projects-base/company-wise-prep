@@ -1,0 +1,32 @@
+slug: java-streams-coding-drills
+title: Java 8 stream coding drills
+type: JAVA
+difficulty: medium
+tags:
+- java8
+- streams
+- collectors
+- coding
+leetcode: null
+prompt: |
+  Solve small data tasks with the Stream API: filter even numbers from a list, group and count with Collectors.groupingBy, find duplicates, sort a list of employees by a field, max salary per department.
+follow_ups:
+- Character frequency of a string with groupingBy(counting()).
+- First non-repeated character with a LinkedHashMap collector.
+- Second highest number with sorted/skip/findFirst.
+academy:
+- H1
+- A7
+sightings:
+- company: cognizant
+  role: Java Developer
+  round: Technical round (stream problem)
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW84676360.htm
+- company: cognizant
+  role: Software Developer
+  round: Technical round
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm

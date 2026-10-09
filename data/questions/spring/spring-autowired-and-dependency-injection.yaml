@@ -1,0 +1,24 @@
+slug: spring-autowired-and-dependency-injection
+title: '@Autowired and dependency injection in Spring Boot'
+type: SPRING
+difficulty: easy
+tags:
+- spring
+- di
+- ioc
+leetcode: null
+prompt: |
+  How does @Autowired work? Constructor vs field vs setter injection; what happens with two beans of the same type.
+follow_ups:
+- '@Qualifier vs @Primary.'
+- Bean scopes and lifecycle.
+academy:
+- D2
+- L4
+sightings:
+- company: cognizant
+  role: Java Developer
+  round: Technical round
+  seen_on: 2021-12
+  confidence: claimed
+  source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm

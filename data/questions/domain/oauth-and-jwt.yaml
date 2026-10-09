@@ -23,3 +23,9 @@ sightings:
   seen_on: 2026-08
   confidence: claimed
   source: https://www.glassdoor.co.in/Interview/T-Mobile-Full-Stack-Developer-Interview-Questions-EI_IE9302.0,8_KO9,29.htm
+- company: cognizant
+  role: Java Developer
+  round: Technical round
+  seen_on: 2021-12
+  confidence: claimed
+  source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm

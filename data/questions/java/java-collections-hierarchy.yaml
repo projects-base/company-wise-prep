@@ -1,0 +1,27 @@
+slug: java-collections-hierarchy
+title: 'Collection hierarchy: Array vs List, List vs Set, Set vs Map'
+type: JAVA
+difficulty: easy
+tags:
+- collections
+- java
+leetcode: null
+prompt: |
+  Explain the Collection hierarchy. Differences between Array and List, List and Set, Set and Map.
+follow_ups:
+- ArrayList vs LinkedList.
+- When would you pick TreeMap or LinkedHashMap?
+academy: []
+sightings:
+- company: cognizant
+  role: Java Spring Boot Full Stack Developer
+  round: Technical round
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+- company: cognizant
+  role: Java Developer
+  round: Technical round
+  seen_on: 2021-12
+  confidence: claimed
+  source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm

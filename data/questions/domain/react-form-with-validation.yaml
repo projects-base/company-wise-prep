@@ -1,0 +1,22 @@
+slug: react-form-with-validation
+title: Build a React form with validation
+type: DOMAIN
+difficulty: medium
+tags:
+- react
+- forms
+- coding
+leetcode: null
+prompt: |
+  Build a controlled React form with field validation and error messages, blocking submit while invalid.
+follow_ups:
+- Fetch data from an API and render it in a table with loading and error states.
+- Debounce a search input.
+academy: []
+sightings:
+- company: cognizant
+  role: React Developer
+  round: Technical interview (coding)
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://fr.glassdoor.ca/Entretien/Cognizant-Entretien-E8014-RVW75924550.htm
