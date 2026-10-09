@@ -8,7 +8,7 @@ domain_notes: >-
   added after the drive from what Akhil was actually asked.
 
 roles:
-  - role: Java MSB (Java + Microservices + Spring Boot), or Java MSB + React (Full Stack)
+  - role: Java MSB + React, Full Stack (Java + Microservices + Spring Boot + React)
     level: 6+ years (invite eligibility criteria)
     loop:
       - round: In-person hiring drive (Sat 10 Oct 2026, 9:30 AM - 1 PM, Hyderabad Kokapet or Chennai)
@@ -19,7 +19,8 @@ roles:
           years). The invite says the whole process takes at least 3-4 hours; it does not list the
           rounds. Documents asked for: latest resume, original government ID, latest
           compensation/increment letter.
-        focus_areas: [Java, Microservices, Spring Boot, React (Full Stack track only)]
+          Akhil is interviewing for the Full Stack (Java MSB + React) group.
+        focus_areas: [Java, Microservices, Spring Boot, React]
         confidence: verified
         source: interview invite relayed by Akhil, 2026-10-09
         seen_on: 2026-10
