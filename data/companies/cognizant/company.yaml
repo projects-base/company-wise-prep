@@ -1,0 +1,30 @@
+slug: cognizant
+name: Cognizant (CTS)
+aliases: [Cognizant, CTS, Cognizant Technology Solutions]
+researched_on: 2026-10-09
+domain_notes: >-
+  IT services company. Akhil was invited to an in-person weekend hiring drive for experienced Java
+  engineers. Not researched online yet: this entry holds only what the invite says. Questions are
+  added after the drive from what Akhil was actually asked.
+
+roles:
+  - role: Java MSB (Java + Microservices + Spring Boot), or Java MSB + React (Full Stack)
+    level: 6+ years (invite eligibility criteria)
+    loop:
+      - round: In-person hiring drive (Sat 10 Oct 2026, 9:30 AM - 1 PM, Hyderabad Kokapet or Chennai)
+        type: JAVA
+        duration_min: 210
+        assesses: >-
+          Skill groups on the invite: "Java MSB" (6+ years) and "Java MSB + React (FullStack)" (6+
+          years). The invite says the whole process takes at least 3-4 hours; it does not list the
+          rounds. Documents asked for: latest resume, original government ID, latest
+          compensation/increment letter.
+        focus_areas: [Java, Microservices, Spring Boot, React (Full Stack track only)]
+        confidence: verified
+        source: interview invite relayed by Akhil, 2026-10-09
+        seen_on: 2026-10
+    bar: >-
+      Not known yet. Fill in after the drive.
+
+sources:
+  - interview invite relayed by Akhil, 2026-10-09
