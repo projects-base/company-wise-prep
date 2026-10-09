@@ -36,22 +36,29 @@ roles:
   - role: Software Development Engineer II (Entain India, Hyderabad)
     level: SDE II
     loop:
-      - round: Technical round 1 (18 Sep 2026, Microsoft Teams, ~1 h)
+      - round: Round 1, coding assessment
+        type: DSA
+        assesses: >-
+          Coding assessment. Akhil passed this round; the date and platform were not recorded.
+        confidence: verified
+        source: Akhil, 2026-10-09
+        seen_on: 2026-09
+      - round: Round 2, technical (18 Sep 2026, Microsoft Teams, ~1 h)
         type: JAVA
         duration_min: 60
         assesses: >-
-          Invite topics: Java Concepts, Coding Concepts, Problem Solving. Akhil passed this round.
+          Java, Spring Boot and a coding problem (invite topics: Java Concepts, Coding Concepts,
+          Problem Solving). Akhil passed this round.
         confidence: verified
-        source: interview invite relayed by Akhil, 2026-09
+        source: interview invite relayed by Akhil, 2026-09; round numbering confirmed by Akhil, 2026-10-09
         seen_on: 2026-09
-      - round: Technical round 2 (13 Oct 2026, 3:00 PM IST, Microsoft Teams)
+      - round: Round 3, technical (13 Oct 2026, 3:00 PM IST, Microsoft Teams)
         type: HLD
         duration_min: 60
         assesses: >-
           HR-named focus areas: System Design; Database performance and scalability; SQL. The invite
-          lists the Entain India tech recruiter (Boddu V V Rama Pavan Vamsi Krishna Kumar), who is
-          most likely the organiser, not the technical interviewer. The duration is assumed from
-          round 1.
+          lists an Entain India tech recruiter, who is most likely the organiser, not the technical
+          interviewer. The duration is assumed from round 2.
         focus_areas: [System Design, Database performance and scalability, SQL]
         confidence: verified
         source: HR email relayed by Akhil, 2026-10-08
@@ -102,7 +109,7 @@ roles:
     bar: >-
       Postings describe SDE II as someone who designs and delivers "well-defined, moderately complex
       features" end to end, debugs across environments, is the initial on-call responder, drives the
-      RFC process and mentors juniors. With round 2 focused on system design and databases, the bar is
+      RFC process and mentors juniors. With round 3 focused on system design and databases, the bar is
       probably a clear, practical design with a sound data model, query and index choices you can
       justify, and a concrete plan for scaling reads and writes. This is an inference from the
       postings and the HR email, not something Entain states.
@@ -288,11 +295,12 @@ official:
     - >-
       The postings never name system design or database performance as an interview topic, but
       every one lists SQL, and the backend SDE II/III postings add indexing and migrations. The HR
-      email for round 2 makes databases the centre of the round.
+      email for round 3 makes databases the centre of the round.
     - >-
       Reported loops (Glassdoor) are HackerRank plus two technical rounds, then techno-managerial and
-      HR. Akhil's actual process so far is a Java/coding round, then a system design + database +
-      SQL round. No HackerRank OA was mentioned.
+      HR. Akhil's actual process matches it: a coding assessment, a Java/Spring Boot/coding round, then
+      a system design + database + SQL round (round 3). If it keeps following the reports, a
+      techno-managerial round and an HR round come next.
 
 tech_stack:                # India SDE postings + AWS / Redpanda case studies; researched 2026-10-08
   # --- frameworks & languages ---
@@ -304,12 +312,12 @@ tech_stack:                # India SDE postings + AWS / Redpanda case studies; r
   - name: SQL
     category: language
     importance: core
-    evidence: "10/10 postings ('object-oriented design, algorithms, data structures, and SQL'); backend SDE II/III add 'SQL, indexing, migrations'; HR named SQL as a round-2 focus"
+    evidence: "10/10 postings ('object-oriented design, algorithms, data structures, and SQL'); backend SDE II/III add 'SQL, indexing, migrations'; HR named SQL as a round-3 focus"
     sources: [https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii, https://builtin.com/job/p-t-software-development-engineer-ii-java-india/6334894, "HR email relayed by Akhil, 2026-10-08"]
   - name: PostgreSQL on Amazon Aurora
     category: datastore
     importance: core
-    evidence: "AWS case study: databases moved to Aurora PostgreSQL; 'open source database technology such as PostgreSQL is a key piece of our modernization journey'. Postings ask for 'database management'; HR named database performance and scalability for round 2"
+    evidence: "AWS case study: databases moved to Aurora PostgreSQL; 'open source database technology such as PostgreSQL is a key piece of our modernization journey'. Postings ask for 'database management'; HR named database performance and scalability for round 3"
     sources: [https://aws.amazon.com/solutions/case-studies/entain-case-study/, https://jobs.smartrecruiters.com/Entain/744000154123539-software-development-engineer-iii]
   - name: Docker
     category: infra
@@ -430,7 +438,7 @@ tech_stack:                # India SDE postings + AWS / Redpanda case studies; r
   - name: Database scaling for reads and writes (indexing, replicas, partitioning)
     category: architecture-pattern
     importance: core
-    evidence: "HR named 'Database performance and scalability' for round 2; backend postings ask for 'SQL, indexing, migrations'; Aurora PostgreSQL is the target database"
+    evidence: "HR named 'Database performance and scalability' for round 3; backend postings ask for 'SQL, indexing, migrations'; Aurora PostgreSQL is the target database"
     sources: ["HR email relayed by Akhil, 2026-10-08", https://builtin.com/job/p-t-software-development-engineer-ii-java-india/6334894, https://aws.amazon.com/solutions/case-studies/entain-case-study/]
   - name: Object-oriented design and design patterns
     category: design-pattern
@@ -496,11 +504,11 @@ tech_stack:                # India SDE postings + AWS / Redpanda case studies; r
 frameworks_to_prepare:     # vs data/profile.yaml; weighted to the 13 Oct round (system design, DB performance + scalability, SQL)
   revise:
     - name: SQL query writing (joins, aggregation, window functions, interview patterns)
-      why: "Core in 10/10 postings and a named round-2 focus; profile: sql working"
+      why: "Core in 10/10 postings and a named round-3 focus; profile: sql working"
       academy: [Q1, Q2, Q3, Q4]
       plan: "Write one top-N-per-group, one running-total and one gaps-and-islands query on a bets/wallet schema, out loud, without an IDE."
     - name: PostgreSQL indexes and EXPLAIN
-      why: "Round-2 focus (database performance); backend postings ask for 'SQL, indexing'; Entain runs Aurora PostgreSQL; profile: postgresql working"
+      why: "Round-3 focus (database performance); backend postings ask for 'SQL, indexing'; Entain runs Aurora PostgreSQL; profile: postgresql working"
       academy: [Q5]
       plan: "Explain B-tree vs composite vs partial vs covering index on a bets table, and read one EXPLAIN ANALYZE before and after adding the index."
     - name: Transactions, isolation, row locking and MVCC
@@ -512,7 +520,7 @@ frameworks_to_prepare:     # vs data/profile.yaml; weighted to the 13 Oct round 
       academy: [Q7, D6, L7]
       plan: "Have a 2-minute story for an N+1 or pool-exhaustion fix, and explain keyset vs offset pagination for bet history."
     - name: System design method and distributed architectures
-      why: "Round-2 focus; 8/10 postings ask for distributed architectures; profile: system-design and distributed-systems working"
+      why: "Round-3 focus; 8/10 postings ask for distributed architectures; profile: system-design and distributed-systems working"
       academy: [F1, F3, F2, F8]
       plan: "Do F8 (sports betting platform) end to end in 45 min with requirements, estimates, data model and scaling."
     - name: Microservices patterns (service boundaries, retries, circuit breaker, API gateway)
@@ -520,7 +528,7 @@ frameworks_to_prepare:     # vs data/profile.yaml; weighted to the 13 Oct round 
       academy: [S8]
       plan: "Name the bet, wallet, odds and settlement services and say what happens when wallet is down (timeouts, retries, circuit breaker, idempotency key)."
     - name: Java and Spring Boot internals
-      why: "Core language (9/10); round 1 was Java; profile: java and spring-boot strong"
+      why: "Core language (9/10); round 2 was Java and Spring Boot; profile: java and spring-boot strong"
       academy: [A7, D4, D8]
       plan: "Light touch only: Java 17/21 features and how Actuator metrics expose a slow endpoint."
     - name: Object-oriented design and design patterns

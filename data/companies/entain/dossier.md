@@ -1,11 +1,11 @@
 # Entain India — interview dossier
 
-Target: Software Development Engineer II, Entain India (Hyderabad). Round 2 is on **Tuesday
+Target: Software Development Engineer II, Entain India (Hyderabad). Round 3 is on **Tuesday
 13 October 2026, 3:00 PM IST, on Microsoft Teams**. Candidate: about 7 years of Java/Spring Boot
 backend. Researched 2026-10-08.
 
 **Confidence.** Two things are `verified` because Akhil saw them himself: the HR email of
-2026-10-08, which names the round's focus areas, and the 18 Sep round-1 invite topics. Everything
+2026-10-08, which names the round's focus areas, and the 18 Sep round-2 invite topics. Everything
 else is `claimed`.
 
 **Source quality.** Thin. Entain's careers sites have no hiring-process or interview-tips page
@@ -22,8 +22,8 @@ topic areas more than on reported questions.
 - **The round:** one technical conversation on **System Design + Database performance and
   scalability + SQL** (HR email, verified). Expect a design problem with a real data model, then
   database deep dives (indexes, EXPLAIN, transactions and locking, read and write scaling), and
-  one or more SQL queries you write live. The invite names the recruiter, Boddu V V Rama Pavan
-  Vamsi Krishna Kumar, who most likely only organises the call. An engineer will probably run the
+  one or more SQL queries you write live. The invite names a recruiter, who most likely only
+  organises the call. An engineer will probably run the
   technical hour.
 - **Over-prepare the database half.** Every one of the 10 India postings lists SQL. The backend
   SDE II/III postings add "SQL, indexing, migrations". SQL also turns up in Entain India reports
@@ -49,8 +49,9 @@ topic areas more than on reported questions.
 
 | # | Round | Date | Topics |
 |---|---|---|---|
-| 1 | Technical (Teams, ~1 h) | 18 Sep 2026 | Java Concepts · Coding Concepts · Problem Solving. **Passed.** |
-| 2 | Technical (Teams) | **13 Oct 2026, 3:00 PM IST** | **System Design · Database performance and scalability · SQL** (HR email, 2026-10-08) |
+| 1 | Coding assessment | Sep 2026 | Coding. **Passed.** |
+| 2 | Technical (Teams, ~1 h) | 18 Sep 2026 | Java · Spring Boot · coding (invite: Java Concepts, Coding Concepts, Problem Solving). **Passed.** |
+| 3 | Technical (Teams) | **13 Oct 2026, 3:00 PM IST** | **System Design · Database performance and scalability · SQL** (HR email, 2026-10-08) |
 
 **What Entain says:** nothing role-specific. The careers sites have no "how we hire" page for
 tech roles ([sitemap](https://careers.entainindia.com/sitemap/)). Postings invite requests for
@@ -77,9 +78,11 @@ think, adapt and **design for scale**
   ([Senior SE page](https://www.glassdoor.com/Interview/Entain-India-Senior-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,37.htm)).
 
 **How this compares with Akhil's process:** the reports put coding first and design in a later
-round. Akhil's split, Java/coding first and then a dedicated design + database + SQL round,
-matches that shape. No report shows a round devoted to databases the way Akhil's round 2 is, so
-treat the HR email as the only authority on content.
+round. Akhil's process, a coding assessment, a Java/Spring Boot/coding round and then a dedicated
+design + database + SQL round, matches that shape, so a techno-managerial round and an HR round
+probably follow. No report shows a round devoted to databases the way Akhil's round 3 is, so treat
+the HR email as the only authority on content. Java and Spring Boot were already tested in round 2:
+expect them now only inside design answers (transactions, connection pools, JPA query behaviour).
 
 ## 3. The bar
 
@@ -323,8 +326,8 @@ F2, S9, F6, F8, where F8 is "design a sports betting platform").
 
 All accessed 2026-10-08.
 
-- HR email, 2026-10-08, relayed by Akhil: round-2 focus areas (verified).
-- Round-1 invite, Sep 2026, relayed by Akhil: Java Concepts, Coding Concepts, Problem Solving
+- HR email, 2026-10-08, relayed by Akhil: round-3 focus areas (verified).
+- Round-2 invite, Sep 2026, relayed by Akhil: Java Concepts, Coding Concepts, Problem Solving
   (verified).
 - Insider tip from a current Entain/Ivy India employee, relayed by Akhil 2026-09-16 (claimed).
 - Entain India careers: [home](https://careers.entainindia.com/),
