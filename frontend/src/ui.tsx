@@ -172,6 +172,9 @@ function appRoute(href?: string): string | null {
   if (/^[a-z]+:/i.test(href)) return null
   const question = href.match(/(?:^|\/)questions\/[^/]+\/([^/#?]+)\.yaml$/)
   if (question) return `#/q/${question[1]}`
+  // Answers link to each other by file name (data/answers/<slug>.md).
+  const answer = href.match(/^(?:\.\/|(?:\.\.\/)*answers\/)?([a-z0-9-]+)\.md$/)
+  if (answer) return `#/q/${answer[1]}`
   const lesson = href.match(/(?:^|\/)academy\/lessons\/([^/#?]+)\.md(#.*)?$/)
   if (lesson) return `#/academy/${lesson[1]}`
   const company = href.match(/(?:^|\/)companies\/([^/#?]+)\/(?:dossier\.md|company\.yaml)$/)

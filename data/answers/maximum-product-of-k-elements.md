@@ -47,9 +47,9 @@ class Solution {
 
 - All negative, k odd (`[−4, −3, −2, −1]`, k = 3): −6, from the three values closest to zero.
 - All negative, k even: the most negative pairs give the largest positive product.
-- Zeros: a zero pair (product 0) beats a negative pair product only when nothing positive is available; the comparison handles it.
+- Zeros: they take part in the pair comparison like any value (`[0, −1, 2, −3]`, k = 2 → 3, not 0).
 - k = n: the product of everything.
-- Overflow: |value| ≤ 10 and k ≤ 18 keep it in `long`. Without such bounds, compare with `Math.multiplyHigh` or `BigInteger`, or compare sums of logarithms for signs-separated magnitudes.
+- Overflow: |value| ≤ 10 and k ≤ 18 keep it under 10¹⁸, inside `long`. Without such bounds, use `BigInteger` or `Math.multiplyExact` to detect overflow.
 
 ## Follow-up: no extra space after sorting
 
