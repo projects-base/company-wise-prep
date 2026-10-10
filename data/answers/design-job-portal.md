@@ -1,5 +1,83 @@
 **Short answer:** Core entities are `Recruiter`, `Job`, `Candidate` (with a `Profile` of skills and years of experience) and `Application`. An eligibility rule decides whether a candidate can apply to a job, and a pluggable `MatchScorer` gives a score for a (candidate, job) pair. "Top candidates for a job" scores the job's applicants and keeps the top K with a min-heap; "top eligible jobs for a candidate" filters open jobs by eligibility, scores them, and does the same. Repositories are in-memory maps so the code runs as-is.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class JobPortalService {
+        -Map~String,Job~ jobs
+        -Map~String,Candidate~ candidates
+        -Map~String,Set~ applicantsByJob
+        +postJob(Job job)
+        +apply(String candidateId, String jobId)
+        +topCandidates(String jobId, int k) List~Candidate~
+        +topJobs(String candidateId, int k) List~Job~
+    }
+    class EligibilityRule {
+        <<interface>>
+        +isEligible(Candidate c, Job j) boolean
+        +and(EligibilityRule other) EligibilityRule
+    }
+    class MatchScorer {
+        <<interface>>
+        +score(Candidate c, Job j) double
+    }
+    class SkillAndExperienceScorer
+    class Job {
+        <<record>>
+        +Set~Skill~ required
+        +int minYoe
+        +int maxYoe
+        +boolean open
+    }
+    class Candidate {
+        <<record>>
+        +Set~Skill~ skills
+        +int yoe
+    }
+    class Skill {
+        <<record>>
+        +String name
+    }
+    class Application {
+        <<record>>
+        +String candidateId
+        +String jobId
+    }
+    JobPortalService --> EligibilityRule
+    JobPortalService --> MatchScorer
+    MatchScorer <|.. SkillAndExperienceScorer
+    JobPortalService o-- "*" Job
+    JobPortalService o-- "*" Candidate
+    Job --> "*" Skill
+    Candidate --> "*" Skill
+    Application ..> Job
+    Application ..> Candidate
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Caller
+    participant P as JobPortalService
+    participant E as EligibilityRule
+    participant M as MatchScorer
+    C->>P: topJobs(candidateId, k)
+    P->>P: stream open jobs
+    P->>E: isEligible(candidate, job) for each
+    E-->>P: keep eligible jobs
+    P->>M: score(candidate, job)
+    M-->>P: score
+    P->>P: push into min-heap, poll when size > k
+    P-->>C: top k jobs, best first
+```
+
+**How to read it:**
+- The data types (`Job`, `Candidate`, `Skill`, `Application`) are plain records. `JobPortalService` holds them in in-memory maps.
+- Two strategies sit behind interfaces: `EligibilityRule` (composable with `and`) decides who may apply, and `MatchScorer` ranks pairs.
+- `topJobs` filters open jobs by eligibility, scores each one, and keeps a min-heap of size k, so the lowest-scored job drops out as it goes.
+- `topCandidates` is the same flow over a job's applicants. Changing the ranking rule means a new `MatchScorer`, not an edit to the service.
+
 ## Requirements
 
 - Recruiters post jobs: title, required skills, min and max YOE, status open or closed.

@@ -1,5 +1,96 @@
 **Short answer:** Other services call one API: `send(NotificationRequest)` with a template id, target users and data. The module resolves the users' channel preferences, renders the template per channel, and hands each delivery to a channel sender (email, SMS, push, in-app) behind one `ChannelSender` interface. Sending is asynchronous through a queue with retries, idempotency keys and per-user rate limits. Observer is not the core here: callers know exactly when to notify, so what matters is a clean request contract, preferences, templates, and reliable delivery.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class NotificationRequest {
+        <<record>>
+        String idempotencyKey
+        String category
+        String templateId
+        Target target
+        Priority priority
+    }
+    class Target {
+        <<interface>>
+    }
+    class UserTarget
+    class SegmentTarget
+    class DeliveryJob {
+        <<record>>
+        String deliveryId
+        String userId
+        Channel channel
+        int attempt
+    }
+    class NotificationService {
+        +send(NotificationRequest req)
+    }
+    class DeliveryWorker {
+        -Map~Channel, ChannelSender~ senders
+        +handle(DeliveryJob job)
+    }
+    class ChannelSender {
+        <<interface>>
+        +channel() Channel
+        +send(Contact to, Rendered message)
+    }
+    class EmailSender
+    class SmsSender
+    class PushSender
+    class InAppSender
+    class RetryPolicy {
+        <<interface>>
+    }
+    Target <|.. UserTarget
+    Target <|.. SegmentTarget
+    NotificationRequest --> Target
+    NotificationService --> TargetResolver
+    NotificationService --> PreferenceService
+    NotificationService ..> DeliveryJob : enqueues
+    DeliveryWorker ..> DeliveryJob : handles
+    DeliveryWorker --> TemplateEngine
+    DeliveryWorker --> ChannelSender
+    DeliveryWorker --> RetryPolicy
+    DeliveryWorker --> DeliveryRepository
+    ChannelSender <|.. EmailSender
+    ChannelSender <|.. SmsSender
+    ChannelSender <|.. PushSender
+    ChannelSender <|.. InAppSender
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Caller as Calling service
+    participant NS as NotificationService
+    participant Q as JobQueue
+    participant W as DeliveryWorker
+    participant CS as ChannelSender
+    participant R as DeliveryRepository
+    Caller->>NS: send(request)
+    NS->>R: markRequestSeen(idempotencyKey)
+    NS->>NS: resolve users, allowed channels per user
+    NS->>R: savePending(job) per user and channel
+    NS->>Q: enqueue(job, priority)
+    NS-->>Caller: returns at once
+    Q->>W: handle(job)
+    W->>R: isSent(deliveryId)? no
+    W->>W: rate limit ok, render template
+    W->>CS: send(contact, rendered)
+    CS-->>W: ok
+    W->>R: markSent(deliveryId)
+    Note over W,Q: ProviderException: re-enqueue with backoff, or markFailed after max attempts
+```
+
+**How to read it:**
+- Callers make one call, `send(request)`; it returns as soon as jobs are queued, so a slow provider never blocks them.
+- `NotificationService` fans out: one `DeliveryJob` per user and allowed channel, saved as PENDING and then queued.
+- `DeliveryWorker` does the real work: dedupe by `deliveryId`, rate limit, render, then call the right `ChannelSender`.
+- New channels are new `ChannelSender` classes; the worker picks one from its registry map by `Channel`.
+- Failures go back on the queue with a delay from `RetryPolicy`, and end as FAILED (then the dead-letter queue) when retries run out.
+
 ## Requirements
 
 - Functional: any internal service can notify one user, a list of users, or a segment; channels email, SMS, push, in-app; templates with variables; user preferences (opt-out per channel and per category); priority (OTP is urgent, marketing is not); delivery status.

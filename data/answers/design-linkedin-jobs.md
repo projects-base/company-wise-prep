@@ -1,5 +1,81 @@
 **Short answer:** Split it into three paths. Job posting is a normal transactional write (Postgres) that publishes a `JobPosted` event. Recommendations are a two-stage pipeline: cheap candidate retrieval (search index filters plus embedding similarity) followed by a ranking model, with results precomputed offline for most users and refreshed online. Notifications are an async fan-out consumer that matches new jobs to saved searches and recommended members, then rate-limits and batches before sending email, push or in-app alerts.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    rec["Recruiter"]
+    mem["Member"]
+  end
+  subgraph edge["Edge"]
+    gw["API GW"]
+  end
+  subgraph services["Services"]
+    jobs["Job Service"]
+    search["Search Service"]
+    recsvc["Rec Service<br/>(online re-rank)"]
+    matcher["Alert Matcher"]
+    notif["Notification Service<br/>(dedupe, rate limit, digest)"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka job-events"]]
+    indexer["Indexer"]
+    offline["Offline training +<br/>batch scoring (daily)"]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres + outbox")]
+    es[("Search index")]
+    recstore[("Rec store<br/>(precomputed)")]
+  end
+  rec --> jobs --> pg -->|"outbox"| kafka
+  kafka --> indexer --> es
+  kafka --> matcher --> notif
+  kafka --> offline --> recstore
+  mem --> gw
+  gw --> search --> es
+  gw --> recsvc --> recstore
+  notif -->|"email / push / in-app"| mem
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant R as Recruiter
+  participant J as Job Service
+  participant DB as Postgres
+  participant K as Kafka
+  participant I as Indexer
+  participant AM as Alert Matcher
+  participant N as Notification Service
+  participant M as Member
+  R->>J: POST /jobs
+  J->>DB: INSERT job + outbox row (one tx)
+  J-->>R: jobId
+  DB->>K: relay publishes JobPosted
+  K->>I: JobPosted
+  I->>I: upsert search document
+  K->>AM: JobPosted
+  AM->>AM: run job against indexed alerts (percolate)
+  AM->>N: (member_id, job_id, reason)
+  N->>N: dedupe, per-member cap, quiet hours, digest
+  N->>M: alert (idempotency key member:job:channel)
+```
+
+```mermaid
+flowchart LR
+  all["20M open jobs"] --> cand["1. Candidates (thousands)<br/>hard filters + skill match + ANN embeddings"]
+  cand --> rank["2. Ranking (hundreds)<br/>model predicts P(apply)"]
+  rank --> rerank["3. Re-rank<br/>diversity, freshness, drop dismissed"]
+  rerank --> list["Jobs for you"]
+```
+
+**How to read it:**
+- Steps 1–3: posting is a plain transactional write; the job and an outbox row commit together.
+- Steps 4–6: a relay publishes `JobPosted` to Kafka and the indexer makes the job searchable within about a minute.
+- Steps 7–11: the Alert Matcher runs the new job against saved searches (the reverse of search), and the Notification Service dedupes, rate-limits and batches before anything reaches the member.
+- The last picture is the recommendation funnel: cheap retrieval narrows 20M jobs to thousands, a model ranks them, business rules re-rank. Most members read the precomputed list from the Rec store.
+
 ## Requirements
 
 Functional:
@@ -41,18 +117,7 @@ POST /jobs/{id}/events             {type: VIEW|SAVE|APPLY|DISMISS}
 
 ## Architecture
 
-```text
-Recruiter ─> Job Service ─> Postgres ──(outbox)──> Kafka "job-events"
-                                                    │        │            │
-                                     Indexer ───────┘        │            │
-                                        v                    v            v
-Member ─> API GW ─> Search Service ─> Search index   Alert Matcher   Rec features
-             │                                          │                │
-             └──> Rec Service ─> Rec store (precomputed)│                v
-                       │  (online re-rank)              v          Offline training +
-                       └────────────────────> Notification Service   batch scoring (daily)
-                                               (dedupe, rate limit, digest) -> email/push/in-app
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

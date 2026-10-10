@@ -1,5 +1,22 @@
 **Short answer:** Keep the window split into two balanced halves: `low` (the smaller half, holding the extra element when k is odd) and `high`. The median is `low`'s largest, or the average of `low`'s largest and `high`'s smallest. To support removing the element that leaves the window in O(log k), use two `TreeSet`s of **indices** ordered by (value, index), so duplicates stay distinct. Total O(n log k).
 
+## Picture it
+
+The first six values of example 1: `nums = [1,3,-1,-3,5,3]`, `k = 3`. Sets are shown by value (they really hold indices).
+
+| i | nums[i] | remove leaving | add to low, move low max to high | rebalance | low / high after | median |
+|---|---|---|---|---|---|---|
+| 0 | 1 | - | low {}, high {1} | move 1 back | {1} / {} | - |
+| 1 | 3 | - | low {1}, high {3} | none | {1} / {3} | - |
+| 2 | -1 | - | low {-1}, high {1,3} | move 1 back | {-1,1} / {3} | 1 |
+| 3 | -3 | 1 (from low) | low {-3}, high {-1,3} | move -1 back | {-3,-1} / {3} | -1 |
+| 4 | 5 | 3 (from high) | low {-3,-1}, high {5} | none | {-3,-1} / {5} | -1 |
+| 5 | 3 | -1 (from low) | low {-3}, high {3,5} | move 3 back | {-3,3} / {5} | 3 |
+
+k is odd, so the median is always `low`'s largest: `1, -1, -1, 3`, matching the expected output.
+
+**The picture in one sentence:** two ordered halves where `low` holds ⌈k/2⌉ elements put the median at `low.last()`, and `TreeSet`s of indices make removing the leaving element O(log k).
+
 ## Approach
 
 - **Brute force:** sort every window: O(n · k log k). Insertion into a sorted list is O(n·k), still too slow.

@@ -1,5 +1,84 @@
 **Short answer:** Each side is a sorted map of price levels: bids sorted high to low, asks low to high. Each level is a FIFO doubly linked list of orders plus a running total, and a hash map from order id to its node gives O(1) cancel and modify. Matching takes the best opposite level, fills oldest first (price-time priority), and rests any remainder. For real low latency I would replace the tree with an array indexed by price tick and run the book on a single thread, so no locks.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Side {
+        <<enumeration>>
+        BUY
+        SELL
+    }
+    class Order {
+        long id
+        Side side
+        long price
+        long remaining
+        Order prev
+        Order next
+        PriceLevel level
+    }
+    class PriceLevel {
+        long price
+        Order head
+        Order tail
+        long totalQty
+        +append(Order o)
+        +remove(Order o)
+        +isEmpty() boolean
+    }
+    class OrderBook {
+        -TreeMap~Long, PriceLevel~ bids
+        -TreeMap~Long, PriceLevel~ asks
+        -Map~Long, Order~ orders
+        +add(long id, Side side, long price, long qty)
+        +cancel(long id) boolean
+        +reduce(long id, long newQty) boolean
+    }
+    class Trade {
+        <<record>>
+        long buyId
+        long sellId
+        long price
+        long qty
+    }
+    class BookListener {
+        <<interface>>
+        +onTrade(Trade t)
+        +onLevelChanged(PriceLevel l)
+    }
+    OrderBook "1" *-- "many" PriceLevel : bids high-to-low, asks low-to-high
+    PriceLevel "1" o-- "many" Order : FIFO linked list
+    OrderBook --> Order : id index
+    Order --> Side
+    OrderBook ..> Trade : emits
+    OrderBook --> BookListener : notifies
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant E as Engine thread
+    participant OB as OrderBook
+    participant A as Best ask level
+    participant BL as Listeners
+    E->>OB: add(id=9, BUY, price=101, qty=30)
+    OB->>A: asks.firstEntry() at 100
+    Note over OB,A: 101 >= 100, so the order crosses
+    A-->>OB: head order (oldest), remaining 20
+    OB->>BL: Trade(9, head, 100, 20)
+    OB->>A: remove(head), level empty so drop it
+    OB->>OB: next ask at 102 does not cross, stop
+    OB->>OB: rest 10 at bids level 101 and put in orders map
+```
+
+**How to read it:**
+- Each side is a `TreeMap` of `PriceLevel`s, so the best bid or ask is always the first entry.
+- Inside a level, orders form a doubly linked list in arrival order; the head is the oldest, which gives time priority.
+- The `orders` map points straight at each `Order` node, so cancel unlinks it in O(1) without a search.
+- An incoming order eats the opposite side's best level while prices cross, trading at the resting price, then rests any remainder on its own side.
+- Trades go out to listeners; the book never knows who consumes them.
+
 ## Requirements
 
 - Limit orders: `add(id, side, price, qty)`; market orders as an extension.

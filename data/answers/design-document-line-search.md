@@ -1,5 +1,61 @@
 **Short answer:** Build an **inverted index** once: normalised word → sorted list of line numbers that contain it. For the query "Delhi has good food", tokenise it the same way, look up each word's postings list, and intersect them, starting with the shortest list. The result is the lines that contain all the words. For a ranked "best match" mode, count how many query words each line has instead of requiring all. Deleting a line from results is a tombstone (a `BitSet` of deleted lines) that the search filters out, so the index is not rebuilt.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class SearchService {
+        +search(String query, MatchMode mode, int limit) List~String~
+        +deleteLine(int lineNo)
+    }
+    class Tokenizer {
+        +tokenize(String text) List~String~
+    }
+    class InvertedIndex {
+        -Map~String,int[]~ postings
+    }
+    class LineStore {
+        -List~String~ lines
+        -BitSet deleted
+    }
+    class MatchMode {
+        <<enumeration>>
+        ALL
+        ANY
+        PHRASE
+    }
+    SearchService --> Tokenizer
+    SearchService --> InvertedIndex
+    SearchService --> LineStore
+    SearchService ..> MatchMode
+    InvertedIndex ..> Tokenizer : built with
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant S as SearchService
+    participant T as Tokenizer
+    participant I as InvertedIndex
+    participant L as LineStore
+    U->>S: search("Delhi has good food", ALL)
+    S->>T: tokenize(query)
+    T-->>S: delhi, has, good, food
+    S->>I: postings for each word
+    I-->>S: sorted line-number lists
+    S->>S: sort lists by length, intersect smallest first
+    S->>L: skip lines set in deleted
+    L-->>S: line text
+    S-->>U: matching lines in line order
+```
+
+**How to read it:**
+- `SearchService` is a facade over three parts: the `Tokenizer`, the `InvertedIndex` (word to sorted line numbers) and the `LineStore` (lines plus a `deleted` bitset).
+- A query is tokenised exactly like the document was, so "Delhi," and "delhi" match.
+- Each word's postings list is fetched. They are intersected with two pointers, rarest word first, so the working set shrinks fast.
+- Deleted lines are filtered at the end through the bitset. The `## Code` below folds these parts into one `LineSearch` class.
+
 ## Requirements
 
 Clarify first, then state:

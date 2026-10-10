@@ -1,5 +1,24 @@
 **Short answer:** Backtrack one character at a time while tracking how many `(` and `)` are already placed. You may add `(` while `open < n`, and `)` only while `close < open`. Those two rules keep every prefix valid, so every complete string is balanced and no work is wasted on dead branches. The number of results is the n-th Catalan number.
 
+## Picture it
+
+The recursion tree for `n = 2`. Each node is the prefix built so far with `(open, close)`; only branches allowed by the two guards are drawn.
+
+```mermaid
+flowchart TD
+    r["empty (0,0)"] -->|"open < 2: add ("| a["( (1,0)"]
+    a -->|"add ("| b["(( (2,0)"]
+    a -->|"close < open: add )"| c["() (1,1)"]
+    b -->|"add )"| d["(() (2,1)"]
+    d -->|"add )"| e["(()) (2,2) = result 1"]
+    c -->|"add ("| f["()( (2,1)"]
+    f -->|"add )"| g["()() (2,2) = result 2"]
+```
+
+Pruned without ever being built: `)` at the root (close would exceed open), `(((` (open would exceed n) and `())` (close would exceed open). Every leaf is a valid answer, in the order `(())`, `()()`.
+
+**The picture in one sentence:** the two guards (`open < n`, `close < open`) keep every prefix valid, so the recursion tree only grows branches that end in an answer.
+
 ## Approach
 
 - **Brute force:** generate all `2^(2n)` strings of `(` and `)` and keep the balanced ones. For `n = 8` that is 65,536 strings, each checked in O(n). It works but does needless work.

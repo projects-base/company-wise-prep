@@ -1,5 +1,28 @@
 **Short answer:** This is a topological sort. Build a graph with an edge `b → a` for each prerequisite `[a, b]` and count each course's in-degree. Start with every course that has in-degree 0, repeatedly take one, append it to the order and decrement its dependants; any that reach 0 join the queue (Kahn's algorithm). If the order ends up shorter than `numCourses`, some courses never reached 0 because they are on or behind a cycle, so return an empty array. O(V + E).
 
+## Picture it
+
+Example 2: `numCourses = 4`, prerequisites `[[1,0],[2,0],[3,1],[3,2]]`. Edges point from prerequisite to dependant; the label shows the starting in-degree and the position in the output:
+
+```mermaid
+flowchart LR
+    c0["0 · in 0 · 1st"] --> c1["1 · in 1 · 2nd"]
+    c0 --> c2["2 · in 1 · 3rd"]
+    c1 --> c3["3 · in 2 · 4th"]
+    c2 --> c3
+```
+
+| Step | Queue | Poll | `order` | In-degree changes |
+|---|---|---|---|---|
+| 1 | [0] | 0 | [0] | 1: 1 → 0 (enqueue), 2: 1 → 0 (enqueue) |
+| 2 | [1, 2] | 1 | [0, 1] | 3: 2 → 1 |
+| 3 | [2] | 2 | [0, 1, 2] | 3: 1 → 0 (enqueue) |
+| 4 | [3] | 3 | [0, 1, 2, 3] | none |
+
+`k = 4 == numCourses`, so return `[0,1,2,3]`. With the cycle `[[1,0],[0,1]]` both in-degrees start at 1, the queue starts empty, and `k = 0` gives `[]`.
+
+**The picture in one sentence:** keep taking courses whose prerequisites are all done, and if some courses are never freed, a cycle is holding them.
+
 ## Approach
 
 **Brute force.** Repeatedly scan all courses for one whose prerequisites are all done. O(V · (V + E)).

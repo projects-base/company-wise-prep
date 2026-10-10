@@ -1,5 +1,80 @@
 **Short answer:** Model `Machine` with many `Sensor`s. Each sensor has a type and a `Threshold` rule. Readings flow into a `MonitoringService` that checks the sensor's rule. If the reading is out of range, the `AlertService` raises an `Alert`, at most one open alert per sensor, and notifies listeners. An alert is a small state machine: OPEN → ACKNOWLEDGED → RESOLVED, with IGNORED as another exit. The allowed transitions live in one place, the status enum, so an invalid move is rejected.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Machine {
+        +String id
+        +String name
+    }
+    class Sensor {
+        +String id
+        +SensorType type
+        +rule() ThresholdRule
+    }
+    class ThresholdRule {
+        <<interface>>
+        +violation(double value) Optional~String~
+    }
+    class RangeRule {
+        +double min
+        +double max
+    }
+    class Alert {
+        -AlertStatus status
+        -int occurrences
+        -List~StatusChange~ history
+        +recordRepeat(double value)
+        +moveTo(AlertStatus next, String user, Instant at)
+    }
+    class AlertStatus {
+        <<enumeration>>
+        OPEN
+        ACKNOWLEDGED
+        RESOLVED
+        IGNORED
+        +canMoveTo(AlertStatus next) boolean
+    }
+    class AlertService {
+        -ConcurrentMap~String, Alert~ openBySensor
+        +onReading(Reading r)
+        +transition(String alertId, AlertStatus next, String user)
+    }
+    class AlertListener {
+        <<interface>>
+        +onRaised(Alert a)
+        +onStatusChanged(Alert a, AlertStatus s)
+    }
+    Machine "1" *-- "*" Sensor
+    Sensor --> ThresholdRule
+    ThresholdRule <|.. RangeRule
+    Alert --> AlertStatus
+    Alert *-- "*" StatusChange
+    AlertService --> "*" Alert
+    AlertService --> "*" AlertListener
+    AlertService ..> Reading
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> OPEN : bad reading, no open alert
+    OPEN --> OPEN : more bad readings recordRepeat
+    OPEN --> ACKNOWLEDGED
+    OPEN --> RESOLVED
+    OPEN --> IGNORED
+    ACKNOWLEDGED --> RESOLVED
+    ACKNOWLEDGED --> IGNORED
+    RESOLVED --> [*]
+    IGNORED --> [*]
+```
+
+**How to read it:**
+- A `Machine` has many `Sensor`s, and each sensor carries a pluggable `ThresholdRule` (today a `RangeRule`).
+- `AlertService.onReading` asks the rule for a violation. If there is one, it either bumps the sensor's open alert or creates a new one, atomically per sensor.
+- The state diagram is the alert lifecycle that `AlertStatus.canMoveTo` enforces. RESOLVED and IGNORED are terminal.
+- When an alert closes, its slot in `openBySensor` is freed, so the next bad reading starts a fresh alert. Listeners hear about every raise and change.
+
 ## Requirements
 
 - Machines have sensors (temperature, pressure, and later others). Each sensor has min/max thresholds, configurable per sensor.

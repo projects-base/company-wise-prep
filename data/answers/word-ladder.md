@@ -1,5 +1,30 @@
 **Short answer:** Each word is a node, and two words are connected when they differ in one letter. The shortest chain is a BFS from `beginWord`. To find neighbours, change each position to each of the 26 letters and look the result up in a hash set. Remove words from the set as they are visited. That costs O(N · L · 26 · L) time, instead of comparing every pair of words.
 
+## Picture it
+
+Example 1: `hit → cog`, list `[hot, dot, dog, lot, log, cog]`. Edge labels show the depth at which the word is generated.
+
+```mermaid
+flowchart TD
+  hit["hit (depth 1)"] -->|"2"| hot["hot"]
+  hot -->|"3"| dot["dot"]
+  hot -->|"3"| lot["lot"]
+  dot -->|"4"| dog["dog"]
+  lot -->|"4"| log["log"]
+  dog -->|"5, return"| cog["cog"]
+```
+
+| depth | Polled | New words removed from the set and queued | Queue after level |
+|---|---|---|---|
+| 2 | hit | hot | [hot] |
+| 3 | hot | dot, lot | [dot, lot] |
+| 4 | dot, lot | dog (from dot), log (from lot) | [dog, log] |
+| 5 | dog | cog generated: it is `endWord` | return **5** |
+
+`log` would also reach `cog`, but `dog` is polled first and returns.
+
+**The picture in one sentence:** BFS by levels over one-letter variants, with removal from the set doubling as "visited", so the first time `endWord` appears is the shortest chain.
+
 ## Approach
 
 - **Brute force.** Build the graph by comparing every pair of words: O(N² · L). With 5·10⁴ words that is about 2.5·10⁹ pairs, too slow.

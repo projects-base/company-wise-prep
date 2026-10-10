@@ -1,5 +1,19 @@
 **Short answer:** Every move goes one column to the right, so a path visits exactly one cell in each column. That turns the problem into a column-by-column DP: `ways[c][r] = ways[c−1][r−1] + ways[c−1][r] + ways[c−1][r+1]`. A checkpoint `(r, c)` simply forces the path to use row `r` in column `c`, so after computing column `c` you zero every other row. Two different checkpoints in the same column make the answer 0. Keep one column at a time for O(n) space.
 
+## Picture it
+
+Example 2: `n = 3`, `m = 4`, checkpoint `[1,1]` (row 1, column 1). Start at row 2 of column 0, end at row 2 of column 3. Each cell is `dp` for that column after the checkpoint filter:
+
+| row \ column | c = 0 | c = 1 (raw → forced row 1) | c = 2 | c = 3 |
+|---|---|---|---|---|
+| 0 | 0 | 0 → 0 | 1 | 2 |
+| 1 | 0 | 1 → **1** | 1 | 3 |
+| 2 | 1 (start) | 1 → 0 | 1 | **2** (answer) |
+
+Each cell is the sum of up to three cells in the previous column: the same row, the row above and the row below. For example column 3, row 1 = 1 + 1 + 1 = 3, and row 2 = (row 2) 1 + (row 1) 1 = 2. Without the checkpoint, column 1 would keep its 1 in row 2, column 2 would be [1, 2, 2] and the answer would be 4 (Example 1).
+
+**The picture in one sentence:** a path has exactly one cell per column, so a checkpoint is just "zero every other row of that column" in a column-by-column count.
+
 ## Approach
 
 - **Brute force:** DFS every path from the start and check checkpoints at the end. Up to 3^m paths. Hopeless for `m = 1000`.

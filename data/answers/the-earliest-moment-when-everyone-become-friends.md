@@ -1,5 +1,32 @@
 **Short answer:** Sort the logs by timestamp and feed them into a union-find that starts with `n` separate groups. Each union of two different groups reduces the group count by one; the timestamp at which the count reaches 1 is the answer. If the logs run out first, return -1. O(m log m) for the sort plus near-constant time per union.
 
+## Picture it
+
+`n = 6`, logs (already in time order): `[20190101,0,1] [20190104,3,4] [20190107,2,3] [20190211,1,5] [20190224,2,4] [20190301,0,3] ...` (answer 20190301).
+
+| time | pair | find(a), find(b) | action | groups | components |
+|---|---|---|---|---|---|
+| start | | | | 6 | {0} {1} {2} {3} {4} {5} |
+| 20190101 | 0,1 | 0, 1 | parent[0] = 1 | 5 | {0,1} {2} {3} {4} {5} |
+| 20190104 | 3,4 | 3, 4 | parent[3] = 4 | 4 | {0,1} {2} {3,4} {5} |
+| 20190107 | 2,3 | 2, 4 | parent[2] = 4 | 3 | {0,1} {2,3,4} {5} |
+| 20190211 | 1,5 | 1, 5 | parent[1] = 5 | 2 | {0,1,5} {2,3,4} |
+| 20190224 | 2,4 | 4, 4 | same root, skip | 2 | unchanged |
+| 20190301 | 0,3 | 5, 4 | parent[5] = 4 | **1** | everyone, return 20190301 |
+
+The forest at the end (arrows point to the parent; `find(0)` halved the path so 0 now points straight at 5):
+
+```mermaid
+flowchart BT
+    n0["0"] --> n5["5"]
+    n1["1"] --> n5
+    n5 --> n4["4 (root)"]
+    n3["3"] --> n4
+    n2["2"] --> n4
+```
+
+**The picture in one sentence:** every union of two different roots removes one group, so the first timestamp where the count hits 1 is the moment everyone is connected.
+
 ## Approach
 
 - **Brute force.** After each log (in time order), run a BFS/DFS to check whether the graph is connected: O(m · (n + m)), around 10⁹ steps here.

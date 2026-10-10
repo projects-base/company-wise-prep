@@ -1,5 +1,20 @@
 **Short answer:** Simulate with two heaps. Sort meetings by start. Keep a min-heap of free room numbers and a min-heap of busy rooms ordered by (end time, room number). For each meeting, first release every busy room that has ended by its start. If a room is free, take the lowest number. Otherwise take the busy room that frees first, and the meeting runs from that room's end time for its original duration. Count meetings per room. O(m log n), with `long` times.
 
+## Picture it
+
+Example 1: `n = 2`, meetings sorted by start `[0,10] [1,5] [2,7] [3,4]`. `busy` holds {end, room}, earliest end first.
+
+| Meeting | Released (end ≤ start) | free before | Room chosen | Runs | busy after | count |
+|---|---|---|---|---|---|---|
+| [0,10] | none | {0,1} | 0 (lowest free) | [0,10) | {10,r0} | [1,0] |
+| [1,5] | none | {1} | 1 (lowest free) | [1,5) | {5,r1} {10,r0} | [1,1] |
+| [2,7] | none (5 > 2) | {} | 1 (frees first, at 5) | [5,10) delayed | {10,r0} {10,r1} | [1,2] |
+| [3,4] | none (10 > 3) | {} | 0 (ties at 10, lower number) | [10,11) delayed | {10,r1} {11,r0} | [2,2] |
+
+Counts tie at 2, so the answer is room 0.
+
+**The picture in one sentence:** free rooms are ordered by number and busy rooms by end time, so keep one heap for each and release finished rooms before choosing.
+
 ## Approach
 
 - **Brute force:** for each meeting, scan all n rooms to find a free one or the earliest to free. O(m · n) = 10⁷, which actually passes for n ≤ 100. Say so, then offer the heaps for the general case.

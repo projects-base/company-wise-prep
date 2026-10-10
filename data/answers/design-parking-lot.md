@@ -1,5 +1,101 @@
 **Short answer:** `ParkingLot` has `Floor`s, each floor has `Slot`s of a size (SMALL, MEDIUM, LARGE). Park finds the first free slot that fits the vehicle, marks it occupied and returns a `Ticket`; unpark looks up the ticket, frees the slot and computes the fee through a `PricingStrategy`. Keep free slots per floor and size in queues so finding one is O(floors) instead of scanning every slot. The interviewer wanted a working, not over-engineered version, so I keep it to about six classes and add patterns only where they buy something.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class ParkingLot {
+        -List~Floor~ floors
+        -Map~String, Ticket~ active
+        -Clock clock
+        +park(Vehicle v) Ticket
+        +unpark(String ticketId) long
+    }
+    class Floor {
+        +int number
+        -Map~SlotSize, Deque~Slot~~ free
+        +take(SlotSize size) Optional~Slot~
+        +release(Slot s)
+        +freeCount(SlotSize size) int
+    }
+    class Slot {
+        String id
+        int floor
+        SlotSize size
+        Vehicle vehicle
+    }
+    class Vehicle {
+        <<record>>
+        String plate
+        VehicleType type
+    }
+    class Ticket {
+        <<record>>
+        String id
+        Vehicle vehicle
+        Slot slot
+        Instant entry
+    }
+    class VehicleType {
+        <<enumeration>>
+        BIKE
+        CAR
+        TRUCK
+        SlotSize minSize
+    }
+    class SlotSize {
+        <<enumeration>>
+        SMALL
+        MEDIUM
+        LARGE
+    }
+    class PricingStrategy {
+        <<interface>>
+        +feeCents(Ticket t, Instant exit) long
+    }
+    class HourlyPricing {
+        <<record>>
+        Map~VehicleType, Long~ centsPerHour
+    }
+    ParkingLot "1" *-- "many" Floor
+    Floor "1" *-- "many" Slot
+    ParkingLot o-- Ticket : active
+    ParkingLot --> PricingStrategy
+    PricingStrategy <|.. HourlyPricing
+    Ticket --> Slot
+    Ticket --> Vehicle
+    Slot --> SlotSize
+    Vehicle --> VehicleType
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant G as Gate
+    participant PL as ParkingLot
+    participant F as Floor
+    participant P as PricingStrategy
+    G->>PL: park(car)
+    loop sizes from car.minSize upward, floors in order
+        PL->>F: take(MEDIUM)
+        F-->>PL: free slot or empty
+    end
+    PL->>PL: slot.vehicle = car, new Ticket, put in active
+    PL-->>G: Ticket
+    G->>PL: unpark(ticketId)
+    PL->>PL: remove from active, slot.vehicle = null
+    PL->>F: release(slot)
+    PL->>P: feeCents(ticket, now)
+    P-->>PL: hours rounded up x rate
+    PL-->>G: fee in cents
+```
+
+**How to read it:**
+- `ParkingLot` owns `Floor`s, each `Floor` owns its `Slot`s and keeps free ones in a queue per size.
+- To park, the lot tries the smallest size that fits the vehicle, floor by floor, then the next size up; `take` is an O(1) poll.
+- The `Ticket` ties the vehicle to its slot and entry time and sits in the `active` map until exit.
+- On exit the slot goes back to its floor's free queue and the fee comes from the pluggable `PricingStrategy`.
+
 ## Requirements
 
 - Multiple floors; each slot has a size; vehicle types BIKE, CAR, TRUCK.

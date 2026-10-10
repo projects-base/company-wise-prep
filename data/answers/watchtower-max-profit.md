@@ -1,5 +1,20 @@
 **Short answer:** Profit only changes in steps. Between two house distances, a taller tower covers the same houses and just costs more. So the best height is 0, or exactly the distance of some house. Sort the distances. At the k-th distinct distance `d`, all houses up to it are covered, and profit = `pay · count − cost · d`. Take the maximum over those candidates and 0. This is O(n log n).
 
+## Picture it
+
+Example 1: houses `[[3,4],[0,1],[6,8],[-1,0]]`, `costPerHeight = 1`, `payPerHouse = 3`. Squared distances `25, 1, 100, 1` sort to `[1, 1, 25, 100]`.
+
+| Group | d² | Height √d² | Houses covered (j) | Profit = 3·j − 1·h | best |
+|---|---|---|---|---|---|
+| start | – | 0 | 0 | 0 | 0 |
+| 1 | 1, 1 | 1 | 2 | 6 − 1 = 5 | **5** |
+| 2 | 25 | 5 | 3 | 9 − 5 = 4 | 5 |
+| 3 | 100 | 10 | 4 | 12 − 10 = 2 | 5 |
+
+The two houses at distance 1 are one group, so they are counted together before the profit is taken.
+
+**The picture in one sentence:** profit only jumps up when the height reaches a house, so check just the sorted house distances (end of each tie group) and 0.
+
 ## Approach
 
 - **Brute force.** Try every candidate height (each house distance), and count the houses within it: O(n²).

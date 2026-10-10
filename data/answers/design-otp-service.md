@@ -1,5 +1,88 @@
 **Short answer:** Split into three services: **Generation** creates a random OTP for `(tenant, user, purpose, requestId)`, stores only a hash with a TTL and attempt counter, and emits an event; **Notification** consumes the event and delivers via SMS, WhatsApp or email with provider failover; **Validation** checks the code against the hash with constant-time compare, increments attempts, and deletes it on success so it is single-use. Redis holds the short-lived OTP state; rate limits protect users and cost; an audit log goes to durable storage.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    tenant["Tenant apps"]
+  end
+  subgraph edge["Edge"]
+    gw["API Gateway<br/>(auth per tenant, quotas)"]
+  end
+  subgraph services["Services"]
+    gen["Generation Service<br/>(rate limit, CSPRNG, hash)"]
+    val["Validation Service<br/>(attempts, constant-time compare)"]
+    notif["Notification Service"]
+    adapters["Channel adapters<br/>(circuit breaker, failover)"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka otp-send<br/>(partition by user)"]]
+  end
+  subgraph storage["Storage"]
+    redis[("Redis cluster<br/>(replicated)")]
+    audit[("Audit / analytics store")]
+  end
+  subgraph providers["Providers"]
+    sms["SMS providers A/B"]
+    wa["WhatsApp BSP"]
+    email["Email"]
+  end
+  tenant --> gw
+  gw --> gen
+  gw --> val
+  gen --> redis
+  val --> redis
+  gen -->|"emit"| kafka --> notif --> adapters
+  adapters --> sms
+  adapters --> wa
+  adapters --> email
+  notif --> audit
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant T as Tenant app
+  participant G as Generation Service
+  participant R as Redis
+  participant K as Kafka
+  participant N as Notification Service
+  participant U as User
+  participant V as Validation Service
+  T->>G: POST /v1/otp (purpose, idempotencyKey)
+  G->>R: check rate limits
+  G->>R: Lua: store HMAC(code), TTL 300 s, swap active request id
+  G->>K: otp-send event
+  G-->>T: 202 otpRequestId
+  K->>N: otp-send
+  N->>U: SMS (fail over to provider B if A is down)
+  U->>T: types the code
+  T->>V: POST /v1/otp/verify (otpRequestId, code)
+  V->>R: Lua: attempts + 1, constant-time compare, delete on match
+  V-->>T: 200 verified, short-lived token
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> Active: generated (hash + TTL)
+  Active --> Active: wrong code, attempts + 1
+  Active --> Used: correct code (keys deleted)
+  Active --> Locked: attempts reach max
+  Active --> Expired: TTL passes
+  Active --> Replaced: new request for same user and purpose
+  Used --> [*]
+  Locked --> [*]
+  Expired --> [*]
+  Replaced --> [*]
+```
+
+**How to read it:**
+- Steps 1–5: generation checks rate limits, stores only a hash with a 5-minute TTL, and atomically replaces any older OTP for the same user and purpose. It returns 202 at once; delivery is async.
+- Steps 6–7: the Notification Service picks the channel and provider, with a circuit breaker and failover from provider A to B.
+- Steps 8–11: validation runs in one Lua script, so two parallel guesses cannot both slip under the attempt limit. A correct code deletes the keys, so it is single-use.
+- The state picture is one OTP's life: it ends as used, locked, expired or replaced; it never becomes valid again.
+
 ## Requirements
 
 Functional:
@@ -46,22 +129,7 @@ Postgres (durable): `tenant(id, api_key_hash, quotas, allowed_channels, template
 
 ## Architecture
 
-```text
-Tenant apps ─> API Gateway (auth per tenant, quotas)
-                 │                         │
-                 v                         v
-        Generation Service          Validation Service
-        (rate limit, CSPRNG,          (attempts, constant-time
-         hash, store, emit)            compare, delete on success)
-                 │       \                 │
-                 v        \──> Redis cluster (replicated) <─┘
-         Kafka "otp-send" (partition by user)
-                 │
-         Notification Service ─> channel adapters ─> SMS providers A/B, WhatsApp BSP, Email
-                 │                     (circuit breaker, failover, delivery receipts)
-                 v
-           Audit / analytics store
-```
+The diagram in **Picture it** above shows the components.
 
 This is CQRS-flavoured in the sense the question means: the write path (generate) and the read/check path (validate) are separate services that scale independently and share only the Redis state.
 

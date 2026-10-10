@@ -1,5 +1,19 @@
 **Short answer:** Greedy from the smallest card. The smallest remaining card cannot be in the middle or end of a group (nothing smaller is left), so it must start one. If it appears `k` times, `k` groups start there, so each of the next `groupSize − 1` values must appear at least `k` times; subtract `k` from all of them. Repeat until empty. A `TreeMap` of counts gives O(n log n).
 
+## Picture it
+
+`hand = [1,1,2,2,3,3,3,4,5]`, `groupSize = 3` (9 cards, so 3 groups).
+
+| Step | TreeMap counts before | start | need | Takes | Counts after |
+|---|---|---|---|---|---|
+| 1 | {1:2, 2:2, 3:3, 4:1, 5:1} | 1 | 2 | 1, 2, 3 twice each | {3:1, 4:1, 5:1} |
+| 2 | {3:1, 4:1, 5:1} | 3 | 1 | 3, 4, 5 once each | {} |
+| 3 | {} | — | — | map empty | return true |
+
+Groups: `[1,2,3]`, `[1,2,3]`, `[3,4,5]`. If the hand had no 5, step 2 would find `count[5]` missing and return false straight away.
+
+**The picture in one sentence:** the smallest card left can only start a run, so every copy of it forces a whole run and there is never a choice to make.
+
 ## Approach
 
 - **Quick reject:** if `hand.length % groupSize != 0`, return false.

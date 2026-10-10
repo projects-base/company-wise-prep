@@ -1,5 +1,29 @@
 **Short answer:** Model the routers as a graph where two routers are connected if their distance is at most R. Switching on spreads one hop per second, so the answer is the BFS depth of the farthest router from the source, or -1 if BFS does not reach everyone. With n up to 2000, an O(n²) BFS that checks every pair on the fly is enough.
 
+## Picture it
+
+Example 1: `routers = [[0,0],[3,0],[6,0],[3,3]]`, `radius = 3` (so `r2 = 9`), `source = 0`. An edge means squared distance ≤ 9; labels show the second each router turns on.
+
+```mermaid
+flowchart LR
+    r0["r0 (0,0)<br/>t=0"] -->|"d²=9"| r1["r1 (3,0)<br/>t=1"]
+    r1 -->|"d²=9"| r2["r2 (6,0)<br/>t=2"]
+    r1 -->|"d²=9"| r3["r3 (3,3)<br/>t=2"]
+```
+
+r0–r2 (d² = 36), r0–r3 (d² = 18) and r2–r3 (d² = 18) are too far, so they have no edge.
+
+| Pop | dist of popped (`last`) | Scan of routers still off | Queue after |
+|---|---|---|---|
+| r0 | 0 | r1: 9 ≤ 9 → dist 1 · r2: 36 no · r3: 18 no | [r1] |
+| r1 | 1 | r2: 9 → dist 2 · r3: 9 → dist 2 | [r2, r3] |
+| r2 | 2 | r3 already on → skip | [r3] |
+| r3 | 2 | nothing left | [] |
+
+`tail = 4 = n`, so every router was reached and the answer is `last = 2`.
+
+**The picture in one sentence:** the second a router turns on is its BFS hop distance from the source, so the answer is the depth of the last router popped.
+
 ## Approach
 
 - **Brute force:** simulate second by second, and each second test every on router against every off router. That is O(n²) per second and up to n seconds, so O(n³).

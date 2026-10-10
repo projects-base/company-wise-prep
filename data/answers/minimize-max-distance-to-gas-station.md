@@ -1,5 +1,21 @@
 **Short answer:** Binary search on the answer D, a real number. For a given D, a gap of length g needs `ceil(g / D) − 1` new stations so that no piece is longer than D. If the total over all gaps is ≤ k, D is achievable; smaller D needs more stations, so the test is monotonic. Search D between 0 and the largest gap for a fixed number of iterations (or until the range is below 10⁻⁶). O(n · log(range / ε)).
 
+## Picture it
+
+Small example: `stations = [0,4,10]`, `k = 2`, so the gaps are 4 and 6. A gap g needs `⌈g / D⌉ − 1` new stations so that every piece is ≤ D. Start `lo = 0`, `hi = 6` (largest gap).
+
+| Iteration | mid = D | Gap 4 needs | Gap 6 needs | need | ≤ k = 2? | Action |
+|---|---|---|---|---|---|---|
+| 1 | 3 | ⌈1.33⌉ − 1 = 1 | ⌈2⌉ − 1 = 1 | 2 | yes | hi = 3 |
+| 2 | 1.5 | ⌈2.67⌉ − 1 = 2 | ⌈4⌉ − 1 = 3 | 5 | no | lo = 1.5 |
+| 3 | 2.25 | ⌈1.78⌉ − 1 = 1 | ⌈2.67⌉ − 1 = 2 | 3 | no | lo = 2.25 |
+| 4 | 2.625 | 1 | ⌈2.29⌉ − 1 = 2 | 3 | no | lo = 2.625 |
+| … | → 3 | | | | | lo climbs towards 3, hi stays 3 |
+
+Snap: with `hi = 3`, gap 4 gets ⌈4/3⌉ = 2 pieces (2 each), gap 6 gets ⌈6/3⌉ = 2 pieces (3 each). Answer max(2, 3) = 3: one new station at 2, one at 7.
+
+**The picture in one sentence:** "can every piece be ≤ D with k stations?" is a per-gap count that only gets easier as D grows, so binary search the real-valued D.
+
 ## Approach
 
 - **Brute force / greedy one at a time:** repeatedly put a station into the gap whose current piece length is largest. With a scan that is O(k · n) = 2·10⁹: too slow. With a max-heap keyed by `gap / pieces` it is O(k log n), about 2·10⁷, which passes but is not the intended idea.

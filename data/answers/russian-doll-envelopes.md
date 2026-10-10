@@ -1,5 +1,20 @@
 **Short answer:** Sort envelopes by width ascending and, for equal widths, by height descending. The answer is then the longest strictly increasing subsequence of the heights, which you find in O(n log n) with the "tails + binary search" method. The descending tie-break stops two envelopes of the same width from both being picked.
 
+## Picture it
+
+Example 1: `[[5,4],[6,4],[6,7],[2,3]]`. After the sort (width up, equal widths by height down) the order is `[2,3], [5,4], [6,7], [6,4]`, so the heights are `3, 4, 7, 4`.
+
+| Step | Envelope | Height h | Binary search: first tail ≥ h | tails after | len |
+|---|---|---|---|---|---|
+| 1 | [2,3] | 3 | none → index 0 (append) | [3] | 1 |
+| 2 | [5,4] | 4 | none → index 1 (append) | [3, 4] | 2 |
+| 3 | [6,7] | 7 | none → index 2 (append) | [3, 4, 7] | 3 |
+| 4 | [6,4] | 4 | tails[1] = 4 → replace | [3, 4, 7] | 3 |
+
+Answer 3: [2,3] ⊂ [5,4] ⊂ [6,7]. Because [6,4] comes *after* [6,7], it can only replace a tail, never extend a chain that already used width 6. Why the tie-break matters: for `[[3,4],[3,5]]` an ascending tie-break gives heights 4, 5 and a wrong LIS of 2; descending gives 5, 4 and the correct 1.
+
+**The picture in one sentence:** sorting widths up and equal widths' heights down turns nesting into a strict LIS on heights, solved with tails plus binary search.
+
 ## Approach
 
 - **DP baseline:** sort by width, then `dp[i] = 1 + max(dp[j])` over all j < i that fit strictly inside i. That is O(n²), too slow for 10⁵ envelopes.

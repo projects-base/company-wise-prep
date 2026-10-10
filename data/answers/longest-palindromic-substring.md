@@ -1,5 +1,29 @@
 **Short answer:** Expand around every centre. A palindrome mirrors around its middle, which is either one character (odd length) or the gap between two characters (even length). That gives 2n − 1 centres. From each, expand outward while the two ends match, and keep the longest. O(n²) time, O(1) extra space, which is fast enough for n = 3000.
 
+## Picture it
+
+Example 1: `s = "babad"`. Every index is tried as an odd centre (`l = r = c`) and as an even centre (`l = c`, `r = c + 1`).
+
+| c | Centre type | Expansion | Stops at (l, r) | len = r − l − 1 | best, start |
+|---|---|---|---|---|---|
+| 0 | odd | b | (−1, 1) edge | 1 | 1, 0 |
+| 0 | even | b ≠ a | (0, 1) | 0 | 1, 0 |
+| 1 | odd | a, then b = b | (−1, 3) edge | 3 | **3, 0** |
+| 1 | even | a ≠ b | (1, 2) | 0 | 3, 0 |
+| 2 | odd | b, then a = a, then b ≠ d | (0, 4) | 3 | 3, 0 (not bigger) |
+| 2 | even | b ≠ a | (2, 3) | 0 | 3, 0 |
+| 3 | odd | a, then b ≠ d | (2, 4) | 1 | 3, 0 |
+| 4 | odd | d | (3, 5) edge | 1 | 3, 0 |
+
+```text
+b a b a d
+  ^          centre c = 1: expands to "bab" (indices 0..2)
+```
+
+Result: `s.substring(0, 3) = "bab"`.
+
+**The picture in one sentence:** every palindrome grows outward from a middle, so try all 2n − 1 middles and stretch each until the ends differ.
+
 ## Approach
 
 - **Brute force:** check every substring for being a palindrome. O(n²) substrings × O(n) check = O(n³), about 2.7·10¹⁰ for n = 3000. Too slow.

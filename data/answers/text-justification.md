@@ -1,5 +1,23 @@
 **Short answer:** It is a careful simulation. Greedily take as many words as fit with single spaces. For a normal line, distribute `maxWidth - letters` spaces over `gaps = words - 1` gaps: each gets `spaces / gaps`, and the first `spaces % gaps` gaps get one more. A single-word line and the last line are left-justified and padded on the right. O(total characters) time.
 
+## Picture it
+
+`words = ["This","is","an","example","of","text","justification."]`, `maxWidth = 16`.
+
+| line | words i..j-1 | len (single spaces) | stopped because | gaps | letters | spaces | each / extra | output |
+|---|---|---|---|---|---|---|---|---|
+| 1 | This is an | 10 | 10 + 1 + 7 ("example") = 18 > 16 | 2 | 8 | 8 | 4 / 0 | `This    is    an` |
+| 2 | example of text | 15 | 15 + 1 + 14 = 30 > 16 | 2 | 13 | 3 | 1 / 1 | `example  of text` |
+| 3 | justification. | 14 | j == n (last line) | 0 | | | left-justify | `justification.  ` |
+
+```text
+|This    is    an|
+|example  of text|   <- the 1 extra space goes to the leftmost gap
+|justification.  |   <- last line: single spaces, pad right
+```
+
+**The picture in one sentence:** greedily fill each line, then share `maxWidth - letters` spaces evenly with the remainder going to the leftmost gaps, except the last or single-word line which is left-justified.
+
 ## Approach
 
 There is no clever trick; the interview tests whether you split the problem cleanly and get every rule right.

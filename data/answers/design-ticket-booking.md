@@ -1,5 +1,82 @@
 **Short answer:** Split booking into two steps: a short *hold* on specific seats, then *confirm* after payment. The hold is an atomic conditional update in the database (`UPDATE seat ... WHERE status = 'AVAILABLE'`), so two users can never hold the same seat. Holds expire after a few minutes so abandoned carts free their seats. Dropped requests are handled with idempotency keys on every write and a reconciliation job for payments whose result we never heard.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    client["Client"]
+  end
+  subgraph edge["Edge"]
+    cdn["CDN (static)"]
+    gw["API gateway<br/>(auth, rate limit)"]
+    wr["Waiting room<br/>(hot events)"]
+  end
+  subgraph services["Services"]
+    catalog["Catalog / search<br/>(cached seat maps)"]
+    booking["Booking service"]
+    payment["Payment service"]
+    sweeper["Expiry sweeper"]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres<br/>sharded by show_id")]
+    replicas[("Read replicas")]
+  end
+  subgraph async["Async"]
+    kafka[["Outbox to Kafka"]]
+    down["Tickets, email,<br/>seat-map cache invalidation"]
+  end
+  psp["PSP"]
+  client --> cdn
+  client --> gw --> wr
+  wr --> catalog --> replicas
+  wr --> booking --> pg
+  booking --> payment --> psp
+  psp -->|"webhooks / status poll"| payment
+  sweeper -->|"release expired holds"| pg
+  pg --> kafka --> down
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant U1 as User 1
+  participant U2 as User 2
+  participant B as Booking service
+  participant DB as Postgres
+  participant P as PSP
+  U1->>B: POST holds A7, Idempotency-Key k1
+  U2->>B: POST holds A7, Idempotency-Key k2
+  B->>DB: UPDATE seat SET HELD WHERE AVAILABLE (user 1)
+  B->>DB: same UPDATE for user 2 waits on the row lock
+  DB-->>B: user 1: 1 row
+  B-->>U1: holdId, expiresAt (+10 min)
+  DB-->>B: user 2: 0 rows after re-check
+  B-->>U2: 409 some seats were taken
+  U1->>B: confirm holdId, Idempotency-Key k3
+  B->>DB: booking PAYMENT_PENDING
+  B->>P: charge with idempotency key
+  P-->>B: success
+  B->>DB: seats BOOKED, booking CONFIRMED, outbox (one tx)
+  B-->>U1: bookingId CONFIRMED
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> AVAILABLE
+  AVAILABLE --> HELD: conditional UPDATE wins
+  HELD --> AVAILABLE: hold expires (sweeper) or DELETE hold
+  HELD --> BOOKED: payment success
+  HELD --> HELD: PSP timeout, hold extended while reconciler asks PSP
+  BOOKED --> AVAILABLE: cancel and refund
+```
+
+**How to read it:**
+- Steps 1–8: both users race for seat A7. The conditional `UPDATE ... WHERE status = 'AVAILABLE'` takes a row lock, so the second update waits, re-checks the condition after the first commits, and changes 0 rows: a clean 409, never a double booking.
+- Each write stores `(Idempotency-Key, response)` in the same transaction, so a retry after a dropped response gets the same hold back.
+- Steps 9–14: confirm marks the booking `PAYMENT_PENDING`, charges with an idempotency key the PSP also dedupes on, then books seats and writes the outbox event in one transaction.
+- The state picture: an expired hold returns the seat; a payment timeout keeps it held while the reconciler asks the PSP, then confirms or releases.
+
 ## Requirements
 
 **Functional**
@@ -44,19 +121,7 @@ Shard by `show_id`: every seat of one show is on one shard, so a hold is a singl
 
 ## Architecture
 
-```text
-client --> CDN (static) --> API gateway (auth, rate limit) --> [ waiting room for hot events ]
-                                   |
-         +-------------------------+--------------------------+
-         v                         v                          v
- [ Catalog / search ]     [ Booking service ]           [ Payment service ] --> PSP
-   (read replicas,          |        |                         |
-    cached seat maps)       v        v                         v
-                     [ Postgres, sharded by show_id ]   webhooks / status poll
-                            |
-                     [ Outbox -> Kafka ] --> tickets, email, seat-map cache invalidation
- [ Expiry sweeper ] releases holds where held_until < now()
-```
+The diagram in **Picture it** above shows the components (the sweeper releases holds where `held_until < now()`).
 
 ## Deep dives
 

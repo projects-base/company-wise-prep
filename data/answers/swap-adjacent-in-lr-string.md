@@ -1,5 +1,28 @@
 **Short answer:** Pieces never pass each other, so the sequence of pieces with the `X`s removed must be identical in both strings. Then match the pieces in order: the i-th piece in `start` becomes the i-th piece in `result`. An `L` may only move left, so its target index must be `≤` its start index; an `R` may only move right, so its target index must be `≥`. Two pointers check this in O(n) time and O(1) space.
 
+## Picture it
+
+`start = "RXXLRXRXL"`, `result = "XRLXXRRLX"` (answer true). Skip the `X`s and pair the pieces in order:
+
+```text
+index   0 1 2 3 4 5 6 7 8
+start   R X X L R X R X L
+result  X R L X X R R L X
+```
+
+| pair | piece | i (start) | j (result) | rule | ok? |
+|---|---|---|---|---|---|
+| 1 | R | 0 | 1 | R needs j ≥ i | yes (moves right 1) |
+| 2 | L | 3 | 2 | L needs j ≤ i | yes (moves left 1) |
+| 3 | R | 4 | 5 | j ≥ i | yes |
+| 4 | R | 6 | 6 | j ≥ i | yes (stays) |
+| 5 | L | 8 | 7 | j ≤ i | yes |
+| end | | 9 | 9 | both pointers at n | true |
+
+Counter-example: `start = "XL"`, `result = "LX"` is fine (L moves left), but `start = "LX"`, `result = "XL"` pairs L at i = 0 with j = 1, an L moving right, so false.
+
+**The picture in one sentence:** pieces never cross, so pair the k-th piece of each string and check only that `L`s go left and `R`s go right.
+
 ## Approach
 
 - **Brute force.** BFS over string states applying the two moves. Exponential state space.

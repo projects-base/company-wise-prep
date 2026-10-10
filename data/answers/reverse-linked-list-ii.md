@@ -1,5 +1,30 @@
 **Short answer:** Use a dummy head, walk to the node just before position `left` (call it `before`), then repeatedly take the node after the current block tail and move it to the front of the block, right after `before`. After `right - left` moves the block is reversed. One pass, O(n) time, O(1) space.
 
+## Picture it
+
+`head = [1,2,3,4,5,6]`, `left = 2`, `right = 5`. `before` = node 1, `tail` = node 2 (it stays the last node of the block).
+
+| Step (i) | moved = tail.next | List after moving it to just after `before` |
+|---|---|---|
+| start | — | 1 → 2 → 3 → 4 → 5 → 6 |
+| 2 | 3 | 1 → 3 → 2 → 4 → 5 → 6 |
+| 3 | 4 | 1 → 4 → 3 → 2 → 5 → 6 |
+| 4 | 5 | 1 → 5 → 4 → 3 → 2 → 6 |
+
+The final links:
+
+```mermaid
+flowchart LR
+    d["dummy"] --> n1["1 · before"]
+    n1 --> n5["5"]
+    n5 --> n4["4"]
+    n4 --> n3["3"]
+    n3 --> n2["2 · tail"]
+    n2 --> n6["6"]
+```
+
+**The picture in one sentence:** keep `tail` fixed and keep pulling the node after it to the front of the block, so the block reverses in place and the list never needs reconnecting.
+
 ## Approach
 
 - **Brute force.** Copy values into an array, reverse the slice, write values back. Two passes and O(n) space, and it rewrites values instead of relinking nodes, which interviewers usually disallow.

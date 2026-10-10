@@ -1,5 +1,26 @@
 **Short answer:** Water above bar `i` is `min(maxLeft, maxRight) - height[i]`. Two pointers make this O(n) time and O(1) space. Move inwards from the side with the lower bar. That side's running max is already the binding limit, because the other side has a bar at least as tall. Add `runningMax - height` at each step.
 
+## Picture it
+
+`height = [2,0,3,1,0,2]`, answer 5. The side with the lower (or equal) bar moves.
+
+```text
+index   0 1 2 3 4 5
+height  2 0 3 1 0 2
+start   l         r
+```
+
+| Step | l | r | h[l] vs h[r] | Side moved | leftMax | rightMax | Water added | Total |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 0 | 5 | 2 vs 2 (not <) | right, settle 5 | 0 | 2 | 2 − 2 = 0 | 0 |
+| 2 | 0 | 4 | 2 vs 0 | right, settle 4 | 0 | 2 | 2 − 0 = 2 | 2 |
+| 3 | 0 | 3 | 2 vs 1 | right, settle 3 | 0 | 2 | 2 − 1 = 1 | 3 |
+| 4 | 0 | 2 | 2 vs 3 | left, settle 0 | 2 | 2 | 2 − 2 = 0 | 3 |
+| 5 | 1 | 2 | 0 vs 3 | left, settle 1 | 2 | 2 | 2 − 0 = 2 | 5 |
+| – | 2 | 2 | l == r, stop | | | | | **5** |
+
+**The picture in one sentence:** the lower side's running max is already the binding wall (the other side is at least as tall), so settle that bar and move inwards.
+
 ## Approach
 
 - **Brute force.** For each position, scan left and right for the tallest bars. O(n²).

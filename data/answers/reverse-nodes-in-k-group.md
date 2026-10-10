@@ -1,5 +1,28 @@
 **Short answer:** Walk the list block by block. For each block, first check that k nodes exist; if not, stop and leave the tail as it is. Otherwise reverse the k nodes in place, pointing the first node of the block at the node after the block, and hook the previous block's tail to the new block head. Iterative, O(n) time and O(1) extra space.
 
+## Picture it
+
+`1 → 2 → 3 → 4 → 5`, `k = 2`. Each pass finds `kth`, reverses the block with `prev` starting at `groupNext`, then links `groupPrev` to `kth`.
+
+```mermaid
+flowchart LR
+  subgraph before["Before"]
+    d0["dummy"] --> a1["1"] --> a2["2"] --> a3["3"] --> a4["4"] --> a5["5"]
+  end
+  subgraph after["After"]
+    d1["dummy"] --> b2["2"] --> b1["1"] --> b4["4"] --> b3["3"] --> b5["5"]
+  end
+  before --> after
+```
+
+| Pass | groupPrev | kth | groupNext | Reversal relinks | List after the pass | New groupPrev |
+|---|---|---|---|---|---|---|
+| 1 | dummy | 2 | 3 | `1.next = 3`, `2.next = 1` | dummy → 2 → 1 → 3 → 4 → 5 | 1 |
+| 2 | 1 | 4 | 5 | `3.next = 5`, `4.next = 3` | dummy → 2 → 1 → 4 → 3 → 5 | 3 |
+| 3 | 3 | null (only 5 left) | – | none, break | dummy → 2 → 1 → 4 → 3 → 5 | – |
+
+**The picture in one sentence:** start each block's reversal with `prev = groupNext` so the old first node already points past the block, then hook `groupPrev` to the old k-th node.
+
 ## Approach
 
 - **Brute force.** Push k nodes onto a stack and pop them to relink, or copy values into an array. That costs O(k) extra space, and rewriting values is not allowed.

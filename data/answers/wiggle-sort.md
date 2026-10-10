@@ -1,5 +1,21 @@
 **Short answer:** We want `nums[0] <= nums[1] >= nums[2] <= nums[3] ...`. One greedy pass does it: at each index `i`, if `i` is odd and `nums[i] < nums[i-1]`, or `i` is even and `nums[i] > nums[i-1]`, swap the two. A swap fixes the current pair without breaking the previous one. O(n) time, O(1) space, no sorting.
 
+## Picture it
+
+`nums = [3,5,2,1,6,4]`. Odd `i` needs `nums[i] >= nums[i-1]`; even `i` needs `nums[i] <= nums[i-1]`.
+
+| i | Parity | Pair (nums[i-1], nums[i]) | Violation? | Array after |
+|---|---|---|---|---|
+| 1 | odd | (3, 5) | no | [3,5,2,1,6,4] |
+| 2 | even | (5, 2) | no | [3,5,2,1,6,4] |
+| 3 | odd | (2, 1) | 1 < 2, swap | [3,5,1,2,6,4] |
+| 4 | even | (2, 6) | 6 > 2, swap | [3,5,1,6,2,4] |
+| 5 | odd | (2, 4) | no | **[3,5,1,6,2,4]** |
+
+Result: 3 ≤ 5 ≥ 1 ≤ 6 ≥ 2 ≤ 4. The swap at i = 4 put a larger value at index 3, which only made `5 ≥ 1 ≤ 6` stronger.
+
+**The picture in one sentence:** fix each adjacent pair with one swap as you go, because the swap always moves the value at `i - 1` in the direction its earlier constraint already wanted.
+
 ## Approach
 
 - **Sort first:** sort the array, then swap pairs `(1,2), (3,4), ...`. After sorting, `a[1] <= a[2]`, and swapping makes position 1 the larger. O(n log n). A fine first answer.

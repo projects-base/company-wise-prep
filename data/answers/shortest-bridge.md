@@ -1,5 +1,29 @@
 **Short answer:** Find one island with a flood fill and put all of its cells into a queue at distance 0. Then run a multi-source BFS outward over water. The first time the BFS touches a land cell that is not part of the first island, the distance of the cell you came from is the number of water cells to flip. Everything is O(n²).
 
+## Picture it
+
+Example 2: `grid = [[0,1,0],[0,0,0],[0,0,1]]`. Island A is (0,1), island B is (2,2). Final `dist` values when the BFS stops (`A` = source at 0, `B` = island B, `?` = never reached):
+
+```text
+1 A 1
+2 1 2
+? 2 B
+```
+
+Neighbour order is down, up, right, left.
+
+| Pop | dist | Neighbours checked | Action | Queue after |
+|---|---|---|---|---|
+| (0,1) | 0 | (1,1), (0,2), (0,0) are water | set dist 1 each | (1,1), (0,2), (0,0) |
+| (1,1) | 1 | (2,1), (1,2), (1,0) water; (0,1) seen | set dist 2 each | (0,2), (0,0), (2,1), (1,2), (1,0) |
+| (0,2) | 1 | (1,2), (0,1) already seen | nothing | (0,0), (2,1), (1,2), (1,0) |
+| (0,0) | 1 | (1,0), (0,1) already seen | nothing | (2,1), (1,2), (1,0) |
+| (2,1) | 2 | (1,1) seen; right (2,2) is unvisited land | island B reached, return dist of (2,1) = 2 | – |
+
+The two flipped cells are (1,1) and (2,1) (or any other path of two water cells).
+
+**The picture in one sentence:** flood-fill one island into the queue at distance 0, then BFS layers over water count flips until the first layer touches the other island.
+
 ## Approach
 
 - **Brute force:** for every cell of island A and every cell of island B, take the Manhattan distance minus 1, and keep the minimum. That is O(|A|·|B|), up to O(n⁴). It is actually correct here (water paths are unobstructed between two islands), but too slow for n = 100 in the worst case.

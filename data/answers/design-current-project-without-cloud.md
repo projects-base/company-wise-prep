@@ -2,6 +2,74 @@
 
 This answer uses a generic Spring Boot microservices system. Replace the `[placeholders]` with your real project before the interview.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    users["Users"]
+  end
+  subgraph edge["Edge"]
+    dns["DNS"]
+    lb["HAProxy / NGINX<br/>VIP via keepalived"]
+    ing["Kubernetes ingress"]
+  end
+  subgraph services["Kubernetes services"]
+    sa["Service A"]
+    sb["Service B"]
+    sc["Service C"]
+    kc["Keycloak (OIDC)"]
+  end
+  subgraph async["Messaging"]
+    kafka[["Kafka cluster"]]
+  end
+  subgraph storage["Stateful layer"]
+    pg[("PostgreSQL + Patroni")]
+    redis[("Redis Sentinel")]
+    minio[("MinIO")]
+  end
+  subgraph ops["Operations"]
+    mon["Prometheus, Grafana, Loki"]
+    bk["Backups to second site"]
+  end
+  users --> dns --> lb --> ing
+  ing --> sa
+  ing --> sb
+  ing --> sc
+  sa --> kc
+  sa --> pg
+  sb --> kafka
+  sc --> minio
+  sa --> redis
+  pg --> bk
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant U as User
+  participant H as HAProxy (VIP)
+  participant I as Ingress
+  participant S as Service A
+  participant K as Keycloak
+  participant P as PostgreSQL (Patroni leader)
+  U->>H: HTTPS request (same REST API as today)
+  H->>I: forward to a healthy ingress node
+  I->>S: route by path
+  S->>K: validate token (issuer URL changed, code unchanged)
+  K-->>S: token valid
+  S->>P: read/write via PgBouncer
+  P-->>S: rows
+  S-->>U: response
+  Note over P: if the leader dies, Patroni (with etcd) promotes a replica
+```
+
+**How to read it:**
+- The first picture is the same system as in the cloud, with each managed service swapped for a self-hosted one from the mapping table.
+- Steps 1–3: DNS points at a virtual IP held by HAProxy/NGINX with keepalived (replaces the cloud load balancer), which forwards to the Kubernetes ingress.
+- Steps 4–5: login moves to Keycloak; Spring Security only changes the issuer URL.
+- Steps 6–8: the service talks to PostgreSQL as before, but you now own its failover (Patroni), its backups (to a second site) and its monitoring.
+
 ## Requirements
 
 Functional (keep exactly what the project does today):
@@ -46,17 +114,7 @@ Mapping table (pick only rows your project actually uses):
 | CloudWatch / App Insights | Prometheus, Grafana, Loki or ELK, OpenTelemetry collector, Jaeger |
 | CI/CD | Jenkins or self-hosted GitLab, Harbor or Nexus for images and Maven artifacts |
 
-```text
-users --> DNS --> HAProxy/NGINX (VIP, keepalived) --> Kubernetes ingress
-                                                          |
-                         +----------------+---------------+----------------+
-                         v                v               v                v
-                   [service A]       [service B]     [service C]     Keycloak
-                         |                |               |
-                PostgreSQL (Patroni)   Kafka cluster    MinIO     Redis Sentinel
-                         |
-                 backups --> second site / tape;   Prometheus + Grafana + Loki watch all
-```
+The diagram in **Picture it** above shows the components after the mapping.
 
 ## Deep dives
 

@@ -1,5 +1,19 @@
 **Short answer:** The number of rooms needed is the maximum number of meetings running at the same moment. Sort the start times and the end times separately. Sweep the starts; before counting a new meeting, free every room whose meeting ended at or before this start. Track the peak count. O(n log n). The priority-queue version keeps a min-heap of end times instead.
 
+## Picture it
+
+Example 1: `[[0,30],[5,10],[15,20]]` → `starts = [0,5,15]`, `ends = [10,20,30]` (two-pointer version).
+
+| i | starts[i] | j before | Freed (ends[j] ≤ start) | rooms | best |
+|---|---|---|---|---|---|
+| 0 | 0 | 0 | none (10 > 0) | 1 | 1 |
+| 1 | 5 | 0 | none (10 > 5) | 2 | 2 |
+| 2 | 15 | 0 | end 10 → j = 1, rooms 2 → 1; then 20 > 15 stops | 2 | 2 |
+
+Answer 2. The heap version sees the same thing: heap of end times `{30}` → `{10,30}` → poll 10, add 20 → `{20,30}`, size 2.
+
+**The picture in one sentence:** rooms needed is the peak overlap, and you only need to count how many meetings have ended before each start, so starts and ends can be sorted separately.
+
 ## Approach
 
 - **Brute force:** for each meeting's start, count how many meetings contain that moment. O(n²).

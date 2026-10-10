@@ -1,5 +1,27 @@
 **Short answer:** Use one modified binary search. At any `mid`, at least one half, `[lo, mid]` or `[mid, hi]`, is sorted; you can tell which by comparing `nums[lo]` with `nums[mid]`. If the target lies inside the sorted half's range, search there; otherwise search the other half. That is O(log n) time and O(1) space.
 
+## Picture it
+
+`nums = [4,5,6,7,0,1,2]` (indices 0–6). Two sorted runs: `4 5 6 7 | 0 1 2`.
+
+Target 0:
+
+| Step | lo | hi | mid | nums[mid] | Sorted half | Target inside it? | Action |
+|---|---|---|---|---|---|---|---|
+| 1 | 0 | 6 | 3 | 7 | left [4..7] (4 ≤ 7) | 4 ≤ 0 < 7? no | lo = 4 |
+| 2 | 4 | 6 | 5 | 1 | left [0..1] (0 ≤ 1) | 0 ≤ 0 < 1? yes | hi = 4 |
+| 3 | 4 | 4 | 4 | 0 | – | – | found, return 4 |
+
+Target 3 (missing):
+
+| Step | lo | hi | mid | nums[mid] | Sorted half | Target inside it? | Action |
+|---|---|---|---|---|---|---|---|
+| 1 | 0 | 6 | 3 | 7 | left [4..7] | 4 ≤ 3 < 7? no | lo = 4 |
+| 2 | 4 | 6 | 5 | 1 | left [0..1] | 0 ≤ 3 < 1? no | lo = 6 |
+| 3 | 6 | 6 | 6 | 2 | left [2..2] | 2 ≤ 3 < 2? no | lo = 7 > hi, return -1 |
+
+**The picture in one sentence:** every cut leaves one side sorted, and a range check on that side tells you in O(1) which half to throw away.
+
 ## Approach
 
 - **Brute force:** linear scan. O(n). Correct, but it misses the point.

@@ -1,5 +1,30 @@
 **Short answer:** Use two pointers starting at both ends. Compute the area, then move the pointer at the shorter line inward. Moving the taller line can never help, because the width shrinks and the height is still capped by the shorter line. One pass, O(n) time, O(1) space.
 
+## Picture it
+
+`height = [1,8,6,2,5,4,8,3,7]` (indices 0–8). Start fully wide:
+
+```text
+index:  0 1 2 3 4 5 6 7 8
+height: 1 8 6 2 5 4 8 3 7
+        ^l              ^r
+```
+
+| Step | l (h) | r (h) | Area `min × width` | best | Move |
+|---|---|---|---|---|---|
+| 1 | 0 (1) | 8 (7) | 1 × 8 = 8 | 8 | left is shorter: `l++` |
+| 2 | 1 (8) | 8 (7) | 7 × 7 = 49 | **49** | right is shorter: `r--` |
+| 3 | 1 (8) | 7 (3) | 3 × 6 = 18 | 49 | `r--` |
+| 4 | 1 (8) | 6 (8) | 8 × 5 = 40 | 49 | equal: `r--` |
+| 5 | 1 (8) | 5 (4) | 4 × 4 = 16 | 49 | `r--` |
+| 6 | 1 (8) | 4 (5) | 5 × 3 = 15 | 49 | `r--` |
+| 7 | 1 (8) | 3 (2) | 2 × 2 = 4 | 49 | `r--` |
+| 8 | 1 (8) | 2 (6) | 6 × 1 = 6 | 49 | `r--`, now `l == r`: stop |
+
+Answer **49**.
+
+**The picture in one sentence:** the shorter wall caps every narrower container that keeps it, so it can be thrown away after one area check.
+
 ## Approach
 
 **Brute force.** Try every pair `i < j` and take the maximum of `min(h[i], h[j]) * (j − i)`. O(n²), too slow for 10⁵ lines.

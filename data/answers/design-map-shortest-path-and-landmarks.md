@@ -1,5 +1,93 @@
 **Short answer:** Model the map as a weighted graph: intersections are nodes with (x, y) coordinates, roads are edges with a length. Shortest distance is Dijkstra (or A* with straight-line distance as the heuristic). Nearest landmarks are a multi-source question: either run Dijkstra from the query point and stop after k landmarks of the wanted type, or pre-filter candidates with a spatial grid index and then confirm by road distance.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Point {
+        <<record>>
+        int id
+        double x
+        double y
+    }
+    class Edge {
+        <<record>>
+        int to
+        double weight
+    }
+    class Landmark {
+        <<record>>
+        int id
+        String name
+        LandmarkType type
+        int pointId
+    }
+    class LandmarkType {
+        <<enumeration>>
+        SCHOOL
+        HOSPITAL
+        PARK
+    }
+    class Hit {
+        <<record>>
+        Landmark landmark
+        double distance
+    }
+    class MapGraph {
+        -Map~Integer, Point~ points
+        -Map~Integer, List~Edge~~ adj
+        +addPoint(Point p)
+        +addRoad(int a, int b, double w)
+        +addLandmark(Landmark l)
+        +edges(int id) List~Edge~
+        +landmarksAt(int id) List~Landmark~
+    }
+    class PathFinder {
+        <<interface>>
+        +distance(MapGraph g, int from, int to) OptionalDouble
+    }
+    class DijkstraPathFinder
+    class AStarPathFinder
+    class LandmarkLocator {
+        +nearest(MapGraph g, int from, LandmarkType type, int k) List~Hit~
+    }
+    MapGraph *-- Point
+    MapGraph *-- Edge
+    MapGraph o-- Landmark
+    Landmark --> LandmarkType
+    PathFinder <|.. DijkstraPathFinder
+    PathFinder <|.. AStarPathFinder
+    PathFinder ..> MapGraph : reads
+    LandmarkLocator ..> MapGraph : reads
+    LandmarkLocator ..> Hit : returns
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Caller
+    participant LL as LandmarkLocator
+    participant PQ as Min-heap
+    participant G as MapGraph
+    C->>LL: nearest(g, from=7, HOSPITAL, k=2)
+    LL->>PQ: push (7, 0)
+    loop until heap empty or 2 hits
+        LL->>PQ: poll closest node
+        LL->>G: landmarksAt(node)
+        G-->>LL: landmarks here
+        LL->>LL: add HOSPITAL hits with this distance
+        LL->>G: edges(node)
+        LL->>PQ: push neighbours whose distance improved
+    end
+    LL-->>C: List of 2 Hits, closest first
+```
+
+**How to read it:**
+- `MapGraph` only stores data: points, road edges and which landmarks sit on which point.
+- Algorithms live outside the graph: `PathFinder` (Dijkstra or A*) for point-to-point, `LandmarkLocator` for nearest-k.
+- Dijkstra pops nodes in order of road distance, so the first k matching landmarks it meets are the k nearest.
+- The search stops as soon as k hits are found, so it only touches the neighbourhood of the query point.
+
 ## Requirements
 
 - Points on a 2-D plane; roads connect points with non-negative lengths (directed or undirected).

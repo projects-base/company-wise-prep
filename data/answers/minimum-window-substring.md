@@ -1,5 +1,27 @@
 **Short answer:** Sliding window with a "need" count per character and one counter, `missing`, for how many characters of t the window still lacks. Extend `right`; when a character that was still needed enters, decrement `missing`. When `missing` hits 0 the window is valid: record it, then shrink from the left until it becomes invalid again. Each index enters and leaves once, so it is O(|s| + |t|).
 
+## Picture it
+
+Example 1: `s = "ADOBECODEBANC"`, `t = "ABC"`. Start `need = {A:1, B:1, C:1}`, `missing = 3`.
+
+```text
+index: 0 1 2 3 4 5 6 7 8 9 10 11 12
+s:     A D O B E C O D E B A  N  C
+```
+
+| Step | right | char | missing after | Shrink loop (while missing == 0) | best |
+|---|---|---|---|---|---|
+| 1 | 0 | A | 2 | — | — |
+| 2 | 3 | B | 1 | — (D, O at 1–2 were not needed) | — |
+| 3 | 5 | C | 0 | record [0..5] "ADOBEC" (6); drop A → missing 1, left = 1 | ADOBEC |
+| 4 | 9 | B | 1 | — (a surplus B: need B goes to −1) | ADOBEC |
+| 5 | 10 | A | 0 | [1..10] to [5..10] are all ≥ 6, no record; drop D, O, B, E (surplus), then C → missing 1, left = 6 | ADOBEC |
+| 6 | 12 | C | 0 | [6..12] 7, [7..12] 6, [8..12] "EBANC" 5 → record, [9..12] "BANC" 4 → record; drop B → missing 1, left = 10 | BANC |
+
+Answer "BANC".
+
+**The picture in one sentence:** grow the right edge until the window holds all of t, then pull the left edge in as far as it stays valid, recording the shortest window seen.
+
 ## Approach
 
 - **Brute force:** check every substring of s against t's counts. O(|s|² · alphabet) or worse.

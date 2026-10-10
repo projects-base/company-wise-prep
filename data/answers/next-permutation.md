@@ -1,5 +1,29 @@
 **Short answer:** Scan from the right for the first position i where `nums[i] < nums[i + 1]`; everything after i is non-increasing, so it is already the largest it can be. Swap `nums[i]` with the rightmost value after it that is larger than `nums[i]`, then reverse the suffix after i to make it as small as possible. If no such i exists, the whole array is non-increasing: reverse it all. O(n) time, O(1) space. 115 becomes 151.
 
+## Picture it
+
+`nums = [1,3,5,4,2]`:
+
+```text
+ index:  0  1  2  3  4
+ nums:   1  3  5  4  2
+            ^i       suffix 5 4 2 is non-increasing
+                  ^j rightmost value > 3
+ swap:   1  4  5  3  2
+ reverse 2..4:   1  4  2  3  5
+```
+
+| Step | What | Result |
+|---|---|---|
+| 1 | i = 3: 4 ≥ 2, move left; i = 2: 5 ≥ 4, move left; i = 1: 3 < 5, stop | pivot i = 1 (value 3) |
+| 2 | j = 4: 2 ≤ 3, move left; j = 3: 4 > 3, stop | j = 3 (value 4) |
+| 3 | swap nums[1] and nums[3] | [1,4,5,3,2] |
+| 4 | reverse the suffix from index 2 | [1,4,2,3,5] |
+
+13542 → 14235, the next larger arrangement.
+
+**The picture in one sentence:** find the rightmost place that can grow (just before the non-increasing suffix), bump it by the smallest larger value from the suffix, then make the suffix as small as possible by reversing it.
+
 ## Approach
 
 - **Brute force:** generate all permutations, sort them, and take the one after the current. O(n!).

@@ -1,5 +1,73 @@
 **Short answer:** Every request gets a `jobRunId` from an append-only `job_run` table, which is the source of truth. Stateless dispatchers claim due runs from that table with `SELECT ... FOR UPDATE SKIP LOCKED`, so many dispatchers can run in parallel without a single leader. "Must never run concurrently" job types are enforced by a per-type lease (a DB row or a Redis lock with a TTL and a fencing token), not by hoping only one worker picks the job. Workers send heartbeats, a reaper re-queues runs whose lease expired, and every state change emits metrics and events for alerting.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    cl["Clients"]
+  end
+  subgraph services["Services"]
+    api["API service<br/>(stateless, N copies)"]
+    cron["Cron expander<br/>(leader-elected)"]
+    workers["Dispatchers / workers<br/>(N copies)"]
+    reaper["Reaper<br/>(re-queue expired)"]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres<br/>job_run, job_lock")]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka events"]]
+    obs["Metrics, alerts, audit"]
+  end
+  cl --> api -->|"insert run"| pg
+  cron -->|"insert runs ahead"| pg
+  workers -->|"claim SKIP LOCKED<br/>+ heartbeat"| pg
+  reaper -->|"expired lease to PENDING"| pg
+  workers -->|"state changes"| kafka --> obs
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant API as API service
+  participant DB as Postgres
+  participant W as Worker
+  participant T as Downstream target
+  C->>API: POST /jobs (type, payload, idempotencyKey)
+  API->>DB: INSERT job_run PENDING
+  API-->>C: jobRunId
+  W->>DB: claim due runs FOR UPDATE SKIP LOCKED
+  W->>DB: take job_lock for type:key, token + 1 (same tx)
+  DB-->>W: run RUNNING, lease 60 s, token
+  loop every 15 s
+    W->>DB: heartbeat, extend lease_until
+  end
+  W->>T: side effect carrying fencing token
+  T-->>W: accepted (rejects lower tokens)
+  W->>DB: status SUCCEEDED, release lock
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> PENDING: submit or cron expand
+  PENDING --> RUNNING: claimed with lease
+  RUNNING --> SUCCEEDED: handler done
+  RUNNING --> PENDING: lease expired (reaper, backoff)
+  RUNNING --> FAILED: handler error
+  FAILED --> PENDING: retry with backoff
+  FAILED --> DEAD: max_attempts reached
+  SUCCEEDED --> [*]
+  DEAD --> [*]
+```
+
+**How to read it:**
+- Steps 1–3: the API stores the run in `job_run` and returns its `jobRunId`; a retried submit with the same `idempotencyKey` gets the same id.
+- Steps 4–6: any worker claims due rows with `SKIP LOCKED`, so many workers share the queue with no leader. For an exclusive type it also takes the `job_lock` row and a new fencing token in the same transaction.
+- Steps 7–9: the worker heartbeats to keep its lease, and every side effect carries the token, so a worker that woke up after a GC pause is rejected.
+- Step 10, and the state picture: success ends the run; if the worker dies, the reaper sees the expired lease and puts the run back to PENDING, or DEAD after `max_attempts`. Handlers are idempotent because a run can execute twice.
+
 ## Requirements
 
 Functional:
@@ -58,16 +126,7 @@ CREATE TABLE job_lock (                   -- one row per exclusive type/key
 
 ## Architecture
 
-```text
- Clients ──> API service (stateless, N copies) ──> Postgres (primary + sync replica)
-                                                       ^         |
- Cron expander (leader-elected) ── inserts runs ──────┘         | claim (SKIP LOCKED)
-                                                                 v
-                        Dispatchers / workers (N copies, autoscaled per job type)
-                           │ heartbeat (extend lease)      │ events
-                           v                               v
-                        Reaper (re-queue expired)     Kafka -> metrics, alerts, audit
-```
+The diagram in **Picture it** above shows the components (Postgres runs as primary + sync replica; workers autoscale per job type).
 
 - **API** validates and inserts runs.
 - **Cron expander** turns cron definitions into concrete `job_run` rows a little ahead of time. It is the only part that needs a leader (one expander, else duplicate runs). Use a Postgres advisory lock, a Kubernetes Lease, or ZooKeeper/etcd for election; the unique `(type, scheduled_time)` constraint makes a double expansion harmless anyway.

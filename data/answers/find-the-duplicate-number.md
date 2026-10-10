@@ -1,5 +1,31 @@
 **Short answer:** Treat the array as a function `i -> nums[i]`. Because there are `n + 1` slots but only values `1..n`, following `0 -> nums[0] -> nums[nums[0]] -> ...` must eventually loop, and the value where the loop starts is the duplicate (two indices point to it). Floyd's tortoise-and-hare finds that entry point in O(n) time and O(1) space without touching the array.
 
+## Picture it
+
+`nums = [1, 3, 4, 2, 2]`. Draw an edge `i -> nums[i]` for every index:
+
+```mermaid
+flowchart LR
+    n0["0 (start)"] --> n1["1"]
+    n1 --> n3["3"]
+    n3 --> n2["2 (cycle entry = duplicate)"]
+    n2 --> n4["4"]
+    n4 --> n2
+```
+
+Indices 3 and 4 both point to 2, so 2 has two incoming edges: that is the duplicate.
+
+| Phase | Step | slow | fast | Note |
+|---|---|---|---|---|
+| 1 | start | 1 | 1 | both at `nums[0]` |
+| 1 | 1 | nums[1] = 3 | nums[nums[1]] = nums[3] = 2 | |
+| 1 | 2 | nums[3] = 2 | nums[nums[2]] = nums[4] = 2 | meet inside the cycle |
+| 2 | reset | 1 | 2 | slow back to `nums[0]` |
+| 2 | 1 | 3 | nums[2] = 4 | both move one step |
+| 2 | 2 | 2 | nums[4] = 2 | meet at the entry: return 2 |
+
+**The picture in one sentence:** the array is a linked list in disguise, and the duplicate is the node where the cycle begins, which Floyd finds in O(1) space.
+
 ## Approach
 
 - **Brute force:** compare every pair, O(n²). A `HashSet` gives O(n) time but O(n) space. Sorting is O(n log n) but modifies the array. All break a rule.

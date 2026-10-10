@@ -1,5 +1,57 @@
 **Short answer:** Keep the ads that may be served in a max-heap ordered by score. `getAd()` polls the top ad, lowers its score and puts it in a FIFO "cooling" queue with the tick at which it becomes eligible again. At the start of every call, ads whose cooldown has ended go back into the heap. With a gap of 1 this is exactly "never the same ad twice in a row"; a bigger gap is the follow-up. Each call costs O(log n).
 
+## Picture it
+
+```mermaid
+classDiagram
+    class AdServer {
+        -PriorityQueue~Ad~ ready
+        -ArrayDeque~Cooling~ cooling
+        -int gap
+        -int decrement
+        -long tick
+        +insertAd(String content, int score)
+        +getAd() Optional~String~
+    }
+    class Ad {
+        +long id
+        +String content
+        +int score
+    }
+    class Cooling {
+        <<record>>
+        +Ad ad
+        +long readyAt
+    }
+    AdServer *-- Ad : ready heap
+    AdServer *-- Cooling : cooling deque
+    Cooling --> Ad
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Caller
+    participant S as AdServer
+    participant Q as cooling deque
+    participant H as ready heap
+    C->>S: getAd()
+    S->>S: tick++
+    S->>Q: peekFirst().readyAt <= tick?
+    Q-->>H: move cooled ads back
+    S->>H: poll() top-scored ad
+    H-->>S: ad (or empty)
+    S->>S: ad.score -= decrement
+    S->>Q: addLast(Cooling(ad, tick + gap + 1))
+    S-->>C: Optional of ad.content
+```
+
+**How to read it:**
+- `AdServer` owns two structures: a max-heap of ads that may be served and a FIFO deque of ads that are cooling down.
+- Each `getAd()` first moves the clock forward and releases any cooled ads from the front of the deque back into the heap.
+- It then polls the best ad, lowers its score while it is outside the heap, and parks it in the deque with its `readyAt` tick.
+- The deque stays sorted by `readyAt` for free, because every call adds exactly one ad with a growing tick.
+
 ## Requirements
 
 - `insertAd(content, score)` adds an ad. Scores are integers; ties break by insertion order.

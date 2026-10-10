@@ -1,5 +1,72 @@
 **Short answer:** Each device sends the query with its account, a coarse location or network context, the wake-word timestamp and an audio confidence score. The backend groups requests from the same user (or household) that arrive within a short window (a few hundred ms) into one "utterance session", elects one device as the responder (best signal, or a preferred speaker), and tells the others to stay silent. The election runs through a fast shared store keyed by the session, so whichever backend server receives each request gets the same answer.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph home["Household devices"]
+    da["Device A"]
+    db["Device B"]
+    dc["Device C"]
+  end
+  subgraph edge["Edge"]
+    fe["Front end (geo routing)"]
+  end
+  subgraph services["Services"]
+    arb["Arbitration service"]
+    asr["Speech recogniser"]
+    brain["Assistant brain<br/>(runs once, for winner)"]
+  end
+  subgraph storage["Regional storage"]
+    mem[("In-memory store<br/>key: arb:household:bucket")]
+  end
+  da --> fe
+  db --> fe
+  dc --> fe
+  fe --> arb
+  fe --> asr
+  arb <--> mem
+  arb -->|"winner"| brain
+  asr --> brain
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as Device A
+  participant B as Device B
+  participant S as Arbitration service
+  participant M as In-memory store
+  participant X as Assistant brain
+  A->>S: query (wake_ts, signal_score 0.9)
+  S->>M: open session, add candidate A
+  B->>S: query (wake_ts, signal_score 0.6)
+  S->>M: join session, add candidate B
+  Note over S,M: collection window 100-200 ms after wake_ts
+  S->>M: SET winner IF NOT SET (A)
+  M-->>S: winner = A
+  S->>X: run query for A only
+  X-->>A: RESPOND with answer
+  S-->>B: SUPPRESS
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> Collecting: first request opens session
+  Collecting --> Collecting: later request joins
+  Collecting --> Decided: window closes, CAS winner
+  Decided --> Decided: late request reads winner, SUPPRESS
+  Decided --> Decided: winner drops, promote fallback
+  Decided --> [*]: TTL expires (5-10 s)
+```
+
+**How to read it:**
+- Steps 1–4: every device in the household sends the same query; requests are routed by household_id to the same regional arbitration shard, and each one adds itself as a candidate to one session record.
+- The session waits a short window (100–200 ms after the wake timestamp) so that slower devices can join.
+- Steps 6–7: the winner (highest signal score, then capability and device_id tie-breaks) is written with compare-and-set, so two servers can never pick different winners.
+- Steps 8–10: only the winner's query runs through the expensive assistant pipeline; the others get SUPPRESS. If the store is down, fail open and let every device answer.
+- The state picture shows the session's life: collecting, decided, then gone when its TTL expires.
+
 ## Requirements
 
 Functional:
@@ -40,18 +107,7 @@ value = { session_id, candidates: [{device_id, signal_score, arrived_at}],
 
 ## Architecture
 
-```text
-device A --\                     +------------------+
-device B ----> front end (geo) -->| arbitration svc  |<--> regional in-memory store
-device C --/        |             +------------------+       (keyed by household)
-                    |                     |
-                    v                     v
-             speech recogniser      winner chosen
-                    |                     |
-                    +-----> assistant brain (runs once, for winner)
-                                          |
-                     RESPOND --> winner      SUPPRESS --> others
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

@@ -1,5 +1,77 @@
 **Short answer:** Keep one calendar per participant, stored as a `TreeMap<start, Meeting>` so the overlap check is two O(log n) lookups (the meeting just before and just after the new start). A new meeting is accepted only if no participant's calendar overlaps it. For thread safety, lock every participant's calendar in a fixed order (sorted by user id), check all, then book all, so two concurrent bookings cannot both pass and there is no deadlock.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class User {
+        <<record>>
+        String id
+        String name
+    }
+    class TimeSlot {
+        <<record>>
+        Instant start
+        Instant end
+        +overlaps(TimeSlot o) boolean
+    }
+    class Meeting {
+        <<record>>
+        String id
+        User organizer
+        Set~User~ participants
+        TimeSlot slot
+    }
+    class Calendar {
+        +ReentrantLock lock
+        -TreeMap~Instant, Meeting~ byStart
+        +conflict(TimeSlot s) Optional~Meeting~
+        +add(Meeting m)
+        +remove(Meeting m)
+    }
+    class MeetingScheduler {
+        -ConcurrentHashMap~String, Calendar~ calendars
+        -ConcurrentHashMap~String, Meeting~ meetings
+        +schedule(User organizer, Set~User~ invitees, TimeSlot slot) Meeting
+    }
+    class ConflictException
+    RuntimeException <|-- ConflictException
+    MeetingScheduler "1" *-- "many" Calendar : one per user
+    MeetingScheduler ..> ConflictException : throws
+    Calendar o-- Meeting
+    Meeting --> User
+    Meeting *-- TimeSlot
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant O as Organizer
+    participant S as MeetingScheduler
+    participant CA as Calendar of A
+    participant CB as Calendar of B
+    O->>S: schedule(A, {B}, 10:00-11:00)
+    S->>S: sort people by id (A, B)
+    S->>CA: lock()
+    S->>CB: lock()
+    S->>CA: conflict(slot)?
+    CA-->>S: empty
+    S->>CB: conflict(slot)?
+    CB-->>S: empty
+    S->>CA: add(meeting)
+    S->>CB: add(meeting)
+    S->>CB: unlock()
+    S->>CA: unlock()
+    S-->>O: Meeting
+    Note over S,CB: Any conflict throws ConflictException, finally still unlocks
+```
+
+**How to read it:**
+- Each user has one `Calendar`: a `TreeMap` of meetings by start time plus its own lock.
+- The scheduler locks every participant's calendar in sorted id order, so two bookings can never deadlock.
+- With all locks held it asks each calendar for a conflict; only the meeting just before and just after the start can overlap.
+- If no one is busy, the meeting is added to every calendar, then the locks are released in reverse order.
+
 ## Requirements
 
 - `schedule(organizer, participants, start, end)` creates a meeting or rejects it with the conflict reason.

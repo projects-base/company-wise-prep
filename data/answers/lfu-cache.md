@@ -1,5 +1,24 @@
 **Short answer:** Keep three maps: key → value, key → use count, and count → keys with that count in recency order (a `LinkedHashSet`, oldest first). Track `minCount`. On a use, move the key from bucket c to bucket c + 1, and bump `minCount` if bucket c was the minimum and is now empty. To evict, take the first key of the `minCount` bucket. A new key always resets `minCount` to 1. Every step is O(1) on average.
 
+## Picture it
+
+Example 1, `capacity = 2`. Buckets map a use count to its keys, oldest first.
+
+| Call | Evicts | buckets after (count: keys) | minCount | Returns |
+|---|---|---|---|---|
+| put(1,1) | — | 1: [1] | 1 | — |
+| put(2,2) | — | 1: [1, 2] | 1 | — |
+| get(1) | — | 1: [2], 2: [1] | 1 | 1 |
+| put(3,3) | 2 (first of bucket 1) | 1: [3], 2: [1] | 1 | — |
+| get(2) | — | unchanged | 1 | -1 |
+| get(3) | — | 2: [1, 3] (bucket 1 emptied) | 2 | 3 |
+| put(4,4) | 1 (first of bucket 2, older than 3) | 1: [4], 2: [3] | 1 | — |
+| get(1) | — | unchanged | 1 | -1 |
+| get(3) | — | 1: [4], 3: [3] (bucket 2 emptied, but min is 1) | 1 | 3 |
+| get(4) | — | 2: [4], 3: [3] (bucket 1 emptied) | 2 | 4 |
+
+**The picture in one sentence:** counts only climb one bucket at a time, so the victim is always the oldest key in the `minCount` bucket and `minCount` never needs a search.
+
 ## Approach
 
 - **Brute force:** store counts and last-use times, and scan all entries to find the victim on eviction. O(capacity) per `put`.

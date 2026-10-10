@@ -1,5 +1,22 @@
 **Short answer:** For two dice, every outcome except a tie works: n² − n = n(n − 1). For k dice, fix the value v of the unique maximum. Choose which die shows it (k ways); every other die must show something in 1..v−1, giving (v − 1)^(k−1) ways. The answer is k · Σ_{v=2..n} (v − 1)^(k−1) mod 1e9+7, computed with fast power in O(n log k).
 
+## Picture it
+
+`n = 4`, `k = 3` (64 outcomes in total). Split the good outcomes by the value `v` of the unique maximum:
+
+| v (the max) | Die showing v | Each other die | Ways `(v − 1)^(k − 1)` | Running `total` |
+|---|---|---|---|---|
+| 1 | – | nothing below 1 | 0 (skipped) | 0 |
+| 2 | any of 3 | must be 1 | 1² = 1 | 1 |
+| 3 | any of 3 | 1 or 2 | 2² = 4 | 5 |
+| 4 | any of 3 | 1, 2 or 3 | 3² = 9 | 14 |
+
+Answer `total × k = 14 × 3 = 42`. One concrete outcome for v = 3: `(1, 3, 2)`. The 3 sits on die 2, and dice 1 and 3 each picked from {1, 2}.
+
+For k = 2 the same table gives 2 × (1 + 2 + … + (n − 1)) = n(n − 1): every outcome except the n ties.
+
+**The picture in one sentence:** fix the maximum value and which die shows it, and the remaining dice choose freely below it, so the count is a sum of powers.
+
 ## Approach
 
 **Brute force.** Enumerate all nᵏ outcomes and check whether the maximum is unique. Exponential; useless for k = 10⁹.

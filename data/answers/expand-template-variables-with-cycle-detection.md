@@ -1,5 +1,30 @@
 **Short answer:** Scan the text left to right. `%%` becomes a literal `%`. `%NAME%` is replaced by the fully expanded value of `NAME`, which we get by recursively expanding that variable's own value. Fail if a name is missing or a `%` is never closed. Detect cycles with an "in progress" set, the grey nodes of a DFS: meeting a name that is already in progress means there is a cycle. Memoise each finished expansion, so shared references are expanded only once.
 
+## Picture it
+
+`vars = {A: "%B%-%C%", B: "%C%!", C: "c"}`, `template = "%A%"`. The DFS of `resolve` calls, numbered in call order:
+
+```mermaid
+flowchart TD
+    t["template %A%"] -->|"1"| ra["resolve A<br/>in progress: A"]
+    ra -->|"2"| rb["resolve B<br/>in progress: A, B"]
+    rb -->|"3"| rc1["resolve C<br/>expands to c, memoised"]
+    ra -->|"4"| rc2["resolve C<br/>memo hit: c"]
+```
+
+| Call | Name | `inProgress` on entry | Result | `done` after |
+|---|---|---|---|---|
+| 1 | A | {} | waits for B and C | – |
+| 2 | B | {A} | waits for C | – |
+| 3 | C | {A, B} | `"c"` | {C} |
+| 2 returns | B | – | `"c!"` | {C, B} |
+| 4 | C | {A} | memo `"c"`, no recursion | unchanged |
+| 1 returns | A | – | `"c!-c"` | {C, B, A} |
+
+Result `"c!-c"`. With the cycle of Example 2 (`A = "x%B%"`, `B = "y%A%"`), the path is resolve A (in progress {A}) → resolve B ({A, B}) → resolve A again. `inProgress.add("A")` returns false, which is the back edge, and `null` flows up to the caller.
+
+**The picture in one sentence:** expansion is a DFS over the variable dependency graph, where "in progress" catches cycles and "done" makes shared references free.
+
 ## Approach
 
 - **Naive:** keep running "find a `%KEY%` and replace it" over the whole string until nothing changes. This is wrong: replaced text gets scanned again, a literal `%` inside a value gets misread, and a cycle loops forever. It is also slow.

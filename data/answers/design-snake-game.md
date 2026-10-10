@@ -1,5 +1,108 @@
 **Short answer:** Model a `Board`, a `Snake` held as a deque of cells plus a hash set of the same cells, and a `Game` that runs one `tick` per move. The deque gives O(1) move at the head and tail; the set gives O(1) self-collision checks. Food comes from a `FoodFactory`, where it spawns from a `FoodPlacementStrategy`, and what happens on a collision with a wall is a `CollisionPolicy` strategy, so new rules and food types plug in without touching `Game`.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Game {
+        -int width
+        -int height
+        -Direction direction
+        -Food food
+        -int score
+        -State state
+        +changeDirection(Direction d)
+        +tick() State
+        +score() int
+    }
+    class Snake {
+        -Deque~Position~ body
+        -Set~Position~ occupied
+        -int pendingGrowth
+        +head() Position
+        +tail() Position
+        +occupies(Position p) boolean
+        +grow(int cells)
+        +moveTo(Position next)
+    }
+    class Position {
+        <<record>>
+        int row
+        int col
+    }
+    class Direction {
+        <<enumeration>>
+        UP
+        DOWN
+        LEFT
+        RIGHT
+        +isOpposite(Direction o) boolean
+    }
+    class Food {
+        <<interface>>
+        +at() Position
+        +points() int
+        +growth() int
+    }
+    class NormalFood
+    class BonusFood
+    class FoodFactory {
+        +next(Snake s, int width, int height) Food
+    }
+    class FoodPlacementStrategy {
+        <<interface>>
+    }
+    class CollisionPolicy {
+        <<interface>>
+        +resolve(Position next, int width, int height) Optional~Position~
+    }
+    class SolidWalls
+    class WrapAround
+    Game *-- Snake
+    Game --> Direction
+    Game --> Food : current food
+    Game --> FoodFactory
+    Game --> CollisionPolicy
+    Snake o-- Position
+    Food <|.. NormalFood
+    Food <|.. BonusFood
+    FoodFactory --> FoodPlacementStrategy
+    CollisionPolicy <|.. SolidWalls
+    CollisionPolicy <|.. WrapAround
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant L as Game loop
+    participant G as Game
+    participant W as CollisionPolicy
+    participant S as Snake
+    participant FF as FoodFactory
+    L->>G: tick()
+    G->>W: resolve(head + direction)
+    W-->>G: next cell, or empty for a wall hit (OVER)
+    G->>S: occupies(next)?
+    Note over G,S: The current tail cell is allowed when the snake is not growing
+    alt next is the food
+        G->>G: score += food.points()
+        G->>S: grow(food.growth())
+    end
+    G->>S: moveTo(next)
+    S->>S: drop tail unless growing, add new head
+    opt food was eaten
+        G->>FF: next(snake, width, height)
+    end
+    G-->>L: RUNNING or OVER
+```
+
+**How to read it:**
+- `Game` holds the rules and score; `Snake` only knows its body (a deque for order plus a set for O(1) "is this cell mine?").
+- Each `tick` first asks the `CollisionPolicy` where the head lands: `SolidWalls` ends the game at the edge, `WrapAround` wraps to the other side.
+- Then the self-collision check, with the one tricky case: stepping into the tail cell is fine when the tail is moving away.
+- Eating food adds points and pending growth; `moveTo` then keeps the tail for as many ticks as the snake still has to grow.
+- New food appears through `FoodFactory`, which asks its `FoodPlacementStrategy` for a free cell and picks the food type.
+
 ## Requirements
 
 - Board of width x height. Snake starts at length 1 and moves one cell per tick in its current direction.

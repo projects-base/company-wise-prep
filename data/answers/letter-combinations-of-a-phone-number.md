@@ -1,5 +1,35 @@
 **Short answer:** Backtracking. Map each digit to its letters. For position i, try each letter of `digits[i]`: append it to a shared `StringBuilder`, recurse to i + 1, then remove it. When i reaches the end, add the built string. Empty input returns an empty list, not `[""]`.
 
+## Picture it
+
+The recursion tree for `digits = "23"`: level 1 tries the letters of `2` (`abc`), level 2 the letters of `3` (`def`). Leaves are added left to right.
+
+```mermaid
+flowchart TD
+    r["empty"] --> a["a"]
+    r --> b["b"]
+    r --> c["c"]
+    a --> ad["ad"]
+    a --> ae["ae"]
+    a --> af["af"]
+    b --> bd["bd"]
+    b --> be["be"]
+    b --> bf["bf"]
+    c --> cd["cd"]
+    c --> ce["ce"]
+    c --> cf["cf"]
+```
+
+| Step | cur before | Action | cur after | Output so far |
+|---|---|---|---|---|
+| 1 | "" | append a | a | — |
+| 2 | a | append d, leaf | ad | [ad] |
+| 3 | ad | delete last, append e, leaf | ae | [ad, ae] |
+| 4 | ae | delete last, append f, leaf | af | [ad, ae, af] |
+| 5 | af | delete f, delete a, append b | b | [ad, ae, af] |
+
+**The picture in one sentence:** it is a Cartesian product walked depth-first, with one `StringBuilder` that grows on the way down and shrinks on the way back.
+
 ## Approach
 
 - This is a Cartesian product of the digits' letter sets, so the output size is the product of 3s and 4s, up to 4⁴ = 256. No algorithm can beat the output size; the goal is clean generation.

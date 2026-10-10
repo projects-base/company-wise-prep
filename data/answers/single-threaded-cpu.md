@@ -1,5 +1,20 @@
 **Short answer:** Sort task indices by enqueue time and keep a min-heap of available tasks ordered by (processing time, index). Simulate a `long` clock: if nothing is ready, jump the clock to the next enqueue time; push every task that has arrived by now; pop the best one, record it, and advance the clock by its processing time. That is O(n log n).
 
+## Picture it
+
+Example 1: `tasks = [[1,2],[2,4],[3,2],[4,1]]` (task i = [enqueue, processing]). Sorted by enqueue time the indices are `0, 1, 2, 3`.
+
+| round | clock before | jump? | pushed (arrived ≤ clock) | heap (proc, idx) | run | clock after |
+|---|---|---|---|---|---|---|
+| 1 | 0 | heap empty, jump to 1 | 0 | (2,0) | 0 | 1 + 2 = 3 |
+| 2 | 3 | no | 1, 2 | (2,2), (4,1) | 2 | 3 + 2 = 5 |
+| 3 | 5 | no | 3 | (1,3), (4,1) | 3 | 5 + 1 = 6 |
+| 4 | 6 | no | none | (4,1) | 1 | 6 + 4 = 10 |
+
+Order: `[0, 2, 3, 1]`.
+
+**The picture in one sentence:** arrival order (a sorted pointer) decides who may run, a min-heap on (processing time, index) decides who does run, and an idle CPU jumps the clock to the next arrival.
+
 ## Approach
 
 - **Brute force:** at each step, scan all unfinished tasks for the shortest available one. O(n²), too slow for 10⁵ tasks.

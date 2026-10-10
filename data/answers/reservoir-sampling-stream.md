@@ -1,5 +1,20 @@
 **Short answer:** Reservoir sampling with a reservoir of size one. Keep a count `n` of elements seen and one chosen element. When the n-th element arrives, replace the chosen element with it with probability `1/n`. At any moment, every element seen so far is the chosen one with probability exactly `1/n`. O(1) memory and O(1) work per element.
 
+## Picture it
+
+Example 1: stream 10, 20, 30, 40. The chance that each element is the current choice after every `add`:
+
+| After add | New element takes over with | P(10) | P(20) | P(30) | P(40) |
+|---|---|---|---|---|---|
+| 1 (10) | 1/1 | 1 | — | — | — |
+| 2 (20) | 1/2 | 1 · 1/2 = 1/2 | 1/2 | — | — |
+| 3 (30) | 1/3 | 1/2 · 2/3 = 1/3 | 1/2 · 2/3 = 1/3 | 1/3 | — |
+| 4 (40) | 1/4 | 1/3 · 3/4 = 1/4 | 1/4 | 1/3 · 3/4 = 1/4 | 1/4 |
+
+Every row is uniform, so `sample()` is correct whenever it is called. One possible run: keep 10, keep 10 (no takeover), take 30, keep 30 → `sample()` returns 30.
+
+**The picture in one sentence:** the i-th element takes over with probability 1/i, and each survival factor (j − 1)/j telescopes so that every element ends at exactly 1/n.
+
 ## Approach
 
 - **Brute force.** Store everything, then pick a random index. O(n) memory, and with an unbounded stream it runs out of memory.

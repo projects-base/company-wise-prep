@@ -1,5 +1,68 @@
 **Short answer:** Stores change rarely and searches are frequent, so this is a read-heavy geospatial index problem. Encode each store's location as a geohash (or use a quadtree / S2 cells), find the cell for the customer plus its 8 neighbours at a precision that matches the search radius, fetch candidate stores from those cells, then compute exact distance and sort. The store table lives in Postgres (PostGIS works well up to large scale); the geo index is cached in memory on read replicas or a dedicated location service, and results for popular areas are cached.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    client["Client"]
+    owner["Store owner"]
+  end
+  subgraph edge["Edge"]
+    gw["CDN / API GW"]
+  end
+  subgraph services["Services"]
+    search["Location Search Service<br/>(in-memory geo index, N replicas)"]
+    ownersvc["Store Owner Service<br/>(writes)"]
+  end
+  subgraph storage["Storage"]
+    redis[("Redis<br/>geohash6:category to store ids")]
+    replicas[("Read replicas<br/>(store details)")]
+    primary[("Primary DB")]
+  end
+  client --> gw --> search
+  search --> redis
+  search --> replicas
+  owner --> ownersvc --> primary
+  primary -->|"async replication"| replicas
+  primary -->|"CDC: refresh index entries"| search
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant S as Search Service
+  participant RC as Redis
+  participant RR as Read replica
+  C->>S: GET /search/nearby (lat, lng, radius 2000)
+  S->>S: pick geohash length so a cell is at least the radius
+  S->>S: centre cell + 8 neighbours = 9 cells
+  S->>RC: candidate ids per cell and category
+  RC-->>S: hits (misses come from the in-memory index)
+  S->>S: exact Haversine distance, drop outside radius, sort
+  S->>RR: load details for the page
+  RR-->>S: store rows
+  S-->>C: stores + nextCursor
+```
+
+```mermaid
+flowchart TD
+  q["Customer point"] --> p["Choose precision<br/>(5 chars about 4.9 km, 6 about 1.2 km)"]
+  p --> nine["Query the 9 cells:<br/>centre + 8 neighbours"]
+  nine --> f["Filter by exact distance, sort"]
+  f --> enough{"Enough results?"}
+  enough -->|"Yes"| done["Return page"]
+  enough -->|"No"| wider["Drop one character<br/>(bigger cells)"]
+  wider --> nine
+```
+
+**How to read it:**
+- Steps 1–3: the service turns the point into a geohash at a precision that matches the radius, and adds the 8 neighbours so a store just across a cell border is not missed.
+- Steps 4–6: candidates come from Redis or the in-memory index, then exact Haversine distance removes the corners of the square cells.
+- Steps 7–9: details for only the current page come from a read replica.
+- Writes are rare: the owner service writes the primary, and replication plus CDC refresh the replicas and the in-memory index within a minute. The last picture is the "too few results, widen the cells" loop.
+
 ## Requirements
 
 Functional:
@@ -43,16 +106,7 @@ Geohash precision vs cell size (approximate): 4 chars ≈ 39 km × 20 km, 5 ≈ 
 
 ## Architecture
 
-```text
-Client ─> CDN/API GW ─> Location Search Service (stateless, N replicas)
-                          │ in-memory geo index (geohash -> store ids), refreshed
-                          │ cache: Redis "geohash6:category" -> store ids
-                          v
-                    Read replicas (store details) <── async replication ── Primary DB
-                                                                              ^
-                                    Store Owner Service (writes) ─────────────┘
-                                    (CDC/event -> rebuild/refresh index entries)
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

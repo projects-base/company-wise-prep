@@ -1,5 +1,75 @@
 **Short answer:** Use optimistic concurrency control. Every issue (or each editable field) carries a version number. The client loads the issue with its version and sends it back on save (`If-Match: "v7"` or a `version` field). The server updates only if the stored version still matches; if someone saved first, the update touches zero rows and the API returns `412 Precondition Failed` (or 409) with the current version, the other user's change and who made it. The UI then shows a conflict dialog with a diff so the second user can merge, overwrite or discard. Real-time push tells them earlier that someone else is editing.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    ui["Browser (React)"]
+  end
+  subgraph edge["Edge"]
+    gw["API gateway"]
+    rt["Realtime gateway<br/>(WebSocket)"]
+  end
+  subgraph services["Services"]
+    issue["Issue service<br/>(Spring Boot)"]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres<br/>sharded by tenant + outbox")]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka issue.updated"]]
+    search["Search indexer<br/>(OpenSearch)"]
+    notif["Notification svc"]
+    audit["Audit/history"]
+  end
+  ui -->|"REST"| gw --> issue
+  issue -->|"conditional UPDATE"| pg
+  pg -->|"outbox"| kafka
+  kafka --> rt
+  rt -->|"push"| ui
+  kafka --> search
+  kafka --> notif
+  kafka --> audit
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant P as Priya
+  participant A as Alice
+  participant S as Issue service
+  participant DB as Postgres
+  P->>S: GET /issues/KEY
+  S-->>P: body, ETag "7"
+  A->>S: GET /issues/KEY
+  S-->>A: body, ETag "7"
+  P->>S: PATCH If-Match "7" (description)
+  S->>DB: UPDATE ... WHERE version = 7
+  DB-->>S: 1 row, version now 8
+  S-->>P: 200 OK, ETag "8"
+  Note over A,S: Alice gets a push: updated by Priya, version 8
+  A->>S: PATCH If-Match "7" (description)
+  S->>DB: UPDATE ... WHERE version = 7
+  DB-->>S: 0 rows
+  S-->>A: 412 with base, theirs, yours
+  Note over A: UI shows a 3-way diff to merge, overwrite or discard
+```
+
+```mermaid
+flowchart TD
+  m["Version mismatch on PATCH"] --> h["Load history since client's version"]
+  h --> q{"Were the fields in this PATCH<br/>changed since then?"}
+  q -->|"No"| ok["Apply anyway (auto-merge)<br/>200 OK"]
+  q -->|"Yes, same field"| c["412 Conflict<br/>with base / theirs / yours"]
+```
+
+**How to read it:**
+- Steps 1–4: both users load the issue at version 7.
+- Steps 5–8: Priya saves first; the conditional `UPDATE ... WHERE version = 7` hits one row and the version becomes 8. The outbox event goes through Kafka to the realtime gateway, so Alice sees a "updated by Priya" banner.
+- Steps 9–12: Alice saves with the old version; zero rows change, so she gets 412 with the three versions and resolves it in a diff dialog. Nothing is silently overwritten.
+- The last picture is field-level granularity: a mismatch only becomes a conflict when both edits touched the same field.
+
 ## Requirements
 
 Functional:
@@ -49,16 +119,7 @@ CREATE TABLE comment (id BIGINT PRIMARY KEY, issue_id BIGINT, author_id BIGINT, 
 
 ## Architecture
 
-```text
- Browser (React) -- REST --> API gateway --> Issue service (Spring Boot, stateless)
-     ^                                          | conditional UPDATE
-     |  WebSocket                               v
- Realtime gateway <-- Kafka issue.updated <-- Postgres (sharded by tenant) + outbox
-                         |
-                         +--> Search indexer (OpenSearch: JQL-like queries)
-                         +--> Notification svc (email/watchers)
-                         +--> Audit/history
-```
+The diagram in **Picture it** above shows the components: a stateless Issue service doing conditional updates on Postgres (sharded by tenant, with an outbox), and Kafka `issue.updated` events feeding the realtime gateway, search indexer (OpenSearch for JQL-like queries), notifications (email/watchers) and audit history.
 
 ## Deep dives
 

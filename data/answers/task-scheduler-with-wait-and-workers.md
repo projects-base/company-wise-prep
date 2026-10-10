@@ -1,5 +1,73 @@
 **Short answer:** Make `Task` a small future: it holds the work, a state, and the result or error, and `await()` blocks on a condition until the state is terminal (a `while` loop around `wait()`, with `notifyAll()` when the task finishes). Step two is a hand-rolled fixed pool: three worker threads loop on `BlockingQueue.take()`, run tasks as they arrive, and stop on a poison pill. One Java detail to say early: you cannot declare your own no-arg `wait()` because `Object.wait()` is `final`, so the blocking method is called `await()`.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Task~T~ {
+        -Callable~T~ work
+        -State state
+        -T result
+        -Throwable error
+        +schedule(Callable~T~ work)$ Task~T~
+        ~run()
+        +await() T
+        +await(Duration timeout) T
+        +cancel() boolean
+        +isDone() boolean
+    }
+    class State {
+        <<enumeration>>
+        PENDING
+        RUNNING
+        SUCCEEDED
+        FAILED
+        CANCELLED
+    }
+    class WorkerPool {
+        -BlockingQueue~Task~ queue
+        -List~Thread~ workers
+        -boolean shutdown
+        +submit(Callable~T~ work) Task~T~
+        +close()
+        -workLoop()
+    }
+    class AutoCloseable {
+        <<interface>>
+    }
+    Task --> State
+    WorkerPool o-- Task : queue
+    AutoCloseable <|.. WorkerPool
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Caller
+    participant P as WorkerPool
+    participant Q as BlockingQueue
+    participant W as Worker thread
+    participant T as Task
+    C->>P: submit(work)
+    P->>Q: add(task)
+    P-->>C: task (PENDING)
+    C->>T: await()
+    Note over C,T: while not done, wait() on the task monitor
+    W->>Q: take()
+    Q-->>W: task
+    W->>T: run() sets RUNNING, calls work outside the lock
+    T->>T: store result, SUCCEEDED, notifyAll()
+    T-->>C: await() wakes, re-checks, returns result
+    Note over P,W: close() adds one POISON per worker, each worker exits on it
+```
+
+**How to read it:**
+- `Task` is a tiny future: it holds the work plus its state, result or error, and every field is guarded by the task's own lock.
+- `await()` waits in a `while` loop until the state is terminal; `run()` finishes with `notifyAll()`, so every waiter wakes.
+- The work itself runs outside the lock, so a slow task never blocks `await` or `cancel`.
+- `WorkerPool` is a queue plus three threads looping on `take()`; tasks run in arrival order on whichever worker is free.
+- Shutdown queues one poison pill per worker after the real tasks, so queued work finishes before the workers exit.
+
 ## Requirements
 
 - `Task.schedule(work)` (the prompt's `task()`) starts the work and returns at once.

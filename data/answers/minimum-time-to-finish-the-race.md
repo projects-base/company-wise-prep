@@ -1,5 +1,31 @@
 **Short answer:** Split it into two steps. First compute `best[k]`: the fastest time to run k consecutive laps on one fresh tyre, over all tyre types. Because r ≥ 2, lap times double at least every lap, so after about 20 laps changing tyres is always better; stop extending once a lap costs more than `changeTime + f`. Then a 1-D DP: `dp[i] = min over k of dp[i − k] + changeTime + best[k]`, with no change cost before the first stint. O(T · 20 + numLaps · 20).
 
+## Picture it
+
+Example 1: `tires = [[2,3],[3,4]]`, `changeTime = 5`, `numLaps = 4`.
+
+Step 1, the cheapest stint of k laps on one fresh tyre:
+
+| k | Tyre [2,3]: laps 2, 6, 18 | Tyre [3,4]: laps 3, 12 | best[k] |
+|---|---|---|---|
+| 1 | 2 | 3 | 2 |
+| 2 | 2 + 6 = 8 | 3 + 12 = 15 (then 12 ≥ 5 + 3, stop) | 8 |
+| 3 | 8 + 18 = 26 (then 18 ≥ 5 + 2, stop) | — | 26 |
+| 4 | — | — | ∞ |
+
+Step 2, `dp[i] = min over k of best[k] + (k == i ? 0 : 5 + dp[i − k])`:
+
+| i | k = 1 | k = 2 | k = 3 | dp[i] |
+|---|---|---|---|---|
+| 1 | 2 | — | — | 2 |
+| 2 | 2 + 5 + 2 = 9 | 8 | — | 8 |
+| 3 | 2 + 5 + 8 = 15 | 8 + 5 + 2 = 15 | 26 | 15 |
+| 4 | 2 + 5 + 15 = 22 | 8 + 5 + 8 = **21** | 26 + 5 + 2 = 33 | 21 |
+
+Each `dp[i]` depends on `dp[i − k]` for the few k where `best[k]` is finite. Answer 21: two 2-lap stints on [2,3] with one change.
+
+**The picture in one sentence:** collapse all tyres into one short `best[k]` table of stint costs, then a 1-D DP chooses the length of the last stint.
+
 ## Approach
 
 - **Brute force:** decide at every lap whether to change and to which tyre. Exponential.

@@ -1,5 +1,31 @@
 **Short answer:** Use the diagonals. Two segments are the diagonals of a rectangle exactly when they have the same midpoint and the same length. So group every pair of points by (midpoint, squared length). Any two pairs in the same group form a rectangle; compute its area with a cross product and keep the minimum. With n ≤ 50 that is about 1,225 pairs, so it is fast. Keep everything in integers by using doubled midpoints and squared lengths.
 
+## Picture it
+
+Example 1: points p0 (1,2), p1 (2,1), p2 (1,0), p3 (0,1), a square tilted by 45°.
+
+```text
+y=2  .  p0  .
+y=1  p3  .  p1
+y=0  .  p2  .
+    x=0 x=1 x=2
+```
+
+Every pair, keyed by (x1 + x2, y1 + y2, length²):
+
+| Pair | Key | Group size |
+|---|---|---|
+| p0–p1 | 3,3,2 | 1 |
+| p0–p2 | 2,2,4 | 2 |
+| p0–p3 | 1,3,2 | 1 |
+| p1–p2 | 3,1,2 | 1 |
+| p1–p3 | 2,2,4 | 2 |
+| p2–p3 | 1,1,2 | 1 |
+
+Only the key `2,2,4` has two pairs: diagonals p0–p2 and p1–p3 share a midpoint (1,1) and a length 2. In the code's names, the corner is (1,2) (start of the first diagonal) and its two neighbours are (2,1) and (0,1) (the second diagonal): u = (1,−1), v = (−1,−1), cross = 1·(−1) − (−1)·(−1) = −2, area 2.
+
+**The picture in one sentence:** two segments are a rectangle's diagonals exactly when they share a midpoint and a length, so group all pairs by that integer key and only compare pairs inside a group.
+
 ## Approach
 
 - **Brute force:** try every 4 points and test whether they form a rectangle in any order. O(n⁴) = 6·10⁶ quadruples for n = 50, with several orderings each. It passes at this size but is messy.

@@ -1,5 +1,24 @@
 **Short answer:** Binary search on the answer. For a candidate cap `C`, a greedy left-to-right pass counts how many pieces you need if no piece may exceed `C`. Fewer pieces are needed as `C` grows, so find the smallest `C` that needs at most `k` pieces. The range is `[max element, total sum]`, so it is O(n log(sum)). The DP over (prefix, pieces) is O(k·n²) and is the stepping stone the interviewer asked for first.
 
+## Picture it
+
+Example 1: `nums = [7,2,5,10,8]`, `k = 2`. The search range starts at `[max = 10, sum = 32]`.
+
+| step | lo | hi | mid (cap) | greedy pieces under cap | count | ≤ k? | next |
+|---|---|---|---|---|---|---|---|
+| 1 | 10 | 32 | 21 | [7,2,5] [10,8] | 2 | yes | hi = 21 |
+| 2 | 10 | 21 | 15 | [7,2,5] [10] [8] | 3 | no | lo = 16 |
+| 3 | 16 | 21 | 18 | [7,2,5] [10,8] | 2 | yes | hi = 18 |
+| 4 | 16 | 18 | 17 | [7,2,5] [10] [8] | 3 | no | lo = 18 |
+| 5 | 18 | 18 | - | - | - | - | stop, answer 18 |
+
+```text
+cap:   10 ... 15  16  17 | 18 ... 21 ... 32
+fits?  no     no  no  no | yes    yes    yes   <- monotonic, find the first yes
+```
+
+**The picture in one sentence:** "can a cap C work?" is a cheap greedy check that flips from no to yes exactly once, so binary search finds the smallest cap that fits in k pieces.
+
 ## Approach
 
 **DP first.** Let `dp[j][i]` be the best largest-sum when the first `i` elements are cut into `j` pieces. The last piece is `nums[p..i-1]` for some `p`:

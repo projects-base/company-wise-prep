@@ -1,5 +1,80 @@
 **Short answer:** Every machine runs a small agent that reports its inventory (installed software and versions) and pulls a *desired state* from a central policy service. The server evaluates policies (target versions plus a blocklist with RED/YELLOW severities) against each machine's inventory and returns actions: install, upgrade, remove, or notify. The agent pulls on a schedule with jitter, so machines that come and go simply converge the next time they check in. Rollouts are staged in rings, and every action is idempotent and audited.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    agents["Agents<br/>(1M machines)"]
+    admin["Admin portal"]
+  end
+  subgraph edge["Edge"]
+    lb["Load balancer"]
+  end
+  subgraph services["Services"]
+    checkin["Check-in service<br/>(stateless)"]
+    eval["Policy evaluator"]
+    cache["Policy cache<br/>(in-memory)"]
+    policy["Policy service"]
+    agg["Compliance aggregator"]
+  end
+  subgraph storage["Storage"]
+    inv[("Inventory DB<br/>sharded by machine_id")]
+    actions[("Action log")]
+    pg[("Postgres<br/>policies, block rules")]
+    repo[("Package repo<br/>blob store + CDN, signed")]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka: inventory +<br/>action events"]]
+  end
+  agents -->|"HTTPS + mTLS, pull ~15 min"| lb --> checkin
+  checkin --> inv
+  checkin --> actions
+  checkin --> eval --> cache
+  admin --> policy --> pg
+  policy -->|"publish"| cache
+  actions --> kafka --> agg --> dash["Dashboards / alerts"]
+  agents -->|"download package"| repo
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as Agent
+  participant C as Check-in service
+  participant I as Inventory DB
+  participant E as Policy evaluator
+  participant R as Package repo
+  A->>C: checkin (inventoryHash, lastAppliedPolicyVersion, actionResults)
+  C->>I: save results, compare inventory hash
+  alt same hash and latest policyVersion
+    C-->>A: no actions, nextCheckinSeconds
+  else something changed
+    C->>E: evaluate(inventory, policies)
+    E-->>C: REMOVE / NOTIFY / UPGRADE actions
+    C-->>A: actions with actionId, url, sha256
+    A->>R: download package
+    A->>A: verify signature + sha256, apply if not already at target
+  end
+  Note over A,C: results go back by actionId on the next check-in, resends are no-ops
+```
+
+```mermaid
+flowchart TD
+  pkg["Each installed package"] --> b{"Matches a block rule?"}
+  b -->|"RED"| rm["REMOVE"]
+  b -->|"YELLOW"| nt["NOTIFY with deadline<br/>(may escalate to RED)"]
+  b -->|"No"| t{"Below target version<br/>and ring enabled?"}
+  t -->|"Yes, target not blocked"| up["UPGRADE"]
+  t -->|"No"| none["No action"]
+```
+
+**How to read it:**
+- Step 1: every agent pulls on a jittered schedule and reports a hash of its inventory plus the results of earlier actions. New machines register this way; machines that were off just catch up.
+- Steps 2–3: if the hash and policy version are unchanged, there is nothing to evaluate, which keeps 1M machines cheap.
+- Steps 4–8: otherwise the evaluator (a pure function of inventory and policies) returns actions. The agent verifies the signed package and is idempotent: if it is already at the target, it reports DONE.
+- The decision picture: block rules win over upgrades. RED removes, YELLOW notifies, and upgrades only reach machines whose rollout ring is enabled.
+
 ## Requirements
 
 **Functional**
@@ -49,22 +124,7 @@ action(id PK, machine_id, type, package, version, state, created_at, completed_a
 
 ## Architecture
 
-```text
- agents (1M machines)
-     |  HTTPS + mTLS, pull every ~15 min (jittered)
-     v
- [ Load balancer ] --> [ Check-in service (stateless) ] --> [ Policy evaluator ]
-                              |            |                      |
-                              v            v                      v
-                     [ Inventory DB ]  [ Action log ]     [ Policy cache (in-memory,
-                      (sharded by          |                refreshed on publish) ]
-                       machine_id)         v
-                                   [ Kafka: inventory + action events ]
-                                           |
-                     [ Compliance aggregator ] --> [ Dashboards / alerts ]
- [ Admin portal ] --> [ Policy service + Postgres ] --publish--> policy cache
- [ Package repo: blob store + CDN, signed artifacts ]
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

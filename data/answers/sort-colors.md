@@ -1,5 +1,22 @@
 **Short answer:** Dutch national flag partitioning with three pointers. Everything before `low` is 0, between `low` and `mid` is 1, after `high` is 2, and `mid..high` is unknown. Look at `nums[mid]`: a 0 swaps to `low` (advance both), a 1 just advances `mid`, a 2 swaps to `high` (shrink `high`, do not advance `mid`). One pass, O(1) space.
 
+## Picture it
+
+Example 1: `nums = [2,0,2,1,1,0]`, starting with `low = 0`, `mid = 0`, `high = 5`.
+
+| step | low | mid | high | nums[mid] | action | array after |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 0 | 5 | 2 | swap mid, high; high-- | `[0,0,2,1,1,2]` |
+| 2 | 0 | 0 | 4 | 0 | swap low, mid; low++, mid++ | `[0,0,2,1,1,2]` |
+| 3 | 1 | 1 | 4 | 0 | swap low, mid; low++, mid++ | `[0,0,2,1,1,2]` |
+| 4 | 2 | 2 | 4 | 2 | swap mid, high; high-- | `[0,0,1,1,2,2]` |
+| 5 | 2 | 2 | 3 | 1 | mid++ | `[0,0,1,1,2,2]` |
+| 6 | 2 | 3 | 3 | 1 | mid++ | `[0,0,1,1,2,2]` |
+
+Now `mid = 4 > high = 3`, so the unknown region is empty and the array is sorted.
+
+**The picture in one sentence:** three pointers keep 0s left of `low`, 2s right of `high`, and shrink the unknown middle one element per step, never advancing `mid` after a swap with `high`.
+
 ## Approach
 
 - **Library sort.** `Arrays.sort` is O(n log n) and forbidden here.

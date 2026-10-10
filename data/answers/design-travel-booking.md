@@ -1,5 +1,95 @@
 **Short answer:** A travel site is two very different systems. *Search* is read-heavy, latency-sensitive and fans out to many external suppliers (airline GDSs, hotel channel managers), so it lives on aggressive caching of fares and availability. *Booking* is low-volume but must be correct: re-price the chosen option live, hold it with the supplier, take payment, then confirm, using a saga with compensations because no single transaction spans our database, the supplier and the payment provider.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    web["Web / app"]
+  end
+  subgraph edge["Edge"]
+    cdn["CDN"]
+    gw["API gateway"]
+  end
+  subgraph search["Search side"]
+    ss["Search service"]
+    cache[("Fare/avail cache<br/>(Redis)")]
+    agg["Supplier aggregator<br/>(parallel, timeouts, breakers)"]
+    es[("Hotel content<br/>(Elasticsearch)")]
+  end
+  subgraph booking["Booking side"]
+    orch["Booking orchestrator<br/>(saga)"]
+    pg[("Postgres + outbox")]
+    pay["Payment service"]
+    adapters["Supplier adapters<br/>(hold, ticket, cancel)"]
+  end
+  subgraph external["External"]
+    suppliers["GDS / airline NDC /<br/>hotel APIs"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka"]]
+    down["Notifications, invoicing,<br/>analytics"]
+  end
+  web --> cdn --> gw
+  gw --> ss
+  ss --> cache
+  ss -->|"miss"| agg --> suppliers
+  ss --> es
+  gw --> orch
+  orch --> pg
+  orch --> pay
+  orch --> adapters --> suppliers
+  pg --> kafka --> down
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant U as User
+  participant S as Search service
+  participant C as Redis cache
+  participant A as Supplier aggregator
+  participant O as Booking orchestrator
+  participant SP as Supplier
+  participant P as Payment service
+  U->>S: search BLR to DEL
+  S->>C: lookup normalised query
+  C-->>S: miss
+  S->>A: fan out to suppliers in parallel (1.5 s timeout)
+  A-->>S: results (partial if some timed out)
+  S->>C: store, TTL a few minutes
+  S-->>U: indicative prices
+  U->>O: reprice optionId
+  O->>SP: live re-price
+  SP-->>O: fareKey, price, expiresAt
+  U->>O: POST /bookings (fareKey, Idempotency-Key)
+  O->>SP: create PNR (HELD)
+  U->>O: pay (Idempotency-Key)
+  O->>P: charge
+  O->>SP: issue ticket (TICKETING)
+  O-->>U: CONFIRMED + e-ticket
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> HELD: PNR created with supplier
+  HELD --> PAYMENT_PENDING: charge started
+  PAYMENT_PENDING --> TICKETING: payment succeeded
+  PAYMENT_PENDING --> Released: payment failed, release PNR
+  TICKETING --> CONFIRMED: ticket issued
+  TICKETING --> TICKETING: retry a few times
+  TICKETING --> Refunded: still failing, refund + cancel PNR + alert ops
+  CONFIRMED --> [*]
+  Released --> [*]
+  Refunded --> [*]
+```
+
+**How to read it:**
+- Steps 1–7: search is cache-first. On a miss the aggregator fans out to suppliers in parallel with a hard timeout and returns what came back; prices shown are only indicative.
+- Steps 8–10: before booking, a live re-price returns the only binding price as a short-lived `fareKey`.
+- Steps 11–16: the booking is a saga. Each step's status is saved before the call, so a crashed orchestrator resumes from where it was.
+- The state picture shows the compensations: payment failure releases the PNR; ticketing failure after payment ends in a refund, so nobody is charged without a ticket.
+
 ## Requirements
 
 **Functional**
@@ -48,20 +138,7 @@ hotel_static (Elasticsearch): name, geo, amenities, rating  -- rarely changes
 
 ## Architecture
 
-```text
-web/app --> CDN --> API gateway
-                     |
-      +--------------+-----------------------------+
-      v                                            v
-[ Search service ] --> [ Fare/avail cache (Redis) ]   [ Booking orchestrator (saga) ]
-      |  miss                                         |        |          |
-      v                                               v        v          v
-[ Supplier aggregator ] --> GDS / airline NDC /   [ Postgres ] [ Payment ] [ Supplier adapters ]
-   (parallel fan-out,         hotel APIs           + outbox      service      (hold, ticket, cancel)
-    timeouts, circuit breakers)                       |
-[ Hotel content: Elasticsearch ]                      v
-                                              Kafka --> notifications, invoicing, analytics
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

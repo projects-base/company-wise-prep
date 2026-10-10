@@ -1,5 +1,25 @@
 **Short answer:** Sweep line. Turn each shift into two events, `+1` for its worker at the start and `−1` at the end, and process the events in time order. Group them by timestamp. Keep a per-worker count of active shifts, so overlapping shifts by the same person work. Whenever the set of workers on duty actually changes at a timestamp, close the current segment (if anyone was on duty) and start a new one. That is O(n log n) for sorting plus the cost of copying the sets into the output.
 
+## Picture it
+
+Example 2: Ann `[0,5)`, Ann `[5,9)`, Bo `[3,7)`.
+
+```text
+time   0    3    5    7    9
+Ann    |---------|---------|
+Bo          |---------|
+```
+
+| t | Events at t | active after | Changed? | Emitted | onDuty after | segStart |
+|---|---|---|---|---|---|---|
+| 0 | Ann +1 | Ann 1 | yes (Ann on) | nothing, set was empty | {Ann} | 0 |
+| 3 | Bo +1 | Ann 1, Bo 1 | yes (Bo on) | [0,3,{Ann}] | {Ann, Bo} | 3 |
+| 5 | Ann −1, Ann +1 | Ann 1, Bo 1 | no (Ann stays on) | nothing, segment extends | {Ann, Bo} | 3 |
+| 7 | Bo −1 | Ann 1, Bo 0 | yes (Bo off) | [3,7,{Ann, Bo}] | {Ann} | 7 |
+| 9 | Ann −1 | Ann 0 | yes (Ann off) | [7,9,{Ann}] | {} | 9 |
+
+**The picture in one sentence:** sweep the boundaries in time order with a per-worker count, and close a segment only at a timestamp where someone actually joins or leaves the on-duty set.
+
 ## Approach
 
 - **Brute force.** Collect all start and end times, sort them, and for each elementary interval scan every shift to see who covers it. O(n²): fine for 2000 shifts, but it is not the clean answer.

@@ -1,5 +1,30 @@
 **Short answer:** Try to 2-colour the graph. BFS from every uncoloured node, give it colour 1, and give each neighbour the opposite colour. If you ever find an edge whose two ends already have the same colour, the graph has an odd cycle and is not bipartite. Restart from each uncoloured node so disconnected components are all checked. O(n + e).
 
+## Picture it
+
+Example 1: `graph = [[1,2,3],[0,2],[0,1,3],[0,2]]`. Colours as BFS assigns them from node 0:
+
+```mermaid
+flowchart LR
+    n0["0 : colour +1"] --- n1["1 : colour -1"]
+    n0 --- n2["2 : colour -1"]
+    n0 --- n3["3 : colour -1"]
+    n1 ---|"same colour: conflict"| n2
+    n2 --- n3
+```
+
+| Step | Pop u (colour) | Neighbour v | colour[v] before | Action |
+|---|---|---|---|---|
+| 1 | 0 (+1) | 1 | 0 | colour −1, enqueue |
+| 2 | 0 (+1) | 2 | 0 | colour −1, enqueue |
+| 3 | 0 (+1) | 3 | 0 | colour −1, enqueue |
+| 4 | 1 (−1) | 0 | +1 | different, fine |
+| 5 | 1 (−1) | 2 | −1 | same as u: return false |
+
+The triangle 0-1-2 is an odd cycle. In Example 2 (a square 0-1-2-3) the same BFS gives 0 = +1, 1 and 3 = −1, 2 = +1 and no edge ever joins equal colours, so it returns true.
+
+**The picture in one sentence:** colouring one node forces every node it reaches, so one BFS per component either 2-colours it or runs into an edge whose ends already share a colour.
+
 ## Approach
 
 - **Brute force:** try all 2ⁿ ways to split the nodes and check every edge. Hopeless beyond tiny n.

@@ -1,5 +1,28 @@
 **Short answer:** Mark the chosen island with a flood fill from `(row, col)`. Then treat every cell that is **not** on that island (water and other islands alike) as passable. Flood from every border cell that is not on the island: all of that reaches the ocean. The passable cells left unvisited are trapped by the chosen island, and each connected group of them is one lake. Three BFS passes, O(R·C).
 
+## Picture it
+
+Example 2, chosen island at `(0,0)`. Input on the left, `mark` after the three passes on the right (`1` = chosen island, `2` = reaches the ocean, `3` = lake):
+
+```text
+grid                 mark
+1 1 1 1 1 0          1 1 1 1 1 2
+1 0 0 0 1 0          1 3 3 3 1 2
+1 0 1 0 1 0          1 3 3 3 1 2    <- (2,2) is land of another island,
+1 0 0 0 1 0          1 3 3 3 1 2       so it is passable and joins the lake
+1 1 1 1 1 0          1 1 1 1 1 2
+0 0 0 0 0 0          2 2 2 2 2 2
+```
+
+| Pass | Start cells | What gets labelled | Result |
+|---|---|---|---|
+| 1. island | (0,0) | the 16 land cells of the ring, over land only | label 1 |
+| 2. ocean | every unlabelled border cell: column 5 and row 5 | the 11 cells of column 5 and row 5; the ring stops the flood there | label 2 |
+| 3. lakes | scan finds (1,1) unlabelled: `lakes = 1` | all 9 inner cells, including the land at (2,2) | label 3 |
+| scan continues | no more cells with label 0 | – | answer **1** |
+
+**The picture in one sentence:** make the chosen island the only wall, flood in from the border, and every leftover region is one lake.
+
 ## Approach
 
 **Brute force.** For each water cell, BFS to see whether it can reach the border without crossing the chosen island, then group the trapped cells. O((R·C)²).

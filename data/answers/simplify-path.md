@@ -1,5 +1,23 @@
 **Short answer:** Split the path on `/` and walk the parts with a stack (a deque). Skip empty parts and `.`; on `..` pop if the stack is not empty; push anything else, including names like `...`. Then join the stack from bottom to top with `/`, returning `/` if it is empty. Because the interview asked for production-ready code, also show a few unit tests.
 
+## Picture it
+
+Path `/a/./b/../../c/` splits into `"", "a", ".", "b", "..", "..", "c"` (Java drops the trailing empty string).
+
+| step | part | action | stack (bottom → top) |
+|---|---|---|---|
+| 1 | `""` | skip empty | `[]` |
+| 2 | `a` | push | `[a]` |
+| 3 | `.` | skip | `[a]` |
+| 4 | `b` | push | `[a, b]` |
+| 5 | `..` | pop `b` | `[a]` |
+| 6 | `..` | pop `a` | `[]` |
+| 7 | `c` | push | `[c]` |
+
+Join bottom to top with `/`: `"/c"`.
+
+**The picture in one sentence:** the canonical path is a stack of directory names where `..` means pop and `.` or empty means do nothing.
+
 ## Approach
 
 - **Key insight:** a canonical path is just the list of directory names left after applying `..` as "remove the last one". That is a stack.

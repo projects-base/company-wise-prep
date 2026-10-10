@@ -1,5 +1,72 @@
 **Short answer:** Split the cache into two parts. `Cache<K,V>` stores the entries and enforces capacity. An `EvictionPolicy<K>` only tracks key usage and answers "which key goes next?". The cache calls the policy on every access (`keyAccessed`, `keyAdded`, `keyRemoved`) and asks `evict()` when it is full. LRU is a hash map from key to node in a doubly linked list, so every operation is O(1). LFU and FIFO are other implementations of the same interface. Nothing in `Cache` changes when you add them.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Cache~K,V~ {
+        -int capacity
+        -Map~K,V~ store
+        -EvictionPolicy~K~ policy
+        +get(K key) Optional~V~
+        +put(K key, V value)
+        +remove(K key)
+    }
+    class EvictionPolicy~K~ {
+        <<interface>>
+        +keyAccessed(K key)
+        +keyAdded(K key)
+        +keyRemoved(K key)
+        +evict() K
+    }
+    class LruPolicy~K~ {
+        -Map~K,Node~ nodes
+        -Node head
+        -Node tail
+    }
+    class FifoPolicy~K~ {
+        -LinkedHashSet~K~ order
+    }
+    class LfuPolicy~K~ {
+        -Map~K,Integer~ freq
+        -int minFreq
+    }
+    class EvictionPolicyFactory {
+        +create(String name) EvictionPolicy
+    }
+    Cache~K,V~ --> EvictionPolicy~K~ : asks which key goes
+    EvictionPolicy~K~ <|.. LruPolicy~K~
+    EvictionPolicy~K~ <|.. FifoPolicy~K~
+    EvictionPolicy~K~ <|.. LfuPolicy~K~
+    EvictionPolicyFactory ..> EvictionPolicy~K~ : builds
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant K as Cache
+    participant P as LruPolicy
+    C->>K: put(newKey, value)
+    K->>K: store.size() == capacity?
+    K->>P: evict()
+    P->>P: unlink tail.prev (least recent)
+    P-->>K: victim key
+    K->>K: store.remove(victim)
+    K->>K: store.put(newKey, value)
+    K->>P: keyAdded(newKey)
+    P->>P: addFirst(node) as most recent
+    C->>K: get(newKey)
+    K->>P: keyAccessed(newKey)
+    K-->>C: Optional of value
+```
+
+**How to read it:**
+- `Cache` stores the values and enforces capacity. It only knows the `EvictionPolicy` interface, never a concrete policy.
+- `LruPolicy`, `FifoPolicy` and `LfuPolicy` are interchangeable strategies. The optional factory picks one from config.
+- In the flow, a `put` on a full cache asks the policy for a victim, removes it from the store, adds the new entry and tells the policy.
+- Every `get` hit reports `keyAccessed`, which is how LRU moves the key to the front of its linked list.
+
 ## Requirements
 
 - `get(key)`, `put(key, value)`, `remove(key)`, fixed `capacity`.

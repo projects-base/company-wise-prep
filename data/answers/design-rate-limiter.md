@@ -1,5 +1,70 @@
 **Short answer:** Put a `RateLimiter` interface in front of the algorithm, and have a `RateLimiterService` that looks up the right rule for each request and keeps one limiter per (rule, client) key. Code one algorithm well; token bucket is the usual pick because it allows short bursts and needs only two numbers per key. Per-API limits are just different rules. A limit shared by two APIs is one rule that both APIs map to, so they draw from the same bucket.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class RateLimitRule {
+        <<record>>
+        String id
+        long capacity
+        Duration window
+    }
+    class RuleRegistry {
+        -Map~String, RateLimitRule~ rulesById
+        -Map~String, String~ ruleIdByApi
+        +ruleFor(String api) Optional~RateLimitRule~
+    }
+    class RateLimiter {
+        <<interface>>
+        +tryAcquire() boolean
+    }
+    class TokenBucketLimiter {
+        -long capacity
+        -double tokensPerNano
+        -double tokens
+        -long lastRefill
+        +tryAcquire() boolean
+    }
+    class SlidingWindowLogLimiter
+    class RateLimiterFactory
+    class RateLimiterService {
+        -ConcurrentHashMap~String, RateLimiter~ limiters
+        +allow(String clientId, String api) boolean
+    }
+    RateLimiterService --> RuleRegistry
+    RateLimiterService --> RateLimiterFactory
+    RateLimiterService "1" o-- "many" RateLimiter : one per ruleId and client
+    RuleRegistry o-- RateLimitRule
+    RateLimiter <|.. TokenBucketLimiter
+    RateLimiter <|.. SlidingWindowLogLimiter
+    RateLimiterFactory ..> RateLimiter : builds
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant F as Spring filter
+    participant S as RateLimiterService
+    participant R as RuleRegistry
+    participant TB as TokenBucketLimiter
+    F->>S: allow("client42", "/upload")
+    S->>R: ruleFor("/upload")
+    R-->>S: rule "bulk" (50 per minute)
+    S->>S: computeIfAbsent("bulk:client42")
+    S->>TB: tryAcquire()
+    TB->>TB: refill by elapsed time, cap at capacity
+    TB-->>S: true if a token was left, then tokens - 1
+    S-->>F: allowed or not
+    Note over F: false means HTTP 429 with Retry-After
+```
+
+**How to read it:**
+- `RuleRegistry` maps each API path to a rule id; `/upload` and `/import` both map to `bulk`, so they share one budget.
+- `RateLimiterService` keeps one `RateLimiter` per `ruleId:clientId`, created once by `computeIfAbsent`.
+- `RateLimiter` is the Strategy seam: token bucket by default, other algorithms plug in through the factory.
+- The token bucket refills lazily on each call from the elapsed time, then takes one token if one is there, all inside one lock per key.
+
 ## Requirements
 
 - `allow(clientId, api)` returns true or false, fast, in memory, on one node.

@@ -1,5 +1,68 @@
 **Short answer:** A future is a write-once cell plus a list of callbacks. Its state is either *pending* or *completed* with a value or an error. `complete` sets the outcome once, under a lock. It then wakes blocked `get()` callers and runs the registered callbacks *outside* the lock. `thenApply` and `thenCompose` return a new future and register a callback that completes it. `allOf` counts down with an `AtomicInteger`. For the data step, split the array into chunks, `supplyAsync` one task per chunk on an executor, then `allOf` and combine the partial results.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Promise~T~ {
+        -Outcome~T~ outcome
+        -List~Consumer~ callbacks
+        +complete(T value) boolean
+        +completeExceptionally(Throwable t) boolean
+        +get() T
+        +thenApply(Function fn) Promise~U~
+        +thenCompose(Function fn) Promise~U~
+        +supplyAsync(Supplier s, Executor e)$ Promise~T~
+        +allOf(List promises)$ Promise~Void~
+        -finish(Outcome~T~ o) boolean
+        -onComplete(Consumer cb)
+    }
+    class Outcome~T~ {
+        <<sealed interface>>
+    }
+    class Success~T~ {
+        <<record>>
+        +T value
+    }
+    class Failure~T~ {
+        <<record>>
+        +Throwable error
+    }
+    class ParallelSum {
+        +sum(int[] a, int parts, ExecutorService pool)$ long
+    }
+    Promise~T~ *-- Outcome~T~
+    Outcome~T~ <|.. Success~T~
+    Outcome~T~ <|.. Failure~T~
+    ParallelSum ..> Promise~T~ : supplyAsync, allOf
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant S as ParallelSum
+    participant E as Executor
+    participant P as Promise per chunk
+    participant A as allOf Promise
+    S->>E: supplyAsync(sum of chunk) for each chunk
+    E-->>S: one pending Promise per chunk
+    S->>A: allOf(partials)
+    A->>P: onComplete(count down) on each
+    S->>A: get() blocks
+    E->>P: complete(partial sum)
+    P->>P: finish() sets outcome, notifyAll, runs callbacks outside lock
+    P-->>A: callback: remaining.decrementAndGet()
+    Note over A: when remaining reaches 0, complete(null)
+    A-->>S: get() returns
+    S->>P: get() each partial and add them up
+```
+
+**How to read it:**
+- A `Promise` holds one `Outcome` (null while pending) and a list of callbacks. `Outcome` is either `Success` or `Failure`.
+- `complete` goes through `finish`, which sets the outcome once under the lock, wakes `get()` callers, then runs the callbacks outside the lock.
+- `ParallelSum` starts one `supplyAsync` task per chunk, then builds an `allOf` promise that counts down as each chunk finishes.
+- When the count hits zero, `allOf` completes, the blocked `get()` returns, and the partial sums are added without further waiting.
+
 ## Requirements
 
 - `complete(v)` and `completeExceptionally(t)`: first call wins, later ones return false.

@@ -1,5 +1,22 @@
 **Short answer:** Keep a `HashMap<String, Integer>` from message to the earliest time it may be printed again. On a call, if the stored time is in the future, return `false`; otherwise store `timestamp + 10` and return `true`. Suppressed messages do not touch the map. O(1) per call. The harder "past or future" variant cannot decide at arrival time, so it buffers each message for 10 seconds before emitting it.
 
+## Picture it
+
+Example 1, calls in time order:
+
+| timestamp | message | nextAllowed before | Blocked? (timestamp < stored) | nextAllowed after | Returns |
+|---|---|---|---|---|---|
+| 1 | foo | — | no entry | foo: 11 | true |
+| 2 | bar | foo: 11 | no entry | foo: 11, bar: 12 | true |
+| 3 | foo | foo: 11 | 3 < 11 | unchanged | false |
+| 8 | bar | bar: 12 | 8 < 12 | unchanged | false |
+| 10 | foo | foo: 11 | 10 < 11 | unchanged | false |
+| 11 | foo | foo: 11 | 11 < 11 is false | foo: 21, bar: 12 | true |
+
+Suppressed calls (rows 3 to 5) leave the map alone, so a message spammed every second still prints once every 10 seconds.
+
+**The picture in one sentence:** store one number per message, the next time it may print, and compare against it.
+
 ## Approach
 
 - **Brute force:** keep every printed (time, message) and scan back over the last 10 seconds. O(n) per call.

@@ -1,5 +1,22 @@
 **Short answer:** A plain sliding window fails, because adding a character can make a window go from invalid to valid, so there is no rule for when to shrink. Fix that by adding a constraint: for each `target` from 1 to 26, find the longest window with *exactly* `target` distinct letters that all appear at least k times. With the number of distinct letters capped, the window has a clear shrink rule. 26 passes of O(n) give O(26 · n).
 
+## Picture it
+
+Example 2: `s = "ababbc"`, `k = 2`. The pass with `target = 2` (at most 2 distinct letters in the window):
+
+| right | char | Window after shrink | counts | distinct | atLeastK | Valid? | best |
+|---|---|---|---|---|---|---|---|
+| 0 | a | [0,0] a | a1 | 1 | 0 | no (distinct ≠ 2) | 0 |
+| 1 | b | [0,1] ab | a1 b1 | 2 | 0 | no | 0 |
+| 2 | a | [0,2] aba | a2 b1 | 2 | 1 | no | 0 |
+| 3 | b | [0,3] abab | a2 b2 | 2 | 2 | yes, len 4 | 4 |
+| 4 | b | [0,4] ababb | a2 b3 | 2 | 2 | yes, len 5 | 5 |
+| 5 | c | 3 distinct: drop a, b, a → [3,5] bbc | b2 c1 | 2 | 1 | no | 5 |
+
+All passes: `target = 1` finds "bb" (length 2), `target = 2` finds "ababb" (length 5), `target = 3` never has every letter at count ≥ 2 because `c` appears once, and targets 4 to 26 can never reach that many distinct letters. Answer: 5.
+
+**The picture in one sentence:** fixing the number of distinct letters gives the window a clear rule for when to shrink, so run one ordinary sliding window per target from 1 to 26.
+
 ## Approach
 
 - **Brute force:** every substring, with counts kept incrementally. O(26 · n²). Too slow at 10⁵.

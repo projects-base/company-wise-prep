@@ -1,5 +1,74 @@
 **Short answer:** Keep stock per (SKU, warehouse) in a transactional database and never do read-modify-write in application code. Use a conditional atomic update (`UPDATE ... SET available = available - n WHERE available >= n`) or optimistic locking, so two concurrent orders cannot both take the last unit. Model stock as on-hand, reserved and available, reserve on checkout with an expiry, commit on payment, and record every change in an append-only ledger. For high concurrency, shard by SKU and, for very hot SKUs, split stock into buckets or move reservations into an in-memory counter backed by the ledger.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    sf["Storefront"]
+    co["Checkout"]
+    wms["WMS / receiving"]
+  end
+  subgraph services["Services"]
+    avail["Availability API"]
+    inv["Inventory service<br/>stateless, N instances"]
+    sweep["Expiry sweeper"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka: inventory.changed"]]
+    cons["Cache refresher, search index,<br/>low-stock alerts, analytics"]
+  end
+  subgraph storage["Storage"]
+    redis[("Redis cache<br/>sku to available")]
+    pg[("Postgres primary<br/>sharded by sku when needed")]
+    rr[("Read replicas")]
+  end
+  sf --> avail --> redis
+  co --> inv --> pg
+  wms --> inv
+  sweep --> pg
+  pg --> rr
+  pg -->|"outbox"| kafka --> cons
+  cons --> redis
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Checkout
+  participant I as Inventory service
+  participant D as Postgres
+  participant P as Payment
+  C->>I: POST /reservations (orderId, lines, Idempotency-Key)
+  I->>D: begin, lines sorted by SKU
+  I->>D: UPDATE stock SET reserved = reserved + qty WHERE available >= qty
+  D-->>I: 1 row updated (0 rows means out of stock, roll back)
+  I->>D: insert reservation HELD + movement + outbox, commit
+  I-->>C: reservationId
+  C->>P: charge
+  P-->>C: success
+  C->>I: POST /reservations/r1/commit
+  I->>D: on_hand -= qty, reserved -= qty, status COMMITTED
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> HELD: reserve at checkout (TTL 10 min)
+  HELD --> COMMITTED: payment succeeds
+  HELD --> RELEASED: cancel or payment fails
+  HELD --> EXPIRED: sweeper, past expires_at
+  COMMITTED --> [*]
+  RELEASED --> [*]
+  EXPIRED --> [*]
+```
+
+**How to read it:**
+- Storefront reads go to a Redis cache of `available`, refreshed from change events. It may be slightly stale; the reservation is the real check.
+- Steps 1–4: the reservation is one conditional `UPDATE` per line, so the database re-checks stock under the row lock and two orders can never both take the last unit. Lines are locked in SKU order to avoid deadlocks.
+- Step 5: the reservation, the ledger movement and the outbox event commit in the same transaction, so every quantity can be explained later.
+- Steps 6–10: after payment the reservation is committed; on failure or timeout it is released or expired by the sweeper (the state picture).
+- For a flash sale on one SKU, the hot row is split into buckets or gated by an atomic Redis counter, with the ledger still the source of truth.
+
 ## Requirements
 
 Functional:
@@ -53,18 +122,7 @@ CREATE TABLE stock_movement (                 -- append-only ledger
 
 ## Architecture
 
-```text
- Storefront --> Availability API --> Redis cache (sku -> available, short TTL / CDC refresh)
- Checkout ----> Inventory service (stateless, N instances)
-                    |  one transaction: update stock + reservation + movement + outbox
-                    v
-                Postgres (primary, sharded by sku when needed) --> read replicas
-                    | outbox -> Kafka: inventory.changed
-                    v
-            cache refresher, search index, low-stock alerts, analytics
- Expiry sweeper: releases HELD reservations past expires_at
- WMS / receiving -> receipts & adjustments
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

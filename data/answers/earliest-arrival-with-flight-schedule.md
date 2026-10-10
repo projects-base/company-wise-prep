@@ -1,5 +1,22 @@
 **Short answer:** Keep `best[a]`, the earliest time the package can be at airport `a`, and start with `best[source] = startTime`. Sort the flights by departure time and scan them once. A flight is usable if `best[from] ≤ departure`. If it is usable and lands earlier than `best[to]`, set `best[to]` to its arrival time. Return `best[destination]`, or `-1` if it was never set. The sort makes it O(F log F).
 
+## Picture it
+
+Example 1, `source = 0`, `destination = 3`, `startTime = 0`. Flights sorted by departure, scanned once:
+
+| Step | Flight (from → to, dep → arr) | `best[from] ≤ dep`? | Lands earlier than `best[to]`? | `best` [0..3] after |
+|---|---|---|---|---|
+| start | – | – | – | [0, ∞, ∞, ∞] |
+| 1 | 0 → 1, 1 → 4 | 0 ≤ 1 yes | 4 < ∞ yes | [0, 4, ∞, ∞] |
+| 2 | 0 → 2, 2 → 9 | 0 ≤ 2 yes | 9 < ∞ yes | [0, 4, 9, ∞] |
+| 3 | 1 → 2, 5 → 7 | 4 ≤ 5 yes | 7 < 9 yes | [0, 4, 7, ∞] |
+| 4 | 2 → 3, 8 → 10 | 7 ≤ 8 yes | 10 < ∞ yes | [0, 4, 7, 10] |
+| 5 | 2 → 3, 10 → 12 | 7 ≤ 10 yes | 12 < 10 no | unchanged |
+
+Answer **10**. Step 3 is the point: the two-flight chain through airport 1 beats the direct flight to 2, and it is in place before the 8 o'clock departure is scanned.
+
+**The picture in one sentence:** sorted by departure, every flight that could feed a connection is scanned before it, so one pass of "can I board, and do I land earlier?" settles every airport.
+
 ## Approach
 
 - **Brute force:** a DFS over every chain of connecting flights, tracking the current time. This is exponential in the worst case.

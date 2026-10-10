@@ -1,5 +1,73 @@
 **Short answer:** An RDBMS usually hits limits in a fixed order: slow queries, then too many connections, then read load, then write throughput and data size on one primary. Fix them in that order: indexes and query tuning, connection pooling, caching and read replicas, partitioning, and only then sharding. Choose NoSQL when the access pattern is simple and known (mostly key lookups), the scale needs horizontal writes, and you can live without joins and multi-row transactions. If you need joins, ad-hoc queries and strong transactions, stay relational and scale it.
 
+## Picture it
+
+```mermaid
+flowchart TD
+  start["Database is struggling"] --> slow{"Slow queries?"}
+  slow -->|"Yes"| s1["1. EXPLAIN ANALYZE, indexes,<br/>fix N+1, keyset pagination"]
+  slow -->|"No"| conn{"Too many connections?"}
+  conn -->|"Yes"| s2["2. Bounded pool<br/>(HikariCP, PgBouncer)"]
+  conn -->|"No"| reads{"Read load too high?"}
+  reads -->|"Yes"| s3["3-5. Bigger box, Redis cache,<br/>read replicas"]
+  reads -->|"No"| big{"Huge tables?"}
+  big -->|"Yes"| s4["6. Partition by time or key"]
+  big -->|"No"| writes{"One primary cannot<br/>take the writes?"}
+  writes -->|"Heavy reads are search or analytics"| s5["7. CQRS: feed purpose-built stores"]
+  writes -->|"Yes"| need{"Need joins, ad-hoc queries,<br/>multi-row transactions?"}
+  need -->|"Yes"| shard["8. Shard the RDBMS<br/>(Citus, Vitess)"]
+  need -->|"No, simple known key access"| nosql["NoSQL<br/>(DynamoDB, Cassandra, ...)"]
+```
+
+```mermaid
+flowchart LR
+  subgraph app["App"]
+    inst["App instances<br/>(HikariCP pools)"]
+  end
+  subgraph pool["Pooling"]
+    bouncer["PgBouncer"]
+  end
+  subgraph db["Database"]
+    primary[("Primary")]
+    replicas[("Replica 1..n")]
+    redis[("Redis cache")]
+  end
+  subgraph async["CQRS"]
+    kafka[["Kafka + outbox"]]
+    reads["Search index / warehouse"]
+  end
+  inst --> redis
+  inst --> bouncer
+  bouncer -->|"writes"| primary
+  bouncer -->|"reads"| replicas
+  primary -->|"async streaming replication"| replicas
+  primary --> kafka --> reads
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant U as User
+  participant A as App
+  participant P as Primary
+  participant R as Replica
+  U->>A: update profile
+  A->>P: UPDATE (write)
+  A->>A: remember "user wrote at t"
+  U->>A: view profile (1 s later)
+  A->>P: read from primary (recent write, replica may lag)
+  P-->>A: fresh row
+  U->>A: view profile (1 min later)
+  A->>R: read from replica
+  R-->>A: row (lag has caught up)
+```
+
+**How to read it:**
+- The first picture is the ladder: fix problems in the order they usually appear, and reach for sharding or NoSQL only after the cheaper steps are used up.
+- The fork at the bottom is the real NoSQL decision: if access is simple key lookups at huge write scale, NoSQL fits; if you need joins and multi-row transactions, shard the RDBMS instead.
+- The architecture shows the scaled RDBMS: pooled connections, writes to the primary, reads to replicas, Redis for hot reads, and an outbox feeding search and analytics.
+- Steps 1–8 show the catch with replicas, replication lag, and its fix: read-your-writes routing sends a user's reads to the primary for a short time after they write.
+
 ## Requirements
 
 Frame the discussion as a system that has outgrown one database:
@@ -49,18 +117,7 @@ On a partitioned table, the primary key must include the partition key column, w
 
 ## Architecture
 
-```text
-           app instances (HikariCP pools)
-                   |
-             [ PgBouncer ]
-          writes |       | reads
-                 v       v
-          [ Primary ] --> [ Replica 1..n ]  (streaming replication, async)
-                 |
-          [ Redis cache ] for hot reads    [ Kafka + outbox ] --> search index / warehouse (CQRS)
-                 |
-   later: shard by tenant_id / user_id across several primaries, router in the app or a proxy
-```
+The diagram in **Picture it** above shows the components. Later, shard by `tenant_id` / `user_id` across several primaries, with the router in the app or a proxy.
 
 ## Deep dives
 

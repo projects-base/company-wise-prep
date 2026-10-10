@@ -1,5 +1,91 @@
 **Short answer:** The core is an **agent loop**. Send the conversation and the tool specs to the model. If it asks for tool calls, run them and add the results to memory. Repeat until it gives a final answer or a budget runs out. Around that loop sit a `Tool` abstraction with a registry, a swappable `LlmClient`, memory, guardrails (step and token budgets, an allow-list, human approval for side-effecting tools) and event listeners for tracing. For multi-step business processes, a **workflow** is a DAG of steps, and some steps are agents. It runs with persisted state so it can resume and retry.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Agent {
+        -LlmClient llm
+        -ToolRegistry tools
+        -ApprovalPolicy approval
+        -Budget budget
+        +run(String systemPrompt, String goal) AgentResult
+        -execute(ToolCall call) String
+    }
+    class LlmClient {
+        <<interface>>
+        +complete(List~Message~ messages, List~Tool~ tools) ModelReply
+    }
+    class Tool {
+        <<interface>>
+        +name() String
+        +sideEffecting() boolean
+        +execute(Map args) String
+    }
+    class ToolRegistry {
+        +find(String name) Optional~Tool~
+        +all() List~Tool~
+    }
+    class ModelReply {
+        <<sealed interface>>
+    }
+    class FinalAnswer {
+        +String text
+    }
+    class ToolCallRequest {
+        +List~ToolCall~ calls
+    }
+    class ToolCall {
+        +String id
+        +String toolName
+        +Map args
+    }
+    class AgentListener {
+        <<interface>>
+        +onModelReply(int step, ModelReply reply)
+        +onToolCall(ToolCall call)
+    }
+    Agent --> LlmClient
+    Agent --> ToolRegistry
+    Agent --> ApprovalPolicy
+    Agent --> Budget
+    Agent --> "*" AgentListener
+    Agent ..> Conversation : memory
+    ToolRegistry o-- "*" Tool
+    ModelReply <|.. FinalAnswer
+    ModelReply <|.. ToolCallRequest
+    ToolCallRequest *-- "*" ToolCall
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant A as Agent
+    participant M as Conversation
+    participant L as LlmClient
+    participant R as ToolRegistry
+    participant T as Tool
+    A->>M: add(user goal)
+    loop until FinalAnswer or step budget used up
+        A->>L: complete(messages, tools)
+        L-->>A: ToolCallRequest(calls)
+        A->>R: find(toolName)
+        R-->>A: Tool
+        Note over A,T: side-effecting tools need ApprovalPolicy.approve first
+        A->>T: execute(args)
+        T-->>A: result or error text
+        A->>M: add(toolResult)
+    end
+    L-->>A: FinalAnswer(text)
+    A-->>A: return AgentResult
+```
+
+**How to read it:**
+- `Agent` is the loop. It depends only on interfaces: `LlmClient` for the model and `Tool` (found through `ToolRegistry`) for actions.
+- The model's reply is a sealed `ModelReply`: either a `FinalAnswer` that ends the run or a `ToolCallRequest` holding `ToolCall` commands.
+- Each tool call is looked up, checked against the approval policy if it has side effects, run, and its result (or error text) is added to memory.
+- The loop repeats until the model answers or `Budget.maxSteps` runs out. Listeners see every model reply and tool call for tracing.
+
 ## Requirements
 
 The prompt is open-ended, so state the scope first:

@@ -1,5 +1,74 @@
 **Short answer:** Ingest action events through a queue, store raw events cheaply in partitioned columnar files, and pre-aggregate into 5-minute rollups keyed by (bucket, action, geo, language) in an OLAP or time-series store. Partition by time first (it drives retention and pruning), then by a dimension. Exact counts come from the rollups; unique users and heavy hitters use approximate sketches (HyperLogLog, Count-Min Sketch), which can be merged across buckets.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    app["Apps and web"]
+    dash["Dashboards"]
+  end
+  subgraph edge["Ingest"]
+    ingest["Ingest API"]
+  end
+  subgraph async["Streaming"]
+    kafka[["Kafka (key: user_id)"]]
+    agg["Stream aggregator<br/>5-min windows, watermark, HLL/CMS"]
+    sink["Raw sink"]
+    batch["Batch re-aggregation<br/>late data, backfill"]
+  end
+  subgraph storage["Storage"]
+    raw[("Object storage<br/>Parquet, date/hour")]
+    olap[("OLAP store<br/>5m, 1h, 1d rollups")]
+  end
+  subgraph query["Query"]
+    qs["Query service"]
+  end
+  app --> ingest --> kafka
+  kafka --> agg --> olap
+  kafka --> sink --> raw
+  raw --> batch --> olap
+  dash --> qs --> olap
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant I as Ingest API
+  participant K as Kafka
+  participant A as Stream aggregator
+  participant O as OLAP store
+  participant Q as Query service
+  participant D as Dashboard
+  C->>I: POST /v1/events (batch, event_id)
+  I->>K: append, keyed by user_id
+  K->>A: consume events
+  A->>A: add to 5-min bucket by event time, update HLL
+  A->>O: upsert rollup row when watermark passes
+  D->>Q: GET /v1/metrics/count?action=click&geo=IN
+  Q->>O: read rollups, pick 5m or 1d by range
+  O-->>Q: counts and HLL sketches
+  Q-->>D: series (HLLs merged for uniques)
+```
+
+```mermaid
+flowchart TD
+  e["Event arrives at stream job"] --> late{"Event time older<br/>than watermark?"}
+  late -->|"no"| win["Count in 5-min window"]
+  late -->|"yes"| rawonly["Only in raw storage"]
+  rawonly --> job["Periodic batch job recomputes bucket"]
+  win --> olap[("Rollup table")]
+  job --> olap
+```
+
+**How to read it:**
+- Steps 1–2: clients send batches of events; the ingest API writes them to Kafka keyed by user_id so load spreads evenly.
+- Steps 3–5: the stream aggregator counts each event into its 5-minute bucket by event time and writes the rollup row (count plus HyperLogLog) once the watermark passes.
+- In parallel a raw sink writes every event to Parquet in object storage; that is the source of truth for backfill and late events.
+- Steps 6–9: dashboards query only the small rollup tables; long ranges use daily rollups, and HLL sketches merge across buckets for unique users.
+- The third picture: an event later than the watermark misses the stream window, so a batch job recomputes its bucket from raw data.
+
 ## Requirements
 
 Functional:
@@ -55,20 +124,7 @@ Plus coarser rollups (1 hour, 1 day) built from the 5-minute table for long-rang
 
 ## Architecture
 
-```text
-clients --> ingest API --> Kafka (partitioned by user_id)
-                               |            \
-                               v             v
-                      stream aggregator    raw sink --> object storage (Parquet, date/hour)
-                      (5-min windows,                        |
-                       watermark, HLL/CMS)                   v
-                               |                     batch re-aggregation (late data, backfill)
-                               v                             |
-                      OLAP / time-series store  <------------+
-                      (5m, 1h, 1d rollups)
-                               |
-                         query service --> dashboards
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

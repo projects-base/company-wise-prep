@@ -1,5 +1,31 @@
 **Short answer:** Water escapes through the lowest point of the wall around it, so flood the grid inwards from the border with a min-heap. Push every border cell, then repeatedly pop the lowest boundary cell and visit its unvisited neighbours. A neighbour lower than the popped level traps `level - height` water. Push it back with level `max(level, height)`. This runs in O(mn log(mn)).
 
+## Picture it
+
+`heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]` (answer 4). Only the four middle-row cells `(1,1)..(1,4)` are inside; everything else starts in the heap as the wall.
+
+```text
+        c0 c1 c2 c3 c4 c5
+row 0:   1  4  3  1  3  2
+row 1:   3 [2][1][3][2] 4     [ ] = interior
+row 2:   2  3  3  2  3  1
+```
+
+Pops grouped by level (ties pop in any order; the water is the same):
+
+| popped level | wall cells popped | interior cell reached | water `level - h` | pushed back at |
+|---|---|---|---|---|
+| 1 | (0,0), (0,3), (2,5) | (1,3) h=3 from (0,3) | max(0, 1-3) = 0 | 3 |
+| 2 | (0,5), (2,0), (2,3) | none (neighbours already seen) | | |
+| 3 | (1,0), (0,2), (0,4), (1,3), ... | (1,1) h=2 | 3-2 = 1 | 3 |
+| 3 | | (1,2) h=1 | 3-1 = 2 | 3 |
+| 3 | | (1,4) h=2 | 3-2 = 1 | 3 |
+| 4 | (0,1), (1,5) | none left | | total **4** |
+
+The low border cells at level 1 and 2 touch no low interior cell, so the lowest wall that matters for the pool is 3.
+
+**The picture in one sentence:** always grow inwards from the lowest wall cell, because that cell is the lowest exit for whatever it touches, so a lower neighbour fills exactly up to it.
+
 ## Approach
 
 - **Why the 1D trick fails.** In 2D, water can leak out in any direction, not just left or right. The water level of a cell is the lowest "highest wall" on any path from that cell to the border. Row and column maxima do not capture that.

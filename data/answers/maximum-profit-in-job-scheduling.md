@@ -1,5 +1,21 @@
 **Short answer:** Sort jobs by end time. Let `dp[i]` be the best profit using only the first i jobs in that order. For job i you either skip it (`dp[i − 1]`) or take it, plus the best result among jobs that end at or before its start. Because ends are sorted, that "last compatible job" is found by binary search. O(n log n).
 
+## Picture it
+
+Example 1, jobs sorted by end time (already in order): `ends = [3,4,5,6]`.
+
+| i | Job (start, end, profit) | lo = jobs with end ≤ start | Skip: dp[i−1] | Take: dp[lo] + profit | dp[i] |
+|---|---|---|---|---|---|
+| 0 | — | — | — | — | 0 |
+| 1 | (1, 3, 50) | 0 | 0 | 0 + 50 = 50 | 50 |
+| 2 | (2, 4, 10) | 0 (3 > 2) | 50 | 0 + 10 = 10 | 50 |
+| 3 | (3, 5, 40) | 1 (end 3 ≤ 3) | 50 | dp[1] + 40 = 90 | 90 |
+| 4 | (3, 6, 70) | 1 (end 3 ≤ 3) | 90 | dp[1] + 70 = 120 | 120 |
+
+Each `dp[i]` depends on `dp[i−1]` (skip) and one earlier cell `dp[lo]` found by binary search (take). Answer `dp[4] = 120`: jobs [1,3] and [3,6].
+
+**The picture in one sentence:** sort by end time, and for each job choose between skipping it and taking it plus the best answer among jobs that end by its start.
+
 ## Approach
 
 - **Brute force:** try every subset and check overlaps: O(2ⁿ · n).

@@ -1,5 +1,20 @@
 **Short answer:** Walk the array from right to left and keep a Fenwick tree (binary indexed tree) counting how many times each value has been seen. For `nums[i]`, the answer is the prefix count of values strictly below `nums[i]`; then add `nums[i]` to the tree. Values lie in −10⁴..10⁴, so shift them to 1..20001 and index the tree directly. O(n log V).
 
+## Picture it
+
+`nums = [5,2,6,1]`. To keep the numbers small, index the tree by the value itself with size 8. The real code adds 10001 first, but the steps are the same. `tree[k]` covers the values `(k − lowbit(k), k]`: `tree[4]` counts 1..4, `tree[6]` counts 5..6, `tree[8]` counts 1..8.
+
+| Step | i | Value | Query path (prefix up to value − 1) | `counts[i]` | Update path (+1) | Seen so far |
+|---|---|---|---|---|---|---|
+| 1 | 3 | 1 | prefix 0: empty | 0 | tree[1], tree[2], tree[4], tree[8] | {1} |
+| 2 | 2 | 6 | tree[5] = 0, tree[4] = 1 | 1 | tree[6], tree[8] | {1, 6} |
+| 3 | 1 | 2 | tree[1] = 1 | 1 | tree[2], tree[4], tree[8] | {1, 2, 6} |
+| 4 | 0 | 5 | tree[4] = 2 | 2 | tree[5], tree[6], tree[8] | {1, 2, 5, 6} |
+
+Output `[2,1,1,0]`. In step 4, `tree[4] = 2` is the answer in a single read: values 1 and 2 are both below 5.
+
+**The picture in one sentence:** scanning right to left turns "smaller elements to my right" into "smaller values already inserted", which a Fenwick tree counts in O(log V).
+
 ## Approach
 
 **Brute force.** For each i, scan every j > i and count `nums[j] < nums[i]`. O(n²), too slow for 10⁵.

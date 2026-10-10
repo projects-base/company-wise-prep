@@ -1,5 +1,63 @@
 **Short answer:** Keep two structures: a `HashMap<playerId, score>` for O(1) score lookups, and a sorted set of `(score desc, playerId)` for ordering. An update removes the old pair from the sorted set and inserts the new one, both O(log n). Top-K walks the first K elements of the sorted set. A priority queue alone is weak here because it cannot update or remove an arbitrary player efficiently, and it cannot answer "what is my rank". At scale, the same idea is a Redis sorted set (`ZADD`, `ZREVRANGE`, `ZREVRANK`).
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Leaderboard {
+        <<interface>>
+        +update()
+        +top(int k) List~PlayerScore~
+        +rank(String playerId) int
+        +remove(String playerId)
+    }
+    class InMemoryLeaderboard {
+        -Map~String,PlayerScore~ byPlayer
+        -TreeSet~PlayerScore~ ranking
+        -ReentrantReadWriteLock lock
+        +addScore(String playerId, long delta)
+        +top(int k) List~PlayerScore~
+        +rank(String playerId) int
+        +remove(String playerId)
+    }
+    class RedisLeaderboard
+    class PlayerScore {
+        <<record>>
+        +String playerId
+        +long score
+        +long updatedAt
+    }
+    Leaderboard <|.. InMemoryLeaderboard
+    Leaderboard <|.. RedisLeaderboard
+    InMemoryLeaderboard *-- "*" PlayerScore : byPlayer and ranking
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant G as Game service
+    participant L as InMemoryLeaderboard
+    participant M as byPlayer HashMap
+    participant T as ranking TreeSet
+    G->>L: addScore("p1", 50)
+    L->>L: writeLock().lock()
+    L->>M: get("p1")
+    M-->>L: old PlayerScore(p1, 100)
+    L->>T: remove(old) using the OLD key
+    L->>M: put(p1, new PlayerScore(p1, 150))
+    L->>T: add(new PlayerScore)
+    L->>L: writeLock().unlock()
+    G->>L: top(10)
+    L->>T: iterate first 10 under readLock
+    T-->>G: best 10 players
+```
+
+**How to read it:**
+- `InMemoryLeaderboard` keeps two views of the same `PlayerScore` records: a `HashMap` for "what is p1's score" and a `TreeSet` for the order.
+- The `TreeSet` sorts by score descending, then `updatedAt`, then id, so ties have a fixed rule.
+- An update removes the old record from the tree first (using the old key), then inserts a new immutable record. Both steps are O(log n).
+- Reads (`top`, `rank`) share a read lock. `top(k)` just walks the first k tree entries. `RedisLeaderboard` is the same interface over a sorted set.
+
 ## Requirements
 
 - `addScore(playerId, delta)` or `setScore(playerId, score)`.

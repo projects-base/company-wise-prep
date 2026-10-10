@@ -1,5 +1,21 @@
 **Short answer:** Sort the words once. All words with a given prefix sit in one contiguous block of the sorted list, starting at the binary-search lower bound of the prefix. So for each typed prefix, binary-search the start and take up to three words that still start with the prefix. A trie that keeps the three smallest words at each node is the other standard answer, and fits the interview's `addWord` / `getWords` class.
 
+## Picture it
+
+Example 1, sorted once: `0 mobile · 1 moneypot · 2 monitor · 3 mouse · 4 mousepad`. Search word `"mouse"`.
+
+| Typed prefix | lowerBound (starts from previous `from`) | Walk from there while `startsWith` (max 3) | Suggestions |
+|---|---|---|---|
+| m | 0 | mobile, moneypot, monitor (stop at 3) | [mobile, moneypot, monitor] |
+| mo | 0 ("mobile" > "mo") | same three | [mobile, moneypot, monitor] |
+| mou | 3 (mobile, moneypot, monitor are all < "mou") | mouse, mousepad, end of array | [mouse, mousepad] |
+| mous | 3 | mouse, mousepad | [mouse, mousepad] |
+| mouse | 3 ("mouse" ≥ "mouse") | mouse, mousepad | [mouse, mousepad] |
+
+The bound only moves right (0, 0, 3, 3, 3), which is why each search can start at the previous `from`.
+
+**The picture in one sentence:** in sorted order every prefix owns one contiguous block, so a lower-bound binary search plus "take the next three" answers each keystroke.
+
 ## Approach
 
 - **Brute force:** for each prefix, scan all words, filter by `startsWith`, sort, take three. O(m · n · L) where m is the search word length.

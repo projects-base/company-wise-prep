@@ -1,5 +1,21 @@
 **Short answer:** Two equal halves means one subset sums to exactly `total / 2`. If the total is odd, the answer is false. Otherwise it is a 0/1 knapsack: a boolean array `can[s]` says whether some subset reaches sum `s`, filled one number at a time. That runs in O(n · total) time and O(total) space.
 
+## Picture it
+
+Example 1: `nums = [1,5,11,5]`, total 22, `half = 11`. `T` = `can[s]` is true after processing that number.
+
+| After x | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| start | T | | | | | | | | | | | |
+| 1 | T | T | | | | | | | | | | |
+| 5 | T | T | | | | T | T | | | | | |
+| 11 | T | T | | | | T | T | | | | | T |
+| 5 | T | T | | | | T | T | | | | T | T |
+
+Each `can[s]` depends on the previous row's `can[s]` and `can[s − x]`. Going right to left (s from 11 down to x) means `can[s − x]` is still the previous row's value, so each number is used at most once. `can[11]` is true: {11} and {1, 5, 5}.
+
+**The picture in one sentence:** track which sums are reachable, not which subsets, and scan the sums downwards so each number is added only once.
+
 ## Approach
 
 - **Brute force.** Try every subset and check whether one sums to half. That is 2ⁿ subsets, hopeless for n = 200.

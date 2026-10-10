@@ -1,5 +1,65 @@
 **Short answer:** Put an integration layer between the central HR system and each local system: per-system adapters translate local formats into one canonical employee model, and changes flow as events through a durable message broker using the outbox pattern. Decide ownership per field (who is the system of record), use change data capture or webhooks to detect changes, and make every consumer idempotent with versioning to handle reordering and retries. Secure every link with mutual TLS, OAuth2 client credentials and field-level protection of personal data.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph central["Central"]
+    hr["Central HR"]
+    outbox[("Outbox table")]
+    relay["Outbox relay"]
+  end
+  subgraph hub["Integration layer"]
+    broker[["Broker (topics per entity)"]]
+    inb["Inbound adapters<br/>mapping, validation, ownership check"]
+    dlq[["Dead-letter queue"]]
+    ops["Ops dashboard, replay"]
+  end
+  subgraph adapters["Outbound adapters"]
+    aa["Adapter: country A (REST)"]
+    ab["Adapter: country B (SOAP)"]
+    al["Adapter: legacy (SFTP CSV)"]
+  end
+  subgraph local["Local systems"]
+    la["Local HR A"]
+    lb["Local HR B"]
+    lc["Legacy system"]
+  end
+  hr --> outbox --> relay --> broker
+  broker --> aa --> la
+  broker --> ab --> lb
+  broker --> al --> lc
+  la -->|"webhook / CDC / file"| inb
+  inb --> broker
+  broker --> dlq --> ops
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant H as Central HR
+  participant DB as HR database
+  participant R as Outbox relay
+  participant B as Broker
+  participant A as Adapter (country A)
+  participant L as Local HR A
+  H->>DB: update employee + insert outbox row (one transaction)
+  R->>DB: poll unpublished outbox rows
+  R->>B: publish EmployeeChanged (key: employee_id, version 7)
+  B->>A: deliver (at-least-once)
+  A->>A: skip if version not newer than last applied
+  A->>L: translate canonical to local format and write
+  L-->>A: OK
+  A->>B: commit offset
+  Note over A,B: after N failed retries the event goes to the dead-letter queue
+```
+
+**How to read it:**
+- Step 1: the central system writes the change and an outbox row in the same database transaction, so a change can never be saved without its event.
+- Steps 2–3: a relay publishes outbox rows to the broker, keyed by employee_id so one employee's events stay in order.
+- Steps 4–6: each adapter is idempotent: it applies an event only if its version is newer than the last applied one, then translates it into whatever the local system speaks.
+- Failures retry with backoff and then land in the dead-letter queue, where ops can see and replay them. Local changes come back through inbound adapters, which reject fields the source does not own.
+
 ## Requirements
 
 Functional:
@@ -39,17 +99,7 @@ sync_log(event_id, system_code, status, attempts, last_error, processed_at)
 
 ## Architecture
 
-```text
- central HR --outbox--> broker (topics per entity) --> adapter: country A --> local HR A
-      ^                       ^                    --> adapter: country B --> local HR B (SOAP)
-      |                       |                    --> adapter: legacy   --> SFTP CSV
-      |                       |
-      +---- inbound adapters <-- local changes (webhook / CDC / file)
-                       |
-              mapping + validation + ownership check
-                       |
-                 dead-letter queue --> ops dashboard, replay
-```
+The diagram in **Picture it** above shows the components.
 
 The integration layer is a hub-and-spoke: N adapters instead of N×N point-to-point links.
 

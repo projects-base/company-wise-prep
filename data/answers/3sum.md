@@ -1,5 +1,21 @@
 **Short answer:** Sort the array, then fix the first value `a[i]` and find pairs summing to `-a[i]` with two pointers on the rest. Skip repeated values for `i` and after each match, so every value triplet appears once. That is O(n²) time and needs no hash set of triplets.
 
+## Picture it
+
+Input `[-1,0,1,2,-1,-4]`, sorted to `a = [-4,-1,-1,0,1,2]` (indices 0–5).
+
+| Step | i (a[i]) | lo (a[lo]) | hi (a[hi]) | Sum | Action |
+|---|---|---|---|---|---|
+| 1 | 0 (-4) | 1..4 | 5 (2) | -3, -3, -2, -1 | always < 0, so `lo++` until `lo == hi`; nothing found |
+| 2 | 1 (-1) | 2 (-1) | 5 (2) | 0 | add `[-1,-1,2]`; no equal neighbours, so `lo=3`, `hi=4` |
+| 3 | 1 (-1) | 3 (0) | 4 (1) | 0 | add `[-1,0,1]`; `lo=4`, `hi=3`, scan ends |
+| 4 | 2 (-1) | – | – | – | `a[2] == a[1]`: skip, this first value was already done |
+| 5 | 3 (0) | 4 (1) | 5 (2) | 3 | > 0, so `hi--`; `lo == hi`, scan ends |
+
+Result: `[[-1,-1,2],[-1,0,1]]`.
+
+**The picture in one sentence:** after sorting, each fixed `a[i]` turns the rest into a sorted Two Sum, where the sum's sign tells you which pointer to move.
+
 ## Approach
 
 - **Brute force:** three nested loops, put each sorted triplet in a `Set`. O(n³) — too slow for n = 3000.

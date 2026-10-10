@@ -1,5 +1,23 @@
 **Short answer:** The right end of the subarray is the last index whose value is smaller than the maximum seen to its left. The left end is the first index whose value is larger than the minimum seen to its right. One pass from each side (or both in the same loop) finds them in O(n) time and O(1) space.
 
+## Picture it
+
+Example 1: `nums = [2,6,4,8,10,9,15]` (n = 7). Each iteration runs one step of each scan: i goes left to right, j = 6 − i goes right to left.
+
+| i | nums[i] | max before | Left→right action | j | nums[j] | min before | Right→left action |
+|---|---|---|---|---|---|---|---|
+| 0 | 2 | −∞ | max = 2 | 6 | 15 | +∞ | min = 15 |
+| 1 | 6 | 2 | max = 6 | 5 | 9 | 15 | min = 9 |
+| 2 | 4 | 6 | 4 < 6 → end = 2 | 4 | 10 | 9 | 10 > 9 → start = 4 |
+| 3 | 8 | 6 | max = 8 | 3 | 8 | 9 | min = 8 |
+| 4 | 10 | 8 | max = 10 | 2 | 4 | 8 | min = 4 |
+| 5 | 9 | 10 | 9 < 10 → end = 5 | 1 | 6 | 4 | 6 > 4 → start = 1 |
+| 6 | 15 | 10 | max = 15 | 0 | 2 | 4 | min = 2 |
+
+Result: `end − start + 1 = 5 − 1 + 1 = 5`, the subarray `[6,4,8,10,9]` at indices 1..5.
+
+**The picture in one sentence:** the last element smaller than the max to its left marks the right end, and the last (leftmost) element larger than the min to its right marks the left end.
+
 ## Approach
 
 - **Brute force:** sort a copy and compare it with the original. The first and last positions that differ bound the answer. O(n log n) time, O(n) space, and perfectly acceptable as a first answer.

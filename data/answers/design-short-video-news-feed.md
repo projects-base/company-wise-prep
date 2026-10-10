@@ -1,5 +1,65 @@
 **Short answer:** Turn news stories into short vertical clips (publisher video, or auto-generated from a summary, images and voice-over), transcode them into adaptive bitrate renditions, and serve through a CDN. The feed is one item at a time, so the client prefetches the next few clips while the server returns a ranked batch from a recommender that mixes freshness, story importance and personal interest. Watch signals (completion, skip within 2 s, rewatch, share) stream back and update the ranking in near real time.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph content["Content pipeline"]
+    pubs["Publishers / news pipeline"]
+    ingest["Ingest"]
+    gen["Clip generator<br/>(summary, script, TTS + images)"]
+    trans["Transcoder workers<br/>(ABR renditions)"]
+  end
+  subgraph storage["Storage"]
+    obj[("Object store")]
+    index[("Content index<br/>(story, clip, embeddings)")]
+    fs[("Feature store")]
+  end
+  subgraph serving["Serving"]
+    client["Client"]
+    cdn["CDN"]
+    feed["Feed Service"]
+    cand["Candidate gen"]
+    ranker["Ranker"]
+    mixer["Mixer<br/>(breaking insert, diversity, seen filter)"]
+  end
+  subgraph async["Events"]
+    kafka[["Kafka"]]
+    flink["Stream features (Flink)"]
+  end
+  pubs --> ingest --> gen --> trans
+  ingest --> trans
+  trans --> obj --> cdn --> client
+  trans --> index
+  client --> feed --> cand --> ranker --> mixer
+  cand --> index
+  client -->|"events"| kafka --> flink --> fs --> ranker
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant F as Feed Service
+  participant R as Redis seen set
+  participant CDN as CDN
+  participant K as Kafka
+  C->>F: GET /v1/feed?cursor (count 10)
+  F->>F: candidates, rank, mix (breaking pinned, diversity)
+  F->>R: filter clips already seen this session
+  F-->>C: 10 items with manifest URLs + cursor
+  C->>CDN: prefetch manifest + first low-bitrate segment of next 2-3 clips
+  Note over C: swipe plays instantly, then upgrades quality
+  C->>K: events (WATCH, SKIP within 2 s, SHARE)
+  K->>F: real-time features lower the skipped topic for this session
+```
+
+**How to read it:**
+- Steps 1–4: the Feed Service ranks a batch of about 10 from a fresh candidate pool, mixes in breaking news and diversity, and removes clips the user already saw (the cursor carries the session).
+- Step 5: the client prefetches the next 2–3 clips at low bitrate from the CDN, so a swipe starts in under 200 ms and then switches to a higher rendition.
+- Steps 6–7: watch, skip and share events stream through Kafka and Flink into the feature store, so a quick skip changes the next batch within the same session.
+- The top of the architecture is the content side: publisher or generated clips are transcoded into renditions, stored, and indexed for candidate generation.
+
 ## Requirements
 
 Functional:
@@ -37,19 +97,7 @@ GET  /v1/stories/{id}                    -> full article link and related clips
 
 ## Architecture
 
-```text
-Publishers/News pipeline ─> Ingest ─> Clip generator (summary -> script -> TTS + images)
-                                  │
-                                  v
-                       Transcoder workers (queue, ABR renditions) ─> Object store ─> CDN
-                                  │
-                                  v
-                       Content index (story, clip, embeddings)
-                                  │
-Client ─> Feed Service ─> Candidate gen (fresh, trending, topic, followed) ─> Ranker ─> Mixer
-   │              (breaking-news insert, diversity, already-seen filter)        ^
-   └─ events ─> Kafka ─> Stream features (Flink) ─> Feature store ─────────────┘
-```
+The diagram in **Picture it** above shows the components (candidate generation draws on fresh, trending, topic and followed sources).
 
 ## Deep dives
 

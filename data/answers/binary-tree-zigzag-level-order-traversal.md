@@ -1,5 +1,29 @@
 **Short answer:** Do a normal BFS, processing exactly `queue.size()` nodes per level. Keep a direction flag: on left-to-right levels append each value to the end of the level list, on right-to-left levels add it to the front. Children are always enqueued left then right, so the queue never changes; only how you write each level does. O(n) time.
 
+## Picture it
+
+`root = [1,2,3,4,5,6,7]`:
+
+```mermaid
+flowchart TD
+    n1["1 · level 0, left to right"] --> n2["2"]
+    n1 --> n3["3"]
+    n2 --> n4["4"]
+    n2 --> n5["5"]
+    n3 --> n6["6"]
+    n3 --> n7["7"]
+```
+
+| Level | Queue polled (always left to right) | Direction | Level list as it is built | Output |
+|---|---|---|---|---|
+| 0 | [1] | left to right (`addLast`) | [1] | [1] |
+| 1 | [2, 3] | right to left (`addFirst`) | [2] → [3, 2] | [3, 2] |
+| 2 | [4, 5, 6, 7] | left to right (`addLast`) | [4] → [4, 5] → [4, 5, 6] → [4, 5, 6, 7] | [4, 5, 6, 7] |
+
+Result `[[1],[3,2],[4,5,6,7]]`.
+
+**The picture in one sentence:** the BFS queue never changes order; only the write end of each level's list (`addLast` or `addFirst`) alternates.
+
 ## Approach
 
 **Straightforward.** Standard level-order traversal, then reverse every second level list. That is already O(n) and acceptable.

@@ -1,5 +1,26 @@
 **Short answer:** This is maximum bipartite matching. Questions are one side, volunteers the other, and there is an edge when they share a tag. Greedy fails, because an early choice can block a later question. Augmenting paths fix that: Kuhn's algorithm is O(V·E), and Hopcroft–Karp is O(E·√V). Build the edges with a tag → volunteers index rather than comparing every pair.
 
+## Picture it
+
+A cut-down Example 2: questions `[["go"],["rust"]]`, volunteers `[["go","rust"],["go"]]`. The tag index gives `go → [v0, v1]`, `rust → [v0]`, so the bipartite graph is:
+
+```mermaid
+flowchart LR
+    q0["q0 (go)"] --- v0["v0 (go, rust)"]
+    q0 --- v1["v1 (go)"]
+    q1["q1 (rust)"] --- v0
+```
+
+| Phase | BFS layers (`dist`) | DFS | Matching after phase |
+|---|---|---|---|
+| 1 | q0 = 0, q1 = 0 (both free) | q0 takes free v0. q1's only volunteer v0 is held by q0, but `dist[q0]` is not `dist[q1] + 1`, so q1 fails | q0–v0 (1) |
+| 2 | q1 = 0, q0 = 1 (reached through v0); v1 is free, so BFS returns true | q1 → v0 is held by q0, layer 1 matches, recurse: q0 moves to free v1, then q1 takes v0 | q0–v1, q1–v0 (2) |
+| 3 | no free questions, BFS finds nothing | stop | answer **2** |
+
+The phase-2 chain `q1 → v0 → q0 → v1` is the augmenting path: flipping it undoes the greedy choice q0–v0.
+
+**The picture in one sentence:** when a question's volunteer is taken, follow the chain "volunteer → the question holding it → its other volunteer" until a free volunteer appears, then flip every edge on the chain.
+
 ## Approach
 
 - **Greedy fails:** in Example 2, giving a "go" question to volunteer 0 (who also knows "rust") leaves the rust question with nobody. You need a way to *undo* earlier choices.

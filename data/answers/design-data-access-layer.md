@@ -1,5 +1,76 @@
 **Short answer:** Business code depends on one interface, for example `CustomerRepository`. It has one implementation per source: database, REST API, file. A routing implementation of the same interface holds the *current* source in an `AtomicReference` and delegates every call to it. Switching at runtime is one atomic swap, driven by config or an admin endpoint. DI wires all implementations into a map, and a small factory or registry resolves a `SourceType` to an implementation. The service never knows which source it is talking to.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class CustomerRepository {
+        <<interface>>
+        +findById(String id) Optional~Customer~
+        +findAll() List~Customer~
+        +save(Customer c) Customer
+        +delete(String id)
+    }
+    class SourceBackedRepository {
+        <<interface>>
+        +type() SourceType
+    }
+    class JdbcCustomerRepository
+    class ApiCustomerRepository
+    class FileCustomerRepository
+    class RepositoryRegistry {
+        -Map~SourceType,CustomerRepository~ byType
+        +get(SourceType type) CustomerRepository
+    }
+    class RoutingCustomerRepository {
+        -AtomicReference~CustomerRepository~ current
+        +switchTo(SourceType type)
+    }
+    class CustomerService {
+        +rename(String id, String name) Customer
+    }
+    class SourceType {
+        <<enumeration>>
+        DB
+        API
+        FILE
+    }
+    CustomerRepository <|-- SourceBackedRepository
+    SourceBackedRepository <|.. JdbcCustomerRepository
+    SourceBackedRepository <|.. ApiCustomerRepository
+    SourceBackedRepository <|.. FileCustomerRepository
+    CustomerRepository <|.. RoutingCustomerRepository
+    RoutingCustomerRepository --> RepositoryRegistry
+    RepositoryRegistry o-- "*" SourceBackedRepository
+    CustomerService --> CustomerRepository : gets the routing bean
+    SourceBackedRepository ..> SourceType
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Admin as Admin endpoint
+    participant R as RoutingCustomerRepository
+    participant Reg as RepositoryRegistry
+    participant S as CustomerService
+    participant Api as ApiCustomerRepository
+    Admin->>R: switchTo(API)
+    R->>Reg: get(API)
+    Reg-->>R: ApiCustomerRepository
+    R->>R: current.set(api)
+    S->>R: findById(id)
+    R->>R: current.get()
+    R->>Api: findById(id)
+    Api-->>R: Optional of Customer
+    R-->>S: Optional of Customer
+```
+
+**How to read it:**
+- Business code (`CustomerService`) depends only on the `CustomerRepository` interface.
+- Each source is an adapter (`Jdbc`, `Api`, `File`) that also reports its `SourceType`. Spring injects them all into `RepositoryRegistry`.
+- `RoutingCustomerRepository` is the `@Primary` bean. It implements the same interface and forwards every call to whatever `current` points at.
+- Switching source is one atomic swap of `current`. Calls already running keep the repository they read, new calls use the new one.
+
 ## Requirements
 
 - Read and update one aggregate (say `Customer`) from a DB, an external API or a file.

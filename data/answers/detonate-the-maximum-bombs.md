@@ -1,5 +1,36 @@
 **Short answer:** Turn the bombs into a **directed** graph: edge i → j when bomb j's centre is within bomb i's radius (`dx² + dy² ≤ rᵢ²`, compared in `long`). Then the answer is the largest set of nodes reachable from a single start, so BFS from every bomb and keep the biggest count. With n ≤ 100 that is O(n³) worst case, which is tiny. Union-Find does not work here because reach is one-way.
 
+## Picture it
+
+Example 3: bombs `[[1,2,3],[2,3,1],[3,4,2],[4,5,3],[5,6,4]]`. The centres step by (1,1), so bombs `Δ` apart are at squared distance `2Δ²` (2, 8, 18, 32). Edge i → j when that is ≤ rᵢ²:
+
+```mermaid
+flowchart LR
+    b0["0 (r 3)"] --> b1["1 (r 1)"]
+    b0 --> b2["2 (r 2)"]
+    b2 --> b1
+    b2 --> b3["3 (r 3)"]
+    b3 --> b1
+    b3 --> b2
+    b3 --> b4["4 (r 4)"]
+    b4 --> b2
+    b4 --> b3
+```
+
+Bomb 1 (r² = 1) reaches nobody, and nobody reaches bomb 0.
+
+| Start | BFS poll order | Count |
+|---|---|---|
+| 0 | 0 → 1, 2 → 3 (via 2) → 4 (via 3) | **5** |
+| 1 | 1 | 1 |
+| 2 | 2 → 1, 3 → 4 (via 3) | 4 |
+| 3 | 3 → 1, 2, 4 | 4 |
+| 4 | 4 → 2, 3 → 1 (via 2) | 4 |
+
+Answer **5**. Union-Find would put all five in one component even when starting at bomb 1, which really sets off only 1.
+
+**The picture in one sentence:** "i reaches j" is a one-way edge, so the answer is the largest reachable set from any single start, found with one BFS per bomb.
+
 ## Approach
 
 **Simulation by hand** is exactly what we do, but it needs the right structure.

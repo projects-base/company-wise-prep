@@ -1,5 +1,30 @@
 **Short answer:** First, merge each person's overlapping or touching busy blocks, so a person is never counted as busy twice on the same day. Then line-sweep: add `+1` at each block's `start` and `−1` at `end + 1`, and walk the change points in order. Between two change points the number of busy people is constant. Whenever `people − busy ≥ minFree`, that whole span is good. Join touching spans into maximal ranges. This is O(B log B), independent of `totalDays`.
 
+## Picture it
+
+Example 1: `people = 3`, `totalDays = 10`, `busy = [[0,1,3],[1,2,4],[2,6,7],[0,9,9]]`, `minFree = 3`. No person has overlapping blocks, so the merge changes nothing. The change points are:
+
+```text
+day:    1   2   4   5   6   8   9   10  11
+delta: +1  +1  -1  -1  +1  -1  +1  -1   0   (11 = totalDays + 1 sentinel)
+```
+
+| Change point | Span closed | Busy in span | Free (3 − busy) | Good? | Busy after delta |
+|---|---|---|---|---|---|
+| 1 | — | — | — | — | 1 |
+| 2 | [1, 1] | 1 | 2 | no | 2 |
+| 4 | [2, 3] | 2 | 1 | no | 1 |
+| 5 | [4, 4] | 1 | 2 | no | 0 |
+| 6 | [5, 5] | 0 | 3 | yes → add [5,5] | 1 |
+| 8 | [6, 7] | 1 | 2 | no | 0 |
+| 9 | [8, 8] | 0 | 3 | yes → add [8,8] | 1 |
+| 10 | [9, 9] | 1 | 2 | no | 0 |
+| 11 | [10, 10] | 0 | 3 | yes → add [10,10] | 0 |
+
+Result: `[[5,5],[8,8],[10,10]]`. Nine rows for ten days here, but with `totalDays = 10⁹` it would still be nine rows.
+
+**The picture in one sentence:** the busy count only changes at block edges, so sweep the sorted edges and judge each whole span between them at once.
+
 ## Approach
 
 - **Brute force:** keep a counter per day and mark every busy day for every person. That is O(totalDays + total block length). With `totalDays` up to 10⁹, it is far too slow.

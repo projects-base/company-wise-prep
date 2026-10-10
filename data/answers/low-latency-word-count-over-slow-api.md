@@ -1,5 +1,64 @@
 **Short answer:** You cannot touch the slow API on the query path: one `getText` call alone is 1,000 ms, 2,500× over budget. So move all the work offline. Fetch every book once (in parallel), count words, and keep an in-memory index `book -> (word -> count)`. A query is then two hash lookups, well under a microsecond, which leaves the 400 µs budget for the network hop. The real design questions are memory size, how long the warm-up takes, and how the index stays fresh.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph offline["Offline / background"]
+    books["getBooks()"]
+    builder["Builder<br/>(getText in parallel)"]
+    count["Tokenise + count<br/>per chunk"]
+    merge["Merge to IntIntMap<br/>per book"]
+  end
+  subgraph memory["In memory"]
+    dict[("dictionary<br/>word to wordId")]
+    idx[("bookIndex<br/>bookId to IntIntMap")]
+  end
+  subgraph disk["Disk"]
+    snap[("Snapshot files")]
+  end
+  subgraph hot["Query path (hot)"]
+    client["Client"]
+    q["Query service"]
+  end
+  books --> builder --> count --> merge
+  merge -->|"swap reference"| idx
+  merge --> dict
+  merge --> snap
+  snap -->|"load on restart"| idx
+  client --> q
+  q -->|"1. word to id"| dict
+  q -->|"2. book, id to count"| idx
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant B as Builder
+  participant API as Slow API
+  participant W as Count workers
+  participant I as In-memory index
+  participant C as Client
+  participant Q as Query service
+  B->>API: getBooks() (500 ms, once)
+  B->>API: getText(book) for many books in parallel (1 s each)
+  API-->>B: text, up to 1B words
+  B->>W: split into chunks
+  W-->>B: local word counts per chunk
+  B->>I: merge, then swap in the finished book map
+  Note over B,I: all of this happens before or beside queries
+  C->>Q: GET /count?book=7&word=river
+  Q->>I: dictionary.get(word), then bookIndex.get(7).get(id)
+  I-->>Q: count (about 100 ns)
+  Q-->>C: count, well under 400 µs
+```
+
+**How to read it:**
+- Steps 1–3: the slow API is called only by the background builder, many books at a time, never on the query path.
+- Steps 4–6: each book's text is counted in parallel chunks with local maps, merged, and published by swapping a reference, so readers never see a half-built map.
+- Steps 7–10: a query is two hash lookups in memory; almost all of the 400 µs budget is left for parsing and the network.
+- Snapshots on disk mean a restart loads the index in seconds instead of re-fetching every book.
+
 ## Requirements
 
 **Functional**
@@ -38,16 +97,7 @@ meta:         bookId -> { version/etag, lastBuiltAt }
 
 ## Architecture
 
-```text
-              offline / background                                query path (hot)
-[ getBooks() ] --> [ Builder: fetch getText in parallel ]     client --> [ Query service ]
-                         | tokenise + count per chunk                       | 1. dictionary.get(word) -> id
-                         v                                                  | 2. bookIndex.get(book).get(id)
-                  [ merge -> IntIntMap per book ] --swap--> [ in-memory index ] (read-only, immutable)
-                         |
-                         v
-                  [ snapshot files ] --load on restart--> in-memory index
-```
+The diagram in **Picture it** above shows the components: an offline builder and a hot query path that only reads the immutable in-memory index.
 
 ## Deep dives
 

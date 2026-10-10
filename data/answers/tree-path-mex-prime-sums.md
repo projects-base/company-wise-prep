@@ -1,5 +1,28 @@
 **Short answer:** MEX-P of a path is the smallest prime that does not divide the gcd of the values on the path. The product 2·3·5·…·23 = 223,092,870 is at most 10⁹, but multiplying by 29 goes past 10⁹. So MEX-P is always one of the first ten primes, 2 to 29. Write MEX-P as 2 plus a sum of "bonus steps". Path `u–v` earns the step from prime `p_j` to `p_{j+1}` when every value on it is divisible by the primorial `P(j)`. For each of the 9 primorials, the nodes divisible by it form a forest. The pairs (u, v) that earn the step are exactly the pairs in the same component. Union-find gives the component sizes. Total time is O(9·n·α(n)).
 
+## Picture it
+
+Example 2: `values = [30,30,7]`, path `0 – 1 – 2`. At each primorial level only edges whose both ends are divisible survive.
+
+```mermaid
+flowchart LR
+  n0["node 0<br/>value 30"] ---|"kept at P = 2, 6, 30"| n1["node 1<br/>value 30"]
+  n1 ---|"never kept (7 is odd)"| n2["node 2<br/>value 7"]
+```
+
+| Level | P(j) | Divisible nodes | Components | Gain p(j+1) − p(j) | ans after level |
+|---|---|---|---|---|---|
+| start | – | – | – | base 2n = 6 | [6, 6, 6] |
+| 1 | 2 | 0, 1 | {0,1} size 2 | 3 − 2 = 1 | [8, 8, 6] |
+| 2 | 6 | 0, 1 | {0,1} size 2 | 5 − 3 = 2 | [12, 12, 6] |
+| 3 | 30 | 0, 1 | {0,1} size 2 | 7 − 5 = 2 | [16, 16, 6] |
+| 4 | 210 | none | – | 11 − 7 = 4 | [16, 16, 6] |
+| 5–9 | 2310 … | none | – | – | **[16, 16, 6]** |
+
+Node 0's paths: MEX-P 7 to itself, 7 to node 1, 2 to node 2. Telescoped: 2 + 1 + 2 + 2 = 7 for the first two, plus 2 for the third, giving 16.
+
+**The picture in one sentence:** the answer is 2 plus a staircase of prime gaps, and each step is counted by the size of the union-find component of nodes divisible by that primorial.
+
 ## Approach
 
 - **Brute force.** From every node, run a DFS that carries the running gcd and evaluates MEX-P for each v. That is O(n²), too slow for 10⁵ nodes.

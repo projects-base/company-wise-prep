@@ -1,5 +1,76 @@
 **Short answer:** Treat Twitter (X) as an external source with strict rate limits, so the design is an ingestion pipeline plus a search index. Use the platform's streaming/filtered endpoints for new posts and paced REST backfill for history, put every raw post on Kafka, normalise and enrich it, then write to a sharded inverted index (Elasticsearch/OpenSearch style) partitioned by time, with the raw JSON kept in object storage. Clarify early what "entire feed" means: the full firehose is a paid, contractual product, so scope is set by API access, not by our design.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph source["External source"]
+    tw["Twitter APIs"]
+  end
+  subgraph ingest["Ingest"]
+    stream["Stream connectors<br/>(reconnect + replay)"]
+    backfill["Backfill workers<br/>(token bucket per credential)"]
+  end
+  subgraph async["Pipeline"]
+    raw[["Kafka raw-posts"]]
+    enrich["Enricher<br/>(normalise, lang, tokenise, dedup)"]
+    clean[["Kafka clean-posts"]]
+    indexer["Indexer<br/>(bulk, idempotent by post id)"]
+  end
+  subgraph storage["Storage"]
+    s3[("Object store<br/>(raw archive)")]
+    es[("Search cluster<br/>(time-based indices)")]
+    pg[("Postgres<br/>cursors, backfill jobs")]
+  end
+  subgraph serving["Serving"]
+    clients["Clients"]
+    api["Search API<br/>(parse, fan out, merge, cache)"]
+  end
+  tw -->|"stream"| stream --> raw
+  tw -->|"REST"| backfill --> raw
+  backfill --> pg
+  raw --> s3
+  raw --> enrich --> clean --> indexer --> es
+  clients --> api --> es
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant T as Twitter API
+  participant SC as Stream connector
+  participant K as Kafka raw-posts
+  participant E as Enricher
+  participant I as Indexer
+  participant ES as Search cluster
+  participant C as Client
+  T->>SC: new post (stream)
+  SC->>K: append, key = post id
+  K->>E: raw post (also archived to object store)
+  E->>E: normalise, detect language, extract hashtags and mentions
+  E->>I: clean post (via clean-posts)
+  I->>ES: bulk upsert by post id into today's index
+  Note over I,ES: refresh every few seconds, so searchable within a minute
+  C->>ES: search q, last 30 days (alias over daily indices)
+  ES-->>C: merged results
+```
+
+```mermaid
+flowchart TD
+  alias["Alias: last-30-days"] --> d1["posts-day-30<br/>(hot SSD)"]
+  alias --> d2["posts-day-29<br/>(hot SSD)"]
+  alias --> dn["... older days<br/>(cheaper nodes)"]
+  d1 --> s1["shards by post id hash"]
+  old["Day 31 and older"] -->|"drop index"| gone["Retention done"]
+  rawarchive[("Raw archive")] -->|"re-index into new index,<br/>then switch alias"| alias
+```
+
+**How to read it:**
+- Steps 1–3: the stream connector pushes new posts to Kafka keyed by post id; backfill workers do the same for history, paced by a token bucket. The raw JSON is archived, so everything can be replayed.
+- Steps 4–6: the enricher cleans and tokenises, and the indexer writes in bulk. Upsert by post id makes stream and backfill overlaps harmless.
+- Steps 7–8: searches go through an alias that covers the recent daily indices.
+- The last picture is the index layout: one index per day, hot recent days on SSD, retention by dropping old indices, and mapping changes done by re-indexing from the raw archive and switching the alias.
+
 ## Requirements
 
 Functional:
@@ -37,24 +108,7 @@ POST /v1/backfill  {accounts[]|query, from, to}  -> {jobId}
 
 ## Architecture
 
-```text
- Twitter APIs
-   │ stream (new posts)        │ REST (backfill, edits, counts)
-   v                           v
- Stream connectors        Backfill workers (token-bucket rate limiter per credential)
-   │ (reconnect + replay)      │
-   └────────────┬──────────────┘
-                v
-          Kafka "raw-posts" (partition by post id) ──> S3/object store (raw archive)
-                v
-          Enricher (normalise, lang detect, tokenise, entity/hashtag extract, dedup by id)
-                v
-          Kafka "clean-posts"
-                v
-          Indexer (bulk writes, idempotent by post id)  ──> Search cluster (time-based indices)
-                                                                  ^
- Clients ─> Search API (query parsing, fan-out to indices, merge, cache) ──┘
-```
+The diagram in **Picture it** above shows the components (the REST path also carries edits and count updates).
 
 ## Deep dives
 

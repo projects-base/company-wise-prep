@@ -1,5 +1,23 @@
 **Short answer:** A peak is an element strictly greater than its neighbours, and positions outside the array count as minus infinity, so a peak always exists. Binary search on the slope: compare `nums[mid]` with `nums[mid + 1]`. If the next element is bigger, we are going uphill, so a peak must exist to the right; otherwise one exists at `mid` or to the left. That is O(log n) time and O(1) space, even though the array is not sorted.
 
+## Picture it
+
+`nums = [1, 2, 1, 3, 5, 6, 4]` (peaks at index 1 and index 5; either is a valid answer).
+
+```text
+index:  0  1  2  3  4  5  6
+nums:   1  2  1  3  5  6  4
+```
+
+| Step | lo | hi | mid | nums[mid] vs nums[mid+1] | Action |
+|---|---|---|---|---|---|
+| 1 | 0 | 6 | 3 | 3 < 5, uphill | lo = 4 |
+| 2 | 4 | 6 | 5 | 6 > 4, downhill | hi = 5 |
+| 3 | 4 | 5 | 4 | 5 < 6, uphill | lo = 5 |
+| 4 | 5 | 5 | — | lo == hi | return 5 (value 6) |
+
+**The picture in one sentence:** always step towards the higher neighbour, because walking uphill must end at a peak before you fall off the edge.
+
 ## Approach
 
 - **Brute force:** scan once and return the first `i` with `nums[i] > nums[i + 1]` (or the last index). O(n). Fine, but the question asks for O(log n).

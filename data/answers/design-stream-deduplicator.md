@@ -1,5 +1,62 @@
 **Short answer:** Keep a map from the dedup key `(deviceId, eventType)` to the timestamp when that event was last let through. On each event: if the key was emitted less than the window ago, drop it; otherwise emit it and record the time. To stop the map growing forever, keep it in time order (a `LinkedHashMap` in insertion order) and evict expired entries from the front on every call. Each event is O(1) amortised, and memory is O(distinct keys seen in one window).
 
+## Picture it
+
+```mermaid
+classDiagram
+    class DeviceEvent {
+        <<record>>
+        String deviceId
+        String message
+        long timestampMillis
+    }
+    class DedupKey {
+        <<record>>
+        String deviceId
+        String message
+    }
+    class Deduplicator {
+        -long windowMillis
+        -LinkedHashMap~DedupKey, Long~ lastEmitted
+        +accept(DeviceEvent e) boolean
+        -evictExpired(long now)
+    }
+    class EventSink {
+        <<interface>>
+    }
+    class DedupPipeline
+    DedupPipeline --> Deduplicator : accept each event
+    DedupPipeline --> EventSink : forwards accepted
+    Deduplicator ..> DeviceEvent : reads
+    Deduplicator o-- DedupKey : keys of lastEmitted
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant P as DedupPipeline
+    participant D as Deduplicator
+    participant S as EventSink
+    Note over D: Window W = 10 s
+    P->>D: accept(d1 battery, t=0)
+    D-->>P: true, lastEmitted[d1 battery] = 0
+    P->>S: forward
+    P->>D: accept(d1 battery, t=3)
+    D-->>P: false, 3 - 0 < 10
+    P->>D: accept(d1 battery, t=9)
+    D-->>P: false, 9 - 0 < 10
+    P->>D: accept(d1 battery, t=11)
+    D->>D: evictExpired(11) drops the entry from t=0
+    D-->>P: true, lastEmitted[d1 battery] = 11
+    P->>S: forward
+```
+
+**How to read it:**
+- The pipeline is three pieces: a source, the `Deduplicator` filter, and an `EventSink`; the filter knows neither end.
+- `Deduplicator` keeps one entry per `(deviceId, message)` key: the time it last let that event through.
+- An event inside the window of its key's last emission is dropped; otherwise it passes and the time is updated.
+- Entries sit in the `LinkedHashMap` in emission order, so expired ones are evicted from the front and memory stays at one window's worth of keys.
+
 ## Requirements
 
 - Input: a stream of events `(deviceId, message, timestamp)`, for example `(d1, "Battery at 10%", t)`.

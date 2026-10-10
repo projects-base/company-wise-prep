@@ -1,5 +1,21 @@
 **Short answer:** Use two heaps. A max-heap `low` holds the smaller half and a min-heap `high` holds the larger half. Keep every value in `low` ≤ every value in `high`, and keep `low` the same size as `high` or one bigger. The median is then `low.peek()` (odd count) or the average of the two tops (even count). `addNum` is O(log n) and `findMedian` is O(1).
 
+## Picture it
+
+Stream `5, 15, 1, 3, 8`. Each `addNum` pushes into `low`, moves `low`'s max to `high`, then moves `high`'s min back if `high` got bigger. Heaps are shown as sorted lists; the top is in **bold**.
+
+| add | after push to low | after low → high | after rebalance | low (max-heap) | high (min-heap) | median |
+|---|---|---|---|---|---|---|
+| 5 | low [5] | 5 up: low [], high [5] | high bigger: 5 back | [**5**] | [] | 5 |
+| 15 | low [**15**, 5] | 15 up | sizes 1 = 1, no move | [**5**] | [**15**] | (5 + 15) / 2 = 10.0 |
+| 1 | low [**5**, 1] | 5 up: high [5, 15] | high bigger: 5 back | [**5**, 1] | [**15**] | 5 |
+| 3 | low [**5**, 3, 1] | 5 up: high [5, 15] | sizes 2 = 2, no move | [**3**, 1] | [**5**, 15] | (3 + 5) / 2 = 4.0 |
+| 8 | low [**8**, 3, 1] | 8 up: high [5, 8, 15] | high bigger: 5 back | [**5**, 3, 1] | [**8**, 15] | 5 |
+
+Check: the sorted stream is `1 3 5 8 15`, median 5.
+
+**The picture in one sentence:** split the numbers at the middle into two heaps, so the median is always sitting on top of one or both of them.
+
 ## Approach
 
 - **Brute force:** store everything and sort on each `findMedian`, which is O(n log n) per query. Keeping a sorted `ArrayList` with binary-search insertion is O(n) per insert because of shifting. With a median query after every insert, that is O(n²) overall.

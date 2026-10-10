@@ -1,5 +1,24 @@
 **Short answer:** Use a monotonic deque of indices whose values decrease from front to back. For each new element, drop the front if it has left the window, pop from the back every index whose value is not larger than the new one (it can never be a maximum again), then push the new index. The front is always the window maximum. Every index is pushed and popped at most once, so it is O(n).
 
+## Picture it
+
+Example 1: `nums = [1,3,-1,-3,5,3,6,7]`, `k = 3`. The deque holds indices; values shown as `index:value`.
+
+| i | nums[i] | expired from front | popped from back | deque after (front → back) | output |
+|---|---|---|---|---|---|
+| 0 | 1 | - | - | `0:1` | - |
+| 1 | 3 | - | `0:1` | `1:3` | - |
+| 2 | -1 | - | - | `1:3, 2:-1` | 3 |
+| 3 | -3 | - | - | `1:3, 2:-1, 3:-3` | 3 |
+| 4 | 5 | `1:3` (1 ≤ 4-3) | `3:-3, 2:-1` | `4:5` | 5 |
+| 5 | 3 | - | - | `4:5, 5:3` | 5 |
+| 6 | 6 | - | `5:3, 4:5` | `6:6` | 6 |
+| 7 | 7 | - | `6:6` | `7:7` | 7 |
+
+Result: `[3,3,5,5,6,7]`.
+
+**The picture in one sentence:** a newcomer evicts every smaller value behind it (they can never win again), so the deque stays decreasing and its front is always the window max.
+
 ## Approach
 
 - **Brute force:** scan each window: O(n·k), too slow for n = 25,000 and k = 20,000.

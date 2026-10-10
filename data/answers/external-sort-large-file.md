@@ -1,5 +1,43 @@
 **Short answer:** Use an external merge sort. First, read the file in chunks that fit in memory, sort each chunk and write it out as a sorted run. Then merge runs in passes. With `M` memory slots you can merge `M − 1` runs at once, one input slot per run plus one output buffer, using a min-heap over the heads of the runs. Repeat until one run is left. The total work is O(N log N), and the number of passes is about `⌈log_(M−1)(N/M)⌉`.
 
+## Picture it
+
+Example 1: `file = [5,1,9,3,7,2,8,6,4]`, `memory = 3`, so the fan-in is 2.
+
+```mermaid
+flowchart LR
+    subgraph s0["Stage 0: sorted chunks"]
+        r1["1,5,9"]
+        r2["2,3,7"]
+        r3["4,6,8"]
+    end
+    subgraph s1["Stage 1: merge pairs"]
+        m1["1,2,3,5,7,9"]
+        m2["4,6,8 (copied)"]
+    end
+    subgraph s2["Stage 2"]
+        f["1,2,3,4,5,6,7,8,9"]
+    end
+    r1 --> m1
+    r2 --> m1
+    r3 --> m2
+    m1 --> f
+    m2 --> f
+```
+
+The heap inside the first merge of stage 1, merging `[1,5,9]` and `[2,3,7]`. The heap holds one cursor per run, shown by its value:
+
+| Step | Heap (head of each run) | Pop | Push next from that run | Output so far |
+|---|---|---|---|---|
+| 1 | {1, 2} | 1 (run 0) | 5 | [1] |
+| 2 | {2, 5} | 2 (run 1) | 3 | [1,2] |
+| 3 | {3, 5} | 3 (run 1) | 7 | [1,2,3] |
+| 4 | {5, 7} | 5 (run 0) | 9 | [1,2,3,5] |
+| 5 | {7, 9} | 7 (run 1) | run 1 is empty | [1,2,3,5,7] |
+| 6 | {9} | 9 (run 0) | run 0 is empty | [1,2,3,5,7,9] |
+
+**The picture in one sentence:** sort memory-sized chunks into runs, then repeatedly merge `M − 1` runs at a time with a min-heap that holds only each run's current head.
+
 ## Approach
 
 - **Why not just sort:** the data does not fit in RAM. Random access to disk is slow, so the algorithm must read and write in long sequential streams.

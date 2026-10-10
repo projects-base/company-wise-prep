@@ -1,5 +1,22 @@
 **Short answer:** Anagrams become identical once their letters are sorted, so the sorted string is a perfect group key. Put each word into a `Map<String, List<String>>` under its sorted key and return the map's values. With streams it is one line: `Collectors.groupingBy(sortedKey)`. For long words, a 26-letter count signature avoids the sort.
 
+## Picture it
+
+`strs = ["eat","tea","tan","ate","nat","bat"]`, one pass with the sorted-letters key:
+
+| Step | Word | Sorted key | Map after |
+|---|---|---|---|
+| 1 | eat | aet | aet → [eat] |
+| 2 | tea | aet | aet → [eat, tea] |
+| 3 | tan | ant | aet → [eat, tea], ant → [tan] |
+| 4 | ate | aet | aet → [eat, tea, ate], ant → [tan] |
+| 5 | nat | ant | aet → [eat, tea, ate], ant → [tan, nat] |
+| 6 | bat | abt | aet → [...], ant → [tan, nat], abt → [bat] |
+
+Return the map's values: `[[eat, tea, ate], [tan, nat], [bat]]`.
+
+**The picture in one sentence:** give every word a canonical form that all its anagrams share, and let a hash map do the grouping.
+
 ## Approach
 
 - **Brute force:** compare every pair of words with an anagram check and merge groups. O(n² · k).

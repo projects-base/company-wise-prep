@@ -1,5 +1,30 @@
 **Short answer:** Do not store or scan the board. Keep one counter per row, per column and for the two diagonals; add +1 for player 1's move and −1 for player 2's. A line is won when its counter reaches +n or −n, because that can only happen if one player owns all n cells. Each move updates at most four counters, so `move` is O(1) and memory is O(n).
 
+## Picture it
+
+Example 1, `n = 3` (player 1 adds +1, player 2 adds −1). Final board:
+
+```text
+      col 0  col 1  col 2
+row 0   1      .      2
+row 1   2      2      .
+row 2   1      1      1    <- rows[2] reaches +3
+```
+
+| Move | (row, col, player) | Counters changed (new values) | Target | Returns |
+|---|---|---|---|---|
+| 1 | (0, 0, 1) | rows[0] = 1, cols[0] = 1, diag = 1 | +3 | 0 |
+| 2 | (0, 2, 2) | rows[0] = 0, cols[2] = -1, anti = -1 | -3 | 0 |
+| 3 | (2, 2, 1) | rows[2] = 1, cols[2] = 0, diag = 2 | +3 | 0 |
+| 4 | (1, 1, 2) | rows[1] = -1, cols[1] = -1, diag = 1, anti = -2 | -3 | 0 |
+| 5 | (2, 0, 1) | rows[2] = 2, cols[0] = 2, anti = -1 | +3 | 0 |
+| 6 | (1, 0, 2) | rows[1] = -2, cols[0] = 1 | -3 | 0 |
+| 7 | (2, 1, 1) | rows[2] = **3**, cols[1] = 0 | +3 | **1** |
+
+Row 0 shows the trick: one cell from each player puts the counter at 0, so that line can never reach ±3.
+
+**The picture in one sentence:** a signed counter per line hits ±n only when one player owns every cell in it, so each move just updates and checks its own row, column and diagonals.
+
 ## Approach
 
 **Brute force.** Keep an n × n board. After each move, check the move's row, its column and, if relevant, the two diagonals: O(n) per move. That is already a fine first answer; a full-board scan (O(n²)) is the version to avoid.

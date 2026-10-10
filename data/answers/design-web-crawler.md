@@ -1,5 +1,77 @@
 **Short answer:** A crawler is a loop: take a URL from the frontier, fetch it politely, parse it, store the content, extract links, deduplicate them, and push new ones back into the frontier. At scale the frontier is partitioned by host so one worker owns each host (which makes politeness and robots.txt easy), and URL-seen and content-seen checks keep the loop from exploding. The fetched pages then feed an indexing pipeline that tokenises them and builds an inverted index: term → sorted list of document IDs with positions, sharded by document.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph crawl["Crawl loop"]
+    seeds["Seeds"]
+    frontier["URL Frontier<br/>(priority + per-host queues)"]
+    fetch["Fetcher workers<br/>(async I/O, robots cache)"]
+    cseen{"Content-seen check"}
+    parser["Parser / link extractor"]
+    ufilter["URL filter + normalise<br/>+ url_seen"]
+  end
+  subgraph storage["Storage"]
+    raw[("Raw store (blob)")]
+    shards[("Index shards")]
+  end
+  subgraph indexing["Indexing"]
+    kafka[["Kafka"]]
+    indexer["Indexer<br/>(tokenise, stem, segments)"]
+    query["Query service<br/>(fan out, merge top-k)"]
+  end
+  web["Internet"]
+  seeds --> frontier --> fetch
+  fetch -->|"DNS cache"| web
+  fetch --> cseen
+  cseen -->|"dup"| drop["Drop"]
+  cseen -->|"new"| parser
+  parser --> ufilter -->|"new URLs"| frontier
+  parser --> raw --> kafka --> indexer --> shards
+  query --> shards
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant F as Frontier
+  participant W as Fetcher worker
+  participant H as Host site
+  participant P as Parser
+  participant U as url_seen
+  participant B as Raw store
+  F->>W: next URL from a host whose next_allowed_at has passed
+  W->>H: GET (robots.txt checked, timeouts, size cap)
+  H-->>W: HTML
+  W->>W: content hash / SimHash, drop if seen
+  W->>P: page
+  P->>B: store compressed HTML + text
+  P->>U: normalise + hash each link, Bloom filter then KV
+  U-->>P: unseen links
+  P->>F: enqueue new URLs with priority
+  W->>F: set host next_allowed_at = now + crawl_delay
+```
+
+```mermaid
+flowchart TD
+  enq["New URL"] --> front["Front queues<br/>by priority"]
+  front --> route["Route by host"]
+  route --> b1["Back queue: host A"]
+  route --> b2["Back queue: host B"]
+  route --> b3["Back queue: host C"]
+  b1 --> heap["Heap keyed by<br/>next_allowed_at"]
+  b2 --> heap
+  b3 --> heap
+  heap --> worker["Worker pops the host<br/>whose time has passed"]
+```
+
+**How to read it:**
+- Steps 1–3: the frontier only hands out a URL whose host is allowed to be contacted now, and the fetcher respects robots.txt, timeouts and size caps.
+- Steps 4–6: duplicate content is dropped; new pages are stored in the blob store, which feeds Kafka and the indexer.
+- Steps 7–9: links are normalised and checked against `url_seen` (Bloom filter in front), and only unseen ones go back into the frontier, which keeps the loop from exploding.
+- Step 10 and the last picture: per-host back queues plus a heap of `next_allowed_at` make politeness a local decision. Hosts are split across machines by `hash(host)`.
+
 ## Requirements
 
 **Functional**
@@ -45,25 +117,7 @@ doc store for ranking: doc_id -> {url, title, pagerank, length}
 
 ## Architecture
 
-```text
- seeds
-   v
-[ URL Frontier ]  front queues by priority --> back queues, one per host (host -> worker)
-   |                                                      ^
-   v                                                      |
-[ Fetcher workers ] --DNS cache--> internet               | new URLs
-   |   (async I/O, robots.txt cache, per-host delay)      |
-   v                                                      |
-[ Content-seen check ] --dup--> drop                      |
-   |                                                      |
-   v                                                      |
-[ Parser / link extractor ] --> [ URL filter + normalise + url_seen ] --+
-   |
-   v
-[ Raw store (blob) ] --> Kafka --> [ Indexer: tokenise, stem, build segments ] --> [ Index shards ]
-                                                                                      ^
-                                                         [ Query service: fan-out to shards, merge top-k ]
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

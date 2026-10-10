@@ -1,5 +1,23 @@
 **Short answer:** Rephrase it: find the longest window that contains at most k zeros (those are the zeros you flip). Slide a window: extend `right`, count zeros, and while there are more than k, move `left` forward. Track the largest window. O(n), O(1) space.
 
+## Picture it
+
+`nums = [1,0,0,1,1,0,1]`, `k = 2`:
+
+| right | nums[right] | zeros after adding | Shrink? | Window [left..right] | Length | best |
+|---|---|---|---|---|---|---|
+| 0 | 1 | 0 | no | [0..0] | 1 | 1 |
+| 1 | 0 | 1 | no | [0..1] | 2 | 2 |
+| 2 | 0 | 2 | no | [0..2] | 3 | 3 |
+| 3 | 1 | 2 | no | [0..3] | 4 | 4 |
+| 4 | 1 | 2 | no | [0..4] | 5 | 5 |
+| 5 | 0 | 3 | yes: drop index 0 (a 1), drop index 1 (a 0) → zeros 2 | [2..5] | 4 | 5 |
+| 6 | 1 | 2 | no | [2..6] | 5 | 5 |
+
+Answer 5.
+
+**The picture in one sentence:** the window is "at most k zeros", so the right edge always grows and the left edge only moves forward to drop one zero.
+
 ## Approach
 
 - **Brute force:** for every start, extend until you pass k zeros. O(n²).

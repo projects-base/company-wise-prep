@@ -1,5 +1,19 @@
 **Short answer:** Count messages per user with a `HashMap`. Then keep the k best users in a min-heap of size k whose head is the *worst* kept user (fewest messages, then the larger name). Push each user and pop when the heap exceeds k. Finally sort the k survivors best-first. That is O(m + u log k) for m messages and u distinct users.
 
+## Picture it
+
+Counts after the first pass: `ann 3, bob 2, cat 1, dan 2`; `k = 2` (answer `["ann","bob"]`). The `HashMap` key order is arbitrary; say it yields cat, bob, dan, ann. The heap is listed worst-first (its head on the left).
+
+| step | add | heap after add (worst first) | size > k? | poll | heap kept |
+|---|---|---|---|---|---|
+| 1 | cat(1) | cat(1) | no | | cat |
+| 2 | bob(2) | cat(1), bob(2) | no | | cat, bob |
+| 3 | dan(2) | cat(1), dan(2), bob(2) | yes | cat | dan, bob |
+| 4 | ann(3) | dan(2), bob(2), ann(3) | yes | dan (ties with bob, but "dan" > "bob" so it is worse) | bob, ann |
+| end | | sort with `better` | | | **ann, bob** |
+
+**The picture in one sentence:** a size-k heap whose head is the weakest kept user lets every newcomer evict the current worst, and one `better` comparator handles the count-then-name tie-break everywhere.
+
 ## Approach
 
 - **Simple.** Count, then sort all users by (count descending, name ascending) and take k: O(m + u log u). Accepted, and the right first answer to state.

@@ -1,5 +1,81 @@
 **Short answer:** The machine's behaviour depends on its state (idle, has money, dispensing, out of service), so use the State pattern: each state is a class that handles `insertCoin`, `select`, and `cancel` in its own way and returns the next state. The `VendingMachine` is the context that holds inventory, the current balance and the current state. Things that vary by policy, such as how change is made or how payment is taken, are Strategies. SOLID shows up naturally: each state has one job, new states or payment types are added without editing the old ones, and the machine depends on interfaces.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class VendingMachine {
+        -State state
+        -int balance
+        -List~Coin~ inserted
+        +insertCoin(Coin c)
+        +select(String slot)
+        +cancel()
+    }
+    class State {
+        <<interface>>
+        +insertCoin(VendingMachine m, Coin c) State
+        +select(VendingMachine m, String slot) State
+        +cancel(VendingMachine m) State
+    }
+    class IdleState
+    class HasMoneyState
+    class OutOfServiceState
+    class Inventory {
+        +isAvailable(String slot) boolean
+        +take(String slot)
+        +restock()
+    }
+    class CoinBox {
+        +add(Coin c)
+        +payOut(Map~Coin, Integer~ coins)
+    }
+    class ChangeStrategy {
+        <<interface>>
+        +makeChange(int amount, CoinBox box) Optional~Map~Coin, Integer~~
+    }
+    class GreedyChange
+    class Dispenser {
+        <<interface>>
+        +dispenseProduct(String slot)
+        +dispenseCoins(Map~Coin, Integer~ coins)
+    }
+    class Coin {
+        <<enumeration>>
+        NICKEL
+        DIME
+        QUARTER
+        DOLLAR
+    }
+    VendingMachine --> State : current
+    State <|.. IdleState
+    State <|.. HasMoneyState
+    State <|.. OutOfServiceState
+    VendingMachine *-- Inventory
+    VendingMachine *-- CoinBox
+    VendingMachine --> ChangeStrategy
+    VendingMachine --> Dispenser
+    ChangeStrategy <|.. GreedyChange
+    CoinBox --> Coin
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> IdleState
+    IdleState --> HasMoneyState : insertCoin
+    IdleState --> IdleState : select (insert money first)
+    HasMoneyState --> HasMoneyState : insertCoin, or select fails (sold out, low balance, no change)
+    HasMoneyState --> IdleState : select succeeds (dispense product and change)
+    HasMoneyState --> IdleState : cancel (refund)
+    OutOfServiceState --> OutOfServiceState : insertCoin (coin returned)
+```
+
+**How to read it:**
+- `VendingMachine` is the context: its public methods just hand the event to the current `State` and store the state it returns.
+- Each state class answers every event in its own way, so there are no `if (state == ...)` blocks anywhere.
+- In `HasMoneyState`, `select` checks stock, balance and whether change can be made, and only then dispenses and goes back to idle.
+- Making change and driving hardware sit behind `ChangeStrategy` and `Dispenser`, so a smarter change algorithm or a test mock plugs in without touching the states.
+
 ## Requirements
 
 - Slots hold products with a price and a count.

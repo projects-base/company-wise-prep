@@ -1,5 +1,77 @@
 **Short answer:** Clients keep a WebSocket to a stateless gateway tier; a presence/session registry maps each user to the gateway holding their connection. A message is written once to a store partitioned by conversation_id, gets a per-conversation sequence number, and is then fanned out to online members via the gateways. Offline or reconnecting clients sync by asking for "everything after my last seq". For 10k+ member groups, fan out on read (members pull) or send only lightweight notifications, not the full message to each connection.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    c1["Sender device"]
+    c2["Member devices"]
+  end
+  subgraph edge["Edge"]
+    gw["Gateway nodes (WebSocket)"]
+  end
+  subgraph services["Services"]
+    chat["Chat service<br/>assign seq, persist"]
+    fan["Fan-out workers"]
+    push["Push notification service"]
+  end
+  subgraph async["Async"]
+    broker[["Broker (key: conversation_id)"]]
+  end
+  subgraph storage["Storage"]
+    reg[("Session registry<br/>user to gateway, Redis")]
+    msgs[("Message store<br/>PK conversation_id, seq")]
+  end
+  c1 <--> gw
+  c2 <--> gw
+  gw --> chat
+  gw <--> reg
+  chat --> msgs
+  chat --> broker --> fan
+  fan --> reg
+  fan --> gw
+  fan --> push
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant S as Sender
+  participant G as Gateway
+  participant C as Chat service
+  participant M as Message store
+  participant B as Broker
+  participant F as Fan-out worker
+  participant R as Session registry
+  participant D as Recipient device
+  S->>G: send (client_msg_id, conversation_id, body)
+  G->>C: forward
+  C->>M: write with next seq (42)
+  C-->>S: ack (message_id, seq 42)
+  C->>B: publish, keyed by conversation_id
+  B->>F: consume
+  F->>R: which gateways hold online members?
+  F->>G: push (conversation_id, seq 42)
+  G->>D: push frame
+  Note over D: offline device later calls GET messages?after_seq=41
+```
+
+```mermaid
+flowchart TD
+  msg["New message in conversation"] --> size{"Group size?"}
+  size -->|"small"| write["Fan out on write:<br/>push full message to each member"]
+  size -->|"10k+"| read["Write once, push small<br/>'new seq N' event to online members"]
+  read --> pull["Clients pull content<br/>after their last seq"]
+```
+
+**How to read it:**
+- Steps 1–4: the sender's gateway forwards the message; the chat service gives it the next per-conversation seq, stores it once and acks with that seq. `client_msg_id` makes a retry safe.
+- Steps 5–7: the message goes to a broker partitioned by conversation_id (one writer per conversation keeps order), and a fan-out worker asks the session registry which gateways hold the online members.
+- Steps 8–9: one push per gateway, then down each WebSocket. Offline mobiles get a push notification instead.
+- A device that was offline syncs with "everything after my last seq". A gap (has 41, got 43) means fetch 42.
+- The third picture: large groups switch from pushing full messages to sending a small notification and letting clients pull.
+
 ## Requirements
 
 Functional:
@@ -44,18 +116,7 @@ A wide-column store (Cassandra / Cosmos DB style) fits `messages`: partition key
 
 ## Architecture
 
-```text
-client <--WS--> gateway nodes <---> session registry (user -> gateway, Redis)
-                    |
-                    v
-             chat service --(1) assign seq, persist--> message store (partitioned by conversation)
-                    |
-                    +--(2) publish--> broker (topic partitioned by conversation_id)
-                                           |
-                                   fan-out workers --> gateways of online members
-                                           |
-                                   push notification svc (offline mobile)
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

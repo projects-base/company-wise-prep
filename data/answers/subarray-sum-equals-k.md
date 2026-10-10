@@ -1,5 +1,20 @@
 **Short answer:** A subarray `i..j` sums to `k` exactly when `prefix[j] - prefix[i-1] = k`, that is when an earlier prefix sum equals `prefix[j] - k`. Walk the array once, keep a hash map from prefix sum to how many times it has occurred, and at each step add the count of `sum - k`. Seed the map with `{0: 1}` for subarrays that start at index 0. O(n) time and space.
 
+## Picture it
+
+`nums = [1, -1, 1]`, `k = 1` (answer 3: `[1]`, `[1,-1,1]`, `[1]`). The map is shown *before* the current sum is added.
+
+| step | x | sum | look up `sum - k` | found | count | map after adding `sum` |
+|---|---|---|---|---|---|---|
+| start | | 0 | | | 0 | {0:1} |
+| 1 | 1 | 1 | 0 | 1 (`[1]`) | 1 | {0:1, 1:1} |
+| 2 | -1 | 0 | -1 | 0 | 1 | {0:2, 1:1} |
+| 3 | 1 | 1 | 0 | 2 (`[1,-1,1]` and the last `[1]`) | 3 | {0:2, 1:2} |
+
+At step 3, prefix 0 occurred twice (the empty prefix and after `1,-1`), so two subarrays end here with sum 1.
+
+**The picture in one sentence:** each earlier prefix equal to `sum - k` marks one start point of a subarray summing to `k`, so a count map turns the search into a lookup.
+
 ## Approach
 
 - **Brute force.** Every start, every end, running sum: O(n²). With 40,000 elements that is 8·10⁸ additions, too slow here.

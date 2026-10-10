@@ -1,5 +1,27 @@
 **Short answer:** Multi-source BFS. Put every rotten orange in the queue at minute 0 and count the fresh ones. Process the queue level by level; each level is one minute, and each fresh neighbour becomes rotten and joins the next level. Stop when no fresh oranges remain or the queue empties. If fresh oranges remain, return -1. O(m·n) time and space.
 
+## Picture it
+
+Example 1, `grid = [[2,1,1],[1,1,0],[0,1,1]]`. The number in each cell is the minute it rots (`R` = rotten at the start, `.` = empty):
+
+```text
+R 1 2
+1 2 .
+. 3 4
+```
+
+| Minute | Queue popped this level | Newly rotten (enqueued) | fresh left |
+|---|---|---|---|
+| start | – | (0,0) is the only source | 6 |
+| 1 | (0,0) | (1,0), (0,1) | 4 |
+| 2 | (1,0), (0,1) | (1,1), (0,2) | 2 |
+| 3 | (1,1), (0,2) | (2,1) | 1 |
+| 4 | (2,1) | (2,2) | 0 → loop stops, return 4 |
+
+(0,2) rots nothing in minute 3: its only other neighbour (1,2) is empty. The loop stops as soon as `fresh` hits 0, so no extra empty minute is counted.
+
+**The picture in one sentence:** start BFS from every rotten orange at once, and each BFS level is one minute, so the last level reached is the answer.
+
 ## Approach
 
 - **Brute force.** Every minute, scan the whole grid and rot the neighbours of rotten cells. O((m·n)²) in the worst case: a winding path of 30,000 minutes on a 250×250 grid means 30,000 full scans of 62,500 cells.

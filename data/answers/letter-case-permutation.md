@@ -1,5 +1,23 @@
 **Short answer:** Backtracking over positions. At a digit there is one choice, so move on. At a letter there are two: lowercase and uppercase. Recurse on both, writing into one shared `char[]`, and add a copy to the result at the end. With L letters there are 2^L strings.
 
+## Picture it
+
+The decision tree for `s = "a1b2"`. Letters branch into lower and upper case; digits pass straight through, so they add no branches.
+
+```mermaid
+flowchart TD
+    r["start, i = 0"] -->|"i=0 lower: a"| x1["a, then i=1 digit 1 passes"]
+    r -->|"i=0 upper: A"| x2["A, then i=1 digit 1 passes"]
+    x1 -->|"i=2 lower: b"| l1["a1b2 (1st)"]
+    x1 -->|"i=2 upper: B"| l2["a1B2 (2nd)"]
+    x2 -->|"i=2 lower: b"| l3["A1b2 (3rd)"]
+    x2 -->|"i=2 upper: B"| l4["A1B2 (4th)"]
+```
+
+Two letters give 2² = 4 leaves. The same `char[]` is reused: going from leaf 2 back to the `A` branch simply overwrites `cs[0]` with `A`, and `cs[2]` is rewritten on the way down.
+
+**The picture in one sentence:** each letter doubles the tree and each digit is a straight line, so the leaves are exactly the 2^L case choices.
+
 ## Approach
 
 - **Brute force idea:** there is nothing smarter than generating them, since the output itself has 2^L strings. The question is how to generate cleanly.

@@ -1,5 +1,34 @@
 **Short answer:** Store in every node the size of its subtree. To find the rank of `x`, walk from the root as in a normal search. Every time you go right, everything in the left subtree plus the current node is smaller than `x`, so add `size(left) + 1`. When you find `x`, the rank is that running total plus `size(left) + 1`. Each query costs O(height) instead of the O(n) of an in-order traversal.
 
+## Picture it
+
+Example 1 after inserting 20, 10, 30, 25, 15. Each node shows its value and subtree `size`:
+
+```mermaid
+flowchart TD
+    n20["20 · size 5"]
+    n10["10 · size 2"]
+    n30["30 · size 2"]
+    n15["15 · size 1"]
+    n25["25 · size 1"]
+    n20 -->|"left"| n10
+    n20 -->|"right: go here, add 2 + 1"| n30
+    n10 -->|"right"| n15
+    n30 -->|"left: go here, add 0"| n25
+```
+
+`rank(25)`:
+
+| Node | Compare | Action | smaller |
+|---|---|---|---|
+| 20 | 25 > 20 | add size(left = 10) + 1 = 2 + 1, go right | 3 |
+| 30 | 25 < 30 | go left, add nothing | 3 |
+| 25 | equal | return smaller + size(left = null) + 1 | 3 + 0 + 1 = **4** |
+
+Before 15 was inserted, node 10 had size 1, so the same walk gave 1 + 1 + 0 + 1 = 3.
+
+**The picture in one sentence:** every right turn on the search path skips a whole block of smaller values, and the stored subtree size counts that block in O(1).
+
 ## Approach
 
 - **Brute force.** In-order traversal counts nodes until it reaches `x`. Correct, but O(n) per query.

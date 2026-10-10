@@ -1,5 +1,26 @@
 **Short answer:** Track the set of all cells the robot might be in. Pick any of them that has not escaped yet, and walk it to the exit along a shortest path. Apply each move to every position in the set. Moves are deterministic, so positions can merge but never split. Each round removes at least the chosen position, so after fewer than (number of open cells) rounds the set is empty. First check that every open cell can reach the exit at all. If one cannot, return `""`.
 
+## Picture it
+
+Example 1: `grid = ["E.", ".."]`. Cells are numbered `r * cols + c`; BFS from the exit gives the distances.
+
+```text
+cell ids     dist to E
+ 0(E) 1       0  1
+ 2    3       1  2
+```
+
+The set starts as every open cell except the exit, `{1, 2, 3}`. A small-integer `HashSet` iterates in ascending order, so the candidate is the smallest id. The first direction (U, D, L, R order) that lowers `dist` by one is chosen.
+
+| Round | Candidate | Move | 1 goes to | 2 goes to | 3 goes to | Set after | Output |
+|---|---|---|---|---|---|---|---|
+| 1 | 1 (dist 1) | L | 0 = E, escaped | 2 (blocked) | 2 | {2} | L |
+| 2 | 2 (dist 1) | U | – | 0 = E, escaped | – | {} | LU |
+
+In round 1, positions 2 and 3 **merge** into 2. They can never split again, because a move sends one cell to exactly one cell.
+
+**The picture in one sentence:** drive any one possible position home by a shortest path while everything else moves along, so the set of positions only shrinks or merges until it is empty.
+
 ## Approach
 
 - **Feasibility.** Moves are reversible: if you can step from a to b, you can step from b to a. So a BFS from the exit gives `dist[cell]`, the shortest distance from every cell to the exit. If any open cell has no distance, no sequence can exist, and the answer is `""`.

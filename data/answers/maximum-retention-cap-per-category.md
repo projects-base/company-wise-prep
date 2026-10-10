@@ -1,5 +1,18 @@
 **Short answer:** The retained total `f(X) = Σ min(count, X)` never decreases as X grows, so binary search for the largest X with `f(X) ≤ maxEntries`. If the full total already fits, return −1. Each check is O(n) and X goes up to 10⁹, so about 30 checks: O(n log M). Sorting and sweeping gives O(n log n) without searching.
 
+## Picture it
+
+Example 1: `counts = [5,3,8,2]`, `maxEntries = 12`. Total 18 > 12, so search X in `[0, 7]` (max − 1):
+
+| Step | lo | hi | mid (upper) | retained(mid) | Fits? | Action |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 7 | 4 | 4 + 3 + 4 + 2 = 13 | no | hi = 3 |
+| 2 | 0 | 3 | 2 | 2 + 2 + 2 + 2 = 8 | yes | lo = 2 |
+| 3 | 2 | 3 | 3 | 3 + 3 + 3 + 2 = 11 | yes | lo = 3 |
+| 4 | 3 | 3 | — | — | — | stop, answer 3 |
+
+**The picture in one sentence:** the retained total only grows with X, so binary search for the last X that still fits, using the upper mid so the loop always moves.
+
 ## Approach
 
 - **Brute force:** try X = 0, 1, 2, … until the total exceeds the limit. Up to 10⁹ values of X, each O(n). Far too slow.

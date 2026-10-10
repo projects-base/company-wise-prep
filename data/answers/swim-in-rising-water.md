@@ -1,5 +1,29 @@
 **Short answer:** The answer is the smallest possible "highest cell" over all paths from the top-left to the bottom-right corner (a minimax path). Run Dijkstra where a path's cost is the maximum elevation on it instead of the sum: pop the cell with the lowest cost, relax neighbours with `max(cost, grid[neighbour])`. The first time the target is popped, its cost is the answer. O(n² log n).
 
+## Picture it
+
+A 3×3 grid (answer 4: the path `0 → 1 → 2 → 3 → 4` around the rim never goes above 4).
+
+```text
+0 1 2
+7 8 3
+6 5 4
+```
+
+Heap entries are `cost@(row,col)`, where cost = highest elevation on the best path so far.
+
+| step | pop | pushes (cost = max(t, cell)) | heap after |
+|---|---|---|---|
+| 1 | 0@(0,0) | 7@(1,0), 1@(0,1) | 1@(0,1), 7@(1,0) |
+| 2 | 1@(0,1) | 8@(1,1), 2@(0,2) | 2@(0,2), 7@(1,0), 8@(1,1) |
+| 3 | 2@(0,2) | 3@(1,2) | 3@(1,2), 7@(1,0), 8@(1,1) |
+| 4 | 3@(1,2) | 4@(2,2); (1,1) stays 8 since max(3,8) = 8 is not better | 4@(2,2), 7@(1,0), 8@(1,1) |
+| 5 | 4@(2,2) | target popped | return **4** |
+
+The 7, 8, 6 and 5 cells are never needed: the heap always explores the lowest "water level" first.
+
+**The picture in one sentence:** Dijkstra with `max` instead of `+` grows the reachable region in order of the water level needed, so the target's first pop is the minimax answer.
+
 ## Approach
 
 - **Brute force.** For each `t` from 0 upwards, BFS over cells with elevation ≤ t and stop at the first `t` that connects the corners. Up to n² values of t, each O(n²): O(n⁴), 6.25 million cell visits for n = 50. Works, but wasteful.

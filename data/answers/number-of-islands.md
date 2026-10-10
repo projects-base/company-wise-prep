@@ -1,5 +1,31 @@
 **Short answer:** Treat the grid as a graph where each land cell is a node with edges to its land neighbours (up, down, left, right). The number of islands is the number of connected components. Scan every cell; when you find unvisited land, count one island and flood-fill it with BFS or DFS so you never count it again. O(m · n) time.
 
+## Picture it
+
+Example 1, islands labelled by the order the scan finds them:
+
+```text
+     c0 c1 c2 c3
+r0 [  A  A  .  . ]
+r1 [  A  A  .  . ]
+r2 [  .  .  B  . ]
+r3 [  .  .  .  C ]
+```
+
+BFS of island A (neighbour order down, up, right, left; a cell is sunk to '0' when enqueued):
+
+| Step | Poll | Enqueued (and sunk) | Queue after |
+|---|---|---|---|
+| 0 | — | (0,0) | (0,0) |
+| 1 | (0,0) | (1,0), (0,1) | (1,0), (0,1) |
+| 2 | (1,0) | (1,1) | (0,1), (1,1) |
+| 3 | (0,1) | none ((1,1) already sunk) | (1,1) |
+| 4 | (1,1) | none | empty |
+
+The scan then starts a fill at (2,2) (count 2) and at (3,3) (count 3). Diagonal cells never join. Answer 3.
+
+**The picture in one sentence:** every flood fill sinks one whole island, so the number of fills the scan has to start is the number of islands.
+
 ## Approach
 
 - **Key insight:** "connected land" is exactly a connected component. Each flood fill removes one whole component, so the number of fills started is the answer.

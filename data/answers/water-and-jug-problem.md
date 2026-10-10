@@ -1,5 +1,30 @@
 **Short answer:** Let `g` be the gcd of all the jug capacities. The total amount of water is always a multiple of `g`, and every multiple of `g` from 0 up to the total capacity can be reached. So the answer is `target <= sum(capacities) && target % g == 0`. That takes O(N log max) time and no search. For two jugs this is Bézout's identity: `a·x + b·y` can produce exactly the multiples of `gcd(x, y)`.
 
+## Picture it
+
+Why 4 is reachable with jugs 3 and 5 (example 1): contents shown as (3-jug, 5-jug). Every state total is a multiple of gcd(3, 5) = 1.
+
+```mermaid
+flowchart LR
+  s0["(0,0)"] -->|"fill 5"| s1["(0,5)"]
+  s1 -->|"pour 5 to 3"| s2["(3,2)"]
+  s2 -->|"empty 3"| s3["(0,2)"]
+  s3 -->|"pour 5 to 3"| s4["(2,0)"]
+  s4 -->|"fill 5"| s5["(2,5)"]
+  s5 -->|"pour 5 to 3"| s6["(3,4)"]
+  s6 -->|"empty 3"| s7["(0,4) total 4"]
+```
+
+The code never searches states. It folds the gcd and the total:
+
+| Input | Step | g | total | Check | Result |
+|---|---|---|---|---|---|
+| [3,5], 4 | 3, then 5 | 3 → 1 | 8 | 4 ≤ 8, 4 % 1 = 0 | true |
+| [2,6], 5 | 2, then 6 | 2 → 2 | 8 | 5 % 2 = 1 | false |
+| [6,10,15], 1 | 6, 10, 15 | 6 → 2 → 1 | 31 | 1 ≤ 31, 1 % 1 = 0 | true |
+
+**The picture in one sentence:** every move keeps the total a multiple of the gcd and every such multiple up to the total capacity is reachable, so the whole search collapses to one gcd.
+
 ## Approach
 
 - **Brute force (BFS over states).** A state is the content of every jug. For two jugs it is a pair `(a, b)`, with six moves out of each state. That is O(x·y) states: fine for small capacities, hopeless for 10⁶ × 10⁶, and the state space grows exponentially with N jugs.

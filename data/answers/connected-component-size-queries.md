@@ -1,5 +1,31 @@
 **Short answer:** The nodes reachable from `x` are exactly the other nodes in `x`'s connected component, so the answer is `componentSize(x) − 1`. Compute every component's size once, then answer each query in O(1). Two standard ways: label components with DFS/BFS, or union all edges in a disjoint-set union (DSU) that tracks sizes.
 
+## Picture it
+
+Example 1: `n = 6`, edges `[[0,1],[1,2],[3,4]]`, queries `[0,3,5,2]`. The DSU forest after all unions (arrows point to the parent):
+
+```mermaid
+flowchart BT
+    n1["1"] --> n0["0 · root, size 3"]
+    n2["2"] --> n0
+    n4["4"] --> n3["3 · root, size 2"]
+    n5["5 · root, size 1"]
+```
+
+| Step | Operation | Roots found | `parent` | `size` at roots |
+|---|---|---|---|---|
+| 1 | union(0, 1) | 0, 1 (sizes tie, keep a = 0) | [0,0,2,3,4,5] | 0: 2 |
+| 2 | union(1, 2) | find(1) = 0, find(2) = 2 | [0,0,0,3,4,5] | 0: 3 |
+| 3 | union(3, 4) | 3, 4 | [0,0,0,3,3,5] | 3: 2 |
+| 4 | query 0 | find(0) = 0 | – | 3 − 1 = **2** |
+| 5 | query 3 | find(3) = 3 | – | 2 − 1 = **1** |
+| 6 | query 5 | find(5) = 5 | – | 1 − 1 = **0** |
+| 7 | query 2 | find(2) = 0 | – | 3 − 1 = **2** |
+
+Output `[2,1,0,2]`.
+
+**The picture in one sentence:** everyone in a component reaches the same set of nodes, so union the edges once, keep the size at each root, and answer each query as `size[root] − 1`.
+
 ## Approach
 
 **Brute force.** Run a fresh DFS from every query node. That is O(q · (n + E)), too slow when most nodes sit in one big component and there are many queries.

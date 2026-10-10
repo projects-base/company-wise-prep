@@ -1,5 +1,80 @@
 **Short answer:** Build three indexes and query them in rank order. A trie over item names (and name tokens) answers prefix matches fast. An n-gram (trigram) index over names finds substring matches. An inverted index over content tokens finds content matches. A query runs the cheapest, highest-ranked index first and stops once it has enough results, then filters by type. Every index supports `add` and `remove` per item, so an update is "remove old version, add new version", never a full rebuild.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Index {
+        <<interface>>
+        +add(Item item)
+        +remove(Item item)
+        +search(String query) Set~String~
+    }
+    class PrefixTrieIndex {
+        -Node root
+    }
+    class NgramIndex {
+        -Map~String,Set~ grams
+        -Map~String,String~ nameById
+    }
+    class ContentInvertedIndex
+    class SearchService {
+        -Map~String,Item~ store
+        -List~Index~ tiers
+        +upsert(Item item)
+        +delete(String id)
+        +search(String query, Set~ItemType~ types, int limit) List~Item~
+    }
+    class Item {
+        <<record>>
+        +String id
+        +String name
+        +ItemType type
+        +String content
+        +long lastUsed
+    }
+    class ItemType {
+        <<enumeration>>
+        FILE
+        APP
+        SETTING
+        CONTACT
+    }
+    Index <|.. PrefixTrieIndex
+    Index <|.. NgramIndex
+    Index <|.. ContentInvertedIndex
+    SearchService --> "3" Index : tiers in rank order
+    SearchService o-- "*" Item
+    Item --> ItemType
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User typing
+    participant S as SearchService
+    participant P as PrefixTrieIndex
+    participant N as NgramIndex
+    participant C as ContentInvertedIndex
+    U->>S: search("rep", types, 20)
+    S->>P: search("rep")
+    P-->>S: ids whose name or word starts with rep
+    S->>S: dedupe, filter by type, sort by lastUsed
+    alt fewer than 20 results
+        S->>N: search("rep")
+        N-->>S: ids whose name contains rep
+        S->>C: search("rep") if still short
+        C-->>S: ids whose content has the term
+    end
+    S-->>U: top 20, best tier first
+```
+
+**How to read it:**
+- Every tier is an `Index` with the same three methods. `SearchService` holds them as an ordered list: prefix trie, then trigram substring, then content.
+- A search asks the tiers in order. Each tier's hits are deduped (an item keeps its best tier), filtered by type and sorted by recency.
+- As soon as the result list is full, the lower tiers are skipped. That early stop keeps typing-as-you-search instant.
+- `upsert` removes the old version of an item from every index and adds the new one, so edits never need a full rebuild.
+
 ## Requirements
 
 - Items are local objects (files, apps, settings, contacts) with id, name, type and content.

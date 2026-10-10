@@ -1,5 +1,84 @@
 **Short answer:** Modules call a cheap `Logger.log(...)` that only builds a `LogRecord` and puts it on a bounded in-memory buffer. One framework thread drains the buffer in batches and hands each batch to one or more `Sink`s (file, remote tool). Each record carries a sequence number; a sink acknowledges up to a sequence number once it has durably written or the remote tool confirms, and only then is that data considered delivered. When the buffer is full, apply an explicit policy: block, drop low-severity records, or count drops.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class LogLevel {
+        <<enumeration>>
+        TRACE
+        DEBUG
+        INFO
+        WARN
+        ERROR
+    }
+    class LogRecord {
+        <<record>>
+        long seq
+        long timestamp
+        LogLevel level
+        String module
+        String message
+    }
+    class Logger {
+        -String module
+        -LogLevel minLevel
+        +log(LogLevel level, String message)
+    }
+    class LogBuffer {
+        -BlockingQueue~LogRecord~ queue
+        +AtomicLong dropped
+        +publish(LogRecord r)
+        +take() LogRecord
+        +drainTo(List~LogRecord~ out, int max)
+    }
+    class Dispatcher {
+        -List~LogRecord~ pending
+        +run()
+        +stop(Thread t)
+    }
+    class Sink {
+        <<interface>>
+        +write(List~LogRecord~ batch) long
+    }
+    class FileSink
+    class RemoteSink
+    Logger --> LogBuffer : publishes to
+    Logger ..> LogRecord : creates
+    LogRecord --> LogLevel
+    Dispatcher --> LogBuffer : drains
+    Dispatcher --> Sink : writes batches
+    Sink <|.. FileSink
+    Sink <|.. RemoteSink
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant M as Module thread
+    participant L as Logger
+    participant B as LogBuffer
+    participant D as Dispatcher thread
+    participant S as Sink
+    M->>L: log(INFO, "order placed")
+    L->>L: level >= minLevel?
+    L->>B: publish(LogRecord seq=42)
+    Note over B: Full? WARN+ blocks, lower levels are dropped and counted
+    L-->>M: returns at once, no I/O
+    D->>B: take() then drainTo(pending, 500)
+    D->>S: write(batch)
+    S-->>D: ackedUpTo = 42
+    D->>D: remove pending with seq <= 42
+    Note over D,S: On failure keep pending and retry with backoff
+```
+
+**How to read it:**
+- A module only talks to its `Logger`; the logger builds a `LogRecord` and drops it on the bounded `LogBuffer`. The caller never waits on disk or network.
+- The single `Dispatcher` thread takes records off the buffer in batches of up to 500 and hands them to a `Sink`.
+- The sink returns the highest sequence number it has safely stored; only those records leave `pending`.
+- Anything not acknowledged stays in `pending` and is sent again with exponential backoff.
+- When the buffer is full, WARN and ERROR block the caller; lower levels are dropped and counted.
+
 ## Requirements
 
 - Many modules (threads) push logs concurrently: level, module, message, timestamp.

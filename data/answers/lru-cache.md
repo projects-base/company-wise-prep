@@ -1,5 +1,34 @@
 **Short answer:** Combine a `HashMap` from key to node with a doubly linked list ordered by recency. The map finds a node in O(1). The list moves a node to the front, or removes the tail, in O(1) because each node knows its neighbours. `get` moves the node to the front. `put` updates or inserts at the front, and evicts the tail when over capacity. Sentinel head and tail nodes remove the null checks.
 
+## Picture it
+
+Example 1, `capacity = 2`. The list is drawn from most recent (next to `head`) to least recent (next to `tail`).
+
+| Call | List after (head → tail) | Evicted | Returns |
+|---|---|---|---|
+| put(1,1) | head ⇄ 1 ⇄ tail | — | — |
+| put(2,2) | head ⇄ 2 ⇄ 1 ⇄ tail | — | — |
+| get(1) | head ⇄ 1 ⇄ 2 ⇄ tail | — | 1 |
+| put(3,3) | head ⇄ 3 ⇄ 1 ⇄ tail | 2 (tail.prev) | — |
+| get(2) | unchanged | — | -1 |
+| put(4,4) | head ⇄ 4 ⇄ 3 ⇄ tail | 1 (tail.prev) | — |
+| get(1) | unchanged | — | -1 |
+| get(3) | head ⇄ 3 ⇄ 4 ⇄ tail | — | 3 |
+| get(4) | head ⇄ 4 ⇄ 3 ⇄ tail | — | 4 |
+
+```mermaid
+flowchart LR
+    map["HashMap key to node"] -.->|"key 4"| n4
+    map -.->|"key 3"| n3
+    head["head (sentinel)"] <--> n4["4"]
+    n4 <--> n3["3"]
+    n3 <--> tail["tail (sentinel)"]
+```
+
+The map jumps straight to a node; the node's `prev` and `next` let it be unlinked and moved to the front in O(1).
+
+**The picture in one sentence:** the hash map finds the node and the doubly linked list keeps recency order, so both lookup and "move to front or evict the tail" are O(1).
+
 ## Approach
 
 - **Brute force:** a list of entries with a timestamp. `get` is O(n), eviction scans for the oldest, O(n).

@@ -1,5 +1,82 @@
 **Short answer:** Split it into three parts. `Elevator` cars move one floor per tick and serve stops with the **LOOK** algorithm: keep going in the current direction while there are stops ahead, then reverse. A `Dispatcher` strategy assigns each hall call (floor + direction) to the car with the lowest cost. An `ElevatorSystem` controller takes requests from buttons and drives the ticks. Each car keeps its pending stops in two `TreeSet`s, one for stops above it and one for stops below. That makes "next stop in this direction" O(log n).
 
+## Picture it
+
+```mermaid
+classDiagram
+    class ElevatorSystem {
+        -List~Elevator~ cars
+        -Dispatcher dispatcher
+        -int floors
+        +submit(Request r)
+        +tick()
+    }
+    class Elevator {
+        -int currentFloor
+        -Direction direction
+        -TreeSet~Integer~ upStops
+        -TreeSet~Integer~ downStops
+        +addStop(int floor)
+        +step()
+        +costFor(HallCall call, int floors) int
+    }
+    class Dispatcher {
+        <<interface>>
+        +choose(HallCall call, List~Elevator~ cars) Elevator
+    }
+    class NearestCarDispatcher
+    class ZoneDispatcher
+    class Request {
+        <<sealed interface>>
+    }
+    class HallCall {
+        +int floor
+        +Direction direction
+    }
+    class CarCall {
+        +int elevatorId
+        +int floor
+    }
+    class Direction {
+        <<enumeration>>
+        UP
+        DOWN
+        IDLE
+    }
+    ElevatorSystem "1" *-- "*" Elevator
+    ElevatorSystem --> Dispatcher
+    Dispatcher <|.. NearestCarDispatcher
+    Dispatcher <|.. ZoneDispatcher
+    Request <|.. HallCall
+    Request <|.. CarCall
+    Elevator --> Direction
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant B as Hall button
+    participant S as ElevatorSystem
+    participant D as NearestCarDispatcher
+    participant E as Elevator
+    B->>S: submit(HallCall(7, UP))
+    S->>D: choose(call, cars)
+    D->>E: costFor(call, floors) for each car
+    E-->>D: cost
+    D-->>S: cheapest car
+    S->>E: addStop(7)
+    loop every tick
+        S->>E: step()
+        E->>E: move one floor, open doors if floor is in upStops
+    end
+```
+
+**How to read it:**
+- `ElevatorSystem` is the single entry point. It owns the cars and a `Dispatcher` strategy.
+- A `Request` is either a `HallCall` (needs a car chosen) or a `CarCall` (goes straight to its car).
+- For a hall call, the dispatcher asks every car for its `costFor` and picks the cheapest. That car gets `addStop`.
+- Each `tick()` calls `step()` on every car. A car keeps moving while `upStops` or `downStops` has floors ahead (LOOK), then reverses or goes IDLE.
+
 ## Requirements
 
 - A building with `F` floors and `N` cars.

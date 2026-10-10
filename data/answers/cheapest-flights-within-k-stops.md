@@ -1,5 +1,28 @@
 **Short answer:** Run Bellman–Ford for exactly `k + 1` rounds. After round `r`, `cost[v]` is the cheapest price to reach `v` using at most `r` flights. The key detail is to relax each round from a copy of the previous round's array, so one round cannot chain two flights. Return `cost[dst]`, or -1 if it is unreachable. O((k + 1) · E) time.
 
+## Picture it
+
+Example 1: `src = 0`, `dst = 3`, `k = 1`, so 2 rounds.
+
+```mermaid
+flowchart LR
+    c0["0"] -->|"100"| c1["1"]
+    c1 -->|"100"| c2["2"]
+    c2 -->|"100"| c0
+    c1 -->|"600"| c3["3"]
+    c2 -->|"200"| c3
+```
+
+| Round | Reads `cost` | Relaxations that win (written to `next`) | `cost` after round |
+|---|---|---|---|
+| start | – | – | [0, ∞, ∞, ∞] |
+| 0 (≤ 1 flight) | [0, ∞, ∞, ∞] | 0→1: 0 + 100 = 100 | [0, 100, ∞, ∞] |
+| 1 (≤ 2 flights) | [0, 100, ∞, ∞] | 1→2: 200, 1→3: 700. 2→3 is skipped, because `cost[2]` is still ∞ in the copy being read | [0, 100, 200, 700] |
+
+Answer **700**. If round 1 read and wrote one array, 2→3 would see the fresh 200 and write 400, a 3-flight route sneaking into a 2-flight round.
+
+**The picture in one sentence:** Bellman–Ford round `r` is "at most `r` flights" only when every round reads the previous round's frozen copy.
+
 ## Approach
 
 **Brute force.** DFS over every route of up to `k + 1` flights. Exponential in the worst case.

@@ -1,5 +1,81 @@
 **Short answer:** Agents on each host collect metrics and push them (or a collector scrapes them) into a durable queue like Kafka. Stream processors pre-aggregate into fixed time buckets, and a time-series database stores them with compression and downsampling (raw for days, 1-minute for weeks, 1-hour for a year). A query service reads the TSDB for dashboards, and a separate alert evaluator runs rules on a schedule and sends notifications. The hardest parts are write volume, high cardinality of labels, and keeping alerting working when the pipeline itself is in trouble.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    agents["Hosts / agents"]
+    dash["Dashboards"]
+  end
+  subgraph edge["Edge"]
+    gw["Ingest gateways<br/>(auth, validate, rate limit)"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka<br/>partition by series_id"]]
+    agg["Stream aggregators<br/>(1m rollups)"]
+    writers["TSDB writers<br/>(head block, WAL)"]
+  end
+  subgraph storage["Storage"]
+    tsdb[("TSDB<br/>sharded by series_id, x3")]
+    rollup[("Rollup store")]
+    obj[("Object store")]
+  end
+  subgraph services["Query and alerting"]
+    query["Query service<br/>(fan out, merge)"]
+    alert["Alert evaluator<br/>(every 30-60 s)"]
+    notifier["Notifier<br/>(dedupe, group, silence)"]
+  end
+  agents -->|"push"| gw --> kafka
+  kafka --> agg --> rollup
+  kafka --> writers --> tsdb
+  writers -->|"flush closed blocks"| obj
+  dash --> query
+  query --> tsdb
+  query --> rollup
+  alert --> query
+  alert --> notifier
+  notifier -->|"pager / email / chat"| oncall["On-call"]
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as Agent
+  participant G as Ingest gateway
+  participant K as Kafka
+  participant W as TSDB writer
+  participant T as TSDB shard
+  participant Q as Query service
+  participant D as Dashboard
+  A->>G: batch of samples every 10 s (protobuf)
+  G->>G: auth, validate, series limit check
+  G->>K: append, key = series_id
+  K->>W: consume partition
+  W->>W: append to WAL + in-memory head block
+  W->>T: flush closed 2-hour block (compressed)
+  D->>Q: avg(cpu_usage) by (region), last 1 h
+  Q->>T: fan out to shards (raw or rollup by range)
+  T-->>Q: partial results
+  Q-->>D: merged series
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> inactive
+  inactive --> pending: condition true
+  pending --> inactive: condition false
+  pending --> firing: true for the whole "for" duration
+  firing --> resolved: condition false
+  resolved --> inactive
+```
+
+**How to read it:**
+- Steps 1–3: agents push batches; stateless gateways check auth and cardinality limits, then write to Kafka, which absorbs spikes.
+- Steps 4–6: TSDB writers keep the current block in memory with a WAL for crash safety and flush closed, compressed blocks. Partitioning by `series_id` keeps one series on one shard.
+- Steps 7–10: the query service picks raw data or a rollup based on the time range, fans out to shards and merges.
+- The state picture is one alert rule: it only fires after the condition holds for the `for` duration, and the notifier groups, silences and escalates.
+
 ## Requirements
 
 Functional:
@@ -39,25 +115,7 @@ GET  /v1/alerts/{id}/state
 
 ## Architecture
 
-```text
- Hosts/agents ──push──> Ingest gateways (stateless, auth, validate, rate limit)
-                               │
-                               v
-                        Kafka (partition by series_id)
-                         │                 │
-                         v                 v
-                Stream aggregators     TSDB writers ──> TSDB (sharded by series_id,
-                (1m rollups, per-        (in-memory head block,        replicated x3)
-                 service totals)          WAL, flush to object store)
-                         │                                    │
-                         v                                    v
-                    Rollup store  <─── Query service (fan out to shards, merge) <── Dashboards
-                                              ^
-                    Alert evaluator ──────────┘  (runs rules every 30-60s)
-                         │
-                         v
-                   Notifier (dedupe, group, silence, escalate) -> pager/email/chat
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

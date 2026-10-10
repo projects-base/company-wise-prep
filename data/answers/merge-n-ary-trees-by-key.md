@@ -1,5 +1,33 @@
 **Short answer:** Recursive merge. For two nodes with the same key, the result takes B's value. Build a map from key to child for B's children. Walk A's children in order: if B has a child with the same key, merge the pair recursively, otherwise keep A's child as is. Then append B's children whose keys were not matched, in B's order. With the map, each node is touched once: O(|A| + |B|).
 
+## Picture it
+
+Example 1. A = root(1) → [a(2), b(3) → [x(4)]]; B = root(10) → [b(30) → [y(5)], c(6)]. The merged tree, with where each node came from:
+
+```mermaid
+flowchart TD
+    r["root · 10<br/>merged, B's value"]
+    a["a · 2<br/>A only, kept whole"]
+    b["b · 30<br/>merged, B's value"]
+    c["c · 6<br/>B leftover, appended last"]
+    x["x · 4<br/>A only"]
+    y["y · 5<br/>B leftover"]
+    r -->|"1"| a
+    r -->|"2"| b
+    r -->|"3"| c
+    b -->|"1"| x
+    b -->|"2"| y
+```
+
+| Call | bByKey (B's children) | Walk A's children | B leftovers appended |
+|---|---|---|---|
+| merge(root, root) | {b, c} | a: no match → keep; b: match → recurse | c |
+| merge(b, b) | {y} | x: no match → keep | y |
+
+Edge labels give the child order: A's order first, then B's unmatched children in B's order.
+
+**The picture in one sentence:** a map of B's children by key turns matching into O(1), and walking A's list then B's leftovers gives the required order.
+
 ## Approach
 
 - **Brute force:** for each child of A, scan B's children for the same key. Correct, but O(c²) at a node with c children, which hurts on wide trees.

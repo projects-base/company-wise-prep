@@ -1,5 +1,23 @@
 **Short answer:** Binary search over *character positions*, not over numbers. Pick the middle character, expand left and right to the spaces around it to get the whole number there, and compare that number with `target` as a digit string. More digits means bigger; with equal length, compare digit by digit. Then keep only the half on the correct side, cutting at the number's boundaries. That is O(log L) comparisons, each costing at most one number's length.
 
+## Picture it
+
+`s = "1 5 12 40 999"`, `target = "41"`. Character positions:
+
+```text
+index: 0 1 2 3 4 5 6 7 8 9 10 11 12
+char:  1 _ 5 _ 1 2 _ 4 0 _ 9  9  9      (_ = space)
+```
+
+| Step | Window `[lo, hi)` | `mid` | Expand to `[start, end)` | Number | Compare with "41" | Action |
+|---|---|---|---|---|---|---|
+| 1 | [0, 13) | 6 (a space) | [4, 6) | 12 | same length, `1` < `4`: smaller | `lo = end + 1 = 7` |
+| 2 | [7, 13) | 10 | [10, 13) | 999 | 3 digits > 2: bigger | `hi = start - 1 = 9` |
+| 3 | [7, 9) | 8 | [7, 9) | 40 | `4` = `4`, `0` < `1`: smaller | `lo = end + 1 = 10` |
+| 4 | [10, 9) | – | – | – | window empty | return `false` |
+
+**The picture in one sentence:** binary search on character positions, snap each midpoint out to the whole number around it, and compare digit strings by length first, then digit by digit.
+
 ## Approach
 
 - **Brute force:** `s.split(" ")` and a linear scan (or `BigInteger` comparisons). O(L) time and O(L) extra memory — exactly what the exercise forbids.

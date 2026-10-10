@@ -1,5 +1,26 @@
 **Short answer:** Build two structures once, in the constructor. A hash set of direct pairs, stored so that order does not matter, answers `areConnected` in O(1). A union-find over the partnerships groups companies into networks. Then `areRelated(x, y)` is "same root and not a direct pair", which is near O(1) with path compression.
 
+## Picture it
+
+Example 1: partnerships `[[1,2],[2,3],[4,5]]`. After the constructor, `direct = {(1,2), (2,3), (4,5)}`, and the union-find forest looks like this (arrows point to the parent):
+
+```mermaid
+flowchart BT
+    c1["1"] --> c2["2"]
+    c2 --> c3["3 · root"]
+    c4["4"] --> c5["5 · root"]
+```
+
+| Query | Direct-set lookup | Roots | Returns |
+|---|---|---|---|
+| areConnected(1, 2) | key (1,2) found | – | true |
+| areRelated(1, 2) | (1,2) found, so it is direct | – | false |
+| areRelated(1, 3) | key (1,3) missing | find(1) walks 1 → 2 → 3 and compresses 1 → 3; find(3) = 3 | true |
+| areConnected(3, 1) | key (1,3) missing (min/max makes the order irrelevant) | – | false |
+| areRelated(1, 4) | key (1,4) missing | find(1) = 3, find(4) = 5 | false |
+
+**The picture in one sentence:** "direct" is a pair lookup in a set and "same network" is a union-find root check, so `areRelated` is "same root but not in the set".
+
 ## Approach
 
 - **Brute force:** keep an adjacency list. `areConnected` checks the list, and `areRelated` runs a BFS/DFS from `x` looking for `y`. Each query costs O(V + E), which is too slow for 10⁴ queries on a large graph.

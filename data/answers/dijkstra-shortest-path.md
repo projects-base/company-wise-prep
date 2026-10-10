@@ -1,5 +1,33 @@
 **Short answer:** With non-negative weights, use Dijkstra's algorithm. Keep the best known distance to every vertex and a min-heap of `(distance, vertex)`. Repeatedly take the closest unfinished vertex and relax its edges: if going through it gives a neighbour a shorter distance, update it and push it on the heap. When the target is popped, its distance is final. Time O((V + E) log V).
 
+## Picture it
+
+Example 1, `source = 0`, `target = 4`. Labels show the final distance; the shortest path is 0 → 2 → 1 → 3 → 4.
+
+```mermaid
+flowchart LR
+    v0["0 · d 0"] -->|"1"| v2["2 · d 1"]
+    v0 ---|"4"| v1["1 · d 3"]
+    v2 -->|"2"| v1
+    v2 ---|"5"| v3["3 · d 4"]
+    v1 -->|"1"| v3
+    v3 -->|"3"| v4["4 · d 7"]
+```
+
+| Step | Pop (d, v) | Stale? | Improvements pushed | `dist` [0..4] after |
+|---|---|---|---|---|
+| 1 | (0, 0) | no | 1 → 4, 2 → 1 | [0, 4, 1, ∞, ∞] |
+| 2 | (1, 2) | no | 1 → 3 (via 2), 3 → 6 | [0, 3, 1, 6, ∞] |
+| 3 | (3, 1) | no | 3 → 4 (via 1) | [0, 3, 1, 4, ∞] |
+| 4 | (4, 1) | yes, `dist[1] = 3` | – | unchanged |
+| 5 | (4, 3) | no | 4 → 7 | [0, 3, 1, 4, 7] |
+| 6 | (6, 3) | yes, `dist[3] = 4` | – | unchanged |
+| 7 | (7, 4) | no, it is the target | return **7** | – |
+
+The two entries with distance 4 may leave the heap in either order. The result is the same.
+
+**The picture in one sentence:** always finalise the closest unfinished vertex, push a fresh heap entry on every improvement, and skip old entries when they surface.
+
 ## Approach
 
 - **Brute force:** try every simple path with DFS and keep the cheapest. Exponential.

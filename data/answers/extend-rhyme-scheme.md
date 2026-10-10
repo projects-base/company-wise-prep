@@ -1,5 +1,27 @@
 **Short answer:** Two schemes are equivalent exactly when there is a one-to-one renaming of letters between them. Build that renaming over the overlapping prefix, using two maps (long → short and short → long). If any position conflicts, return `""`. Then, for each remaining letter of the long scheme, reuse its mapped letter. If it has no mapped letter yet, give it the smallest letter not used so far. This is O(n) time with two arrays of 26.
 
+## Picture it
+
+Example 1: `shortScheme = "ABA"`, `longScheme = "CDCEED"`.
+
+```text
+long:   C D C | E E D
+short:  A B A | ? ? ?      <- the first 3 positions must line up one-to-one
+```
+
+| i | Long letter | Short letter (prefix) or chosen | `longToShort` | `shortToLong` | Action |
+|---|---|---|---|---|---|
+| 0 | C | A | C→A | A→C | both new: record the pair |
+| 1 | D | B | C→A, D→B | A→C, B→D | both new: record the pair |
+| 2 | C | A | unchanged | unchanged | C→A and A→C both match: OK |
+| 3 | E | **C** | + E→C | + C→E | E is new; A and B are used, C is the smallest free letter |
+| 4 | E | **C** | unchanged | unchanged | reuse E→C |
+| 5 | D | **B** | unchanged | unchanged | reuse D→B |
+
+Result `"ABACCB"`. In Example 2 (`"AAB"` vs `"ABCD"`), position 1 pairs long B with short A, but `shortToLong[A]` is already A, so the check fails and the answer is `""`.
+
+**The picture in one sentence:** equivalence is a two-way letter renaming, so lock it in over the prefix with two maps and extend by reusing mapped letters or taking the smallest unused one.
+
 ## Approach
 
 - **Brute force:** try letters for each new position and check equivalence over all pairs `(i, j)`. That is O(n²) per check, plus the search.

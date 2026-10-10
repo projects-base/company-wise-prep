@@ -1,5 +1,25 @@
 **Short answer:** Let `best[v]` be the longest valid subsequence ending with value v. Scanning left to right, the answer for the current value v is `1 + max(best[v − k .. v − 1])`. Keep `best` in a segment tree indexed by value, so that range-max query and point update are both O(log V). For the "difference exactly 1" version you do not need a tree at all: `best[v] = best[v − 1] + 1` with a hash map, O(n).
 
+## Picture it
+
+Example 1: `nums = [4,2,1,4,3,4,5,8,15]`, `k = 3`. The segment tree holds `best[value]`; each step is one range-max query over the previous `k` values and one point update.
+
+| i | v | Query range [v−k, v−1] | max found | len | best[] after (non-zero) |
+|---|---|---|---|---|---|
+| 0 | 4 | [1, 3] | 0 | 1 | 4:1 |
+| 1 | 2 | [0, 1] | 0 | 1 | 2:1, 4:1 |
+| 2 | 1 | [0, 0] | 0 | 1 | 1:1, 2:1, 4:1 |
+| 3 | 4 | [1, 3] | 1 (from 1 or 2) | 2 | 1:1, 2:1, 4:2 |
+| 4 | 3 | [0, 2] | 1 | 2 | 1:1, 2:1, 3:2, 4:2 |
+| 5 | 4 | [1, 3] | 2 (from 3) | 3 | ..., 3:2, 4:3 |
+| 6 | 5 | [2, 4] | 3 (from 4) | 4 | ..., 4:3, 5:4 |
+| 7 | 8 | [5, 7] | 4 (from 5) | 5 | ..., 5:4, 8:5 |
+| 8 | 15 | [12, 14] | 0 | 1 | ..., 8:5, 15:1 |
+
+Answer: 5, the chain 1 → 3 → 4 → 5 → 8. Each cell depends only on cells to its left in value (`v−k .. v−1`) written at earlier positions.
+
+**The picture in one sentence:** index the DP by value instead of position, so "best among earlier values within k" becomes one range-max query on a segment tree.
+
 ## Approach
 
 - **Brute force:** the classic LIS DP, for each i look at every j < i with `nums[i] − k ≤ nums[j] < nums[i]`. O(n²) = 10¹⁰ at the limits. Too slow.

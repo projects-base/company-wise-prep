@@ -1,5 +1,20 @@
 **Short answer:** `t` is a stack. Push characters from `s` one by one. After each push, pop and write while the stack top is less than or equal to the smallest character still left in `s`. If something smaller is still coming, you must wait for it. If nothing smaller is coming, writing the top now is never worse. A suffix-minimum array makes "smallest character still left" an O(1) lookup, so the whole thing is O(n).
 
+## Picture it
+
+`s = "bcab"`. Suffix minima: `minFrom = [a, a, a, b, ∞]`.
+
+| i | Push | Stack after push | minFrom[i+1] | Pops (top ≤ minFrom) | Stack left | Output |
+|---|---|---|---|---|---|---|
+| 0 | b | b | a | none (b > a) | b | |
+| 1 | c | b c | a | none (c > a) | b c | |
+| 2 | a | b c a | b | a (a ≤ b), then c > b stops | b c | a |
+| 3 | b | b c b | ∞ | b, c, b | – | **abcb** |
+
+At i = 2 the `c` waits because a smaller `b` is still coming.
+
+**The picture in one sentence:** pop the stack top only when nothing smaller is still waiting in `s`, which the suffix-minimum array answers in O(1).
+
 ## Approach
 
 - **Brute force.** Explore every push/pop interleaving. That is exponential, the Catalan number of sequences.

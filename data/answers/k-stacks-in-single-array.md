@@ -1,5 +1,24 @@
 **Short answer:** Treat the array as a pool of slots and turn each stack into a linked list through a parallel `next[]` array. Keep `top[k]` for the head of each stack and a `free` head for a linked list of unused slots, threaded through the same `next[]`. Push takes a slot off the free list and links it on top of the stack; pop does the reverse. Every operation is O(1), and a push only fails when every slot is used.
 
+## Picture it
+
+Example 1: `k = 3`, `capacity = 3`. Start: `next = [1, 2, -1]`, `free = 0`, `top = [-1, -1, -1]`.
+
+| Operation | values | next | top [s0, s1, s2] | free | Returns |
+|---|---|---|---|---|---|
+| push(0, 10) | [10, _, _] | [-1, 2, -1] | [0, -1, -1] | 1 | true |
+| push(2, 20) | [10, 20, _] | [-1, -1, -1] | [0, -1, 1] | 2 | true |
+| push(0, 11) | [10, 20, 11] | [-1, -1, 0] | [2, -1, 1] | -1 | true |
+| push(1, 30) | unchanged | unchanged | unchanged | -1 | false (full) |
+| pop(0) | slot 2 freed | [-1, -1, -1] | [0, -1, 1] | 2 | 11 |
+| pop(0) | slot 0 freed | [2, -1, -1] | [-1, -1, 1] | 0 | 10 |
+| push(1, 30) | [30, 20, 11] | [-1, -1, -1] | [-1, 0, 1] | 2 | true |
+| pop(2) | slot 1 freed | [-1, 2, -1] | [-1, 0, -1] | 1 | 20 |
+
+After `push(0, 11)`, stack 0 is the chain `top[0] = 2 → next[2] = 0 → next[0] = -1`: slot 2 holds 11 sitting on slot 0 holding 10. After the two pops, the free list is `0 → 2`, so the next push reuses slot 0 for stack 1.
+
+**The picture in one sentence:** every stack, and the pool of free slots, is a linked list threaded through one shared `next[]` array, so any slot can serve any stack.
+
 ## Approach
 
 - **Brute force:** split the array into k equal parts. Simple, but one stack can be full while the others are empty, which the problem forbids.

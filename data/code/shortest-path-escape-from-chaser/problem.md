@@ -14,7 +14,7 @@ Why: the shortest routes are 0-1-3-4 and 0-2-3-4, and the first is smaller. Bob 
 **Example 2**
 Input: n = 7, edges = [[0,1],[0,2],[1,3],[2,3],[3,4],[5,6],[6,2]], alice = 0, bob = 5, dest = 4
 Output: [[0,1,3,4],[0,1,2,3,4],true]
-Why: Bob now needs 3 seconds to reach node 1, 3 to reach node 3 and 4 to reach node 4. Alice is on those nodes at times 1, 2 and 3, always ahead of him.
+Why: Bob now needs 4 seconds to reach node 1, 3 to reach node 3 and 4 to reach node 4. Alice is on those nodes at times 1, 2 and 3, always ahead of him.
 
 **Example 3**
 Input: n = 3, edges = [[0,1]], alice = 0, bob = 1, dest = 2

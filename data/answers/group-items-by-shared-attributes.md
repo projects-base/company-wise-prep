@@ -1,5 +1,33 @@
 **Short answer:** This is connected components on a graph where items are nodes and a shared tag is an edge. Do not compare item pairs. Instead keep a map from each tag to the first item that had it; when a later item has the same tag, union the two items in a union-find. At the end, group items by their root. That is near-linear in the total number of tags.
 
+## Picture it
+
+Example 1: `[["red","small"],["blue"],["small","round"],["round"],["green"]]`.
+
+| Item | Tag | owner before | Action | parent after |
+|---|---|---|---|---|
+| 0 | red | — | owner[red] = 0 | [0,1,2,3,4] |
+| 0 | small | — | owner[small] = 0 | [0,1,2,3,4] |
+| 1 | blue | — | owner[blue] = 1 | [0,1,2,3,4] |
+| 2 | small | 0 | union(0, 2): parent[0] = 2 | [2,1,2,3,4] |
+| 2 | round | — | owner[round] = 2 | [2,1,2,3,4] |
+| 3 | round | 2 | union(2, 3): parent[2] = 3 | [2,1,3,3,4] |
+| 4 | green | — | owner[green] = 4 | [2,1,3,3,4] |
+
+The union-find forest at the end (arrows point to the parent):
+
+```mermaid
+flowchart BT
+    i0["item 0"] -->|"small"| i2["item 2"]
+    i2 -->|"round"| i3["item 3 (root)"]
+    i1["item 1 (root)"]
+    i4["item 4 (root)"]
+```
+
+Grouping by `find(i)` gives root 3 → [0, 2, 3], root 1 → [1], root 4 → [4].
+
+**The picture in one sentence:** each tag links every item that carries it to the tag's first owner, so the groups fall out as union-find components without comparing pairs.
+
 ## Approach
 
 - **Brute force:** for every pair of items, check whether their tag sets intersect, add an edge, then run DFS. O(n² · t). Too slow for 10⁴ items.

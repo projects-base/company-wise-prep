@@ -1,5 +1,76 @@
 **Short answer:** Model money movement as a double-entry ledger: each transfer writes a debit and a credit entry that sum to zero, in one database transaction, with an idempotency key so retries never move money twice. For concurrent debit/credit on two wallets, lock both account rows in a fixed order (by account id) to avoid deadlocks, check the balance, then write entries and update cached balances. External rails (UPI, cards, banks) are slow and unreliable, so payments are a state machine driven by async callbacks, with reconciliation against the bank's settlement files as the final safety net.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    app["App"]
+  end
+  subgraph edge["Edge"]
+    gw["API GW<br/>(auth, rate limit)"]
+  end
+  subgraph services["Services"]
+    pay["Payment Service"]
+    risk["Risk/Fraud check<br/>(sync, under 50 ms)"]
+    ledger["Ledger Service"]
+    psp["PSP/UPI Adapter<br/>(timeouts, retries, polling)"]
+    hook["Webhook handler"]
+    recon["Reconciliation job<br/>(daily)"]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres ledger<br/>sharded by account id")]
+  end
+  subgraph async["Async"]
+    kafka[["Outbox to Kafka"]]
+    consumers["Notifications, analytics,<br/>fraud features"]
+  end
+  bank["Bank / PSP"]
+  app --> gw --> pay
+  pay --> risk
+  pay --> ledger --> pg
+  pay --> psp --> bank
+  bank -->|"signed callback"| hook --> ledger
+  pay --> kafka --> consumers
+  recon -->|"settlement file vs ledger"| pg
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as App
+  participant P as Payment Service
+  participant DB as Postgres
+  C->>P: POST /v1/payments, Idempotency-Key K
+  P->>DB: INSERT payment (payer_id, K) PENDING
+  Note over P,DB: a retry with the same K hits the unique key and gets the existing status
+  P->>DB: BEGIN, lock accounts a and b ORDER BY id FOR UPDATE
+  P->>DB: check payer balance
+  P->>DB: INSERT 2 ledger entries (-amt, +amt)
+  P->>DB: UPDATE both balances, payment SUCCEEDED
+  P->>DB: COMMIT
+  P-->>C: 201 SUCCEEDED
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> PENDING: payment row inserted
+  PENDING --> SUCCEEDED: ledger committed or PSP success
+  PENDING --> FAILED: insufficient funds or PSP decline
+  PENDING --> UNKNOWN: PSP timeout
+  UNKNOWN --> SUCCEEDED: webhook or poll says success
+  UNKNOWN --> FAILED: webhook or poll says failure
+  SUCCEEDED --> [*]
+  FAILED --> [*]
+  note right of UNKNOWN: never blindly retry a debit here
+```
+
+**How to read it:**
+- Steps 1–2: the payment row with a unique `(payer_id, idempotency_key)` is written first, so a client retry returns the same payment instead of moving money twice.
+- Steps 3–7: one transaction locks both accounts in id order (so A to B and B to A cannot deadlock), checks the balance, writes a debit and a credit that sum to zero, and updates the cached balances.
+- The state picture covers external rails: a timeout means UNKNOWN, not FAILED. The webhook or a status poll settles it, and the daily reconciliation job catches anything left over.
+- Across shards, one local transaction is not possible, so the transfer becomes a saga with idempotent steps and a compensating credit.
+
 ## Requirements
 
 Functional:
@@ -49,18 +120,7 @@ Invariant: for each `payment_id`, `SUM(amount) = 0`. `account.balance` is a cach
 
 ## Architecture
 
-```text
-App ─> API GW (auth, rate limit) ─> Payment Service ─> Risk/Fraud check (sync, < 50 ms)
-                                        │
-                     ┌──────────────────┼────────────────────────┐
-                     v                  v                        v
-              Ledger Service      PSP/UPI Adapter          Outbox -> Kafka
-           (Postgres, sharded    (timeouts, retries,       (notifications,
-            by account id)        status polling)           analytics, fraud features)
-                     ^                  │
-                     └── Webhook handler┘
-                     Reconciliation job (daily, bank settlement files vs ledger)
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

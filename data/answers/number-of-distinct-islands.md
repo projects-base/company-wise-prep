@@ -1,5 +1,30 @@
 **Short answer:** Flood-fill each island and describe its shape in a way that ignores position: record every cell as an offset from the island's first cell (the one found first in row-major order). Two islands are translations of each other exactly when their offset sets are equal. Put a canonical form of each set (sorted offsets) into a `HashSet`; its size is the answer. O(m · n · log) or O(m · n) with a traversal-path signature.
 
+## Picture it
+
+Example 2, islands labelled in scan order:
+
+```text
+     c0 c1 c2 c3 c4
+r0 [  A  A  .  B  B ]
+r1 [  A  .  .  .  . ]
+r2 [  .  .  .  .  C ]
+r3 [  D  D  .  C  C ]
+```
+
+Offsets are taken from each island's first cell and encoded as `dr * 1000 + dc`, then sorted:
+
+| Island | Start cell | Cells | Offsets (dr, dc) | Sorted key | New shape? |
+|---|---|---|---|---|---|
+| A | (0,0) | (0,0) (0,1) (1,0) | (0,0) (0,1) (1,0) | [0, 1, 1000] | yes (1) |
+| B | (0,3) | (0,3) (0,4) | (0,0) (0,1) | [0, 1] | yes (2) |
+| C | (2,4) | (2,4) (3,4) (3,3) | (0,0) (1,0) (1,−1) | [0, 999, 1000] | yes (3) |
+| D | (3,0) | (3,0) (3,1) | (0,0) (0,1) | [0, 1] | no, same as B |
+
+Answer 3. A and C are mirror images, so their keys differ.
+
+**The picture in one sentence:** subtracting each island's first scanned cell removes the translation, so equal shapes produce equal sorted offset lists in a set.
+
 ## Approach
 
 - **Brute force:** collect each island's cells, then compare every pair of islands by trying to slide one onto the other. O(I² · cells).

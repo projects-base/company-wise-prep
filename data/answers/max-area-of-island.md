@@ -1,5 +1,37 @@
 **Short answer:** Scan the grid. Each time you meet an unvisited land cell, flood-fill its island (DFS or BFS), marking cells visited and counting them. The largest count is the answer. Every cell is visited once, so it is O(m · n). Use an explicit stack, because one long snake-shaped island can make recursion 90,000 calls deep.
 
+## Picture it
+
+Example 1, with each island labelled by the order the scan finds it:
+
+```text
+     c0 c1 c2 c3 c4
+r0 [  .  .  A  .  . ]
+r1 [  .  A  A  .  . ]
+r2 [  .  .  .  B  B ]
+r3 [  C  .  .  B  B ]
+```
+
+Flood fill of island B (start (2,3); neighbour order down, up, right, left; mark on push):
+
+| Step | Pop | area | Newly pushed (marked seen) | Stack after (top first) |
+|---|---|---|---|---|
+| 0 | — | 0 | (2,3) | (2,3) |
+| 1 | (2,3) | 1 | (3,3), (2,4) | (2,4), (3,3) |
+| 2 | (2,4) | 2 | (3,4) | (3,4), (3,3) |
+| 3 | (3,4) | 3 | none ((3,3) already seen) | (3,3) |
+| 4 | (3,3) | 4 | none | empty |
+
+The whole scan:
+
+| Island | First cell in scan order | Area | best |
+|---|---|---|---|
+| A | (0,2) | 3 | 3 |
+| B | (2,3) | 4 | 4 |
+| C | (3,0) | 1 | 4 |
+
+**The picture in one sentence:** each island is flooded once from its first cell, and marking on push means no cell is counted twice.
+
 ## Approach
 
 - **Brute force:** from every land cell, run a fresh search and count its island. O((m·n)²), because the same island is searched once per cell.

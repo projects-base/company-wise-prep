@@ -1,5 +1,68 @@
 **Short answer:** Each spreadsheet is owned by one document server at a time that receives cell-level operations from all editors over WebSockets, orders them with a per-document sequence number, transforms concurrent ones against each other, applies them, recalculates dependent formulas, and broadcasts the result. The durable state is an append-only operation log plus periodic snapshots, stored as sparse cells grouped into chunks. Formulas live in a dependency graph so a change only recalculates the cells that depend on it.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    br["Browser<br/>local model, pending-op queue"]
+  end
+  subgraph edge["Edge"]
+    gw["Edge / gateway<br/>auth, ACL check"]
+    router["Session router<br/>docId to doc server"]
+    coord[("Coordination store<br/>leases")]
+  end
+  subgraph services["Services"]
+    ds["Document server<br/>OT engine, dependency graph, calc"]
+    pres["Presence service"]
+    snapper["Snapshotter"]
+  end
+  subgraph storage["Storage"]
+    oplog[("Op log store<br/>partitioned by docId")]
+    snaps[("Snapshot store (chunks)")]
+  end
+  br <-->|"WebSocket"| gw
+  gw --> router --> coord
+  router --> ds
+  gw --> pres
+  ds -->|"append before ack"| oplog
+  oplog --> snapper --> snaps
+  ds --> snaps
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as Editor A
+  participant B as Editor B
+  participant S as Document server
+  participant L as Op log store
+  A->>A: apply SetCell(B2, 5) locally
+  A->>S: op (baseRevision 40, clientSeq 7)
+  S->>S: transform against ops since 40, assign revision 41
+  S->>L: append revision 41
+  L-->>S: durable
+  S->>S: walk dependents of B2, recalc C2 = B2 * 2
+  S-->>A: ack revision 41
+  S-->>B: op revision 41 + computed C2
+  B->>B: transform against own pending ops, apply
+```
+
+```mermaid
+flowchart TD
+  b2["B2 changed"] --> c2["C2 = B2 * 2"]
+  b2 --> d2["D2 = SUM(B1:B100)"]
+  c2 --> e2["E2 = C2 + D2"]
+  d2 --> e2
+```
+
+**How to read it:**
+- The session router sends every editor of one spreadsheet to the one document server holding its lease, so that server can put all edits in a single order.
+- Steps 1–2: the editor applies its change locally at once (typing feels instant) and sends the op with the revision it was based on.
+- Steps 3–5: the server transforms the op past anything committed since then, gives it the next revision and appends it to the op log before acking, so an acked edit survives a server crash.
+- Steps 6–9: the server recalculates only the cells that depend on B2, then broadcasts the op and computed values; other editors transform it against their own pending ops.
+- The third picture is the dependency graph: recalculation walks dependents in topological order (C2 and D2 before E2), and a range like `B1:B100` is one node, not 100 edges.
+
 ## Requirements
 
 Functional:
@@ -46,20 +109,7 @@ Key idea: cells reference **stable row and column IDs**, not positions. Insertin
 
 ## Architecture
 
-```text
- Browser (local model, pending-op queue, local recalculation for its view)
-      | WebSocket (sticky routing by docId)
-      v
- Edge / gateway  --auth, ACL check-->  Session router (docId -> doc server, via lease in a coordination store)
-      |
- Document server (in-memory sheet, OT engine, dependency graph, calc engine)
-      |  append op (must succeed before ack)
-      v
- Op log store (strongly consistent, partitioned by docId)   <-- snapshotter (compaction)
-      |
- Snapshot store (chunks)        Presence svc (cursors, ephemeral)
- Async: search indexing, revision history UI, export
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

@@ -1,5 +1,24 @@
 **Short answer:** Store the tracked set as sorted, disjoint, half-open intervals in a `TreeMap<start, end>`. `addRange` merges with every interval it overlaps or touches. `removeRange` trims the interval that straddles `left` and deletes or trims the ones starting inside `[left, right)`. `queryRange` is one `floorEntry` lookup: the interval starting at or before `left` must reach `right`. Queries are O(log n); updates are O(log n) amortised, since each interval is created once and removed once.
 
+## Picture it
+
+Example 2. The TreeMap holds start → end of disjoint, non-touching intervals:
+
+| Step | Call | What happens | map after | Returns |
+|---|---|---|---|---|
+| 1 | addRange(1,5) | nothing before or inside; put | {1:5} | — |
+| 2 | addRange(5,9) | floor(5) = [1,5) touches 5 → left = 1; absorb [1,5) → right = 9 | {1:9} | — |
+| 3 | queryRange(2,8) | floor(2) = [1,9), 9 ≥ 8 | {1:9} | true |
+| 4 | removeRange(3,4) | lower(3) = [1,9) straddles 3 → cut to [1,3); 9 > 4 → re-add tail [4,9) | {1:3, 4:9} | — |
+| 5 | queryRange(1,3) | floor(1) = [1,3), 3 ≥ 3 | {1:3, 4:9} | true |
+
+```text
+after step 2:   1 ===================== 9
+after step 4:   1 ===== 3     4 ======= 9
+```
+
+**The picture in one sentence:** keep the covered set as sorted, disjoint, non-touching intervals, so a query is one `floorEntry` lookup and add/remove only touch the intervals at the edges.
+
 ## Approach
 
 - **Brute force.** A boolean per number. Coordinates go up to 10⁹, so that is impossible.

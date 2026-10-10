@@ -1,5 +1,34 @@
 **Short answer:** Build the string one letter at a time and keep only a tiny state: does it end in `a`, and has the single `c` been used? That gives 2 × 2 = 4 counters. Each step, `b` is always allowed, `a` only if the string does not already end in `a`, and `c` only if no `c` has been used. O(k) time, O(1) space, modulus at every step.
 
+## Picture it
+
+The four states and the letters that move between them:
+
+```mermaid
+flowchart LR
+    s00["ends not-a, no c"] -->|"b"| s00
+    s00 -->|"a"| s10["ends a, no c"]
+    s10 -->|"b"| s00
+    s00 -->|"c"| s01["ends not-a, c used"]
+    s10 -->|"c"| s01
+    s01 -->|"b"| s01
+    s01 -->|"a"| s11["ends a, c used"]
+    s11 -->|"b"| s01
+```
+
+The filled table for k = 3 (each row is built only from the row above):
+
+| len | `[0][0]` | `[1][0]` | `[0][1]` | `[1][1]` | Total |
+|---|---|---|---|---|---|
+| 0 | 1 | 0 | 0 | 0 | 1 |
+| 1 | 1 | 1 | 1 | 0 | 3 |
+| 2 | 2 | 1 | 3 | 1 | 7 |
+| 3 | 3 | 2 | 7 | 3 | **15** |
+
+Dependencies, read off the arrows: `[0][0] = [0][0] + [1][0]`, `[1][0] = [0][0]`, `[0][1] = [0][1] + [1][1] + [0][0] + [1][0]`, `[1][1] = [0][1]`, all from the previous row. For len 3: `[0][1] = 3 + 1 + 2 + 1 = 7`.
+
+**The picture in one sentence:** the rules only look at "ends in a?" and "c used?", so all strings collapse into four counters that step forward together.
+
 ## Approach
 
 **Brute force.** Generate all 3ᵏ strings and check both rules. Fine for k = 10, hopeless for k = 200.

@@ -1,5 +1,29 @@
 **Short answer:** Do one post-order DFS. Each call returns the best "downward" path that starts at the node and goes into at most one child, ignoring a child whose best chain is negative. At each node, the best path that bends there is `val + leftGain + rightGain`; keep the maximum of these in a field. O(n) time, O(h) stack.
 
+## Picture it
+
+`root = [-10,9,20,null,null,15,7]`. Each label shows what `gain` returns upward and the bend candidate `val + l + r`:
+
+```mermaid
+flowchart TD
+    a["-10 · returns 25 · bend 34"] --> b["9 · returns 9 · bend 9"]
+    a --> c["20 · returns 35 · bend 42"]
+    c --> d["15 · returns 15 · bend 15"]
+    c --> e["7 · returns 7 · bend 7"]
+```
+
+| Post-order visit | `l` | `r` | Bend `val + l + r` | `best` | Returns `val + max(l, r)` |
+|---|---|---|---|---|---|
+| 9 | 0 | 0 | 9 | 9 | 9 |
+| 15 | 0 | 0 | 15 | 15 | 15 |
+| 7 | 0 | 0 | 7 | 15 | 7 |
+| 20 | 15 | 7 | 42 | **42** | 35 |
+| -10 | 9 | 35 | 34 | 42 | 25 |
+
+Answer **42**: the path 15 → 20 → 7 bends at 20.
+
+**The picture in one sentence:** every node returns a one-sided chain to its parent but records a two-sided bend as a candidate, and negative chains are clamped to 0.
+
 ## Approach
 
 **Brute force.** Treat every node as the top of a path and compute the best downward sums from it with a fresh traversal. That repeats work and is O(n²) on a skewed tree.

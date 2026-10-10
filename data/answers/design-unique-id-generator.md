@@ -1,5 +1,66 @@
 **Short answer:** Use a Snowflake-style 64-bit ID generated locally inside each service instance: 41 bits of milliseconds since a custom epoch, 10 bits of worker ID, 12 bits of per-millisecond sequence. No network call per ID, so there is no latency bottleneck and no single point of failure. IDs are roughly time-ordered (k-sorted). The hard parts are assigning unique worker IDs and handling clocks that move backwards.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph services["Service instances"]
+    s1["Instance 1<br/>IdGenerator (in-process)"]
+    s2["Instance 2<br/>IdGenerator (in-process)"]
+  end
+  subgraph coord["Coordination"]
+    store[("ZooKeeper / etcd /<br/>Postgres worker_lease")]
+  end
+  subgraph storage["Storage"]
+    db[("Tables using the IDs<br/>as primary keys")]
+  end
+  store -->|"lease worker_id 7"| s1
+  store -->|"lease worker_id 8"| s2
+  s1 -->|"heartbeat renew"| store
+  s2 -->|"heartbeat renew"| store
+  s1 -->|"INSERT id"| db
+  s2 -->|"INSERT id"| db
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant I as Service instance
+  participant L as Lease store
+  participant G as IdGenerator
+  I->>L: claim a free worker_id (lease 60 s)
+  L-->>I: worker_id 7
+  I->>G: new Snowflake(7)
+  loop every few seconds
+    I->>L: renew lease
+  end
+  I->>G: nextId()
+  G->>G: now ms, same ms means seq + 1
+  G-->>I: (now - EPOCH) shifted 22 | 7 shifted 12 | seq
+  Note over I,L: cannot renew? stop issuing IDs before the lease expires
+```
+
+```mermaid
+flowchart TD
+  start["nextId(): read now"] --> back{"now earlier than lastMs?"}
+  back -->|"by more than 5 ms"| fail["Throw and alert"]
+  back -->|"by 5 ms or less"| wait1["Wait until lastMs"]
+  back -->|"No"| same{"now equals lastMs?"}
+  wait1 --> same
+  same -->|"Yes"| inc["seq = seq + 1"]
+  inc --> full{"seq wrapped to 0?<br/>(4096 used this ms)"}
+  full -->|"Yes"| wait2["Wait for next ms"]
+  full -->|"No"| build["Build ID"]
+  same -->|"No"| reset["seq = 0"] --> build
+  wait2 --> build
+```
+
+**How to read it:**
+- Steps 1–3: at startup each instance leases a unique `worker_id` (0–1023) from ZooKeeper, etcd or a Postgres row. This is the only coordination, and it happens once, not per ID.
+- Steps 4–5: the instance keeps renewing the lease; if it cannot, it must stop generating, or two instances could share a worker ID and produce duplicates.
+- Steps 6–8: `nextId()` is purely local: timestamp, worker ID and a per-millisecond sequence packed into one `long`, so there is no network call and no single point of failure.
+- The last picture is the clock logic: small backward steps are waited out, large ones refuse to generate, and a full sequence waits for the next millisecond.
+
 ## Requirements
 
 **Functional**
@@ -45,13 +106,7 @@ worker_lease(worker_id SMALLINT PK, owner TEXT, lease_until TIMESTAMPTZ)
 
 ## Architecture
 
-```text
- [ service instance ]                     [ coordination store ]
-   +-- IdGenerator (in-process)  <--lease-- ZooKeeper / etcd / Postgres table
-   |     timestamp | workerId | seq        (assigns worker_id on startup,
-   v                                        renewed by heartbeat)
-  IDs used directly as primary keys
-```
+The diagram in **Picture it** above shows the components: an in-process generator per instance, a coordination store that assigns `worker_id` on startup and is renewed by heartbeat, and IDs used directly as primary keys.
 
 ## Deep dives
 

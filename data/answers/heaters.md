@@ -1,5 +1,26 @@
 **Short answer:** The radius must cover the worst-served house, so the answer is the maximum over houses of the distance to that house's nearest heater. Sort the heaters; then find each house's nearest heater by binary search, or sort the houses too and sweep with one pointer that only moves forward. O((n + m) log(n + m)).
 
+## Picture it
+
+`houses = [1, 2, 6, 9, 15]`, `heaters = [3, 10]` (both already sorted).
+
+```text
+position: 1  2  3  .  .  6  .  .  9  10 .  .  .  .  15
+          H  H  T        H        H  T              H      (H = house, T = heater)
+```
+
+| House x | Move j? (is t[j+1] at least as close?) | j | Nearest heater | Distance | best |
+|---|---|---|---|---|---|
+| 1 | \|10−1\| = 9 vs \|3−1\| = 2: no | 0 | 3 | 2 | 2 |
+| 2 | 8 vs 1: no | 0 | 3 | 1 | 2 |
+| 6 | 4 vs 3: no | 0 | 3 | 3 | 3 |
+| 9 | 1 vs 6: yes, j = 1 | 1 | 10 | 1 | 3 |
+| 15 | no heater after j | 1 | 10 | 5 | 5 |
+
+Answer: radius 5, forced by the house at 15. Pointer `j` only ever moved forward.
+
+**The picture in one sentence:** the radius is the worst house's distance to its nearest heater, and with both lists sorted the nearest heater only moves right.
+
 ## Approach
 
 - **Brute force:** for each house, scan all heaters for the nearest. O(n·m), 10⁸ for the hidden tests.

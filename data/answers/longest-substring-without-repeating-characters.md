@@ -1,5 +1,27 @@
 **Short answer:** Sliding window with a "last seen" index per character. Move `right` across the string. If the current character was last seen inside the window, jump `left` to just past that position. The window `[left, right]` then has no repeats, and its length is a candidate. One pass, O(n).
 
+## Picture it
+
+Example 3: `s = "pwwkew"`.
+
+| right | char | last[char] before | Inside window (≥ left)? | left after | Window | best |
+|---|---|---|---|---|---|---|
+| 0 | p | −1 | no | 0 | p | 1 |
+| 1 | w | −1 | no | 0 | pw | 2 |
+| 2 | w | 1 | yes, jump to 2 | 2 | w | 2 |
+| 3 | k | −1 | no | 2 | wk | 2 |
+| 4 | e | −1 | no | 2 | wke | 3 |
+| 5 | w | 2 | yes, jump to 3 | 3 | kew | 3 |
+
+```text
+p w w k e w
+    ^ left jumps past the old w (index 1), straight to index 2
+```
+
+Why the `>= left` check matters: in `"abba"`, at the second `a` the stored `last[a] = 0` is already outside the window (left = 2), so `left` must not jump back.
+
+**The picture in one sentence:** remember where each character was last seen, so on a repeat the left edge jumps past it in one step instead of crawling.
+
 ## Approach
 
 - **Brute force:** every substring, checked with a set. O(n³), or O(n²) if you extend each start until the first repeat.

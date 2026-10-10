@@ -1,5 +1,27 @@
 **Short answer:** Root the tree anywhere and count the "bad" edges: edges where the child's colour is not the pattern colour that comes right after its parent's. Moving the root across one edge flips the direction of only that edge, so each neighbour's count follows from its parent's in O(1). A node is a good root when its count is 0, its colour is `pattern[0]`, and it has at most 2 neighbours. Total O(n).
 
+## Picture it
+
+Example 2: edges `0-1, 1-2, 1-3`, colours `"RGBB"`, pattern `"RGB"`, so `idx = [0, 1, 2, 2]`. An edge `par → child` is good when `idx[child] == (idx[par] + 1) % 3`.
+
+```mermaid
+flowchart TD
+    n0["0 (R, idx 0) · bad 0"] -->|"0→1 good, 1→0 bad"| n1["1 (G, idx 1) · bad 1"]
+    n1 -->|"1→2 good, 2→1 bad"| n2["2 (B, idx 2) · bad 2"]
+    n1 -->|"1→3 good, 3→1 bad"| n3["3 (B, idx 2) · bad 2"]
+```
+
+| Step | Node | From parent | `bad` | Good root? (`bad` 0, `idx` 0, degree ≤ 2) |
+|---|---|---|---|---|
+| 1 | 0 | BFS from 0: all three edges point the good way | 0 | yes (degree 1) |
+| 2 | 1 | `bad[0] − 0 + 1` (edge 0–1 flips to 1→0, which is bad) | 1 | no |
+| 3 | 2 | `bad[1] − 0 + 1` (edge 1–2 flips to 2→1, which is bad) | 2 | no |
+| 4 | 3 | `bad[1] − 0 + 1` (edge 1–3 flips to 3→1, which is bad) | 2 | no |
+
+Answer `[0]`.
+
+**The picture in one sentence:** count bad edges once from one root, then re-root across each edge, which flips only that one edge, so every node's count costs O(1).
+
 ## Approach
 
 **Base question.** Every node has at most 3 neighbours. When rooted at `r`, each non-root node uses one neighbour as its parent, so it has at most 2 children. The tree is binary exactly when `r` has degree 2 or less. Any leaf works.

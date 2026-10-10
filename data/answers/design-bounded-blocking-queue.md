@@ -1,5 +1,52 @@
 **Short answer:** Use a fixed-size circular array guarded by one `ReentrantLock` with two conditions, `notFull` and `notEmpty`. `enqueue` waits on `notFull` while the queue is full, inserts, then signals `notEmpty`. `dequeue` does the reverse. The waits sit in `while` loops because of spurious wakeups and because another thread may get there first. This is the design of `java.util.concurrent.ArrayBlockingQueue`.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class BoundedBlockingQueue~T~ {
+        -Object[] items
+        -int head
+        -int tail
+        -int count
+        -ReentrantLock lock
+        -Condition notFull
+        -Condition notEmpty
+        +enqueue(T item)
+        +dequeue() T
+        +poll(long timeout, TimeUnit unit) T
+        +size() int
+    }
+    class ReentrantLock
+    class Condition
+    BoundedBlockingQueue~T~ *-- ReentrantLock : one lock
+    BoundedBlockingQueue~T~ *-- "2" Condition : notFull, notEmpty
+    ReentrantLock ..> Condition : newCondition()
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant P as Producer
+    participant Q as BoundedBlockingQueue
+    participant C as Consumer
+    C->>Q: dequeue()
+    Note over Q,C: count == 0, so the consumer awaits notEmpty and releases the lock
+    P->>Q: enqueue(item)
+    Q->>Q: items[tail] = item, tail++, count++
+    Q-->>C: notEmpty.signal()
+    C->>Q: re-acquire lock, re-check count in while loop
+    Q->>Q: take items[head], head++, count--
+    Q-->>P: notFull.signal() wakes a waiting producer if any
+    Q-->>C: item
+```
+
+**How to read it:**
+- One class does it all: a circular array (`items`, `head`, `tail`, `count`) protected by one `ReentrantLock`.
+- The lock hands out two `Condition`s, so producers wait on `notFull` and consumers wait on `notEmpty` separately.
+- In the flow, the consumer finds the queue empty and parks. The producer inserts and signals `notEmpty`, which wakes exactly one consumer.
+- The woken consumer re-checks the condition in a `while` loop before taking the item, then signals `notFull` for any blocked producer.
+
 ## Requirements
 
 - `BoundedBlockingQueue(int capacity)`, `void enqueue(T)`, `T dequeue()`, `int size()` (LeetCode 1188).

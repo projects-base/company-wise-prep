@@ -1,5 +1,41 @@
 **Short answer:** Make time part of the state. Let `best[t][v]` be the cheapest fees to stand in city v at exactly minute t. Every road moves you from (t, x) to (t + time, y) and adds y's fee. Because every road takes at least one minute, process t from 0 up to `maxTime` and relax all edges: that is a DP over a DAG of (time, city) states. The answer is the minimum of `best[t][n−1]` over all t. O(maxTime · E).
 
+## Picture it
+
+Example 1 roads (edge label = minutes) and tolls:
+
+```mermaid
+flowchart LR
+    c0(("0 · fee 5"))
+    c1(("1 · fee 1"))
+    c2(("2 · fee 2"))
+    c3(("3 · fee 20"))
+    c4(("4 · fee 20"))
+    c5(("5 · fee 3"))
+    c0 ---|"10"| c1
+    c1 ---|"10"| c2
+    c2 ---|"10"| c5
+    c0 ---|"1"| c3
+    c3 ---|"10"| c4
+    c4 ---|"15"| c5
+```
+
+Some of the filled cells `best[t][v]` (cheapest fees to stand in city v at exactly minute t). Each cell is filled from `best[t − time][u] + fee[v]` for a road u–v:
+
+| Minute t | City v | best[t][v] | Filled from |
+|---|---|---|---|
+| 0 | 0 | 5 | start (its toll is paid) |
+| 1 | 3 | 25 | best[0][0] + 20 |
+| 10 | 1 | 6 | best[0][0] + 1 |
+| 11 | 4 | 45 | best[1][3] + 20 |
+| 20 | 2 | 8 | best[10][1] + 2 |
+| 26 | 5 | 48 | best[11][4] + 3 |
+| 30 | 5 | 11 | best[20][2] + 3 |
+
+Other cells (for example bouncing 0 → 3 → 0) are filled too but cost more. The answer is the minimum of column `n − 1` over `t ≤ maxTime`: maxTime 30 → min(48, 11) = 11; maxTime 29 → 48; maxTime 25 → no cell, −1.
+
+**The picture in one sentence:** time is small and every road takes at least a minute, so (minute, city) states form a DAG and a DP over minutes tracks the cheapest fees for each exact arrival time.
+
 ## Approach
 
 - **Why one Dijkstra is not enough:** Dijkstra on fees finds the cheapest route, which may be too slow. Dijkstra on time finds the fastest route, which may be too expensive. You have two quantities and a constraint on one of them.

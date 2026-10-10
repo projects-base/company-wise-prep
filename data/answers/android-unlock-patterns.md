@@ -1,5 +1,31 @@
 **Short answer:** Backtrack from each starting dot, counting every path whose length is between `m` and `n`. A `skip[a][b]` table stores the dot exactly between `a` and `b` (or 0). A move is allowed only if the target is unused and its middle dot is 0 or already used. By symmetry, start once from a corner (×4), once from an edge midpoint (×4) and once from the centre.
 
+## Picture it
+
+`m = 1, n = 2`. The recursion from corner 1 (`dfs(1, len=1)`): every node counts itself because `len >= m`, and `len == 2` stops the descent.
+
+```mermaid
+flowchart TD
+    s1["1 · len 1 · counts 1"] --> a2["1→2 · counts 1"]
+    s1 --> a4["1→4 · counts 1"]
+    s1 --> a5["1→5 · counts 1"]
+    s1 --> a6["1→6 · counts 1"]
+    s1 --> a8["1→8 · counts 1"]
+    s1 -.->|"skip 2 unused"| b3["1→3 blocked"]
+    s1 -.->|"skip 4 unused"| b7["1→7 blocked"]
+    s1 -.->|"skip 5 unused"| b9["1→9 blocked"]
+```
+
+| Start | Allowed second dots | Blocked | `dfs` result | Times counted |
+|---|---|---|---|---|
+| corner 1 | 2, 4, 5, 6, 8 | 3, 7, 9 | 1 + 5 = 6 | ×4 = 24 |
+| edge 2 | 1, 3, 4, 5, 6, 7, 9 | 8 (via 5) | 1 + 7 = 8 | ×4 = 32 |
+| centre 5 | all 8 others | none | 1 + 8 = 9 | ×1 = 9 |
+
+Total 24 + 32 + 9 = **65**. With a longer `n`, a blocked jump can open up later: in `2 → 1 → 3` the move 1 → 3 is allowed because 2 is already used.
+
+**The picture in one sentence:** the jump rule is a 9×9 lookup of "middle dot", and symmetry means only three DFS trees (corner, edge, centre) ever need to be grown.
+
 ## Approach
 
 - **Brute force:** generate every ordered sequence of distinct dots up to length 9 (at most 9! ≈ 363k full sequences, about 986k prefixes) and check each one. This is already small, so plain backtracking is the intended solution. The work is in getting the jump rule right.

@@ -1,5 +1,31 @@
 **Short answer:** Each pair of adjacent words gives at most one fact: at the first position where they differ, the letter in the first word comes before the letter in the second. Those facts are edges of a directed graph on letters. A topological sort (Kahn's BFS) gives a valid alphabet. If the sort cannot place every letter there is a cycle, so return `""`. Also return `""` when a word is followed by its own proper prefix.
 
+## Picture it
+
+Words `["wrt","wrf","er","ett","rftt"]`. Each adjacent pair gives one edge at its first difference:
+
+```mermaid
+flowchart LR
+    w["w (1st)"] -->|"wrf before er"| e["e (2nd)"]
+    e -->|"ett before rftt"| r["r (3rd)"]
+    r -->|"er before ett"| t["t (4th)"]
+    t -->|"wrt before wrf"| f["f (5th)"]
+```
+
+Kahn's algorithm on that graph (in-degrees start as w 0, e 1, r 1, t 1, f 1):
+
+| Step | Queue | Pop | Output | In-degree changes |
+|---|---|---|---|---|
+| 1 | [w] | w | `w` | e: 1 → 0, push e |
+| 2 | [e] | e | `we` | r: 1 → 0, push r |
+| 3 | [r] | r | `wer` | t: 1 → 0, push t |
+| 4 | [t] | t | `wert` | f: 1 → 0, push f |
+| 5 | [f] | f | `wertf` | none |
+
+All 5 letters placed, so there is no cycle: answer `"wertf"`.
+
+**The picture in one sentence:** the first differing letter of each adjacent pair is a "comes before" edge, and a topological sort of those edges is the alphabet.
+
 ## Approach
 
 - **Wrong turn to avoid:** comparing every pair of words, or comparing letters past the first difference. Only the first differing letter of *adjacent* words carries information. Later letters say nothing, and non-adjacent pairs follow from transitivity.

@@ -1,5 +1,77 @@
 **Short answer:** A disk is an array of fixed-size blocks (say 4 KB). A file system keeps three kinds of metadata on it: a superblock describing the layout, a per-file record (an inode) holding size, permissions and pointers to the file's data blocks, and a free-space structure, usually a bitmap with one bit per block. Directories are just files whose content maps names to inode numbers. Modern designs allocate in extents (start block plus length) instead of single blocks, and use a journal so a crash in the middle of an update does not corrupt the metadata.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph user["User space"]
+    app["Application"]
+  end
+  subgraph vfs["VFS layer"]
+    v["Path resolution, open-file table,<br/>permissions"]
+  end
+  subgraph fs["File system logic"]
+    ns["Namespace + dentry cache"]
+    ino["Inode manager + inode cache"]
+    alloc["Block allocator<br/>bitmaps + extent summaries"]
+    jr["Journal manager<br/>metadata write-ahead log"]
+  end
+  subgraph cache["Memory"]
+    pc["Page / buffer cache<br/>dirty pages, write-back"]
+  end
+  subgraph dev["Device"]
+    drv["Block device driver"]
+    disk[("Disk (HDD/SSD)")]
+  end
+  app -->|"syscalls"| v
+  v --> ns
+  v --> ino
+  ino --> alloc
+  ino --> jr
+  ns --> pc
+  ino --> pc
+  jr --> pc
+  pc --> drv --> disk
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as Application
+  participant F as File system
+  participant B as Block allocator
+  participant P as Page cache
+  participant J as Journal
+  participant D as Disk
+  A->>F: write(fd, buf, 4096) at end of file
+  F->>P: copy data, mark page dirty
+  F-->>A: return (fast)
+  Note over F,P: later, at write-back or fsync
+  F->>B: allocate block near the inode's group
+  F->>D: write data block (ordered mode: data first)
+  F->>J: log bitmap change + inode change
+  J->>D: write journal commit record
+  F->>D: apply bitmap and inode in place
+  Note over J,D: crash before the commit record means the change is discarded on reboot
+```
+
+```mermaid
+flowchart TD
+  inode["Inode"] --> d["12 direct pointers<br/>48 KB"]
+  inode --> s["Single-indirect<br/>1,024 pointers, 4 MB"]
+  inode --> dd["Double-indirect<br/>4 GB"]
+  inode --> t["Triple-indirect<br/>4 TB"]
+  s --> blk["Data blocks"]
+  d --> blk
+```
+
+**How to read it:**
+- The first picture is the stack a `write()` goes through: VFS, then the file system's namespace, inode, allocator and journal parts, then the page cache and the disk.
+- Steps 1–3: `write()` only copies into the page cache and returns; that is why it is fast and why `fsync` exists.
+- Steps 4–8: at write-back the allocator picks a free block near the file's other blocks, the data block is written first, and the bitmap and inode changes are logged and committed in the journal before being applied in place.
+- After a crash, committed journal transactions are replayed and incomplete ones dropped, so no block is leaked or owned twice.
+- The third picture is the classic inode pointer tree: small files use only direct pointers; large files walk indirect blocks (or use extents instead).
+
 ## Requirements
 
 Functional:
@@ -54,22 +126,7 @@ With 4 KB blocks and 4-byte pointers, one indirect block holds 1,024 pointers: d
 
 ## Architecture
 
-```text
- Application
-     | syscalls
-     v
- VFS layer (path resolution, open-file table, permissions)
-     |
- File system logic
-   - namespace: directories, path lookup (with dentry cache)
-   - inode manager (inode cache)
-   - block allocator (bitmaps + free-extent summaries)
-   - journal manager (write-ahead log for metadata)
-     |
- Page / buffer cache (dirty pages, write-back)
-     |
- Block device driver -> disk (HDD/SSD)
-```
+The diagram in **Picture it** above shows the layers.
 
 ## Deep dives
 

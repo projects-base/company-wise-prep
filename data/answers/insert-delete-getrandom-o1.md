@@ -1,5 +1,24 @@
 **Short answer:** Keep the values in an `ArrayList` (so a random index gives a uniform pick) and a `HashMap` from value to its index (so lookups are O(1)). Insert appends and records the index. Remove swaps the value with the last element, updates that element's index, and pops the end. Removing from the end of an array list is O(1), which is the whole trick.
 
+## Picture it
+
+Insert 10, 20, 30, 40, then remove 20, remove 30, insert 20.
+
+| Operation | values (list) | index (map) | Note |
+|---|---|---|---|
+| insert 10, 20, 30, 40 | [10, 20, 30, 40] | 10:0, 20:1, 30:2, 40:3 | append, record position |
+| remove 20 | [10, **40**, 30] | 10:0, 40:1, 30:2 | hole at 1; tail 40 moves into it |
+| remove 30 | [10, 40] | 10:0, 40:1 | 30 is the tail itself, just pop |
+| insert 20 | [10, 40, 20] | 10:0, 40:1, 20:2 | append at the end |
+| getRandom | [10, 40, 20] | — | `nextInt(3)` picks each with probability 1/3 |
+
+```text
+remove 20:   [10, 20, 30, 40]  ->  [10, 40, 30]
+                  ^ hole   ^ tail moves into the hole, list shrinks by one
+```
+
+**The picture in one sentence:** fill the hole with the last element so the list never has gaps, and keep a map so you always know where the hole is.
+
 ## Approach
 
 - **Brute force:** a `HashSet` handles insert and remove in O(1), but `getRandom` needs to iterate to a random position: O(n). A plain list gives O(1) random but O(n) remove.

@@ -1,5 +1,22 @@
 **Short answer:** Count, for each end index i, how many valid subarrays end at i. Track three positions: the last "bad" element (outside `[minK, maxK]`), the last occurrence of `minK` and the last occurrence of `maxK`. A subarray ending at i is valid if it starts after the last bad index and at or before both last hits, so it adds `max(0, min(lastMin, lastMax) − lastBad)`. One pass, O(n) time, O(1) space.
 
+## Picture it
+
+`nums = [2,1,5,3,1,7,5,1]`, `minK = 1`, `maxK = 5`. The 7 at index 5 is "bad".
+
+| i | nums[i] | lastBad | lastMin | lastMax | Adds `min(lastMin, lastMax) − lastBad` | total | New subarrays ending at i |
+|---|---|---|---|---|---|---|---|
+| 0 | 2 | -1 | -1 | -1 | -1 − (-1) = 0 | 0 | – |
+| 1 | 1 | -1 | 1 | -1 | -1 − (-1) = 0 | 0 | no 5 yet |
+| 2 | 5 | -1 | 1 | 2 | 1 − (-1) = 2 | 2 | [2,1,5], [1,5] |
+| 3 | 3 | -1 | 1 | 2 | 1 − (-1) = 2 | 4 | [2,1,5,3], [1,5,3] |
+| 4 | 1 | -1 | 4 | 2 | 2 − (-1) = 3 | 7 | starts 0, 1, 2 |
+| 5 | 7 | 5 | 4 | 2 | 2 − 5 < 0 → 0 | 7 | 7 is out of range |
+| 6 | 5 | 5 | 4 | 6 | 4 − 5 < 0 → 0 | 7 | no 1 after the 7 yet |
+| 7 | 1 | 5 | 7 | 6 | 6 − 5 = 1 | **8** | [5,1] |
+
+**The picture in one sentence:** for each right end, the valid starts are exactly the range after the last bad index up to the earlier of the last `minK` and last `maxK`, so three remembered indices count them all.
+
 ## Approach
 
 **Brute force.** Try every start, extend the end while tracking running min and max, and count matches. O(n²); too slow for 10⁵ elements.

@@ -1,5 +1,66 @@
 **Short answer:** Partition keys over nodes with consistent hashing (virtual nodes), replicate each key to N nodes, and make consistency tunable with quorums (R + W > N for read-your-latest-write). Each node stores data in an LSM tree (write-ahead log, memtable, SSTables, compaction). Handle failures with hinted handoff, read repair and Merkle-tree anti-entropy, and detect membership with gossip. The key alternatives to discuss are leader-based replication with consensus (Raft) versus leaderless quorums, and range versus hash partitioning.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    cl["Client or partition-aware client"]
+  end
+  subgraph ring["Hash ring (N = 3)"]
+    co["Coordinator node"]
+    a["Replica A (rack 1)"]
+    b["Replica B (rack 2)"]
+    c["Replica C (rack 3)"]
+  end
+  subgraph background["Background"]
+    gos["Gossip: membership,<br/>failure detection"]
+    ae["Anti-entropy:<br/>Merkle trees per range"]
+  end
+  cl --> co
+  co --> a
+  co --> b
+  co --> c
+  gos --- co
+  ae --- a
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant Cl as Client
+  participant Co as Coordinator
+  participant A as Replica A
+  participant B as Replica B
+  participant C as Replica C (down)
+  participant D as Node D
+  Cl->>Co: PUT key (consistency=QUORUM)
+  Co->>Co: hash(key) gives preference list A, B, C
+  Co->>A: write v2
+  Co->>B: write v2
+  Co->>D: write v2 with hint for C
+  A-->>Co: ack
+  B-->>Co: ack
+  Co-->>Cl: OK (W = 2 reached)
+  Note over D,C: when C returns, D forwards the hinted write
+```
+
+```mermaid
+flowchart TD
+  w["Write"] --> wal["Commit log (append, fsync)"]
+  wal --> mt["Memtable (sorted, in memory)"]
+  mt -->|"full"| sst["Flush to SSTable<br/>+ Bloom filter + sparse index"]
+  sst --> comp["Compaction merges SSTables,<br/>drops old values and tombstones"]
+  r["Read"] --> mt
+  r --> sst
+```
+
+**How to read it:**
+- Steps 1–2: any node can coordinate; it hashes the key onto the ring and gets the N = 3 replicas, placed on different racks.
+- Steps 3–8: the write goes to all replicas and succeeds after W = 2 acks. With R = 2, R + W > N, so a quorum read always overlaps the latest write.
+- C is down, so node D takes the write with a hint (sloppy quorum) and hands it back when C returns. Read repair and Merkle-tree anti-entropy fix anything still stale.
+- The third picture is one node's LSM storage: append to the log, buffer in the memtable, flush to immutable SSTables, compact in the background. Reads check the memtable, then SSTables newest-first, skipping files via Bloom filters.
+
 ## Requirements
 
 Functional:
@@ -36,16 +97,7 @@ node storage: commit log (append, fsync)  -> memtable (sorted, in memory)
 
 ## Architecture
 
-```text
-client --> any node (coordinator) or partition-aware client
-                |
-     hash(key) on ring --> preference list [A, B, C]  (N = 3, distinct racks/AZs)
-                |
-       send write to A, B, C; wait for W acks
-       send read to R replicas; return newest; repair stale ones
-                |
-  gossip: membership + failure detection     anti-entropy: Merkle trees per range
-```
+The diagram in **Picture it** above shows the components and the quorum write path.
 
 ## Deep dives
 

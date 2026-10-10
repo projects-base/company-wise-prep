@@ -1,5 +1,27 @@
 **Short answer:** Work on the magnitude and remember the sign. Scale by `10^precision`, add 0.5 and floor to get a whole number of "units" (this rounds halves away from zero). Split the units into integer part (`units / scale`) and fraction part (`units % scale`), then emit digits by repeated `% 10` and `/ 10`. Print `-` only if the rounded value is non-zero.
 
+## Picture it
+
+Round once in integer space, then only split and print:
+
+| x | precision | scale | \|x\| · scale + 0.5 | units (floor) | intPart | fracPart | Output |
+|---|---|---|---|---|---|---|---|
+| 3.14159 | 2 | 100 | 314.659 | 314 | 3 | 14 | "3.14" |
+| -2.5 | 0 | 1 | 3.0 | 3 | 3 | 0 | "-3" (no `.`) |
+| 0.0625 | 3 | 1000 | 63.0 | 63 | 0 | 63 | "0.063" |
+| 9.996 | 2 | 100 | ≈ 1000.1 | 1000 | 10 | 0 | "10.00" (carry for free) |
+| -0.004 | 2 | 100 | 0.9 | 0 | 0 | 0 | "0.00" (no sign, units = 0) |
+
+The fixed-width fraction loop for `0.0625`, `fracPart = 63`, filled right to left:
+
+| i | fracPart % 10 | frac so far | fracPart after /10 |
+|---|---|---|---|
+| 2 | 3 | `_ _ 3` | 6 |
+| 1 | 6 | `_ 6 3` | 0 |
+| 0 | 0 | `0 6 3` | 0 |
+
+**The picture in one sentence:** turn the whole number into one rounded integer of `10^-p` units first, so carries and leading fraction zeros come out of exact integer maths.
+
 ## Approach
 
 - **Brute force:** peel digits off the float directly: `int` part first, then multiply the fraction by 10 repeatedly. This breaks on rounding: you only know whether to round up after you have printed the digits, and a carry can ripple back into the integer part (`9.996` → `10.00`).

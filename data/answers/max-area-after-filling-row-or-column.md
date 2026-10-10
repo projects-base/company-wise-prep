@@ -1,5 +1,30 @@
 **Short answer:** Label the connected components once and record each one's size. If you fill row r, the new group is the C cells of that row plus every component that touches rows r−1, r, r+1, counted once each, minus the 1s that were already in row r (they are inside those components and in the row). Use a "stamp" array to count each component once per line. Do the same for columns. Total O(R · C).
 
+## Picture it
+
+Example 1: `grid = [[1,0,0],[0,0,1],[1,0,0]]`. Labelling finds three components of size 1: A at (0,0), B at (1,2), C at (2,0).
+
+```text
+A . .
+. . B
+C . .
+```
+
+Each line's total = line length + sizes of distinct components on or next to it − original 1s on the line.
+
+| Line | Length | Components touched (once each) | 1s already on the line | Total |
+|---|---|---|---|---|
+| row 0 | 3 | A (on it), B (row 1) | 1 (A) | 3 + 2 − 1 = 4 |
+| row 1 | 3 | A (row 0), B (on it), C (row 2) | 1 (B) | 3 + 3 − 1 = 5 |
+| row 2 | 3 | B (row 1), C (on it) | 1 (C) | 3 + 2 − 1 = 4 |
+| column 0 | 3 | A, C (both on it) | 2 | 3 + 2 − 2 = 3 |
+| column 1 | 3 | A, C (column 0), B (column 2) | 0 | 3 + 3 − 0 = **6** |
+| column 2 | 3 | B (on it) | 1 | 3 + 1 − 1 = 3 |
+
+Best is 6: filling column 1 joins all three single cells into one group. The `stamp` array is what makes "once each" cheap: a component is added only the first time the current line's token is seen on it.
+
+**The picture in one sentence:** label components once, then a filled line's group is just the line plus the distinct components touching it, minus the 1s it already had.
+
 ## Approach
 
 - **Brute force:** for each of the R + C lines, copy the grid, fill the line, and flood-fill to find the largest group. O((R + C) · R · C). For a 1 × 10⁵ or 10⁵ × 1 grid that is 10¹⁰.

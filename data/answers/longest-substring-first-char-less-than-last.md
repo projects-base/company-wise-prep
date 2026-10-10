@@ -1,5 +1,27 @@
 **Short answer:** Fix the end j. To make the substring as long as possible, the start should be the *earliest* index whose letter is smaller than `s[j]`. So keep `first[c]`, the first index where letter c appeared, and for each j take the minimum of `first[d]` over all letters d < `s[j]`. That is O(26 · n), which is linear for a fixed alphabet.
 
+## Picture it
+
+Example 1: `s = "dcbabcd"`. For each end `j`, look up the earliest first-occurrence among letters smaller than `s[j]`.
+
+| j | s[j] | first[] of smaller letters | Best start | Length | best | first[] after |
+|---|---|---|---|---|---|---|
+| 0 | d | a, b, c unseen | none | — | 0 | d:0 |
+| 1 | c | a, b unseen | none | — | 0 | c:1, d:0 |
+| 2 | b | a unseen | none | — | 0 | b:2, c:1, d:0 |
+| 3 | a | (no smaller letter) | none | — | 0 | a:3, b:2, c:1, d:0 |
+| 4 | b | a:3 | 3 | 2 | 2 | unchanged |
+| 5 | c | a:3, b:2 | 2 | 4 | 4 | unchanged |
+| 6 | d | a:3, b:2, c:1 | 1 | 6 | 6 | unchanged |
+
+```text
+index:  0 1 2 3 4 5 6
+s:      d c b a b c d
+          ^ start   ^ end   "cbabcd", length 6
+```
+
+**The picture in one sentence:** for each end, the best start is the earliest first-occurrence of any smaller letter, and 26 remembered positions answer that.
+
 ## Approach
 
 - **Brute force:** check every pair (i, j) with i < j and `s[i] < s[j]`. O(n²) = 10¹⁰ for n = 10⁵. Too slow.

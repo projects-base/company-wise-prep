@@ -1,5 +1,83 @@
 **Short answer:** Use the Command pattern: every edit is an object that can `apply` and `revert` itself, storing only the delta (position plus inserted or deleted text), not a copy of the document. Keep two deques, `undo` and `redo`. A new edit pushes onto `undo` and clears `redo`; undo moves one command from `undo` to `redo`, and redo moves it back. The history limit is enforced by dropping the oldest command from the bottom of the `undo` deque, which is O(1) with an `ArrayDeque`.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Editor {
+        -TextBuffer buf
+        -History history
+        +insert(int pos, String text)
+        +delete(int pos, int len)
+        +undo() boolean
+        +redo() boolean
+        +text() String
+    }
+    class TextBuffer {
+        -StringBuilder sb
+        +insert(int pos, String s)
+        +delete(int pos, int len) String
+    }
+    class History {
+        -int limit
+        -Deque~EditCommand~ undo
+        -Deque~EditCommand~ redo
+        +record(EditCommand cmd)
+        +popUndo() Optional~EditCommand~
+        +popRedo() Optional~EditCommand~
+    }
+    class EditCommand {
+        <<interface>>
+        +apply(TextBuffer buf)
+        +revert(TextBuffer buf)
+    }
+    class InsertCommand {
+        <<record>>
+        int pos
+        String text
+        +mergeWith(InsertCommand next) Optional~InsertCommand~
+    }
+    class DeleteCommand {
+        -int pos
+        -int length
+        -String removed
+    }
+    Editor *-- TextBuffer
+    Editor *-- History
+    History o-- EditCommand
+    EditCommand <|.. InsertCommand
+    EditCommand <|.. DeleteCommand
+    EditCommand ..> TextBuffer : changes
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as UI
+    participant E as Editor
+    participant H as History
+    participant B as TextBuffer
+    U->>E: insert(0, "hello")
+    E->>B: InsertCommand.apply
+    E->>H: record(cmd)
+    Note over H: push on undo, clear redo, drop oldest if over limit
+    U->>E: undo()
+    E->>H: popUndo()
+    H-->>E: InsertCommand, now on redo
+    E->>B: revert deletes 5 chars at 0
+    U->>E: redo()
+    E->>H: popRedo()
+    H-->>E: InsertCommand, back on undo
+    E->>B: apply inserts "hello" again
+```
+
+**How to read it:**
+- Every edit is an `EditCommand` that knows how to `apply` and `revert` itself, storing only the change, not the whole text.
+- `Editor` creates the command, applies it to the `TextBuffer`, then records it in `History`.
+- `History` is two deques: undo moves the newest command to `redo` and reverts it; redo moves it back and applies it.
+- A new edit clears `redo`, and when `undo` grows past the limit the oldest command falls off the bottom in O(1).
+- Consecutive typing merges into one `InsertCommand`, so "hello" undoes in one step.
+
 ## Requirements
 
 - Operations: `insert(pos, text)`, `delete(pos, length)`, `undo()`, `redo()`, `text()`.

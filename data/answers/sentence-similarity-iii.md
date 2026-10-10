@@ -1,5 +1,27 @@
 **Short answer:** Split both sentences into words and call the shorter one `b`. Count how many words match from the front, then how many match from the back without overlapping the front match. If those two counts together cover all of `b`, the extra words of the longer sentence form one contiguous gap, so the answer is true. It runs in linear time with two pointers.
 
+## Picture it
+
+Example 1: `a = "My name is Haley"` (longer), `b = "My Haley"`.
+
+```text
+a:  My | name is | Haley
+b:  My |         | Haley
+    ^ prefix i=1   ^ suffix j=1   -> i + j = 2 = b.length -> true
+```
+
+| Phase | Compare | Match? | Counter |
+|---|---|---|---|
+| prefix | a[0] "My" vs b[0] "My" | yes | i = 1 |
+| prefix | a[1] "name" vs b[1] "Haley" | no | stop, i = 1 |
+| suffix (j < 2 − 1) | a[3] "Haley" vs b[1] "Haley" | yes | j = 1 |
+| suffix | j = 1 is not < 1 | – | stop (cap stops reuse of "My") |
+| check | 1 + 1 ≥ 2 | – | true |
+
+Example 2: `a = "A lot of words"`, `b = "of"`. Prefix: "A" vs "of" fails, i = 0. Suffix: "words" vs "of" fails, j = 0. 0 + 0 < 1, so false: "of" sits in the middle, so the extra words would need two gaps.
+
+**The picture in one sentence:** the shorter sentence must be a prefix of the longer one glued to a suffix of it, so match from both ends and check the two matches cover it.
+
 ## Approach
 
 - **Brute force:** try every start and length of a phrase to delete from the longer sentence, then compare. O(n²) or worse.

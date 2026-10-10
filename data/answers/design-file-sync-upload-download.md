@@ -1,5 +1,81 @@
 **Short answer:** Model each tracked file as a `SyncItem` with a small state machine (Synced, LocalModified, RemoteModified, Uploading, Downloading, Conflict, Failed). Triggers (a local file watcher, a periodic remote poll, a manual "sync now") produce `SyncEvent`s. Each event goes through a chain of handlers: ignore rules, conflict check, size/quota check, then the action. The action calls the existing upload/download APIs, and the item's current state decides which transitions are legal.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class SyncEngine {
+        -Map~String,SyncItem~ items
+        -BlockingQueue~SyncEvent~ events
+        -SyncHandler chain
+        +submit(SyncEvent e)
+        +runLoop()
+    }
+    class SyncItem {
+        +path() String
+        +lastSyncedHash() String
+        +state() SyncState
+        +markSynced(String hash, long version)
+    }
+    class SyncState {
+        <<sealed interface>>
+        +on(SyncEvent e, SyncItem item, SyncContext ctx) SyncState
+    }
+    class Synced
+    class Uploading {
+        +boolean dirtyAgain
+    }
+    class Downloading
+    class Conflict
+    class SyncHandler {
+        <<abstract>>
+        -SyncHandler next
+        +linkWith(SyncHandler next) SyncHandler
+        +handle(SyncEvent e, SyncItem item)
+    }
+    class IgnoreRuleHandler
+    class StateTransitionHandler
+    class SyncEvent {
+        <<sealed interface>>
+    }
+    class Trigger {
+        <<interface>>
+    }
+    class FileTransferClient
+    SyncEngine "1" *-- "*" SyncItem
+    SyncEngine --> SyncHandler : first link
+    SyncHandler --> SyncHandler : next
+    SyncHandler <|-- IgnoreRuleHandler
+    SyncHandler <|-- StateTransitionHandler
+    SyncItem --> SyncState
+    SyncState <|.. Synced
+    SyncState <|.. Uploading
+    SyncState <|.. Downloading
+    SyncState <|.. Conflict
+    Trigger ..> SyncEngine : submit events
+    StateTransitionHandler ..> FileTransferClient : via SyncContext
+    SyncEngine ..> SyncEvent
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> Synced
+    Synced --> Uploading : LocalChanged, hash differs
+    Synced --> Downloading : RemoteChanged, newer version
+    Uploading --> Uploading : LocalChanged sets dirtyAgain
+    Uploading --> Uploading : TransferFailed, retry later
+    Uploading --> Synced : TransferSucceeded
+    Uploading --> Conflict : RemoteChanged
+    Downloading --> Synced : TransferSucceeded
+    Conflict --> Synced : user resolves, both copies kept
+```
+
+**How to read it:**
+- Triggers (file watcher, remote poll, manual) only `submit` events. One `SyncEngine` thread takes them from a queue, so each file's events run in order without locks.
+- Every event passes through a chain of `SyncHandler`s (ignore rules, quota, conflict). Any link can stop it. The last link is `StateTransitionHandler`.
+- The last link asks the item's current `SyncState` what to do. The state starts the upload or download and returns the next state.
+- The state diagram shows the legal moves. A local edit during an upload just marks it dirty, so another upload follows. A remote change during an upload means both sides moved: Conflict.
+
 ## Requirements
 
 - Upload and download APIs already exist: `upload(path, bytes)`, `download(path)`, `listRemote()` with a version or hash per file.

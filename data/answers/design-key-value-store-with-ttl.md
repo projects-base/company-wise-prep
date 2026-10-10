@@ -1,5 +1,74 @@
 **Short answer:** Start with a `ConcurrentHashMap<K, Entry<V>>` where each entry stores the value and an absolute `expiresAt`. Expire in two ways: lazily on `get` (an expired entry is treated as absent and removed), and actively with a background sweeper using a delay queue of `(key, expiresAt)`. The race to avoid is "sweeper deletes a key that was just re-put with a new TTL"; fix it by removing only if the map still holds the exact same entry (`map.remove(key, entry)`). For LRU plus expiry, use a `LinkedHashMap` in access order behind one lock, and check expiry on every read.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class KeyValueStore~K,V~ {
+        <<interface>>
+        +get(K key) Optional~V~
+        +put(K key, V value, long ttlMillis)
+        +delete(K key)
+    }
+    class Entry~V~ {
+        <<record>>
+        +V value
+        +long expiresAt
+        +expired(long now) boolean
+    }
+    class TtlStore~K,V~ {
+        -ConcurrentHashMap~K,Entry~ map
+        -DelayQueue~ExpiryTask~ expiries
+        -Clock clock
+        -sweep()
+        +close()
+    }
+    class ExpiryTask~K,V~ {
+        <<record>>
+        +K key
+        +Entry~V~ entry
+        +getDelay(TimeUnit unit) long
+    }
+    class LruTtlStore~K,V~ {
+        -int capacity
+        -LinkedHashMap~K,Entry~ map
+        -purgeExpired(int maxChecks)
+    }
+    KeyValueStore~K,V~ <|.. TtlStore~K,V~
+    KeyValueStore~K,V~ <|.. LruTtlStore~K,V~
+    TtlStore~K,V~ *-- "*" Entry~V~
+    TtlStore~K,V~ *-- "*" ExpiryTask~K,V~
+    ExpiryTask~K,V~ --> Entry~V~ : remembers which entry
+    LruTtlStore~K,V~ *-- "*" Entry~V~
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant S as TtlStore
+    participant M as map
+    participant Q as DelayQueue
+    participant W as Sweeper thread
+    C->>S: put(k, v1, 1s)
+    S->>M: k to E1
+    S->>Q: put ExpiryTask(k, E1)
+    C->>S: put(k, v2, 60s)
+    S->>M: k to E2
+    S->>Q: put ExpiryTask(k, E2)
+    W->>Q: take() returns (k, E1) after 1s
+    W->>M: remove(k, E1)
+    M-->>W: no-op, map holds E2
+    C->>S: get(k)
+    S-->>C: v2 is still there
+```
+
+**How to read it:**
+- Both stores implement one `KeyValueStore` interface, so each stage is a drop-in replacement.
+- `TtlStore` keeps an immutable `Entry` (value plus absolute `expiresAt`) per key. Every TTL put also queues an `ExpiryTask` that remembers that exact entry.
+- The sweeper thread blocks on the `DelayQueue` and calls `map.remove(key, entry)`. If the key was re-put meanwhile, the entries differ and nothing is removed.
+- `get` also expires lazily with the same conditional remove. `LruTtlStore` adds capacity with an access-ordered `LinkedHashMap` behind one lock.
+
 ## Requirements
 
 The interview went in stages; the answer follows them.

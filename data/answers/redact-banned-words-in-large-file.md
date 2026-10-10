@@ -1,5 +1,24 @@
 **Short answer:** Lowercase the banned words into a `HashSet`. Scan the text once: copy separator characters as they are, and for each maximal run of letters and digits, look it up (lowercased) in the set and append either the word or `REDACTED` to a `StringBuilder`. That is O(total length). For a file too large for memory, stream it in chunks and carry the trailing partial word into the next chunk.
 
+## Picture it
+
+Example 2: `text = "Classic CAT-cat; cats!"`, `ban = {"cat"}`.
+
+| Step | i | Character class | Token / char | Lowercased in ban? | Appended |
+|---|---|---|---|---|---|
+| 1 | 0 | word run 0–6 | "Classic" | no | Classic |
+| 2 | 7 | separator | ' ' | — | ' ' |
+| 3 | 8 | word run 8–10 | "CAT" | "cat" yes | REDACTED |
+| 4 | 11 | separator | '-' | — | - |
+| 5 | 12 | word run 12–14 | "cat" | yes | REDACTED |
+| 6 | 15, 16 | separators | ';' ' ' | — | ; and space |
+| 7 | 17 | word run 17–20 | "cats" | no | cats |
+| 8 | 21 | separator | '!' | — | ! |
+
+Output: "Classic REDACTED-REDACTED; cats!".
+
+**The picture in one sentence:** tokenise once into maximal letter/digit runs, so whole-word matching is automatic and each word costs one hash-set lookup.
+
 ## Approach
 
 - **Brute force.** For every banned word, call `replaceAll` on the text. That is O(text × banned), and naive regexes also replace inside other words ("cat" in "concat").

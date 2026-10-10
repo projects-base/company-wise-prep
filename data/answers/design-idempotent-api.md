@@ -1,5 +1,70 @@
 **Short answer:** The client sends a unique `Idempotency-Key` with every unsafe request. The server stores the key with a hash of the request and the final response, in the same database transaction as the business change. A retry with the same key returns the stored response instead of doing the work again; the same key with a different body is rejected; a retry that arrives while the first is still running gets a 409 "in progress". Keys expire after a retention window (for example 24 hours), and downstream calls reuse derived keys so the whole chain is idempotent.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    cl["Client<br/>one key per logical operation"]
+  end
+  subgraph edge["Edge"]
+    gw["API gateway<br/>auth, rate limit"]
+  end
+  subgraph services["Services"]
+    pay["Payment API service"]
+    relay["Outbox relay"]
+    down["Downstream consumers<br/>dedup by event id"]
+  end
+  subgraph ext["External"]
+    psp["PSP<br/>derived key"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka"]]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres<br/>business tables + idempotency_key + outbox")]
+  end
+  cl --> gw --> pay
+  pay --> pg
+  pay --> psp
+  pg --> relay --> kafka --> down
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant A as Payment API
+  participant D as Postgres
+  C->>A: POST /v1/payments (Idempotency-Key K1)
+  A->>D: INSERT key K1 IN_PROGRESS (PK is the lock)
+  A->>D: one transaction: payment row + outbox + key COMPLETED with response
+  A--xC: 201 lost (timeout)
+  C->>A: retry POST, same key K1, same body
+  A->>D: INSERT key K1 conflicts, read row
+  D-->>A: COMPLETED, stored 201 response
+  A-->>C: 201 (Idempotent-Replayed true), no second charge
+```
+
+```mermaid
+flowchart TD
+  req["Request with key"] --> ins{"INSERT key row<br/>succeeds?"}
+  ins -->|"yes"| work["Do the work, store response"]
+  ins -->|"no, row exists"| hash{"Same request hash?"}
+  hash -->|"no"| e422["422 Unprocessable"]
+  hash -->|"yes"| st{"Row status?"}
+  st -->|"COMPLETED"| replay["Replay stored response"]
+  st -->|"IN_PROGRESS"| e409["409 in progress"]
+  st -->|"IN_PROGRESS past locked_until"| take["Take over: check business state first"]
+```
+
+**How to read it:**
+- Steps 1–3: the first request claims the key by inserting it; the unique primary key is the lock, so two concurrent identical requests cannot both run. The business change, the outbox event and the stored response commit together.
+- Step 4: the response is lost on the way back, which is exactly the case idempotency protects.
+- Steps 5–8: the retry carries the same key; the insert conflicts, the server reads the stored row and replays the original 201 without charging again.
+- The decision picture covers every other case: different body gives 422, still running gives 409, and a stale `IN_PROGRESS` row (crashed server) can be taken over after checking what already happened.
+- Calls to the PSP use a derived key, and Kafka consumers dedup by event id, so the whole chain stays idempotent.
+
 ## Requirements
 
 Functional:
@@ -52,26 +117,7 @@ Scope keys by client so two clients cannot collide.
 
 ## Architecture
 
-```text
- Client (generates key once per logical operation, reuses on retry)
-    |
- API gateway (auth, rate limit)
-    |
- Payment API service
-    1. INSERT key row (IN_PROGRESS)  -- unique PK = the lock
-       - conflict? read row:
-           COMPLETED   -> replay stored response
-           IN_PROGRESS -> 409 (or wait briefly)
-           hash differs-> 422
-    2. do business work in the SAME transaction as step 3 when local
-    3. UPDATE key row -> COMPLETED with response
-    |
- Postgres (business tables + idempotency_key)
-    |  outbox row in same tx
-    v
- Relay -> Kafka -> downstream (consumers dedup by event id)
- External PSP called with derived key (e.g. key + ":charge")
-```
+The diagrams in **Picture it** above show the components, the retry path and the decision taken when a key already exists.
 
 ## Deep dives
 

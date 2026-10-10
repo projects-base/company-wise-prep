@@ -1,5 +1,37 @@
 **Short answer:** Put every symbol in a min-heap by frequency. Repeatedly pop the two lightest nodes, join them under a new parent whose weight is their sum, and push the parent back. When one node remains it is the root of the Huffman tree; a symbol's codeword is the path to its leaf, `0` for left and `1` for right. Leaves give a prefix-free code, and the greedy merge is provably optimal. O(n log n).
 
+## Picture it
+
+Example 1: `freq = [5, 9, 12, 13, 16, 45]` (symbol ids 0 to 5). Each merge pops the two lightest; the first popped goes left.
+
+| Merge | Heap before (weights) | Pop a, b | New node (id = weight) |
+|---|---|---|---|
+| 1 | 5, 9, 12, 13, 16, 45 | 5, 9 | id 6 = 14 |
+| 2 | 12, 13, 14, 16, 45 | 12, 13 | id 7 = 25 |
+| 3 | 14, 16, 25, 45 | 14, 16 | id 8 = 30 |
+| 4 | 25, 30, 45 | 25, 30 | id 9 = 55 |
+| 5 | 45, 55 | 45, 55 | id 10 = 100 (root) |
+
+The resulting tree, with `0` on left edges and `1` on right edges:
+
+```mermaid
+flowchart TD
+    n10["100"] -->|"0"| s5["45 : code 0"]
+    n10 -->|"1"| n9["55"]
+    n9 -->|"0"| n7["25"]
+    n9 -->|"1"| n8["30"]
+    n7 -->|"0"| s2["12 : code 100"]
+    n7 -->|"1"| s3["13 : code 101"]
+    n8 -->|"0"| n6["14"]
+    n8 -->|"1"| s4["16 : code 111"]
+    n6 -->|"0"| s0["5 : code 1100"]
+    n6 -->|"1"| s1["9 : code 1101"]
+```
+
+Cost: 45·1 + (12 + 13 + 16)·3 + (5 + 9)·4 = 45 + 123 + 56 = 224.
+
+**The picture in one sentence:** keep merging the two lightest nodes, so the rarest symbols sink deepest and get the longest codes.
+
 ## Approach
 
 - **Why a tree:** a prefix-free code is exactly a binary tree where symbols sit on leaves. Total cost is `Σ freq · depth`.

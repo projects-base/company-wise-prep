@@ -1,5 +1,19 @@
 **Short answer:** Keep the last `size` values in a circular buffer and a running sum. On each new value, if the buffer is full, subtract the value it overwrites; add the new value; divide by the current count. O(1) per call. For the follow-up (exclude the k largest in the window), keep the window split into two sorted multisets, the top k and the rest, and maintain the sum of the rest: O(log size) per call.
 
+## Picture it
+
+Example 1 (`size = 3`) plus one extra call, `next(7)`:
+
+| Call | Full? | Drop window[head] | window after | head after | count | sum | Returns |
+|---|---|---|---|---|---|---|---|
+| next(1) | no | — | [1, 0, 0] | 1 | 1 | 1 | 1.0 |
+| next(10) | no | — | [1, 10, 0] | 2 | 2 | 11 | 5.5 |
+| next(3) | no | — | [1, 10, 3] | 0 | 3 | 14 | 4.66667 |
+| next(5) | yes | 1 | [5, 10, 3] | 1 | 3 | 14 − 1 + 5 = 18 | 6.0 |
+| next(7) | yes | 10 | [5, 7, 3] | 2 | 3 | 18 − 10 + 7 = 15 | 5.0 |
+
+**The picture in one sentence:** the circular buffer's `head` always points at the oldest value, so each call subtracts it, overwrites it and adds the new one in O(1).
+
 ## Approach
 
 - **Brute force:** store all values and re-add the last `size` on every call. O(size) per call.

@@ -1,5 +1,67 @@
 **Short answer:** The core is a bounded buffer shared by producers and consumers. Producers block when it is full, consumers block when it is empty. In Java I protect the buffer with one `ReentrantLock` and two `Condition`s (`notFull`, `notEmpty`), always waiting in a `while` loop. A semaphore version uses two counting semaphores for free and used slots plus a mutex for the buffer itself. Deadlock is avoided by having a single lock, never calling out while holding it, and always releasing in `finally`.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Message {
+        <<record>>
+        String id
+        String payload
+        Instant at
+    }
+    class BoundedBuffer~T~ {
+        -Object[] items
+        -int head
+        -int tail
+        -int count
+        -ReentrantLock lock
+        -Condition notFull
+        -Condition notEmpty
+        +put(T item)
+        +take() T
+    }
+    class Broker {
+        -ConcurrentHashMap~String, BoundedBuffer~ topics
+        -int capacity
+        +publish(String topic, String payload)
+        +consume(String topic) Message
+    }
+    class Producer
+    class Consumer
+    class MessageHandler {
+        <<interface>>
+    }
+    Broker "1" *-- "many" BoundedBuffer : one per topic
+    BoundedBuffer o-- Message : holds
+    Producer --> Broker : publish
+    Consumer --> Broker : consume
+    Consumer --> MessageHandler : hands each message
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant P as Producer
+    participant B as BoundedBuffer
+    participant C as Consumer
+    C->>B: take()
+    Note over B: count == 0, consumer waits on notEmpty
+    P->>B: put(msg)
+    B->>B: lock, write at tail, count++
+    B-->>C: notEmpty.signal()
+    C->>B: wakes, re-checks count in while loop
+    B-->>C: msg from head, count--, notFull.signal()
+    Note over P,B: If count == capacity, put() waits on notFull instead
+```
+
+**How to read it:**
+- The `Broker` keeps one `BoundedBuffer` per topic; producers and consumers only see the broker.
+- All the concurrency lives inside the buffer: one lock and two conditions, `notFull` for producers and `notEmpty` for consumers.
+- A consumer on an empty buffer sleeps on `notEmpty`; the next `put` signals it awake.
+- Every wait sits in a `while` loop, so a woken thread checks the count again before acting.
+- A full buffer makes producers wait on `notFull`, which is the back-pressure.
+
 ## Requirements
 
 - Named topics. `publish(topic, message)` and `consume(topic)` (blocking), plus `poll(topic, timeout)`.

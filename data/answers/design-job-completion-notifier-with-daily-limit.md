@@ -1,5 +1,88 @@
 **Short answer:** When a job completes, it publishes a `JobCompleted` event. A `NotificationService` listens, builds a `Notification` for the job's user, and asks a `DailyQuota` whether the user still has budget today. If yes, it sends through the user's preferred `NotificationChannel` (email or SMS). If not, it parks the notification in a deferred queue keyed by date, and a daily scheduler drains that queue the next day, still respecting the limit. The limit is a config value, not a constant.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class JobCompletedListener {
+        <<interface>>
+        +onJobCompleted(Job job)
+    }
+    class NotificationService {
+        -Map~ChannelType,NotificationChannel~ channels
+        +onJobCompleted(Job job)
+        +deliverOrDefer(Notification n)
+    }
+    class NotificationChannel {
+        <<interface>>
+        +send(Notification n)
+    }
+    class EmailChannel
+    class SmsChannel
+    class DailyQuota {
+        -ConcurrentHashMap~Key,Integer~ used
+        +tryAcquire(String userId, LocalDate day) boolean
+        +release(String userId, LocalDate day)
+        +purgeBefore(LocalDate day)
+    }
+    class QuotaPolicy {
+        <<interface>>
+        +dailyLimit(String userId) int
+    }
+    class DeferredQueue {
+        +add(LocalDate day, Notification n)
+        +drainDueOnOrBefore(LocalDate day) List~Notification~
+    }
+    class DailyRetryScheduler {
+        +runDaily()
+    }
+    class Notification {
+        <<record>>
+        +String userId
+        +String jobId
+        +ChannelType channel
+    }
+    JobCompletedListener <|.. NotificationService
+    NotificationChannel <|.. EmailChannel
+    NotificationChannel <|.. SmsChannel
+    NotificationService --> "*" NotificationChannel
+    NotificationService --> DailyQuota
+    NotificationService --> DeferredQueue
+    DailyQuota --> QuotaPolicy
+    DailyRetryScheduler --> DeferredQueue
+    DailyRetryScheduler --> NotificationService
+    NotificationService ..> Notification
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant J as Job
+    participant N as NotificationService
+    participant Q as DailyQuota
+    participant Ch as NotificationChannel
+    participant D as DeferredQueue
+    participant S as DailyRetryScheduler
+    J->>N: onJobCompleted(job)
+    N->>Q: tryAcquire(user, today)
+    alt under today's limit
+        Q-->>N: true
+        N->>Ch: send(notification)
+    else limit reached
+        Q-->>N: false
+        N->>D: add(tomorrow, notification)
+    end
+    Note over S: next day, just after midnight
+    S->>D: drainDueOnOrBefore(today)
+    S->>N: deliverOrDefer(n) for each
+```
+
+**How to read it:**
+- Jobs only publish a completion event. `NotificationService` is the listener, so jobs know nothing about email or SMS.
+- Before every send the service asks `DailyQuota.tryAcquire`, which atomically counts a slot for that user and day against `QuotaPolicy`'s limit.
+- Under the limit, the notification goes out on the user's preferred `NotificationChannel`. Over it, it waits in `DeferredQueue` for tomorrow.
+- Each day `DailyRetryScheduler` drains due items through the same `deliverOrDefer`, so overflow keeps rolling forward without breaking the limit.
+
 ## Requirements
 
 - N jobs, each owned by one user. On completion, notify that user.

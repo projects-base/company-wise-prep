@@ -1,5 +1,22 @@
 **Short answer:** Once you take one `x`, you should take every copy of `x`, so collapse the array into `gain[v] = v × count(v)`. Taking value v forbids v − 1 and v + 1, which is exactly House Robber over the values 0..max: adjacent "houses" cannot both be robbed. Run the take/skip DP over the values in O(n + max) time.
 
+## Picture it
+
+`nums = [2,2,3,3,3,4]` collapses to `gain = [0, 0, 4, 9, 4]` for values 0..4. Then the House Robber sweep:
+
+| v | gain[v] | `take` = previous `skip` + gain[v] | `skip` = max(previous `take`, previous `skip`) |
+|---|---|---|---|
+| start | – | 0 | 0 |
+| 0 | 0 | 0 + 0 = 0 | max(0, 0) = 0 |
+| 1 | 0 | 0 + 0 = 0 | max(0, 0) = 0 |
+| 2 | 4 | 0 + 4 = 4 | max(0, 0) = 0 |
+| 3 | 9 | 0 + 9 = 9 | max(4, 0) = 4 |
+| 4 | 4 | 4 + 4 = 8 | max(9, 4) = 9 |
+
+Answer `max(8, 9) = 9`: take all the 3s, skip 2 and 4. Each row depends only on the row above. `take` must come from the previous `skip` because v − 1 and v cannot both be taken.
+
+**The picture in one sentence:** bucket equal values into one "house" worth `v × count`, and neighbouring values become neighbouring houses in House Robber.
+
 ## Approach
 
 **Brute force.** Try every order of picks recursively. Exponential, and 20,000 numbers rule it out.

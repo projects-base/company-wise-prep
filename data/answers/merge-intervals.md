@@ -1,5 +1,20 @@
 **Short answer:** Sort the bookings by start. Keep a current merged interval. For each next booking, if it starts at or before the current end, extend the end to the larger of the two ends; otherwise close the current interval and start a new one. Here touching bookings (`[1,4]`, `[4,5]`) also merge, so the test is `start ≤ end`. O(n log n).
 
+## Picture it
+
+`intervals = [[8,10],[1,3],[2,6],[3,4],[15,18],[10,11]]`, sorted by start: `[1,3] [2,6] [3,4] [8,10] [10,11] [15,18]`. Start with the block `[1,3]`.
+
+| i | Interval | Current block before | Test | Action | Block after | out |
+|---|---|---|---|---|---|---|
+| 1 | [2,6] | [1,3] | 2 ≤ 3 | extend, e = max(3,6) | [1,6] | — |
+| 2 | [3,4] | [1,6] | 3 ≤ 6 | inside, e stays max(6,4) = 6 | [1,6] | — |
+| 3 | [8,10] | [1,6] | 8 > 6 | close [1,6], start new | [8,10] | [1,6] |
+| 4 | [10,11] | [8,10] | 10 ≤ 10 (touch) | extend | [8,11] | [1,6] |
+| 5 | [15,18] | [8,11] | 15 > 11 | close [8,11], start new | [15,18] | [1,6] [8,11] |
+| end | — | [15,18] | — | close the last block | — | [1,6] [8,11] [15,18] |
+
+**The picture in one sentence:** after sorting by start, a block only ever grows to the right, so one pass with "start ≤ current end → extend (keep the max end), else close" merges everything.
+
 ## Approach
 
 - **Brute force:** repeatedly find any two overlapping intervals and merge them until none overlap. O(n²) or worse.

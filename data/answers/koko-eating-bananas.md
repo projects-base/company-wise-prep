@@ -1,5 +1,24 @@
 **Short answer:** Binary search on the answer. The hours needed, `sum(ceil(pile / k))`, only goes down as speed k goes up, so "can finish in h hours" is false for small k and true from some point on. Search k in `[1, max(pile)]` for the first speed that works. Each check is O(n), so the total is O(n log max).
 
+## Picture it
+
+Example 1: `piles = [3, 6, 7, 11]`, `h = 8`. Search speeds in `[1, 11]`.
+
+| Step | lo | hi | mid | hours = Σ ceil(pile / mid) | ≤ 8? | Action |
+|---|---|---|---|---|---|---|
+| 1 | 1 | 11 | 6 | 1 + 1 + 2 + 2 = 6 | yes | hi = 6 |
+| 2 | 1 | 6 | 3 | 1 + 2 + 3 + 4 = 10 | no | lo = 4 |
+| 3 | 4 | 6 | 5 | 1 + 2 + 2 + 3 = 8 | yes | hi = 5 |
+| 4 | 4 | 5 | 4 | 1 + 2 + 2 + 3 = 8 | yes | hi = 4 |
+| 5 | 4 | 4 | — | lo == hi | — | return 4 |
+
+```text
+speed:     1  2  3 | 4  5  6  ...  11
+fits h=8?  no no no| yes yes yes  yes     <- one boundary, binary search finds it
+```
+
+**The picture in one sentence:** "fast enough" flips from no to yes exactly once as speed grows, so binary search the speed instead of trying them all.
+
 ## Approach
 
 - **Brute force:** try k = 1, 2, 3, … and stop at the first speed that finishes in time. Up to 10⁹ speeds × 10⁴ piles: far too slow.

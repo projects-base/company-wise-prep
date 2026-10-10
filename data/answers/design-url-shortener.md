@@ -1,5 +1,72 @@
 **Short answer:** Generate a short code from a unique numeric ID (range-allocated or Snowflake) encoded in base62, store `code -> long URL` in a key-value store, and serve redirects from a cache-heavy, stateless tier behind a CDN. Reads outnumber writes ~100:1, so the design is about the redirect path: CDN and Redis absorb most hits, the database handles misses. Because this interviewer pushes past the textbook, be ready to justify each component, walk failure scenarios, and cover abuse (DDoS, malicious links).
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    client["Client"]
+  end
+  subgraph edge["Edge"]
+    cdn["CDN / edge<br/>(caches 302s briefly)"]
+    lb["LB"]
+  end
+  subgraph services["Services"]
+    write["Write API"]
+    alloc["ID range allocator<br/>(blocks of 1M ids)"]
+    redirect["Redirect service<br/>(stateless)"]
+    scanner["URL safety scanner<br/>(async)"]
+  end
+  subgraph storage["Storage"]
+    redis[("Redis cache")]
+    db[("links DB<br/>sharded by code")]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka click events"]]
+    analytics["Analytics"]
+  end
+  client -->|"create"| lb --> write
+  write --> alloc
+  write --> db
+  scanner --> db
+  client -->|"GET /code"| cdn -->|"miss"| lb --> redirect
+  redirect --> redis
+  redirect -->|"miss"| db
+  redirect --> kafka --> analytics
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant W as Write API
+  participant A as Range allocator
+  participant DB as links DB
+  participant E as CDN
+  participant R as Redirect service
+  participant RC as Redis
+  participant K as Kafka
+  C->>W: POST /api/v1/links (longUrl)
+  W->>A: lease a block of 1M ids (only when the block runs out)
+  W->>W: next id, keyed permutation, base62 = 7 chars
+  W->>DB: INSERT code, long_url
+  W-->>C: 201 shortUrl
+  C->>E: GET /code
+  E->>R: cache miss
+  R->>RC: GET code
+  RC-->>R: miss
+  R->>DB: SELECT long_url by code
+  R->>RC: SET code (or a short negative entry if missing)
+  R-)K: click event (fire and forget)
+  R-->>C: 302 Location longUrl
+```
+
+**How to read it:**
+- Steps 1–5: each write node leases a range of IDs, so codes are unique without a collision check. A keyed permutation before base62 stops people walking codes in sequence.
+- Steps 6–7: the CDN answers popular redirects itself; only misses reach the redirect tier.
+- Steps 8–11: Redis first, the database on a miss, then the cache is filled. Missing codes get a short negative entry, so random-code floods do not hit the database.
+- Steps 12–13: the click event goes to Kafka without waiting, and the user gets a 302 (not 301) so analytics and takedowns keep working.
+
 ## Requirements
 
 **Functional**
@@ -50,17 +117,7 @@ Optional `long_url_hash -> code` index if you want the same long URL to return t
 
 ## Architecture
 
-```text
-            create path                                   redirect path
-client --> LB --> [ Write API ] --> [ ID range allocator ]   client --> CDN/edge (cache 302s briefly)
-                     |               (ZooKeeper/DB hands       |  miss
-                     |                out blocks of 1M ids)    v
-                     v                                       LB --> [ Redirect service (stateless) ]
-              [ links DB (sharded by code) ] <-- miss --          |  hit
-                     ^                                      [ Redis cache ]
-                     |                                            |
-              [ URL safety scanner ] (async)          click event -> Kafka -> [ analytics ]
-```
+The diagram in **Picture it** above shows the components: a create path (Write API plus an ID range allocator backed by ZooKeeper or a DB) and a redirect path (CDN, stateless redirect service, Redis, links DB).
 
 ## Deep dives
 

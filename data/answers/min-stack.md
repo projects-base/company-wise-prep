@@ -1,5 +1,21 @@
 **Short answer:** Store, next to every element, the minimum of all elements at or below it. Push stores `min(val, previous min)`; pop just drops the top entry, which brings back the previous minimum; `getMin` reads the top's stored minimum. All O(1). Two parallel `int[]` arrays avoid boxing.
 
+## Picture it
+
+Example 1. `mins[i]` is the minimum of `vals[0..i]` (arrays shown up to `size`):
+
+| Step | Call | vals | mins | size | Returns |
+|---|---|---|---|---|---|
+| 1 | push(−2) | [−2] | [−2] | 1 | — |
+| 2 | push(0) | [−2, 0] | [−2, −2] | 2 | — |
+| 3 | push(−3) | [−2, 0, −3] | [−2, −2, −3] | 3 | — |
+| 4 | getMin() | [−2, 0, −3] | [−2, −2, −3] | 3 | −3 |
+| 5 | pop() | [−2, 0] | [−2, −2] | 2 | — |
+| 6 | top() | [−2, 0] | [−2, −2] | 2 | 0 |
+| 7 | getMin() | [−2, 0] | [−2, −2] | 2 | −2 |
+
+**The picture in one sentence:** each slot remembers the minimum of everything at or below it, so popping just exposes the minimum that was true before the push.
+
 ## Approach
 
 - **Brute force:** scan the stack in `getMin`. O(n) per call.

@@ -1,5 +1,26 @@
 **Short answer:** Keep four boundaries: `top`, `bottom`, `left`, `right`. Walk the top row, the right column, then (only if a row and a column are both still left) the bottom row backwards and the left column upwards; then shrink all four boundaries and repeat. For the LLD framing, put this in a `SpiralTraversal` that implements a `TraversalStrategy` interface over a read-only `Matrix`, so new orders are new classes and no existing code changes.
 
+## Picture it
+
+Example 1: `matrix = [[1,2,3],[4,5,6],[7,8,9]]`.
+
+```text
+ 1 → 2 → 3
+         ↓
+ 4 → 5   6
+ ↑       ↓
+ 7 ← 8 ← 9
+```
+
+| ring | top, bottom, left, right | top row → | right column ↓ | guard `top<bottom && left<right` | bottom row ← | left column ↑ |
+|---|---|---|---|---|---|---|
+| 1 | 0, 2, 0, 2 | 1, 2, 3 | 6, 9 | true | 8, 7 | 4 |
+| 2 | 1, 1, 1, 1 | 5 | (none) | false, skip | - | - |
+
+Output: `[1,2,3,6,9,8,7,4,5]`. Without the guard, ring 2 would walk the single cell `5` again.
+
+**The picture in one sentence:** peel one ring per loop with four shrinking boundaries, and skip the return trip when the last ring is a single row or column.
+
 ## Approach
 
 - **Direction + visited array.** Move in the current direction, turn right when you hit the edge or a visited cell. Works, but needs O(m·n) extra space.

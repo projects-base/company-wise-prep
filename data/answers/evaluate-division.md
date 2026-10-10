@@ -1,5 +1,29 @@
 **Short answer:** Model the facts as a weighted graph. `A / B = k` becomes an edge `A → B` with weight `k` and an edge `B → A` with weight `1/k`. To answer `C / D`, search from `C` to `D` and multiply the weights along the path. If either name is unknown, or there is no path, return `-1.0`. The facts are consistent, so every path gives the same product.
 
+## Picture it
+
+Example 1: `a / b = 2`, `b / c = 3`. Each fact gives a forward edge and a reverse edge:
+
+```mermaid
+flowchart LR
+    a["a"] -->|"2"| b["b"]
+    b -->|"0.5"| a
+    b -->|"3"| c["c"]
+    c -->|"1/3"| b
+```
+
+The search for `a / c`:
+
+| Step | Pop (node, product) | Is it `c`? | Pushed (neighbour, product × weight) |
+|---|---|---|---|
+| 1 | (a, 1) | no | (b, 1 × 2 = 2) |
+| 2 | (b, 2) | no | (c, 2 × 3 = 6); a is already seen |
+| 3 | (c, 6) | yes | return **6** |
+
+The other queries: `b / a` follows the reverse edge, 1 × 0.5 = 0.5. `a / e` and `x / x` are `-1.0` because `e` and `x` are not nodes. `a / a` pops `a` at once and returns 1.0.
+
+**The picture in one sentence:** each fact is a two-way weighted edge, and a query is the product of the weights along any path between the two names.
+
 ## Approach
 
 - **Why a graph:** `a/c = (a/b) · (b/c)`. A chain of facts is a path, and the answer is the product of the edge weights along it. The reverse fact `b/a = 1/(a/b)` is the reverse edge.

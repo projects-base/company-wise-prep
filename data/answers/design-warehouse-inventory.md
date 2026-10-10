@@ -1,5 +1,91 @@
 **Short answer:** Model stock per (SKU, warehouse) as two numbers, `onHand` and `reserved`, so `available = onHand - reserved`. Orders first **reserve** stock, then **ship** (commit) or **release** it, which is what stops overselling while payment is pending. Every change goes through one `InventoryService` that updates the stock record atomically (`ConcurrentHashMap.compute` in memory, a conditional `UPDATE` in a database) and writes a movement to a ledger. Low-stock alerts are observers that fire after the change commits.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class InventoryService {
+        -ConcurrentHashMap~StockKey, StockLevel~ stock
+        -ConcurrentHashMap~String, Reservation~ reservations
+        -Queue~StockMovement~ ledger
+        +receive(StockKey key, int qty, String ref)
+        +reserve(StockKey key, int qty, String orderId, Duration hold) Reservation
+        +ship(String reservationId)
+        +release(String reservationId)
+        +subscribe(StockListener l)
+    }
+    class StockKey {
+        <<record>>
+        Sku sku
+        WarehouseId warehouse
+    }
+    class StockLevel {
+        <<record>>
+        int onHand
+        int reserved
+        +available() int
+        +reserve(int q) StockLevel
+        +ship(int q) StockLevel
+        +release(int q) StockLevel
+    }
+    class Reservation {
+        <<record>>
+        String id
+        String orderId
+        StockKey key
+        int qty
+    }
+    class StockMovement {
+        <<record>>
+    }
+    class StockChanged {
+        <<record>>
+        StockKey key
+        StockLevel before
+        StockLevel after
+    }
+    class StockListener {
+        <<interface>>
+        +onChange(StockChanged e)
+    }
+    class LowStockNotifier
+    InventoryService o-- StockLevel : per StockKey
+    InventoryService o-- Reservation
+    InventoryService o-- StockMovement : ledger
+    InventoryService --> StockListener : notifies
+    InventoryService ..> StockChanged : publishes
+    StockListener <|.. LowStockNotifier
+    StockKey --> Sku
+    StockKey --> WarehouseId
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant O as Order flow
+    participant IS as InventoryService
+    participant M as stock map
+    participant L as LowStockNotifier
+    O->>IS: reserve(key, 2, order7, 15 min)
+    IS->>M: compute(key) runs level.reserve(2)
+    Note over IS,M: Atomic per key. available below 2 throws InsufficientStockException
+    M-->>IS: onHand 10, reserved 2
+    IS->>IS: add RESERVE to ledger, store Reservation
+    IS->>L: onChange(before, after)
+    IS-->>O: Reservation
+    O->>IS: ship(reservationId) after payment
+    IS->>IS: reservations.remove(id), only one caller wins
+    IS->>M: compute(key) runs level.ship(2)
+    M-->>IS: onHand 8, reserved 0
+    IS->>L: onChange, alert only if available crosses the threshold
+```
+
+**How to read it:**
+- Stock for each (SKU, warehouse) is one immutable `StockLevel` with `onHand` and `reserved`; `available` is the difference.
+- An order first reserves, which holds stock while payment runs; then it ships (stock leaves) or releases (hold dropped).
+- Every change is a `compute` on that key, so two orders for the last unit run one after the other and the second one fails.
+- Each change also appends a `StockMovement` to the ledger and then tells `StockListener`s; `LowStockNotifier` alerts only when the threshold is crossed.
+
 ## Requirements
 
 - Products (SKU, name), warehouses, and stock levels per SKU per warehouse.

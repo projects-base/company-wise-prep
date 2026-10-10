@@ -1,5 +1,62 @@
 **Short answer:** Start by asking for the workload: read/write ratio, key and value sizes, key skew, consistency needs, and what happens on a miss. Then build a cluster of cache nodes, each an in-memory hash map with an eviction policy, with keys spread by consistent hashing (virtual nodes) and optionally replicated for availability. Every later choice (eviction policy, replication, write policy, hot-key handling) follows from that workload, so state each choice against it.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph apps["App servers"]
+    app["App + cache client lib<br/>hash ring, retries, L1 cache"]
+  end
+  subgraph cluster["Cache cluster"]
+    n1["Cache node 1<br/>primary + replica"]
+    n2["Cache node 2<br/>primary + replica"]
+    nn["Cache node N<br/>primary + replica"]
+  end
+  subgraph control["Control"]
+    mem["Config + membership service<br/>(or gossip)"]
+  end
+  subgraph storage["Source of truth"]
+    db[("Database")]
+  end
+  app --> n1
+  app --> n2
+  app --> nn
+  mem -->|"ring membership, health"| app
+  app -->|"miss"| db
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as App (client lib)
+  participant C as Cache node 2
+  participant D as Database
+  A->>A: hash(key) on ring picks node 2
+  A->>C: GET product:42
+  C-->>A: miss
+  A->>D: SELECT product 42 (one request per key, coalesced)
+  D-->>A: row
+  A->>C: PUT product:42 ttl=300 plus jitter
+  A->>C: GET product:42 (later)
+  C-->>A: hit, move to LRU head
+  Note over A,C: on update the app writes the DB, then deletes the key
+```
+
+```mermaid
+flowchart TD
+  k["key product:42"] --> h["hash(key)"]
+  h --> ring{"Next virtual node<br/>clockwise on ring"}
+  ring --> v1["vnode n2-17"]
+  v1 --> p["Physical node 2"]
+  add["Add node N+1"] --> moved["Only about 1/N of keys move"]
+```
+
+**How to read it:**
+- Step 1: the client library holds the hash ring, so it sends each key straight to the right node in one hop.
+- Steps 2–6: cache-aside. On a miss the app reads the database (coalescing concurrent misses for the same key) and fills the cache with a TTL plus jitter so keys do not all expire together.
+- Steps 7–8: a later read hits; the node moves the entry to the head of its LRU list, and evicts from the tail when memory is full.
+- The third picture: consistent hashing with virtual nodes, so adding or losing a node moves only ~1/N of keys instead of emptying the cache.
+
 ## Requirements
 
 Ask first, because "optimised for a given task" is the whole point. Example workload used below: a product-catalogue read cache, 95% reads, values ~2 KB, Zipf-skewed popularity, stale data up to a few seconds is fine, DB behind it is expensive.
@@ -42,17 +99,7 @@ LRU: get moves node to head, put inserts at head, eviction removes tail. Both O(
 
 ## Architecture
 
-```text
-app servers (cache client lib: hash ring, retries, local L1 cache)
-      |            |             |
-      v            v             v
-  cache node 1  cache node 2 ... cache node N     (primary + replica per shard)
-      ^                                   
-      |  ring membership / health
-  config + membership service (or gossip)
-      
-  miss path: app --> DB --> populate cache (cache-aside)
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

@@ -1,5 +1,23 @@
 **Short answer:** Linear version: one stack, and `peekMax` scans it, O(n). O(1) version: keep a second stack in step with the first, where each entry stores the maximum of everything at or below that position. Push stores `max(x, previous max)`, pop removes from both stacks, and `peekMax` reads the top of the maxima stack. Every operation is O(1).
 
+## Picture it
+
+Each element carries "the max of everything at or below me" on the `maxima` stack (stacks written bottom → top):
+
+| Step | Call | values | maxima | Returns |
+|---|---|---|---|---|
+| 1 | push(5) | [5] | [5] | — |
+| 2 | push(1) | [5, 1] | [5, 5] | — |
+| 3 | push(7) | [5, 1, 7] | [5, 5, 7] | — |
+| 4 | peekMax() | [5, 1, 7] | [5, 5, 7] | 7 |
+| 5 | pop() | [5, 1] | [5, 5] | 7 |
+| 6 | peekMax() | [5, 1] | [5, 5] | 5 |
+| 7 | top() | [5, 1] | [5, 5] | 1 |
+
+After popping 7, the old maximum 5 is already waiting on top of `maxima`: no scan needed.
+
+**The picture in one sentence:** a stack only changes at the top, so storing the running max beside each element lets a pop restore the previous max for free.
+
 ## Approach
 
 - **Linear solution:** a plain stack (`ArrayDeque<Integer>`). `push`, `pop`, `top` are O(1); `peekMax` iterates the whole stack, O(n). Fine if `peekMax` is rare.

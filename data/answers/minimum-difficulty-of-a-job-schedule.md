@@ -1,5 +1,29 @@
 **Short answer:** Partition DP. Let `dp[day][i]` be the minimum difficulty to finish the first i jobs in `day` days. The last day takes some contiguous block `j..i−1`, so `dp[day][i] = min over j of dp[day−1][j] + max(job[j..i−1])`. Iterate j downward from i − 1 so the block maximum is updated in O(1). O(d · n²) = 10 × 300² ≈ 10⁶. Return −1 if there are fewer jobs than days.
 
+## Picture it
+
+Example 1: `jobDifficulty = [6,5,4,3,2,1]`, `d = 2`. Row = days used, column i = first i jobs done (`∞` = impossible).
+
+| days \ i | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|---|
+| 0 | 0 | ∞ | ∞ | ∞ | ∞ | ∞ | ∞ |
+| 1 | ∞ | 6 | 6 | 6 | 6 | 6 | 6 |
+| 2 | ∞ | ∞ | 11 | 10 | 9 | 8 | **7** |
+
+Each cell `dp[day][i]` = min over j of `dp[day − 1][j] + max(jobs j..i−1)`: it reads the row above at every column j < i, with the last day's max grown as a running max while j walks left.
+
+How `dp[2][6]` is chosen (j walks from 5 down to 1):
+
+| j | Last day's jobs | Running max | dp[1][j] + max |
+|---|---|---|---|
+| 5 | [1] | 1 | 6 + 1 = **7** |
+| 4 | [2,1] | 2 | 6 + 2 = 8 |
+| 3 | [3,2,1] | 3 | 9 |
+| 2 | [4,3,2,1] | 4 | 10 |
+| 1 | [5,4,3,2,1] | 5 | 11 |
+
+**The picture in one sentence:** split at the last cut, so each cell is the previous day's best for the prefix plus the running max of the final block.
+
 ## Approach
 
 - **Brute force:** try every way to place d − 1 cut points among n − 1 gaps: C(n−1, d−1), which explodes for n = 300.

@@ -1,5 +1,76 @@
 **Short answer:** Two systems joined by a canonical event store. The ingestion side crawls news and social sources, extracts structured events (name, venue, time, performers) with an extraction model, resolves duplicates into one canonical event, and keeps updating it as new articles arrive. The user side indexes canonical events for search, sells tickets with strong consistency on inventory, and collects ratings. Each canonical event keeps provenance (which sources said what) and a confidence score, which drives both deduplication and correctness checks.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph ingest["Ingestion"]
+    crawl["Crawlers / social APIs<br/>URL frontier, fetchers"]
+    raw[("Raw store (blob)")]
+    k1[["Kafka: raw-docs"]]
+    ext["Extraction workers<br/>classifier, then extractor"]
+    k2[["Kafka: mentions"]]
+    er["Entity resolution<br/>blocking city+date, scoring"]
+  end
+  subgraph core["Canonical data"]
+    canon[("Canonical event store<br/>Postgres")]
+    os[("Search index<br/>OpenSearch")]
+  end
+  subgraph user["User side"]
+    users["Users"]
+    gw["API gateway"]
+    srch["Search service"]
+    evt["Event service"]
+    bk["Booking service<br/>Postgres, row locks"]
+    rate["Rating service"]
+    pay["Payment"]
+  end
+  crawl --> raw
+  crawl --> k1 --> ext --> k2 --> er --> canon
+  canon -->|"CDC"| os
+  users --> gw
+  gw --> srch --> os
+  gw --> evt --> canon
+  gw --> bk --> pay
+  gw --> rate
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant F as Fetcher
+  participant X as Extraction worker
+  participant R as Entity resolution
+  participant C as Canonical event store
+  participant S as Search index
+  F->>X: raw document (via Kafka raw-docs)
+  X->>X: cheap classifier: is it an event?
+  X->>X: extractor: title, venue, time, performers, status claim
+  X->>R: mention (via Kafka mentions)
+  R->>C: load candidates with same city and date
+  R->>R: score venue, title, performers, time
+  R->>C: link mention to canonical event, bump version
+  C->>S: CDC update
+  Note over R,C: a cancellation claim applies only from a trusted source or several sources
+```
+
+```mermaid
+flowchart TD
+  m["New mention"] --> blk["Blocking: same city,<br/>within a day"]
+  blk --> score["Similarity score"]
+  score --> hi{"Score?"}
+  hi -->|"high"| merge["Merge into canonical event"]
+  hi -->|"grey zone"| review["Review queue"]
+  hi -->|"low"| create["Create new canonical event"]
+```
+
+**How to read it:**
+- Steps 1–3: crawled documents go through a cheap classifier first; only the few that describe an event reach the expensive extractor, which returns structured fields.
+- Steps 4–7: entity resolution compares the mention only with events in the same city and date window, scores the match and links it to one canonical event (or creates one). Mentions are never deleted, so a bad merge can be split later.
+- Step 8: changes flow to the search index by CDC, so search is eventually consistent while booking always reads Postgres.
+- The third picture is the merge decision: high scores merge, a grey zone goes to human review, low scores create a new event.
+- Booking (not drawn step by step) uses an atomic `UPDATE ... WHERE sold + qty <= total` hold, then an idempotent payment, so it never oversells.
+
 ## Requirements
 
 Functional:
@@ -47,22 +118,7 @@ rating(event_id, user_id, stars, text, created_at, PRIMARY KEY(event_id, user_id
 
 ## Architecture
 
-```text
- Crawlers / social APIs -> URL frontier -> fetchers -> raw store (blob) 
-                                                |
-                                     Kafka: raw-docs
-                                                |
-                      Extraction workers (classifier: is-event? then structured extraction)
-                                                |
-                                     Kafka: mentions
-                                                |
-                    Entity resolution (blocking by city+date, similarity scoring)
-                                                |
-                     Canonical event store (Postgres)  -- CDC --> Search index (OpenSearch)
-                                                |
- Users -> API gateway -> Search svc / Event svc / Booking svc (Postgres, row locks) -> Payment
-                                     Rating svc -> aggregates into event score
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

@@ -1,5 +1,22 @@
 **Short answer:** Split the items into two ordered sets: `top` holds the k largest, `rest` holds everything else, and keep a running `sum` of `top`. Insert into `top`, and if it grows past k, move its smallest to `rest`. On delete from `top`, promote the largest of `rest`. Updates are delete + insert. With `TreeSet`s ordered by (value, id), every operation is O(log n) and the query is O(1).
 
+## Picture it
+
+Example 1 with `k = 2`. Items are shown as `id:value`.
+
+| step | operation | what moves | top (k largest) | rest | sum |
+|---|---|---|---|---|---|
+| 1 | upsert(1, 5) | add to top | `1:5` | - | 5 |
+| 2 | upsert(2, 3) | add to top | `2:3, 1:5` | - | 8 |
+| 3 | upsert(3, 8) | add to top (size 3 > k), push smallest `2:3` down | `1:5, 3:8` | `2:3` | 13 |
+| 4 | topKSum() | - | `1:5, 3:8` | `2:3` | **13** |
+| 5 | upsert(2, 10) | remove old `2:3` from rest, add `2:10` to top, push smallest `1:5` down | `3:8, 2:10` | `1:5` | 18 |
+| 6 | topKSum() | - | `3:8, 2:10` | `1:5` | **18** |
+| 7 | remove(3) | remove `3:8` from top, promote best of rest `1:5` | `1:5, 2:10` | - | 15 |
+| 8 | topKSum() | - | `1:5, 2:10` | - | **15** |
+
+**The picture in one sentence:** two ordered sets split at the k-th largest value, so each change needs at most one item to cross the line and the sum of `top` is updated in place.
+
 ## Approach
 
 - **Brute force.** Sort the values on every query: O(n log n) per query.

@@ -1,5 +1,30 @@
 **Short answer:** Put every point in a hash set. Then treat each pair of points as a possible diagonal: if they differ in both x and y, the other two corners must be `(x1, y2)` and `(x2, y1)`. If both are in the set, you have a rectangle with area `|x1 − x2| · |y1 − y2|`. Keep the minimum (or the maximum, for the "largest" version). O(n²) pairs with O(1) lookups.
 
+## Picture it
+
+Example 2: p0 (1,1), p1 (1,3), p2 (3,1), p3 (3,3), p4 (4,1), p5 (4,3).
+
+```text
+y=3  p1 .  p3 p5
+y=1  p0 .  p2 p4
+    x=1   x=3 x=4
+```
+
+Of the 15 pairs, 9 share an x or a y and are skipped. The other 6 are diagonals; look up the two missing corners:
+
+| Diagonal | Other corners needed | Both in set? | Area | best |
+|---|---|---|---|---|
+| p0 (1,1) – p3 (3,3) | (1,3), (3,1) | yes | 2 · 2 = 4 | 4 |
+| p0 (1,1) – p5 (4,3) | (1,3), (4,1) | yes | 3 · 2 = 6 | 4 |
+| p1 (1,3) – p2 (3,1) | (1,1), (3,3) | yes | 4 | 4 |
+| p1 (1,3) – p4 (4,1) | (1,1), (4,3) | yes | 6 | 4 |
+| p2 (3,1) – p5 (4,3) | (3,3), (4,1) | yes | 1 · 2 = 2 | 2 |
+| p3 (3,3) – p4 (4,1) | (3,1), (4,3) | yes | 2 | 2 |
+
+Answer 2. Each rectangle is seen twice, once per diagonal, which is harmless.
+
+**The picture in one sentence:** two opposite corners fix an axis-parallel rectangle, so enumerate pairs as diagonals and check the other two corners in a hash set.
+
 ## Approach
 
 - **Brute force:** every group of four points, checked for being an axis-parallel rectangle. O(n⁴) = 6·10¹⁰ for n = 500. Too slow.

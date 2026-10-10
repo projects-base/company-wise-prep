@@ -1,5 +1,58 @@
 **Short answer:** Model the file system as a tree (a trie keyed by path segment). Each node is either a directory with a sorted map of children, or a file with a content buffer. Every operation splits the path on `/` and walks from the root; `mkdir` and `addContentToFile` create missing nodes on the way. Using a `TreeMap` for children makes `ls` return names in sorted order with no extra sort.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Node {
+        <<sealed interface>>
+        +name() String
+    }
+    class Directory {
+        +TreeMap~String,Node~ children
+    }
+    class File {
+        +StringBuilder content
+    }
+    class FileSystem {
+        -Directory root
+        +ls(String path) List~String~
+        +mkdir(String path)
+        +addContentToFile(String filePath, String content)
+        +readContentFromFile(String filePath) String
+        -walkParts(String[] parts, int count, boolean create) Directory
+    }
+    Node <|.. Directory
+    Node <|.. File
+    Directory o-- "*" Node : children
+    FileSystem --> Directory : root
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Caller
+    participant FS as FileSystem
+    participant R as root Directory
+    participant D as Directory a
+    C->>FS: addContentToFile("/a/b.txt", "hi")
+    FS->>FS: split into a, b.txt
+    FS->>R: children.get("a")
+    R-->>FS: missing, so create Directory a
+    FS->>D: children.computeIfAbsent("b.txt", File::new)
+    D-->>FS: File b.txt
+    FS->>FS: content.append("hi")
+    C->>FS: ls("/a")
+    FS->>D: children.keySet()
+    D-->>C: b.txt (already sorted)
+```
+
+**How to read it:**
+- `Node` is a sealed interface with exactly two kinds: `Directory` and `File` (Composite).
+- A `Directory` holds its children in a `TreeMap`, so the tree is a trie over path segments and `ls` comes out sorted.
+- Every call splits the path on `/` and walks from `root` with `walkParts`. Writes create missing directories on the way.
+- `addContentToFile` creates the file in the parent directory if needed and appends to its `StringBuilder`.
+
 ## Requirements
 
 From the LeetCode version (588):

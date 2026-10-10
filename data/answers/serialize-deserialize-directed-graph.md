@@ -1,5 +1,30 @@
 **Short answer:** Give every reachable node a number in BFS order, using an `IdentityHashMap` so nodes with equal values stay distinct. Write the node count, then each node's value, then each node's neighbour numbers in order. To rebuild, create all n nodes first and then wire the edges by number, which handles cycles and self-loops with no special case.
 
+## Picture it
+
+Example 1: `values = [1,2,3,4]`, `adjacency = [[1,3],[2],[0,3],[]]`. Labels show each node's value and the BFS id it gets during `serialize`.
+
+```mermaid
+flowchart LR
+    a["val 1<br/>id 0"] -->|"1st"| b["val 2<br/>id 1"]
+    a -->|"2nd"| d["val 4<br/>id 2"]
+    b --> c["val 3<br/>id 3"]
+    c -->|"1st, back-edge"| a
+    c -->|"2nd"| d
+```
+
+| BFS step (k) | Node popped | Neighbours in order | New ids given | `order` after |
+|---|---|---|---|---|
+| start | – | – | val 1 → 0 | [1] |
+| 0 | val 1 | val 2, val 4 | val 2 → 1, val 4 → 2 | [1, 2, 4] |
+| 1 | val 2 | val 3 | val 3 → 3 | [1, 2, 4, 3] |
+| 2 | val 4 | none | – | same |
+| 3 | val 3 | val 1 (id 0), val 4 (id 2) | none, both known | same |
+
+Output string: `4|1|2|4|3|1,2|3||0,2` = count · four values in id order · four edge lists (the empty field is val 4, which has no edges). `deserialize` makes 4 fresh nodes first, then wires `0→1,2`, `1→3`, `3→0,2`, so the cycle back to node 0 needs no special case.
+
+**The picture in one sentence:** replace object identity with BFS ids, then the graph is just a value array plus an id adjacency list, rebuilt as "create all nodes, then wire edges".
+
 ## Approach
 
 - **Why not just print values?** Values are not unique and the graph can have cycles. A naive DFS that prints values would loop forever or merge distinct nodes, so identity must be encoded explicitly.

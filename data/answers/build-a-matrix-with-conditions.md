@@ -1,5 +1,36 @@
 **Short answer:** Row conditions and column conditions are independent. Each set is a directed graph on 1..k, and any topological order of it gives every number a valid row (or column) index. Run Kahn's algorithm twice; if either graph has a cycle, return the empty matrix. Otherwise place number `v` at `(rowIndex[v], colIndex[v])`. Every number has its own row and its own column, so nothing collides.
 
+## Picture it
+
+Example 1: `k = 3`, rows `[[1,2],[3,2]]`, columns `[[2,1],[3,2]]`. Two separate graphs:
+
+```mermaid
+flowchart LR
+    subgraph rows["Row graph (above → below)"]
+        r1["1"] --> r2["2"]
+        r3["3"] --> r2
+    end
+    subgraph cols["Column graph (left → right)"]
+        c3["3"] --> c2["2"]
+        c2 --> c1["1"]
+    end
+```
+
+| Kahn pass | Start queue (in-degree 0) | Pop order | Index given to each number |
+|---|---|---|---|
+| Rows | [1, 3] | 1, 3, then 2 (its in-degree drops 2 → 1 → 0) | row of 1 = 0, 3 = 1, 2 = 2 |
+| Columns | [3] | 3, then 2, then 1 | col of 3 = 0, 2 = 1, 1 = 2 |
+
+Place each `v` at `(rowOf[v], colOf[v])`: 1 at (0,2), 3 at (1,0), 2 at (2,1).
+
+```text
+[0 0 1]
+[3 0 0]
+[0 2 0]
+```
+
+**The picture in one sentence:** rows and columns never interact, so two independent topological sorts give each number its row and its column.
+
 ## Approach
 
 **Brute force.** Trying placements cell by cell with backtracking is exponential.

@@ -1,5 +1,78 @@
 **Short answer:** Clients upload directly to object storage with a pre-signed URL, so app servers never carry the bytes. A small metadata record (short ID, type, size, status, renditions, a secret delete token) goes in a key-value or SQL store. An upload-complete event triggers background workers that validate the file, scan it, and produce renditions (thumbnails, WebP/AVIF, MP4 from GIF, several video bitrates in HLS). Everything is served through a CDN, so reads, which dominate, almost never reach our servers.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    up["Uploader"]
+    view["Viewer"]
+  end
+  subgraph edge["Edge"]
+    cdn["CDN"]
+  end
+  subgraph services["Services"]
+    api["Upload API"]
+    work["Processing workers<br/>validate, scan, renditions"]
+  end
+  subgraph async["Async"]
+    q[["Queue: media.uploaded"]]
+  end
+  subgraph storage["Storage"]
+    meta[("Metadata DB")]
+    orig[("Originals bucket")]
+    rend[("Renditions bucket")]
+  end
+  up --> api --> meta
+  up -->|"pre-signed PUT"| orig
+  api --> q --> work
+  orig --> work
+  work --> rend
+  work --> meta
+  view --> cdn -->|"miss"| rend
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant U as Upload API
+  participant M as Metadata DB
+  participant O as Object storage
+  participant Q as Queue
+  participant W as Processing worker
+  participant V as CDN
+  C->>U: POST /uploads (contentType, size)
+  U->>M: insert media (UPLOADING)
+  U-->>C: mediaId, pre-signed URL, deleteToken
+  C->>O: PUT bytes directly
+  C->>U: POST /uploads/abc123/complete
+  U->>M: status PROCESSING
+  U->>Q: media.uploaded
+  Q->>W: job (mediaId)
+  W->>O: read original, check, scan, write renditions
+  W->>M: status READY
+  C->>V: GET /abc123/w640.webp
+  V->>O: fetch on cache miss only
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> UPLOADING: pre-signed URL issued
+  UPLOADING --> PROCESSING: complete call
+  PROCESSING --> READY: checks pass, first rendition done
+  PROCESSING --> FAILED: invalid file or N retries
+  READY --> REMOVED: delete token or takedown
+  REMOVED --> [*]
+```
+
+**How to read it:**
+- Steps 1–4: the API only hands out a pre-signed URL; the client sends the bytes straight to object storage, so app servers never carry them.
+- Steps 5–7: the complete call marks the file as processing and puts a job on the queue, so the upload returns fast.
+- Steps 8–10: workers validate the file, match it against known abusive content, build the renditions (widths, WebP/AVIF, MP4 from GIF, an HLS ladder for video) and mark it READY.
+- Steps 11–12: viewers read through the CDN with immutable URLs; only cache misses reach storage.
+- The state picture is a media item's life, from upload to takedown.
+
 ## Requirements
 
 Functional:
@@ -48,22 +121,7 @@ rendition
 
 ## Architecture
 
-```text
- Client ---(1) POST /uploads----> Upload API --> metadata DB (UPLOADING)
-   |   <-- pre-signed URL ---------|
-   |---(2) PUT bytes -------------------------> Object storage (originals bucket)
-   |---(3) complete --------------> Upload API -> queue: media.uploaded
-                                                     |
-                               Processing workers (autoscaled, GPU optional for video)
-                                 - validate magic bytes, size, decode
-                                 - abuse/CSAM hash match, virus scan
-                                 - images: thumb + widths, WebP/AVIF, strip EXIF
-                                 - GIF: convert to MP4/WebM (much smaller)
-                                 - video: transcode to HLS ladder (240p..1080p)
-                                     |
-                               renditions bucket + metadata READY
- Viewer --> CDN --(miss)--> origin (object storage / image service)
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

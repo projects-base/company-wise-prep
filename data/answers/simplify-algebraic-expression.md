@@ -1,5 +1,23 @@
 **Short answer:** Keep a coefficient counter for each of the 26 letters. Scan the expression once, tracking the sign of the current term and the sign applied to the current parenthesised group (a stack, the same trick as Basic Calculator). Each letter adds `groupSign * sign` to its counter. Finally print the non-zero coefficients in alphabetical order with the formatting rules.
 
+## Picture it
+
+Example 2: `x-(y-x)`. The stack starts as `[1]` and `sign = 1`.
+
+| step | char | groupSign stack (top last) | sign | action | coef |
+|---|---|---|---|---|---|
+| 1 | `x` | `[1]` | 1 | add 1 × 1 to x, reset sign | x=1 |
+| 2 | `-` | `[1]` | -1 | set sign for next term | x=1 |
+| 3 | `(` | `[1, -1]` | 1 | push 1 × -1 = -1, reset sign | x=1 |
+| 4 | `y` | `[1, -1]` | 1 | add -1 × 1 to y | x=1, y=-1 |
+| 5 | `-` | `[1, -1]` | -1 | set sign | x=1, y=-1 |
+| 6 | `x` | `[1, -1]` | -1 | add -1 × -1 = +1 to x, reset sign | x=2, y=-1 |
+| 7 | `)` | `[1]` | 1 | pop the group | x=2, y=-1 |
+
+Output in alphabetical order: `2x` then `-y`, so `"2x-y"`.
+
+**The picture in one sentence:** every letter's effective sign is its own operator times the sign on top of the group stack, so the coefficients are just running sums of ±1.
+
 ## Approach
 
 - **Brute force:** expand parentheses by string rewriting (flip signs inside `-( … )`), then split into terms and count. It works but is fiddly and can be quadratic with repeated rewriting.

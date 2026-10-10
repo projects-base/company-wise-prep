@@ -1,5 +1,22 @@
 **Short answer:** A value is always found exactly when it is greater than every element to its left and smaller than every element to its right. Compute a running maximum from the left and a running minimum from the right, and count the positions that pass both checks. That is two linear passes, O(n) time.
 
+## Picture it
+
+`nums = [2,1,3,5,4,6]`. Pass 1 goes left → right with the running max *before* `i`; pass 2 goes right → left with the running min *after* `i`.
+
+| i | nums[i] | max of left | `okLeft` | min of right | `< min`? | Counted |
+|---|---|---|---|---|---|---|
+| 0 | 2 | −∞ | yes | 1 | no | |
+| 1 | 1 | 2 | no | 3 | yes | |
+| 2 | 3 | 2 | yes | 4 | yes | **yes** |
+| 3 | 5 | 3 | yes | 4 | no | |
+| 4 | 4 | 5 | no | 6 | yes | |
+| 5 | 6 | 5 | yes | +∞ | yes | **yes** |
+
+Answer **2** (the values 3 and 6). Pass 2 visits the rows from i = 5 up to i = 0, so the "min of right" column is filled bottom-up.
+
+**The picture in one sentence:** a value survives every pivot exactly when it is a "local sorted point" — bigger than all on its left and smaller than all on its right — which a prefix max and a suffix min test in O(n).
+
 ## Approach
 
 **Brute force, O(n²).** For each element, scan everything to its left and to its right and check the condition above. Correct, but slow for 10⁵ elements.

@@ -1,5 +1,37 @@
 **Short answer:** Run Dijkstra once from each person's start. For every node x, the meeting cost is the sum of the distances to x from all starts; take the smallest sum among nodes every person can reach. With k people that is O(k · (n + m) log n). For exactly two people, the answer is simply their shortest distance to each other, because any node on that shortest path costs exactly that much.
 
+## Picture it
+
+Example 2: friends start at places 1, 2 and 4.
+
+```mermaid
+flowchart LR
+    p1(("1 · friend"))
+    p2(("2 · friend"))
+    p0(("0"))
+    p3(("3"))
+    p4(("4 · friend"))
+    p1 ---|"4"| p0
+    p2 ---|"4"| p0
+    p1 ---|"1"| p2
+    p0 ---|"4"| p3
+    p3 ---|"2"| p4
+```
+
+One Dijkstra per friend, then add the columns place by place:
+
+| Place x | from 1 | from 2 | from 4 | total |
+|---|---|---|---|---|
+| 0 | 4 | 4 | 6 | 14 |
+| 1 | 0 | 1 | 10 | **11** |
+| 2 | 1 | 0 | 10 | **11** |
+| 3 | 8 | 8 | 2 | 18 |
+| 4 | 10 | 10 | 0 | 20 |
+
+Answer 11 (meet at place 1; place 2 ties).
+
+**The picture in one sentence:** roads are two-way, so one Dijkstra from each of the k friends gives every place's distance to everyone, and the best meeting point is the smallest row sum.
+
 ## Approach
 
 - **Brute force:** for every candidate node x, run Dijkstra from x and add up the distances to all people. n runs: O(n · m log n), about 10⁴ × 3·10⁴ × 14. Too slow.

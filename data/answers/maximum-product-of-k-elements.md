@@ -1,5 +1,23 @@
 **Short answer:** Sort. If k is odd, take the largest value first; but if even the largest is ≤ 0, the product cannot be positive, so return the product of the k largest (the values closest to zero). Now k is even: repeatedly compare the product of the two smallest remaining values with the product of the two largest remaining, take the bigger pair, and move that pointer. Pairs make negatives cancel. O(n log n), or O(n log k) with heaps.
 
+## Picture it
+
+Example 1: `nums = [1,10,-5,1,-10]`, `k = 3` → sorted `a = [-10,-5,1,1,10]`.
+
+```text
+ a:  -10  -5   1   1   10
+      ^l               ^r
+```
+
+| Step | l | r | k | Left pair a[l]·a[l+1] | Right pair a[r]·a[r−1] | Action | prod |
+|---|---|---|---|---|---|---|---|
+| 1 | 0 | 4 | 3 (odd) | — | — | a[r] = 10 > 0: take it alone, r = 3, k = 2 | 10 |
+| 2 | 0 | 3 | 2 | (−10)·(−5) = 50 | 1·1 = 1 | 50 > 1: take left pair, l = 2, k = 0 | 500 |
+
+Answer 500. The other branch: `[-4,-3,-2,-1]`, k = 3 has a[r] = −1 ≤ 0 with k odd, so it takes the three largest: (−1)·(−2)·(−3) = −6.
+
+**The picture in one sentence:** after sorting, compare the best pair from each end and take the bigger product, two at a time.
+
 ## Approach
 
 - **Brute force:** try every k-subset: C(n, k), hopeless.

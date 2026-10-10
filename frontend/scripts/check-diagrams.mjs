@@ -3,7 +3,15 @@
 // Usage (from frontend/): node scripts/check-diagrams.mjs [file ...]
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import mermaid from 'mermaid'
+import DOMPurify from 'dompurify'
+
+// mermaid.parse only checks syntax, but it registers DOMPurify hooks, which need a browser window.
+// Node has none, so stub the hooks out: parsing still rejects invalid diagrams.
+DOMPurify.addHook ??= () => {}
+DOMPurify.removeHook ??= () => {}
+DOMPurify.removeAllHooks ??= () => {}
+DOMPurify.sanitize ??= (s) => s
+const { default: mermaid } = await import('mermaid')
 
 const data = resolve(import.meta.dirname, '../../data')
 const walk = (dir) =>

@@ -1,5 +1,32 @@
 **Short answer:** Split it into two problems. First, a multi-source BFS from every cat (thief) gives each cell its distance to the nearest cat. Then find the path from start to end whose *smallest* cell value is as large as possible: a "widest path" search, which is Dijkstra with a max-heap and `min` instead of `+`. Total O(n² log n).
 
+## Picture it
+
+Example 2: `grid = [[0,0,1],[0,0,0],[0,0,0]]`, one thief at (0,2).
+
+Phase 1, multi-source BFS gives each cell its distance to the nearest thief:
+
+```text
+dist:   2  1  0      (thief at top right)
+        3  2  1
+        4  3  2
+```
+
+Phase 2, widest-path Dijkstra (max-heap on safeness `s`, new `s = min(s, dist[next])`):
+
+| Step | Pop (cell, s) | Pushes (cell = new s) | Heap after |
+|---|---|---|---|
+| 1 | (0,0), 2 | (1,0) = 2, (0,1) = min(2,1) = 1 | 2@(1,0), 1@(0,1) |
+| 2 | (1,0), 2 | (2,0) = 2, (1,1) = 2 | 2@(2,0), 2@(1,1), 1@(0,1) |
+| 3 | (2,0), 2 | (2,1) = 2 | 2@(1,1), 2@(2,1), 1@(0,1) |
+| 4 | (1,1), 2 | (1,2) = min(2,1) = 1 | 2@(2,1), 1@(0,1), 1@(1,2) |
+| 5 | (2,1), 2 | (2,2) = 2 | 2@(2,2), 1@(0,1), 1@(1,2) |
+| 6 | (2,2), 2 | end cell popped | return 2 |
+
+The cells next to the thief (safeness 1) sit in the heap and are never needed: down the left column and along the bottom keeps the minimum at 2.
+
+**The picture in one sentence:** BFS turns the grid into "distance to danger" numbers, then a max-heap Dijkstra that combines with `min` finds the path whose worst cell is best.
+
 ## Approach
 
 - **Brute force:** enumerate paths and take the best minimum. Exponential. Even computing nearest-cat distance per cell by scanning all cats is O(n⁴) on a 400×400 grid.

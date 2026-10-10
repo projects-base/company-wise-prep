@@ -1,5 +1,25 @@
 **Short answer:** Kadane's algorithm. Walk the array keeping `cur`, the best sum of a block that ends at the current index. At each element, either extend the previous block or start fresh: `cur = max(x, cur + x)`. The answer is the largest `cur` seen. O(n) time, O(1) space.
 
+## Picture it
+
+Example 1: `nums = [-2,1,-3,4,-1,2,1,-5,4]`. `cur` = best block ending here.
+
+| i | nums[i] | cur + nums[i] | Choice | cur | best |
+|---|---|---|---|---|---|
+| 0 | −2 | — | start | −2 | −2 |
+| 1 | 1 | −1 | start fresh | 1 | 1 |
+| 2 | −3 | −2 | extend | −2 | 1 |
+| 3 | 4 | 2 | start fresh | 4 | 4 |
+| 4 | −1 | 3 | extend | 3 | 4 |
+| 5 | 2 | 5 | extend | 5 | 5 |
+| 6 | 1 | 6 | extend | 6 | 6 |
+| 7 | −5 | 1 | extend | 1 | 6 |
+| 8 | 4 | 5 | extend | 5 | 6 |
+
+Answer 6, the block [4,−1,2,1] (indices 3–6).
+
+**The picture in one sentence:** a negative running sum only drags the next block down, so drop it and start fresh at the current element.
+
 ## Approach
 
 - **Brute force:** every (i, j) pair with a running sum: O(n²).

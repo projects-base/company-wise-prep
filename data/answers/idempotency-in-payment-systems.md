@@ -1,5 +1,73 @@
 **Short answer:** The client generates an idempotency key per payment intent and sends it with every attempt. The server stores the key with a hash of the request and the final response, under a unique constraint, in the same transaction as the payment record. A retry with the same key returns the stored result instead of charging again. The same key is passed down to the payment provider, and ledger entries carry unique references, so every layer deduplicates, not just the API.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    client["Client<br/>(retries with the same key)"]
+  end
+  subgraph edge["Edge"]
+    gw["API gateway"]
+  end
+  subgraph services["Services"]
+    api["Payment API"]
+    recon["Reconciler"]
+  end
+  subgraph storage["Storage"]
+    pg[("Postgres<br/>idempotency_key, payment, ledger")]
+  end
+  subgraph external["External"]
+    psp["PSP<br/>(dedupes by its own key)"]
+  end
+  client --> gw --> api
+  api -->|"claim key, payment + ledger"| pg
+  api -->|"same key"| psp
+  recon -->|"IN_PROGRESS older than N s"| pg
+  recon -->|"ask real outcome"| psp
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant C as Client
+  participant A as Payment API
+  participant DB as Postgres
+  participant P as PSP
+  C->>A: POST /v1/payments, Idempotency-Key K
+  A->>DB: INSERT key K IN_PROGRESS ON CONFLICT DO NOTHING
+  DB-->>A: row returned, this request owns K
+  A->>DB: create payment + ledger (one tx)
+  A->>P: charge with key K
+  P-->>A: success
+  A->>DB: store response on key row, COMPLETED
+  A--xC: 201 lost on the network
+  C->>A: retry POST, same key K
+  A->>DB: INSERT key K ON CONFLICT DO NOTHING
+  DB-->>A: no row, K already exists
+  A->>DB: read K: same hash, COMPLETED
+  A-->>C: 201 stored response (same paymentId)
+```
+
+```mermaid
+flowchart TD
+  claim["INSERT key ... ON CONFLICT DO NOTHING"] --> won{"Row returned?"}
+  won -->|"Yes"| own["This request owns the key:<br/>process the payment"]
+  won -->|"No"| read["Read the existing row"]
+  read --> hash{"Same request hash?"}
+  hash -->|"No"| e422["422 key reused<br/>with a different request"]
+  hash -->|"Yes"| st{"Status?"}
+  st -->|"COMPLETED"| replay["Return stored response"]
+  st -->|"IN_PROGRESS, lock valid"| e409["409 request in progress"]
+  st -->|"IN_PROGRESS, lock expired"| resume["Take over and resume<br/>(ask PSP, do not re-charge)"]
+```
+
+**How to read it:**
+- Steps 1–3: the first thing the server does is claim the key atomically, so two concurrent duplicates cannot both get through.
+- Steps 4–7: the payment and ledger are written, the PSP is called with the same key (so the PSP dedupes too), and the final response is saved on the key row.
+- Steps 8–13: the response is lost and the client retries with the same key. The claim fails, the stored row says COMPLETED, and the client gets the original response: no second charge.
+- The decision picture covers the other cases: a different body is 422, a duplicate still running is 409, and a crashed owner is resumed by asking the PSP, never by charging again.
+
 ## Requirements
 
 **Functional**
@@ -52,21 +120,7 @@ Scope the key by client (or user) so two clients cannot collide.
 
 ## Architecture
 
-```text
-client (retries with the same key)
-   |
-   v
-[ API gateway ] --> [ Payment API ]
-                        | 1. claim key (INSERT ... ON CONFLICT DO NOTHING)
-                        | 2. create payment + ledger in one DB transaction
-                        | 3. call PSP with the same key
-                        | 4. store final response on the key row
-                        v
-                  [ Postgres ]        [ PSP ] (dedupes by its own idempotency key)
-                        |
-                  [ Reconciler ]: finds IN_PROGRESS keys / PENDING payments older than N s,
-                                  asks PSP for the real outcome, completes them
-```
+The diagram in **Picture it** above shows the components. The Payment API works in four steps: claim the key, create payment + ledger in one DB transaction, call the PSP with the same key, store the final response on the key row. The reconciler finds IN_PROGRESS keys / PENDING payments older than N seconds, asks the PSP for the real outcome and completes them.
 
 ## Deep dives
 

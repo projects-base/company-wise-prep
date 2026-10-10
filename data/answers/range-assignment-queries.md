@@ -1,5 +1,19 @@
 **Short answer:** The value of a cell is decided by the **last** query that covers it. So process the queries backwards and write each cell only once. A union-find "next unwritten index" pointer lets you skip cells that are already written, giving near O(n + q) total. A segment tree with lazy assignment is the other standard answer, at O((n + q) log n).
 
+## Picture it
+
+Example 3: `arr = [5,5,5,5]`, queries `q0 = [0,3,1]`, `q1 = [2,2,8]`, `q2 = [0,1,1]`, processed backwards. `next` starts as [0,1,2,3,4] (4 is the sentinel).
+
+| Step | Query | Cells written | find jumps | next after | out after |
+|---|---|---|---|---|---|
+| 1 | q2 [0,1] = 1 | 0, 1 | find(2) = 2 > 1, stop | [1,2,2,3,4] | [1,1,5,5] |
+| 2 | q1 [2,2] = 8 | 2 | find(3) = 3 > 2, stop | [1,2,3,3,4] | [1,1,8,5] |
+| 3 | q0 [0,3] = 1 | 3 only | find(0): 0 → 1 → 2 → 3 (path compressed to 3) | [3,3,3,4,4] | [1,1,8,1] |
+
+Answer [1,1,8,1]. The oldest query wrote only the one cell no later query had covered.
+
+**The picture in one sentence:** going backwards, the first query to reach a cell gives its final value, and the "next unwritten index" union-find skips the frozen cells.
+
 ## Approach
 
 - **Brute force.** Apply each query cell by cell. Worst case 10⁵ queries × 10⁵ cells = 10¹⁰ writes. Too slow.

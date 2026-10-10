@@ -1,5 +1,82 @@
 **Short answer:** Crawl publisher feeds (RSS/sitemaps first, page fetch second), extract and clean each article, then cluster articles about the same story using near-duplicate detection (SimHash/MinHash) plus embedding similarity and named entities within a time window. Generate one summary per story cluster (about 60 words, by an LLM or editors, with human review for sensitive topics), not per article. Serve a ranked, paginated feed per user and language from a cache, with push notifications for breaking stories.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph ingest["Ingest"]
+    sched["Scheduler"]
+    fetch["Fetchers<br/>(RSS/sitemap, politeness)"]
+    kafka[["Kafka raw-articles"]]
+    extract["Extractor<br/>(boilerplate, language, entities)"]
+  end
+  subgraph process["Story building"]
+    cluster["Dedup + Clusterer"]
+    summ["Summariser (LLM)"]
+    review["Review queue<br/>(editors, policy checks)"]
+    ranker["Ranker"]
+  end
+  subgraph storage["Storage"]
+    pg[("article/story DB<br/>(Postgres)")]
+    redis[("Feed cache (Redis)")]
+  end
+  subgraph serve["Serving"]
+    api["Feed API"]
+    cdn["CDN"]
+    push["Push service<br/>(breaking)"]
+    apps["Apps"]
+  end
+  sched --> fetch --> kafka --> extract --> cluster
+  cluster --> pg
+  cluster -->|"new or updated story"| summ --> review
+  review -->|"PUBLISHED"| ranker --> redis
+  redis --> api --> cdn --> apps
+  ranker --> push --> apps
+```
+
+```mermaid
+flowchart TD
+  a["New article"] --> e{"Same canonical URL<br/>or body hash?"}
+  e -->|"Yes"| drop["Duplicate: drop"]
+  e -->|"No"| s{"SimHash Hamming<br/>distance 3 or less?"}
+  s -->|"Yes"| attach["Attach to existing story"]
+  s -->|"No"| m{"Similar to a story from last 24-48 h?<br/>embeddings + entities + title"}
+  m -->|"Above threshold"| attach
+  m -->|"Below"| newstory["Create new story"]
+  attach --> f{"Genuinely new facts?"}
+  f -->|"Yes"| regen["Mark updated,<br/>regenerate summary"]
+  f -->|"No"| keep["Keep current card"]
+  newstory --> gen["Summarise once per story"]
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant F as Fetcher
+  participant X as Extractor
+  participant CL as Clusterer
+  participant S as Summariser
+  participant R as Review queue
+  participant RK as Ranker
+  participant C as Feed cache
+  participant U as App
+  F->>X: raw article (via Kafka)
+  X->>CL: clean text, language, entities, image
+  CL->>CL: dedup and cluster into a story
+  CL->>S: new or updated story
+  S->>R: ~60-word summary grounded in the cluster
+  R->>RK: PUBLISHED
+  RK->>C: score into feed:lang:category
+  U->>C: GET /feed (via Feed API and CDN)
+  C-->>U: ranked cards, cursor
+```
+
+**How to read it:**
+- Steps 1–2: fetchers pull feeds politely and the extractor turns HTML into clean text with language, entities and image.
+- Step 3 is the decision tree: exact match, then near-duplicate SimHash, then "same story, different writing" within a 48-hour window. Only a new story or genuinely new facts lead to a summary.
+- Steps 4–6: one summary per story, grounded in the cluster's articles, with human review for sensitive topics.
+- Steps 7–9: the ranker writes scored story ids into Redis every minute; the feed is served from cache and CDN, and breaking stories also go to the push service.
+
 ## Requirements
 
 Functional:
@@ -37,18 +114,7 @@ POST /events                 [{storyId, type: VIEW|READ_MORE|SHARE, dwellMs}]
 
 ## Architecture
 
-```text
-Scheduler ─> Fetchers (RSS/sitemap, politeness per domain) ─> Kafka "raw-articles"
-                                                                    │
-                                    Extractor (boilerplate removal, language, entities, image)
-                                                                    │
-                                    Dedup + Clusterer ──> article/story DB (Postgres)
-                                                                    │ new or updated story
-                                    Summariser (LLM) ─> Review queue (editors, policy checks)
-                                                                    │ PUBLISHED
-                                    Ranker ─> Feed cache (Redis) ─> Feed API ─> CDN ─> apps
-                                                                    └─> Push service (breaking)
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

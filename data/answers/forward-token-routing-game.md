@@ -1,5 +1,21 @@
 **Short answer:** Each token is its own Nim heap. A token on node `i` can be moved to any later node, and it is dead on the last node, so it behaves exactly like a Nim heap of size `n − 1 − i` that you may shrink to any smaller size. The whole game is the sum of independent games, so by Sprague-Grundy the first player wins iff the XOR of all heap sizes is non-zero. Two tokens on the same node cancel, so only nodes with an odd token count matter.
 
+## Picture it
+
+`tokens = [1, 0, 3, 2, 0]` (n = 5). Each token on node `i` is a Nim heap of size `n − 1 − i`; even counts cancel.
+
+| Node i | tokens[i] | Heap size n − 1 − i | Odd count? | x after |
+|---|---|---|---|---|
+| 0 | 1 | 4 | yes | 0 ^ 4 = 4 |
+| 1 | 0 | 3 | no | 4 |
+| 2 | 3 | 2 | yes | 4 ^ 2 = 6 |
+| 3 | 2 | 1 | no (pair cancels) | 6 |
+| 4 | 0 | 0 | no | 6 |
+
+`x = 6 ≠ 0`, so the first player wins. A winning move makes the XOR 0: shrink the heap of size 4 to `4 ^ 6 = 2`, that is, move the token on node 0 to node 2. Now node 2 holds 4 tokens (even) and the XOR is 0.
+
+**The picture in one sentence:** every token is an independent Nim heap measured by its distance to the last node, so XOR the distances of nodes with an odd token count.
+
 ## Approach
 
 - **Brute force:** memoised game search over token distributions. The state space explodes and token counts reach 10⁹, so this only works for toy inputs. It is useful to confirm small cases (Example 2 and 3).

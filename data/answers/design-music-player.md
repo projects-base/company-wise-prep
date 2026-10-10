@@ -1,5 +1,89 @@
 **Short answer:** Split the catalogue (Song, Album, Artist, Playlist), the user side (User, Library, Subscription) and the playback engine (Player, PlayQueue, playback state). The Player is a small state machine (STOPPED, PLAYING, PAUSED), the order of the next song comes from a pluggable `PlaybackStrategy` (sequential, shuffle, repeat-one), and UI parts subscribe to player events. The interviewer asked for classes, interfaces and enums, so I keep code to signatures and the one or two methods that carry logic.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Player {
+        -PlayerState state
+        -List~Song~ queue
+        -int current
+        +playPause()
+        +next(User user)
+        +setStrategy(PlaybackStrategy s)
+    }
+    class PlayerState {
+        <<enumeration>>
+        STOPPED
+        PLAYING
+        PAUSED
+    }
+    class PlaybackStrategy {
+        <<interface>>
+        +next(int current, int size) OptionalInt
+        +previous(int current, int size) OptionalInt
+    }
+    class SequentialStrategy
+    class ShuffleStrategy
+    class RepeatOneStrategy
+    class SkipPolicy {
+        <<interface>>
+        +allowSkip(User u) boolean
+    }
+    class UnlimitedSkips
+    class LimitedSkips
+    class AudioOutput {
+        <<interface>>
+        +start(Song s)
+        +pause()
+        +resume()
+        +stop()
+    }
+    class PlayerListener {
+        <<interface>>
+        +onSongChanged(Song s)
+        +onStateChanged(PlayerState s)
+    }
+    class Song {
+        <<record>>
+        String id
+        String title
+        Duration length
+    }
+    Player --> PlayerState
+    Player o-- Song : queue
+    Player --> PlaybackStrategy
+    Player --> SkipPolicy
+    Player --> AudioOutput
+    Player --> "many" PlayerListener : notifies
+    PlaybackStrategy <|.. SequentialStrategy
+    PlaybackStrategy <|.. ShuffleStrategy
+    PlaybackStrategy <|.. RepeatOneStrategy
+    SkipPolicy <|.. UnlimitedSkips
+    SkipPolicy <|.. LimitedSkips
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> STOPPED
+    STOPPED --> PLAYING : playPause, queue not empty
+    PLAYING --> PAUSED : playPause
+    PAUSED --> PLAYING : playPause
+    PLAYING --> PLAYING : next, strategy gives an index
+    PLAYING --> STOPPED : next, strategy says end of queue
+    note right of PLAYING
+        next() first asks SkipPolicy.
+        A free user over the limit gets SkipLimitException.
+    end note
+```
+
+**How to read it:**
+- `Player` is the hub; everything it depends on is an interface, so tiers, play order and the sound device are swappable.
+- `PlaybackStrategy` decides which index plays next (sequential, shuffle, repeat-one); `SkipPolicy` decides whether a skip is allowed.
+- The state diagram is the whole `playPause()` switch: STOPPED starts the queue, PLAYING and PAUSED toggle.
+- On `next`, an empty answer from the strategy stops the player; otherwise it plays the new song.
+- Every song or state change is pushed to `PlayerListener`s (now-playing bar, analytics) without Player knowing them.
+
 ## Requirements
 
 - Browse and search songs, albums, artists.

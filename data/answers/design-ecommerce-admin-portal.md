@@ -1,5 +1,83 @@
 **Short answer:** The admin portal is an internal back-office app sitting on top of the existing order, catalogue, user and payment services. It does not own the core data. It adds three things: fine-grained access control per persona (admin, support, seller, finance), a search index so support can find any user or order in milliseconds, and a read-optimised analytics store for dashboards. Every write action (refund, cancel, price change) goes through the owning service's API, is idempotent, and is written to an audit log.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    spa["Browser (React SPA)<br/>SSO OIDC token"]
+  end
+  subgraph edge["Edge"]
+    bff["API gateway / BFF<br/>authz: RBAC + ABAC"]
+  end
+  subgraph portal["Portal services"]
+    search["Search API"]
+    action["Action service<br/>refund/cancel, audit, approvals"]
+    seller["Seller catalogue"]
+    dashapi["Dashboard API"]
+  end
+  subgraph core["Owning services"]
+    order["Order / Payment services<br/>own Postgres"]
+    cat["Catalogue service"]
+  end
+  subgraph async["Async"]
+    kafka[["Kafka (outbox events)"]]
+    idx["Indexer"]
+    etl["ETL / stream"]
+  end
+  subgraph storage["Read stores"]
+    os[("OpenSearch")]
+    olap[("OLAP: ClickHouse/BigQuery")]
+  end
+  spa --> bff
+  bff --> search --> os
+  bff --> action --> order
+  bff --> seller --> cat
+  bff --> dashapi --> olap
+  order --> kafka
+  kafka --> idx --> os
+  kafka --> etl --> olap
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant Ag as Support agent
+  participant B as BFF
+  participant A as Action service
+  participant Fi as Finance approver
+  participant P as Payment / Order services
+  Ag->>B: POST /orders/42/refunds (Idempotency-Key, amount)
+  B->>B: check order:refund permission
+  B->>A: create refund_request
+  A->>A: status REQUESTED, write audit_log
+  Note over A: above the threshold, so maker-checker applies
+  Fi->>B: POST /refunds/r1/approve
+  B->>A: approve (approver is not the requester)
+  A->>P: refund with the same Idempotency-Key
+  P-->>A: OK
+  A->>A: status EXECUTED, write audit_log
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> REQUESTED
+  REQUESTED --> APPROVED: finance approves
+  REQUESTED --> REJECTED: finance rejects
+  APPROVED --> EXECUTED: payment call OK
+  APPROVED --> FAILED: payment call fails
+  FAILED --> APPROVED: retry job resumes
+  EXECUTED --> [*]
+  REJECTED --> [*]
+```
+
+**How to read it:**
+- Every request goes through the BFF, which checks the role permission and the scope (a seller only sees their own products) on the backend, never only in the UI.
+- The portal does not own order data: searches hit OpenSearch, dashboards hit the OLAP store, and both are fed from Kafka events published through the outbox.
+- Steps 1–4: a support agent's refund becomes a `refund_request` row with an idempotency key and an audit entry, so a double-click cannot refund twice.
+- Steps 5–9: above the limit, a different finance user must approve; then the action service calls payments with the same key and records the result.
+- The state picture is the refund lifecycle that the retry job uses to resume stuck refunds.
+
 ## Requirements
 
 Functional:
@@ -61,23 +139,7 @@ Search index document (one per order): order ID, user email/phone (masked for so
 
 ## Architecture
 
-```text
- Browser (React SPA)
-       | SSO (OIDC) token
-       v
-  API gateway / BFF  ---- authz check (RBAC + ABAC: sellerId scoping)
-       |
-  +----+-------------+-----------------+------------------+
-  |                  |                 |                  |
- Search API     Action service     Seller catalogue   Dashboard API
- (OpenSearch)   (refund/cancel     (calls Catalogue    (reads OLAP:
-  ^              orchestration,      service)            ClickHouse/BigQuery)
-  |              audit, approvals)       |                   ^
-  |                  |                   v                   |
-  |          Order / Payment services (own Postgres)         |
-  |                  |  outbox -> Kafka (order/user events)  |
-  +------ indexer <--+-----------------------------> ETL/stream to OLAP
-```
+The diagram in **Picture it** above shows the components.
 
 ## Deep dives
 

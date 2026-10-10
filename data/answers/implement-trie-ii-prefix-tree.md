@@ -1,5 +1,30 @@
 **Short answer:** A trie where every node keeps two counters: `passing` (how many stored words go through or end at this node) and `ending` (how many end exactly here). Insert walks the word and increments `passing` on each node, then `ending` at the last one. Count-equal reads `ending`, count-prefix reads `passing`. Erase walks the path decrementing `passing`, and prunes a branch as soon as its count hits zero. For a multilingual dictionary, children are a `Map<Character, Node>` instead of a 26-slot array.
 
+## Picture it
+
+Example 2: insert "app" and "apple", then erase "app". Each node shows `passing / ending`, before → after the erase.
+
+```mermaid
+flowchart TD
+    root["root"] -->|"a"| a["p 2→1 / e 0"]
+    a -->|"p"| ap["p 2→1 / e 0"]
+    ap -->|"p"| app["p 2→1 / e 1→0"]
+    app -->|"l"| appl["p 1 / e 0"]
+    appl -->|"e"| apple["p 1 / e 1"]
+```
+
+| Call | Walk | Reads or changes | Result |
+|---|---|---|---|
+| countWordsStartingWith("app") | a → p → p | read passing at the third node | 2 |
+| erase("app") | a → p → p | passing 2→1 on each node (none hits 0, no prune); ending 1→0 at the end | — |
+| countWordsEqualTo("app") | a → p → p | read ending | 0 |
+| countWordsStartingWith("app") | a → p → p | read passing | 1 |
+| countWordsEqualTo("apple") | a → p → p → l → e | read ending | 1 |
+
+In Example 1, erasing the second "apple" drops `passing` on the "a" node from 1 to 0, so the whole branch is cut off at the root in one step.
+
+**The picture in one sentence:** every node remembers how many words pass through it and end at it, so prefix counts are a walk plus one read, and erase is the same walk with decrements.
+
 ## Approach
 
 - **Brute force:** a `HashMap<String, Integer>` of word counts. Exact counts are O(L), but a prefix count means scanning every stored word.

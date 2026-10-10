@@ -1,5 +1,20 @@
 **Short answer:** Binary search on the finish time T. By time T, machine j can complete `⌊(T − available[j]) / duration⌋` jobs (0 if it is not yet available), and that total only grows with T, so find the smallest T whose total reaches `tasks`. For the minimum machines: the machines that became available earliest can do the most by T, so sort by availability and take them in order until their combined capacity reaches `tasks`.
 
+## Picture it
+
+Example 1: sorted `a = [0,2,5]`, `tasks = 5`, `duration = 3`. Search T in `[0 + 3, 0 + 5·3] = [3, 15]`. Machine j finishes ⌊(T − a[j]) / 3⌋ jobs by T.
+
+| Step | lo | hi | mid | Jobs per machine (a = 0, 2, 5) | capacity | ≥ 5? | Action |
+|---|---|---|---|---|---|---|---|
+| 1 | 3 | 15 | 9 | 3, 2 (early exit) | 5 | yes | hi = 9 |
+| 2 | 3 | 9 | 6 | 2, 1, 0 | 3 | no | lo = 7 |
+| 3 | 7 | 9 | 8 | 2, 2, 1 | 5 | yes | hi = 8 |
+| 4 | 7 | 8 | 7 | 2, 1, 0 | 3 | no | lo = 8 |
+
+T = 8. Fewest machines: take the earliest first, 2 → 4 → 5 jobs, so M = 3. Answer `[8, 3]`.
+
+**The picture in one sentence:** for a fixed deadline the job count is a simple sum that only grows with T, so binary search T, then the earliest machines (largest capacity) give the fewest needed.
+
 ## Approach
 
 - **Brute force:** hand out jobs one by one, each to the machine that would finish it earliest (a min-heap of "next free time"). O(tasks · log m) — up to 10⁹ steps. Too slow.

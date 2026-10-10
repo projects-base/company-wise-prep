@@ -1,5 +1,22 @@
 **Short answer:** Flooding removes cells, and union-find cannot split sets, so run time backwards: start with all water and add cells back as land, from the last day to the first. Add two virtual nodes, "top row" and "bottom row". When a cell becomes land, union it with land neighbours (and with top or bottom if it is on that row). The first moment, going backwards, that top and bottom are connected is the day whose cell you just restored, so the answer is that day minus one. O(N · α(N)).
 
+## Picture it
+
+Example 3: `row = 3`, `col = 3`, `cells = [[1,2],[2,1],[3,3],[2,2],[1,1],[1,3],[2,3],[3,2],[3,1]]`. Start with all water (`W`) and restore cells from day 9 backwards (`L` = land).
+
+| Day undone | Cell restored | Unions | Grid after (rows 1 / 2 / 3) | top connected to bottom? |
+|---|---|---|---|---|
+| 9 | (3,1) | bottom | WWW / WWW / LWW | no |
+| 8 | (3,2) | bottom, (3,1) | WWW / WWW / LLW | no |
+| 7 | (2,3) | none (no land neighbour) | WWW / WWL / LLW | no |
+| 6 | (1,3) | top, (2,3) | WWL / WWL / LLW | no |
+| 5 | (1,1) | top | LWL / WWL / LLW | no |
+| 4 | (2,2) | (3,2), (2,3) | LWL / WLL / LLW | **yes**: return 4 − 1 = 3 |
+
+When (2,2) comes back it joins the top group {(1,3), (2,3)} with the bottom group {(3,1), (3,2)}, so the path (1,3) → (2,3) → (2,2) → (3,2) exists in the grid as it was after day 3.
+
+**The picture in one sentence:** run the flood backwards so cells only ever appear, and union-find with virtual top and bottom nodes tells you the moment a crossing first exists.
+
 ## Approach
 
 - **Brute force:** for each day, flood the cell and run BFS from the top row. O(N) days × O(N) BFS = O(N²) with N = row · col = 2·10⁴. That is 4·10⁸, too slow.

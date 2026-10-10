@@ -1,5 +1,19 @@
 **Short answer:** Sort the array. In an optimal answer, some prefix of the sorted array goes up by k and the rest goes down by k. So try every split point i: the new maximum is `max(a[i] + k, a[n-1] - k)` and the new minimum is `min(a[0] + k, a[i+1] - k)`. Take the best difference, also counting "everyone moves the same way" (the original range). O(n log n) for the sort, then O(n).
 
+## Picture it
+
+Example 3: `nums = [1,3,6]`, `k = 3`. Sorted `a = [1,3,6]`; start `best = 6 - 1 = 5`.
+
+| split i | goes up (+3) | goes down (-3) | hi = max(a[i]+k, a[n-1]-k) | lo = min(a[0]+k, a[i+1]-k) | hi - lo | best |
+|---|---|---|---|---|---|---|
+| start | all or none | | | | 5 | 5 |
+| 0 | 1 → 4 | 3 → 0, 6 → 3 | max(4, 3) = 4 | min(4, 0) = 0 | 4 | 4 |
+| 1 | 1 → 4, 3 → 6 | 6 → 3 | max(6, 3) = 6 | min(4, 3) = 3 | 3 | 3 |
+
+Answer: `3` (the array `[4,6,3]`).
+
+**The picture in one sentence:** after sorting, the best answer raises a prefix and lowers the suffix, so only n-1 split points need checking, each in O(1) from four candidate endpoints.
+
 ## Approach
 
 - **Brute force:** try all 2ⁿ choices. Impossible.

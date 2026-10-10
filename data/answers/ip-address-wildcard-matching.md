@@ -1,5 +1,25 @@
 **Short answer:** An address has only four parts, so a matching pattern can only differ from the query by turning some parts into `*`. That gives just 2⁴ = 16 candidate patterns per query. Put all patterns in a `HashSet<String>`, and for each query generate the 16 variants and look each one up. Each query costs O(16) lookups, independent of the number of patterns.
 
+## Picture it
+
+Example 1: patterns `{"192.124.168.*", "10.0.0.1"}`, query `"192.124.168.77"`. Bit `k` of the mask replaces part `k` with `*`.
+
+| mask | bits (part 3..0) | Candidate | In the set? |
+|---|---|---|---|
+| 0 | 0000 | 192.124.168.77 | no |
+| 1 | 0001 | \*.124.168.77 | no |
+| 2 | 0010 | 192.\*.168.77 | no |
+| 3 | 0011 | \*.\*.168.77 | no |
+| 4 | 0100 | 192.124.\*.77 | no |
+| 5 | 0101 | \*.124.\*.77 | no |
+| 6 | 0110 | 192.\*.\*.77 | no |
+| 7 | 0111 | \*.\*.\*.77 | no |
+| 8 | 1000 | 192.124.168.\* | **yes**: stop, true |
+
+For `"10.0.0.2"` all 16 candidates miss (no pattern ends in `.2` or `.*` with `10.0.0`), so the answer is false.
+
+**The picture in one sentence:** a pattern can only differ from the query by stars, so try the 16 star masks of the query against a hash set instead of scanning patterns.
+
 ## Approach
 
 - **Brute force:** compare every query with every pattern, part by part. O(P · Q), up to 25 million part comparisons at the limits. It works, but the interviewer will ask for better.

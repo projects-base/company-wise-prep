@@ -2,6 +2,32 @@
 
 **Assumed problem (state this to the interviewer):** implement `addWord(word)` and `countEndingWith(suffix)`, which returns how many added words end with `suffix`. Then show the stream version: after each incoming character, report whether some dictionary word ends at the current position (LeetCode 1032, "Stream of Characters"). Both are classic reverse-trie problems.
 
+## Picture it
+
+Add `cab`, `ab`, `cd`. They are inserted reversed: `bac`, `ba`, `dc`. Each node shows its `count`; `word` marks `isWord`.
+
+```mermaid
+flowchart TD
+  root["root<br/>count 3"] -->|"b"| b["b<br/>count 2"]
+  root -->|"d"| d["d<br/>count 1"]
+  b -->|"a"| ba["ba<br/>count 2<br/>word: ab"]
+  ba -->|"c"| bac["bac<br/>count 1<br/>word: cab"]
+  d -->|"c"| dc["dc<br/>count 1<br/>word: cd"]
+```
+
+`countEndingWith("ab")` walks `b` then `a` (the suffix read backwards) and returns that node's count, **2** (`ab`, `cab`).
+
+Stream with the same words, letters `c, a, b, d`:
+
+| Query | recent | Backward walk from the newest letter | Result |
+|---|---|---|---|
+| `c` | c | `c`: no child of root | false |
+| `a` | ca | `a`: no child of root | false |
+| `b` | cab | `b` (not a word) → `a`: node `ba` is a word | **true** (`ab`) |
+| `d` | cabd | `d` (not a word) → `b`: no child | false |
+
+**The picture in one sentence:** store words reversed so "ends with" becomes "starts with", and every suffix question is one walk down from the root.
+
 ## Approach
 
 - **Brute force.** For each query, call `endsWith` on every word: O(N · L) per query. For the stream, check every word against the tail of the text after each character: O(N · L) per character.

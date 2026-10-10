@@ -1,5 +1,64 @@
 **Short answer:** Each open document is owned by one collaboration server; clients connect over WebSocket, send small operations (insert/delete at a position, with the revision they were based on), and the server orders them, transforms concurrent ones (Operational Transformation), appends them to an operation log and broadcasts them. The document is stored as a periodic snapshot plus the op log after it. CRDTs are the alternative: they converge without a central ordering server, at the cost of extra metadata per character.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph clients["Clients"]
+    ed["Editors (WebSocket)"]
+    rest["REST clients"]
+  end
+  subgraph edge["Edge"]
+    lb["Edge / LB<br/>route by doc_id, consistent hashing"]
+  end
+  subgraph services["Services"]
+    collab["Collab server owning doc<br/>in-memory doc + pending ops"]
+    snap["Snapshotter"]
+    docs["Doc service"]
+    acl["ACL service"]
+    coord["Coordination service<br/>doc ownership lease"]
+  end
+  subgraph storage["Storage"]
+    oplog[("Op log store")]
+    blob[("Blob store (snapshots)")]
+    meta[("Metadata DB")]
+  end
+  ed <--> lb <--> collab
+  collab --> oplog
+  collab --> snap --> blob
+  collab --> coord
+  rest --> docs
+  docs --> meta
+  docs --> acl
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant A as Client A
+  participant B as Client B
+  participant S as Collab server
+  participant L as Op log store
+  Note over A,B: both at rev 10
+  A->>S: insert "x" at 5 (base_rev 10)
+  B->>S: delete at 7 (base_rev 10)
+  S->>S: apply A's op as rev 11
+  S->>L: append rev 11
+  S-->>A: ack rev 11
+  S-->>B: broadcast rev 11
+  S->>S: transform B's op against rev 11: delete at 7 becomes 8
+  S->>L: append rev 12
+  S-->>B: ack rev 12
+  S-->>A: broadcast rev 12
+```
+
+**How to read it:**
+- The edge routes every connection for one doc to the single collab server that owns it (held by a lease in the coordination service), so there is one place that orders edits.
+- Steps 1–2: A and B both edit from rev 10 at the same time.
+- Steps 3–6: A's op arrives first, becomes rev 11, is durably appended to the op log, then acked and broadcast.
+- Steps 7–10: B's op was based on rev 10, so the server shifts it past A's insert (position 7 becomes 8), stores it as rev 12 and broadcasts it. Both clients converge to the same text.
+- The snapshotter periodically writes the full doc to blob storage; recovery is "last snapshot + replay op log".
+
 ## Requirements
 
 Functional:
@@ -40,14 +99,7 @@ In memory, the server holds the document as a structure good for edits at a posi
 
 ## Architecture
 
-```text
-clients --WS--> edge/LB --(route by doc_id, consistent hashing)--> collab server owning doc
-                                                                       |  in-memory doc + pending ops
-                                                                       |-- append op --> op log store
-                                                                       |-- snapshotter --> blob store
-                                                                       |-- broadcast --> other clients
-REST --> doc service --> metadata DB, ACL service, cache
-```
+The diagram in **Picture it** above shows the components.
 
 A coordination service (or lease in a DB) records which server owns which doc. If that server dies, another takes the lease, loads the last snapshot and replays the log.
 

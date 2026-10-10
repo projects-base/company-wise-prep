@@ -1,5 +1,67 @@
 **Short answer:** Buffer arriving frames in a map keyed by sequence number (or a min-heap by timestamp) and keep `nextExpected`. `saveFrame` inserts; `getFrame` returns the frame for `nextExpected` only when it is present, then advances. Because "strictly in order" needs to know a frame is missing, I assume consecutive sequence numbers; with raw timestamps you need a latency window after which you give up on a gap. Thread safety: one lock plus a condition so `getFrame` can block until the next frame arrives.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Frame {
+        <<record>>
+        long seq
+        long timestampMicros
+        byte[] data
+    }
+    class ReorderBuffer {
+        -TreeMap~Long, Frame~ pending
+        -long nextExpected
+        -ReentrantLock lock
+        -Condition changed
+        +saveFrame(Frame f)
+        +getFrame() Frame
+    }
+    class GapPolicy {
+        <<interface>>
+        +shouldSkip(long waitedNanos, int buffered) boolean
+    }
+    class SkipAfterTimeout {
+        <<record>>
+        long maxWaitNanos
+        int maxBuffered
+    }
+    class WaitForever
+    class FrameForwarder
+    ReorderBuffer o-- Frame : pending
+    ReorderBuffer --> GapPolicy
+    GapPolicy <|.. SkipAfterTimeout
+    GapPolicy <|.. WaitForever
+    FrameForwarder --> ReorderBuffer : getFrame loop
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant N as Network thread
+    participant RB as ReorderBuffer
+    participant F as FrameForwarder
+    Note over RB: nextExpected = 0
+    F->>RB: getFrame()
+    Note over RB: frame 0 missing, await on changed
+    N->>RB: saveFrame(seq 1)
+    RB-->>F: signalAll, still no frame 0, wait again
+    N->>RB: saveFrame(seq 0)
+    RB-->>F: signalAll
+    RB-->>F: frame 0, nextExpected = 1
+    F->>RB: getFrame()
+    RB-->>F: frame 1 at once, nextExpected = 2
+    Note over RB,F: If a gap lasts too long, GapPolicy says skip and nextExpected jumps to the first buffered seq
+```
+
+**How to read it:**
+- Network threads call `saveFrame` in any order; frames wait in a `TreeMap` keyed by sequence number.
+- The forwarder only ever takes the frame whose seq equals `nextExpected`, so output is strictly in order.
+- If that frame is missing it waits on the condition; every new frame signals it to look again.
+- `GapPolicy` decides when a lost frame is given up on, so a hole cannot stall the stream or grow memory forever.
+- Late or duplicate frames (seq below `nextExpected` or already buffered) are dropped on arrival.
+
 ## Requirements
 
 - `saveFrame(frame)` is called by network threads in any order.

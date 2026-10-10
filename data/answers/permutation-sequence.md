@@ -1,5 +1,18 @@
 **Short answer:** Do not generate permutations. With `n` numbers, each choice of first digit owns a block of `(n-1)!` permutations. So convert `k-1` to the factorial number system: the first digit index is `(k-1) / (n-1)!`, then recurse on the remainder with the remaining digits. That is O(n²) with a list, trivial for n ≤ 9.
 
+## Picture it
+
+Example 2: `n = 4`, `k = 9` → 0-based rank 8. The 24 permutations come in 4 blocks of 3! = 6 by first digit; rank 8 is in the second block ("2…", ranks 6–11), at offset 2 inside it.
+
+| Position | Unused numbers | fact of remaining | idx = rank / fact | Pick | rank = rank % fact | Built so far |
+|---|---|---|---|---|---|---|
+| 1 | [1,2,3,4] | 3! = 6 | 8 / 6 = 1 | 2 | 2 | 2 |
+| 2 | [1,3,4] | 2! = 2 | 2 / 2 = 1 | 3 | 0 | 23 |
+| 3 | [1,4] | 1! = 1 | 0 | 1 | 0 | 231 |
+| 4 | [4] | 0! = 1 | 0 | 4 | 0 | 2314 |
+
+**The picture in one sentence:** permutations come in equal blocks by their first digit, so dividing the rank by a factorial picks each digit directly and the remainder is the rank inside that block.
+
 ## Approach
 
 - **Brute force.** Call "next permutation" `k - 1` times, or generate all `n!` permutations in order. Up to 9! = 362,880 permutations of length 9 works, but it misses the point and the interviewer wants the direct method.

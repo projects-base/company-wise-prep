@@ -1,5 +1,27 @@
 **Short answer:** Reverse the flow. Instead of asking where water from each cell goes, start from each ocean's edge cells and walk *uphill* (to neighbours that are at least as high). Every cell reached that way can drain into that ocean. Do one BFS for the Pacific (top and left edges) and one for the Atlantic (bottom and right edges); the answer is the cells reached by both. O(m · n).
 
+## Picture it
+
+A small 3 × 3 island (Pacific on the top and left, Atlantic on the bottom and right):
+
+```text
+heights        Pacific reach   Atlantic reach   both
+1 2 3          P P P           . . A            . . *
+8 9 4          P P P           A A A            * * *
+7 6 5          P P P           A A A            * * *
+```
+
+How each ocean climbs (multi-source BFS from its edge, stepping to a neighbour that is at least as high):
+
+| Ocean | Starts (edge cells) | Climbs added | Not reached |
+|---|---|---|---|
+| Pacific | (0,0) 1, (0,1) 2, (0,2) 3, (1,0) 8, (2,0) 7 | (1,1) 9 from 2, (1,2) 4 from 3, (2,2) 5 from 4, (2,1) 6 from 5 | none |
+| Atlantic | (2,0) 7, (2,1) 6, (2,2) 5, (0,2) 3, (1,2) 4 | (1,0) 8 from 7, (1,1) 9 from 4 | (0,0) 1, (0,1) 2: no path up from the Atlantic edge |
+
+The answer is the 7 cells marked `*`. For example, rain on (0,1) (height 2) can only run down to (0,0) and the Pacific.
+
+**The picture in one sentence:** instead of letting water run down from every cell, climb uphill from each ocean's edge once, and keep the cells both oceans reach.
+
 ## Approach
 
 - **Brute force:** from every cell, search downhill to see which oceans it reaches. O((m · n)²) = 1.6·10⁹ for 200 × 200. Too slow.

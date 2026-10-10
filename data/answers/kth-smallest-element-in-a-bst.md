@@ -1,5 +1,29 @@
 **Short answer:** An inorder walk (left, node, right) visits a BST's values in increasing order. Walk it iteratively with a stack, count nodes as you pop them, and return the k-th one. You stop early, so the cost is O(h + k), not O(n).
 
+## Picture it
+
+Example 2: `root = [5,3,6,2,4,null,null,1]`, `k = 3`.
+
+```mermaid
+flowchart TD
+    n5["5"] --> n3["3 (popped 3rd: answer)"]
+    n5 --> n6["6"]
+    n3 --> n2["2 (popped 2nd)"]
+    n3 --> n4["4"]
+    n2 --> n1["1 (popped 1st)"]
+```
+
+| Step | Action | Stack (top on the right) | k after | cur after |
+|---|---|---|---|---|
+| 1 | push the left spine 5, 3, 2, 1 | [5, 3, 2, 1] | 3 | null |
+| 2 | pop 1 | [5, 3, 2] | 2 | 1.right = null |
+| 3 | pop 2 | [5, 3] | 1 | 2.right = null |
+| 4 | pop 3 | [5] | 0 | return 3 |
+
+Nodes 4, 5 and 6 are never popped: the walk stops as soon as k reaches 0.
+
+**The picture in one sentence:** inorder on a BST pops values in sorted order, so the k-th pop is the answer and you can stop there.
+
 ## Approach
 
 - **Brute force:** collect all values (any traversal), sort them, take index k−1. O(n log n) time and O(n) space, and it ignores the BST property.

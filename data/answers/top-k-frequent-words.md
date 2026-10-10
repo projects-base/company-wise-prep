@@ -1,5 +1,19 @@
 **Short answer:** Count each error code with a `HashMap`. Keep a min-heap of size k whose head is the worst kept code: lowest count, and on a tie the *larger* string. Push every code, pop when the heap exceeds k, then pop everything and reverse to get best-first order. O(n + u log k) time.
 
+## Picture it
+
+`words = ["E2","E10","E2","E10","E7"]`, `k = 2` (answer `["E10","E2"]`). Counts: `E2:2, E10:2, E7:1`. Key order from the `HashMap` is arbitrary; say E7, E2, E10. The heap is listed worst-first (head on the left).
+
+| step | add | heap after add (worst first) | size > k? | poll | heap kept |
+|---|---|---|---|---|---|
+| 1 | E7(1) | E7(1) | no | | E7 |
+| 2 | E2(2) | E7(1), E2(2) | no | | E7, E2 |
+| 3 | E10(2) | E7(1), E2(2), E10(2) | yes | E7 | E2, E10 |
+| drain 1 | | poll E2 (tie on 2, but "E2" > "E10" so it is worse) | | | out = [E2] |
+| drain 2 | | poll E10, `addFirst` | | | out = **[E10, E2]** |
+
+**The picture in one sentence:** a size-k min-heap of the *worst* kept code, with counts ascending but strings descending, keeps the k best and drains in reverse order.
+
 ## Approach
 
 - **Sort.** Count, then sort distinct codes by (count descending, string ascending), take the first k: O(n + u log u). Correct and easy; state it first.

@@ -1,5 +1,32 @@
 **Short answer:** Fire spreads to children *and* the parent, so treat the tree as an undirected graph. One traversal records each node's parent and finds the start node. Then run a level-by-level BFS from the start node over left, right and parent. The number of levels minus one is the answer. O(n) time and space.
 
+## Picture it
+
+Tree `[1,5,3,null,4,10,6,9,2]`, `start = 3`. The label is the minute each node catches fire. The parent map lets the fire also travel upward (3 → 1), and from there down the other side (1 → 5 → 4):
+
+```mermaid
+flowchart TD
+    n1["1 · min 1"] --> n5["5 · min 2"]
+    n1 --> n3["3 · min 0 (start)"]
+    n5 --> n4["4 · min 3"]
+    n3 --> n10["10 · min 1"]
+    n3 --> n6["6 · min 1"]
+    n4 --> n9["9 · min 4"]
+    n4 --> n2["2 · min 4"]
+```
+
+| Level (minute) | Queue at start of level | Newly added (left, right, parent) |
+|---|---|---|
+| 0 | [3] | 10, 6, 1 (parent) |
+| 1 | [10, 6, 1] | 5 (left of 1; 3 already seen) |
+| 2 | [5] | 4 (parent 1 already seen) |
+| 3 | [4] | 9, 2 |
+| 4 | [9, 2] | none, queue empties |
+
+`minutes` ends at 4.
+
+**The picture in one sentence:** add a parent pointer to every node so the tree becomes an undirected graph, then the answer is simply the number of BFS levels from `start` minus one.
+
 ## Approach
 
 - **Key insight:** "spreads one step per minute to every neighbour" is exactly BFS distance. The answer is the largest BFS distance from `start`, which is the tree's eccentricity at that node. The only thing a tree lacks is the upward edge, so we add it with a parent map.

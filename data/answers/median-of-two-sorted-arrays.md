@@ -1,5 +1,23 @@
 **Short answer:** Binary search for a partition, on the shorter array. Take i elements from `nums1` and `j = half − i` from `nums2` into a "left half". The partition is right when `nums1[i−1] ≤ nums2[j]` and `nums2[j−1] ≤ nums1[i]`. Then the median is the max of the left side (odd total) or the average of the left max and the right min (even total). O(log(min(m, n))).
 
+## Picture it
+
+`nums1 = [1,3,8]` (the shorter one, m = 3), `nums2 = [2,4,5,9,10]` (n = 5). Total 8, so `half = 4`: the left half holds 4 values, i from nums1 and j = 4 − i from nums2.
+
+| Step | lo..hi | i | j | aLeft · aRight | bLeft · bRight | Test | Action |
+|---|---|---|---|---|---|---|---|
+| 1 | 0..3 | 1 | 3 | 1 · 3 | 5 · 9 | bLeft 5 > aRight 3 | too few from nums1: lo = 2 |
+| 2 | 2..3 | 2 | 2 | 3 · 8 | 4 · 5 | 3 ≤ 5 and 4 ≤ 8 | valid split |
+
+```text
+left half : nums1[0..1] = 1 3    nums2[0..1] = 2 4    -> leftMax  = max(3, 4) = 4
+right half: nums1[2..]  = 8      nums2[2..]  = 5 9 10 -> rightMin = min(8, 5) = 5
+```
+
+Total is even, so the median is (4 + 5) / 2 = 4.5. Check: merged `[1,2,3,4,5,8,9,10]`.
+
+**The picture in one sentence:** binary search how many of the left half come from the shorter array; the split is right when each side's left edge is ≤ the other side's right edge.
+
 ## Approach
 
 - **Brute force:** merge both arrays and pick the middle. O(m + n) time and space. A two-pointer walk to the middle without storing is O(m + n) time, O(1) space.

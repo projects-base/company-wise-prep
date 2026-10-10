@@ -1,5 +1,36 @@
 **Short answer:** Everything comes from BFS distances. One BFS from `dest` gives a shortest path: from Alice, keep stepping to a neighbour that is one closer to `dest`. A node lies on some shortest path exactly when `distA(v) + distD(v) == distA(dest)`. For the chaser, a node is safe when Bob's distance is strictly greater than Alice's, and Alice escapes if a chain of safe shortest-path nodes runs from her start to `dest`, which a backward DP over the BFS layers decides.
 
+## Picture it
+
+Example 2: `edges = [[0,1],[0,2],[1,3],[2,3],[3,4],[5,6],[6,2]]`, `alice = 0`, `bob = 5`, `dest = 4`. Each label shows `da` (Alice's distance), `dd` (distance to dest) and `db` (Bob's distance).
+
+```mermaid
+flowchart LR
+    n0["0 start<br/>da 0 · dd 3 · db 3"] --- n1["1<br/>da 1 · dd 2 · db 4"]
+    n0 --- n2["2<br/>da 1 · dd 2 · db 2"]
+    n1 --- n3["3<br/>da 2 · dd 1 · db 3"]
+    n2 --- n3
+    n3 --- n4["4 dest<br/>da 3 · dd 0 · db 4"]
+    n2 --- n6["6<br/>da 2 · dd 3 · db 1"]
+    n6 --- n5["5 Bob<br/>da 3 · dd 4 · db 0"]
+```
+
+- **Part 1:** from 0, neighbours 1 and 2 both have `toDest = 2`; take the smaller, 1. Then 3, then 4. Path `[0,1,3,4]`.
+- **Part 2:** `da + dd == 3` holds for 0, 1, 2, 3, 4. Node 6 gives 2 + 3 = 5, so it is off every shortest path.
+- **Part 3:** layers by `da`, processed from `dest` backwards:
+
+| Layer d | Node | db > da? (safe) | Good neighbour one layer later? | good |
+|---|---|---|---|---|
+| 3 | 4 | 4 > 3 yes | it is `dest` | true |
+| 2 | 3 | 3 > 2 yes | 4 | true |
+| 1 | 1 | 4 > 1 yes | 3 | true |
+| 1 | 2 | 2 > 1 yes | 3 | true |
+| 0 | 0 | 3 > 0 yes | 1 (or 2) | true → `canEscape = true` |
+
+In Example 1 (edge 2–5 instead of 5–6–2) Bob is 3 steps from node 4 and so is Alice: `db = 3` is not > `da = 3`, so `dest` is unsafe, nothing is good, and the answer is false.
+
+**The picture in one sentence:** three BFS distance arrays turn "on a shortest path" into `da + dd == total` and "caught" into `db <= da`, and a backward pass over the layers finds a fully safe route.
+
 ## Approach
 
 - **Part 1, one shortest path:** BFS from `dest` to get `toDest[]`. From `alice`, repeatedly move to a neighbour with `toDest[w] == toDest[cur] - 1`. Choosing the **smallest** such neighbour at each step gives the lexicographically smallest path, because all shortest paths have the same length and the greedy choice decides the earliest differing position.

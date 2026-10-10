@@ -1,5 +1,23 @@
 **Short answer:** DP over (day, energy). Let `dp[e]` be the best distance after the days so far, ending with energy e. Each day, from every reachable e you can rest (go to `min(k, e + 1)`, distance unchanged) or, if e ≥ 1, move (go to e − 1, add `a[i]`). The answer is the max over all energies after the last day. O(n · k) time and O(k) space, which is 10⁷ steps at the limits.
 
+## Picture it
+
+Example 1: `a = [5,1,4,2]`, `k = 1`. `dp[e]` = best distance at the end of the day with energy `e` (`−` = unreachable). Start: `dp = [−, 0]` (full energy).
+
+| After day | a[i] | dp[0] (energy 0) | dp[1] (energy 1) | Where the values come from |
+|---|---|---|---|---|
+| start | — | − | 0 | start full |
+| 0 | 5 | 5 | 0 | dp[0] = move from e1 (0 + 5); dp[1] = rest at e1 (0) |
+| 1 | 1 | 1 | 5 | dp[0] = move from e1 (0 + 1); dp[1] = max(rest from e0 = 5, rest at e1 = 0) |
+| 2 | 4 | 9 | 5 | dp[0] = move from e1 (5 + 4); dp[1] = max(rest from e0 = 1, rest at e1 = 5) |
+| 3 | 2 | 7 | 9 | dp[0] = move from e1 (5 + 2); dp[1] = max(rest from e0 = 9, rest at e1 = 5) |
+
+Answer = max(7, 9) = 9: move, rest, move, rest.
+
+Each cell of a day depends only on the previous day: `next[min(k, e+1)]` ← `dp[e]` (rest) and `next[e−1]` ← `dp[e] + a[i]` (move).
+
+**The picture in one sentence:** energy has only k + 1 values, so carry the best distance for each energy level day by day instead of trying every move/rest pattern.
+
 ## Approach
 
 - **Brute force:** try all 2ⁿ move/rest patterns. Exponential.

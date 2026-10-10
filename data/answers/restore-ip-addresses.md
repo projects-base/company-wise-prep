@@ -1,5 +1,46 @@
 **Short answer:** Backtrack over where to place the three dots. Each part is 1 to 3 digits, its value is at most 255, and it has no leading zero unless it is exactly "0". Prune when the remaining digits cannot fill the remaining parts (fewer than one per part or more than three per part). There are at most 3⁴ = 81 splits, so the work is constant for any input.
 
+## Picture it
+
+Backtracking on `s = "10203"` (5 digits). Each node is the parts chosen so far; ✓ is a result, ✗ a cut branch:
+
+```mermaid
+flowchart TD
+    root["start"]
+    a["1"]
+    a0["1.0"]
+    a02["1.02 ✗ leading zero, break"]
+    a2["1.0.2"]
+    a20["1.0.2.0 ✗ a digit is left over"]
+    a20b["1.0.20"]
+    ok1["1.0.20.3 ✓"]
+    a203["1.0.203 ✗ no digits for the last part"]
+    b["10"]
+    b2["10.2"]
+    b20["10.20 ✗ 1 digit for 2 parts"]
+    b2a["10.2.0"]
+    ok2["10.2.0.3 ✓"]
+    c["102 ✗ 2 digits for 3 parts"]
+    root --> a
+    root --> b
+    root --> c
+    a --> a0
+    a --> a02
+    a0 --> a2
+    a0 --> a20b
+    a0 --> a203
+    a2 --> a20
+    a20b --> ok1
+    b --> b2
+    b --> b20
+    b2 --> b2a
+    b2a --> ok2
+```
+
+Results: "1.0.20.3" and "10.2.0.3". Other dead ends (such as "10.203" or "10.2.03") are cut the same way: by the `need ≤ left ≤ 3 · need` check or by the leading-zero `break`.
+
+**The picture in one sentence:** try a 1-, 2- or 3-digit part at each step, and cut a branch as soon as the part is invalid or the remaining digits cannot fill the remaining parts.
+
 ## Approach
 
 - **Brute force.** Three nested loops over the dot positions, validate the four parts. That is fine too: at most 81 combinations because each part is 1 to 3 digits.

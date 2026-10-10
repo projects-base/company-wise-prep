@@ -1,5 +1,25 @@
 **Short answer:** First pin down the grammar (here: `+`, `-`, unary minus, nested parentheses, no `*` or `/`). Then do one pass with a running `result` and the `sign` of the next term. On `(`, push the current `result` and `sign` onto a stack and start fresh. On `)`, pop them and fold the inner value back: `result = outerResult + outerSign * result`. Unary minus needs no special case — it is just `sign = -1` before a number or a group. O(n) time.
 
+## Picture it
+
+`s = "5-(2-(3+1))"` (expected 5 − (2 − 4) = 7). The stack is written bottom → top as `(result, sign)` pairs.
+
+| Step | Char | `result` | `sign` | Stack | Action |
+|---|---|---|---|---|---|
+| 1 | `5` | 5 | 1 | [] | add 1 × 5 |
+| 2 | `-` | 5 | -1 | [] | next term is negative |
+| 3 | `(` | 0 | 1 | [(5, -1)] | save outer level, start fresh |
+| 4 | `2` | 2 | 1 | [(5, -1)] | add 1 × 2 |
+| 5 | `-` | 2 | -1 | [(5, -1)] | next term is negative |
+| 6 | `(` | 0 | 1 | [(5, -1), (2, -1)] | save again, start fresh |
+| 7 | `3` `+` `1` | 4 | 1 | [(5, -1), (2, -1)] | 3 + 1 |
+| 8 | `)` | 2 + (-1) × 4 = -2 | 1 | [(5, -1)] | pop (2, -1) and fold |
+| 9 | `)` | 5 + (-1) × (-2) = 7 | 1 | [] | pop (5, -1) and fold |
+
+Answer **7**.
+
+**The picture in one sentence:** each `(` parks the outer running sum and the sign in front of the group on a stack, and each `)` folds the inner sum back with `outer + sign × inner`.
+
 ## Approach
 
 - **Clarify first** (the prompt is deliberately vague): which operators, is there unary minus, are there parentheses, can there be spaces, does it fit in `int`, is the input always valid? Settle these before coding.

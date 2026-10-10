@@ -1,5 +1,91 @@
 **Short answer:** Split the system into a pipeline: market data feed handler, order book per instrument, strategies, risk check, order manager and exchange gateway. Components talk through narrow listener interfaces (Observer): the feed publishes book updates to strategies, strategies emit order intents, and the gateway calls back with acks, fills and rejects. On the hot path, keep each instrument on one thread, avoid locks and allocation, and keep callbacks short and non-blocking.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class MarketDataHandler {
+        -Map~String,OrderBook~ books
+        -Map~String,List~ subscribers
+        +onQuote(String symbol, Side side, long priceTicks, long qty)
+    }
+    class OrderBook {
+        +update(Side side, long priceTicks, long qty)
+    }
+    class MarketDataListener {
+        <<interface>>
+        +onBookUpdate(OrderBook book)
+    }
+    class OrderListener {
+        <<interface>>
+        +onAck(Order o)
+        +onFill(Order o, Fill f)
+        +onReject(Order o, String reason)
+    }
+    class Strategy {
+        <<interface>>
+    }
+    class OrderManager {
+        -Map~Long,Order~ live
+        +submit(OrderIntent intent)
+        +onExchangeFill(Fill f)
+    }
+    class RiskManager {
+        +check(OrderIntent intent) String
+    }
+    class ExchangeGateway {
+        <<interface>>
+        +send(Order o)
+        +cancel(long orderId)
+    }
+    class Order {
+        +long id
+        +OrderStatus status
+        +long filled
+        +apply(Fill f)
+    }
+    class PositionKeeper
+    MarketDataHandler --> OrderBook
+    MarketDataHandler --> "*" MarketDataListener : notifies
+    MarketDataListener <|-- Strategy
+    OrderListener <|-- Strategy
+    OrderListener <|.. PositionKeeper
+    Strategy ..> OrderManager : submit intents
+    OrderManager --> RiskManager
+    OrderManager --> ExchangeGateway
+    OrderManager "1" *-- "*" Order
+    OrderManager --> "*" OrderListener : fill observers
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant F as Feed
+    participant M as MarketDataHandler
+    participant S as Strategy
+    participant O as OrderManager
+    participant R as RiskManager
+    participant G as ExchangeGateway
+    participant P as PositionKeeper
+    F->>M: onQuote(symbol, side, price, qty)
+    M->>M: book.update(...)
+    M->>S: onBookUpdate(book)
+    S->>O: submit(OrderIntent)
+    O->>R: check(intent)
+    R-->>O: null means OK
+    O->>G: send(order)
+    G-->>O: onExchangeFill(fill) later, async
+    O->>O: order.apply(fill)
+    O->>S: onFill(order, fill)
+    O->>P: onFill(order, fill)
+```
+
+**How to read it:**
+- Data flows one way: feed into `MarketDataHandler`, which updates the `OrderBook` and notifies the `MarketDataListener`s (the strategies).
+- A `Strategy` is both a market-data listener and an order listener. It never holds the gateway. It hands an `OrderIntent` to `OrderManager`.
+- `OrderManager` runs the synchronous `RiskManager.check` and only then calls `ExchangeGateway.send`. So risk cannot be bypassed.
+- Fills come back asynchronously. `OrderManager` updates the `Order` state and fans the fill out to the owning strategy and to observers such as `PositionKeeper`.
+
 ## Requirements
 
 - Receive market data (quotes, trades) for many instruments and keep a local order book.

@@ -1,5 +1,35 @@
 **Short answer:** This is a classic DP. `dp[i][j]` is the edit distance between the first `i` characters of `word1` and the first `j` characters of `word2`. If the last characters match, `dp[i][j] = dp[i−1][j−1]`. Otherwise it is `1 + min(replace dp[i−1][j−1], delete dp[i−1][j], insert dp[i][j−1])`. The base cases are `dp[i][0] = i` and `dp[0][j] = j`. It runs in O(m·n) time and O(n) space with two rows.
 
+## Picture it
+
+`word1 = "horse"` (rows), `word2 = "ros"` (columns). The filled table:
+
+| dp | "" | r | o | s |
+|---|---|---|---|---|
+| "" | 0 | 1 | 2 | 3 |
+| h | 1 | 1 | 2 | 3 |
+| o | 2 | 2 | **1** | 2 |
+| r | 3 | **2** | 2 | 2 |
+| s | 4 | 3 | 3 | **2** |
+| e | 5 | 4 | 4 | **3** |
+
+Each cell depends on three neighbours: diagonal up-left (replace, or free when the letters match), up (delete) and left (insert).
+
+```mermaid
+flowchart LR
+    diag["dp i-1, j-1<br/>replace or match"] --> cell["dp i, j"]
+    up["dp i-1, j<br/>delete"] --> cell
+    left["dp i, j-1<br/>insert"] --> cell
+```
+
+A few cells worked out:
+- `dp[o][o] = 1`: the letters match, so copy the diagonal `dp[h][r] = 1`.
+- `dp[r][r] = 2`: match, copy the diagonal `dp[o][""] = 2`.
+- `dp[s][s] = 2`: match, copy the diagonal `dp[r][o] = 2`.
+- `dp[e][s] = 3`: `e ≠ s`, so 1 + min(diag 3, up 2, left 4) = 3. That is a delete of `e` after `dp[s][s]`.
+
+**The picture in one sentence:** every cell is "free if the last letters match, otherwise one edit plus the cheapest of its three neighbours", so the bottom-right corner is the answer.
+
 ## Approach
 
 - **Brute force:** recurse on the last characters, and try all three edits when they differ. That branches three ways at each step, roughly O(3^(m+n)).

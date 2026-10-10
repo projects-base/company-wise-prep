@@ -1,5 +1,33 @@
 **Short answer:** Work backwards from the princess. Let `need[i][j]` be the minimum health the knight must have when he enters room `(i, j)` and still finishes alive. Then `need[i][j] = max(1, min(need of right, need of down) − dungeon[i][j])`. In the princess's room, the "next" requirement is 1. The answer is `need[0][0]`. This is O(m·n) time and O(n) space with a rolling row.
 
+## Picture it
+
+Example 1: `dungeon = [[-2,-3,3],[-5,-10,1],[10,30,-5]]`. The filled `need` table (filled from the bottom-right corner, row by row, right to left):
+
+| need | col 0 | col 1 | col 2 |
+|---|---|---|---|
+| row 0 | **7** | 5 | 2 |
+| row 1 | 6 | 11 | 5 |
+| row 2 | 1 | 1 | 6 |
+
+Each cell depends on the cell to its right and the cell below it: `max(1, min(right, down) − dungeon[i][j])`.
+
+| Order | Cell | `min(right, down)` | − dungeon | `need` |
+|---|---|---|---|---|
+| 1 | (2,2) princess | 1 (fixed) | 1 + 5 = 6 | 6 |
+| 2 | (2,1) | 6 (right) | 6 − 30 = -24 | 1 |
+| 3 | (2,0) | 1 (right) | 1 − 10 = -9 | 1 |
+| 4 | (1,2) | 6 (down) | 6 − 1 = 5 | 5 |
+| 5 | (1,1) | min(5, 1) = 1 | 1 + 10 = 11 | 11 |
+| 6 | (1,0) | min(11, 1) = 1 | 1 + 5 = 6 | 6 |
+| 7 | (0,2) | 5 (down) | 5 − 3 = 2 | 2 |
+| 8 | (0,1) | min(2, 11) = 2 | 2 + 3 = 5 | 5 |
+| 9 | (0,0) | min(5, 6) = 5 | 5 + 2 = 7 | **7** |
+
+The `max(1, …)` clamp is what stops the big potion at (2,1) from "lending" health to rooms earlier on the path.
+
+**The picture in one sentence:** going backwards, each room needs just "the cheaper next room's requirement minus this room's value, but at least 1".
+
 ## Approach
 
 - **Brute force:** try every right/down path, simulate the health along it, and keep the smallest requirement. There are C(m+n−2, m−1) paths, so this is exponential.

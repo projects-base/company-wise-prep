@@ -1,5 +1,29 @@
 **Short answer:** "Similar" is transitive, so the similar movies are the connected component containing `movie`. BFS from `movie` over the undirected similarity graph, and push every other movie in the component into a size-k min-heap ordered worst-first (lower rating, then larger label). Sort the k survivors best-first at the end. O(n + e + c log k), where c is the component size.
 
+## Picture it
+
+`ratings = [6,7,9,4,8,5]`, `similar = [[0,1],[1,2],[0,5],[3,4]]`, `movie = 0`, `k = 2` (answer `[2,1]`). The BFS from 0 only ever sees its own component; 3 and 4 are never touched.
+
+```mermaid
+flowchart LR
+    m0["0 (r=6) query, BFS 1st"] --- m1["1 (r=7) BFS 2nd"]
+    m1 --- m2["2 (r=9) BFS 4th"]
+    m0 --- m5["5 (r=5) BFS 3rd"]
+    m3["3 (r=4)"] --- m4["4 (r=8)"]
+```
+
+| poll | to heap? | heap (worst first) | evict | enqueue |
+|---|---|---|---|---|
+| 0 | no, it is the query | | | 1, 5 |
+| 1 | yes | 1(7) | | 2 |
+| 5 | yes | 5(5), 1(7) | | |
+| 2 | yes | 5(5), 1(7), 2(9) | 5 (size 3 > k) | |
+| end | sort with `better` | | | **[2, 1]** |
+
+Movie 4 is rated 8, higher than movie 1, but it is in another component, so it is not similar.
+
+**The picture in one sentence:** similarity is transitive, so the candidates are exactly the BFS component, and a size-k heap keeps the best k as they stream out of the BFS.
+
 ## Approach
 
 - **Brute force.** BFS to collect the component, sort it by rating: O(n + e + c log c). Fine to state first.

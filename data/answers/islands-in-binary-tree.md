@@ -1,5 +1,33 @@
 **Short answer:** Every island has exactly one topmost node: a land node whose parent is missing or is water. So you do not need flood fill at all. Traverse the tree once, passing each node's parent along, and count land nodes whose parent is null or 0. Use an explicit stack because the tree can be a 10⁵-deep chain.
 
+## Picture it
+
+Example 1: `root = [1,1,0,0,1,1,1]`. Each label shows the value, the stack visit order and whether the node is the top of an island (land with a null or water parent).
+
+```mermaid
+flowchart TD
+    r["1 · visit 1 · top (no parent)"] --> L["1 · visit 5 · parent is land"]
+    r --> R["0 · visit 2 · water"]
+    L --> LL["0 · visit 7 · water"]
+    L --> LR["1 · visit 6 · parent is land"]
+    R --> RL["1 · visit 4 · top (parent water)"]
+    R --> RR["1 · visit 3 · top (parent water)"]
+```
+
+| Visit | Node | Parent value | Counted? | islands |
+|---|---|---|---|---|
+| 1 | root (1) | none | yes | 1 |
+| 2 | right (0) | 1 | water | 1 |
+| 3 | right.right (1) | 0 | yes | 2 |
+| 4 | right.left (1) | 0 | yes | 3 |
+| 5 | left (1) | 1 | no, same island as root | 3 |
+| 6 | left.right (1) | 1 | no, same island as root | 3 |
+| 7 | left.left (0) | 1 | water | 3 |
+
+The right child is pushed last, so it is popped first; the order does not change the count.
+
+**The picture in one sentence:** every island has exactly one highest node, so count land nodes whose parent is missing or water and skip flood fill entirely.
+
 ## Approach
 
 - **Brute force:** treat the tree as a graph, keep a visited set, and flood-fill from each unvisited land node (going to children and to the parent). Works, but needs parent pointers or a map, and extra memory.

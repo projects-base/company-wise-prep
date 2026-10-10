@@ -1,5 +1,24 @@
 **Short answer:** Keep a count per number and a FIFO queue of numbers in the order they first arrived. `add` bumps the count and enqueues the number only on its first arrival. `showFirstUnique` lazily pops queue heads whose count is now above 1, then returns the head. Each number is enqueued once and dequeued at most once, so both operations are O(1) amortised.
 
+## Picture it
+
+Example 1: start with `[2, 3, 5]`, then add 5, 2, 3, asking for the first unique number between adds.
+
+| Call | count after | queue (head on the left) | Lazy pops | Returns |
+|---|---|---|---|---|
+| constructor [2,3,5] | 2:1, 3:1, 5:1 | [2, 3, 5] | — | — |
+| showFirstUnique | same | [2, 3, 5] | none (count[2] = 1) | 2 |
+| add(5) | 5:2 | [2, 3, 5] (not re-queued) | — | — |
+| showFirstUnique | same | [2, 3, 5] | none | 2 |
+| add(2) | 2:2 | [2, 3, 5] | — | — |
+| showFirstUnique | same | [3, 5] | pop 2 (count 2) | 3 |
+| add(3) | 3:2 | [3, 5] | — | — |
+| showFirstUnique | same | [] | pop 3, pop 5 | -1 |
+
+5 became a duplicate early but stayed in the queue until it reached the head. That is the lazy part.
+
+**The picture in one sentence:** a queue of first arrivals plus counts, where stale heads are thrown away only when they block the answer, and a duplicate can never come back.
+
 ## Approach
 
 - **Brute force:** keep the full arrival list and, on every query, scan it for the first number with count 1. O(n) per query.

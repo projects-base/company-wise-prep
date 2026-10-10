@@ -1,5 +1,100 @@
 **Short answer:** Split it into three parts. A `Schedule` (one-time, fixed rate, cron) answers "when is the next run?". A `Workflow` is a DAG of `TaskDef`s, validated for cycles when it is registered. A `WorkflowRun` executes one firing: every task keeps a counter of unfinished parents, roots go to a worker pool, and when a task finishes it decrements its children and submits any that reach zero. A single timer thread fires runs and the worker pool does the work, so a slow task never delays the clock.
 
+## Picture it
+
+```mermaid
+classDiagram
+    class Schedule {
+        <<interface>>
+        +nextAfter(Instant t) Optional~Instant~
+    }
+    class Once {
+        <<record>>
+        Instant at
+    }
+    class FixedRate {
+        <<record>>
+        Instant start
+        Duration every
+    }
+    class CronSchedule
+    class TaskDef {
+        <<record>>
+        String id
+        Runnable action
+        Set~String~ dependsOn
+        int maxRetries
+    }
+    class Workflow {
+        Map~String, TaskDef~ tasks
+        Map~String, List~String~~ children
+        -requireAcyclic()
+    }
+    class WorkflowRun {
+        -Map~String, AtomicInteger~ remainingParents
+        -Map~String, Status~ status
+        -AtomicInteger unfinished
+        +start() CompletableFuture
+        -submit(TaskDef d)
+        -skipDescendants(String failedId)
+    }
+    class Scheduler {
+        -ScheduledExecutorService timer
+        -ExecutorService workers
+        +register(Workflow wf, Schedule schedule)
+    }
+    class RunListener {
+        <<interface>>
+        +onStatus(String runId, String taskId, Status s)
+    }
+    class Status {
+        <<enumeration>>
+        PENDING
+        RUNNING
+        SUCCEEDED
+        FAILED
+        UPSTREAM_FAILED
+    }
+    Schedule <|.. Once
+    Schedule <|.. FixedRate
+    Schedule <|.. CronSchedule
+    Workflow "1" *-- "many" TaskDef
+    Scheduler ..> Schedule : asks next firing
+    Scheduler ..> WorkflowRun : creates per firing
+    WorkflowRun --> Workflow
+    WorkflowRun --> RunListener : notifies
+    WorkflowRun --> Status
+```
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant T as Timer thread
+    participant R as WorkflowRun
+    participant W as Worker pool
+    participant L as RunListener
+    Note over R: DAG A then B and C, both then D
+    T->>R: new WorkflowRun(...).start()
+    T->>T: schedule next firing from Schedule.nextAfter
+    R->>W: submit A (no parents)
+    W->>L: A RUNNING, then SUCCEEDED
+    W->>R: decrement B and C to 0
+    R->>W: submit B and C in parallel
+    W->>R: B done, D counter 2 to 1
+    W->>R: C done, D counter 1 to 0
+    R->>W: submit D
+    W->>R: D done, unfinished hits 0
+    R-->>T: CompletableFuture completes with all statuses
+    Note over R,W: If a task fails after retries, its descendants become UPSTREAM_FAILED
+```
+
+**How to read it:**
+- `Schedule` answers only "when next?"; `Scheduler`'s single timer thread uses it to fire runs, then books the next firing.
+- `Workflow` is the checked DAG of `TaskDef`s; each firing gets a fresh `WorkflowRun` with its own counters and statuses.
+- Every task has a counter of unfinished parents; tasks with none start first on the worker pool.
+- A finishing task decrements its children, and the one that hits zero submits the child, so each task runs exactly once.
+- A failure marks every descendant `UPSTREAM_FAILED`; the run's future completes when the last task is terminal.
+
 ## Requirements
 
 - Register a task or a workflow with a schedule: run once at time T, every N seconds, or on a cron expression.

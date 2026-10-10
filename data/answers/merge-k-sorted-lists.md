@@ -1,5 +1,24 @@
 **Short answer:** Put the head of every non-empty list in a min-heap ordered by value. Repeatedly poll the smallest node, append it to the result, and push its `next` if there is one. The heap never holds more than k nodes, so each of the N nodes costs O(log k): O(N log k) total. Divide and conquer (merge lists in pairs, round after round) has the same bound.
 
+## Picture it
+
+Example 1: lists A = 1→4→5, B = 1→3→4, C = 2→6. The heap always holds at most one node per list.
+
+| Step | Heap (value·list) | Poll | Push its next | Output so far |
+|---|---|---|---|---|
+| 1 | 1·A, 1·B, 2·C | 1·A | 4·A | 1 |
+| 2 | 1·B, 2·C, 4·A | 1·B | 3·B | 1 1 |
+| 3 | 2·C, 3·B, 4·A | 2·C | 6·C | 1 1 2 |
+| 4 | 3·B, 4·A, 6·C | 3·B | 4·B | 1 1 2 3 |
+| 5 | 4·A, 4·B, 6·C | 4·A | 5·A | 1 1 2 3 4 |
+| 6 | 4·B, 5·A, 6·C | 4·B | none (B done) | 1 1 2 3 4 4 |
+| 7 | 5·A, 6·C | 5·A | none (A done) | 1 1 2 3 4 4 5 |
+| 8 | 6·C | 6·C | none (C done) | 1 1 2 3 4 4 5 6 |
+
+Equal values (the two 1s, the two 4s) may come out in either order; the output is the same.
+
+**The picture in one sentence:** the next output node is always the smallest of the k current heads, and a min-heap of size k hands it over in O(log k).
+
 ## Approach
 
 - **Brute force:** collect all values, sort, rebuild a list. O(N log N) time and O(N) extra space.

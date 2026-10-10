@@ -1,5 +1,63 @@
 **Short answer:** I would build it like Kafka: a topic is split into partitions, and each partition is an append-only log replicated across several brokers with one leader. Producers pick a partition by hashing the message key, so all messages for one key stay in order. Consumers in a group split the partitions between them and track their position as a committed offset. Durability comes from replication (acknowledge a write only after enough replicas have it), and scale comes from adding partitions and brokers.
 
+## Picture it
+
+```mermaid
+flowchart LR
+  subgraph producers["Producers"]
+    p["Producer<br/>hash(key) % P"]
+  end
+  subgraph cluster["Broker cluster"]
+    b1["Broker 1<br/>P0 leader"]
+    b2["Broker 2<br/>P1 leader"]
+    b3["Broker 3<br/>P2 leader"]
+    ctl["Controller quorum<br/>metadata, leader election"]
+  end
+  subgraph g1["Group settlement"]
+    c1["C1: P0, P1"]
+    c2["C2: P2"]
+  end
+  subgraph g2["Group analytics"]
+    c3["C3: P0, P1, P2"]
+  end
+  p --> b1
+  p --> b2
+  p --> b3
+  b1 <-->|"followers fetch"| b2
+  b2 <-->|"followers fetch"| b3
+  ctl --- b1
+  b1 --> c1
+  b2 --> c1
+  b3 --> c2
+  b1 --> c3
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant P as Producer
+  participant L as P0 leader (Broker 1)
+  participant F as P0 follower (Broker 2)
+  participant C as Consumer C1
+  participant DB as Consumer DB
+  P->>L: produce(key=bet42, acks=all)
+  L->>L: append to log at offset 100
+  F->>L: fetch from offset 100
+  L-->>F: record 100
+  L-->>P: ack (partition 0, offset 100) once ISR has it
+  C->>L: poll from committed offset 100
+  L-->>C: record 100
+  C->>DB: insert message_id + side effect (one transaction)
+  C->>L: commit offset 101
+  Note over C,DB: if C crashes before commit, the record is redelivered and the unique message_id skips it
+```
+
+**How to read it:**
+- The producer hashes the message key to a partition, so all events for one bet or account land in one partition and stay in order.
+- Steps 1–5: the leader appends the record; followers pull it; with `acks=all` the producer gets its ack only when every in-sync replica has the record, so one broker can die without losing it.
+- Steps 6–9: a consumer polls from its group's committed offset, does the side effect together with an insert of the message ID in one database transaction, then commits the next offset. This is at-least-once delivery made safe by an idempotent consumer.
+- Each partition is read by one consumer per group; different groups (settlement, analytics) keep independent offsets. The controller elects a new leader from the ISR when a broker fails.
+
 ## Requirements
 
 **Functional**
@@ -37,17 +95,7 @@ createTopic(name, partitions, replicationFactor, retention)
 
 ## Architecture
 
-```text
- Producers ──hash(key) % P──►  Broker 1 [P0 leader, P1 follower, P2 follower]
-                               Broker 2 [P1 leader, P2 follower, P0 follower]
-                               Broker 3 [P2 leader, P0 follower, P1 follower]
-                                     ▲          │ followers fetch from leaders
-                                     │          ▼
-                         Controller quorum (metadata, leader election)
-
- Consumer group "settlement":   C1 ◄─ P0, P1     C2 ◄─ P2
- Consumer group "analytics":    C3 ◄─ P0, P1, P2      (independent offsets)
-```
+The diagram in **Picture it** above shows the components.
 
 - **Producers** batch and compress records per partition, then send to the partition leader.
 - **Brokers** append to the log (sequential disk writes and the OS page cache make this fast) and serve reads with zero-copy `sendfile`.

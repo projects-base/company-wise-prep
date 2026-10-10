@@ -1,5 +1,18 @@
 **Short answer:** A permutation of `s1` is any window of `s2` with length `|s1|` and the same letter counts. Slide a fixed-size window over `s2`, keeping a 26-entry count difference between `s1` and the window. Track how many letters are out of balance, so each step is O(1). Total time O(|s1| + |s2|), space O(1).
 
+## Picture it
+
+Example 1: `s1 = "ab"`, `s2 = "eidbaooo"`, window length 2. `diff = count in s1 − count in window` (only non-zero letters shown).
+
+| Step | Window | Enters | Leaves | Non-zero diffs after | nonZero |
+|---|---|---|---|---|---|
+| init | "ei" | — | — | a +1, b +1, e −1, i −1 | 4 |
+| i = 2 | "id" | d | e | a +1, b +1, i −1, d −1 | 4 |
+| i = 3 | "db" | b | i | a +1, d −1 | 2 |
+| i = 4 | "ba" | a | d | none | 0 → true |
+
+**The picture in one sentence:** a window is a permutation of s1 when all letter-count differences are zero, and sliding by one changes just two counts, so track how many are non-zero.
+
 ## Approach
 
 - **Brute force (the red flag).** Generate all permutations of `s1` and search for each in `s2`. That is O(|s1|!) and fails immediately. Interviewers expect you to reject it out loud.
