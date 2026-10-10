@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
-import { CheckCircle2, Eye, Loader2, Play, RotateCcw, Send, XCircle } from 'lucide-react'
+import { CheckCircle2, Eye, Loader2, Maximize2, Minimize2, Play, RotateCcw, Send, XCircle } from 'lucide-react'
 import { api, type Challenge, type JudgeResult, type Verdict } from '../api'
 import CodeEditor from './CodeEditor'
+import { Splitter, clamp, useStoredSize } from './Splitter'
 import { LOCAL_ONLY_NOTE, useFeatures } from '../features'
 
 export const VERDICT_LABEL: Record<Verdict, string> = {
@@ -80,8 +81,22 @@ export default function Workspace({
     setSolution((await api.solution(challenge.slug)).code)
   }
 
+  // Desktop layout: drag the bars to resize; sizes are remembered. "Expand" gives the editor the
+  // whole workspace.
+  const wsRef = useRef<HTMLDivElement>(null)
+  const [left, setLeft] = useStoredSize('ws.left')
+  const [bottom, setBottom] = useStoredSize('ws.console')
+  const [expanded, setExpanded] = useState(false)
+  const rect = () => wsRef.current!.getBoundingClientRect()
+  const style = {
+    ...(left ? { '--ws-left': `${left}px` } : {}),
+    ...(bottom ? { '--ws-console': `${bottom}px` } : {}),
+  } as CSSProperties
+
   return (
-    <div className="ws">
+    <div className={`ws ${expanded ? 'ws-expanded' : ''}`} ref={wsRef} style={style}>
+      <Splitter axis="x" area="vsplit" onDrag={(x) => setLeft(clamp(x - rect().left, 280, rect().width - 380))} onReset={() => setLeft(null)} />
+      <Splitter axis="y" area="hsplit" onDrag={(y) => setBottom(clamp(rect().bottom - y, 90, rect().height - 160))} onReset={() => setBottom(null)} />
       <div className="ws-tabs" role="tablist">
         {(['problem', 'code', 'console'] as Pane[]).map((p) => (
           <button key={p} role="tab" aria-selected={pane === p} onClick={() => setPane(p)}>
@@ -118,6 +133,13 @@ export default function Workspace({
           </button>
           <button className="btn sm ghost" onClick={showSolution} title="Show the reference solution">
             <Eye size={14} /> {solution ? 'Hide solution' : 'Solution'}
+          </button>
+          <button
+            className="btn sm ghost ws-expand"
+            onClick={() => setExpanded((v) => !v)}
+            title={expanded ? 'Back to the problem and results' : 'Give the editor the whole workspace'}
+          >
+            {expanded ? <Minimize2 size={14} /> : <Maximize2 size={14} />} {expanded ? 'Restore' : 'Expand'}
           </button>
         </div>
         <div className="ws-editor">

@@ -28,8 +28,28 @@ Then, by question type:
 | JAVA, SPRING, DOMAIN, SQL | `## Explanation` (how it works, the why) · `## Example` (small code or query) · `## Pitfalls and follow-ups` (what interviewers dig into next, with one-line answers) | 250–600 words |
 | DSA | `## Approach` (brute force → the key insight → optimal) · `## Solution` (Java 21, clean and complete) · `## Complexity` (time and space, with the reason) · `## Edge cases` · `## Variations` (optional) | 200–500 words plus code |
 | LLD | `## Requirements` (assumed scope) · `## Classes` (responsibilities, relationships) · `## Patterns used` (and why) · `## Code` (the core types and the one or two key methods, Java) · `## Extensions` (concurrency, new features) | 400–900 words |
-| HLD | `## Requirements` (functional, non-functional) · `## Estimates` (rough numbers) · `## API` · `## Data model` · `## Architecture` (components, a `text` diagram) · `## Deep dives` (2–3 hardest parts) · `## Trade-offs` · `## Follow-ups` | 600–1200 words |
+| HLD | `## Requirements` (functional, non-functional) · `## Estimates` (rough numbers) · `## API` · `## Data model` · `## Architecture` (components; the picture is in `## Picture it`) · `## Deep dives` (2–3 hardest parts) · `## Trade-offs` · `## Follow-ups` | 600–1200 words |
 | BEHAVIORAL | `## What they are checking` · `## Structure` (STAR or similar) · `## Template` (a fill-in answer with `[placeholders]`) · `## Mistakes to avoid` | 200–450 words |
+
+## Picture it (diagrams)
+
+HLD, LLD and medium/hard DSA answers carry a `## Picture it` section **right after the short
+answer**, so the shape of the solution is seen before it is read. The app draws ` ```mermaid `
+fences as diagrams (Answer, Academy and dossier pages). Keep each diagram small enough to take in at
+a glance (about 15 nodes at most); two or three small diagrams beat one crowded one.
+
+| Type | What goes in `## Picture it` |
+|---|---|
+| HLD | 1) The architecture as a `flowchart LR` with `subgraph`s (clients · edge · services · async · storage); stores as `[(name)]`, queues as `[[name]]`. 2) A `sequenceDiagram` of the one request path that matters most (e.g. "shorten, then redirect"), with `autonumber`. 3) Optional: the hardest deep dive as its own picture (a `stateDiagram-v2` for a payment/booking lifecycle, a flowchart for sharding or fan-out). Then `**How to read it:**` with 3–5 bullets that walk the numbered flow in plain words. The `text` diagram in `## Architecture` is replaced by a one-line pointer to the picture; the prose there stays. |
+| LLD | 1) A `classDiagram` of the core types and their relationships (inheritance, composition, the interfaces the patterns hinge on), key methods only. 2) A `sequenceDiagram` (or `stateDiagram-v2`) of the main use case. Then `**How to read it:**` bullets. |
+| DSA (medium, hard) | Show the idea working on a small example: a step-by-step **trace table** (one row per step: pointers/window/stack/queue/DP cell, the state, what happens) and/or a mermaid picture when the data has a shape (a tree or graph as `flowchart TD`, a recursion/backtracking tree, a DP dependency, a state machine). For DP, show the filled table. End with `**The picture in one sentence:**` naming the trick. |
+
+Mermaid rules (so every diagram parses; `cd frontend && node scripts/check-diagrams.mjs` checks them all):
+- Quote any label with punctuation: `A["Cache (Redis)"]`, `B -->|"200 OK"| C`. Line breaks with `<br/>`; no other HTML.
+- Node ids are plain words (`api`, `db1`); never use `end`, `graph` or `subgraph` as an id.
+- No colours, `style` or `classDef`: the app themes diagrams for light and dark mode.
+- In `sequenceDiagram` messages avoid `;` and `#`; use `Note over A,B: text` for asides.
+- In `classDiagram`, generics use `~`: `List~Order~`.
 
 ## Rules
 

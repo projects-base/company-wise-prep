@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
+import { MdPre } from '../Diagram'
 import remarkGfm from 'remark-gfm'
 import { ArrowRight, ExternalLink, Info } from 'lucide-react'
 import { api } from '../api'
@@ -56,7 +57,7 @@ export default function CompanyPage() {
 
       {tab === 'strategy' && (
         <div className="prose">
-          <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink }}>
+          <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink, pre: MdPre }}>
             {(c.dossier || '_No dossier yet._').replace(/^# .*\n/, '')}
           </Markdown>
         </div>

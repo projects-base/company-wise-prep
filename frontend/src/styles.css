@@ -107,6 +107,20 @@ code, pre, kbd { font-variant-ligatures: none; font-family: 'Cascadia Code', 'Je
 .nav a:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
 .nav a.active { background: var(--accent-soft); color: var(--accent); }
 .nav svg { flex-shrink: 0; }
+.nav-toggle {
+  margin-left: auto; display: grid; place-items: center; width: 28px; height: 28px; padding: 0;
+  border: 0; border-radius: 7px; background: none; color: var(--text-3); cursor: pointer;
+}
+.nav-toggle:hover { background: var(--surface-2); color: var(--text); }
+/* Collapsed menu: icons only, so pages (and the code workspace) get the width. */
+@media (min-width: 761px) {
+  .shell.nav-collapsed { --sidebar: 64px; }
+  .nav-collapsed .sidebar { padding: 20px 10px; }
+  .nav-collapsed .brand { flex-direction: column; gap: 12px; padding: 4px 0 18px; }
+  .nav-collapsed .nav-toggle { margin-left: 0; }
+  .nav-collapsed .brand-name, .nav-collapsed .nav a span, .nav-collapsed .sidebar-foot { display: none; }
+  .nav-collapsed .nav a { justify-content: center; padding: 9px 0; }
+}
 .sidebar-foot { margin-top: auto; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--sunken); }
 .sidebar-foot .eyebrow { margin-bottom: 4px; }
 .sidebar-foot .big { font-size: 1.6rem; font-weight: 650; letter-spacing: -0.02em; line-height: 1.1; }
@@ -397,7 +411,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
     padding: 10px 12px; border-right: 0; border-bottom: 1px solid var(--line); overflow-x: auto;
   }
   .brand { padding: 0 6px 0 0; }
-  .brand-name, .sidebar-foot { display: none; }
+  .brand-name, .sidebar-foot, .nav-toggle { display: none; }
   .nav { flex-direction: row; }
   .nav a { padding: 7px 10px; }
   .nav a span { display: none; }
@@ -421,11 +435,21 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { animation: spin 0.9s linear infinite; }
 .ws {
-  display: grid; gap: 12px; height: calc(100vh - 32px);
-  grid-template-columns: minmax(340px, 42fr) minmax(0, 58fr);
-  grid-template-rows: minmax(0, 1fr) minmax(220px, 38%);
-  grid-template-areas: 'problem code' 'problem console';
+  display: grid; gap: 0; height: calc(100vh - 32px);
+  grid-template-columns: var(--ws-left, minmax(340px, 42fr)) 12px minmax(0, 58fr);
+  grid-template-rows: minmax(0, 1fr) 12px var(--ws-console, minmax(220px, 38%));
+  grid-template-areas: 'problem vsplit code' 'problem vsplit hsplit' 'problem vsplit console';
 }
+/* "Expand": the problem pane steps aside, the editor and results take the full width. */
+.ws.ws-expanded { grid-template-columns: 0 0 minmax(0, 1fr); }
+.ws.ws-expanded .ws-problem, .ws.ws-expanded .splitter-x { display: none; }
+.splitter { position: relative; touch-action: none; }
+.splitter::after { content: ''; position: absolute; border-radius: 2px; background: var(--line-strong); opacity: 0; transition: opacity 0.15s; }
+.splitter:hover::after, .splitter.dragging::after { opacity: 1; background: var(--accent); }
+.splitter-x { cursor: col-resize; }
+.splitter-x::after { top: 0; bottom: 0; left: 5px; width: 2px; }
+.splitter-y { cursor: row-resize; }
+.splitter-y::after { left: 0; right: 0; top: 5px; height: 2px; }
 .ws-tabs { display: none; }
 .ws-problem, .ws-code, .ws-console { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-height: 0; }
 .ws-problem { grid-area: problem; overflow: auto; padding: 18px 22px 28px; }
@@ -497,6 +521,7 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
   .ws-tabs { display: flex; gap: 4px; padding: 4px; background: var(--surface-2); border-radius: 10px; position: sticky; top: 60px; z-index: 5; }
   .ws-tabs button { flex: 1; }
   .ws-problem, .ws-code, .ws-console { display: none; }
+  .splitter, .ws-expand { display: none; }
   .ws-problem.show { display: block; }
   .ws-console.show { display: flex; min-height: 50vh; }
   .ws-code.show { display: flex; height: calc(100vh - 150px); min-height: 420px; }
@@ -529,3 +554,9 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 .answer-hidden { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .answer-note { font-size: 0.8rem; margin-top: 18px; }
 .ws-details .answer { padding-top: 8px; }
+
+/* Mermaid diagrams in answers and lessons */
+.diagram { margin: 1.1em 0; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow-x: auto; text-align: center; }
+.diagram svg { max-width: 100%; height: auto; }
+.diagram.loading { font-size: 0.85rem; padding: 24px; }
+.diagram-fallback { white-space: pre; }

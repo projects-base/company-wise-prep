@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
-import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library } from 'lucide-react'
+import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import LoginPage from './pages/LoginPage'
 import { FeaturesContext } from './features'
@@ -42,6 +42,23 @@ export default function App() {
   // 'checking' until the server says whether a login is needed (only on the hosted app).
   const [auth, setAuth] = useState<'checking' | 'login' | 'ok' | 'down'>('checking')
   const [codeRunner, setCodeRunner] = useState(true)
+  const [navCollapsed, setNavCollapsed] = useState(() => {
+    try {
+      return localStorage.getItem('nav.collapsed') === '1'
+    } catch {
+      return false
+    }
+  })
+  const toggleNav = () => {
+    setNavCollapsed((v) => {
+      try {
+        localStorage.setItem('nav.collapsed', v ? '0' : '1')
+      } catch {
+        /* not remembered in a private window */
+      }
+      return !v
+    })
+  }
 
   useEffect(() => {
     api
@@ -94,11 +111,19 @@ export default function App() {
   return (
     <FeaturesContext.Provider value={{ codeRunner }}>
     <CampaignContext.Provider value={campaign}>
-      <div className="shell">
+      <div className={`shell ${navCollapsed ? 'nav-collapsed' : ''}`}>
         <aside className="sidebar">
           <div className="brand">
             <span className="brand-mark">CW</span>
             <span className="brand-name">CompanyWisePrep</span>
+            <button
+              className="nav-toggle"
+              onClick={toggleNav}
+              title={navCollapsed ? 'Expand the menu' : 'Collapse the menu'}
+              aria-label={navCollapsed ? 'Expand the menu' : 'Collapse the menu'}
+            >
+              {navCollapsed ? <PanelLeftOpen size={17} /> : <PanelLeftClose size={17} />}
+            </button>
           </div>
           <nav className="nav" aria-label="Main">
             {NAV.filter((n) => codeRunner || n.to !== '/playground').map(({ to, label, icon: Icon, end }) => (

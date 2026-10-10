@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Check, ExternalLink, Eye, Star } from 'lucide-react'
 import Markdown from 'react-markdown'
+import { MdPre } from '../Diagram'
 import remarkGfm from 'remark-gfm'
 import { api, leetcodeUrl, type Action, type Challenge } from '../api'
 import Workspace from '../code/Workspace'
@@ -307,7 +308,7 @@ function Answer({ text }: { text: string }) {
 function AnswerBody({ text }: { text: string }) {
   return (
     <div className="prose answer">
-      <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink }}>
+      <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink, pre: MdPre }}>
         {text}
       </Markdown>
       <p className="muted answer-note">Written by Claude. Check anything version-specific against the official docs.</p>

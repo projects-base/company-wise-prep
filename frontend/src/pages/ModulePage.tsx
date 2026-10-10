@@ -1,6 +1,7 @@
 import { Children, isValidElement, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
+import { Diagram, mermaidSource } from '../Diagram'
 import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, Play } from 'lucide-react'
 import { api, type Ref } from '../api'
@@ -97,6 +98,8 @@ export default function ModulePage() {
               components={{
                 h2: ({ children }) => <h2 id={slugify(textOf(children))}>{children}</h2>,
                 pre: ({ children }) => {
+                  const diagram = mermaidSource(children)
+                  if (diagram !== null) return <Diagram source={diagram} />
                   const code = textOf(children)
                   const child = Children.toArray(children)[0]
                   const lang = isValidElement<{ className?: string }>(child) ? child.props.className ?? '' : ''
