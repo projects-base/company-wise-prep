@@ -102,11 +102,14 @@ export default function QuestionPage() {
               <span className="muted">
                 {[s.role, s.round, s.seenOn].filter(Boolean).join(' · ')}
               </span>{' '}
-              {s.source && (
-                <a href={s.source} target="_blank" rel="noreferrer">
-                  source <ExternalLink size={11} style={{ verticalAlign: -1 }} />
-                </a>
-              )}
+              {s.source &&
+                (isUrl(s.source) ? (
+                  <a href={s.source} target="_blank" rel="noreferrer">
+                    source <ExternalLink size={11} style={{ verticalAlign: -1 }} />
+                  </a>
+                ) : (
+                  <span className="muted">({s.source})</span>
+                ))}
             </div>
           ))}
         </details>
@@ -181,12 +184,16 @@ export default function QuestionPage() {
                     <span className="muted"> · {[s.role, s.round].filter(Boolean).join(' · ')}</span>
                   </span>
                   <span className="muted num">{s.seenOn ?? '—'}</span>
-                  {s.source && (
-                    <a className="src" href={s.source} target="_blank" rel="noreferrer">
-                      {hostOf(s.source)} <ExternalLink size={11} style={{ verticalAlign: -1 }} />
-                      {s.confidence !== 'verified' && <span className="muted"> · reported online, not yet confirmed by you</span>}
-                    </a>
-                  )}
+                  {s.source &&
+                    (isUrl(s.source) ? (
+                      <a className="src" href={s.source} target="_blank" rel="noreferrer">
+                        {hostOf(s.source)} <ExternalLink size={11} style={{ verticalAlign: -1 }} />
+                        {s.confidence !== 'verified' && <span className="muted"> · reported online, not yet confirmed by you</span>}
+                      </a>
+                    ) : (
+                      // Not a web page (e.g. "HR email relayed by Akhil"): show it as text.
+                      <span className="src muted">{s.source}</span>
+                    ))}
                 </div>
               ))}
             </div>
@@ -267,6 +274,8 @@ export default function QuestionPage() {
     </div>
   )
 }
+
+const isUrl = (s: string) => /^https?:\/\//i.test(s)
 
 function hostOf(url: string) {
   try {

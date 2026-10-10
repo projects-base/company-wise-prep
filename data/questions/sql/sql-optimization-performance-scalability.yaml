@@ -1,0 +1,35 @@
+slug: sql-optimization-performance-scalability
+title: SQL optimization, performance and scalability techniques
+type: SQL
+difficulty: medium
+tags:
+- sql
+- performance
+- indexing
+- scalability
+- partitioning
+- sharding
+- replication
+leetcode: null
+prompt: |
+  What are the general optimization, performance and scalability techniques for a SQL database?
+  Walk from making one query cheaper, to making the database do less work, to growing past one
+  machine.
+follow_ups:
+- How do you find which queries to fix first?
+- When does adding an index make things worse?
+- Read replicas give you stale reads. How do you handle read-your-own-writes?
+- Partitioning vs sharding — what is the difference, and when do you need each?
+- How do you choose a shard key, and what gets harder after sharding?
+academy:
+- Q5
+- Q6
+- Q7
+- Q8
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: Round 3 focus area (HR named "Database performance and scalability" and "SQL")
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR email relayed by Akhil, 2026-10-08
