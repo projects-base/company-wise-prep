@@ -555,8 +555,49 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 .answer-note { font-size: 0.8rem; margin-top: 18px; }
 .ws-details .answer { padding-top: 8px; }
 
-/* Mermaid diagrams in answers and lessons */
-.diagram { margin: 1.1em 0; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow-x: auto; text-align: center; }
-.diagram svg { max-width: 100%; height: auto; }
+/* Diagrams in answers and lessons (Diagram.tsx, FlowSteps.tsx) */
+.diagram-wrap { margin: 1.2em 0; }
+.diagram-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; min-height: 30px; }
+.diagram { padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow-x: auto; text-align: center; }
+.diagram svg { display: inline-block; height: auto; }
 .diagram.loading { font-size: 0.85rem; padding: 24px; }
 .diagram-fallback { white-space: pre; }
+.seg { display: inline-flex; gap: 2px; padding: 3px; background: var(--surface-2); border-radius: 9px; }
+.seg button {
+  display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; cursor: pointer;
+  padding: 4px 10px; border-radius: 7px; font: inherit; font-size: 0.82rem; font-weight: 550; color: var(--text-2);
+}
+.seg button[aria-selected='true'] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+
+/* Sequence diagram as a numbered list of steps */
+.diagram.flow-box { text-align: left; padding: 6px 16px; }
+.flow { list-style: none; margin: 0; padding: 0; }
+.flow li { margin: 0; }
+.flow-step { display: flex; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); }
+.flow > li:first-child { border-top: 0; }
+.flow-n {
+  flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink); font-size: 0.76rem; font-weight: 700; margin-top: 1px;
+}
+.flow-reply .flow-n { background: var(--accent-soft); color: var(--accent); }
+.flow-async .flow-n, .flow-lost .flow-n { background: var(--surface-2); color: var(--text-2); border: 1px dashed var(--line-strong); }
+.flow-body { min-width: 0; }
+.flow-who { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 0.84rem; }
+.flow-actor { font-weight: 650; color: var(--text); }
+.flow-arrow { color: var(--text-3); }
+.flow-tag { font-size: 0.72rem; padding: 1px 7px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); }
+.flow-lost .flow-tag { background: var(--warn-soft); color: var(--warn); }
+.flow-what { margin-top: 2px; color: var(--text-2); font-size: 0.92rem; line-height: 1.45; }
+.flow-group {
+  padding: 10px 0 2px; border-top: 1px solid var(--line); font-size: 0.78rem; font-weight: 650;
+  letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent);
+}
+.flow-group + .flow-step { border-top: 0; }
+.flow-note { margin: 4px 0 6px; padding: 7px 12px; border-left: 3px solid var(--line-strong); background: var(--sunken); border-radius: 0 6px 6px 0; font-size: 0.86rem; color: var(--text-2); }
+.flow-note-who { font-weight: 650; color: var(--text); }
+
+/* Enlarged diagram */
+.diagram-modal { position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, 0.55); display: flex; flex-direction: column; padding: 16px; }
+.diagram-modal-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--surface); border-radius: 10px 10px 0 0; border-bottom: 1px solid var(--line); }
+.diagram-modal-body { flex: 1; overflow: auto; background: var(--surface); border-radius: 0 0 10px 10px; padding: 20px; text-align: center; }
+.diagram-modal-body svg { display: inline-block; }
