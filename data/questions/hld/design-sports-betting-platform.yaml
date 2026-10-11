@@ -1,0 +1,34 @@
+slug: design-sports-betting-platform
+title: Design a sports betting platform (bet placement, wallet, settlement)
+type: HLD
+difficulty: hard
+tags:
+- betting
+- wallet
+- ledger
+- idempotency
+- concurrency
+- kafka
+- outbox
+leetcode: null
+prompt: |
+  Design a sports betting platform: users see live odds, place bets, and get paid out when a
+  match ends. Focus on bet placement, the wallet, and settlement under big-match traffic spikes.
+follow_ups:
+- A user has 100 in the wallet and places two 100 bets at the same time from two devices. What stops both going through?
+- The client retries a bet after a timeout. How do you make sure it is charged only once?
+- The odds changed between the user seeing them and the bet reaching the server. What happens?
+- A match ends and 200k bets must be settled. How, and what if the job crashes halfway?
+- Where is stale data acceptable, and where is it not?
+academy:
+- F8
+- F2
+- Q6
+- Q8
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: Round 3 focus area (HR named "System Design"; insider tip names betting architecture)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR email relayed by Akhil, 2026-10-08; insider tip relayed by Akhil, 2026-09-16

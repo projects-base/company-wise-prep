@@ -297,7 +297,7 @@ then system design.
 
 ## 7. Strategy
 
-**Today is Thu 8 Oct. The round is Tue 13 Oct, 3 PM.** Budget: about 60 min on weekdays and
+**Written Thu 8 Oct, updated Sun 11 Oct. The round is Tue 13 Oct, 3 PM.** Budget: about 60 min on weekdays and
 about 180 min at the weekend (campaign `entain-2026-10`). Academy path: `entain` (Q1–Q8, F1, F3,
 F2, S9, F6, F8, where F8 is "design a sports betting platform").
 
@@ -308,9 +308,18 @@ F2, S9, F6, F8, where F8 is "design a sports betting platform").
 | **Thu 8 Oct** (60 min) | SQL warm-up: 176, 177, 184, 185 by hand, then check. Read Academy Q5 (indexes and EXPLAIN). |
 | **Fri 9 Oct** (60 min) | Transactions: isolation anomalies, MVCC, `FOR UPDATE` vs optimistic locking, deadlocks. Write the wallet-debit transaction and the idempotency key schema on paper. Two SQL problems (180, 1204). |
 | **Sat 10 Oct** (180 min) | **Full mock design: "design a sports betting platform / bet placement + wallet + settlement"** in 45 min, out loud, on a whiteboard tool. Then the DB deep dive: schema, indexes per query, partitioning, replicas, cache, outbox. Then 3 SQL problems (262, 550, 601). |
-| **Sun 11 Oct** (180 min) | Start with the one-page overview [SQL optimization, performance and scalability techniques](../../questions/sql/sql-optimization-performance-scalability.yaml) and say its 30-second version out loud. Scaling and performance: read replicas and lag, partitioning vs sharding, N+1 and pagination, pool sizing, online migrations. Second mock: "live odds to 1M clients" (WebSockets fan-out, Redis, Kafka) or `hld/design-distributed-message-queue`. Re-do any SQL you got wrong. |
-| **Mon 12 Oct** (60 min, review only) | No new topics. Re-read the short answer and the picture of the optimization/performance/scalability overview. Rehearse the 2-minute "system I built" story with its DB numbers. Run 3 SQL problems from memory. Test the Teams link in the browser and the app. |
-| **Tue 13 Oct** (morning) | 20 min: skim §4's database-topic list and your wallet schema. Have a whiteboard tool open and a SQL scratchpad ready. |
+| **Sun 11 Oct** (≈3 h, updated 11 Oct) | **40 min:** [SQL optimization, performance and scalability](../../questions/sql/sql-optimization-performance-scalability.yaml) — say its 30-second version out loud; then [zero-downtime schema migrations](../../questions/sql/zero-downtime-schema-migrations.yaml). **75 min: mock** [design a sports betting platform](../../questions/hld/design-sports-betting-platform.yaml) in 45 min out loud, then compare with the model answer and Academy F8. **45 min: DB drill**, 2 min each out loud: indexes per query · a replica lags · partitioning vs sharding · optimistic vs pessimistic for the wallet · adding a column to 500M-row `bets`. **20 min: SQL by hand** — top-N per group (`DENSE_RANK`), 7-day rolling sum (`ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`), users who bet 3 days in a row (gaps and islands, Academy Q4). If time is left: [live odds to millions of clients](../../questions/hld/design-live-odds-streaming.yaml). |
+| **Mon 12 Oct** (60 min, review only) | No new topics. Re-read the short answers and the *Picture it* sections of the four questions above plus `design-payment-system` and `idempotency-in-payment-systems`, and F8's "Explain it in 2 minutes". Rehearse the 2-minute "system I built" story with real numbers (traffic, database, one performance problem you fixed). Three SQL queries from memory. Test the Teams link. |
+| **Tue 13 Oct** (morning, 20 min) | Skim the wallet schema and the bet-placement transaction. Open a whiteboard tool (Excalidraw) and a SQL scratchpad. |
+
+**Lines worth saying (and generic advice to correct):**
+
+- *"Odds can be eventually consistent; money can't."* Displayed odds are pushed (feed → Kafka → WebSocket gateways), so slightly stale odds are fine; the price is **re-checked when the bet is placed** (reject, or ask the user to accept the new price). The **wallet balance is never read from a cache or a replica.** "Cache-aside vs write-through so users never see stale odds" misses this point.
+- Don't jump to sharding for bet writes. One Postgres primary takes thousands of inserts a second: partition `bets` by time → replicas for history → shard by `account_id` only when one primary can't keep up, and name the cost (cross-shard queries, global ids).
+- In Postgres, spend index talk on composite column order, covering (`INCLUDE`) and partial indexes, not B-tree vs hash.
+- Make the design stand out with: the outbox (bet + event in one transaction), idempotent batched settlement, hot markets (the final) on one Kafka partition, in-play bet delay, responsible-gambling limits.
+- PACELC in one line is enough: even without a partition you trade latency against consistency.
+
 
 **In the room:**
 

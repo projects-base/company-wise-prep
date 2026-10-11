@@ -1,0 +1,32 @@
+slug: design-live-odds-streaming
+title: Push live odds to millions of clients in real time
+type: HLD
+difficulty: hard
+tags:
+- websockets
+- sse
+- pub-sub
+- kafka
+- redis
+- fan-out
+- betting
+leetcode: null
+prompt: |
+  Odds for live matches change several times a second. Design how they get from the trading
+  system to millions of web and mobile clients with sub-second latency, including big-match spikes.
+follow_ups:
+- WebSockets vs Server-Sent Events vs long polling — which and why?
+- How does a client that reconnects catch up without missing a price?
+- One market (the final) has 2M watchers. How do you avoid a hot spot?
+- How do you scale the WebSocket gateways, and what happens when one dies?
+academy:
+- F8
+- F5
+- F3
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: Round 3 focus area (HR named "System Design"; insider tip names WebSockets and event-driven systems)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR email relayed by Akhil, 2026-10-08; insider tip relayed by Akhil, 2026-09-16

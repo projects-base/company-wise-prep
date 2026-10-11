@@ -1,0 +1,29 @@
+slug: zero-downtime-schema-migrations
+title: Change the schema of a large, busy table without downtime
+type: SQL
+difficulty: medium
+tags:
+- migrations
+- postgres
+- locking
+- flyway
+- expand-contract
+leetcode: null
+prompt: |
+  The bets table has 500M rows and takes writes all day. How do you add a column, add an index,
+  or rename a column without downtime?
+follow_ups:
+- Which ALTER TABLE operations take a lock that blocks writes, and for how long?
+- Why CREATE INDEX CONCURRENTLY, and what can go wrong with it?
+- Walk through renaming a column with expand and contract, across two app releases.
+- How do you backfill 500M rows without hurting production?
+academy:
+- Q6
+- Q8
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: Round 3 focus area (HR named "Database performance and scalability")
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR email relayed by Akhil, 2026-10-08
