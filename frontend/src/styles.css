@@ -601,3 +601,25 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 .diagram-modal-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--surface); border-radius: 10px 10px 0 0; border-bottom: 1px solid var(--line); }
 .diagram-modal-body { flex: 1; overflow: auto; background: var(--surface); border-radius: 0 0 10px 10px; padding: 20px; text-align: center; }
 .diagram-modal-body svg { display: inline-block; }
+
+/* Model answers: readable line length, a highlighted short answer, section links, cleaner tables. */
+.prose.answer > :is(p, ul, ol, h2, h3, h4, blockquote, .answer-toc) { max-width: 78ch; }
+.prose.answer li + li { margin-top: 0.5em; }
+.prose.answer li > ul, .prose.answer li > ol { margin-top: 0.4em; }
+.prose.answer h2 { margin-top: 2.4em; padding-top: 1.1em; border-top: 1px solid var(--line); }
+.prose.answer h3 { color: var(--text); }
+.prose.answer p > strong:first-child { color: var(--text); }
+.tldr { max-width: 78ch; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-left: 4px solid var(--accent); border-radius: 10px; padding: 14px 20px 16px; }
+.tldr-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.tldr > * + * { margin-top: 0.6em; }
+.tldr ul { padding-left: 1.2em; }
+.tldr li + li { margin-top: 0.4em; }
+.answer-toc { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 0.82rem; }
+.answer-toc .muted { margin-right: 2px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+.prose .table-wrap table { display: table; width: 100%; margin: 0; font-size: 0.92rem; line-height: 1.55; }
+.prose .table-wrap th { background: var(--surface-2); color: var(--text); padding: 10px 14px; }
+.prose .table-wrap td { padding: 10px 14px; }
+.prose .table-wrap tr:last-child td { border-bottom: 0; }
+.prose .table-wrap tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
+.prose .table-wrap td:first-child { font-weight: 600; min-width: 9em; }
