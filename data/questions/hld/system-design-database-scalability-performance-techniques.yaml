@@ -1,0 +1,36 @@
+slug: system-design-database-scalability-performance-techniques
+title: Techniques for system design, database design, scalability and performance
+type: HLD
+difficulty: medium
+tags:
+- system-design
+- database-design
+- scalability
+- performance
+- caching
+- sharding
+- trade-offs
+leetcode: null
+prompt: |
+  What techniques do you follow for system design, database design, scalability and performance?
+  Give a repeatable method for a design interview, the steps you take to design a schema, and
+  the levers you pull to make a system faster and to make it handle 10x or 100x more load.
+follow_ups:
+- What is the difference between performance and scalability?
+- Walk me through how you would approach a design problem in the first 10 minutes.
+- What would you scale first when traffic grows 10x, and what breaks next?
+- When do you normalize and when do you denormalize?
+- How do you find a performance bottleneck before fixing it?
+academy:
+- F3
+- F1
+- F2
+- Q8
+- Q7
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named System Design, Database design, SQL performance and scalability)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12
