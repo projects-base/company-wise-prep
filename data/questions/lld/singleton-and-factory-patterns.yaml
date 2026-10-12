@@ -1,0 +1,24 @@
+slug: singleton-and-factory-patterns
+title: Singleton and Factory design patterns
+type: LLD
+difficulty: medium
+tags:
+- design-patterns
+- lld
+leetcode: null
+prompt: |
+  Explain the Factory and Singleton design patterns and implement them.
+follow_ups:
+- Make the singleton thread-safe
+academy:
+- E2
+- E1
+- D2
+- B2
+sightings:
+- company: entain
+  role: Software Engineer, C#/.NET + Angular (IVY Comptech / Entain India)
+  round: Technical round (C#, OOP, SQL, .NET Core REST API, RxJS, Angular)
+  seen_on: 2021-06
+  confidence: claimed
+  source: https://www.glassdoor.sg/Interview/Ivy-Interview-Questions-E257530_P2.htm

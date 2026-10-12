@@ -34,3 +34,9 @@ sightings:
   seen_on: 2024-01
   confidence: claimed
   source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+- company: entain
+  role: Team Lead (IVY Comptech, Hyderabad)
+  round: Interview
+  seen_on: 2020-01
+  confidence: claimed
+  source: https://in.indeed.com/cmp/Ivy-Comptech/interviews

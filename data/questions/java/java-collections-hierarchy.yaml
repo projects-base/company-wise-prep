@@ -25,3 +25,9 @@ sightings:
   seen_on: 2021-12
   confidence: claimed
   source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm
+- company: entain
+  role: Software Engineer - Java Developer (Entain India, India)
+  round: Technical interview (30 min, via third-party HR)
+  seen_on: 2021-07
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

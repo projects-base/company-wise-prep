@@ -1,0 +1,30 @@
+slug: ensuring-code-quality
+title: How do you ensure code quality?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- engineering-practices
+- code-quality
+- testing
+- ci-cd
+- code-review
+leetcode: null
+prompt: |
+  How do you ensure code quality?
+follow_ups: []
+academy:
+- D8
+- E1
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / Entain)
+  round: Technical video round (Spring, threading, design patterns)
+  seen_on: 2017-06
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

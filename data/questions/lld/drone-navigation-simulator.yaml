@@ -1,0 +1,24 @@
+slug: drone-navigation-simulator
+title: Navigate a drone through a city from command input
+type: LLD
+difficulty: easy
+tags:
+- simulation
+- oop
+- grid
+- command-parsing
+leetcode: null
+prompt: |
+  Write a program that navigates a drone through a city from basic and complex input files: turn left/right, move forward/back, travel N/S/E/W, and report heading, final coordinates and coordinate history.
+follow_ups: []
+academy:
+- E4
+- E5
+- E1
+sightings:
+- company: entain
+  role: Software Developer (Ladbrokes Coral, UK)
+  round: Take-home technical test
+  seen_on: 2019-03
+  confidence: claimed
+  source: https://github.com/jamiebdavis/ladbrokes-tech-test

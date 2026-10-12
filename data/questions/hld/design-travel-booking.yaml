@@ -5,10 +5,16 @@ difficulty: hard
 tags:
 - search
 - booking
+- system-design
+- scalability
+- aggregation
+- caching
 leetcode: null
 prompt: |
   Build a travel booking site like MakeMyTrip/ClearTrip.
-follow_ups: []
+follow_ups:
+- How do you keep flight data fresh across many airline sources?
+- How would the same approach apply to a high-volume streaming platform like Hotstar?
 academy: []
 sightings:
 - company: microsoft
@@ -17,3 +23,9 @@ sightings:
   seen_on: 2025-12
   confidence: claimed
   source: https://leetcode.com/discuss/post/7425597/
+- company: entain
+  role: Software Engineer (experienced)
+  round: Technical (design)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://www.nitinagrawal.com/ivy.html

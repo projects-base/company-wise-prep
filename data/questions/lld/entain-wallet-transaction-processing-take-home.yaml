@@ -1,0 +1,48 @@
+slug: entain-wallet-transaction-processing-take-home
+title: 'Entain take-home: idempotent win/lose transaction processing and user balance'
+type: LLD
+difficulty: medium
+tags:
+- idempotency
+- concurrency
+- postgresql
+- database-design
+- transactions
+- wallet
+- go
+- take-home
+leetcode: null
+prompt: |
+  Build an HTTP service (Go + PostgreSQL, Docker) that receives POST requests from third-party providers with {state: win|lose, amount, transactionId} and a Source-Type header (game|server|payment); win increases and lose decreases the user's balance.
+follow_ups:
+- Each transactionId must be processed only once (idempotency)
+- 'The account balance can never go negative: how do you guarantee that under concurrent requests (row
+  locks / SELECT ... FOR UPDATE / constraints)?'
+- 'Post-processing: every N minutes cancel the 10 latest odd records and correct the balance; cancelled
+  records must not be processed again'
+- How do you store money (decimal vs integer minor units)?
+- Schema design for users and transactions tables, migrations and indexes
+academy:
+- Q6
+- D6
+- Q5
+- F8
+sightings:
+- company: entain
+  role: Backend (Go) Developer (Entain NCE, Tallinn)
+  round: Take-home test assignment
+  seen_on: 2023-02
+  confidence: claimed
+  source: https://github.com/Matrix278/entain-test-task
+- company: entain
+  role: Backend (Go) Developer (Entain, likely Entain NCE / Baltics)
+  round: Take-home test assignment
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://github.com/myrachanto/entaingo
+- company: entain
+  role: Backend (Go) Developer (Entain, likely Entain NCE / Baltics)
+  round: Take-home test assignment
+  seen_on: 2026-06
+  confidence: claimed
+  source: https://github.com/Elkin-MD/entain-test

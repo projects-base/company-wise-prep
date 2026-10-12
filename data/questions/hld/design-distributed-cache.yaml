@@ -27,3 +27,9 @@ sightings:
   seen_on: 2026-02
   confidence: claimed
   source: https://leetcode.com/discuss/post/7541629/
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named System Design)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12

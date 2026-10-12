@@ -1,0 +1,19 @@
+slug: why-are-you-qualified
+title: Why do you think you are qualified for this role?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- hr
+leetcode: null
+prompt: |
+  Why do you think you are qualified for this company?
+follow_ups: []
+academy:
+- H2
+sightings:
+- company: entain
+  role: Fresher (campus)
+  round: HR
+  seen_on: 2019-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/

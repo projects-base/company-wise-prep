@@ -1,0 +1,26 @@
+slug: data-modeling-and-warehousing-scenarios
+title: Data modelling and data warehousing scenarios
+type: SQL
+difficulty: hard
+tags:
+- data-modeling
+- data-warehouse
+- sql
+leetcode: null
+prompt: |
+  Round 1: intermediate SQL, Python, database features and data-warehousing concepts. Round 2: scenario-based data modelling and warehousing (design the model for a given scenario).
+follow_ups:
+- Star vs snowflake schema
+- Fact vs dimension tables
+academy:
+- Q2
+- Q4
+- Q8
+- F8
+sightings:
+- company: entain
+  role: Senior Data Engineer (Entain India, Hyderabad)
+  round: Round 2 (data modelling, scenario-based)
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Ivy-Hyderabad-Interview-Questions-EI_IE257530.0,3_IL.4,13_IM1076_IP3.htm

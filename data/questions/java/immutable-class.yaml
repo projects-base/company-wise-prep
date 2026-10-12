@@ -1,0 +1,22 @@
+slug: immutable-class
+title: Implement an immutable class
+type: JAVA
+difficulty: easy
+tags:
+- java
+- oop
+- immutability
+leetcode: null
+prompt: |
+  Implement an immutable class in Java.
+follow_ups: []
+academy:
+- A6
+- E2
+sightings:
+- company: entain
+  role: Java Developer (Entain India listing, London)
+  round: 'Video technical interview (core Java: collections, multithreading, OOP)'
+  seen_on: 2020-06
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

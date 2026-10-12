@@ -11,6 +11,8 @@ prompt: |
   Return indices of two numbers that add up to a target; walk from brute force to sort+two-pointers to hashmap.
 follow_ups:
 - Discuss integer overflow and test cases.
+- Why does a HashSet not suffice when indexes are required?
+- Compare HashMap vs sorting / TreeMap approaches.
 academy: []
 sightings:
 - company: google
@@ -25,3 +27,9 @@ sightings:
   seen_on: 2026-08
   confidence: claimed
   source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Microsoft/3.%20Six%20Months.csv
+- company: entain
+  role: Software Engineer (experienced)
+  round: Technical (coding)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://www.nitinagrawal.com/ivy.html

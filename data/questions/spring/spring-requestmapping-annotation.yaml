@@ -1,0 +1,22 @@
+slug: spring-requestmapping-annotation
+title: '@RequestMapping annotation in Spring Boot'
+type: SPRING
+difficulty: easy
+tags:
+- spring-boot
+- rest
+leetcode: null
+prompt: |
+  Explain the @RequestMapping annotation in Spring Boot.
+follow_ups: []
+academy:
+- D5
+- L6
+- D11
+sightings:
+- company: entain
+  role: Software Engineer - Java Developer (Entain India, India)
+  round: Technical interview (30 min, via third-party HR)
+  seen_on: 2021-07
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

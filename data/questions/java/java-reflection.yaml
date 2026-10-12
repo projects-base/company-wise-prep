@@ -1,0 +1,22 @@
+slug: java-reflection
+title: Java Reflection
+type: JAVA
+difficulty: medium
+tags:
+- java
+- reflection
+leetcode: null
+prompt: |
+  Questions on Java Reflection: what it is, how it works and when you would use it.
+follow_ups: []
+academy:
+- A3
+- D1
+- D3
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

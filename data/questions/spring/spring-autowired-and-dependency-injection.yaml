@@ -6,6 +6,7 @@ tags:
 - spring
 - di
 - ioc
+- dependency-injection
 leetcode: null
 prompt: |
   How does @Autowired work? Constructor vs field vs setter injection; what happens with two beans of the same type.
@@ -22,3 +23,9 @@ sightings:
   seen_on: 2021-12
   confidence: claimed
   source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

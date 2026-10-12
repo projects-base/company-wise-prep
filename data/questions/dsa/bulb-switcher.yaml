@@ -1,0 +1,21 @@
+slug: bulb-switcher
+title: 100 light bulbs puzzle
+type: DSA
+difficulty: medium
+tags:
+- puzzle
+- math
+leetcode: bulb-switcher
+prompt: |
+  Puzzle on 100 light bulbs (toggle passes; how many are on at the end?).
+follow_ups: []
+academy:
+- C4
+- H2
+sightings:
+- company: entain
+  role: Java Developer (IVY Comptech, Hyderabad)
+  round: Technical / puzzle round (5-stage process incl. group discussion)
+  seen_on: 2017-11
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

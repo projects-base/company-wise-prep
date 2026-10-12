@@ -1,0 +1,26 @@
+slug: java-threading-fundamentals
+title: Java threading fundamentals
+type: JAVA
+difficulty: medium
+tags:
+- java
+- multithreading
+- concurrency
+leetcode: null
+prompt: |
+  Questions on Java threading: creating and coordinating threads, synchronization and thread safety.
+follow_ups: []
+academy:
+- B1
+- B2
+- B4
+- B6
+- L3
+- A6
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

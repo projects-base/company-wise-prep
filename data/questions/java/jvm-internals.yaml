@@ -6,6 +6,7 @@ tags:
 - jvm
 - memory
 - gc
+- memory-model
 leetcode: null
 prompt: |
   JVM internals: how memory is allocated in Java and how the JVM manages it.
@@ -22,3 +23,9 @@ sightings:
   seen_on: 2023-02
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-India-Senior-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,37.htm
+- company: entain
+  role: Software Engineer
+  round: Technical
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://www.nitinagrawal.com/ivy.html

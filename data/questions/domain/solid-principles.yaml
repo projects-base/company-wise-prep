@@ -5,6 +5,7 @@ difficulty: easy
 tags:
 - oop
 - design-principles
+- design
 leetcode: null
 prompt: |
   SOLID principles; advantages of the dependency inversion principle.
@@ -23,3 +24,15 @@ sightings:
   seen_on: 2026-08
   confidence: claimed
   source: https://www.glassdoor.co.in/Interview/T-Mobile-Associate-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,36.htm
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named LLD design)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12
+- company: entain
+  role: Software Engineer, C#/.NET + Angular (IVY Comptech / Entain India)
+  round: Technical round (C#, OOP, SQL, .NET Core REST API, RxJS, Angular)
+  seen_on: 2021-06
+  confidence: claimed
+  source: https://www.glassdoor.sg/Interview/Ivy-Interview-Questions-E257530_P2.htm

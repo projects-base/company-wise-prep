@@ -24,3 +24,9 @@ sightings:
   seen_on: 2024-01
   confidence: claimed
   source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+- company: entain
+  role: Software Engineer (IVY Comptech)
+  round: Technical round
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://www.ambitionbox.com/interviews/ivy-comptech-interview-questions/software-engineer?page=2

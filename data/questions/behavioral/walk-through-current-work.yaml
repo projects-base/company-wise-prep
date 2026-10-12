@@ -4,6 +4,8 @@ type: BEHAVIORAL
 difficulty: medium
 tags:
 - resume-deep-dive
+- experience
+- motivation
 leetcode: null
 prompt: |
   Walk through your current work and projects; follow-ups probe depth on whatever you mention.
@@ -28,3 +30,15 @@ sightings:
   seen_on: 2024-01
   confidence: claimed
   source: https://www.geeksforgeeks.org/cognizant-interview-experience-for-java-spring-boot-full-stack-developer/
+- company: entain
+  role: Team Lead (IVY Comptech, Hyderabad)
+  round: Interview
+  seen_on: 2020-01
+  confidence: claimed
+  source: https://in.indeed.com/cmp/Ivy-Comptech/interviews
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Recruiter phone screen
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

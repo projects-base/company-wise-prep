@@ -1,0 +1,38 @@
+slug: entain-sport-events-api-take-home
+title: 'Entain take-home: Spring Boot sport events API with status rules and live update subscription'
+type: LLD
+difficulty: medium
+tags:
+- spring-boot
+- rest-api
+- java
+- state-machine
+- sse
+- take-home
+leetcode: null
+prompt: |
+  Build a REST API for sport events (name, sport, status, start_time): create, get, list with filters by status and sport, update and change status, plus a way for clients to subscribe to event updates.
+follow_ups:
+- 'Status transitions: inactive -> active -> finished only; finished is terminal'
+- An event cannot be activated if its start_time is in the past
+- How do clients subscribe to updates (SSE / WebSocket / Kafka)?
+- Persistence layer and schema/indexes; tests at unit, controller and integration level
+academy:
+- D5
+- D6
+- D8
+- E4
+- L6
+sightings:
+- company: entain
+  role: Java Developer (Entain NCE, Baltics)
+  round: Take-home assignment
+  seen_on: 2026-06
+  confidence: claimed
+  source: https://github.com/teomanturan91/sport-events-api
+- company: entain
+  role: Java Developer (Entain, likely Entain NCE / Baltics)
+  round: Take-home test task
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://github.com/AlekseiJegorovOrg/Entain

@@ -1,0 +1,21 @@
+slug: design-linked-list
+title: Implement a linked list
+type: DSA
+difficulty: medium
+tags:
+- linked-list
+- lld
+leetcode: design-linked-list
+prompt: |
+  Implement a linked list (DSA round with a low-level-design focus).
+follow_ups: []
+academy:
+- H1
+- E5
+sightings:
+- company: entain
+  role: Software Engineer (Entain India)
+  round: DSA round (LLD-focused)
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm

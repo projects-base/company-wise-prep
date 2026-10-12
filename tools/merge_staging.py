@@ -136,7 +136,12 @@ def main(argv):
                 write(path, q)
         if not dry:
             (STAGING / "merged").mkdir(exist_ok=True)
-            shutil.move(str(f), STAGING / "merged" / f.name)
+            target = STAGING / "merged" / f.name
+            n = 2
+            while target.exists():  # a refresh must not overwrite an earlier harvest
+                target = STAGING / "merged" / f"{f.stem}-{n}{f.suffix}"
+                n += 1
+            shutil.move(str(f), target)
 
     print(f"created {created}, sightings appended {appended}, duplicates skipped {skipped}"
           + ("  (dry run)" if dry else ""))

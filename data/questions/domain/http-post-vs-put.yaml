@@ -1,0 +1,23 @@
+slug: http-post-vs-put
+title: POST vs PUT in REST APIs
+type: DOMAIN
+difficulty: easy
+tags:
+- rest
+- http
+- api-design
+leetcode: null
+prompt: |
+  What is the difference between POST and PUT in REST APIs?
+follow_ups:
+- Which of them is idempotent and why does it matter?
+academy:
+- D5
+- L6
+sightings:
+- company: entain
+  role: Software Engineer - Java Developer (Entain India, India)
+  round: Technical interview (30 min, via third-party HR)
+  seen_on: 2021-07
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

@@ -17,3 +17,9 @@ sightings:
   seen_on: 2025-11
   confidence: claimed
   source: https://interviewexperiences.in/experience/microsoft/microsoft-interview-experience-sde-ii-l61-selected
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named Database design and SQL performance and scalability)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12

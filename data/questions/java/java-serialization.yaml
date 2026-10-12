@@ -1,0 +1,20 @@
+slug: java-serialization
+title: Java serialization
+type: JAVA
+difficulty: medium
+tags:
+- java
+- serialization
+leetcode: null
+prompt: |
+  Explain serialisation in Java (Serializable, serialVersionUID, transient).
+follow_ups: []
+academy:
+- A3
+sightings:
+- company: entain
+  role: Software Engineer, ~2 yrs exp (Entain India)
+  round: Technical round 1 (concepts; code in round 2, quizzes in round 3)
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm

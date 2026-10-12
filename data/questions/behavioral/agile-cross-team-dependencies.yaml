@@ -1,0 +1,20 @@
+slug: agile-cross-team-dependencies
+title: Managing dependencies across agile teams; agile metrics
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- agile
+leetcode: null
+prompt: |
+  What dependencies arise among agile teams and how do you overcome them? How do you interpret agile metrics?
+follow_ups: []
+academy:
+- H2
+- D10
+sightings:
+- company: entain
+  role: Agile Delivery Manager (Entain India)
+  round: Interview
+  seen_on: 2025-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Interview-Questions-E257530.htm

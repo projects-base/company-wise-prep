@@ -1,0 +1,30 @@
+slug: java-final-finally-finalize
+title: final vs finally vs finalize
+type: JAVA
+difficulty: easy
+tags:
+- java
+- java-basics
+- exceptions
+- gc
+leetcode: null
+prompt: |
+  Difference between final, finally and finalize.
+follow_ups: []
+academy:
+- L2
+- A4
+- A6
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / Entain)
+  round: Technical video round (Spring, threading, design patterns)
+  seen_on: 2017-06
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

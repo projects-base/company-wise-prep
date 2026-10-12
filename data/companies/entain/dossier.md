@@ -121,6 +121,27 @@ existing ones (`lru-cache`, `longest-consecutive-sequence`, `search-in-rotated-s
 | JAVA | [`java/jvm-internals`](../../questions/java/jvm-internals.yaml) (2023), [`java/java-create-and-fix-deadlock`](../../questions/java/java-create-and-fix-deadlock.yaml), [`java/review-send-mail-notification-method`](../../questions/java/review-send-mail-notification-method.yaml), [`java/store-many-to-one-pairs`](../../questions/java/store-many-to-one-pairs.yaml) (2019) |
 | SPRING | [`spring/spring-sync-vs-async-calls`](../../questions/spring/spring-sync-vs-async-calls.yaml) (Jul 2024) |
 
+**Harvest of 12 Oct (wider search: former names, brands, Entain outside India, GitHub take-homes).**
+99 sightings: 41 new questions and 58 sightings added to existing ones. Of the 58, 18 are TR2
+focus-area tags on bank questions (source: the HR call). Questions for frontend, .NET and QA roles
+were left out. The search found **no reported Entain HLD, database-design or SQL-performance
+question** beyond those already listed, so TR2 prep still rests on the HR topics. The useful new
+finds:
+
+| Question | Why it matters for TR2 |
+|---|---|
+| [`lld/entain-wallet-transaction-processing-take-home`](../../questions/lld/entain-wallet-transaction-processing-take-home.yaml) (Entain NCE, 2023–2026, 3 sightings) | **Closest real Entain prompt to tomorrow:** idempotent `transactionId`, a balance that never goes negative under concurrency, periodic correction. This is LLD, DB design and SQL concurrency in one. |
+| [`lld/entain-sport-events-api-take-home`](../../questions/lld/entain-sport-events-api-take-home.yaml) (Java/Spring, 2026) | Status rules (inactive → active → finished) and live-update subscription: a state machine plus a push design. |
+| [`lld/entain-racing-grpc-service-take-home`](../../questions/lld/entain-racing-grpc-service-take-home.yaml) (Entain AU, 13 sightings 2021–2026) | API and query design: filters, ordering, derived status, get-by-id, pagination. |
+| [`sql/sql-scenario-based-queries`](../../questions/sql/sql-scenario-based-queries.yaml), [`sql/data-modeling-and-warehousing-scenarios`](../../questions/sql/data-modeling-and-warehousing-scenarios.yaml) (Hyderabad/Pune) | "Write the query for this business scenario" and "model this scenario", as reported in India rounds. |
+| [`hld/design-travel-booking`](../../questions/hld/design-travel-booking.yaml) (Ivy, 2022) | An aggregator design (latest flight data from many airlines at high volume), the same shape as an odds feed. |
+
+Process notes from the same harvest:
+- Hyderabad backend loops are usually two 60-minute technical rounds (concepts, then coding and
+  design), a managerial round, then HR.
+- A HackerRank screen is common.
+- Some teams use .NET or Angular, so confirm this role's stack if asked.
+
 **Relevant to 13 Oct but from other companies' sightings**, already in the bank:
 `hld/design-payment-system`, `hld/idempotency-in-payment-systems`, `hld/design-idempotent-api`,
 `hld/rdbms-scaling-vs-nosql`, `domain/db-indexing-partitioning-sharding`,
@@ -311,7 +332,7 @@ F2, S9, F6, F8, where F8 is "design a sports betting platform").
 | **Fri 9 Oct** (60 min) | Transactions: isolation anomalies, MVCC, `FOR UPDATE` vs optimistic locking, deadlocks. Write the wallet-debit transaction and the idempotency key schema on paper. Two SQL problems (180, 1204). |
 | **Sat 10 Oct** (180 min) | **Full mock design: "design a sports betting platform / bet placement + wallet + settlement"** in 45 min, out loud, on a whiteboard tool. Then the DB deep dive: schema, indexes per query, partitioning, replicas, cache, outbox. Then 3 SQL problems (262, 550, 601). |
 | **Sun 11 Oct** (≈3 h, updated 11 Oct) | **40 min:** [SQL optimization, performance and scalability](../../questions/sql/sql-optimization-performance-scalability.yaml) — say its 30-second version out loud; then [zero-downtime schema migrations](../../questions/sql/zero-downtime-schema-migrations.yaml). **75 min: mock** [design a sports betting platform](../../questions/hld/design-sports-betting-platform.yaml) in 45 min out loud, then compare with the model answer and Academy F8. **45 min: DB drill**, 2 min each out loud: indexes per query · a replica lags · partitioning vs sharding · optimistic vs pessimistic for the wallet · adding a column to 500M-row `bets`. **20 min: SQL by hand** — top-N per group (`DENSE_RANK`), 7-day rolling sum (`ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`), users who bet 3 days in a row (gaps and islands, Academy Q4). If time is left: [live odds to millions of clients](../../questions/hld/design-live-odds-streaming.yaml). |
-| **Mon 12 Oct** (≈90 min, updated after the HR call) | HR added **LLD design** and **database design**, so today is not review-only. **30 min:** [LLD — bet slip, placement and wallet](../../questions/lld/design-betting-bet-placement-lld.yaml): draw the class diagram from memory, name each pattern and why (Strategy for bet types, a validator chain, the state machine, the factory), write `placeBet` once. **30 min:** [database design for a betting platform](../../questions/sql/design-betting-database-schema.yaml): draw the ER diagram from memory, then the indexes for "my open bets", "settle this market" and the ledger, and the partitioning. **30 min:** re-read the short answers and pictures of [the betting platform](../../questions/hld/design-sports-betting-platform.yaml), [SQL optimization/performance/scalability](../../questions/sql/sql-optimization-performance-scalability.yaml) and [zero-downtime migrations](../../questions/sql/zero-downtime-schema-migrations.yaml); three SQL queries from memory; rehearse the 2-minute "system I built" story. Test the Teams link. |
+| **Mon 12 Oct** (≈90 min, updated after the HR call) | HR added **LLD design** and **database design**, so today is not review-only. **30 min:** [LLD — bet slip, placement and wallet](../../questions/lld/design-betting-bet-placement-lld.yaml): draw the class diagram from memory, name each pattern and why (Strategy for bet types, a validator chain, the state machine, the factory), write `placeBet` once. **30 min:** [database design for a betting platform](../../questions/sql/design-betting-database-schema.yaml): draw the ER diagram from memory, then the indexes for "my open bets", "settle this market" and the ledger, and the partitioning. **30 min:** re-read the short answers and pictures of [the betting platform](../../questions/hld/design-sports-betting-platform.yaml), [SQL optimization/performance/scalability](../../questions/sql/sql-optimization-performance-scalability.yaml) and [zero-downtime migrations](../../questions/sql/zero-downtime-schema-migrations.yaml); three SQL queries from memory; rehearse the 2-minute "system I built" story. Test the Teams link. **Added in the evening, if time (20 min):** read the short answer and pictures of [the Entain wallet take-home](../../questions/lld/entain-wallet-transaction-processing-take-home.yaml). It is a real Entain prompt, and its idempotency key, `balance >= 0` guard and row lock are exactly what TR2 may probe. |
 | **Tue 13 Oct** (morning, 30 min) | **10 min:** read the short answer and both pictures of [techniques for system design, database design, scalability and performance](../../questions/hld/system-design-database-scalability-performance-techniques.yaml) and say the 6-step method and the scalability ladder out loud. **20 min:** redraw from memory, one minute each: the architecture, the class diagram, the ER diagram, the bet-placement transaction. Open Excalidraw and a SQL scratchpad. |
 
 **How TR2 will probably run.** Five topics in about an hour usually means one problem looked at from
@@ -376,6 +397,24 @@ All accessed 2026-10-08.
   [Entain India all](https://www.glassdoor.co.in/Interview/Entain-India-Interview-Questions-E257530.htm),
   [Test Engineer](https://www.glassdoor.com/Interview/Entain-India-Test-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,26.htm).
 - [LeetCode Discuss: Ivy Comptech SSE, Sep 2019](https://leetcode.com/discuss/interview-experience/385015/ivy-comptech-senior-software-engineer-hyderabad-sep-2019-offer).
+- **Harvest log, 2026-10-12** (three parallel searches; full logs were kept in the session):
+  - **Job boards:** Glassdoor's Java Developer page was read in full. Other Glassdoor roles
+    (Software Engineer, Software Developer, Trainee, the Ivy Hyderabad location page, GVC Senior
+    Java), Indeed and AmbitionBox came through search snippets only: their pages return 403 or a
+    bot wall. Naukri, the GVC/bwin/Ladbrokes Hyderabad searches and "Ivy Software Development
+    Services" found nothing.
+  - **Community:** [GfG Ivy Comptech 2018](https://www.geeksforgeeks.org/ivy-comptech-interview-experience/),
+    [GfG Ivy Comptech 2019](https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/)
+    and [nitinagrawal.com/ivy](https://www.nitinagrawal.com/ivy.html) were read in full. Code360
+    and Fishbowl came through snippets only. LeetCode Discuss (beyond 385015), Medium, dev.to,
+    Blind, YouTube, Quora and CareerCup found nothing, and Reddit was blocked.
+  - **Entain outside India:** candidates' public GitHub take-home briefs. These were the racing
+    gRPC test (13 repos, 2021–2026), the wallet transaction test (3), the sport events API (2) and
+    a Ladbrokes drone simulator (1). Glassdoor AU/UK and GVC Vienna (2018) came through snippets.
+    BetMGM, Blind, LeetCode Discuss, Bulgaria, Spain, Sweden and an engineering blog found
+    nothing.
+  - **Skipped as not candidate-reported:** DataLemur, Jobmentis, Scoutify, Dataford and
+    justcrackinterview, whose questions are written or inferred by the site.
 - Prior research: `DailyProblemTracker-Service/frontend/source/entain-sde2-prep.html`
   (Sep 2026). Its leads were re-checked against their original URLs. Its Glassdoor claims were
   reusable only where a search snippet confirmed them, and its unsourced company figures were not

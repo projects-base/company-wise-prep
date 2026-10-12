@@ -6,12 +6,14 @@ tags:
 - concurrency
 - deadlock
 - locks
+- java
 leetcode: null
 prompt: |
   Create a deadlock in Java and then remove it.
 follow_ups:
 - Lock ordering vs tryLock with timeout.
 - How do you detect a deadlock in production (thread dump)?
+- How do you prevent or detect it in Java code?
 academy:
 - B2
 sightings:
@@ -27,3 +29,15 @@ sightings:
   seen_on: 2025-08
   confidence: claimed
   source: https://www.glassdoor.com.ar/Entrevista/Cognizant-Entrevista-E8014-RVW100139680.htm
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / Entain)
+  round: Technical video round (Spring, threading, design patterns)
+  seen_on: 2017-06
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

@@ -26,3 +26,9 @@ sightings:
   seen_on: 2025-10
   confidence: claimed
   source: https://www.glassdoor.co.in/Interview/T-Mobile-Senior-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,33.htm
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named Database design and SQL performance and scalability)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12

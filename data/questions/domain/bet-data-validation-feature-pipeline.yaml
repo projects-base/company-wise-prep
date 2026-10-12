@@ -1,0 +1,24 @@
+slug: bet-data-validation-feature-pipeline
+title: Validate bets data and build customer features
+type: DOMAIN
+difficulty: medium
+tags:
+- data-pipeline
+- python
+- validation
+- feature-engineering
+leetcode: null
+prompt: |
+  Given bets.csv, validate rows against business rules (valid/invalid outputs and a report) and build customer-level features from each customer's first 20 valid bets; package it as a CLI with Docker.
+follow_ups: []
+academy:
+- Q3
+- Q4
+- E4
+sightings:
+- company: entain
+  role: Junior Machine Learning Engineer (Entain Australia)
+  round: Take-home assignment
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://github.com/sqzhang-jeremy/Entain

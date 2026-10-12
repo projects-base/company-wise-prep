@@ -30,3 +30,9 @@ sightings:
   seen_on: 2026-04
   confidence: claimed
   source: https://www.glassdoor.co.in/Interview/Entain-India-Interview-Questions-E257530.htm
+- company: entain
+  role: Software Engineer (Entain India, Hyderabad)
+  round: Technical round (Java OOP/collections + database)
+  seen_on: 2022-09
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm

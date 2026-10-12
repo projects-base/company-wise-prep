@@ -22,3 +22,9 @@ sightings:
   seen_on: 2021-12
   confidence: claimed
   source: https://static.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW74541668.htm
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named Database design and SQL performance and scalability)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12

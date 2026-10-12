@@ -1,0 +1,25 @@
+slug: java-garbage-collection
+title: When does the Java garbage collector run? Design a garbage collector
+type: JAVA
+difficulty: medium
+tags:
+- jvm
+- gc
+- memory
+leetcode: null
+prompt: |
+  When does the garbage collector run in Java? Then: how would you design a garbage collector?
+follow_ups:
+- Design a garbage collector.
+academy:
+- A2
+- A4
+- A5
+- L2
+sightings:
+- company: entain
+  role: Software Engineer
+  round: Technical
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://www.nitinagrawal.com/ivy.html

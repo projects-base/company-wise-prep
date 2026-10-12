@@ -1,0 +1,2471 @@
+[
+ {
+  "slug": "design-payment-system",
+  "title": "Design a Payment Service",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "concurrency",
+   "transactions",
+   "idempotency",
+   "retries",
+   "fraud"
+  ],
+  "leetcode": null,
+  "prompt": "Payment service like Google Pay; evolved into class/data code and concurrency of debit/credit on both users.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named System Design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "idempotency-in-payment-systems",
+  "title": "Idempotency in Payment Systems",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "payments",
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "Discuss how to make payment operations idempotent.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named System Design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "design-distributed-cache",
+  "title": "Design a distributed cache optimised for a given task",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "caching",
+   "sharding",
+   "replication",
+   "consistent-hashing",
+   "lru",
+   "tdd"
+  ],
+  "leetcode": null,
+  "prompt": "Design a distributed cache tuned to a workload the interviewer pastes in.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named System Design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "design-unique-id-generator",
+  "title": "Design a Distributed Unique ID Generator",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "snowflake",
+   "ordering"
+  ],
+  "leetcode": null,
+  "prompt": "Highly available unique IDs at massive throughput with time ordering and no latency bottleneck.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named System Design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "cap-theorem",
+  "title": "CAP theorem",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "What is the CAP theorem (alongside thread vs process and network-protocol questions).\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named System Design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "microservices-design-patterns",
+  "title": "Microservices patterns: API gateway, service discovery, circuit breaker, saga",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "microservices",
+   "api-gateway",
+   "eureka",
+   "circuit-breaker",
+   "saga"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the Saga pattern, the Circuit Breaker, API gateways and Eureka service discovery, and how you used them in a project.\n",
+  "follow_ups": [
+   "Resilience4j: circuit breaker states; retries with timeouts and backoff.",
+   "Choreography vs orchestration saga.",
+   "How do services authenticate each other behind the gateway?"
+  ],
+  "academy": [
+   "S8",
+   "S9"
+  ],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named System Design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiting",
+   "token-bucket",
+   "strategy-pattern",
+   "hld",
+   "multi-tenant",
+   "rate-limiter",
+   "sliding-window"
+  ],
+  "leetcode": null,
+  "prompt": "Design a rate limiter (classes, then code one algorithm).\n",
+  "follow_ups": [
+   "Different APIs with different limits and windows.",
+   "One limit shared by two APIs combined."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named LLD design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "design-leaderboard",
+  "title": "Design a Leaderboard",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "heap",
+   "sorted-set",
+   "hld"
+  ],
+  "leetcode": null,
+  "prompt": "Leaderboard design; priority queue approach, sorted set mentioned.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named LLD design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "design-notification-system",
+  "title": "Design a Notification System",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "observer-pattern",
+   "extensibility",
+   "hld",
+   "ai-assisted"
+  ],
+  "leetcode": null,
+  "prompt": "Notification module other services can use to notify targeted users; jumping to Observer was not what the interviewer wanted.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named LLD design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "solid-principles",
+  "title": "SOLID principles and dependency inversion",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "oop",
+   "design-principles"
+  ],
+  "leetcode": null,
+  "prompt": "SOLID principles; advantages of the dependency inversion principle.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named LLD design)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "rdbms-scaling-vs-nosql",
+  "title": "Scaling an RDBMS and When to Use NoSQL",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "database",
+   "scaling",
+   "nosql"
+  ],
+  "leetcode": null,
+  "prompt": "RDBMS scaling issues, how to handle them, and when NoSQL is the better choice.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named Database design and SQL performance and scalability)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "db-indexing-partitioning-sharding",
+  "title": "Indexes, Partitioning and Sharding",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "database",
+   "indexing",
+   "sharding"
+  ],
+  "leetcode": null,
+  "prompt": "Why not add many indexes? What is partitioning, and what is sharding?\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named Database design and SQL performance and scalability)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "dbms-replica-snapshot-checkpoint",
+  "title": "Replica vs snapshot vs checkpoint; deadlock detection",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "database",
+   "os"
+  ],
+  "leetcode": null,
+  "prompt": "DBMS: replica vs snapshot vs checkpoint; deadlock detection and prevention; multithreading basics.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named Database design and SQL performance and scalability)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "spring-transactional-management",
+  "title": "Transactions in Spring: @Transactional",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "spring",
+   "transactions",
+   "jpa"
+  ],
+  "leetcode": null,
+  "prompt": "How do you implement transactions in a Spring Boot service? What does @Transactional do under the hood?\n",
+  "follow_ups": [
+   "Propagation (REQUIRED vs REQUIRES_NEW) and rollback rules for checked exceptions.",
+   "Why self-invocation bypasses the proxy."
+  ],
+  "academy": [
+   "D3",
+   "D6"
+  ],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named Database design and SQL performance and scalability)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "jdbc-connection-pooling",
+  "title": "Connection Pooling and the DB Connection Process",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "spring-boot",
+   "jdbc",
+   "connection-pool"
+  ],
+  "leetcode": null,
+  "prompt": "What connection pooling is, how a database connection is established, and which Spring Boot classes manage connections.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named Database design and SQL performance and scalability)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "optimize-slow-api",
+  "title": "How would you optimise a slow API?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "performance",
+   "api",
+   "latency",
+   "sre",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Optimising an API (reported with binary search in the same round). Expect: measure first (p95/p99, traces), find the bottleneck (DB, downstream calls, serialisation, pool exhaustion), then fix and verify.\n",
+  "follow_ups": [
+   "Which metrics and traces would you look at first?",
+   "How do you stop a slow dependency from taking the API down (timeouts, circuit breaker, bulkhead)?",
+   "Caching: what, where, and how do you invalidate?"
+  ],
+  "academy": [
+   "Q7",
+   "F1",
+   "H3"
+  ],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named Database design and SQL performance and scalability)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "sql-drop-vs-delete-vs-truncate",
+  "title": "DROP vs DELETE vs TRUNCATE",
+  "type": "SQL",
+  "difficulty": "easy",
+  "tags": [
+   "sql",
+   "ddl",
+   "dml"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between DROP, DELETE and TRUNCATE on a table; what is a schema?\n",
+  "follow_ups": [
+   "Which can be rolled back?",
+   "Which fire triggers?"
+  ],
+  "academy": [
+   "Q1"
+  ],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named SQL)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "sql-injection-prevention",
+  "title": "Preventing SQL Injection",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "security",
+   "database"
+  ],
+  "leetcode": null,
+  "prompt": "How to prevent SQL injection.\n",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Development Engineer II (Entain India, Hyderabad)",
+   "round": "TR2 focus area (HR named SQL)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "HR call relayed by Akhil, 2026-10-12"
+  }
+ },
+ {
+  "slug": "http-post-vs-put",
+  "title": "POST vs PUT in REST APIs",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "rest",
+   "http",
+   "api-design"
+  ],
+  "leetcode": null,
+  "prompt": "What is the difference between POST and PUT in REST APIs?",
+  "follow_ups": [
+   "Which of them is idempotent and why does it matter?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "java-map-views",
+  "title": "Views in Java Maps (keySet, values, entrySet)",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "collections",
+   "map"
+  ],
+  "leetcode": null,
+  "prompt": "Do you know views in Java Maps? Explain keySet(), values() and entrySet() and how changes propagate.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "collection-vs-collections",
+  "title": "Collection vs Collections in Java",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "collections"
+  ],
+  "leetcode": null,
+  "prompt": "What is the difference between Collection and Collections in Java?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "spring-jdbctemplate",
+  "title": "What is JdbcTemplate and how do you use it?",
+  "type": "SPRING",
+  "difficulty": "easy",
+  "tags": [
+   "spring",
+   "jdbc",
+   "database"
+  ],
+  "leetcode": null,
+  "prompt": "What is Spring's JdbcTemplate and how do you use it to query the database?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "spring-requestmapping-annotation",
+  "title": "@RequestMapping annotation in Spring Boot",
+  "type": "SPRING",
+  "difficulty": "easy",
+  "tags": [
+   "spring-boot",
+   "rest"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the @RequestMapping annotation in Spring Boot.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "fail-fast-vs-fail-safe-iterators",
+  "title": "Fail-fast vs fail-safe iterators",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "collections",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "What is the difference between fail-fast and fail-safe iterators?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "java-collections-hierarchy",
+  "title": "Collection hierarchy: Array vs List, List vs Set, Set vs Map",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "collections"
+  ],
+  "leetcode": null,
+  "prompt": "How do ArrayList and HashSet work internally, and what are the major differences between them?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java Developer (Entain India, India)",
+   "round": "Technical interview (30 min, via third-party HR)",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "immutable-class",
+  "title": "Implement an immutable class",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java",
+   "oop",
+   "immutability"
+  ],
+  "leetcode": null,
+  "prompt": "Implement an immutable class in Java.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Java Developer (Entain India listing, London)",
+   "round": "Video technical interview (core Java: collections, multithreading, OOP)",
+   "seen_on": "2020-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "bulb-switcher",
+  "title": "100 light bulbs puzzle",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "puzzle",
+   "math"
+  ],
+  "leetcode": "bulb-switcher",
+  "prompt": "Puzzle on 100 light bulbs (toggle passes; how many are on at the end?).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Java Developer (IVY Comptech, Hyderabad)",
+   "round": "Technical / puzzle round (5-stage process incl. group discussion)",
+   "seen_on": "2017-11",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "linux-chmod-octal-permissions",
+  "title": "Change file permissions using octal (chmod)",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "linux",
+   "os"
+  ],
+  "leetcode": null,
+  "prompt": "How do you change file permissions using octal notation in Linux (chmod)?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Java Developer (IVY Comptech, Hyderabad)",
+   "round": "Technical round (after written test)",
+   "seen_on": "2017-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm"
+  }
+ },
+ {
+  "slug": "how-to-synchronize-a-class",
+  "title": "How do you synchronise a class in Java?",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "How would you synchronise (make thread-safe) a class in Java?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer - Java (Entain India)",
+   "round": "Technical round",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm"
+  }
+ },
+ {
+  "slug": "java-serialization",
+  "title": "Java serialization",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "serialization"
+  ],
+  "leetcode": null,
+  "prompt": "Explain serialisation in Java (Serializable, serialVersionUID, transient).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer, ~2 yrs exp (Entain India)",
+   "round": "Technical round 1 (concepts; code in round 2, quizzes in round 3)",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm"
+  }
+ },
+ {
+  "slug": "how-to-synchronize-a-class",
+  "title": "How do you synchronise a class in Java?",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Good knowledge of synchronisation expected: how do you synchronise access in a class?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer, ~2 yrs exp (Entain India)",
+   "round": "Technical round 1",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm"
+  }
+ },
+ {
+  "slug": "sql-query-optimization",
+  "title": "SQL query optimization",
+  "type": "SQL",
+  "difficulty": "medium",
+  "tags": [
+   "sql",
+   "performance"
+  ],
+  "leetcode": null,
+  "prompt": "Database questions on writing SQL queries, data manipulation and optimising those queries.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (Entain India, Hyderabad)",
+   "round": "Technical round (Java OOP/collections + database)",
+   "seen_on": "2022-09",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm"
+  }
+ },
+ {
+  "slug": "sql-scenario-based-queries",
+  "title": "SQL basics and scenario-based queries",
+  "type": "SQL",
+  "difficulty": "medium",
+  "tags": [
+   "sql"
+  ],
+  "leetcode": null,
+  "prompt": "SQL basics plus a few scenario-based questions (write queries for a given business scenario).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (Entain India, Pune)",
+   "round": "Technical round",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm"
+  }
+ },
+ {
+  "slug": "sql-scenario-based-queries",
+  "title": "SQL basics and scenario-based queries",
+  "type": "SQL",
+  "difficulty": "medium",
+  "tags": [
+   "sql"
+  ],
+  "leetcode": null,
+  "prompt": "Manager round: coding plus SQL queries.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (Entain India, Pune)",
+   "round": "Round 2 (manager: coding + SQL)",
+   "seen_on": "2024-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm"
+  }
+ },
+ {
+  "slug": "design-linked-list",
+  "title": "Implement a linked list",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "linked-list",
+   "lld"
+  ],
+  "leetcode": "design-linked-list",
+  "prompt": "Implement a linked list (DSA round with a low-level-design focus).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (Entain India)",
+   "round": "DSA round (LLD-focused)",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm"
+  }
+ },
+ {
+  "slug": "sql-join-types",
+  "title": "SQL join types; DDL vs DML",
+  "type": "SQL",
+  "difficulty": "easy",
+  "tags": [
+   "sql",
+   "joins",
+   "mysql"
+  ],
+  "leetcode": null,
+  "prompt": "MySQL: explain database joins (inner join, outer join, etc.).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Trainee Software Engineer (Entain India, Hyderabad)",
+   "round": "Technical round (MySQL, multithreading, Angular)",
+   "seen_on": "2021-12",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Trainee-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,38.htm"
+  }
+ },
+ {
+  "slug": "java-8-features",
+  "title": "Java 8 features: lambdas, functional interfaces, streams, Optional",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "java8"
+  ],
+  "leetcode": null,
+  "prompt": "Java 8 features, RESTful APIs, Spring Boot microservices.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Software Developer (Entain India, Hyderabad)",
+   "round": "Technical round",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Ivy-Hyderabad-Interview-Questions-EI_IE257530.0,3_IL.4,13_IM1076_IP3.htm"
+  }
+ },
+ {
+  "slug": "microservices-design-patterns",
+  "title": "Microservices patterns: API gateway, service discovery, circuit breaker, saga",
+  "type": "SPRING",
+  "difficulty": "medium",
+  "tags": [
+   "spring-boot",
+   "microservices"
+  ],
+  "leetcode": null,
+  "prompt": "Questions on building RESTful APIs and microservices with Spring Boot.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Software Developer (Entain India, Hyderabad)",
+   "round": "Technical round",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Ivy-Hyderabad-Interview-Questions-EI_IE257530.0,3_IL.4,13_IM1076_IP3.htm"
+  }
+ },
+ {
+  "slug": "data-modeling-and-warehousing-scenarios",
+  "title": "Data modelling and data warehousing scenarios",
+  "type": "SQL",
+  "difficulty": "hard",
+  "tags": [
+   "data-modeling",
+   "data-warehouse",
+   "sql"
+  ],
+  "leetcode": null,
+  "prompt": "Round 1: intermediate SQL, Python, database features and data-warehousing concepts. Round 2: scenario-based data modelling and warehousing (design the model for a given scenario).",
+  "follow_ups": [
+   "Star vs snowflake schema",
+   "Fact vs dimension tables"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Data Engineer (Entain India, Hyderabad)",
+   "round": "Round 2 (data modelling, scenario-based)",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Ivy-Hyderabad-Interview-Questions-EI_IE257530.0,3_IL.4,13_IM1076_IP3.htm"
+  }
+ },
+ {
+  "slug": "solid-principles",
+  "title": "SOLID principles and dependency inversion",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the SOLID principles.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer, C#/.NET + Angular (IVY Comptech / Entain India)",
+   "round": "Technical round (C#, OOP, SQL, .NET Core REST API, RxJS, Angular)",
+   "seen_on": "2021-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.sg/Interview/Ivy-Interview-Questions-E257530_P2.htm"
+  }
+ },
+ {
+  "slug": "singleton-and-factory-patterns",
+  "title": "Singleton and Factory design patterns",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "design-patterns",
+   "lld"
+  ],
+  "leetcode": null,
+  "prompt": "Explain the Factory and Singleton design patterns and implement them.",
+  "follow_ups": [
+   "Make the singleton thread-safe"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer, C#/.NET + Angular (IVY Comptech / Entain India)",
+   "round": "Technical round (C#, OOP, SQL, .NET Core REST API, RxJS, Angular)",
+   "seen_on": "2021-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.sg/Interview/Ivy-Interview-Questions-E257530_P2.htm"
+  }
+ },
+ {
+  "slug": "sql-join-types",
+  "title": "SQL join types; DDL vs DML",
+  "type": "SQL",
+  "difficulty": "easy",
+  "tags": [
+   "sql",
+   "joins"
+  ],
+  "leetcode": null,
+  "prompt": "Explain SQL joins.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer, C#/.NET + Angular (IVY Comptech / Entain India)",
+   "round": "Technical round (C#, OOP, SQL, .NET Core REST API, RxJS, Angular)",
+   "seen_on": "2021-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.sg/Interview/Ivy-Interview-Questions-E257530_P2.htm"
+  }
+ },
+ {
+  "slug": "agile-cross-team-dependencies",
+  "title": "Managing dependencies across agile teams; agile metrics",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "agile"
+  ],
+  "leetcode": null,
+  "prompt": "What dependencies arise among agile teams and how do you overcome them? How do you interpret agile metrics?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Agile Delivery Manager (Entain India)",
+   "round": "Interview",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-India-Interview-Questions-E257530.htm"
+  }
+ },
+ {
+  "slug": "java-final-finally-finalize",
+  "title": "final vs finally vs finalize",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "Difference between final, finally and finalize.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / Entain)",
+   "round": "Technical video round (Spring, threading, design patterns)",
+   "seen_on": "2017-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "java-create-and-fix-deadlock",
+  "title": "Write code that deadlocks, then fix it",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "What is a deadlock?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / Entain)",
+   "round": "Technical video round (Spring, threading, design patterns)",
+   "seen_on": "2017-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "describe-a-design-pattern",
+  "title": "Describe a design pattern you have used",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "design-patterns"
+  ],
+  "leetcode": null,
+  "prompt": "Describe a design pattern (and where you used it).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / Entain)",
+   "round": "Technical video round (Spring, threading, design patterns)",
+   "seen_on": "2017-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "ensuring-code-quality",
+  "title": "How do you ensure code quality?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "engineering-practices"
+  ],
+  "leetcode": null,
+  "prompt": "How do you ensure code quality?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / Entain)",
+   "round": "Technical video round (Spring, threading, design patterns)",
+   "seen_on": "2017-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "what-is-spring-framework",
+  "title": "What is Spring?",
+  "type": "SPRING",
+  "difficulty": "easy",
+  "tags": [
+   "spring"
+  ],
+  "leetcode": null,
+  "prompt": "What is Spring (core idea, IoC/DI)?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / Entain)",
+   "round": "Technical video round (Spring, threading, design patterns)",
+   "seen_on": "2017-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "walk-through-current-work",
+  "title": "Walk Me Through Your Current Work / Projects",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "experience"
+  ],
+  "leetcode": null,
+  "prompt": "Asked about past work experience.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Team Lead (IVY Comptech, Hyderabad)",
+   "round": "Interview",
+   "seen_on": "2020-01",
+   "confidence": "claimed",
+   "source": "https://in.indeed.com/cmp/Ivy-Comptech/interviews"
+  }
+ },
+ {
+  "slug": "why-are-you-looking-for-a-change",
+  "title": "Why are you looking for a change?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why would you like to change jobs?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Team Lead (IVY Comptech, Hyderabad)",
+   "round": "Interview",
+   "seen_on": "2020-01",
+   "confidence": "claimed",
+   "source": "https://in.indeed.com/cmp/Ivy-Comptech/interviews"
+  }
+ },
+ {
+  "slug": "java-equals-vs-double-equals-hashcode",
+  "title": "== vs equals() and the equals/hashCode Contract",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java"
+  ],
+  "leetcode": null,
+  "prompt": "What is the difference between .equals() and == in Java?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (IVY Comptech)",
+   "round": "Technical round",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.ambitionbox.com/interviews/ivy-comptech-interview-questions/software-engineer?page=2"
+  }
+ },
+ {
+  "slug": "design-travel-booking",
+  "title": "Design a Travel Booking Site (MMT/ClearTrip)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "system-design",
+   "scalability",
+   "aggregation",
+   "caching"
+  ],
+  "leetcode": null,
+  "prompt": "Design the backend for a MakeMyTrip-like site that shows the latest flight details pulled from many airlines, handling very high data volume with fast responses.",
+  "follow_ups": [
+   "How do you keep flight data fresh across many airline sources?",
+   "How would the same approach apply to a high-volume streaming platform like Hotstar?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (experienced)",
+   "round": "Technical (design)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.nitinagrawal.com/ivy.html"
+  }
+ },
+ {
+  "slug": "two-sum",
+  "title": "Two Sum",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "array",
+   "hashmap"
+  ],
+  "leetcode": "two-sum",
+  "prompt": "Find the indexes of the pair of numbers in a given array whose sum equals a given target.",
+  "follow_ups": [
+   "Why does a HashSet not suffice when indexes are required?",
+   "Compare HashMap vs sorting / TreeMap approaches."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (experienced)",
+   "round": "Technical (coding)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.nitinagrawal.com/ivy.html"
+  }
+ },
+ {
+  "slug": "java-garbage-collection",
+  "title": "When does the Java garbage collector run? Design a garbage collector",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "jvm",
+   "gc",
+   "memory"
+  ],
+  "leetcode": null,
+  "prompt": "When does the garbage collector run in Java? Then: how would you design a garbage collector?",
+  "follow_ups": [
+   "Design a garbage collector."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer",
+   "round": "Technical",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.nitinagrawal.com/ivy.html"
+  }
+ },
+ {
+  "slug": "jvm-internals",
+  "title": "JVM internals and memory allocation",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "jvm",
+   "memory-model"
+  ],
+  "leetcode": null,
+  "prompt": "What is the memory model in Java?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer",
+   "round": "Technical",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.nitinagrawal.com/ivy.html"
+  }
+ },
+ {
+  "slug": "reverse-words-in-a-string-iii",
+  "title": "Reverse each word of a sentence without loops",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "string",
+   "recursion"
+  ],
+  "leetcode": "reverse-words-in-a-string-iii",
+  "prompt": "Reverse every word of a sentence in place ('This is a Sentence' -> 'sihT si a ecnetneS') without using any loop or iterator.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer",
+   "round": "Technical (coding)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.nitinagrawal.com/ivy.html"
+  }
+ },
+ {
+  "slug": "middle-of-the-linked-list",
+  "title": "Middle of the Linked List",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "linked-list",
+   "two-pointers"
+  ],
+  "leetcode": "middle-of-the-linked-list",
+  "prompt": "Find the middle node of a linked list in a single iteration.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer",
+   "round": "Technical (coding)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://www.nitinagrawal.com/ivy.html"
+  }
+ },
+ {
+  "slug": "invert-binary-tree",
+  "title": "Mirror of a binary tree",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "tree",
+   "recursion"
+  ],
+  "leetcode": "invert-binary-tree",
+  "prompt": "Convert a binary tree into its mirror.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "Technical",
+   "seen_on": "2019-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/"
+  }
+ },
+ {
+  "slug": "maximum-width-of-binary-tree",
+  "title": "Width of a binary tree",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "tree",
+   "bfs"
+  ],
+  "leetcode": "maximum-width-of-binary-tree",
+  "prompt": "Find the width of a binary tree.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "Technical",
+   "seen_on": "2019-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/"
+  }
+ },
+ {
+  "slug": "why-entain",
+  "title": "Why do you want to join Entain / IVY Comptech?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation",
+   "hr"
+  ],
+  "leetcode": null,
+  "prompt": "Why did you choose this company?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "HR",
+   "seen_on": "2019-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/"
+  }
+ },
+ {
+  "slug": "why-are-you-qualified",
+  "title": "Why do you think you are qualified for this role?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "hr"
+  ],
+  "leetcode": null,
+  "prompt": "Why do you think you are qualified for this company?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "HR",
+   "seen_on": "2019-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/"
+  }
+ },
+ {
+  "slug": "achievements-beyond-work",
+  "title": "What have you achieved apart from academics/work?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "hr"
+  ],
+  "leetcode": null,
+  "prompt": "What have you achieved till now apart from your academics?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "HR",
+   "seen_on": "2019-01",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/"
+  }
+ },
+ {
+  "slug": "why-entain",
+  "title": "Why do you want to join Entain / IVY Comptech?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation",
+   "hr"
+  ],
+  "leetcode": null,
+  "prompt": "Why did you choose this company?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "HR",
+   "seen_on": "2018-08",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/ivy-comptech-interview-experience/"
+  }
+ },
+ {
+  "slug": "strongest-technology",
+  "title": "Which technology are you strongest in?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "hr"
+  ],
+  "leetcode": null,
+  "prompt": "Which technology are you good in?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "HR",
+   "seen_on": "2018-08",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/ivy-comptech-interview-experience/"
+  }
+ },
+ {
+  "slug": "relocation-flexibility",
+  "title": "Are you open to a different work location?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "hr"
+  ],
+  "leetcode": null,
+  "prompt": "Is there any problem if we assign you a different work location?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Fresher (campus)",
+   "round": "HR",
+   "seen_on": "2018-08",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/ivy-comptech-interview-experience/"
+  }
+ },
+ {
+  "slug": "largest-sum-subarray-at-least-k",
+  "title": "Largest sum subarray with at least k numbers",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "array",
+   "prefix-sum",
+   "kadane"
+  ],
+  "leetcode": null,
+  "prompt": "Given an array, find the maximum sum of a contiguous subarray containing at least k elements.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "SDE-1 (campus)",
+   "round": "Online coding test",
+   "seen_on": "2021-10",
+   "confidence": "claimed",
+   "source": "https://www.naukri.com/code360/interview-experiences/ivy-comptech/ivy-comptech-interview-experience-by-divyanshu-tripathi-on-campus-oct-2021"
+  }
+ },
+ {
+  "slug": "describe-a-design-pattern",
+  "title": "Describe a design pattern you have used",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "design-patterns",
+   "oop"
+  ],
+  "leetcode": null,
+  "prompt": "Pick a design pattern and describe it: what problem it solves, how it is structured, and where you have used it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "java-final-finally-finalize",
+  "title": "final vs finally vs finalize",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "java-basics",
+   "exceptions",
+   "gc"
+  ],
+  "leetcode": null,
+  "prompt": "What is the difference between final, finally and finalize in Java?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "java-create-and-fix-deadlock",
+  "title": "Write code that deadlocks, then fix it",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "deadlock"
+  ],
+  "leetcode": null,
+  "prompt": "What is a deadlock?",
+  "follow_ups": [
+   "How do you prevent or detect it in Java code?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "ensuring-code-quality",
+  "title": "How do you ensure code quality?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "code-quality",
+   "testing",
+   "ci-cd",
+   "code-review"
+  ],
+  "leetcode": null,
+  "prompt": "How do you ensure code quality in your team and codebase?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "spring-autowired-and-dependency-injection",
+  "title": "@Autowired and dependency injection in Spring Boot",
+  "type": "SPRING",
+  "difficulty": "easy",
+  "tags": [
+   "spring",
+   "ioc",
+   "dependency-injection"
+  ],
+  "leetcode": null,
+  "prompt": "What is Spring for, and what problems does it solve?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "java-reflection",
+  "title": "Java Reflection",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "reflection"
+  ],
+  "leetcode": null,
+  "prompt": "Questions on Java Reflection: what it is, how it works and when you would use it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "java-threading-fundamentals",
+  "title": "Java threading fundamentals",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "java",
+   "multithreading",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Questions on Java threading: creating and coordinating threads, synchronization and thread safety.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "messaging-systems-fundamentals",
+  "title": "Messaging systems (queues, pub/sub) in backend services",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "messaging",
+   "jms",
+   "kafka",
+   "async"
+  ],
+  "leetcode": null,
+  "prompt": "Questions on messaging systems: how you have used message brokers/queues between services and the trade-offs involved.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "web-services-fundamentals",
+  "title": "Web services (REST/SOAP) fundamentals",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "rest",
+   "soap",
+   "web-services"
+  ],
+  "leetcode": null,
+  "prompt": "Questions on web services: how you design, build and consume them.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "ci-cd-pipeline-basics",
+  "title": "CI/CD pipeline basics",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "ci-cd",
+   "devops"
+  ],
+  "leetcode": null,
+  "prompt": "Questions on CI/CD: how your build, test and deployment pipeline works.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Video technical interview (Java backend)",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "walk-through-current-work",
+  "title": "Walk Me Through Your Current Work / Projects",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation",
+   "experience"
+  ],
+  "leetcode": null,
+  "prompt": "Recruiter call: tell us about the job you are in, your motivation and your previous experience.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Java Software Engineer (GVC Group / bwin, Vienna)",
+   "round": "Recruiter phone screen",
+   "seen_on": "2018-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Disagreement with a colleague or manager",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "conflict",
+   "teamwork"
+  ],
+  "leetcode": null,
+  "prompt": "How do you deal with conflicts?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (Entain, location not stated; Glassdoor AU)",
+   "round": "Interview",
+   "seen_on": "2024-12",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com.au/Interview/Entain-Interview-E341832-RVW93781496.htm"
+  }
+ },
+ {
+  "slug": "why-entain",
+  "title": "Why do you want to work at Entain?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why do you want to work here?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Engineer (Entain, location not stated; Glassdoor CA)",
+   "round": "Interview",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.ca/Interview/Entain-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,24.htm"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Coding test after the first round: implement a gRPC/protobuf racing service (racing + sports services behind a REST gateway).",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Senior Software Engineer (Entain Australia, Melbourne)",
+   "round": "Take-home coding test (bonus feature points)",
+   "seen_on": "2022-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/gRPC-and-protobuff-racing-service-implementation-in-the-coding-test-QTN_5591218.htm"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2021-06",
+   "confidence": "claimed",
+   "source": "https://github.com/huaweichen/entain-test"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2021-08",
+   "confidence": "claimed",
+   "source": "https://github.com/ashleyjlive/entain"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test",
+   "Task 6: add pagination to the sports and racing list RPCs following Google API design"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2022-01",
+   "confidence": "claimed",
+   "source": "https://github.com/massey101/entain-be-technical-test"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia, Brisbane)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2022-10",
+   "confidence": "claimed",
+   "source": "https://github.com/colinSchofield/entain"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2023-01",
+   "confidence": "claimed",
+   "source": "https://github.com/cjh-entain/entain-master"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2023-04",
+   "confidence": "claimed",
+   "source": "https://github.com/williamomeara7/entain"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia, Brisbane)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2023-05",
+   "confidence": "claimed",
+   "source": "https://github.com/Skeith00/entain-master"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia / Neds, Brisbane)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2025-09",
+   "confidence": "claimed",
+   "source": "https://github.com/danilvpetrov/entain"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2026-03",
+   "confidence": "claimed",
+   "source": "https://github.com/yuxinli3888/entain-interview-adali"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://github.com/act28/entain-master"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://github.com/between-days/entain-tech-test"
+  }
+ },
+ {
+  "slug": "entain-racing-grpc-service-take-home",
+  "title": "Entain BE take-home: extend a gRPC racing service and add a sports service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "grpc",
+   "protobuf",
+   "api-design",
+   "go",
+   "sqlite",
+   "microservices",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Given a Go api gateway (grpc-gateway) and a SQLite-backed gRPC racing service, deliver one PR per task: add a visible-only filter to ListRaces, order races by advertised_start_time, add a derived OPEN/CLOSED status, add a GetRace-by-ID RPC, and build a separate sports service with ListEvents.",
+  "follow_ups": [
+   "Name the visibility filter so callers can still fetch all races (Google API list-method guidance)",
+   "Bonus: let the consumer choose the ORDER/SORT-BY field and direction",
+   "Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?",
+   "GetRace should follow the Google API standard 'get' method",
+   "Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name, advertised_start_time)?",
+   "Treat it as production code: document, comment and test"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend Engineer (Entain Australia / Neds)",
+   "round": "Take-home technical test (5 PRs)",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://github.com/jharjadi/entain-jimmy"
+  }
+ },
+ {
+  "slug": "entain-wallet-transaction-processing-take-home",
+  "title": "Entain take-home: idempotent win/lose transaction processing and user balance",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "concurrency",
+   "postgresql",
+   "database-design",
+   "transactions",
+   "wallet",
+   "go",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Build an HTTP service (Go + PostgreSQL, Docker) that receives POST requests from third-party providers with {state: win|lose, amount, transactionId} and a Source-Type header (game|server|payment); win increases and lose decreases the user's balance.",
+  "follow_ups": [
+   "Each transactionId must be processed only once (idempotency)",
+   "The account balance can never go negative: how do you guarantee that under concurrent requests (row locks / SELECT ... FOR UPDATE / constraints)?",
+   "Post-processing: every N minutes cancel the 10 latest odd records and correct the balance; cancelled records must not be processed again",
+   "How do you store money (decimal vs integer minor units)?",
+   "Schema design for users and transactions tables, migrations and indexes"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend (Go) Developer (Entain NCE, Tallinn)",
+   "round": "Take-home test assignment",
+   "seen_on": "2023-02",
+   "confidence": "claimed",
+   "source": "https://github.com/Matrix278/entain-test-task"
+  }
+ },
+ {
+  "slug": "entain-wallet-transaction-processing-take-home",
+  "title": "Entain take-home: idempotent win/lose transaction processing and user balance",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "concurrency",
+   "postgresql",
+   "database-design",
+   "transactions",
+   "wallet",
+   "go",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Build an HTTP service (Go + PostgreSQL, Docker) that receives POST requests from third-party providers with {state: win|lose, amount, transactionId} and a Source-Type header (game|server|payment); win increases and lose decreases the user's balance.",
+  "follow_ups": [
+   "Each transactionId must be processed only once (idempotency)",
+   "The account balance can never go negative: how do you guarantee that under concurrent requests (row locks / SELECT ... FOR UPDATE / constraints)?",
+   "Post-processing: every N minutes cancel the 10 latest odd records and correct the balance; cancelled records must not be processed again",
+   "How do you store money (decimal vs integer minor units)?",
+   "Schema design for users and transactions tables, migrations and indexes"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend (Go) Developer (Entain, likely Entain NCE / Baltics)",
+   "round": "Take-home test assignment",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://github.com/myrachanto/entaingo"
+  }
+ },
+ {
+  "slug": "entain-wallet-transaction-processing-take-home",
+  "title": "Entain take-home: idempotent win/lose transaction processing and user balance",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "idempotency",
+   "concurrency",
+   "postgresql",
+   "database-design",
+   "transactions",
+   "wallet",
+   "go",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Build an HTTP service (Go + PostgreSQL, Docker) that receives POST requests from third-party providers with {state: win|lose, amount, transactionId} and a Source-Type header (game|server|payment); win increases and lose decreases the user's balance.",
+  "follow_ups": [
+   "Each transactionId must be processed only once (idempotency)",
+   "The account balance can never go negative: how do you guarantee that under concurrent requests (row locks / SELECT ... FOR UPDATE / constraints)?",
+   "Post-processing: every N minutes cancel the 10 latest odd records and correct the balance; cancelled records must not be processed again",
+   "How do you store money (decimal vs integer minor units)?",
+   "Schema design for users and transactions tables, migrations and indexes"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Backend (Go) Developer (Entain, likely Entain NCE / Baltics)",
+   "round": "Take-home test assignment",
+   "seen_on": "2026-06",
+   "confidence": "claimed",
+   "source": "https://github.com/Elkin-MD/entain-test"
+  }
+ },
+ {
+  "slug": "entain-sport-events-api-take-home",
+  "title": "Entain take-home: Spring Boot sport events API with status rules and live update subscription",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "spring-boot",
+   "rest-api",
+   "java",
+   "state-machine",
+   "sse",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Build a REST API for sport events (name, sport, status, start_time): create, get, list with filters by status and sport, update and change status, plus a way for clients to subscribe to event updates.",
+  "follow_ups": [
+   "Status transitions: inactive -> active -> finished only; finished is terminal",
+   "An event cannot be activated if its start_time is in the past",
+   "How do clients subscribe to updates (SSE / WebSocket / Kafka)?",
+   "Persistence layer and schema/indexes; tests at unit, controller and integration level"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Java Developer (Entain NCE, Baltics)",
+   "round": "Take-home assignment",
+   "seen_on": "2026-06",
+   "confidence": "claimed",
+   "source": "https://github.com/teomanturan91/sport-events-api"
+  }
+ },
+ {
+  "slug": "entain-sport-events-api-take-home",
+  "title": "Entain take-home: Spring Boot sport events API with status rules and live update subscription",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "spring-boot",
+   "rest-api",
+   "java",
+   "state-machine",
+   "sse",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Build a REST API for sport events (name, sport, status, start_time): create, get, list with filters by status and sport, update and change status, plus a way for clients to subscribe to event updates.",
+  "follow_ups": [
+   "Status transitions: inactive -> active -> finished only; finished is terminal",
+   "An event cannot be activated if its start_time is in the past",
+   "How do clients subscribe to updates (SSE / WebSocket / Kafka)?",
+   "Persistence layer and schema/indexes; tests at unit, controller and integration level"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Java Developer (Entain, likely Entain NCE / Baltics)",
+   "round": "Take-home test task",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://github.com/AlekseiJegorovOrg/Entain"
+  }
+ },
+ {
+  "slug": "drone-navigation-simulator",
+  "title": "Navigate a drone through a city from command input",
+  "type": "LLD",
+  "difficulty": "easy",
+  "tags": [
+   "simulation",
+   "oop",
+   "grid",
+   "command-parsing"
+  ],
+  "leetcode": null,
+  "prompt": "Write a program that navigates a drone through a city from basic and complex input files: turn left/right, move forward/back, travel N/S/E/W, and report heading, final coordinates and coordinate history.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Software Developer (Ladbrokes Coral, UK)",
+   "round": "Take-home technical test",
+   "seen_on": "2019-03",
+   "confidence": "claimed",
+   "source": "https://github.com/jamiebdavis/ladbrokes-tech-test"
+  }
+ },
+ {
+  "slug": "bet-data-validation-feature-pipeline",
+  "title": "Validate bets data and build customer features",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "data-pipeline",
+   "python",
+   "validation",
+   "feature-engineering"
+  ],
+  "leetcode": null,
+  "prompt": "Given bets.csv, validate rows against business rules (valid/invalid outputs and a report) and build customer-level features from each customer's first 20 valid bets; package it as a CLI with Docker.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "entain",
+   "role": "Junior Machine Learning Engineer (Entain Australia)",
+   "round": "Take-home assignment",
+   "seen_on": "2026-04",
+   "confidence": "claimed",
+   "source": "https://github.com/sqzhang-jeremy/Entain"
+  }
+ }
+]

@@ -1,0 +1,21 @@
+slug: largest-sum-subarray-at-least-k
+title: Largest sum subarray with at least k numbers
+type: DSA
+difficulty: medium
+tags:
+- array
+- prefix-sum
+- kadane
+leetcode: null
+prompt: |
+  Given an array, find the maximum sum of a contiguous subarray containing at least k elements.
+follow_ups: []
+academy:
+- C4
+sightings:
+- company: entain
+  role: SDE-1 (campus)
+  round: Online coding test
+  seen_on: 2021-10
+  confidence: claimed
+  source: https://www.naukri.com/code360/interview-experiences/ivy-comptech/ivy-comptech-interview-experience-by-divyanshu-tripathi-on-campus-oct-2021

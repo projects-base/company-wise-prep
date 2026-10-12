@@ -1,0 +1,21 @@
+slug: strongest-technology
+title: Which technology are you strongest in?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- hr
+leetcode: null
+prompt: |
+  Which technology are you good in?
+follow_ups: []
+academy:
+- H2
+- A7
+- D4
+sightings:
+- company: entain
+  role: Fresher (campus)
+  round: HR
+  seen_on: 2018-08
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/ivy-comptech-interview-experience/

@@ -1,0 +1,107 @@
+slug: entain-racing-grpc-service-take-home
+title: 'Entain BE take-home: extend a gRPC racing service and add a sports service'
+type: LLD
+difficulty: medium
+tags:
+- grpc
+- protobuf
+- api-design
+- go
+- sqlite
+- microservices
+- take-home
+leetcode: null
+prompt: |
+  Coding test after the first round: implement a gRPC/protobuf racing service (racing + sports services behind a REST gateway).
+follow_ups:
+- Name the visibility filter so callers can still fetch all races (Google API list-method guidance)
+- 'Bonus: let the consumer choose the ORDER/SORT-BY field and direction'
+- 'Status OPEN/CLOSED derived from advertised_start_time: compute at read time or store?'
+- GetRace should follow the Google API standard 'get' method
+- 'Sports must be a separate service, not bolted onto racing: what is an event made of (at least id, name,
+  advertised_start_time)?'
+- 'Treat it as production code: document, comment and test'
+- 'Task 6: add pagination to the sports and racing list RPCs following Google API design'
+academy:
+- Q7
+- Q5
+- E5
+sightings:
+- company: entain
+  role: Senior Software Engineer (Entain Australia, Melbourne)
+  round: Take-home coding test (bonus feature points)
+  seen_on: 2022-06
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/gRPC-and-protobuff-racing-service-implementation-in-the-coding-test-QTN_5591218.htm
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2021-06
+  confidence: claimed
+  source: https://github.com/huaweichen/entain-test
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2021-08
+  confidence: claimed
+  source: https://github.com/ashleyjlive/entain
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://github.com/massey101/entain-be-technical-test
+- company: entain
+  role: Backend Engineer (Entain Australia, Brisbane)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2022-10
+  confidence: claimed
+  source: https://github.com/colinSchofield/entain
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://github.com/cjh-entain/entain-master
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2023-04
+  confidence: claimed
+  source: https://github.com/williamomeara7/entain
+- company: entain
+  role: Backend Engineer (Entain Australia, Brisbane)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2023-05
+  confidence: claimed
+  source: https://github.com/Skeith00/entain-master
+- company: entain
+  role: Backend Engineer (Entain Australia / Neds, Brisbane)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2025-09
+  confidence: claimed
+  source: https://github.com/danilvpetrov/entain
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2026-03
+  confidence: claimed
+  source: https://github.com/yuxinli3888/entain-interview-adali
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://github.com/act28/entain-master
+- company: entain
+  role: Backend Engineer (Entain Australia)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://github.com/between-days/entain-tech-test
+- company: entain
+  role: Backend Engineer (Entain Australia / Neds)
+  round: Take-home technical test (5 PRs)
+  seen_on: 2026-04
+  confidence: claimed
+  source: https://github.com/jharjadi/entain-jimmy

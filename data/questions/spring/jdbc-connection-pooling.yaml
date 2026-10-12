@@ -18,3 +18,9 @@ sightings:
   seen_on: 2025-02
   confidence: claimed
   source: https://leetcode.com/discuss/post/6375258/
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named Database design and SQL performance and scalability)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12

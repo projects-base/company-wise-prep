@@ -1,0 +1,20 @@
+slug: linux-chmod-octal-permissions
+title: Change file permissions using octal (chmod)
+type: DOMAIN
+difficulty: easy
+tags:
+- linux
+- os
+leetcode: null
+prompt: |
+  How do you change file permissions using octal notation in Linux (chmod)?
+follow_ups: []
+academy:
+- S0
+sightings:
+- company: entain
+  role: Java Developer (IVY Comptech, Hyderabad)
+  round: Technical round (after written test)
+  seen_on: 2017-03
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

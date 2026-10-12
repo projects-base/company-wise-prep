@@ -5,6 +5,7 @@ difficulty: easy
 tags:
 - sql
 - joins
+- mysql
 leetcode: null
 prompt: |
   Explain the types of joins (inner, left/right/full outer, cross, self) and the difference between DDL and DML.
@@ -19,3 +20,15 @@ sightings:
   seen_on: 2021-03
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-India-Test-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,26.htm
+- company: entain
+  role: Trainee Software Engineer (Entain India, Hyderabad)
+  round: Technical round (MySQL, multithreading, Angular)
+  seen_on: 2021-12
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Trainee-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,38.htm
+- company: entain
+  role: Software Engineer, C#/.NET + Angular (IVY Comptech / Entain India)
+  round: Technical round (C#, OOP, SQL, .NET Core REST API, RxJS, Angular)
+  seen_on: 2021-06
+  confidence: claimed
+  source: https://www.glassdoor.sg/Interview/Ivy-Interview-Questions-E257530_P2.htm

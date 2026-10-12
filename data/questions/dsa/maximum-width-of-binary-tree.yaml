@@ -1,0 +1,21 @@
+slug: maximum-width-of-binary-tree
+title: Width of a binary tree
+type: DSA
+difficulty: medium
+tags:
+- tree
+- bfs
+leetcode: maximum-width-of-binary-tree
+prompt: |
+  Find the width of a binary tree.
+follow_ups: []
+academy:
+- C4
+- H1
+sightings:
+- company: entain
+  role: Fresher (campus)
+  round: Technical
+  seen_on: 2019-01
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/interview-experiences/ivy-comptech-interview-experience-2/

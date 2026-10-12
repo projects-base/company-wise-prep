@@ -1,0 +1,21 @@
+slug: ci-cd-pipeline-basics
+title: CI/CD pipeline basics
+type: DOMAIN
+difficulty: easy
+tags:
+- ci-cd
+- devops
+leetcode: null
+prompt: |
+  Questions on CI/CD: how your build, test and deployment pipeline works.
+follow_ups: []
+academy:
+- D8
+- D10
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

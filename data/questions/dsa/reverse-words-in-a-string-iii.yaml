@@ -1,0 +1,21 @@
+slug: reverse-words-in-a-string-iii
+title: Reverse each word of a sentence without loops
+type: DSA
+difficulty: easy
+tags:
+- string
+- recursion
+leetcode: reverse-words-in-a-string-iii
+prompt: |
+  Reverse every word of a sentence in place ('This is a Sentence' -> 'sihT si a ecnetneS') without using any loop or iterator.
+follow_ups: []
+academy:
+- H1
+- C2
+sightings:
+- company: entain
+  role: Software Engineer
+  round: Technical (coding)
+  seen_on: 2022-01
+  confidence: claimed
+  source: https://www.nitinagrawal.com/ivy.html

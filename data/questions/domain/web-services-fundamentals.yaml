@@ -1,0 +1,23 @@
+slug: web-services-fundamentals
+title: Web services (REST/SOAP) fundamentals
+type: DOMAIN
+difficulty: easy
+tags:
+- rest
+- soap
+- web-services
+leetcode: null
+prompt: |
+  Questions on web services: how you design, build and consume them.
+follow_ups: []
+academy:
+- S7B
+- D5
+- L6
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

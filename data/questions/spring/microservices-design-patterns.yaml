@@ -8,6 +8,7 @@ tags:
 - eureka
 - circuit-breaker
 - saga
+- spring-boot
 leetcode: null
 prompt: |
   Explain the Saga pattern, the Circuit Breaker, API gateways and Eureka service discovery, and how you used them in a project.
@@ -31,3 +32,15 @@ sightings:
   seen_on: 2025-12
   confidence: claimed
   source: https://clear.glassdoor.nl/Interview/Cognizant-Interview-E8014-RVW102631130.htm
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named System Design)
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12
+- company: entain
+  role: Senior Software Developer (Entain India, Hyderabad)
+  round: Technical round
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Ivy-Hyderabad-Interview-Questions-EI_IE257530.0,3_IL.4,13_IM1076_IP3.htm

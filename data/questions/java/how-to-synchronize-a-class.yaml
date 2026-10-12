@@ -1,0 +1,28 @@
+slug: how-to-synchronize-a-class
+title: How do you synchronise a class in Java?
+type: JAVA
+difficulty: medium
+tags:
+- java
+- concurrency
+leetcode: null
+prompt: |
+  How would you synchronise (make thread-safe) a class in Java?
+follow_ups: []
+academy:
+- B2
+- B3
+- A6
+sightings:
+- company: entain
+  role: Software Engineer - Java (Entain India)
+  round: Technical round
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm
+- company: entain
+  role: Software Engineer, ~2 yrs exp (Entain India)
+  round: Technical round 1
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,30.htm

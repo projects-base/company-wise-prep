@@ -1,0 +1,29 @@
+slug: sql-scenario-based-queries
+title: SQL basics and scenario-based queries
+type: SQL
+difficulty: medium
+tags:
+- sql
+leetcode: null
+prompt: |
+  SQL basics plus a few scenario-based questions (write queries for a given business scenario).
+follow_ups: []
+academy:
+- Q1
+- Q2
+- Q3
+- Q4
+- Q5
+sightings:
+- company: entain
+  role: Software Engineer (Entain India, Pune)
+  round: Technical round
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm
+- company: entain
+  role: Software Engineer (Entain India, Pune)
+  round: 'Round 2 (manager: coding + SQL)'
+  seen_on: 2024-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm

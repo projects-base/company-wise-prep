@@ -7,6 +7,7 @@ tags:
 - lambda
 - streams
 - functional-interface
+- java
 leetcode: null
 prompt: |
   List the main Java 8 features. What is a functional interface, and how do lambdas relate to it? Default and static interface methods, Optional, the Stream API, the new Date/Time API.
@@ -28,3 +29,9 @@ sightings:
   seen_on: 2025-08
   confidence: claimed
   source: https://static.glassdoor.it/Interview/Cognizant-Software-Developer-Interview-Questions-EI_IE8014.0,9_KO10,28_IP20.htm
+- company: entain
+  role: Senior Software Developer (Entain India, Hyderabad)
+  round: Technical round
+  seen_on: 2023-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Ivy-Hyderabad-Interview-Questions-EI_IE257530.0,3_IL.4,13_IM1076_IP3.htm

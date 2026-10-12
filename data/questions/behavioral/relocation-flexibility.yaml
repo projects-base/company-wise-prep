@@ -1,0 +1,19 @@
+slug: relocation-flexibility
+title: Are you open to a different work location?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- hr
+leetcode: null
+prompt: |
+  Is there any problem if we assign you a different work location?
+follow_ups: []
+academy:
+- H2
+sightings:
+- company: entain
+  role: Fresher (campus)
+  round: HR
+  seen_on: 2018-08
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/ivy-comptech-interview-experience/

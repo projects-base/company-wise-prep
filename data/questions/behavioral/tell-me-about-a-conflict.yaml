@@ -5,6 +5,7 @@ difficulty: medium
 tags:
 - googleyness
 - conflict
+- teamwork
 leetcode: null
 prompt: |
   Describe a disagreement with a colleague or manager, how you resolved it and the outcome.
@@ -29,3 +30,9 @@ sightings:
   seen_on: 2025-12
   confidence: claimed
   source: https://leetcode.com/discuss/post/7435112/
+- company: entain
+  role: Software Engineer (Entain, location not stated; Glassdoor AU)
+  round: Interview
+  seen_on: 2024-12
+  confidence: claimed
+  source: https://www.glassdoor.com.au/Interview/Entain-Interview-E341832-RVW93781496.htm

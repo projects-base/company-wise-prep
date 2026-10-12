@@ -1,0 +1,20 @@
+slug: collection-vs-collections
+title: Collection vs Collections in Java
+type: JAVA
+difficulty: easy
+tags:
+- java
+- collections
+leetcode: null
+prompt: |
+  What is the difference between Collection and Collections in Java?
+follow_ups: []
+academy:
+- H1
+sightings:
+- company: entain
+  role: Software Engineer - Java Developer (Entain India, India)
+  round: Technical interview (30 min, via third-party HR)
+  seen_on: 2021-07
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-India-Java-Developer-Interview-Questions-EI_IE257530.0,12_KO13,27.htm

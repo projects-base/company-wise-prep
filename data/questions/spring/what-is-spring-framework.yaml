@@ -1,0 +1,23 @@
+slug: what-is-spring-framework
+title: What is Spring?
+type: SPRING
+difficulty: easy
+tags:
+- spring
+leetcode: null
+prompt: |
+  What is Spring (core idea, IoC/DI)?
+follow_ups: []
+academy:
+- D1
+- D2
+- D4
+- L4
+- S5
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / Entain)
+  round: Technical video round (Spring, threading, design patterns)
+  seen_on: 2017-06
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

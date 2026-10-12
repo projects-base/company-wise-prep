@@ -1,0 +1,30 @@
+slug: describe-a-design-pattern
+title: Describe a design pattern you have used
+type: JAVA
+difficulty: medium
+tags:
+- design-patterns
+- oop
+leetcode: null
+prompt: |
+  Describe a design pattern (and where you used it).
+follow_ups: []
+academy:
+- E1
+- E2
+- E3
+- E4
+- D3
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / Entain)
+  round: Technical video round (Spring, threading, design patterns)
+  seen_on: 2017-06
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm

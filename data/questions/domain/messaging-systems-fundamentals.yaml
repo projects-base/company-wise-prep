@@ -1,0 +1,24 @@
+slug: messaging-systems-fundamentals
+title: Messaging systems (queues, pub/sub) in backend services
+type: DOMAIN
+difficulty: medium
+tags:
+- messaging
+- jms
+- kafka
+- async
+leetcode: null
+prompt: |
+  Questions on messaging systems: how you have used message brokers/queues between services and the trade-offs involved.
+follow_ups: []
+academy:
+- F1
+- S9
+- S7B
+sightings:
+- company: entain
+  role: Senior Java Software Engineer (GVC Group / bwin, Vienna)
+  round: Video technical interview (Java backend)
+  seen_on: 2018-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
