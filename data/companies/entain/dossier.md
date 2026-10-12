@@ -1,11 +1,13 @@
 # Entain India — interview dossier
 
-Target: Software Development Engineer II, Entain India (Hyderabad). Round 3 is on **Tuesday
-13 October 2026, 3:00 PM IST, on Microsoft Teams**. Candidate: about 7 years of Java/Spring Boot
+Target: Software Development Engineer II, Entain India (Hyderabad). **Technical round 2 (TR2)** is on
+**Tuesday 13 October 2026, 3:00 PM IST, on Microsoft Teams**. HR confirmed the process on
+2026-10-12: screening (done) → TR1 (done) → **TR2** → TR3 → HR. TR2 topics: **System design, LLD
+design, Database design, SQL performance and scalability, SQL**. Candidate: about 7 years of Java/Spring Boot
 backend. Researched 2026-10-08.
 
 **Confidence.** Two things are `verified` because Akhil saw them himself: the HR email of
-2026-10-08, which names the round's focus areas, and the 18 Sep round-2 invite topics. Everything
+2026-10-08, which names the round's focus areas, the 18 Sep TR1 invite topics, and the HR call of 2026-10-12 (round structure and TR2 topics). Everything
 else is `claimed`.
 
 **Source quality.** Thin. Entain's careers sites have no hiring-process or interview-tips page
@@ -78,10 +80,10 @@ think, adapt and **design for scale**
   ([Senior SE page](https://www.glassdoor.com/Interview/Entain-India-Senior-Software-Engineer-Interview-Questions-EI_IE257530.0,12_KO13,37.htm)).
 
 **How this compares with Akhil's process:** the reports put coding first and design in a later
-round. Akhil's process, a coding assessment, a Java/Spring Boot/coding round and then a dedicated
-design + database + SQL round, matches that shape, so a techno-managerial round and an HR round
-probably follow. No report shows a round devoted to databases the way Akhil's round 3 is, so treat
-the HR email as the only authority on content. Java and Spring Boot were already tested in round 2:
+round. Akhil's process, confirmed by HR on 2026-10-12, is a screening (coding assessment), three technical
+rounds and an HR round: TR1 was Java/Spring Boot/coding, TR2 is design + LLD + database + SQL, and
+TR3 is not announced yet. No report shows a round devoted to databases the way Akhil's TR2 is, so treat
+HR as the only authority on content. Java and Spring Boot were already tested in TR1:
 expect them now only inside design answers (transactions, connection pools, JPA query behaviour).
 
 ## 3. The bar
@@ -297,7 +299,7 @@ then system design.
 
 ## 7. Strategy
 
-**Written Thu 8 Oct, updated Sun 11 Oct. The round is Tue 13 Oct, 3 PM.** Budget: about 60 min on weekdays and
+**Written Thu 8 Oct, updated Mon 12 Oct. TR2 is Tue 13 Oct, 3 PM.** Budget: about 60 min on weekdays and
 about 180 min at the weekend (campaign `entain-2026-10`). Academy path: `entain` (Q1–Q8, F1, F3,
 F2, S9, F6, F8, where F8 is "design a sports betting platform").
 
@@ -309,8 +311,16 @@ F2, S9, F6, F8, where F8 is "design a sports betting platform").
 | **Fri 9 Oct** (60 min) | Transactions: isolation anomalies, MVCC, `FOR UPDATE` vs optimistic locking, deadlocks. Write the wallet-debit transaction and the idempotency key schema on paper. Two SQL problems (180, 1204). |
 | **Sat 10 Oct** (180 min) | **Full mock design: "design a sports betting platform / bet placement + wallet + settlement"** in 45 min, out loud, on a whiteboard tool. Then the DB deep dive: schema, indexes per query, partitioning, replicas, cache, outbox. Then 3 SQL problems (262, 550, 601). |
 | **Sun 11 Oct** (≈3 h, updated 11 Oct) | **40 min:** [SQL optimization, performance and scalability](../../questions/sql/sql-optimization-performance-scalability.yaml) — say its 30-second version out loud; then [zero-downtime schema migrations](../../questions/sql/zero-downtime-schema-migrations.yaml). **75 min: mock** [design a sports betting platform](../../questions/hld/design-sports-betting-platform.yaml) in 45 min out loud, then compare with the model answer and Academy F8. **45 min: DB drill**, 2 min each out loud: indexes per query · a replica lags · partitioning vs sharding · optimistic vs pessimistic for the wallet · adding a column to 500M-row `bets`. **20 min: SQL by hand** — top-N per group (`DENSE_RANK`), 7-day rolling sum (`ROWS BETWEEN 6 PRECEDING AND CURRENT ROW`), users who bet 3 days in a row (gaps and islands, Academy Q4). If time is left: [live odds to millions of clients](../../questions/hld/design-live-odds-streaming.yaml). |
-| **Mon 12 Oct** (60 min, review only) | No new topics. Re-read the short answers and the *Picture it* sections of the four questions above plus `design-payment-system` and `idempotency-in-payment-systems`, and F8's "Explain it in 2 minutes". Rehearse the 2-minute "system I built" story with real numbers (traffic, database, one performance problem you fixed). Three SQL queries from memory. Test the Teams link. |
-| **Tue 13 Oct** (morning, 20 min) | Skim the wallet schema and the bet-placement transaction. Open a whiteboard tool (Excalidraw) and a SQL scratchpad. |
+| **Mon 12 Oct** (≈90 min, updated after the HR call) | HR added **LLD design** and **database design**, so today is not review-only. **30 min:** [LLD — bet slip, placement and wallet](../../questions/lld/design-betting-bet-placement-lld.yaml): draw the class diagram from memory, name each pattern and why (Strategy for bet types, a validator chain, the state machine, the factory), write `placeBet` once. **30 min:** [database design for a betting platform](../../questions/sql/design-betting-database-schema.yaml): draw the ER diagram from memory, then the indexes for "my open bets", "settle this market" and the ledger, and the partitioning. **30 min:** re-read the short answers and pictures of [the betting platform](../../questions/hld/design-sports-betting-platform.yaml), [SQL optimization/performance/scalability](../../questions/sql/sql-optimization-performance-scalability.yaml) and [zero-downtime migrations](../../questions/sql/zero-downtime-schema-migrations.yaml); three SQL queries from memory; rehearse the 2-minute "system I built" story. Test the Teams link. |
+| **Tue 13 Oct** (morning, 30 min) | Redraw from memory, one minute each: the architecture, the class diagram, the ER diagram, the bet-placement transaction. Open Excalidraw and a SQL scratchpad. |
+
+**How TR2 will probably run.** Five topics in about an hour usually means one problem looked at from
+several sides. Be ready to take a single betting problem down the levels: the HLD (boxes and
+flows) → the LLD (classes and patterns for bet placement) → the database design (tables, keys,
+indexes, partitioning) → SQL (write a query on your own schema, then make it fast). Keep the names
+the same at every level so it reads as one design. If they pick another domain (e.g. a
+leaderboard, a payment system, a URL shortener), use the same four steps.
+
 
 **Lines worth saying (and generic advice to correct):**
 

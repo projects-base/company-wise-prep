@@ -1,0 +1,36 @@
+slug: design-betting-database-schema
+title: Database design for a sports betting platform (schema, keys, indexes, partitioning)
+type: SQL
+difficulty: hard
+tags:
+- database-design
+- schema
+- normalization
+- indexing
+- partitioning
+- ledger
+- postgres
+leetcode: null
+prompt: |
+  Design the relational schema for a sports betting platform: users and wallets, sports, events,
+  markets, selections and odds, bets (single and accumulator), and money movements. Show the
+  tables, keys and constraints, the indexes for the main queries, and how the schema copes
+  with growth.
+follow_ups:
+- Why store money movements as a double-entry ledger instead of just updating a balance?
+- Where do you normalise and where do you denormalise, and why?
+- Which indexes do "my open bets", "bets on this market" and "settle this market" need?
+- The bets table grows by 5M rows a day. What do you do?
+- How do you keep the history of odds changes?
+academy:
+- Q5
+- Q6
+- Q8
+- F8
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named "Database design")
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12

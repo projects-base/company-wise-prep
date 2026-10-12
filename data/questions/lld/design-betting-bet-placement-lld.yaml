@@ -1,0 +1,32 @@
+slug: design-betting-bet-placement-lld
+title: LLD — bet slip, bet placement and wallet for a sports betting app
+type: LLD
+difficulty: hard
+tags:
+- lld
+- betting
+- wallet
+- state-pattern
+- strategy-pattern
+- concurrency
+- java
+leetcode: null
+prompt: |
+  Design the classes (Java) for placing bets in a sports betting app: a bet slip with one or more
+  selections (single and accumulator bets), validation (odds changed, market suspended, limits,
+  balance), debiting the wallet exactly once, and the bet's lifecycle through to settlement.
+follow_ups:
+- How do you add a new bet type (each-way, system bet) without touching existing code?
+- How do you add a new validation rule (self-exclusion, max stake per market)?
+- Two threads place bets on the same wallet at once. Where does the concurrency control live?
+- How does a bet move from placed to won/lost/void, and who is allowed to change it?
+academy:
+- F8
+- Q6
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 focus area (HR named "LLD design")
+  seen_on: 2026-10
+  confidence: claimed
+  source: HR call relayed by Akhil, 2026-10-12
