@@ -52,7 +52,7 @@ roles:
         confidence: verified
         source: interview invite relayed by Akhil, 2026-09; round numbering confirmed by HR, relayed by Akhil 2026-10-12
         seen_on: 2026-09
-      - round: Technical round 2 (TR2, 13 Oct 2026, 3:00 PM IST, Microsoft Teams)
+      - round: Technical round 2 (TR2; was set for 13 Oct 2026, postponed by Entain, new date not set)
         type: HLD
         duration_min: 60
         assesses: >-
@@ -61,7 +61,7 @@ roles:
           organiser, not the technical interviewer. The duration is assumed from TR1.
         focus_areas: [System Design, LLD design, Database design, SQL performance and scalability, SQL]
         confidence: verified
-        source: HR email relayed by Akhil, 2026-10-08; HR call relayed by Akhil, 2026-10-12 (added LLD and database design, confirmed this is TR2)
+        source: HR email relayed by Akhil, 2026-10-08; HR call relayed by Akhil, 2026-10-12 (added LLD and database design, confirmed this is TR2); postponement relayed by Akhil, 2026-10-15
         seen_on: 2026-10
       - round: Technical round 3 (TR3, date not set)
         type: HLD

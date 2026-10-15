@@ -1,7 +1,8 @@
 # Entain India — interview dossier
 
-Target: Software Development Engineer II, Entain India (Hyderabad). **Technical round 2 (TR2)** is on
-**Tuesday 13 October 2026, 3:00 PM IST, on Microsoft Teams**. HR confirmed the process on
+Target: Software Development Engineer II, Entain India (Hyderabad). **Technical round 2 (TR2)** was set for
+Tuesday 13 October 2026 but **Entain postponed it; the new date is not known yet** (relayed by Akhil,
+2026-10-15). Until HR gives a date, keep a light routine of about 30 minutes a day. HR confirmed the process on
 2026-10-12: screening (done) → TR1 (done) → **TR2** → TR3 → HR. TR2 topics: **System design, LLD
 design, Database design, SQL performance and scalability, SQL**. Candidate: about 7 years of Java/Spring Boot
 backend. Researched 2026-10-08.
@@ -320,7 +321,7 @@ then system design.
 
 ## 7. Strategy
 
-**Written Thu 8 Oct, updated Mon 12 Oct. TR2 is Tue 13 Oct, 3 PM.** Budget: about 60 min on weekdays and
+**Written Thu 8 Oct, updated Mon 12 Oct.** TR2 was postponed from Tue 13 Oct (new date not set); the day plan below is kept as a reference. **While waiting (from 15 Oct):** 30 min a day. Alternate one design topic (redraw the betting HLD, the bet-slip class diagram or the ER diagram from memory) with one SQL or database topic (an index decision, an isolation anomaly, a query by hand). The day before the new date, repeat the Tue 13 Oct row. Budget: about 60 min on weekdays and
 about 180 min at the weekend (campaign `entain-2026-10`). Academy path: `entain` (Q1–Q8, F1, F3,
 F2, S9, F6, F8, where F8 is "design a sports betting platform").
 
