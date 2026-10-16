@@ -78,10 +78,10 @@ export default function PlanPage() {
                     {d.weekend && d.kind === 'STUDY' && <div className="muted" style={{ fontSize: '0.75rem' }}>design</div>}
                   </div>
                   <div>
-                    {d.sessions.map((s, n) => (
+                    {(d.sessions ?? []).map((s, n) => (
                       <SessionRow key={n} session={s} />
                     ))}
-                    {d.sessions.length > 0 ? (
+                    {(d.sessions ?? []).length > 0 ? (
                       d.items.map((i) => <Row key={i.slug} item={i} done={done.has(i.slug)} />)
                     ) : d.kind === 'REVIEW' ? (
                       <div className="list-row muted">Reviews and a timed mock</div>
