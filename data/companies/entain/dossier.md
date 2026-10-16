@@ -319,13 +319,86 @@ then system design.
 6. **Observability** ([D8](../../academy/lessons/D8.md), [F6](../../academy/lessons/F6.md)): RED metrics and trace context; how you find the slow query in production ([OpenTelemetry concepts](https://opentelemetry.io/docs/concepts/)).
 7. **WebSockets / SSE for live odds** ([F5](../../academy/lessons/F5.md), [F8](../../academy/lessons/F8.md)): a gateway that fans out from pub/sub; when SSE is enough ([Spring WebSockets](https://docs.spring.io/spring-framework/reference/web/websocket.html)).
 
+## 6d. Teams, domains and locations
+
+Researched 2026-10-16. Entain's own pages name the two India offices and the job families, but
+**not which team sits in which city**. The split below comes from one news report and job
+postings (`claimed`).
+
+| | **Hyderabad** (main hub, since 2001) | **Pune** (small) |
+|---|---|---|
+| Size | New Financial District campus (2025): 2,000 seats in the office, up to 3,400 on hybrid ([HRKatha](https://www.hrkatha.com/expansion/entain-indias-hyderabad-gcc-will-employee-3400/), [Mediainfoline](https://www.mediainfoline.com/brand/ivy-rebrands-to-entain-india-and-unveils-new-innovation-campus-to-power-global-growth)) | About 100 people ([SBC News, Jul 2025](https://sbcnews.co.uk/technology/2025/07/08/entain-india-tech-arm/)) |
+| Domains reported | Most of the group's software engineering (India as a whole delivers over 85%) | Platform architecture, AI personalisation, real-time trading engines (that one article only) |
+| Teams in postings | CRM, Java ([Principal SE, closes 20 Oct 2026](https://bebee.com/in/jobs/principal-software-engineer-entain-hyderabad--fj-2323129370)) · Enterprise Applications, ServiceNow ([SE III](https://bebee.com/in/jobs/software-engineer-iii-servicenow-entain-hyderabad-telangana-india--t7xk-782661490)) · backend Java/Spring SDE II and III ([SE II Java](https://www.instahyre.com/job-375453-software-engineer-ii-java-at-entain-india-hyderabad/)) · backend .NET · Network infrastructure ([SmartRecruiters](https://careers.smartrecruiters.com/Entain/entain-india)) | SDE II Java, full-stack with Angular ([Instahyre](https://www.instahyre.com/job-370310-software-development-engineer-ii-java-at-entain-india-pune/)) · SDE I Java ([BuiltIn](https://builtin.com/job/p-t-software-development-engineer-i-java-india/6207760)) · SDE III, multi-stack, onsite ([Workopia](https://workopia.io/jobs/18d15edf1cc6cd4b771be51356b6e466)) · frontend Principal and Senior, Angular ([Instahyre](https://www.instahyre.com/job-284290-principle-software-engineer-at-entain-india-pune/)) |
+
+Outside India: Sofia, Bulgaria, has 500 to 600+ staff in data and engineering
+([Entain careers](https://entaincareers.com/locations/bulgaria/)). Gibraltar, Vienna and Brisbane
+are listed as offices ([BuiltIn](https://builtin.com/company/entain)), but their engineering work
+is unconfirmed. No public source names a sportsbook, wallet or payments team by city.
+
+**Domains in priority order for this role** (Java backend SDE II, Hyderabad per the campaign). The
+order is an inference from the postings and the domain list in §6:
+
+1. **Bet placement and wallet.** The core of the sportsbook and the closest real prompt (the
+   wallet take-home). Mostly covered already: maintain it, don't relearn it.
+2. **Live odds and trading.** Real-time feeds, suspension, WebSocket fan-out. Pune's reported
+   focus and the most likely "scale" HLD.
+3. **Settlement.** Grading millions of bets per result, idempotent and resumable, resettlement.
+   It joins the sportsbook to the wallet.
+4. **CRM and promotions.** Free bets, bonus wagering, campaigns, segments, notifications,
+   leaderboards. A live Hyderabad CRM posting exists.
+5. **Payments and responsible gambling.** Deposits and withdrawals through a payment provider
+   (webhooks, idempotency, reconciliation), and deposit, loss and time limits.
+
+Ask HR: **"Which location and which team or domain is this role for?"** If the answer is CRM or
+payments, move that block to the front.
+
 ## 7. Strategy
 
-**Written Thu 8 Oct, updated Mon 12 Oct.** TR2 was postponed from Tue 13 Oct (new date not set); the day plan below is kept as a reference. **While waiting (from 15 Oct):** 30 min a day. Alternate one design topic (redraw the betting HLD, the bet-slip class diagram or the ER diagram from memory) with one SQL or database topic (an index decision, an isolation anomaly, a query by hand). The day before the new date, repeat the Tue 13 Oct row. Budget: about 60 min on weekdays and
+**Written Thu 8 Oct, updated Mon 12 Oct.** TR2 was postponed from Tue 13 Oct (new date not set); the day plan below is kept as a reference. **While waiting (from 17 Oct):** follow the domain plan in §7a. The day plan further down is kept as a reference; its Tue 13 Oct row is the last review day. Budget: about 60 min on weekdays and
 about 180 min at the weekend (campaign `entain-2026-10`). Academy path: `entain` (Q1–Q8, F1, F3,
 F2, S9, F6, F8, where F8 is "design a sports betting platform").
 
-**The last 5 days:**
+### 7a. Domain plan while TR2 is postponed (from Sat 17 Oct)
+
+The plan works through the domains in §6d's order. Every block runs through the same three
+formats, and every mock covers all five TR2 topics on that block's domain.
+
+- **Learn** (10–15 min): read the short answer and the pictures of the listed bank answer, then
+  redraw them from memory.
+- **Quiz** (20–30 min): a Confidence Ladder of 8–10 short multiple-choice levels in chat, with an
+  explanation after each answer, then the "key lines" to say out loud. The last level is the
+  boss: put the whole flow in order.
+- **Mock** (45 min, scored /10 against the SDE II bar): Claude plays the TR2 interviewer and runs
+  one problem down the levels: requirements and estimates → HLD → LLD → database design → one
+  SQL query on your own schema → "now make it fast and scale it".
+
+Dates assume the **29 Oct placeholder**. Weekdays are 30 min and weekends 60 min.
+
+| Day | Block | Session |
+|---|---|---|
+| **Sat 17 Oct** (60) | 1 → 2 | **15:** the movie-ticket transfer test (seat F7). It checks that the bet-placement patterns carry over to a new domain. **30: Quiz, live odds** (feed → Kafka keyed by market → snapshot + version → gateways → conflation → suspension → reconnect). **15: Learn** [live odds to millions of clients](../../questions/hld/design-live-odds-streaming.yaml). |
+| **Sun 18 Oct** (60) | 2 | **Mock: "stream live odds to 2M viewers of a final, and suspend markets on a goal"** (45). Then compare with the model answer and [chat-application fan-out](../../questions/hld/design-chat-application.yaml) (15). |
+| **Mon 19 Oct** (30) | 2 | **DB + SQL for odds:** a `selection_price` history table with a version per market; the latest price per selection (`DISTINCT ON` vs `ROW_NUMBER()`) and its index; why the price is re-checked at bet time. |
+| **Tue 20 Oct** (30) | 3 | **Quiz, settlement:** result in → open bets on the market → grade legs → accumulators → credit in batches → idempotent per bet → resettlement after a result correction. |
+| **Wed 21 Oct** (30) | 3 | **DB + SQL for settlement:** partial index `ON bet_leg (selection_id) WHERE result = 'OPEN'`; batch `UPDATE ... WHERE id IN (next 1,000)`; a ledger row per credit with a unique `(bet_id, kind)`; SQL: P&L per market and liability per selection. |
+| **Thu 22 Oct** (30) | 4 | **Quiz, CRM and promotions:** free-bet token vs bonus balance, wagering requirements, eligibility rules, a once-per-customer guarantee, campaign segments, notifications. **Learn:** the short answers of [notification system](../../questions/lld/design-notification-system.yaml) and [leaderboard](../../questions/lld/design-leaderboard.yaml). |
+| **Fri 23 Oct** (30) | 4 | **LLD for promotions:** a rule engine (Strategy/Specification for eligibility, a factory per reward type, the free-bet state machine ISSUED → USED/EXPIRED); `redeem()` is idempotent and atomic with bet placement. |
+| **Sat 24 Oct** (60) | 4 | **Mock: "design a free-bet and bonus engine for 29M customers"** (45; a practice prompt, not a reported question). **SQL** (15): customers eligible for a campaign (`NOT EXISTS`, window functions over the last 30 days of bets). |
+| **Sun 25 Oct** (60) | 5 | **Quiz, payments and limits** (25): PSP redirect and webhook, idempotent webhooks, pending → success/failed, reconciliation, withdrawals with a hold, daily deposit limits under concurrency. **Mock, short** (35): "deposit flow with a daily limit". Learn from [payment system](../../questions/hld/design-payment-system.yaml), [idempotency in payments](../../questions/hld/idempotency-in-payment-systems.yaml) and [daily-limit notifier](../../questions/lld/design-job-completion-notifier-with-daily-limit.yaml). |
+| **Mon 26 Oct** (30) | review | **Mixed quiz:** 12 rapid levels across all five domains, weighted to the ones you got wrong. |
+| **Tue 27 Oct** (30) | review | **Surprise-domain mock, 30 min:** Claude picks a non-betting problem ([ticket booking](../../questions/hld/design-ticket-booking.yaml), [rate limiter](../../questions/lld/design-rate-limiter.yaml) or [leaderboard](../../questions/lld/design-leaderboard.yaml)) to prove the patterns transfer. |
+| **Wed 28 Oct** (30) | review | The **Tue 13 Oct row** below: the techniques short answer, then redraw the four diagrams from memory. |
+
+**When HR gives the real date:**
+- **Later than 29 Oct:** run a second pass of blocks 2–5 as mocks only, then keep the same last three review days.
+- **Earlier:** drop blocks from the bottom (5, then 4), but always keep the last three review days.
+- **If HR names the team:** move that domain's block first. For CRM, run block 4 before block 2; for payments, run block 5 first.
+
+Block 1 (bet placement and wallet) gets no new sessions, because the 13 Oct mock and the 15–16 Oct
+ladder covered it. It comes back inside every mock, because every domain ends in a wallet movement.
+
+**The original last 5 days before 13 Oct (reference):**
 
 | Day | Focus (time) |
 |---|---|
@@ -388,6 +461,7 @@ All accessed 2026-10-08.
   [Principal SE](https://simplify.jobs/p/bc2f2849-1b6d-4ae7-ac41-a0cabf650def/Principal-Software-Engineer),
   [Junior Data Engineer](https://www.interviewpal.com/jobs/2243970240),
   [SDE I Java Pune](https://builtin.com/job/p-t-software-development-engineer-i-java-india/6207760).
+- Teams and locations (§6d, read 2026-10-16): see the links in that section ([SBC News](https://sbcnews.co.uk/technology/2025/07/08/entain-india-tech-arm/), [SmartRecruiters](https://careers.smartrecruiters.com/Entain/entain-india), [HRKatha](https://www.hrkatha.com/expansion/entain-indias-hyderabad-gcc-will-employee-3400/), Instahyre/beBee/BuiltIn/Workopia postings, [Entain Bulgaria](https://entaincareers.com/locations/bulgaria/)).
 - [AWS case study: Entain](https://aws.amazon.com/solutions/case-studies/entain-case-study/) (2026).
 - [Redpanda / Entain streaming (vendor)](https://whitepapers.theregister.com/paper/view/38707/simplifying-real-time-data-streaming-for-analytics-at-scale).
 - [Entain recruiters' interview advice, Apr 2025](https://wherewomenwork.com/Career/6660/Entain-careers-recruitment-team-job-interview-advice).
