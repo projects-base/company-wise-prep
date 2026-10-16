@@ -19,7 +19,7 @@ class PlannerTest {
 	private static final LocalDate MONDAY = LocalDate.of(2026, 10, 5);
 
 	private static CampaignConfig campaign(Map<String, Double> companies, LocalDate start, LocalDate interview) {
-		return new CampaignConfig("c", "C", "SDE", companies, start, interview, 25, 40, 3, null);
+		return new CampaignConfig("c", "C", "SDE", companies, start, interview, 25, 40, 3, null, List.of());
 	}
 
 	private static Question q(String slug, String type, String difficulty, String... companySeenOn) {
@@ -121,5 +121,26 @@ class PlannerTest {
 		});
 		assertThat(plan.days()).last().extracting(Plan.Day::date).isEqualTo(interview.minusDays(1));
 		assertThat(plan.beyond()).isNotEmpty();
+	}
+
+	@Test
+	void fixedSessionsReplaceThePlannersPicksOnTheirDay() {
+		List<Question> bank = new ArrayList<>();
+		for (int i = 0; i < 20; i++) bank.add(q("dsa-" + i, "DSA", "medium", "microsoft", "2026-09"));
+		bank.add(q("odds", "HLD", "hard", "microsoft", "2026-09"));
+		LocalDate day = MONDAY.plusDays(1);
+		CampaignConfig.Session mock = new CampaignConfig.Session(day, 60, "Mock: live odds", null, List.of("odds", "missing"));
+		CampaignConfig c = new CampaignConfig("c", "C", "SDE", targets("microsoft"), MONDAY, MONDAY.plusDays(10), 25, 40, 3,
+				null, List.of(mock));
+
+		Plan plan = Planner.plan(c, bank);
+
+		Plan.Day fixed = plan.days().get(1);
+		assertThat(fixed.sessions()).containsExactly(mock);
+		assertThat(fixed.budget()).isEqualTo(60);
+		assertThat(fixed.items()).extracting(Plan.Item::slug).containsExactly("odds");
+		assertThat(plan.days()).filteredOn(d -> d != fixed).flatExtracting(Plan.Day::items)
+				.extracting(Plan.Item::slug).doesNotContain("odds");
+		assertThat(plan.beyond()).extracting(Plan.Item::slug).doesNotContain("odds");
 	}
 }

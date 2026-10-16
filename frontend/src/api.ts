@@ -13,6 +13,16 @@ export interface CampaignConfig {
   weekendMinutes: number
   reviewDays: number
   notes: string | null
+  sessions: Session[]
+}
+
+/** A session fixed to a date in campaign.yaml: a quiz, a mock or a review block. */
+export interface Session {
+  date: string
+  minutes: number
+  title: string
+  detail: string | null
+  questions: string[]
 }
 
 export interface PlanItem {
@@ -33,6 +43,7 @@ export interface PlanDay {
   weekend: boolean
   budget: number
   items: PlanItem[]
+  sessions: Session[]
 }
 
 export interface PlanResponse {
@@ -60,6 +71,7 @@ export interface Today {
   total: number
   daysLeft: number
   campaign: CampaignConfig
+  sessions: Session[]
 }
 
 export interface CompanySummary {

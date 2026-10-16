@@ -13,7 +13,9 @@ public record Plan(CampaignConfig campaign, List<Day> days, List<Item> beyond) {
 		REVIEW
 	}
 
-	public record Day(LocalDate date, Kind kind, boolean weekend, int budget, List<Item> items) {
+	/** {@code sessions} are the campaign's fixed sessions for this date; when present they set {@code items}. */
+	public record Day(LocalDate date, Kind kind, boolean weekend, int budget, List<Item> items,
+			List<CampaignConfig.Session> sessions) {
 	}
 
 	/**

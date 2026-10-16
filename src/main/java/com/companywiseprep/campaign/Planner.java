@@ -11,6 +11,8 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import com.companywiseprep.bank.Question;
 import com.companywiseprep.bank.Sighting;
@@ -40,6 +42,14 @@ public final class Planner {
 						.thenComparing(Plan.Item::slug))
 				.toList();
 
+		// Questions named by fixed sessions are taken out of the queues and land on the session's day.
+		Map<String, Question> bySlug = bank.stream().collect(Collectors.toMap(Question::getSlug, q -> q, (a, b) -> a));
+		Map<LocalDate, List<CampaignConfig.Session>> fixed = c.sessions().stream()
+				.collect(Collectors.groupingBy(CampaignConfig.Session::date, TreeMap::new, Collectors.toList()));
+		Set<String> pinned = c.sessions().stream().flatMap(s -> s.questions().stream())
+				.filter(bySlug::containsKey).collect(Collectors.toSet());
+		ranked = ranked.stream().filter(i -> !pinned.contains(i.slug())).toList();
+
 		Deque<Plan.Item> weekday = weekdayQueue(ranked);
 		Deque<Plan.Item> weekend = new ArrayDeque<>(
 				ranked.stream().filter(i -> WEEKEND_TYPES.contains(i.type())).toList());
@@ -49,12 +59,22 @@ public final class Planner {
 		for (LocalDate d = c.start(); d.isBefore(c.interview()); d = d.plusDays(1)) {
 			boolean isWeekend = d.getDayOfWeek() == DayOfWeek.SATURDAY || d.getDayOfWeek() == DayOfWeek.SUNDAY;
 			int budget = isWeekend ? c.weekendMinutes() : c.weekdayMinutes();
-			if (!d.isBefore(reviewFrom)) {
-				days.add(new Plan.Day(d, Plan.Kind.REVIEW, isWeekend, budget, List.of()));
+			Plan.Kind kind = d.isBefore(reviewFrom) ? Plan.Kind.STUDY : Plan.Kind.REVIEW;
+			List<CampaignConfig.Session> sessions = fixed.getOrDefault(d, List.of());
+			if (!sessions.isEmpty()) {
+				LocalDate day = d;
+				List<Plan.Item> items = sessions.stream().flatMap(x -> x.questions().stream()).distinct()
+						.filter(bySlug::containsKey).map(slug -> item(bySlug.get(slug), c).on(day)).toList();
+				int minutes = sessions.stream().mapToInt(CampaignConfig.Session::minutes).sum();
+				days.add(new Plan.Day(d, kind, isWeekend, minutes > 0 ? minutes : budget, items, sessions));
+				continue;
+			}
+			if (kind == Plan.Kind.REVIEW) {
+				days.add(new Plan.Day(d, kind, isWeekend, budget, List.of(), List.of()));
 				continue;
 			}
 			Deque<Plan.Item> queue = isWeekend && !weekend.isEmpty() ? weekend : weekday;
-			days.add(new Plan.Day(d, Plan.Kind.STUDY, isWeekend, budget, fill(queue, budget, d)));
+			days.add(new Plan.Day(d, kind, isWeekend, budget, fill(queue, budget, d), List.of()));
 		}
 
 		List<Plan.Item> beyond = new ArrayList<>(weekday);

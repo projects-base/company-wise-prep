@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
-import { api, type PlanDay, type PlanItem } from '../api'
+import { api, type PlanDay, type PlanItem, type Session } from '../api'
 import { useCampaign } from '../App'
 import { Bar, CheckDot, companyLabel, Difficulty, fmtDate, localToday, Meta, Status, TypeTag, useLoad } from '../ui'
 
@@ -78,7 +78,12 @@ export default function PlanPage() {
                     {d.weekend && d.kind === 'STUDY' && <div className="muted" style={{ fontSize: '0.75rem' }}>design</div>}
                   </div>
                   <div>
-                    {d.kind === 'REVIEW' ? (
+                    {d.sessions.map((s, n) => (
+                      <SessionRow key={n} session={s} />
+                    ))}
+                    {d.sessions.length > 0 ? (
+                      d.items.map((i) => <Row key={i.slug} item={i} done={done.has(i.slug)} />)
+                    ) : d.kind === 'REVIEW' ? (
                       <div className="list-row muted">Reviews and a timed mock</div>
                     ) : d.items.length === 0 ? (
                       <div className="list-row muted">—</div>
@@ -113,6 +118,18 @@ export default function PlanPage() {
           </div>
         )}
       </section>
+    </div>
+  )
+}
+
+export function SessionRow({ session }: { session: Session }) {
+  return (
+    <div className="list-row session-row">
+      <div className="grow">
+        <div className="title">{session.title}</div>
+        {session.detail && <div className="muted session-detail">{session.detail}</div>}
+      </div>
+      {session.minutes > 0 && <span className="muted num" style={{ fontSize: '0.84rem' }}>{session.minutes}m</span>}
     </div>
   )
 }

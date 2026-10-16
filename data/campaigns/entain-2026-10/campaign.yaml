@@ -23,3 +23,43 @@ notes: >-
   database schema), then SQL and database internals (indexes, EXPLAIN, transactions/MVCC,
   replicas, partitioning, migrations). Academy path: entain. See
   data/companies/entain/dossier.md section 7 for the day-by-day narrative.
+# Fixed sessions (dossier 7a, compressed plan for a TR2 around 21 Oct). On these dates the app
+# shows these sessions instead of the planner's picks. Quizzes and mocks run in chat with Claude.
+sessions:
+  - date: 2026-10-17
+    minutes: 10
+    title: "Transfer test: movie-ticket booking (seat F7)"
+    detail: Map the bet-placement patterns onto a new domain; answer the 4 questions in chat.
+  - date: 2026-10-17
+    minutes: 30
+    title: "Quiz: live odds ladder"
+    detail: Feed → Kafka keyed by market → snapshot + version → gateways → conflation → suspension → reconnect.
+  - date: 2026-10-17
+    minutes: 20
+    title: "Learn: live odds to millions of clients"
+    detail: Read the short answer and the picture, then redraw it from memory.
+    questions: [design-live-odds-streaming]
+  - date: 2026-10-18
+    minutes: 45
+    title: "Mock: live odds + bet placement on a goal"
+    detail: All five TR2 topics, scored /10. Requirements → HLD → LLD → DB design → SQL → make it fast.
+    questions: [design-sports-betting-platform]
+  - date: 2026-10-18
+    minutes: 15
+    title: Review the mock's gaps
+    detail: Compare with the model answers; with 30 extra minutes, do the settlement quiz.
+    questions: [design-chat-application]
+  - date: 2026-10-19
+    minutes: 30
+    title: "Mixed quiz: settlement, free bets, payments, limits"
+    detail: 12 levels, plus anything missed in earlier ladders; then say the key lines out loud.
+    questions: [idempotency-in-payment-systems]
+  - date: 2026-10-20
+    minutes: 20
+    title: "Final review: redraw from memory"
+    detail: Techniques short answer, then the architecture, class diagram, ER diagram and bet-placement transaction.
+    questions: [system-design-database-scalability-performance-techniques, design-betting-bet-placement-lld, design-betting-database-schema]
+  - date: 2026-10-20
+    minutes: 10
+    title: Logistics
+    detail: Test the meeting link. Ask HR which team and location the role is for.

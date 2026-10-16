@@ -263,6 +263,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .day-date { padding: 13px 0; font-size: 0.84rem; color: var(--text-3); }
 .day.today .day-date { color: var(--accent); font-weight: 600; }
 .day .list-row { padding: 9px 0; border-top: 0; }
+.session-row .title { font-weight: 600; }
+.session-detail { font-size: 0.86rem; margin-top: 3px; line-height: 1.45; }
 
 /* ── Academy ───────────────────────────────────────────────── */
 .continue-card { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 24px 26px; }

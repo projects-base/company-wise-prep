@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, Check, ExternalLink, Info, RotateCcw, Sparkles } from 'lucide-react'
 import { api, leetcodeUrl, type PlanItem } from '../api'
 import { useCampaign } from '../App'
+import { SessionRow } from './PlanPage'
 import { CompanyPills, Difficulty, fmtDate, LevelChip, Meta, Ring, Status, TypeTag, useLoad } from '../ui'
 
 const LADDER = ['3-day', '10-day', '30-day']
@@ -26,7 +27,7 @@ export default function TodayPage() {
     await api.progress(slug, action)
     reload()
   }
-  const minutes = t.items.reduce((m, i) => m + i.minutes, 0)
+  const minutes = t.sessions.length > 0 ? t.budget : t.items.reduce((m, i) => m + i.minutes, 0)
   const path = academy?.paths[0]
   const nextLesson = path?.next ? academy?.tracks.flatMap((tr) => tr.modules).find((m) => m.id === path.next) : undefined
 
@@ -37,14 +38,14 @@ export default function TodayPage() {
           <div className="eyebrow">{fmtDate(t.date, { weekday: 'long', day: 'numeric', month: 'long' })}</div>
           <h1 style={{ marginTop: 6 }}>{greeting()}</h1>
           <p className="sub">
-            {t.items.length > 0
+            {t.items.length > 0 || t.sessions.length > 0
               ? `About ${minutes} minutes today${t.weekend ? ' — a design day' : ''}.`
               : 'Nothing new scheduled today.'}
           </p>
         </div>
       </header>
 
-      {t.phase === 'REVIEW' && (
+      {t.phase === 'REVIEW' && t.sessions.length === 0 && (
         <div className="callout" style={{ marginBottom: 20 }}>
           <Sparkles size={18} />
           <span>Final days: no new material. Clear your reviews and do one timed mock interview.</span>
@@ -74,7 +75,16 @@ export default function TodayPage() {
               ~{minutes} of {t.budget} min
             </span>
           </div>
-          {t.items.length === 0 ? (
+          {t.sessions.length > 0 && (
+            <div className="card" style={{ marginBottom: 12 }}>
+              <div className="list" style={{ padding: '0 16px' }}>
+                {t.sessions.map((s, n) => (
+                  <SessionRow key={n} session={s} />
+                ))}
+              </div>
+            </div>
+          )}
+          {t.items.length === 0 && t.sessions.length > 0 ? null : t.items.length === 0 ? (
             <div className="card">
               <div className="empty">
                 <Check size={22} />

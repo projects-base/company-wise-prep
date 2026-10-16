@@ -51,7 +51,8 @@ public class CampaignService {
 	 * never stack into a backlog: the queue simply resumes, and {@code behind} says by how much.
 	 */
 	public record Today(LocalDate date, Phase phase, boolean weekend, int budget, List<Plan.Item> items,
-			List<Review> reviews, int behind, int done, int total, long daysLeft, CampaignConfig campaign) {
+			List<Review> reviews, int behind, int done, int total, long daysLeft, CampaignConfig campaign,
+			List<CampaignConfig.Session> sessions) {
 	}
 
 	@Transactional(readOnly = true)
@@ -87,8 +88,14 @@ public class CampaignService {
 				: !today.isBefore(c.interview().minusDays(c.reviewDays())) ? Phase.REVIEW
 				: Phase.STUDY;
 
+		// A day with fixed sessions shows exactly those sessions and their questions.
+		Plan.Day fixed = plan.days().stream().filter(d -> d.date().equals(today) && !d.sessions().isEmpty())
+				.findFirst().orElse(null);
 		List<Plan.Item> items = new ArrayList<>();
-		if (phase == Phase.STUDY || phase == Phase.BEFORE_START) {
+		if (fixed != null) {
+			items.addAll(fixed.items());
+			budget = fixed.budget();
+		} else if (phase == Phase.STUDY || phase == Phase.BEFORE_START) {
 			boolean designLeft = open.stream().anyMatch(i -> Planner.WEEKEND_TYPES.contains(i.type()));
 			boolean wantDesign = weekend && designLeft;
 			int used = 0;
@@ -104,7 +111,8 @@ public class CampaignService {
 
 		int behind = (int) open.stream().filter(i -> i.target() != null && i.target().isBefore(today)).count();
 		return new Today(today, phase, weekend, budget, items, reviews(today), behind,
-				all.size() - open.size(), all.size(), Math.max(0, ChronoUnit.DAYS.between(today, c.interview())), c);
+				all.size() - open.size(), all.size(), Math.max(0, ChronoUnit.DAYS.between(today, c.interview())), c,
+				fixed == null ? List.of() : fixed.sessions());
 	}
 
 	private List<Review> reviews(LocalDate today) {

@@ -2,6 +2,7 @@ package com.companywiseprep.campaign;
 
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.companywiseprep.data.Yaml;
@@ -17,7 +18,15 @@ public record CampaignConfig(
 		int weekdayMinutes,
 		int weekendMinutes,
 		int reviewDays,
-		String notes) {
+		String notes,
+		List<Session> sessions) {
+
+	/**
+	 * A session fixed to a date in campaign.yaml ({@code sessions:}). On that date it replaces the
+	 * planner's picks; {@code questions} are bank slugs scheduled with it.
+	 */
+	public record Session(LocalDate date, int minutes, String title, String detail, List<String> questions) {
+	}
 
 	public static CampaignConfig from(Campaign c) {
 		Map<String, Object> y = Yaml.load(c.getYaml());
@@ -39,7 +48,11 @@ public record CampaignConfig(
 				intOr(minutes.get("weekday"), 25),
 				intOr(minutes.get("weekend"), 40),
 				intOr(y.get("review_days"), 3),
-				Yaml.str(y.get("notes")));
+				Yaml.str(y.get("notes")),
+				Yaml.maps(y.get("sessions")).stream()
+						.map(m -> new Session(LocalDate.parse(Yaml.str(m.get("date"))), intOr(m.get("minutes"), 0),
+								Yaml.str(m.get("title")), Yaml.str(m.get("detail")), Yaml.strings(m.get("questions"))))
+						.toList());
 	}
 
 	private static int intOr(Object v, int fallback) {
