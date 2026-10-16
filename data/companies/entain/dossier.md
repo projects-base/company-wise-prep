@@ -361,6 +361,21 @@ F2, S9, F6, F8, where F8 is "design a sports betting platform").
 
 ### 7a. Domain plan while TR2 is postponed (from Sat 17 Oct)
 
+**UPDATE 2026-10-16: TR2 is likely mid next week (around Wed 21 Oct; relayed by Akhil, date not confirmed).**
+That leaves 4 days, so the plan is compressed. Blocks 2 and 3 stay in full; blocks 4 and 5 shrink to
+key lines inside one mixed quiz. The full table below is kept in case the date moves out.
+
+| Day | Session |
+|---|---|
+| **Sat 17 Oct** (60) | **10:** the movie-ticket transfer test. **30: Quiz, live odds.** **20: Learn** [live odds](../../questions/hld/design-live-odds-streaming.yaml): redraw the picture from memory. |
+| **Sun 18 Oct** (60, 90 if you can) | **Mock, 45 min: live odds + bet placement on a goal**, through all five TR2 topics, scored /10. Then 15 min on the gaps. With the extra 30: **settlement quiz**. |
+| **Mon 19 Oct** (30) | **Mixed quiz, 12 levels:** settlement (if not done Sunday), free bets and bonus, payment webhooks and idempotency, daily deposit limits, plus the levels you missed in earlier ladders. Then say the key lines out loud. |
+| **Tue 20 Oct** (30) | **Final review:** the Tue 13 Oct row below (techniques short answer + redraw the four diagrams), plus the live-odds picture. Test the meeting link. Ask HR which team the role is for. |
+| **Interview day** (15, morning) | Read only the key lines: "odds can be eventually consistent; money can't", the bet-placement order, the scalability ladder. No new material. |
+
+If the date lands on Thu 22 or later, add one day per extra day from the full table (the CRM block first, then payments), and keep Tue's review as the day before.
+
+
 The plan works through the domains in §6d's order. Every block runs through the same three
 formats, and every mock covers all five TR2 topics on that block's domain.
 
@@ -373,7 +388,7 @@ formats, and every mock covers all five TR2 topics on that block's domain.
   one problem down the levels: requirements and estimates → HLD → LLD → database design → one
   SQL query on your own schema → "now make it fast and scale it".
 
-Dates assume the **29 Oct placeholder**. Weekdays are 30 min and weekends 60 min.
+The full table below assumes a 29 Oct date. Weekdays are 30 min and weekends 60 min.
 
 | Day | Block | Session |
 |---|---|---|
