@@ -4,7 +4,7 @@ role: Software Development Engineer II (Entain India, Hyderabad)
 companies:
   entain: 1.0
 start: 2026-10-08
-interview: 2026-10-21        # PLACEHOLDER: Akhil expects mid next week (2026-10-16); replace when HR confirms
+interview: 2026-10-23        # PLACEHOLDER: not confirmed by HR as of 2026-10-20; rolled forward, replace when HR confirms
 minutes:
   weekday: 30
   weekend: 60
@@ -63,3 +63,13 @@ sessions:
     minutes: 10
     title: Logistics
     detail: Test the meeting link. Ask HR which team and location the role is for.
+  # Added 2026-10-20 (no date from HR yet): the blocks cut from the compressed plan, one a day.
+  - date: 2026-10-21
+    minutes: 30
+    title: "Quiz: settlement ladder"
+    detail: Result in → open bets on the market → grade legs → accumulators → credit in batches → idempotent per bet → resettlement.
+  - date: 2026-10-22
+    minutes: 30
+    title: "Quiz: free bets, bonus and payments"
+    detail: Free-bet token vs bonus balance, wagering, once-per-customer redeem; PSP webhooks, idempotency, daily deposit limits.
+    questions: [design-payment-system]
