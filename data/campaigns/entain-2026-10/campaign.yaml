@@ -66,10 +66,11 @@ sessions:
   # Added 2026-10-20 (no date from HR yet): the blocks cut from the compressed plan, one a day.
   - date: 2026-10-21
     minutes: 30
-    title: "Quiz: settlement ladder"
-    detail: Result in → open bets on the market → grade legs → accumulators → credit in batches → idempotent per bet → resettlement.
+    title: "Quiz: live odds ladder"
+    detail: Swapped in after the 20 Oct mock. Push vs poll, Kafka fan-out to gateways, in-memory subscriber map, snapshot on reconnect, SSE vs WebSocket, conflation, blast radius.
+    questions: [design-live-odds-streaming]
   - date: 2026-10-22
     minutes: 30
-    title: "Quiz: free bets, bonus and payments"
-    detail: Free-bet token vs bonus balance, wagering, once-per-customer redeem; PSP webhooks, idempotency, daily deposit limits.
+    title: "Quiz: settlement, free bets and payments"
+    detail: Grade open bets in batches, idempotent credits, resettlement; free-bet redeem once; PSP webhooks and daily deposit limits.
     questions: [design-payment-system]

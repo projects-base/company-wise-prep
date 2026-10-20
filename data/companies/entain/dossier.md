@@ -451,6 +451,44 @@ leaderboard, a payment system, a URL shortener), use the same four steps.
 - If asked about Entain specifically, mention Aurora Postgres + EKS in one sentence. Don't
   over-claim.
 
+**Requirements checklist: use it on any design question** (added 2026-10-20, after the second
+mock). Ask these in order, out loud, and write the answers down: **Who → How much → How correct →
+How fast → How available → Where.**
+
+| # | Bucket | Ask | Football example |
+|---|---|---|---|
+| 1 | Who and what | Users? The 3–4 core actions? Out of scope? | Watch odds, place a bet, history; cash-out out of scope |
+| 2 | How much | Users total and at peak? Actions per second? Read:write? Data per day? | 2M watching; 25 price changes/s → ~5M pushes/s; 10k bets/s on a goal |
+| 3 | **How correct** | What must never be wrong? What can be a bit stale? | Money never wrong; odds on screen can lag ~1 s, re-checked at bet time |
+| 4 | How fast | Latency target for the main action? | Odds < 1 s; bet < 500 ms p99 |
+| 5 | How available | Can it go down? What if a part fails? | Bets must work during the final |
+| 6 | Where | One region or worldwide? Data rules? | UK/EU, regulated |
+
+**Then scan for patterns (30 s, before drawing).** Each "yes" brings a known answer:
+
+| If the system… | Use… |
+|---|---|
+| Moves money or a scarce thing (balance, seat, stock) | Atomic conditional UPDATE + idempotency key + outbox |
+| Shows changing data to many people (odds, scores, prices) | Push (SSE or WebSocket) + Kafka fan-out to gateways + snapshot on reconnect |
+| Has spikes or hot items (goal, flash sale) | Queue, partition by key, back-pressure, auto-scaling |
+| Keeps growing history (bets, orders, logs) | Partition by time + replicas + keyset pagination |
+
+If you blank: *"Let me start with the requirements so I design the right thing,"* then go down
+the list.
+
+**Live-odds notes from the 20 Oct mock** (where the points were lost):
+- Odds are **pushed, not polled**. 2M clients polling every second is about 2M queries/s.
+- One price change reaches every gateway through **Kafka** (keyed by market). Each gateway keeps
+  an **in-memory map** of market → its own open connections and writes to them.
+- On reconnect, the client gets a **snapshot** (Redis, with a version), then live updates.
+- **SSE** is enough for one-way odds (plain HTTP, auto-reconnect with `Last-Event-ID`). Use
+  WebSocket when the client also sends a lot. Serve SSE over HTTP/2 (HTTP/1.1 allows 6
+  connections per domain) and send heartbeats.
+- Size gateways at about **50k connections each** (non-blocking I/O), so 40–60 for 2M users.
+  The real limit is outbound messages per second, so conflate. Keep gateways small for **blast
+  radius**: a crash should affect 1–2% of users, not all of them.
+- If Kafka fails after the commit, the fix is the **outbox**, not replica promotion.
+
 ## 8. Sources
 
 All accessed 2026-10-08.
