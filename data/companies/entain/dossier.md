@@ -1,8 +1,8 @@
 # Entain India — interview dossier
 
 Target: Software Development Engineer II, Entain India (Hyderabad). **Technical round 2 (TR2)** was set for
-Tuesday 13 October 2026 but **Entain postponed it; the new date is not known yet** (relayed by Akhil,
-2026-10-15). Until HR gives a date, keep a light routine of about 30 minutes a day. HR confirmed the process on
+Tuesday 13 October 2026, was postponed by Entain, and is now **confirmed for Monday 26 October 2026, 3:30 PM
+IST** (relayed by Akhil, 2026-10-22). The 22–25 Oct sessions are in the campaign file and on the app's Plan page. HR confirmed the process on
 2026-10-12: screening (done) → TR1 (done) → **TR2** → TR3 → HR. TR2 topics: **System design, LLD
 design, Database design, SQL performance and scalability, SQL**. Candidate: about 7 years of Java/Spring Boot
 backend. Researched 2026-10-08.

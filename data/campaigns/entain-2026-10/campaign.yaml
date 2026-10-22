@@ -1,10 +1,10 @@
 id: entain-2026-10
-name: Entain India SDE II, technical round 2 (postponed, new date not set)
+name: Entain India SDE II, technical round 2 (Mon 26 Oct, 3:30 PM)
 role: Software Development Engineer II (Entain India, Hyderabad)
 companies:
   entain: 1.0
 start: 2026-10-08
-interview: 2026-10-23        # PLACEHOLDER: not confirmed by HR as of 2026-10-20; rolled forward, replace when HR confirms
+interview: 2026-10-26        # Confirmed by HR: Mon 26 Oct 2026, 3:30 PM IST (relayed by Akhil, 2026-10-22)
 minutes:
   weekday: 30
   weekend: 60
@@ -12,6 +12,8 @@ review_days: 2
 notes: >-
   UPDATE 2026-10-15: Entain postponed TR2 (it was set for 13 Oct); the new date is not known yet,
   so the interview date above is a placeholder. Light, steady prep: about 30 min on weekdays.
+  UPDATE 2026-10-22: HR confirmed TR2 for Mon 26 Oct 2026, 3:30 PM IST. The 22-25 Oct sessions below
+  replace the earlier ones and practise recall (producing answers) rather than multiple choice.
   UPDATE 2026-10-16: prep is restructured by Entain domain (dossier 6d and 7a): live odds and
   trading, settlement, CRM and promotions, payments and limits. Each block has a learn step, a quiz
   ladder and a mock covering all five TR2 topics. With TR2 likely around 21 Oct, the compressed
@@ -69,8 +71,29 @@ sessions:
     title: "Quiz: live odds ladder"
     detail: Swapped in after the 20 Oct mock. Push vs poll, Kafka fan-out to gateways, in-memory subscriber map, snapshot on reconnect, SSE vs WebSocket, conflation, blast radius.
     questions: [design-live-odds-streaming]
+  # Added 2026-10-22, after HR confirmed Mon 26 Oct. Practice now shifts from multiple choice
+  # (recognising answers) to producing them from a blank page, in short spoken fragments.
   - date: 2026-10-22
     minutes: 30
-    title: "Quiz: settlement, free bets and payments"
-    detail: Grade open bets in batches, idempotent credits, resettlement; free-bet redeem once; PSP webhooks and daily deposit limits.
-    questions: [design-payment-system]
+    title: "Recall drill: food delivery DB design"
+    detail: "The routine Nouns → Links → Columns → Rules → Indexes, one step at a time, a few words per answer."
+  - date: 2026-10-23
+    minutes: 30
+    title: "Recall drill: live odds path in 6 fragments"
+    detail: "Say it, don't pick it: feed → Kafka by market → gateways' in-memory map → push (SSE/WebSocket) → snapshot on reconnect → price re-check at bet time. Then 3 index questions on the bet tables."
+    questions: [design-live-odds-streaming]
+  - date: 2026-10-24
+    minutes: 60
+    title: "Mock 3: an unseen problem, all five TR2 topics"
+    detail: "45 min, scored on the H4 rubric. Requirements checklist and pattern scan first, then HLD → DB design routine → one SQL query → scale it → LLD classes. 15 min on the gaps."
+    questions: [design-ticket-booking]
+  - date: 2026-10-25
+    minutes: 60
+    title: "Fix mock 3's gaps + SQL by hand + key lines"
+    detail: "30: redo the weakest part of mock 3. 20: top-N per group (DENSE_RANK), 7-day running total, 3 days in a row (gaps and islands). 10: settlement, free bets and payments key lines."
+    questions: [sql-scenario-based-queries]
+  - date: 2026-10-25
+    minutes: 0
+    title: "Mon 26 morning (30 min), interview 3:30 PM"
+    detail: "Read the H4 checklist and pattern scan; redraw the architecture, class diagram, ER diagram and bet transaction from memory; say the key lines. Test the meeting link by 3:00. No new material."
+    questions: [system-design-database-scalability-performance-techniques]
