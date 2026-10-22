@@ -350,6 +350,13 @@ order is an inference from the postings and the domain list in §6:
 5. **Payments and responsible gambling.** Deposits and withdrawals through a payment provider
    (webhooks, idempotency, reconciliation), and deposit, loss and time limits.
 
+**Update 2026-10-22:** Akhil confirmed the role is **SDE II, Hyderabad** (team still not named). So
+Hyderabad's postings apply: backend Java/Spring squads and CRM. Keep the order above, and give CRM
+and promotions their key lines on Sun 25 Oct. A re-check of interview reports the same day found
+nothing new: the Hyderabad SDE 2 report of Jul 2024 (HackerRank, coding, LRU cache, sync vs async
+calls in Spring Boot) and the distributed-queue design reported for a Principal role are already
+sightings in the bank.
+
 Ask HR: **"Which location and which team or domain is this role for?"** If the answer is CRM or
 payments, move that block to the front.
 
