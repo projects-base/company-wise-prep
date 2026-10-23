@@ -95,5 +95,5 @@ sessions:
   - date: 2026-10-25
     minutes: 0
     title: "Mon 26 morning (30 min), interview 3:30 PM"
-    detail: "Read the H4 checklist and pattern scan; redraw the architecture, class diagram, ER diagram and bet transaction from memory; say the key lines. Test the meeting link by 3:00. No new material."
+    detail: "Read the H4 checklist and pattern scan; redraw the architecture, class diagram, ER diagram and bet transaction from memory; say the key lines. By 3:00, open the Microsoft Teams link from the invite email and test mic, camera, screen share and a whiteboard (draw.io or Excalidraw). No new material."
     questions: [system-design-database-scalability-performance-techniques]
