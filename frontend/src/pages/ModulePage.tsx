@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, Play } from 'lucide-r
 import { api, type Ref } from '../api'
 import { LevelChip, Status, useLoad, MdLink } from '../ui'
 import { useFeatures } from '../features'
+import { ModeToggle, StepperView, useStepper } from '../Stepper'
 
 const slugify = (s: string) =>
   s
@@ -37,7 +38,8 @@ export default function ModulePage() {
         .map((l) => l.slice(3).trim()),
     [v?.lesson],
   )
-  const active = useActiveHeading(headings.map(slugify), v?.lesson)
+  const s = useStepper(v?.lesson ?? '', id)
+  const active = useActiveHeading(headings.map(slugify), s.mode === 'all' ? v?.lesson : undefined)
 
   if (!v) return <div className="container"><Status error={error} /></div>
   const m = v.module
@@ -80,6 +82,9 @@ export default function ModulePage() {
               </>
             )}
           </div>
+          <div style={{ marginTop: 16 }}>
+            <ModeToggle s={s} />
+          </div>
           {v.prerequisites.length > 0 && !m.ready && (
             <div className="callout warn" style={{ marginTop: 18 }}>
               <Info size={18} />
@@ -93,6 +98,12 @@ export default function ModulePage() {
 
         {m.written ? (
           <div className="prose">
+            <StepperView
+              s={s}
+              full={v.lesson ?? ''}
+              onFinish={m.done ? undefined : toggle}
+              finishLabel="Mark lesson complete"
+              render={(md) => (
             <Markdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -118,8 +129,10 @@ export default function ModulePage() {
                 a: MdLink,
               }}
             >
-              {v.lesson}
+              {md}
             </Markdown>
+              )}
+            />
           </div>
         ) : (
           <div className="callout">
@@ -166,13 +179,29 @@ export default function ModulePage() {
         <aside className="toc" aria-label="On this page">
           <div className="eyebrow">On this page</div>
           <ol>
-            {headings.map((h) => (
-              <li key={h}>
-                <a href={`#${slugify(h)}`} className={active === slugify(h) ? 'on' : ''} onClick={(e) => jump(e, slugify(h))}>
-                  {h}
-                </a>
-              </li>
-            ))}
+            {s.mode === 'step'
+              ? s.parts.map((p, i) => (
+                  <li key={i}>
+                    <a
+                      href={`#${slugify(p.title)}`}
+                      className={`${s.step === i ? 'on' : ''} ${i < s.step ? 'seen' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        s.setStep(i)
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
+                    >
+                      {p.title}
+                    </a>
+                  </li>
+                ))
+              : headings.map((h) => (
+                  <li key={h}>
+                    <a href={`#${slugify(h)}`} className={active === slugify(h) ? 'on' : ''} onClick={(e) => jump(e, slugify(h))}>
+                      {h}
+                    </a>
+                  </li>
+                ))}
           </ol>
         </aside>
       )}

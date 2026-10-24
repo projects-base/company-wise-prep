@@ -3,6 +3,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { MdPre } from './Diagram'
 import { MdLink } from './ui'
+import { ModeToggle, StepperView, useStepper } from './Stepper'
 
 /**
  * A model answer, laid out for reading: the short answer as a highlighted summary (split into
@@ -62,8 +63,9 @@ const components = {
   ),
 }
 
-export function AnswerProse({ text }: { text: string }) {
+export function AnswerProse({ text, id = 'answer' }: { text: string; id?: string }) {
   const { summary, rest } = useMemo(() => splitSummary(text.trim()), [text])
+  const s = useStepper(rest, `ans.${id}`)
   const headings = useMemo(() => headingsOf(rest), [rest])
   const jump = (h: string) => document.getElementById(slugify(h))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
@@ -77,7 +79,8 @@ export function AnswerProse({ text }: { text: string }) {
           </Markdown>
         </div>
       )}
-      {headings.length >= 3 && (
+      <ModeToggle s={s} />
+      {s.mode === 'all' && headings.length >= 3 && (
         <nav className="answer-toc" aria-label="Sections">
           <span className="muted">Jump to</span>
           {headings.map((h) => (
@@ -87,9 +90,15 @@ export function AnswerProse({ text }: { text: string }) {
           ))}
         </nav>
       )}
-      <Markdown remarkPlugins={[remarkGfm]} components={components}>
-        {rest}
-      </Markdown>
+      <StepperView
+        s={s}
+        full={rest}
+        render={(md) => (
+          <Markdown remarkPlugins={[remarkGfm]} components={components}>
+            {md}
+          </Markdown>
+        )}
+      />
     </>
   )
 }

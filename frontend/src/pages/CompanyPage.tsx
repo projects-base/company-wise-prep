@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { MdPre } from '../Diagram'
 import remarkGfm from 'remark-gfm'
@@ -24,7 +24,9 @@ const TABS: [Tab, string][] = [
 export default function CompanyPage() {
   const { slug = '' } = useParams()
   const { data: c, error } = useLoad(() => api.company(slug), [slug])
-  const [tab, setTab] = useState<Tab>('strategy')
+  const [params, setParams] = useSearchParams()
+  const tab = (TABS.some(([t]) => t === params.get('tab')) ? params.get('tab') : 'strategy') as Tab
+  const setTab = (t: Tab) => setParams(t === 'strategy' ? {} : { tab: t }, { replace: true })
 
   if (!c) return <div className="container"><Status error={error} /></div>
   const d = c.data
@@ -442,7 +444,14 @@ function Dossier({ text }: { text: string }) {
           </button>
         </div>
       )}
-      {intro.trim() && <div className="prose">{md(intro)}</div>}
+      {intro.trim() && (
+        <details className="card pad fold dossier-intro">
+          <summary>
+            About this research: target, confidence, sources <ChevronDown size={16} />
+          </summary>
+          <div className="prose" style={{ marginTop: 10 }}>{md(intro)}</div>
+        </details>
+      )}
       {sections.map((s, i) => (
         <section key={i} id={`ds-${i}`} className={`card dossier-sec ${open.has(i) ? 'open' : ''}`}>
           <button className="dossier-head" onClick={() => toggle(i)} aria-expanded={open.has(i)}>

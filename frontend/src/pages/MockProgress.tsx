@@ -266,7 +266,7 @@ function TrendChart({ mocks, target }: { mocks: any[]; target?: number }) {
         {target != null && (
           <g>
             <line x1={L} x2={W - R} y1={y(target)} y2={y(target)} className="target" />
-            <text x={W - R} y={y(target) - 6} textAnchor="end" className="axis">
+            <text x={L + 6} y={y(target) - 6} textAnchor="start" className="axis target-label">
               Target {target}
             </text>
           </g>

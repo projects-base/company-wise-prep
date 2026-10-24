@@ -89,7 +89,7 @@ export default function QuestionPage() {
         {q.answer && (
           <details className="ws-details">
             <summary>Model answer</summary>
-            <AnswerBody text={q.answer} />
+            <AnswerBody text={q.answer} id={q.slug} />
           </details>
         )}
         <details className="ws-details">
@@ -163,7 +163,7 @@ export default function QuestionPage() {
             </section>
           )}
 
-          {q.answer && <Answer key={q.slug} text={q.answer} />}
+          {q.answer && <Answer key={q.slug} text={q.answer} id={q.slug} />}
 
           <section className="section">
             <div className="section-head">
@@ -284,7 +284,7 @@ function hostOf(url: string) {
 }
 
 /** Hidden until asked for, so you try the question first. */
-function Answer({ text }: { text: string }) {
+function Answer({ text, id }: { text: string; id: string }) {
   const [shown, setShown] = useState(false)
   return (
     <section className="section">
@@ -298,7 +298,7 @@ function Answer({ text }: { text: string }) {
       </div>
       {shown ? (
         <div className="card pad">
-          <AnswerBody text={text} />
+          <AnswerBody text={text} id={id} />
         </div>
       ) : (
         <div className="card pad answer-hidden">
@@ -312,10 +312,10 @@ function Answer({ text }: { text: string }) {
   )
 }
 
-function AnswerBody({ text }: { text: string }) {
+function AnswerBody({ text, id }: { text: string; id: string }) {
   return (
     <div className="prose answer">
-      <AnswerProse text={text} />
+      <AnswerProse text={text} id={id} />
       <p className="muted answer-note">Written by Claude. Check anything version-specific against the official docs.</p>
     </div>
   )

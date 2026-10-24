@@ -4,6 +4,7 @@ import { api, leetcodeUrl, type PlanItem } from '../api'
 import { useCampaign } from '../App'
 import { SessionRow } from './PlanPage'
 import { CompanyPills, Difficulty, fmtDate, LevelChip, Meta, Ring, Status, TypeTag, useLoad } from '../ui'
+import { CalendarClock } from 'lucide-react'
 
 const LADDER = ['3-day', '10-day', '30-day']
 
@@ -44,6 +45,17 @@ export default function TodayPage() {
               : 'Nothing new scheduled today.'}
           </p>
         </div>
+        {t.phase !== 'FINISHED' && (
+          <div className={`countdown ${t.daysLeft <= 3 ? 'soon' : ''}`}>
+            <CalendarClock size={18} />
+            <div>
+              <div className="countdown-n num">
+                {t.daysLeft} day{t.daysLeft === 1 ? '' : 's'}
+              </div>
+              <div className="countdown-l">to the interview · {fmtDate(t.campaign.interview, { weekday: 'short', day: 'numeric', month: 'short' })}</div>
+            </div>
+          </div>
+        )}
       </header>
 
       {t.phase === 'REVIEW' && sessions.length === 0 && (
@@ -80,7 +92,7 @@ export default function TodayPage() {
             <div className="card" style={{ marginBottom: 12 }}>
               <div className="list" style={{ padding: '0 16px' }}>
                 {sessions.map((s, n) => (
-                  <SessionRow key={n} session={s} />
+                  <SessionRow key={n} session={s} date={t.date} />
                 ))}
               </div>
             </div>

@@ -698,3 +698,51 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 .dossier-sec.open .dossier-head svg { transform: rotate(180deg); }
 .dossier-body { padding: 0 20px 20px; }
 .dossier-body > :first-child { margin-top: 0; }
+
+/* Reader: one part at a time (Stepper.tsx) */
+.mode-toggle { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+.mode-toggle button { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border: 0; border-radius: 999px; background: none; color: var(--text-2); font: inherit; font-size: 0.82rem; cursor: pointer; }
+.mode-toggle button[aria-pressed='true'] { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: var(--shadow); }
+.prose .mode-toggle { margin-bottom: 4px; }
+.stepper { scroll-margin-top: 16px; }
+.stepper-bar { position: sticky; top: 0; z-index: 3; padding: 10px 0 8px; background: var(--bg); }
+.card .stepper-bar { background: var(--surface); }
+.stepper-segs { display: flex; gap: 4px; }
+.stepper-segs .seg { flex: 1; height: 6px; padding: 0; border: 0; border-radius: 999px; background: var(--line); cursor: pointer; transition: background 0.15s ease; }
+.stepper-segs .seg:hover { background: var(--line-strong); }
+.stepper-segs .seg.done { background: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.stepper-segs .seg.on { background: var(--accent); }
+.stepper-label { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.8rem; font-weight: 600; color: var(--text-2); }
+.prose .stepper-title { margin-top: 0.8em; font-size: 1.55rem; letter-spacing: -0.015em; }
+.stepper-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 2.2em; padding-top: 18px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.stepper-nav .btn.lg { max-width: 100%; white-space: normal; text-align: left; }
+.prose .stepper-keys { margin-top: 8px; }
+.toc a.seen { color: var(--text-2); }
+
+/* Sessions as tickable steps */
+.session-head { display: flex; align-items: center; gap: 6px; width: 100%; padding: 0; border: 0; background: none; font: inherit; color: var(--text); text-align: left; cursor: pointer; }
+.session-head .chev { flex-shrink: 0; color: var(--text-3); transition: transform 0.15s ease; }
+.session-head .chev.open { transform: rotate(90deg); }
+.session-head .title { flex: 1; }
+.session-steps { list-style: none; margin: 8px 0 2px; padding: 0 0 0 21px; display: flex; flex-direction: column; gap: 6px; }
+.session-steps label { display: flex; align-items: flex-start; gap: 8px; font-size: 0.9rem; line-height: 1.45; color: var(--text); cursor: pointer; }
+.session-steps input { margin-top: 3px; accent-color: var(--accent); width: 15px; height: 15px; flex-shrink: 0; }
+.session-steps .pill { flex-shrink: 0; }
+.session-steps label.ticked span:last-child { color: var(--text-3); text-decoration: line-through; }
+.session-row.done .session-head .title { color: var(--text-3); }
+
+/* Today: interview countdown */
+.countdown { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: var(--radius); background: var(--accent-soft); color: var(--accent); }
+.countdown.soon { background: var(--warn-soft); color: var(--warn); }
+.countdown-n { font-size: 1.35rem; font-weight: 700; line-height: 1.1; color: var(--text); }
+.countdown-l { font-size: 0.8rem; color: var(--text-2); }
+@media (prefers-reduced-motion: reduce) { .stepper-segs .seg, .session-head .chev { transition: none; } }
+.tabs { overflow-y: hidden; }
+.dossier-intro summary { font-size: 0.92rem; color: var(--text-2); }
+.trend-chart { max-width: 680px; margin: 0 auto; }
+.trend-chart .target-label { fill: var(--ok); }
+.stack > * { min-width: 0; }
+.flip-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.progress-cols { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.section-head { flex-wrap: wrap; }
+@media (max-width: 640px) { .trend-chart .axis { font-size: 16px; } .trend-chart .value { font-size: 17px; } }

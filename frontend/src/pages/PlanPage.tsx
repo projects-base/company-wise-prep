@@ -79,7 +79,7 @@ export default function PlanPage() {
                   </div>
                   <div>
                     {(d.sessions ?? []).map((s, n) => (
-                      <SessionRow key={n} session={s} />
+                      <SessionRow key={n} session={s} date={d.date} open={d.date === today} />
                     ))}
                     {(d.sessions ?? []).length > 0 ? (
                       d.items.map((i) => <Row key={i.slug} item={i} done={done.has(i.slug)} />)
@@ -122,12 +122,71 @@ export default function PlanPage() {
   )
 }
 
-export function SessionRow({ session }: { session: Session }) {
+/** "a; b. C" → steps. A leading "30:" is that step's minutes. */
+export function sessionSteps(detail: string): { min?: number; text: string }[] {
+  return detail
+    .split(/;\s+|(?<!\b(?:e\.g|i\.e|vs)\.)(?<=[a-z)\]"'0-9]\.)\s+(?=[A-Z0-9])/)
+    .map((t) => t.trim().replace(/\.$/, ''))
+    .filter(Boolean)
+    .map((t) => {
+      const m = t.match(/^(\d{1,3}):\s+(.*)$/)
+      return m ? { min: Number(m[1]), text: m[2] } : { text: t }
+    })
+}
+
+const readTicks = (k: string): number[] => {
+  try {
+    return JSON.parse(localStorage.getItem(k) ?? '[]')
+  } catch {
+    return []
+  }
+}
+
+/**
+ * A fixed session: the title, then its detail as steps to tick off (remembered in this browser),
+ * so a long sentence of instructions becomes a short checklist.
+ */
+export function SessionRow({ session, date, open: startOpen = true }: { session: Session; date?: string; open?: boolean }) {
+  const steps = sessionSteps(session.detail ?? '')
+  const key = `ticks.${date ?? ''}.${session.title}`
+  const [ticks, setTicks] = useState<number[]>(() => readTicks(key))
+  const [open, setOpen] = useState(startOpen)
+  const flip = (i: number) => {
+    const next = ticks.includes(i) ? ticks.filter((t) => t !== i) : [...ticks, i]
+    setTicks(next)
+    try {
+      localStorage.setItem(key, JSON.stringify(next))
+    } catch {
+      /* private window: not remembered */
+    }
+  }
+  const done = steps.length > 0 && ticks.length >= steps.length
+
   return (
-    <div className="list-row session-row">
+    <div className={`list-row session-row ${done ? 'done' : ''}`}>
       <div className="grow">
-        <div className="title">{session.title}</div>
-        {session.detail && <div className="muted session-detail">{session.detail}</div>}
+        <button className="session-head" onClick={() => setOpen(!open)} aria-expanded={open}>
+          <ChevronRight size={15} className={`chev ${open ? 'open' : ''}`} />
+          <span className="title">{session.title}</span>
+          {steps.length > 1 && (
+            <span className="muted num" style={{ fontSize: '0.8rem' }}>
+              {Math.min(ticks.length, steps.length)}/{steps.length} steps
+            </span>
+          )}
+        </button>
+        {open && steps.length > 0 && (
+          <ul className="session-steps">
+            {steps.map((st, i) => (
+              <li key={i}>
+                <label className={ticks.includes(i) ? 'ticked' : ''}>
+                  <input type="checkbox" checked={ticks.includes(i)} onChange={() => flip(i)} />
+                  {st.min != null && <span className="pill">{st.min}m</span>}
+                  <span>{st.text}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       {session.minutes > 0 && <span className="muted num" style={{ fontSize: '0.84rem' }}>{session.minutes}m</span>}
     </div>
