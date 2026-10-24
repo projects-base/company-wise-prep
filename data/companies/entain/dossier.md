@@ -550,10 +550,32 @@ Added 2026-10-24, after mock 3 (ticket booking, 5.5/10). Mock scores so far: 13 
 
 Bank questions to re-read if time allows: [ticket booking](../../questions/hld/design-ticket-booking.yaml), [live odds](../../questions/hld/design-live-odds-streaming.yaml), [techniques for system design, DB design, scalability and performance](../../questions/hld/system-design-database-scalability-performance-techniques.yaml).
 
-### 7c. Mock results: where the points were lost
+### 7c. Mock progress: every mock, the trend, and what is next
 
-Added 2026-10-24. Scores on the H4 rubric: 13 Oct 4/10 → 20 Oct 5.5/10 → 24 Oct 5.5/10 (on a
-problem not seen before).
+Updated 2026-10-24, after mock 3. Full mocks are scored out of 10 on the H4 rubric; the quizzes are
+multiple choice.
+
+| Date | Mock | Score | One-line verdict |
+|---|---|---|---|
+| Tue 13 Oct | Mock 1: sports betting (bet placement) | **4/10** | Jumped into the solution; "Kafka gives consistency"; rate limiter for the race |
+| Tue 20 Oct | Quiz: movie-ticket transfer | 4/4 | Conditional UPDATE, idempotency key, price snapshot, outbox: all recognised |
+| Tue 20 Oct | Mock 2: live odds and betting | **5.5/10** | Atomic debit right; odds pulled instead of pushed; outbox missed |
+| Wed 21 Oct | Quiz: betting DB design | 5/5 | Full schema with constraints, picked correctly |
+| Sat 24 Oct | Mock 3: movie ticket booking (unseen) | **5.5/10** | Concurrency SQL produced unprompted; failure handling and "how correct" missed |
+
+**The trend.**
+- 4 → 5.5 → 5.5. The second 5.5 came on a problem you had never practised, which is harder than mock 2's familiar domain.
+- So the level is holding on new material, not just on rehearsed answers.
+- The quizzes (9/9) show you **know** the patterns. The open mocks show the gap is in **producing them unprompted**: recognition is ahead of recall.
+- Recall is exactly what the 22–25 Oct drills train, and it moves fastest in the last few days.
+
+**Mock 1 (13 Oct): sports betting, 4/10**
+- Clarifying questions were good: what odds are, which sport. Scale, consistency and latency weren't asked.
+- No requirements list; you went straight to the solution.
+- Estimates were well structured, but the assumptions were off: peak all day, 2 KB per bet, read ratio 0.9 instead of ~1000:1.
+- Bet flow had the right boxes in the wrong order: the check sat at the load balancer, and "accepted" was returned before anything was saved.
+- **Consistency (2/10):** "Kafka gives consistency", and a rate limiter for the race.
+- Good: RDBMS for money, OLTP vs OLAP separation, thinking about retries, DLQ and refunds.
 
 **Mock 2 (20 Oct): live odds and betting, 5.5/10**
 
@@ -583,14 +605,41 @@ Good: the atomic wallet debit, raising the cost of 5M pushes unprompted, the cla
 Good: the conditional UPDATE plus a rowcount check (unprompted), the 10-minute hold, the
 idempotency key, the seat layout kept separate from each show's seats.
 
-**The same gaps in both mocks:**
+**What improved, mock by mock:**
+
+| Skill | Mock 1 | Mock 2 | Mock 3 |
+|---|---|---|---|
+| Concurrency on money or seats | Rate limiter, "Kafka gives consistency" | Atomic conditional debit | **Conditional UPDATE + rowcount, unprompted** |
+| Database is the source of truth | Not said | Said | Said, with the cache as display only |
+| Idempotency | Not mentioned | Used | Generated at "Pay", unprompted after one question |
+| Clarifying questions | What and which sport only | Scale, after hints | **Functional and non-functional, unprompted** |
+| Estimates | Wrong assumptions | Right method, one slip | Right method, slips fixed after a hint |
+| Schema thinking | Not reached | Picked correctly in the quiz | Produced from a blank page; layout vs show seats separated |
+
+**Doing well:**
+- The core write is right every time: conditional UPDATE, rowcount check, idempotency key, DB as the source of truth.
+- You ask clarifying questions and take hints quickly, without getting defensive.
+- Your answers are short and structured. That's easier for an interviewer to follow than long monologues.
+- RDBMS instinct for money and seats.
+
+**Still lacking (the same 4 in mocks 2 and 3):**
 1. **"What can go wrong?" missing from requirements.** It cost points first in both.
 2. **Failure after the write:** outbox (mock 2), payment crash (mock 3). *DB write plus anything external → outbox or reconciliation.*
 3. **Hot reads hitting the DB:** odds (mock 2), seat map (mock 3). *Many people watching one thing → cache or push.*
 4. **Arithmetic slips** under pressure.
 
-The money or seat write itself is right every time. The points are lost on everything around it.
 Not yet tested in a mock: LLD classes and writing SQL against your own schema.
+
+**Next: from 5.5 to 7.** The four gaps above are each one sentence, and all of them are in §7b.
+Asking the two "what can go wrong" questions in requirements and saying "outbox" and "cache or
+push" without being prompted would have added about 1.5 points to both mock 2 and mock 3.
+
+**A word before Monday.** Eleven days ago, the hardest part of a betting design (the race on the
+wallet) was answered with a rate limiter. Today you wrote the correct conditional UPDATE from a
+blank page, on a domain you hadn't seen, with 25–30 minutes a day around a full-time job. That's
+real progress, not luck. The remaining gaps are habits, not missing knowledge: you got every one of
+them right when it was put in front of you. On Monday, slow down, run the checklist, and say what
+you know. You're more ready than it feels.
 
 ## 8. Sources
 
