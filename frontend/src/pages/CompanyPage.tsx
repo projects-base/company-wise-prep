@@ -3,13 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { MdPre } from '../Diagram'
 import remarkGfm from 'remark-gfm'
-import { ArrowRight, ExternalLink, Info } from 'lucide-react'
+import { ArrowRight, ChevronDown, ExternalLink, Info } from 'lucide-react'
 import { api } from '../api'
 import { fmtDate, MdLink, Status, useLoad } from '../ui'
+import { MockProgress } from './MockProgress'
 
-type Tab = 'strategy' | 'loop' | 'stack' | 'postings' | 'sources'
+type Tab = 'strategy' | 'progress' | 'loop' | 'stack' | 'postings' | 'sources'
 const TABS: [Tab, string][] = [
   ['strategy', 'Strategy'],
+  ['progress', 'Mock progress'],
   ['loop', 'Interview loop'],
   ['stack', 'Tech stack'],
   ['postings', 'Job postings'],
@@ -48,7 +50,7 @@ export default function CompanyPage() {
       </header>
 
       <div className="tabs" role="tablist">
-        {TABS.map(([t, label]) => (
+        {TABS.filter(([t]) => t !== 'progress' || d.mocks).map(([t, label]) => (
           <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)}>
             {label}
           </button>
@@ -56,13 +58,10 @@ export default function CompanyPage() {
       </div>
 
       {tab === 'strategy' && (
-        <div className="prose">
-          <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink, pre: MdPre }}>
-            {(c.dossier || '_No dossier yet._').replace(/^# .*\n/, '')}
-          </Markdown>
-        </div>
+        <Dossier text={(c.dossier || '_No dossier yet._').replace(/^# .*\n/, '')} />
       )}
 
+      {tab === 'progress' && d.mocks && <MockProgress m={d.mocks} />}
       {tab === 'loop' && <Loop name={c.name} d={d} official={official} />}
       {tab === 'stack' && <TechStack d={d} />}
       {tab === 'postings' && <Postings official={official} />}
@@ -397,4 +396,62 @@ function asText(v: any): string {
     .filter(([k]) => k !== 'source')
     .map(([k, x]) => `${k}: ${x}`)
     .join(' · ')
+}
+
+/**
+ * The dossier is long, so each "## " section folds: the first starts open, and the chips jump to
+ * (and open) any section. Less text on screen at once is easier to start reading.
+ */
+function Dossier({ text }: { text: string }) {
+  const parts = text.split(/\n(?=## )/)
+  const intro = parts[0].startsWith('## ') ? '' : parts.shift()!
+  const sections = parts.map((p) => {
+    const nl = p.indexOf('\n')
+    return { title: p.slice(3, nl < 0 ? undefined : nl).trim(), body: nl < 0 ? '' : p.slice(nl + 1) }
+  })
+  const [open, setOpen] = useState<Set<number>>(() => new Set([0]))
+  const toggle = (i: number, to?: boolean) =>
+    setOpen((o) => {
+      const n = new Set(o)
+      if (to ?? !n.has(i)) n.add(i)
+      else n.delete(i)
+      return n
+    })
+  const jump = (i: number) => {
+    toggle(i, true)
+    requestAnimationFrame(() => document.getElementById(`ds-${i}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+  }
+  const all = open.size === sections.length
+  const md = (t: string) => (
+    <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink, pre: MdPre }}>
+      {t}
+    </Markdown>
+  )
+
+  return (
+    <div className="stack" style={{ gap: 14 }}>
+      {sections.length > 1 && (
+        <div className="row dossier-chips">
+          {sections.map((s, i) => (
+            <button key={i} className={`chip ${open.has(i) ? 'on' : ''}`} onClick={() => jump(i)}>
+              {s.title.replace(/^\d+[a-z]?\.\s*/, '')}
+            </button>
+          ))}
+          <button className="chip ghost" onClick={() => setOpen(all ? new Set() : new Set(sections.map((_, i) => i)))}>
+            {all ? 'Collapse all' : 'Expand all'}
+          </button>
+        </div>
+      )}
+      {intro.trim() && <div className="prose">{md(intro)}</div>}
+      {sections.map((s, i) => (
+        <section key={i} id={`ds-${i}`} className={`card dossier-sec ${open.has(i) ? 'open' : ''}`}>
+          <button className="dossier-head" onClick={() => toggle(i)} aria-expanded={open.has(i)}>
+            <span>{s.title}</span>
+            <ChevronDown size={18} />
+          </button>
+          {open.has(i) && <div className="prose dossier-body">{md(s.body)}</div>}
+        </section>
+      ))}
+    </div>
+  )
 }

@@ -691,3 +691,52 @@ sources:
     title: Principal Software Engineer, Hyderabad (Aug 2026)
     accessed: 2026-10-08
     kind: official
+
+# Mock interview progress, shown on the company page's "Mock progress" tab. Scores are Claude's
+# marking on the H4 rubric (docs: data/academy/lessons/H4.md); updated after each mock.
+mocks:
+  target: 7
+  sessions:
+    - { date: "2026-10-13", kind: mock, title: "Sports betting (bet placement)", score: 4, out_of: 10, verdict: "Went straight to the solution; 'Kafka gives consistency'; a rate limiter for the race" }
+    - { date: "2026-10-20", kind: quiz, title: "Movie-ticket transfer", score: 4, out_of: 4, verdict: "Conditional UPDATE, idempotency key, price snapshot, outbox: all recognised" }
+    - { date: "2026-10-20", kind: mock, title: "Live odds and betting", score: 5.5, out_of: 10, verdict: "Atomic debit right; odds pulled instead of pushed; outbox missed" }
+    - { date: "2026-10-21", kind: quiz, title: "Betting DB design", score: 5, out_of: 5, verdict: "Full schema with constraints, picked correctly" }
+    - { date: "2026-10-24", kind: mock, title: "Movie ticket booking (unseen)", score: 5.5, out_of: 10, verdict: "Concurrency SQL produced unprompted; 'how correct' and failure handling missed" }
+  # One level per full mock, in date order: weak | partial | strong
+  skills:
+    - { name: "Concurrency on money or seats", levels: [weak, strong, strong], notes: ["Rate limiter; 'Kafka gives consistency'", "Atomic conditional debit", "Conditional UPDATE + rowcount, unprompted"] }
+    - { name: "Clarifying questions", levels: [partial, partial, strong], notes: ["What and which sport only", "Scale, after hints", "Functional and non-functional, unprompted"] }
+    - { name: "\"What can go wrong?\" in requirements", levels: [weak, weak, weak], notes: ["Not asked", "Needed hints", "Double booking, hold, payment failure not asked"] }
+    - { name: "Estimates", levels: [weak, partial, partial], notes: ["Wrong assumptions (peak all day, read ratio 0.9)", "Right method; 10k written as 1k", "Right method; slips fixed after a hint"] }
+    - { name: "Schema design", levels: [weak, partial, partial], notes: ["Not reached", "Picked correctly in the quiz", "From a blank page; missing UNIQUE, city, booking link"] }
+    - { name: "Hot reads (cache or push)", levels: [weak, weak, partial], notes: ["Not covered", "Odds polled from the DB", "Catalogue cached; seat map from the DB"] }
+    - { name: "Failure after the write (outbox, reconciliation)", levels: [partial, weak, weak], notes: ["Retries, DLQ, refunds; DB not the source of truth", "'Kafka fails' → replica promotion", "Payment crash answered vaguely"] }
+    - { name: "Communication", levels: [partial, partial, strong], notes: ["Clear, a few long unstructured answers", "Clear", "Short, structured, takes hints well"] }
+  headline: "Holding 5.5 on a problem you'd never seen. You know the patterns; the gap is saying them unprompted."
+  doing_well:
+    - "Money or seat write right every time"
+    - "Conditional UPDATE + rowcount"
+    - "Idempotency keys"
+    - "DB as the source of truth"
+    - "Good clarifying questions"
+    - "Short, structured answers"
+    - "Takes hints fast"
+  # Flip cards on the page: try to say the fix before tapping.
+  lacking:
+    - { gap: "\"What can go wrong?\" is never asked", fix: "Ask: what if two users do this at once? What if payment fails halfway?" }
+    - { gap: "Failure after the DB write", fix: "Outbox in the same transaction. Payments: PENDING → webhook → reconciliation job." }
+    - { gap: "Hot reads hit the DB", fix: "Many people watching one thing → short-TTL cache or push." }
+    - { gap: "Arithmetic slips", fix: "1 day ≈ 100k s. Say each division out loud." }
+  next:
+    - "Ask the 2 \"what can go wrong\" questions → +0.5"
+    - "Say \"outbox\" after every DB write + event → +0.5"
+    - "Say \"cache or push\" for hot reads → +0.5"
+    - "Not yet practised: LLD classes, SQL on your own schema"
+  encouragement:
+    title: "You're more ready than it feels."
+    points:
+      - "13 Oct: the wallet race got a rate limiter."
+      - "24 Oct: the correct conditional UPDATE, from a blank page, on a new domain."
+      - "All on 25–30 minutes a day, around a full-time job."
+      - "Every gap left is a habit, not missing knowledge: you got each one right when it was put in front of you."
+      - "Monday: slow down, run the checklist, say what you know."

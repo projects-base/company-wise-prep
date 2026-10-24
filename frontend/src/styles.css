@@ -625,3 +625,76 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 .prose .table-wrap tr:last-child td { border-bottom: 0; }
 .prose .table-wrap tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-2) 45%, transparent); }
 .prose .table-wrap td:first-child { font-weight: 600; min-width: 9em; }
+
+/* Company page: mock progress tab */
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.bad { background: color-mix(in srgb, var(--bad) 12%, var(--surface)); color: var(--bad); }
+.pill svg { vertical-align: -2px; }
+.callout.ok { background: var(--ok-soft); }
+.callout.ok svg { color: var(--ok); }
+.trend-chart { width: 100%; height: auto; display: block; }
+.trend-chart .grid { stroke: var(--line); stroke-width: 1; }
+.trend-chart .target { stroke: var(--ok); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.trend-chart .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.trend-chart .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; pointer-events: none; }
+.trend-chart .axis { fill: var(--text-3); font-size: 12px; }
+.trend-chart .value { fill: var(--text); font-size: 13px; font-weight: 600; }
+.skill-grid { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.skill-grid th, .skill-grid td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.skill-grid th { font-weight: 600; font-size: 0.84rem; }
+.skill-grid th .muted { font-weight: 400; }
+.skill-grid tbody tr:last-child td { border-bottom: 0; }
+.skill-grid td:first-child { font-weight: 550; min-width: 160px; }
+.skill-note { color: var(--text-3); font-size: 0.78rem; margin-top: 4px; line-height: 1.35; min-width: 130px; }
+.progress-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.progress-cols h3 { margin: 0 0 8px; font-size: 1rem; }
+.grow { flex: 1; min-width: 0; }
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stat { padding: 14px 18px; }
+.stat-label { display: flex; align-items: center; gap: 6px; color: var(--text-2); font-size: 0.82rem; }
+.stat-value { font-size: 2rem; font-weight: 700; line-height: 1.1; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.stat-value.ok { color: var(--ok); }
+.stat-unit { font-size: 0.95rem; font-weight: 500; color: var(--text-3); margin-left: 2px; }
+.progress-headline { font-size: 1.15rem; font-weight: 600; line-height: 1.45; margin: -8px 0 0; max-width: 46ch; }
+.trend-tip { min-height: 2.6em; margin-top: 8px; font-size: 0.9rem; line-height: 1.4; }
+.flip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.flip {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; text-align: left;
+  min-height: 140px; padding: 16px 18px; border-radius: var(--radius); cursor: pointer; font: inherit; color: var(--text);
+  background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warn);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.flip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.flip.shown { border-left-color: var(--ok); background: var(--ok-soft); }
+.flip-no { position: absolute; top: 12px; right: 14px; color: var(--text-3); font-weight: 700; font-size: 0.85rem; }
+.flip-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.04em; }
+.flip-tag.warn { color: var(--warn); }
+.flip-tag.ok { color: var(--ok); }
+.flip-text { font-size: 1rem; font-weight: 600; line-height: 1.4; }
+.flip-hint { margin-top: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; color: var(--text-3); }
+.next-steps h3 { margin: 0 0 8px; font-size: 1rem; }
+.next-steps ul { margin: 0; padding-left: 1.1em; }
+.next-steps li { line-height: 1.5; }
+.next-steps li + li { margin-top: 4px; }
+.chip-ok { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--ok-soft); color: var(--text); font-size: 0.88rem; }
+.chip-ok svg { color: var(--ok); }
+.encourage { align-items: flex-start; padding: 16px 18px; }
+.encourage-title { font-size: 1.05rem; font-weight: 650; }
+.link-btn { background: none; border: 0; padding: 0; margin-top: 4px; color: var(--accent); font: inherit; font-size: 0.88rem; cursor: pointer; }
+.link-btn:hover { text-decoration: underline; }
+details.fold summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: 600; list-style: none; }
+details.fold summary::-webkit-details-marker { display: none; }
+details.fold[open] summary svg { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) { .flip { transition: none; } .flip:hover { transform: none; } }
+.dossier-chips { gap: 6px; flex-wrap: wrap; position: sticky; top: 0; z-index: 2; padding: 8px 0; background: var(--bg); }
+.chip { height: 30px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text-2); font: inherit; font-size: 0.82rem; cursor: pointer; }
+.chip:hover { border-color: var(--line-strong); color: var(--text); }
+.chip.on { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 600; }
+.chip.ghost { background: none; border-style: dashed; }
+.dossier-sec { scroll-margin-top: 56px; overflow: hidden; }
+.dossier-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; background: none; border: 0; font: inherit; font-size: 1.08rem; font-weight: 650; color: var(--text); text-align: left; cursor: pointer; }
+.dossier-head:hover { background: var(--surface-2); }
+.dossier-head svg { flex-shrink: 0; color: var(--text-3); transition: transform 0.15s ease; }
+.dossier-sec.open .dossier-head svg { transform: rotate(180deg); }
+.dossier-body { padding: 0 20px 20px; }
+.dossier-body > :first-child { margin-top: 0; }
