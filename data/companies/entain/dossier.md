@@ -496,6 +496,60 @@ the list.
   radius**: a crash should affect 1–2% of users, not all of them.
 - If Kafka fails after the commit, the fix is the **outbox**, not replica promotion.
 
+### 7b. Monday revision sheet (TR2, Mon 26 Oct, 3:30 PM)
+
+Added 2026-10-24, after mock 3 (ticket booking, 5.5/10). Mock scores so far: 13 Oct 4/10,
+20 Oct 5.5/10, 24 Oct 5.5/10 on an unseen problem.
+
+**Where to focus most** (from the three mocks, most important first):
+
+| # | Weak spot | Seen in | The fix to make automatic |
+|---|---|---|---|
+| 1 | **"How correct?" not asked in requirements** | Mocks 2 and 3 | Always ask: *"What happens if two users do this at the same time?"* and *"What if payment or a step fails halfway?"* |
+| 2 | **Failure handling after the DB write** | Mock 2 (Kafka fails), mock 3 (payment crash) | DB write + event → **outbox** in the same transaction. External payment → `PENDING` row first, webhook confirms idempotently, reconciliation job, auto-refund. |
+| 3 | **Hot reads hitting the DB** | Mock 2 (odds polled), mock 3 (seat map from DB) | Many people watching one thing → short-TTL cache or push. The DB only does the guarded write. |
+| 4 | **Estimate arithmetic** | Mocks 2 and 3 | 1 day ≈ 100k s. Say each division out loud and sanity-check it once. |
+| 5 | **Multi-item writes** | Mock 3 (4 seats) | All or nothing: one UPDATE, check rowcount = n, otherwise roll back. |
+
+**Keep doing:** clarifying questions on scale; the conditional UPDATE plus a rowcount check; idempotency keys; keeping a layout or template separate from per-instance rows (seat map vs show seats).
+
+**Monday morning, 30 min, in this order:**
+
+1. **5 min, say out loud:** the checklist *Who → How much → How correct → How fast → How available → Where*, and the 4-pattern scan (above in §7).
+2. **5 min, numbers card:**
+   - 1 day ≈ 100k s, so 1M/day ≈ 10/s; peak ≈ 10× average.
+   - 1M rows × 1 KB ≈ 1 GB.
+   - One Postgres primary: a few thousand writes/s.
+   - Redis: about 100k ops/s per node.
+   - SSE/WebSocket gateway: about 50k connections.
+3. **10 min, redraw from memory, 2 min each:**
+   - the betting architecture (feed → Kafka → gateways; bet → wallet → outbox);
+   - the bet-slip class diagram (Strategy, validator chain, state machine, factory);
+   - the ER diagram (event, market, selection, wallet, wallet_txn, bet, bet_leg);
+   - the bet transaction.
+4. **5 min, key lines:**
+
+   ```sql
+   -- Scarce thing (seat, balance): guard in the WHERE, then check the rowcount
+   UPDATE wallet SET balance = balance - :stake WHERE user_id = :u AND balance >= :stake;
+   UPDATE show_seat SET state = 'HOLD', user_id = :u, hold_till = now() + interval '10 min'
+    WHERE show_id = :s AND seat_no IN (:seats)
+      AND state <> 'BOOKED' AND (hold_till IS NULL OR hold_till < now());
+   -- Retries: UNIQUE (user_id, idempotency_key); events: INSERT INTO outbox in the same transaction
+   ```
+
+   - *"Odds can be eventually consistent; money can't."*
+   - Price re-checked at bet time; the balance is never read from a cache or replica.
+5. **3 min, SQL skeletons:**
+   - top-N per group: `DENSE_RANK() OVER (PARTITION BY g ORDER BY x DESC)`;
+   - 7-day running total: `SUM(x) OVER (ORDER BY d ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)`;
+   - 3 days in a row: `d - ROW_NUMBER() OVER (PARTITION BY u ORDER BY d)`, then group and `HAVING COUNT(*) >= 3`.
+6. **2 min, setup:** by 3:00, open the Teams link from the invite email; test mic, camera, screen share and Excalidraw or draw.io.
+
+**No new material on Monday.** If you blank in the room: *"Let me start with the requirements so I design the right thing,"* then go down the checklist.
+
+Bank questions to re-read if time allows: [ticket booking](../../questions/hld/design-ticket-booking.yaml), [live odds](../../questions/hld/design-live-odds-streaming.yaml), [techniques for system design, DB design, scalability and performance](../../questions/hld/system-design-database-scalability-performance-techniques.yaml).
+
 ## 8. Sources
 
 All accessed 2026-10-08.
