@@ -90,7 +90,7 @@ sessions:
   - date: 2026-10-25
     minutes: 60
     title: "Fix mock 3's gaps + SQL by hand + key lines"
-    detail: "30: redo the weakest part of mock 3. 20: top-N per group (DENSE_RANK), 7-day running total, 3 days in a row (gaps and islands). 10: settlement, free bets and payments key lines."
+    detail: "Mock 3 (24 Oct) scored 5.5/10. 30: redo its gaps out loud: ask 'how correct? double booking?' in requirements; rate = per day ÷ 100k s; seat map from a short-TTL cache; hold SQL with (hold_till IS NULL OR hold_till < now()); all-or-nothing multi-seat (rowcount = n, else rollback); payment PENDING → webhook → confirm, reconciliation job, refund if the hold expired. 20: top-N per group (DENSE_RANK), 7-day running total, 3 days in a row (gaps and islands). 10: settlement, free bets and payments key lines."
     questions: [sql-scenario-based-queries]
   - date: 2026-10-25
     minutes: 0
