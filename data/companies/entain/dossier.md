@@ -550,6 +550,48 @@ Added 2026-10-24, after mock 3 (ticket booking, 5.5/10). Mock scores so far: 13 
 
 Bank questions to re-read if time allows: [ticket booking](../../questions/hld/design-ticket-booking.yaml), [live odds](../../questions/hld/design-live-odds-streaming.yaml), [techniques for system design, DB design, scalability and performance](../../questions/hld/system-design-database-scalability-performance-techniques.yaml).
 
+### 7c. Mock results: where the points were lost
+
+Added 2026-10-24. Scores on the H4 rubric: 13 Oct 4/10 → 20 Oct 5.5/10 → 24 Oct 5.5/10 (on a
+problem not seen before).
+
+**Mock 2 (20 Oct): live odds and betting, 5.5/10**
+
+| Where | What happened | What was expected |
+|---|---|---|
+| Requirements | Needed hints on what to ask | Go through the checklist unprompted: Who → How much → How correct → How fast → How available → Where |
+| Estimates | 10k bets/s written as 1k, which skewed the read:write ratio | Say each number out loud and check it once |
+| Consistency | "Re-check the price at bet time" came only after nudges | Say it first: *"Odds can be stale; money can't."* |
+| **Odds path (HLD)** | **Pull:** CSV → DB → cache → replicas | **Push:** feed → Kafka (keyed by market) → gateways' in-memory map → SSE/WebSocket |
+| Real-time | WebSocket only after a hint; no snapshot on reconnect | Name push first; on reconnect, a snapshot from Redis, then live updates |
+| **Failure** | "Kafka fails" → replica promotion | **Outbox:** the bet and the event in one transaction, then a relay publishes |
+
+Good: the atomic wallet debit, raising the cost of 5M pushes unprompted, the clarifying questions.
+
+**Mock 3 (24 Oct): movie ticket booking, 5.5/10**
+
+| Where | What happened | What was expected |
+|---|---|---|
+| **Requirements** | **Never asked about double booking, hold time or payment failure** | *"What if two users pick the same seat?"* and *"What if payment fails?"* |
+| Estimates | Skipped rates at first; 1M ÷ 600 given as 167 (it's ~1,700); 2.4 × 365 given as 91 (it's 876) | 1 day ≈ 100k s; say each division out loud |
+| API | No hold step or idempotency until prompted | `POST /shows/{id}/holds` → `POST /bookings` with an `Idempotency-Key` |
+| Schema | Movie folded into the show table; no city; no `UNIQUE(show_id, seat_no)`; seats stored as a list in booking | Separate tables, a unique constraint, a booking ↔ seat link |
+| HLD | Seat map read from the DB (a hot read); payment order muddled | Redis per show (short TTL); hold → pay → webhook → confirm |
+| Deep dive | Expired-hold check backwards (`hold_till > now()`) | `hold_till IS NULL OR hold_till < now()` |
+| Trade-offs | Booked 3 of 4 seats; payment crash answered vaguely | All or nothing (rowcount = n, else roll back); `PENDING` → webhook → reconciliation → refund |
+
+Good: the conditional UPDATE plus a rowcount check (unprompted), the 10-minute hold, the
+idempotency key, the seat layout kept separate from each show's seats.
+
+**The same gaps in both mocks:**
+1. **"What can go wrong?" missing from requirements.** It cost points first in both.
+2. **Failure after the write:** outbox (mock 2), payment crash (mock 3). *DB write plus anything external → outbox or reconciliation.*
+3. **Hot reads hitting the DB:** odds (mock 2), seat map (mock 3). *Many people watching one thing → cache or push.*
+4. **Arithmetic slips** under pressure.
+
+The money or seat write itself is right every time. The points are lost on everything around it.
+Not yet tested in a mock: LLD classes and writing SQL against your own schema.
+
 ## 8. Sources
 
 All accessed 2026-10-08.
