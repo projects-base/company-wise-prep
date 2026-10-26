@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, Check, ExternalLink, Info, RotateCcw, Sparkles } from 'lucide-react'
+import { ArrowRight, BookOpen, Check, ExternalLink, Flame, Info, RotateCcw, Sparkles } from 'lucide-react'
 import { api, leetcodeUrl, type PlanItem } from '../api'
 import { useCampaign } from '../App'
-import { SessionRow } from './PlanPage'
+import { readTicks, SessionRow, sessionSteps } from './PlanPage'
+import { celebrate, recordActivity, TICKS_CHANGED, useStreak } from '../rewards'
 import { CompanyPills, Difficulty, fmtDate, LevelChip, Meta, Ring, Status, TypeTag, useLoad } from '../ui'
 import { CalendarClock } from 'lucide-react'
 
@@ -20,12 +22,40 @@ export default function TodayPage() {
     [campaign?.id],
   )
   const { data: academy } = useLoad(() => api.academy(), [])
+  const streak = useStreak()
+  const [, bump] = useState(0)
+  const day = t ? dayProgress(t.date, t.sessions ?? []) : { done: 0, total: 0 }
+
+  // Re-count when a step is ticked; the first time every step of the day is done, celebrate it.
+  useEffect(() => {
+    if (!t) return
+    const on = () => {
+      bump((n) => n + 1)
+      const p = dayProgress(t.date, t.sessions ?? [])
+      const flag = `daydone.${t.date}`
+      try {
+        if (p.total > 0 && p.done >= p.total && localStorage.getItem(flag) !== '1') {
+          localStorage.setItem(flag, '1')
+          const s = recordActivity()
+          celebrate('Day complete!', s > 1 ? `${s} days in a row. See you tomorrow.` : 'Day one done. See you tomorrow.', true)
+        }
+      } catch {
+        /* private window */
+      }
+    }
+    window.addEventListener(TICKS_CHANGED, on)
+    return () => window.removeEventListener(TICKS_CHANGED, on)
+  }, [t])
 
   if (!campaign) return <div className="container"><p className="muted">No campaign yet — add one under data/campaigns/ and reload.</p></div>
   if (!t) return <div className="container"><Status error={error} /></div>
 
   const act = async (slug: string, action: 'DONE' | 'REMEMBERED' | 'FORGOT') => {
     await api.progress(slug, action)
+    if (action !== 'FORGOT') {
+      const s = recordActivity()
+      if (action === 'DONE') celebrate('Marked done', s > 1 ? `${s}-day streak` : undefined)
+    }
     reload()
   }
   const sessions = t.sessions ?? []
@@ -151,6 +181,27 @@ export default function TodayPage() {
         </div>
 
         <aside>
+          {(day.total > 0 || streak.current > 0) && (
+            <div className="card side-card today-card">
+              <div className="eyebrow">Today</div>
+              <div className="ring" style={{ marginTop: 12 }}>
+                <Ring value={day.done} max={Math.max(1, day.total)} />
+                <div>
+                  <div style={{ fontWeight: 650, fontSize: '1.1rem' }} className="num">
+                    {day.total > 0 ? `${day.done} / ${day.total} steps` : 'No sessions today'}
+                  </div>
+                  <div className={`streak ${streak.current > 0 ? 'on' : ''}`}>
+                    <Flame size={15} /> {streak.current > 0 ? `${streak.current}-day streak` : 'Start your streak today'}
+                  </div>
+                  {streak.best > streak.current && (
+                    <div className="muted" style={{ fontSize: '0.78rem' }}>
+                      Best: {streak.best} days
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
           <div className="card side-card">
             <div className="eyebrow">Plan progress</div>
             <div className="ring" style={{ marginTop: 12 }}>
@@ -234,4 +285,16 @@ function FocusCard({ item, onDone }: { item: PlanItem; onDone: () => void }) {
       </div>
     </article>
   )
+}
+
+/** Ticked steps over all steps of today's fixed sessions (a session with no steps counts as one). */
+function dayProgress(date: string, sessions: { title: string; detail: string | null }[]) {
+  let done = 0
+  let total = 0
+  for (const s of sessions) {
+    const n = Math.max(1, sessionSteps(s.detail ?? '').length)
+    total += n
+    done += Math.min(n, readTicks(`ticks.${date}.${s.title}`).length)
+  }
+  return { done, total }
 }

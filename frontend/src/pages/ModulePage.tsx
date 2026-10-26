@@ -1,4 +1,5 @@
 import { Children, isValidElement, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { AnimBlock, animSource } from '../Anim'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { Diagram, mermaidSource } from '../Diagram'
@@ -111,6 +112,8 @@ export default function ModulePage() {
                 pre: ({ children }) => {
                   const diagram = mermaidSource(children)
                   if (diagram !== null) return <Diagram source={diagram} />
+                  const anim = animSource(children)
+                  if (anim !== null) return <AnimBlock source={anim} />
                   const code = textOf(children)
                   const child = Children.toArray(children)[0]
                   const lang = isValidElement<{ className?: string }>(child) ? child.props.className ?? '' : ''

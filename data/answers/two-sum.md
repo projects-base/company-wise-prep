@@ -1,5 +1,25 @@
 **Short answer:** Walk the array once with a hash map from value to index. For each `nums[i]`, check whether `target - nums[i]` is already in the map. If it is, return both indices. If not, store `nums[i]`. That is O(n) time and O(n) space. The brute force is O(n²). Sorting plus two pointers is O(n log n), but it needs the original indices kept alongside the values.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Two Sum: one pass with a hash map","code":["int[] twoSum(int[] nums, int target) {","  Map<Integer, Integer> seen = new HashMap<>();   // value -> index","  for (int i = 0; i < nums.length; i++) {","    int need = target - nums[i];","    if (seen.containsKey(need))","      return new int[]{seen.get(need), i};","    seen.put(nums[i], i);","  }","  return new int[0];","}"],"frames":[
+{"note":"Goal: two numbers that add up to 10. One pass, remembering every value we have seen.","line":2,"array":{"label":"nums","values":[3,8,4,11,6]},"map":{"label":"seen (value → index)","entries":[]},"vars":{"target":10}},
+{"note":"i = 0: nums[i] = 3, so we need 10 − 3 = 7. Is 7 in the map?","line":4,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":0},"marks":{"0":"cur"}},"map":{"label":"seen (value → index)","entries":[]},"vars":{"target":10,"i":0,"need":7}},
+{"note":"No. Remember 3 → 0 so a later number can pair with it.","line":7,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":0},"marks":{"0":"done"}},"map":{"label":"seen (value → index)","entries":[["3",0]],"hit":"3"},"vars":{"target":10,"i":0,"need":7}},
+{"note":"i = 1: nums[i] = 8, so we need 10 − 8 = 2. Is 2 in the map?","line":4,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":1},"marks":{"1":"cur"}},"map":{"label":"seen (value → index)","entries":[["3",0]]},"vars":{"target":10,"i":1,"need":2}},
+{"note":"No. Remember 8 → 1 so a later number can pair with it.","line":7,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":1},"marks":{"1":"done"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1]],"hit":"8"},"vars":{"target":10,"i":1,"need":2}},
+{"note":"i = 2: nums[i] = 4, so we need 10 − 4 = 6. Is 6 in the map?","line":4,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":2},"marks":{"2":"cur"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1]]},"vars":{"target":10,"i":2,"need":6}},
+{"note":"No. Remember 4 → 2 so a later number can pair with it.","line":7,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":2},"marks":{"2":"done"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1],["4",2]],"hit":"4"},"vars":{"target":10,"i":2,"need":6}},
+{"note":"i = 3: nums[i] = 11, so we need 10 − 11 = -1. Is -1 in the map?","line":4,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":3},"marks":{"3":"cur"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1],["4",2]]},"vars":{"target":10,"i":3,"need":-1}},
+{"note":"No. Remember 11 → 3 so a later number can pair with it.","line":7,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":3},"marks":{"3":"done"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1],["4",2],["11",3]],"hit":"11"},"vars":{"target":10,"i":3,"need":-1}},
+{"note":"i = 4: nums[i] = 6, so we need 10 − 6 = 4. Is 4 in the map?","line":4,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":4},"marks":{"4":"cur"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1],["4",2],["11",3]]},"vars":{"target":10,"i":4,"need":4}},
+{"note":"Yes: 4 was at index 2. Answer [2, 4] in O(n), one pass, no nested loop.","line":6,"array":{"label":"nums","values":[3,8,4,11,6],"pointers":{"i":4},"marks":{"2":"hit","4":"hit"}},"map":{"label":"seen (value → index)","entries":[["3",0],["8",1],["4",2],["11",3]],"hit":"4"},"vars":{"target":10,"i":4,"need":4}}
+]}
+```
+
 ## Approach
 
 - **Brute force.** Check every pair `i < j`. O(n²): 5·10⁹ pairs for 10⁵ numbers, too slow.

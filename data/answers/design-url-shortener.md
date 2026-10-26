@@ -67,6 +67,23 @@ sequenceDiagram
 - Steps 8–11: Redis first, the database on a miss, then the cache is filled. Missing codes get a short negative entry, so random-code floods do not hit the database.
 - Steps 12–13: the click event goes to Kafka without waiting, and the user gets a 302 (not 301) so analytics and takedowns keep working.
 
+## Watch it
+
+Press **Play**, or step with **→**.
+
+```anim
+{"title":"URL shortener: the redirect path","stages":["Client GET /aZ3kQ9","CDN / edge","Load balancer","Redirect service","Redis cache","Database (on a miss)","302 Location","Click event → Kafka"],"frames":[
+{"stage":0,"note":"A browser opens https://sho.rt/aZ3kQ9. Reads outnumber writes about 100 to 1, so this path must be fast.","vars":{"latency":"0 ms"}},
+{"stage":1,"note":"Popular links can be cached at the edge, but we usually skip that: every click must be counted.","vars":{"latency":"5 ms"}},
+{"stage":2,"note":"The load balancer picks a healthy, stateless redirect instance.","vars":{"latency":"6 ms"}},
+{"stage":3,"note":"Decode the short code and look it up.","vars":{"latency":"7 ms"}},
+{"stage":4,"note":"Cache-aside: GET url:aZ3kQ9. About 90%+ of lookups hit here in ~1 ms.","vars":{"latency":"8 ms","cache":"hit"}},
+{"stage":5,"note":"On a miss: read by primary key from the database, then SET it in Redis with a TTL.","vars":{"latency":"15 ms (miss)","cache":"filled"}},
+{"stage":6,"note":"Reply 302 with Location: the long URL (302, not 301, so the browser does not cache it and clicks keep being counted).","vars":{"status":302}},
+{"stage":7,"note":"Analytics is asynchronous: publish a click event to Kafka; the redirect never waits for it.","vars":{"status":302,"async":"click event"}}
+]}
+```
+
 ## Requirements
 
 **Functional**

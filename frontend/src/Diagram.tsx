@@ -1,6 +1,7 @@
 import { Children, isValidElement, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { ListOrdered, Maximize2, Minus, Plus, Workflow, X } from 'lucide-react'
 import { FlowSteps, parseSequence } from './FlowSteps'
+import { AnimBlock, animSource } from './Anim'
 
 type MermaidApi = typeof import('mermaid').default
 
@@ -208,5 +209,7 @@ export function mermaidSource(children: ReactNode): string | null {
 /** Markdown `pre` that draws ```mermaid fences and leaves other code blocks alone. */
 export function MdPre({ children }: { children?: ReactNode }) {
   const source = mermaidSource(children)
-  return source !== null ? <Diagram source={source} /> : <pre>{children}</pre>
+  if (source !== null) return <Diagram source={source} />
+  const anim = animSource(children)
+  return anim !== null ? <AnimBlock source={anim} /> : <pre>{children}</pre>
 }

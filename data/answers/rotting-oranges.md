@@ -22,6 +22,23 @@ R 1 2
 
 **The picture in one sentence:** start BFS from every rotten orange at once, and each BFS level is one minute, so the last level reached is the answer.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Rotting oranges: multi-source BFS, one level per minute","code":["int orangesRotting(int[][] g) {","  Deque<int[]> q = new ArrayDeque<>(); int fresh = 0;","  // every rotten orange starts in the queue; count the fresh ones","  int minutes = 0;","  while (!q.isEmpty() && fresh > 0) {","    for (int n = q.size(); n > 0; n--) {       // one BFS level = one minute","      int[] p = q.poll();","      for (int[] d : DIRS) {","        int r = p[0] + d[0], c = p[1] + d[1];","        if (inside(r, c) && g[r][c] == 1) { g[r][c] = 2; fresh--; q.add(new int[]{r, c}); }","      }","    }","    minutes++;","  }","  return fresh == 0 ? minutes : -1;","}"],"colors":{"2":"c4","1":"c3","0":"c5"},"frames":[
+{"note":"Multi-source BFS: all rotten oranges (2) start in the queue at minute 0.","line":3,"grid":{"cells":[[2,1,1,0],[1,1,0,0],[0,1,1,1],[0,0,1,1]],"marks":{"0,0":"cur"}},"stack":{"kind":"queue","items":["(0,0)"]},"vars":{"minutes":0,"fresh":9}},
+{"note":"Minute 1: the rot spreads one step from every orange in the queue; 2 more rotted, 7 fresh left.","line":13,"grid":{"cells":[[2,2,1,0],[2,1,0,0],[0,1,1,1],[0,0,1,1]],"marks":{"1,0":"cur","0,1":"cur"}},"stack":{"kind":"queue","items":["(1,0)","(0,1)"]},"vars":{"minutes":1,"fresh":7}},
+{"note":"Minute 2: the rot spreads one step from every orange in the queue; 2 more rotted, 5 fresh left.","line":13,"grid":{"cells":[[2,2,2,0],[2,2,0,0],[0,1,1,1],[0,0,1,1]],"marks":{"1,1":"cur","0,2":"cur"}},"stack":{"kind":"queue","items":["(1,1)","(0,2)"]},"vars":{"minutes":2,"fresh":5}},
+{"note":"Minute 3: the rot spreads one step from every orange in the queue; 1 more rotted, 4 fresh left.","line":13,"grid":{"cells":[[2,2,2,0],[2,2,0,0],[0,2,1,1],[0,0,1,1]],"marks":{"2,1":"cur"}},"stack":{"kind":"queue","items":["(2,1)"]},"vars":{"minutes":3,"fresh":4}},
+{"note":"Minute 4: the rot spreads one step from every orange in the queue; 1 more rotted, 3 fresh left.","line":13,"grid":{"cells":[[2,2,2,0],[2,2,0,0],[0,2,2,1],[0,0,1,1]],"marks":{"2,2":"cur"}},"stack":{"kind":"queue","items":["(2,2)"]},"vars":{"minutes":4,"fresh":3}},
+{"note":"Minute 5: the rot spreads one step from every orange in the queue; 2 more rotted, 1 fresh left.","line":13,"grid":{"cells":[[2,2,2,0],[2,2,0,0],[0,2,2,2],[0,0,2,1]],"marks":{"3,2":"cur","2,3":"cur"}},"stack":{"kind":"queue","items":["(3,2)","(2,3)"]},"vars":{"minutes":5,"fresh":1}},
+{"note":"Minute 6: the rot spreads one step from every orange in the queue; 1 more rotted, 0 fresh left.","line":13,"grid":{"cells":[[2,2,2,0],[2,2,0,0],[0,2,2,2],[0,0,2,2]],"marks":{"3,3":"cur"}},"stack":{"kind":"queue","items":["(3,3)"]},"vars":{"minutes":6,"fresh":0}},
+{"note":"No fresh oranges left after 6 minutes. (If any fresh one were unreachable, the answer would be −1.)","line":15,"grid":{"cells":[[2,2,2,0],[2,2,0,0],[0,2,2,2],[0,0,2,2]]},"vars":{"minutes":6,"fresh":0}}
+]}
+```
+
 ## Approach
 
 - **Brute force.** Every minute, scan the whole grid and rot the neighbours of rotten cells. O((m·n)²) in the worst case: a winding path of 30,000 minutes on a 250×250 grid means 30,000 full scans of 62,500 cells.

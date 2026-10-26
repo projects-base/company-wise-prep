@@ -71,6 +71,22 @@ stateDiagram-v2
 - The state picture covers external rails: a timeout means UNKNOWN, not FAILED. The webhook or a status poll settles it, and the daily reconciliation job catches anything left over.
 - Across shards, one local transaction is not possible, so the transfer becomes a saga with idempotent steps and a compensating credit.
 
+## Watch it
+
+Press **Play**, or step with **→**.
+
+```anim
+{"title":"Payment flow: PENDING first, webhook, outbox, reconciliation","stages":["POST /payments + Idempotency-Key","Insert PENDING row","Call PSP (timeout)","PSP webhook","Mark SUCCEEDED (conditional update)","Outbox event","Reconciliation job"],"frames":[
+{"stage":0,"note":"The client sends a payment with an Idempotency-Key. A retry with the same key returns the first result instead of charging twice.","vars":{"status":"—"}},
+{"stage":1,"note":"Write the payment as PENDING first (UNIQUE on the key), before calling anyone outside.","vars":{"status":"PENDING"}},
+{"stage":2,"note":"Call the payment provider with a timeout. If we crash or time out now, the row is still PENDING, never lost.","vars":{"status":"PENDING"}},
+{"stage":3,"note":"The provider confirms asynchronously via a signed webhook (it may send it more than once).","vars":{"status":"PENDING","webhook":"succeeded"}},
+{"stage":4,"note":"UPDATE payment SET status='SUCCEEDED' WHERE id=? AND status='PENDING'. Rowcount 0 means a duplicate webhook: ignore it.","vars":{"status":"SUCCEEDED"}},
+{"stage":5,"note":"In the same transaction, insert PaymentSucceeded into the outbox; a relay publishes it to Kafka for orders and notifications.","vars":{"status":"SUCCEEDED","event":"queued"}},
+{"stage":6,"note":"Every few minutes, PENDING rows older than N minutes are checked against the provider: fix them, or refund if money moved but the order failed.","vars":{"status":"consistent"}}
+]}
+```
+
 ## Requirements
 
 Functional:

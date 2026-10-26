@@ -20,6 +20,25 @@ Answer 6, the block [4,−1,2,1] (indices 3–6).
 
 **The picture in one sentence:** a negative running sum only drags the next block down, so drop it and start fresh at the current element.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Maximum subarray: Kadane's algorithm","code":["int maxSubArray(int[] nums) {","  int cur = nums[0], best = nums[0];","  for (int i = 1; i < nums.length; i++) {","    cur = Math.max(nums[i], cur + nums[i]);   // extend or restart","    best = Math.max(best, cur);","  }","  return best;","}"],"frames":[
+{"note":"cur = best sum of a subarray ending here. Start with the first element.","line":2,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":0},"range":[0,0]},"vars":{"cur":-2,"best":-2}},
+{"note":"1 alone beats -2 + 1 = -1: restart the subarray at i = 1. New best 1.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":1},"range":[1,1]},"vars":{"cur":1,"best":1}},
+{"note":"Extend: 1 + -3 = -2.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":2},"range":[1,2]},"vars":{"cur":-2,"best":1}},
+{"note":"4 alone beats -2 + 4 = 2: restart the subarray at i = 3. New best 4.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":3},"range":[3,3]},"vars":{"cur":4,"best":4}},
+{"note":"Extend: 4 + -1 = 3.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":4},"range":[3,4]},"vars":{"cur":3,"best":4}},
+{"note":"Extend: 3 + 2 = 5. New best 5.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":5},"range":[3,5]},"vars":{"cur":5,"best":5}},
+{"note":"Extend: 5 + 1 = 6. New best 6.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":6},"range":[3,6]},"vars":{"cur":6,"best":6}},
+{"note":"Extend: 6 + -5 = 1.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":7},"range":[3,7]},"vars":{"cur":1,"best":6}},
+{"note":"Extend: 1 + 4 = 5.","line":4,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"pointers":{"i":8},"range":[3,8]},"vars":{"cur":5,"best":6}},
+{"note":"Best subarray is indices 3..6 with sum 6. O(n), O(1) space.","line":7,"array":{"label":"nums","values":[-2,1,-3,4,-1,2,1,-5,4],"range":[3,6],"marks":{"3":"hit","4":"hit","5":"hit","6":"hit"}},"vars":{"best":6}}
+]}
+```
+
 ## Approach
 
 - **Brute force:** every (i, j) pair with a running sum: O(n²).

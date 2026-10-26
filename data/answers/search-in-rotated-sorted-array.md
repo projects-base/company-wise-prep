@@ -22,6 +22,21 @@ Target 3 (missing):
 
 **The picture in one sentence:** every cut leaves one side sorted, and a range check on that side tells you in O(1) which half to throw away.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Search in a rotated sorted array: binary search on the sorted half","code":["int search(int[] a, int t) {","  int lo = 0, hi = a.length - 1;","  while (lo <= hi) {","    int mid = (lo + hi) >>> 1;","    if (a[mid] == t) return mid;","    if (a[lo] <= a[mid]) {                 // left half is sorted","      if (a[lo] <= t && t < a[mid]) hi = mid - 1;","      else lo = mid + 1;","    } else {                               // right half is sorted","      if (a[mid] < t && t <= a[hi]) lo = mid + 1;","      else hi = mid - 1;","    }","  }","  return -1;","}"],"frames":[
+{"note":"Find 0. One half around mid is always sorted; check whether the target lies inside that half.","line":2,"array":{"label":"a (rotated)","values":[4,5,6,7,0,1,2],"pointers":{"lo":0,"hi":6},"range":[0,6]},"vars":{"t":0}},
+{"note":"mid = 3, a[mid] = 7 ≠ 0.","line":4,"array":{"label":"a (rotated)","values":[4,5,6,7,0,1,2],"pointers":{"lo":0,"mid":3,"hi":6},"range":[0,6],"marks":{"3":"cur"}},"vars":{"lo":0,"mid":3,"hi":6}},
+{"note":"Left half [4..7] is sorted but 0 is not in it: drop the left half.","line":8,"array":{"label":"a (rotated)","values":[4,5,6,7,0,1,2],"pointers":{"lo":4,"hi":6},"range":[4,6]},"vars":{"lo":4,"hi":6}},
+{"note":"mid = 5, a[mid] = 1 ≠ 0.","line":4,"array":{"label":"a (rotated)","values":[4,5,6,7,0,1,2],"pointers":{"lo":4,"mid":5,"hi":6},"range":[4,6],"marks":{"5":"cur"}},"vars":{"lo":4,"mid":5,"hi":6}},
+{"note":"Left half [0..1] is sorted and holds 0: drop the right half.","line":7,"array":{"label":"a (rotated)","values":[4,5,6,7,0,1,2],"pointers":{"lo":4,"hi":4},"range":[4,4]},"vars":{"lo":4,"hi":4}},
+{"note":"a[4] = 0. Found in O(log n).","line":5,"array":{"label":"a (rotated)","values":[4,5,6,7,0,1,2],"pointers":{"lo":4,"mid":4,"hi":4},"range":[4,4],"marks":{"4":"hit"}},"vars":{"lo":4,"mid":4,"hi":4}}
+]}
+```
+
 ## Approach
 
 - **Brute force:** linear scan. O(n). Correct, but it misses the point.

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { Celebrations } from './rewards'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
@@ -165,6 +166,7 @@ export default function App() {
             <Route path="/companies/:slug" element={<CompanyPage />} />
           </Routes>
         </main>
+        <Celebrations />
       </div>
     </CampaignContext.Provider>
     </FeaturesContext.Provider>

@@ -26,6 +26,29 @@ The scan then starts a fill at (2,2) (count 2) and at (3,3) (count 3). Diagonal 
 
 **The picture in one sentence:** every flood fill sinks one whole island, so the number of fills the scan has to start is the number of islands.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Number of islands: scan + flood fill (DFS)","code":["int numIslands(char[][] g) {","  int count = 0;","  for (int r = 0; r < g.length; r++)","    for (int c = 0; c < g[0].length; c++)","      if (g[r][c] == '1') { count++; sink(g, r, c); }","  return count;","}","void sink(char[][] g, int r, int c) {","  if (r < 0 || c < 0 || r >= g.length || c >= g[0].length || g[r][c] != '1') return;","  g[r][c] = '0';                          // visited","  sink(g, r + 1, c); sink(g, r - 1, c); sink(g, r, c + 1); sink(g, r, c - 1);","}"],"colors":{"1":"c1","0":"c2","A":"c3","B":"c3","C":"c3","D":"c3"},"frames":[
+{"note":"Scan every cell. Each time we meet unvisited land ('1'), it is a new island: count it and sink all of it.","line":3,"grid":{"cells":[["1","1","0","0","0"],["1","1","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":null},"vars":{"count":0}},
+{"note":"Land at (0,0) not visited yet: island #1.","line":5,"grid":{"cells":[["1","1","0","0","0"],["1","1","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"0,0":"hit"}},"vars":{"count":1,"r":0,"c":0}},
+{"note":"Sink (0,0) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","1","0","0","0"],["1","1","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"0,0":"cur"}},"vars":{"count":1,"r":0,"c":0}},
+{"note":"Sink (1,0) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","1","0","0","0"],["A","1","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"1,0":"cur"}},"vars":{"count":1,"r":1,"c":0}},
+{"note":"Sink (1,1) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","1","0","0","0"],["A","A","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"1,1":"cur"}},"vars":{"count":1,"r":1,"c":1}},
+{"note":"Sink (0,1) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"0,1":"cur"}},"vars":{"count":1,"r":0,"c":1}},
+{"note":"Land at (1,3) not visited yet: island #2.","line":5,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","1","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"1,3":"hit"}},"vars":{"count":2,"r":1,"c":3}},
+{"note":"Sink (1,3) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"1,3":"cur"}},"vars":{"count":2,"r":1,"c":3}},
+{"note":"Land at (2,2) not visited yet: island #3.","line":5,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","1","0","0"],["0","0","0","1","1"]],"marks":{"2,2":"hit"}},"vars":{"count":3,"r":2,"c":2}},
+{"note":"Sink (2,2) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","C","0","0"],["0","0","0","1","1"]],"marks":{"2,2":"cur"}},"vars":{"count":3,"r":2,"c":2}},
+{"note":"Land at (3,3) not visited yet: island #4.","line":5,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","C","0","0"],["0","0","0","1","1"]],"marks":{"3,3":"hit"}},"vars":{"count":4,"r":3,"c":3}},
+{"note":"Sink (3,3) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","C","0","0"],["0","0","0","D","1"]],"marks":{"3,3":"cur"}},"vars":{"count":4,"r":3,"c":3}},
+{"note":"Sink (3,4) and spread to its 4 neighbours.","line":10,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","C","0","0"],["0","0","0","D","D"]],"marks":{"3,4":"cur"}},"vars":{"count":4,"r":3,"c":4}},
+{"note":"Scan finished: 4 islands. Every cell is visited at most twice: O(rows × cols).","line":6,"grid":{"cells":[["A","A","0","0","0"],["A","A","0","B","0"],["0","0","C","0","0"],["0","0","0","D","D"]],"marks":null},"vars":{"count":4}}
+]}
+```
+
 ## Approach
 
 - **Key insight:** "connected land" is exactly a connected component. Each flood fill removes one whole component, so the number of fills started is the answer.

@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import { ChevronRight, ScrollText } from 'lucide-react'
 import { api, type PlanDay, type PlanItem, type Session } from '../api'
 import { useCampaign } from '../App'
+import { celebrate, recordActivity, TICKS_CHANGED } from '../rewards'
 import { Bar, CheckDot, companyLabel, Difficulty, fmtDate, localToday, Meta, Status, TypeTag, useLoad } from '../ui'
 
 export default function PlanPage() {
@@ -186,7 +187,7 @@ export function sessionSteps(detail: string): { min?: number; text: string }[] {
     })
 }
 
-const readTicks = (k: string): number[] => {
+export const readTicks = (k: string): number[] => {
   try {
     return JSON.parse(localStorage.getItem(k) ?? '[]')
   } catch {
@@ -211,6 +212,13 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
     } catch {
       /* private window: not remembered */
     }
+    if (next.length > ticks.length) {
+      const days = recordActivity()
+      if (steps.length > 0 && next.length === steps.length) {
+        celebrate('Session done!', days > 1 ? `${days}-day streak, keep it going` : 'First day of your streak')
+      }
+    }
+    window.dispatchEvent(new Event(TICKS_CHANGED))
   }
   const done = steps.length > 0 && ticks.length >= steps.length
 

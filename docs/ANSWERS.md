@@ -51,6 +51,19 @@ Mermaid rules (so every diagram parses; `cd frontend && node scripts/check-diagr
 - In `sequenceDiagram` messages avoid `;` and `#`; use `Note over A,B: text` for asides.
 - In `classDiagram`, generics use `~`: `List~Order~`.
 
+## Watch it (animations)
+
+Selected answers and lessons carry a `## Watch it` section with a ` ```anim ` block: a step-by-step
+animation the app plays (Play / step / scrub / speed). A block is JSON: `title`, optional `code`
+(lines; each frame's `line` highlights the line that just ran), optional `stages` (a flow whose
+`stage` index lights up), optional `colors` (grid value → `c1`..`c5`), and `frames`, each with a
+`note` and any of `array` (`values`, `pointers`, `range`, `marks`), `grid` (`cells`, `marks` keyed
+`"r,c"`), `map` (`entries`, `hit`), `stack` (`items`, `kind: queue`) and `vars`.
+
+Do not hand-write frames. `tools/anim/build.py` runs each algorithm in Python and records the
+frames, then writes or replaces the section (after `## Picture it`, else before the first `##`).
+Add a generator and a target there, and run `python tools/anim/build.py` from the repo root.
+
 ## Rules
 
 - **Never invent Akhil's experience.** Behavioral templates use `[placeholders]` for his stories.

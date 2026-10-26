@@ -22,6 +22,30 @@ Why the `>= left` check matters: in `"abba"`, at the second `a` the stored `last
 
 **The picture in one sentence:** remember where each character was last seen, so on a repeat the left edge jumps past it in one step instead of crawling.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Longest substring without repeating characters: sliding window","code":["int lengthOfLongestSubstring(String s) {","  Map<Character, Integer> last = new HashMap<>();","  int best = 0, left = 0;","  for (int right = 0; right < s.length(); right++) {","    char c = s.charAt(right);","    if (last.containsKey(c) && last.get(c) >= left)","      left = last.get(c) + 1;          // jump past the repeat","    last.put(c, right);","    best = Math.max(best, right - left + 1);","  }","  return best;","}"],"frames":[
+{"note":"A window [left, right] with no repeated letter. right grows one step at a time.","line":3,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"]},"map":{"label":"last index of each char","entries":[]},"vars":{"best":0}},
+{"note":"Window 'a' has length 1. New best 1.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":0,"right":0},"range":[0,0],"marks":{"0":"cur"}},"map":{"label":"last index of each char","entries":[["a",0]],"hit":"a"},"vars":{"left":0,"right":0,"best":1}},
+{"note":"Window 'ab' has length 2. New best 2.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":0,"right":1},"range":[0,1],"marks":{"1":"cur"}},"map":{"label":"last index of each char","entries":[["a",0],["b",1]],"hit":"b"},"vars":{"left":0,"right":1,"best":2}},
+{"note":"Window 'abc' has length 3. New best 3.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":0,"right":2},"range":[0,2],"marks":{"2":"cur"}},"map":{"label":"last index of each char","entries":[["a",0],["b",1],["c",2]],"hit":"c"},"vars":{"left":0,"right":2,"best":3}},
+{"note":"'a' repeats (last seen at 0), so left jumps from 0 to 1.","line":7,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":1,"right":3},"range":[1,3],"marks":{"3":"bad"}},"map":{"label":"last index of each char","entries":[["a",0],["b",1],["c",2]],"hit":"a"},"vars":{"left":1,"right":3,"best":3}},
+{"note":"Window 'bca' has length 3.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":1,"right":3},"range":[1,3],"marks":{"3":"cur"}},"map":{"label":"last index of each char","entries":[["a",3],["b",1],["c",2]],"hit":"a"},"vars":{"left":1,"right":3,"best":3}},
+{"note":"'b' repeats (last seen at 1), so left jumps from 1 to 2.","line":7,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":2,"right":4},"range":[2,4],"marks":{"4":"bad"}},"map":{"label":"last index of each char","entries":[["a",3],["b",1],["c",2]],"hit":"b"},"vars":{"left":2,"right":4,"best":3}},
+{"note":"Window 'cab' has length 3.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":2,"right":4},"range":[2,4],"marks":{"4":"cur"}},"map":{"label":"last index of each char","entries":[["a",3],["b",4],["c",2]],"hit":"b"},"vars":{"left":2,"right":4,"best":3}},
+{"note":"'c' repeats (last seen at 2), so left jumps from 2 to 3.","line":7,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":3,"right":5},"range":[3,5],"marks":{"5":"bad"}},"map":{"label":"last index of each char","entries":[["a",3],["b",4],["c",2]],"hit":"c"},"vars":{"left":3,"right":5,"best":3}},
+{"note":"Window 'abc' has length 3.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":3,"right":5},"range":[3,5],"marks":{"5":"cur"}},"map":{"label":"last index of each char","entries":[["a",3],["b",4],["c",5]],"hit":"c"},"vars":{"left":3,"right":5,"best":3}},
+{"note":"'b' repeats (last seen at 4), so left jumps from 3 to 5.","line":7,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":5,"right":6},"range":[5,6],"marks":{"6":"bad"}},"map":{"label":"last index of each char","entries":[["a",3],["b",4],["c",5]],"hit":"b"},"vars":{"left":5,"right":6,"best":3}},
+{"note":"Window 'cb' has length 2.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":5,"right":6},"range":[5,6],"marks":{"6":"cur"}},"map":{"label":"last index of each char","entries":[["a",3],["b",6],["c",5]],"hit":"b"},"vars":{"left":5,"right":6,"best":3}},
+{"note":"'b' repeats (last seen at 6), so left jumps from 5 to 7.","line":7,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":7,"right":7},"range":[7,7],"marks":{"7":"bad"}},"map":{"label":"last index of each char","entries":[["a",3],["b",6],["c",5]],"hit":"b"},"vars":{"left":7,"right":7,"best":3}},
+{"note":"Window 'b' has length 1.","line":9,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"],"pointers":{"left":7,"right":7},"range":[7,7],"marks":{"7":"cur"}},"map":{"label":"last index of each char","entries":[["a",3],["b",7],["c",5]],"hit":"b"},"vars":{"left":7,"right":7,"best":3}},
+{"note":"Done: longest window without repeats = 3. Each index enters once and left only moves forward: O(n).","line":11,"array":{"label":"s","values":["a","b","c","a","b","c","b","b"]},"vars":{"best":3}}
+]}
+```
+
 ## Approach
 
 - **Brute force:** every substring, checked with a set. O(n³), or O(n²) if you extend each start until the first repeat.

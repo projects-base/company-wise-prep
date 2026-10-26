@@ -1,5 +1,23 @@
 **Short answer:** Use a stack. For each opening bracket, push the closing bracket it expects. For each closing bracket, the stack must be non-empty and its top must equal that character. At the end, the stack must be empty. O(n) time, O(n) space.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Valid parentheses: a stack of open brackets","code":["boolean isValid(String s) {","  Deque<Character> stack = new ArrayDeque<>();","  for (char c : s.toCharArray()) {","    if (c == '(' || c == '[' || c == '{') stack.push(c);","    else {","      if (stack.isEmpty()) return false;","      char open = stack.pop();","      if (!matches(open, c)) return false;","    }","  }","  return stack.isEmpty();","}"],"frames":[
+{"note":"Every closer must match the most recent unmatched opener: that is a stack.","line":2,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"]},"stack":{"items":[]}},
+{"note":"'(' opens: push it.","line":4,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":0},"marks":{"0":"cur"}},"stack":{"items":["("]}},
+{"note":"'[' opens: push it.","line":4,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":1},"marks":{"1":"cur"}},"stack":{"items":["(","["]}},
+{"note":"'{' opens: push it.","line":4,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":2},"marks":{"2":"cur"}},"stack":{"items":["(","[","{"]}},
+{"note":"'}' closes: pop '{'. They match, keep going.","line":7,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":3},"marks":{"3":"hit"}},"stack":{"items":["(","["]}},
+{"note":"']' closes: pop '['. They match, keep going.","line":7,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":4},"marks":{"4":"hit"}},"stack":{"items":["("]}},
+{"note":"')' closes: pop '('. They match, keep going.","line":7,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":5},"marks":{"5":"hit"}},"stack":{"items":[]}},
+{"note":"'(' opens: push it.","line":4,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":6},"marks":{"6":"cur"}},"stack":{"items":["("]}},
+{"note":"']' closes: pop '('. '(' does not match ']': return false.","line":8,"array":{"label":"s","values":["(","[","{","}","]",")","(","]"],"pointers":{"c":7},"marks":{"7":"bad"}},"stack":{"items":[]}}
+]}
+```
+
 ## Approach
 
 - **Brute force.** Repeatedly delete `"()"`, `"[]"` and `"{}"` until nothing changes, then check whether the string is empty. O(n²).

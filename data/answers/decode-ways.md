@@ -25,6 +25,21 @@ The two decodings are `1 1 10 6` (AAJF) and `11 10 6` (KJF). The `0` forces the 
 
 **The picture in one sentence:** it is Fibonacci where each of the two steps back is allowed only if its digit group is a valid letter.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Decode ways: 1-D dynamic programming","code":["int numDecodings(String s) {","  int n = s.length(); int[] dp = new int[n + 1];   // dp[i] = ways to decode the first i digits","  dp[0] = 1; dp[1] = s.charAt(0) == '0' ? 0 : 1;","  for (int i = 2; i <= n; i++) {","    int one = s.charAt(i - 1) - '0', two = Integer.parseInt(s.substring(i - 2, i));","    if (one >= 1) dp[i] += dp[i - 1];","    if (two >= 10 && two <= 26) dp[i] += dp[i - 2];","  }","  return dp[n];","}"],"frames":[
+{"note":"dp[i] = ways to decode the first i digits of \"12261\". dp[0] = 1 (empty), dp[1] = 1.","line":3,"array":{"label":"dp","values":[1,1,0,0,0,0],"marks":{"0":"done","1":"done"}},"vars":{"s":"12261"}},
+{"note":"i = 2: '2' alone → dp[1] = 1; '12' as a pair → dp[0] = 1. dp[2] = 2.","line":7,"array":{"label":"dp","values":[1,1,2,0,0,0],"pointers":{"i":2},"marks":{"2":"cur","1":"hit","0":"hit"}},"vars":{"s":"12261","one":2,"two":12}},
+{"note":"i = 3: '2' alone → dp[2] = 2; '22' as a pair → dp[1] = 1. dp[3] = 3.","line":7,"array":{"label":"dp","values":[1,1,2,3,0,0],"pointers":{"i":3},"marks":{"3":"cur","2":"hit","1":"hit"}},"vars":{"s":"12261","one":2,"two":22}},
+{"note":"i = 4: '6' alone → dp[3] = 3; '26' as a pair → dp[2] = 2. dp[4] = 5.","line":7,"array":{"label":"dp","values":[1,1,2,3,5,0],"pointers":{"i":4},"marks":{"4":"cur","3":"hit","2":"hit"}},"vars":{"s":"12261","one":6,"two":26}},
+{"note":"i = 5: '1' alone → dp[4] = 5. dp[5] = 5.","line":7,"array":{"label":"dp","values":[1,1,2,3,5,5],"pointers":{"i":5},"marks":{"5":"cur","4":"hit"}},"vars":{"s":"12261","one":1,"two":61}},
+{"note":"\"12261\" decodes 5 ways. Only the last two dp values are needed, so O(1) space is possible.","line":9,"array":{"label":"dp","values":[1,1,2,3,5,5],"marks":{"5":"hit"}},"vars":{"answer":5}}
+]}
+```
+
 ## Approach
 
 **Brute force.** Recursively try a one-digit group and a two-digit group at each position. The same suffixes get re-solved over and over, so the cost is exponential (Fibonacci-like) on strings such as "1111…".

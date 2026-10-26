@@ -23,6 +23,23 @@ flowchart LR
 
 **The picture in one sentence:** keep taking courses whose prerequisites are all done, and if some courses are never freed, a cycle is holding them.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Course schedule II: topological sort (Kahn's algorithm)","code":["int[] findOrder(int n, int[][] pre) {","  List<List<Integer>> next = adjacency(n, pre);   // prereq -> courses it unlocks","  int[] indeg = new int[n];","  for (int[] p : pre) indeg[p[0]]++;","  Deque<Integer> q = new ArrayDeque<>();","  for (int i = 0; i < n; i++) if (indeg[i] == 0) q.add(i);","  List<Integer> order = new ArrayList<>();","  while (!q.isEmpty()) {","    int c = q.poll(); order.add(c);","    for (int d : next.get(c)) if (--indeg[d] == 0) q.add(d);","  }","  return order.size() == n ? toArray(order) : new int[0];   // a cycle leaves courses out","}"],"frames":[
+{"note":"Count prerequisites (indegree) per course. Courses with none can be taken now.","line":6,"array":{"label":"indegree per course","values":[0,1,1,2,1,2],"marks":{"0":"hit"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]]},"stack":{"kind":"queue","items":[0]},"vars":{"order":"[]"}},
+{"note":"Take course 0. Its dependents lose one prerequisite; 1, 2 now ready.","line":10,"array":{"label":"indegree per course","values":[0,0,0,2,1,2],"marks":{"0":"done","1":"hit","2":"hit"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]],"hit":"0"},"stack":{"kind":"queue","items":[1,2]},"vars":{"order":"[0]"}},
+{"note":"Take course 1. Its dependents lose one prerequisite.","line":10,"array":{"label":"indegree per course","values":[0,0,0,1,1,2],"marks":{"0":"done","1":"done"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]],"hit":"1"},"stack":{"kind":"queue","items":[2]},"vars":{"order":"[0, 1]"}},
+{"note":"Take course 2. Its dependents lose one prerequisite; 3 now ready.","line":10,"array":{"label":"indegree per course","values":[0,0,0,0,1,2],"marks":{"0":"done","1":"done","2":"done","3":"hit"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]],"hit":"2"},"stack":{"kind":"queue","items":[3]},"vars":{"order":"[0, 1, 2]"}},
+{"note":"Take course 3. Its dependents lose one prerequisite; 4 now ready.","line":10,"array":{"label":"indegree per course","values":[0,0,0,0,0,1],"marks":{"0":"done","1":"done","2":"done","3":"done","4":"hit"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]],"hit":"3"},"stack":{"kind":"queue","items":[4]},"vars":{"order":"[0, 1, 2, 3]"}},
+{"note":"Take course 4. Its dependents lose one prerequisite; 5 now ready.","line":10,"array":{"label":"indegree per course","values":[0,0,0,0,0,0],"marks":{"0":"done","1":"done","2":"done","3":"done","4":"done","5":"hit"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]],"hit":"4"},"stack":{"kind":"queue","items":[5]},"vars":{"order":"[0, 1, 2, 3, 4]"}},
+{"note":"Take course 5. Its dependents lose one prerequisite.","line":10,"array":{"label":"indegree per course","values":[0,0,0,0,0,0],"marks":{"0":"done","1":"done","2":"done","3":"done","4":"done","5":"done"}},"map":{"label":"unlocks","entries":[["0","1, 2"],["1","3"],["2","3"],["3","4, 5"],["4","5"],["5","—"]],"hit":"5"},"stack":{"kind":"queue","items":[]},"vars":{"order":"[0, 1, 2, 3, 4, 5]"}},
+{"note":"All 6 courses ordered: [0, 1, 2, 3, 4, 5]. With a cycle, some indegree never reaches 0 and the order comes up short.","line":12,"array":{"label":"indegree per course","values":[0,0,0,0,0,0]},"vars":{"order":"[0, 1, 2, 3, 4, 5]"}}
+]}
+```
+
 ## Approach
 
 **Brute force.** Repeatedly scan all courses for one whose prerequisites are all done. O(V · (V + E)).

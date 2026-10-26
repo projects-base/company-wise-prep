@@ -1,5 +1,23 @@
 **Short answer:** I put `@Transactional` on service methods, and Spring wraps the bean in a proxy. When a call comes in through the proxy, a `TransactionInterceptor` asks the `PlatformTransactionManager` (with JPA, `JpaTransactionManager`) to begin a transaction, binds the connection and `EntityManager` to the current thread, runs my method, then commits, or rolls back if a `RuntimeException` or `Error` escapes. Because it is proxy-based, it only works on calls that come from outside the bean.
 
+## Watch it
+
+Press **Play**, or step with **→**.
+
+```anim
+{"title":"@Transactional: what the proxy does around your method","stages":["Call reaches the proxy","TransactionInterceptor reads @Transactional","Begin: connection, autoCommit=false, bound to thread","Method runs (repositories reuse the connection)","Commit or roll back","Release the connection"],"frames":[
+{"stage":0,"note":"transfer(1, 2, 500) is called on the TransferService proxy.","vars":{"run":"happy path"}},
+{"stage":1,"note":"Attributes: propagation REQUIRED, default isolation, rollbackFor InsufficientFundsException.","vars":{"run":"happy path"}},
+{"stage":2,"note":"JpaTransactionManager takes a pooled connection, sets autoCommit=false and binds it (and the EntityManager) to this thread.","vars":{"connection":"conn-7","autoCommit":false}},
+{"stage":3,"note":"debit and credit change managed entities; dirty checking will flush them. Every repository call on this thread uses conn-7.","vars":{"connection":"conn-7","dirty":2}},
+{"stage":4,"note":"Normal return: flush, then COMMIT.","vars":{"outcome":"COMMIT"}},
+{"stage":5,"note":"Unbind from the thread, return conn-7 to the pool.","vars":{"connection":"returned"}},
+{"stage":3,"note":"Second run: transfer(1, 2, 5000) throws InsufficientFundsException inside the method.","vars":{"run":"failure","exception":"InsufficientFundsException"}},
+{"stage":4,"note":"The exception matches rollbackFor, so ROLLBACK. (A checked exception without rollbackFor would COMMIT.)","vars":{"outcome":"ROLLBACK"}},
+{"stage":5,"note":"Connection released, exception rethrown to the caller.","vars":{"connection":"returned"}}
+]}
+```
+
 ## Explanation
 
 **What happens on a call:**

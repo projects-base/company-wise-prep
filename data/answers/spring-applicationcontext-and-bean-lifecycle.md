@@ -1,5 +1,22 @@
 **Short answer:** Spring Boot is Spring with opinions: auto-configuration, starters, an embedded server and externalised config, so an app runs with almost no setup. The `ApplicationContext` is the IoC container that creates, wires and manages beans; Boot picks the context type from the app type (servlet, reactive or none). Each bean goes through instantiate → inject → Aware callbacks → post-processors → init → post-processors (proxies) → in use → destroy.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Spring bean lifecycle, step by step","stages":["Instantiate","Inject dependencies","Aware callbacks","BeanPostProcessor: before init","Init (@PostConstruct)","BeanPostProcessor: after init → proxy","In use","Destroy (@PreDestroy)"],"code":["@Component","class OddsCache implements ApplicationContextAware {","  private final OddsClient client;","  OddsCache(OddsClient client) { this.client = client; }","  public void setApplicationContext(ApplicationContext ctx) { }","  @PostConstruct void warmUp() { client.loadAll(); }","  @Transactional public void refresh() { /* ... */ }","  @PreDestroy void close() { client.close(); }","}"],"frames":[
+{"stage":0,"note":"The container calls the constructor. With constructor injection, OddsClient is passed in right here.","vars":{"bean":"raw object","proxy":false},"line":4},
+{"stage":1,"note":"Field and setter injection happen now, after the constructor. (So a field-injected dependency is still null inside the constructor.)","vars":{"bean":"wired","proxy":false},"line":3},
+{"stage":2,"note":"Aware callbacks hand the bean container objects it asked for: its name, the BeanFactory, the ApplicationContext.","vars":{"bean":"wired","proxy":false},"line":5},
+{"stage":3,"note":"Every BeanPostProcessor gets postProcessBeforeInitialization: e.g. the one that handles @PostConstruct and other annotations.","vars":{"bean":"wired","proxy":false}},
+{"stage":4,"note":"Init hooks in order: @PostConstruct, then afterPropertiesSet(), then a custom initMethod. All dependencies are ready, so warm the cache here.","vars":{"bean":"initialised","proxy":false},"line":6},
+{"stage":5,"note":"postProcessAfterInitialization: refresh() is @Transactional, so the auto-proxy creator wraps the bean in a CGLIB proxy. Other beans get the proxy, not the raw object.","vars":{"bean":"initialised","proxy":true},"line":7},
+{"stage":6,"note":"The bean serves calls. A call to refresh() goes through the proxy, which opens the transaction. (A call from inside the class would skip it.)","vars":{"bean":"in use","proxy":true}},
+{"stage":7,"note":"context.close() on shutdown: @PreDestroy, then destroy(), then a custom destroyMethod. Prototype beans never get this step.","vars":{"bean":"destroyed","proxy":true},"line":8}
+]}
+```
+
 ## Explanation
 
 **Spring Boot.** `@SpringBootApplication` = `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`. Auto-configuration classes are listed in each starter's `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` and guarded by conditions (`@ConditionalOnClass`, `@ConditionalOnMissingBean`, `@ConditionalOnProperty`), so your own bean always wins over the default.

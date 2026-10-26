@@ -15,6 +15,29 @@ At step 3, prefix 0 occurred twice (the empty prefix and after `1,-1`), so two s
 
 **The picture in one sentence:** each earlier prefix equal to `sum - k` marks one start point of a subarray summing to `k`, so a count map turns the search into a lookup.
 
+## Watch it
+
+Press **Play**, or step with **→**. The highlighted code line is the one that just ran.
+
+```anim
+{"title":"Subarray sum equals K: prefix sums + hash map","code":["int subarraySum(int[] nums, int k) {","  Map<Integer, Integer> count = new HashMap<>();   // prefix sum -> times seen","  count.put(0, 1);","  int sum = 0, ans = 0;","  for (int x : nums) {","    sum += x;","    ans += count.getOrDefault(sum - k, 0);","    count.merge(sum, 1, Integer::sum);","  }","  return ans;","}"],"frames":[
+{"note":"A subarray (i, j] sums to k when prefix[j] − prefix[i] = 3. Seed the map with prefix 0 seen once.","line":3,"array":{"label":"nums","values":[1,2,1,-1,3,1]},"map":{"label":"prefix sum → count","entries":[["0",1]]},"vars":{"k":3,"sum":0,"ans":0}},
+{"note":"sum = 1. Need an earlier prefix of 1 − 3 = -2: seen 0 time(s), so ans += 0.","line":7,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":0},"range":[0,0]},"map":{"label":"prefix sum → count","entries":[["0",1]],"hit":null},"vars":{"k":3,"sum":1,"ans":0}},
+{"note":"Record prefix 1 (now seen 1 time(s)).","line":8,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":0},"range":[0,0]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1]],"hit":"1"},"vars":{"k":3,"sum":1,"ans":0}},
+{"note":"sum = 3. Need an earlier prefix of 3 − 3 = 0: seen 1 time(s), so ans += 1.","line":7,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":1},"range":[0,1]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1]],"hit":"0"},"vars":{"k":3,"sum":3,"ans":1}},
+{"note":"Record prefix 3 (now seen 1 time(s)).","line":8,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":1},"range":[0,1]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",1]],"hit":"3"},"vars":{"k":3,"sum":3,"ans":1}},
+{"note":"sum = 4. Need an earlier prefix of 4 − 3 = 1: seen 1 time(s), so ans += 1.","line":7,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":2},"range":[0,2]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",1]],"hit":"1"},"vars":{"k":3,"sum":4,"ans":2}},
+{"note":"Record prefix 4 (now seen 1 time(s)).","line":8,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":2},"range":[0,2]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",1],["4",1]],"hit":"4"},"vars":{"k":3,"sum":4,"ans":2}},
+{"note":"sum = 3. Need an earlier prefix of 3 − 3 = 0: seen 1 time(s), so ans += 1.","line":7,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":3},"range":[0,3]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",1],["4",1]],"hit":"0"},"vars":{"k":3,"sum":3,"ans":3}},
+{"note":"Record prefix 3 (now seen 2 time(s)).","line":8,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":3},"range":[0,3]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",2],["4",1]],"hit":"3"},"vars":{"k":3,"sum":3,"ans":3}},
+{"note":"sum = 6. Need an earlier prefix of 6 − 3 = 3: seen 2 time(s), so ans += 2.","line":7,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":4},"range":[0,4]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",2],["4",1]],"hit":"3"},"vars":{"k":3,"sum":6,"ans":5}},
+{"note":"Record prefix 6 (now seen 1 time(s)).","line":8,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":4},"range":[0,4]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",2],["4",1],["6",1]],"hit":"6"},"vars":{"k":3,"sum":6,"ans":5}},
+{"note":"sum = 7. Need an earlier prefix of 7 − 3 = 4: seen 1 time(s), so ans += 1.","line":7,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":5},"range":[0,5]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",2],["4",1],["6",1]],"hit":"4"},"vars":{"k":3,"sum":7,"ans":6}},
+{"note":"Record prefix 7 (now seen 1 time(s)).","line":8,"array":{"label":"nums","values":[1,2,1,-1,3,1],"pointers":{"j":5},"range":[0,5]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",2],["4",1],["6",1],["7",1]],"hit":"7"},"vars":{"k":3,"sum":7,"ans":6}},
+{"note":"6 subarrays sum to 3. One pass, O(n), and it works with negative numbers (a sliding window would not).","line":10,"array":{"label":"nums","values":[1,2,1,-1,3,1]},"map":{"label":"prefix sum → count","entries":[["0",1],["1",1],["3",2],["4",1],["6",1],["7",1]]},"vars":{"ans":6}}
+]}
+```
+
 ## Approach
 
 - **Brute force.** Every start, every end, running sum: O(n²). With 40,000 elements that is 8·10⁸ additions, too slow here.
