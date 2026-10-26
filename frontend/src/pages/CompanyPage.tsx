@@ -7,11 +7,15 @@ import { ArrowRight, ChevronDown, ExternalLink, Info } from 'lucide-react'
 import { api } from '../api'
 import { fmtDate, MdLink, Status, useLoad } from '../ui'
 import { MockProgress } from './MockProgress'
+import { Drills } from './Drills'
+import { BrushUp } from './BrushUp'
 
-type Tab = 'strategy' | 'progress' | 'loop' | 'stack' | 'postings' | 'sources'
+type Tab = 'strategy' | 'progress' | 'drills' | 'brushup' | 'loop' | 'stack' | 'postings' | 'sources'
 const TABS: [Tab, string][] = [
   ['strategy', 'Strategy'],
   ['progress', 'Mock progress'],
+  ['drills', 'Rapid-fire drills'],
+  ['brushup', "Today's brush-up"],
   ['loop', 'Interview loop'],
   ['stack', 'Tech stack'],
   ['postings', 'Job postings'],
@@ -52,7 +56,7 @@ export default function CompanyPage() {
       </header>
 
       <div className="tabs" role="tablist">
-        {TABS.filter(([t]) => t !== 'progress' || d.mocks).map(([t, label]) => (
+        {TABS.filter(([t]) => (t !== 'progress' || d.mocks) && (t !== 'drills' || d.drills) && (t !== 'brushup' || d.brushup)).map(([t, label]) => (
           <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)}>
             {label}
           </button>
@@ -64,6 +68,8 @@ export default function CompanyPage() {
       )}
 
       {tab === 'progress' && d.mocks && <MockProgress m={d.mocks} />}
+      {tab === 'drills' && d.drills && <Drills d={d.drills} />}
+      {tab === 'brushup' && d.brushup && <BrushUp b={d.brushup} />}
       {tab === 'loop' && <Loop name={c.name} d={d} official={official} />}
       {tab === 'stack' && <TechStack d={d} />}
       {tab === 'postings' && <Postings official={official} />}

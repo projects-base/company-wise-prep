@@ -740,3 +740,302 @@ mocks:
       - "All on 25–30 minutes a day, around a full-time job."
       - "Every gap left is a habit, not missing knowledge: you got each one right when it was put in front of you."
       - "Monday: slow down, run the checklist, say what you know."
+
+# Rapid-fire drills: open questions (no options, as in the room), answered in 1-2 lines, then
+# scored with a model answer. Rendered by the Drills tab. Model answers are Claude's (claimed).
+drills:
+  how: "Read the question, say your answer out loud in 20 seconds (rule first, then one example), then reveal."
+  lesson: "Open with the one-line rule, then one example. The key word was often buried at the end."
+  rounds:
+    - title: OOP
+      date: "2026-10-26"
+      score: 2.5
+      out_of: 5
+      questions:
+        - q: "Abstraction vs encapsulation: what's the difference? One Java example of each."
+          score: 0.5
+          verdict: "Abstraction right; encapsulation was missing its key word, hiding."
+          model: |
+            **Abstraction hides how; you see only what it does. Encapsulation hides the data: private fields, accessed only through methods that keep it valid.**
+            - Abstraction: `PaymentGateway.pay()` is an interface; the caller doesn't know whether Razorpay or Stripe is behind it.
+            - Encapsulation: `Wallet` has a `private balance` and `debit(amount)` that throws if funds are short. Nobody sets the balance directly.
+        - q: "When would you choose an abstract class over an interface in Java 21?"
+          score: 0.2
+          verdict: "Mixed up: `default` methods belong to interfaces, not abstract classes."
+          model: |
+            **Since Java 8 interfaces have `default` and `static` methods. An abstract class can hold state (instance fields), constructors and protected members; a class extends one class but implements many interfaces.**
+            - Abstract class: closely related classes share state and a fixed algorithm (Template Method).
+            - Otherwise: an interface.
+        - q: "What is polymorphism? Its two kinds, and which one is decided at runtime?"
+          score: 0.5
+          verdict: "Described overriding only; the two kinds weren't explained."
+          model: |
+            **One call that behaves differently depending on the type.**
+            - Compile time = **overloading**: same name, different parameters, chosen from the declared argument types.
+            - Runtime = **overriding**: same signature in the subclass, chosen from the actual object (dynamic dispatch). `Bet b = new AccumulatorBet(); b.payout()` runs the Accumulator version.
+        - q: "Why prefer composition over inheritance? A one-line example."
+          score: 0.5
+          verdict: "Idea there, but composition is 'has-a', not holding a parent class."
+          model: |
+            **Composition is 'has-a': I hold a reference to another object and delegate to it. Loosely coupled, swappable at runtime, and I don't inherit methods I don't need or break when the base class changes (fragile base class).**
+            - `BetService` has a `PricingStrategy`, instead of `SingleBetService extends BetService`.
+        - q: "You override equals(). What else must you override, and what breaks if you don't?"
+          score: 0.8
+          verdict: "Correct; add what breaks."
+          model: |
+            **`hashCode()`. Contract: equal objects must have equal hash codes.**
+            - Broken: `HashMap`/`HashSet` look in the wrong bucket, so `get()` returns null for an equal key and a set keeps duplicates.
+
+    - title: SOLID
+      date: "2026-10-26"
+      score: 3.2
+      out_of: 5
+      questions:
+        - q: "What does SRP say? A class that breaks it, and how you'd split it."
+          score: 0.6
+          verdict: "Right idea, but expanding the acronym isn't a definition."
+          model: |
+            **A class should have one reason to change.**
+            - Breaks it: `BetService` that validates, prices, debits the wallet and sends notifications.
+            - Split: `BetValidator`, `PricingService`, `WalletService`, `Notifier`; `BetService` only orchestrates.
+        - q: "What is Open/Closed? Add a new bet type without editing existing code."
+          score: 0.7
+          verdict: "Good; add how the new class gets picked."
+          model: |
+            **Open for extension, closed for modification: add behaviour with a new class, not a new if/else.**
+            - `interface BetType { Payout settle(Bet b); }` with `SingleBet`, `AccumulatorBet`.
+            - Spring injects `Map<String, BetType>`; a new `SystemBet` is one new `@Component`. The caller depends on the interface; a factory or map picks the implementation.
+        - q: "What is Liskov Substitution? The classic example of breaking it."
+          score: 0.7
+          verdict: "The fix (split out Refundable) was excellent; the definition was vague."
+          model: |
+            **A subclass must work anywhere the parent is expected, without the caller noticing: no throwing, no weaker behaviour, no extra demands.**
+            - Classic: `Square extends Rectangle` (setWidth changes height) or `Penguin extends Bird` with `fly()`.
+            - Yours: `GiftCard.refund()` throwing; fix with a separate `Refundable` interface.
+        - q: "What is Interface Segregation? One example."
+          score: 0.5
+          verdict: "Right instinct; the example got tangled."
+          model: |
+            **Don't force a class to implement methods it doesn't use. Many small interfaces beat one fat one.**
+            - Fat `MessageChannel { send(); schedule(); trackRead(); }` makes SMS throw on `trackRead()`.
+            - Split into `Sender`, `Schedulable`, `ReadTrackable`. LSP shows the problem; ISP is the fix.
+        - q: "What is Dependency Inversion, and how does Spring help?"
+          score: 0.7
+          verdict: "Strong definition; skipped the Spring part."
+          model: |
+            **High-level modules don't depend on low-level ones; both depend on an abstraction owned by the business side.**
+            - Spring: `BetService` takes a `PaymentGateway` interface in its constructor and the container injects `RazorpayGateway`. Swapping is config (`@Profile`, `@Qualifier`); in tests, pass a mock.
+
+    - title: Design patterns
+      date: "2026-10-26"
+      score: 3.0
+      out_of: 5
+      questions:
+        - q: "What problem does Strategy solve? One Entain example."
+          score: 0.6
+          verdict: "Nice cricket example, but no rule and not the betting domain."
+          model: |
+            **A family of interchangeable algorithms behind one interface, picked at runtime: no if/else on type.**
+            - `PayoutStrategy`: `SinglePayout`, `AccumulatorPayout`, `EachWayPayout`; or `OddsFormat` (decimal, fractional, American).
+        - q: "Factory vs Builder: when do you use each?"
+          score: 0.6
+          verdict: "Builder good; Factory muddled."
+          model: |
+            **Factory picks the type; Builder assembles the fields.**
+            - Factory: `BetFactory.create(slip)` returns `SingleBet` or `AccumulatorBet`; the caller never names the class.
+            - Builder: many optional fields, readable, immutable at the end: `Bet.builder().user(u).stake(500).selection(s).build()`.
+        - q: "Thread-safe Singleton in Java? Why is it often an anti-pattern?"
+          score: 0.3
+          verdict: "synchronized works but locks every call; anti-pattern half skipped."
+          model: |
+            **Holder idiom or enum. Double-checked locking needs a `volatile` field.**
+            - `private static class Holder { static final X I = new X(); }`: lazy and thread-safe through class loading.
+            - Anti-pattern: hidden global state, hard to mock, hides dependencies. Spring beans are singletons by default and injected, so I rarely write one.
+        - q: "What is Observer? Where in a betting app, and what replaces it across services?"
+          score: 0.6
+          verdict: "Right idea; missed the cross-service version."
+          model: |
+            **A subject notifies all its listeners on a state change, without knowing who they are.**
+            - In-app: market suspended, so bet-slip, cash-out and UI listeners react (`ApplicationEventPublisher`, `@EventListener`).
+            - Across services: pub/sub on Kafka. Odds service publishes `OddsChanged`; gateways, cash-out and risk consume independently.
+        - q: "What is Chain of Responsibility? One example from the bet flow."
+          score: 0.85
+          verdict: "Best answer of the round."
+          model: |
+            **Each handler checks one thing and either stops the chain or passes on. A new check is a new handler; nothing else is edited.**
+            - Idempotency → market open → price still valid → stake limits → balance → place.
+
+    - title: LLD (bet slip)
+      date: "2026-10-26"
+      score: 2.2
+      out_of: 5
+      questions:
+        - q: "The core classes for placing a bet: 5-6 with one key field or method each."
+          score: 0.5
+          verdict: "Listed services; LLD wants domain classes (nouns) first."
+          model: |
+            **Entities first, then services.**
+
+            | Class | Key field or method |
+            |---|---|
+            | `Market` | `status` (OPEN/SUSPENDED/CLOSED), `List<Selection>` |
+            | `Selection` | `odds`, `result` (WIN/LOSE/VOID) |
+            | `BetSlip` | `List<BetLeg>`, `stake`, `idempotencyKey` |
+            | `Bet` | `status`, `stake`, `potentialPayout`, `transition(newStatus)` |
+            | `BetLeg` | `selectionId`, `oddsAtPlacement` (frozen) |
+            | `Wallet` | `balance`, `debit()`, `credit()` |
+
+            Then `BetService.place(slip)`, `SettlementService.settle(marketId)`, `WalletService`.
+        - q: "A bet goes PLACED → SETTLED. All the states, and the pattern that manages transitions?"
+          score: 0.5
+          verdict: "Some states missing; the State pattern came only in Q5."
+          model: |
+            **PENDING → PLACED → WON / LOST / VOID → SETTLED, plus REJECTED and CASHED_OUT.**
+            - State pattern (or an enum with an allowed-transitions map): `transition()` rejects illegal moves like SETTLED → PLACED.
+        - q: "Where do the validation checks go, and why not inside Bet?"
+          score: 0.4
+          verdict: "'Validate early' right; the reason was wrong."
+          model: |
+            **A separate validator chain that runs before any write.**
+            - `Bet` owns its data and its own rules (state transitions). Validation needs outside information: market status, live odds, limits, balance. Putting it in `Bet` couples the entity to every service: breaks SRP, hard to test and extend.
+        - q: "Two threads settle the same bet at once. How do you stop a double payout?"
+          score: 0.3
+          verdict: "Answered placing (balance guard); the race here is on the bet's status."
+          model: |
+            **Guard the state transition, not the balance.**
+            ```sql
+            UPDATE bet SET status = 'SETTLED'
+             WHERE id = :id AND status = 'PLACED';  -- rowcount 1: pay; 0: someone else did, stop
+            ```
+            - Status update and the `wallet_txn` credit in the same transaction; `UNIQUE (bet_id, txn_type)` as a backstop.
+            - Idempotency key = client retries; balance guard = debits; status guard = state changes.
+        - q: "Which design patterns would you name in the bet-slip design, and where?"
+          score: 0.5
+          verdict: "Two of six."
+          model: |
+            **Factory, Strategy, Chain, State, Builder, Observer: the order the bet travels.**
+
+            | Pattern | Where |
+            |---|---|
+            | Factory | slip → `SingleBet` / `AccumulatorBet` |
+            | Strategy | `PayoutStrategy` per bet type |
+            | Chain of Responsibility | validators |
+            | State | bet lifecycle |
+            | Builder | building a `Bet` |
+            | Observer | market suspended → notify open slips |
+
+    - title: HLD
+      date: "2026-10-26"
+      out_of: 5
+      questions:
+        - q: "The request path for placing a bet: each box in order."
+          model: |
+            **Client → CDN/WAF → load balancer → API gateway (JWT, rate limit) → Bet service → validator chain → Postgres (one transaction: debit wallet, insert bet, insert outbox) → outbox relay → Kafka → risk, notifications, settlement.**
+        - q: "Odds change 10×/s and 200k users watch one match. How do updates reach them?"
+          model: |
+            **Push, not poll.**
+            - Feed → Kafka (partitioned by event id) → WebSocket/SSE gateways (~50k connections each, so 4-5 plus headroom) → clients on that match.
+            - Conflate: send only the latest price every 100-200 ms.
+            - Late joiners: snapshot from Redis, then the stream. The DB is never on this path.
+        - q: "Where does Kafka fit, and what is it not for?"
+          model: |
+            **For async fan-out, the odds stream, absorbing spikes and replay. Not for money correctness or a synchronous answer.**
+            - At-least-once delivery, so consumers must be idempotent. (Mock 1 said "Kafka gives consistency": say the opposite.)
+        - q: "The bet is saved but publishing BetPlaced fails. What happens, and the fix?"
+          model: |
+            **Dual write: the DB has the bet, but risk and notifications never hear of it. Fix: outbox.**
+            - Insert the `BetPlaced` row into `outbox` in the same transaction as the bet. A relay (polling or Debezium CDC) publishes and marks it sent; on a crash it re-sends and consumers dedupe on `bet_id`.
+        - q: "Bet placement must stay fast at p99 during a cup final. Three things."
+          model: |
+            1. **Short sync path:** validate, one DB transaction, return; everything else async via the outbox.
+            2. **No external call in the hot path:** odds and limits from Redis (short TTL), price re-checked inside the transaction.
+            3. **Timeouts and circuit breakers**, gateways and pods pre-scaled before kickoff, rate limit per user.
+            - Bonus: wallet partitioned by `user_id` so no single row is hot.
+
+# Interview-day brush-up: a timed, tickable checklist (Brush-up tab). No new material on the day.
+# Distilled from dossier §7b, the mocks and the drills. Claude's notes (claimed).
+brushup:
+  for: "TR2 · Mon 26 Oct 2026, 3:30 PM IST"
+  rule: "No new material today. Recall first, then glance at the answer. Stop by 2:30."
+  blank: "If you blank: \"Let me start with the requirements so I design the right thing\", then go down the checklist."
+  steps:
+    - title: Requirements checklist
+      minutes: 4
+      body: |
+        Say it out loud: **Who → How much → How correct → How fast → How available → Where.**
+        - Under *How correct*, always ask: **"What if two users do this at the same time?"** and **"What if a step fails halfway?"**
+        - Mocks 2 and 3 both lost marks for skipping this.
+    - title: Numbers card
+      minutes: 3
+      body: |
+        | Fact | Number |
+        |---|---|
+        | 1 day | ≈ 100k s, so 1M/day ≈ 10/s |
+        | Peak | ≈ 10× average |
+        | 1M rows × 1 KB | ≈ 1 GB |
+        | One Postgres primary | a few thousand writes/s |
+        | One Redis node | ≈ 100k ops/s |
+        | One WebSocket/SSE gateway | ≈ 50k connections |
+
+        Say each division out loud and sanity-check it once.
+    - title: LLD in 3 lines
+      minutes: 4
+      body: |
+        1. **Nouns first, then services:** `Market`, `Selection`, `BetSlip`, `Bet`, `BetLeg`, `Wallet`, then `BetService`, `SettlementService`, `WalletService`.
+        2. **States:** PENDING → PLACED → WON / LOST / VOID → SETTLED, plus REJECTED and CASHED_OUT. State pattern rejects illegal moves.
+        3. **Name the patterns in travel order:** Factory (which bet), Strategy (payout), Chain (validators), State (lifecycle), Builder (`Bet`), Observer (market suspended).
+        - Validation lives in a separate chain, not in `Bet`: it needs outside information (SRP).
+    - title: Redraw from memory
+      minutes: 8
+      body: |
+        2 minutes each, on paper or Excalidraw:
+        1. **Betting architecture:** feed → Kafka → gateways; bet → wallet → outbox.
+        2. **Bet-slip classes:** the LLD step above.
+        3. **ER diagram:** event, market, selection, wallet, wallet_txn, bet, bet_leg.
+        4. **The bet transaction:** guard debit, insert bet + legs, insert outbox, commit.
+    - title: Key lines (correctness)
+      minutes: 4
+      body: |
+        ```sql
+        -- Scarce thing: guard in the WHERE, then check the rowcount
+        UPDATE wallet SET balance = balance - :stake WHERE user_id = :u AND balance >= :stake;
+        -- State change: guard the status
+        UPDATE bet SET status = 'SETTLED' WHERE id = :id AND status = 'PLACED';
+        -- Retries: UNIQUE (user_id, idempotency_key); events: INSERT INTO outbox in the same transaction
+        ```
+        - Idempotency key = client retries · balance guard = debits · status guard = state changes.
+        - External payment: `PENDING` row → webhook (idempotent) → reconciliation → refund.
+        - **"Odds can be eventually consistent; money can't."** Never read the balance from a cache or replica.
+    - title: SQL skeletons
+      minutes: 3
+      body: |
+        - Top-N per group: `DENSE_RANK() OVER (PARTITION BY g ORDER BY x DESC)`
+        - 7-day running total: `SUM(x) OVER (ORDER BY d ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)`
+        - 3 days in a row: `d - ROW_NUMBER() OVER (PARTITION BY u ORDER BY d)`, then `GROUP BY` and `HAVING COUNT(*) >= 3`
+        - Slow query: `EXPLAIN ANALYZE`, look for a seq scan; composite index on WHERE then ORDER BY columns (leftmost prefix).
+    - title: HLD and scale
+      minutes: 3
+      body: |
+        - **Path:** client → CDN/WAF → LB → API gateway (JWT, rate limit) → bet service → Postgres (one transaction) → outbox relay → Kafka → consumers.
+        - **Hot reads:** many people watching one thing → short-TTL cache or push; conflate odds to every 100-200 ms.
+        - **Kafka** is for fan-out and spikes, not correctness; at-least-once, so consumers are idempotent.
+        - **p99:** short sync path, no external call in the hot path, timeouts and circuit breakers, pre-scale before kickoff.
+    - title: API checklist
+      minutes: 2
+      body: |
+        - One canonical URL per resource (`/shows/{id}`); lists use filters; nest one level at most.
+        - Nouns, not verbs: `POST /bookings`, with an `Idempotency-Key`.
+        - Status codes: 201, 409 conflict, 410 expired, 429 rate limited.
+        - The user comes from the JWT, not the body; cursor pagination.
+    - title: The 45-minute shape
+      minutes: 2
+      body: |
+        1. Requirements, 5 min · 2. Estimates, 3 min · 3. API + data model, 7 min · 4. HLD, 10 min
+        5. Deep dive on the scarce resource, 12 min · 6. **"What breaks after the write?"**, 5 min · 7. Bottlenecks at 10×.
+        - Open each answer with the one-line rule, then one example.
+    - title: Setup by 3:00
+      minutes: 2
+      body: |
+        - Open the Teams link from the invite email.
+        - Test mic, camera, screen share, and Excalidraw or draw.io.
+        - Water, a pen, the phone on silent.
