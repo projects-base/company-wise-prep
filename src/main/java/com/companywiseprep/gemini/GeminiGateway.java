@@ -81,10 +81,53 @@ public class GeminiGateway {
 				.map(String::trim).orElse("(blocked)");
 	}
 
+	/**
+	 * Overload (503) and rate limits (429) are usually brief: retry twice with a back-off, then try
+	 * the lighter model once, so a busy moment at Google doesn't fail the review.
+	 */
 	private Optional<String> call(String key, Map<String, Object> body) {
+		String model = model();
+		GeminiException last = null;
+		for (int attempt = 0; attempt < 3; attempt++) {
+			try {
+				return call(key, model, body);
+			} catch (Busy e) {
+				last = e;
+				pause(attempt == 0 ? 2_000 : 5_000);
+			}
+		}
+		if (!model.equals(FALLBACK_MODEL)) {
+			try {
+				return call(key, FALLBACK_MODEL, body);
+			} catch (Busy e) {
+				throw new GeminiException(last.getMessage() + " (" + FALLBACK_MODEL + " was busy too; try again in a minute)");
+			}
+		}
+		throw last;
+	}
+
+	private static final String FALLBACK_MODEL = "gemini-3.5-flash-lite";
+
+	/** HTTP 503 or 429: worth retrying. */
+	private static class Busy extends GeminiException {
+		Busy(String message) {
+			super(message);
+		}
+	}
+
+	private static void pause(long ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new GeminiException("Interrupted while waiting for Gemini");
+		}
+	}
+
+	private Optional<String> call(String key, String model, Map<String, Object> body) {
 		try {
 			HttpRequest req = HttpRequest.newBuilder()
-					.uri(URI.create(BASE + URLEncoder.encode(model(), StandardCharsets.UTF_8) + ":generateContent"))
+					.uri(URI.create(BASE + URLEncoder.encode(model, StandardCharsets.UTF_8) + ":generateContent"))
 					.timeout(Duration.ofSeconds(90))
 					.header("Content-Type", "application/json")
 					.header("x-goog-api-key", key)
@@ -94,7 +137,9 @@ public class GeminiGateway {
 			JsonNode root = json.readTree(res.body());
 			if (res.statusCode() / 100 != 2) {
 				String msg = root.path("error").path("message").asText("");
-				throw new GeminiException("Gemini returned HTTP " + res.statusCode() + (msg.isBlank() ? "" : ": " + msg));
+				String text = "Gemini (" + model + ") returned HTTP " + res.statusCode() + (msg.isBlank() ? "" : ": " + msg);
+				if (res.statusCode() == 503 || res.statusCode() == 429) throw new Busy(text);
+				throw new GeminiException(text);
 			}
 			JsonNode parts = root.path("candidates").path(0).path("content").path("parts");
 			StringBuilder out = new StringBuilder();
