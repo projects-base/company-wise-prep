@@ -19,7 +19,11 @@ public record CampaignConfig(
 		int weekendMinutes,
 		int reviewDays,
 		String notes,
-		List<Session> sessions) {
+		List<Session> sessions,
+		/** Markdown shown at the top of the plan: the rules and the map ({@code guide:}). */
+		String guide,
+		/** Shelved: kept and reachable by id, but no longer listed ({@code archived: true}). */
+		boolean archived) {
 
 	/**
 	 * A session fixed to a date in campaign.yaml ({@code sessions:}). On that date it replaces the
@@ -52,7 +56,9 @@ public record CampaignConfig(
 				Yaml.maps(y.get("sessions")).stream()
 						.map(m -> new Session(LocalDate.parse(Yaml.str(m.get("date"))), intOr(m.get("minutes"), 0),
 								Yaml.str(m.get("title")), Yaml.str(m.get("detail")), Yaml.strings(m.get("questions"))))
-						.toList());
+						.toList(),
+				Yaml.str(y.get("guide")),
+				Boolean.TRUE.equals(y.get("archived")));
 	}
 
 	private static int intOr(Object v, int fallback) {

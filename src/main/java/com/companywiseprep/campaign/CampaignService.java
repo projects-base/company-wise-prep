@@ -58,9 +58,9 @@ public class CampaignService {
 	@Transactional(readOnly = true)
 	public List<CampaignConfig> list() {
 		// Soonest interview first: the UI opens on the first campaign unless one was picked.
-		// Campaigns whose interview has passed go last.
+		// Campaigns whose interview has passed go last; archived ones are not listed at all.
 		java.time.LocalDate today = java.time.LocalDate.now(clock);
-		return campaigns.findAll().stream().map(CampaignConfig::from)
+		return campaigns.findAll().stream().map(CampaignConfig::from).filter(c -> !c.archived())
 				.sorted(java.util.Comparator.comparing((CampaignConfig c) -> c.interview().isBefore(today))
 						.thenComparing(CampaignConfig::interview))
 				.toList();

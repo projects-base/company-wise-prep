@@ -777,3 +777,13 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 .drill-follow summary { cursor: pointer; font-weight: 600; font-size: 0.94rem; line-height: 1.4; }
 .drill-follow details[open] summary { margin-bottom: 6px; }
 .drill-follow .prose { font-size: 0.94rem; line-height: 1.6; }
+
+/* Plan guide */
+.guide summary { display: flex; align-items: center; gap: 8px; font-weight: 650; cursor: pointer; list-style: none; }
+.guide summary::-webkit-details-marker { display: none; }
+.guide summary .chev { margin-left: auto; transition: transform 0.15s; }
+.guide[open] summary .chev { transform: rotate(90deg); }
+.guide-body { margin-top: 14px; font-size: 0.96rem; }
+.guide-body h2 { font-size: 1.12rem; margin-top: 1.6em; }
+.guide-body h2:first-child { margin-top: 0; }
+.session-steps a { color: var(--accent); font-weight: 600; }

@@ -111,6 +111,23 @@ class AppTest {
 	}
 
 	@Test
+	void archivedCampaignsAreHiddenButStillReachable() throws Exception {
+		mvc.perform(get("/api/campaigns"))
+				.andExpect(jsonPath("$[*].id", hasItem("backend-2027-01")))
+				.andExpect(jsonPath("$[*].id", not(hasItem("microsoft-2027"))));
+		mvc.perform(get("/api/campaigns/microsoft-2027/plan")).andExpect(status().isOk());
+	}
+
+	@Test
+	void theGeneralPlanFixesEveryDayWithSessionsAndAGuide() throws Exception {
+		clock.set(LocalDate.of(2026, 10, 27));
+		mvc.perform(get("/api/campaigns/backend-2027-01/today"))
+				.andExpect(jsonPath("$.sessions", hasSize(2)))
+				.andExpect(jsonPath("$.items[*].slug", hasItem("two-sum")))
+				.andExpect(jsonPath("$.campaign.guide", not(is(""))));
+	}
+
+	@Test
 	void todayResumesTheQueueInsteadOfPilingUpMissedDays() throws Exception {
 		String first = com.jayway.jsonpath.JsonPath.read(
 				mvc.perform(get("/api/campaigns/microsoft-2027/today"))

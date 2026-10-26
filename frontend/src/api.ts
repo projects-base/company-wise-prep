@@ -14,6 +14,9 @@ export interface CampaignConfig {
   reviewDays: number
   notes: string | null
   sessions: Session[]
+  /** Markdown: the plan's rules and map, shown on the Plan page. */
+  guide: string | null
+  archived: boolean
 }
 
 /** A session fixed to a date in campaign.yaml: a quiz, a mock or a review block. */

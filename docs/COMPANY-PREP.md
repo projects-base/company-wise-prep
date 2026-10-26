@@ -175,7 +175,19 @@ interview: 2027-01-04
 minutes: {weekday: 25, weekend: 40}
 review_days: 3
 notes: Free text shown on the plan.
+guide: |                        # optional Markdown shown at the top of the Plan page (rules, weekly map)
+  ## The rules
+archived: true                  # optional: shelved, hidden from the campaign switcher, still reachable by id
+sessions:                       # optional fixed sessions; on their date they replace the planner's picks
+  - date: 2026-10-27
+    minutes: 25
+    title: "DSA · Two Sum"
+    detail: "2: Say the brute force; 20: Solve it"   # "; " separates checklist steps, "20:" is minutes
+    questions: [two-sum]
 ```
+
+A campaign that fixes every day with `sessions` is a syllabus rather than a ranked queue; the
+general 13-week plan `backend-2027-01` is generated that way.
 
 The app's `Planner` turns this into the day-by-day plan using §4 (weekdays: DSA with every 4th
 slot a concept/behavioural item; weekends: LLD/HLD; the last `review_days` review-only).

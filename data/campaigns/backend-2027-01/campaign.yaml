@@ -1,0 +1,1314 @@
+# Generated from a weekly syllabus (13 weeks). Each date is a fixed session; questions link to
+# bank items with model answers (examples + follow-ups). Rules and the weekly map: guide below.
+id: backend-2027-01
+name: 'Backend SDE II / Senior: 13-week plan (27 Oct 2026 to 24 Jan 2027)'
+role: SDE II / Senior Software Engineer, Java backend (any product company)
+companies:
+  cognizant: 1.0
+  entain: 1.0
+  google: 1.0
+  microsoft: 1.0
+  t-mobile: 1.0
+  tower-research: 1.0
+start: '2026-10-27'
+interview: '2027-01-25'
+minutes:
+  weekday: 45
+  weekend: 120
+review_days: 3
+notes: 'A general plan, not tied to one company: DSA, LLD, HLD and system design, Java and Spring Boot internals. Every day
+  is fixed below; the strict rules are in the guide. Ready-for-interviews date: Mon 25 Jan 2027.'
+guide: |
+  ## The goal
+
+  By **Mon 25 Jan 2027** you can walk into any SDE II / Senior Java backend loop and handle all of it:
+  DSA coding, LLD, HLD / system design, and deep Java and Spring Boot internals, answered at the depth
+  an experienced interviewer expects. Thirteen weeks, about 8 hours a week.
+
+  ## The 8 rules (strict)
+
+  1. **The floor is non-negotiable.** 45 minutes every weekday, 2 hours on Saturday and Sunday. On a
+     terrible day, do at least the DSA session. Zero days are not allowed.
+  2. **No catching up by bingeing.** Missed a day? Today simply continues from where you stopped. Never
+     add more than 30 extra minutes to a day.
+  3. **Recall before reading.** Attempt every problem for 20 minutes and answer every concept out loud
+     *before* opening the model answer. Reading first is the same as skipping.
+  4. **Every concept answer in 4 layers:** what it is → how it works inside → where you used it → what
+     goes wrong. One layer is a junior answer; four layers is the depth TR2 wanted.
+  5. **Out loud, not in your head.** Interviews are spoken. Say it, or it does not count.
+  6. **The Sunday gate decides the next week.** Pass = 4 of 5 concepts clear and the re-solve done. Fail
+     = the weakest problem and missed concepts are repeated first next week. No moving on with gaps.
+  7. **Every mock is scored and logged.** Five mocks with Claude (weeks 4, 6, 8, 10, 12) plus two finals
+     in week 13. A score below 6/10 means the following Sunday's lesson slot redoes that topic.
+  8. **No new resources.** Everything is in this app: the Academy lessons, the question bank's model
+     answers (each has an example and follow-up questions), the Playground. Do not wander to YouTube.
+
+  ## What each day looks like
+
+  | Day | Session 1 | Session 2 | Session 3 |
+  |---|---|---|---|
+  | **Mon–Fri** (45 min) | DSA problem, 25 min, in the Playground | Concept, 20 min: an Academy lesson or a bank question in 4 layers | — |
+  | **Saturday** (2 h) | LLD lesson, 30 min | LLD problem (or LLD mock), 60 min | Timed DSA, 30 min |
+  | **Sunday** (2 h) | HLD lesson, 30 min | HLD case study (or system design mock), 60 min | **Weekly gate**, 30 min |
+
+  Spaced reviews on the Today page come on top; clear them first, they take 2–3 minutes each.
+
+  ## The 13-week map
+
+  | Week | Dates | DSA pattern | Java / Spring concept theme | LLD (Sat) | HLD (Sun) |
+  |---|---|---|---|---|---|
+  | 1 | 27 Oct – 1 Nov | Arrays, hashing, two pointers | OOP and core Java | SOLID · Parking lot | Building blocks · Interview kit |
+  | 2 | 2 – 8 Nov | Sliding window, prefix sums | Collections internals | Creational · Singleton and factory | Method and estimation · URL shortener |
+  | 3 | 9 – 15 Nov | Stacks, binary search | JVM memory and GC | Structural · Pluggable cache eviction | CAP and consistency · Image hosting |
+  | 4 | 16 – 22 Nov | Linked lists, intervals | JVM internals, Java 8–21 | Behavioural · Vending machine | **Mock 1 (system design)** |
+  | 5 | 23 – 29 Nov | Trees | Concurrency: threads, locks, JMM | LLD method · Rate limiter | Chat application |
+  | 6 | 30 Nov – 6 Dec | Heaps, top-K | Concurrency: executors, futures | **Mock 2 (LLD)** | Distributed cache |
+  | 7 | 7 – 13 Dec | Graphs: BFS and DFS | Spring core: IoC, DI, bean lifecycle | Concurrency LLD · Blocking queue | Scaling databases · News feed |
+  | 8 | 14 – 20 Dec | Topological sort, union-find, Dijkstra | Spring AOP and Boot internals | DI container · Elevator | **Mock 3 (system design)** |
+  | 9 | 21 – 27 Dec | Backtracking, tries | Servlets, MVC pipeline, security | Notification system | Message queue / Kafka |
+  | 10 | 28 Dec – 3 Jan | DP 1 | JPA, @Transactional, pooling | **Mock 4 (LLD)** | Payment system |
+  | 11 | 4 – 10 Jan | DP 2, greedy | SQL by hand | Logging framework | Job scheduler |
+  | 12 | 11 – 17 Jan | Design data structures | Database internals | Undo/redo editor | **Mock 5 (system design)** |
+  | 13 | 18 – 24 Jan | Re-solves, timed | Microservices, Kafka, security | Final LLD mock | Final system design mock |
+
+  Behavioural stories join the Sunday gate from week 9: current work, hardest project, conflict, failure.
+
+  ## How to use a question page
+
+  Each bank question has a model answer: **short answer → explanation → example → pitfalls and
+  follow-ups.** The follow-ups are the add-on questions an interviewer asks next. Treat each one as a
+  mini question: answer it out loud before reading its line.
+
+  ## Escalation: when you fall behind
+
+  - **1–2 days behind:** keep going; Today continues from where you stopped.
+  - **A whole week behind:** drop that week's Saturday timed DSA and the second concept lesson, never
+    the gate or the mock.
+  - **Two gates failed in a row:** stop new material for 2 days and redo both weeks' weakest items.
+
+  ## Done means
+
+  At least 60 DSA problems solved alone, 10 LLD designs and 8 HLD case studies, 60 concept items in
+  4 layers, 7 mocks logged, and the last three mocks at 7/10 or better.
+sessions:
+- date: '2026-10-27'
+  minutes: 25
+  title: DSA · Arrays, hashing, two pointers · Two Sum
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - two-sum
+- date: '2026-10-27'
+  minutes: 20
+  title: Concept · The four OOP principles
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - oop-four-pillars
+- date: '2026-10-28'
+  minutes: 25
+  title: DSA · Arrays, hashing, two pointers · 3Sum
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - 3sum
+- date: '2026-10-28'
+  minutes: 20
+  title: Concept · == vs equals() and the equals/hashCode Contract
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-equals-vs-double-equals-hashcode
+- date: '2026-10-29'
+  minutes: 25
+  title: DSA · Arrays, hashing, two pointers · Container With Most Water
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - container-with-most-water
+- date: '2026-10-29'
+  minutes: 20
+  title: Concept · Implement an immutable class
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - immutable-class
+- date: '2026-10-30'
+  minutes: 25
+  title: DSA · Arrays, hashing, two pointers · Longest Consecutive Sequence
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - longest-consecutive-sequence
+- date: '2026-10-30'
+  minutes: 20
+  title: Concept · Checked vs unchecked exceptions and the exception hierarchy
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-checked-vs-unchecked-exceptions
+- date: '2026-10-31'
+  minutes: 30
+  title: 'LLD lesson · Academy E1: SOLID, by violation and refactor'
+  detail: 'Academy E1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-10-31'
+  minutes: 60
+  title: LLD · Design a (Multi-level) Parking Lot
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-parking-lot
+- date: '2026-10-31'
+  minutes: 30
+  title: Timed DSA · Arrays, hashing, two pointers · Trapping Rain Water
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - trapping-rain-water
+- date: '2026-11-01'
+  minutes: 30
+  title: 'HLD lesson · Academy F1: Building blocks: load balancers, caches, queues, databases'
+  detail: 'Academy F1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-01'
+  minutes: 60
+  title: 'HLD lesson · Academy H4: System design interview kit: method, numbers, patterns, practice'
+  detail: 'Academy H4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking; Write the requirements
+    checklist and the numbers card from memory'
+- date: '2026-11-01'
+  minutes: 30
+  title: 'Weekly gate · week 1: OOP and core Java + Arrays, hashing, two pointers'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-11-02'
+  minutes: 25
+  title: DSA · Sliding window, prefix sums · Longest Substring Without Repeating Characters
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - longest-substring-without-repeating-characters
+- date: '2026-11-02'
+  minutes: 20
+  title: Concept · HashMap internals and complexity
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - hashmap-internals
+- date: '2026-11-03'
+  minutes: 25
+  title: DSA · Sliding window, prefix sums · Permutation in String
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - permutation-in-string
+- date: '2026-11-03'
+  minutes: 20
+  title: Concept · HashMap vs Hashtable vs ConcurrentHashMap
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - hashmap-vs-hashtable-vs-concurrenthashmap
+- date: '2026-11-04'
+  minutes: 25
+  title: DSA · Sliding window, prefix sums · Longest Repeating Character Replacement
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - longest-repeating-character-replacement
+- date: '2026-11-04'
+  minutes: 20
+  title: 'Concept · Collection hierarchy: Array vs List, List vs Set, Set vs Map'
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-collections-hierarchy
+- date: '2026-11-05'
+  minutes: 25
+  title: DSA · Sliding window, prefix sums · Subarray Sum Equals K
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - subarray-sum-equals-k
+- date: '2026-11-05'
+  minutes: 20
+  title: Concept · Fail-fast vs fail-safe iterators
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - fail-fast-vs-fail-safe-iterators
+- date: '2026-11-06'
+  minutes: 25
+  title: DSA · Sliding window, prefix sums · Max Consecutive Ones III
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - max-consecutive-ones-iii
+- date: '2026-11-06'
+  minutes: 20
+  title: Concept · Comparable vs Comparator
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - comparable-vs-comparator
+- date: '2026-11-07'
+  minutes: 30
+  title: 'LLD lesson · Academy E2: Creational patterns'
+  detail: 'Academy E2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-07'
+  minutes: 60
+  title: LLD · Singleton and Factory design patterns
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - singleton-and-factory-patterns
+- date: '2026-11-07'
+  minutes: 30
+  title: Timed DSA · Sliding window, prefix sums · Minimum Window Substring
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - minimum-window-substring
+- date: '2026-11-08'
+  minutes: 30
+  title: 'HLD lesson · Academy F3: The system design method and estimation'
+  detail: 'Academy F3: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-08'
+  minutes: 60
+  title: HLD · Design a URL Shortener
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-url-shortener
+- date: '2026-11-08'
+  minutes: 30
+  title: 'Weekly gate · week 2: Collections internals + Sliding window, prefix sums'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-11-09'
+  minutes: 25
+  title: DSA · Stacks, binary search · Valid Parentheses
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - valid-parentheses
+- date: '2026-11-09'
+  minutes: 20
+  title: 'Concept · Academy A1: How Java runs: javac, bytecode, interpreter, JIT'
+  detail: 'Academy A1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-10'
+  minutes: 25
+  title: DSA · Stacks, binary search · Stack with push/pop/min
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - min-stack
+- date: '2026-11-10'
+  minutes: 20
+  title: 'Concept · Academy A2: JVM memory areas: heap, stack, metaspace'
+  detail: 'Academy A2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-11'
+  minutes: 25
+  title: DSA · Stacks, binary search · Basic Calculator II
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - basic-calculator-ii
+- date: '2026-11-11'
+  minutes: 20
+  title: 'Concept · Stack vs Heap: What Happens on int a = 10?'
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-stack-vs-heap-memory
+- date: '2026-11-12'
+  minutes: 25
+  title: DSA · Stacks, binary search · Search in Rotated Sorted Array
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - search-in-rotated-sorted-array
+- date: '2026-11-12'
+  minutes: 20
+  title: 'Concept · Academy A4: Garbage collection: generations and collectors'
+  detail: 'Academy A4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-13'
+  minutes: 25
+  title: DSA · Stacks, binary search · Koko Eating Bananas
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - koko-eating-bananas
+- date: '2026-11-13'
+  minutes: 20
+  title: Concept · When does the Java garbage collector run? Design a garbage collector
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-garbage-collection
+- date: '2026-11-14'
+  minutes: 30
+  title: 'LLD lesson · Academy E3: Structural patterns'
+  detail: 'Academy E3: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-14'
+  minutes: 60
+  title: LLD · Cache Service with Pluggable Eviction
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-cache-pluggable-eviction
+- date: '2026-11-14'
+  minutes: 30
+  title: Timed DSA · Stacks, binary search · Sliding Window Maximum
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - sliding-window-maximum
+- date: '2026-11-15'
+  minutes: 30
+  title: 'HLD lesson · Academy F2: Distributed theory: CAP, consistency, consensus'
+  detail: 'Academy F2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-15'
+  minutes: 60
+  title: HLD · Design an image/GIF/video hosting service (no sign-up)
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-image-hosting-service
+- date: '2026-11-15'
+  minutes: 30
+  title: 'Weekly gate · week 3: JVM: memory and GC + Stacks, binary search'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-11-16'
+  minutes: 25
+  title: DSA · Linked lists, intervals · Reverse Linked List II
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - reverse-linked-list-ii
+- date: '2026-11-16'
+  minutes: 20
+  title: 'Concept · Academy A3: Class loading and delegation'
+  detail: 'Academy A3: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-17'
+  minutes: 25
+  title: DSA · Linked lists, intervals · Linked List Cycle II
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - linked-list-cycle-ii
+- date: '2026-11-17'
+  minutes: 20
+  title: Concept · JVM internals and memory allocation
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - jvm-internals
+- date: '2026-11-18'
+  minutes: 25
+  title: DSA · Linked lists, intervals · Merge car-rental booking intervals
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - merge-intervals
+- date: '2026-11-18'
+  minutes: 20
+  title: 'Concept · Academy A7: Java 8 → 11 → 17 → 21 → 25: what changed and why'
+  detail: 'Academy A7: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-19'
+  minutes: 25
+  title: DSA · Linked lists, intervals · Meeting Rooms II
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - meeting-rooms-ii
+- date: '2026-11-19'
+  minutes: 20
+  title: 'Concept · Java 8 features: lambdas, functional interfaces, streams, Optional'
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-8-features
+- date: '2026-11-20'
+  minutes: 25
+  title: DSA · Linked lists, intervals · Find the Duplicate Number
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - find-the-duplicate-number
+- date: '2026-11-20'
+  minutes: 20
+  title: Concept · Java 8 stream coding drills
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-streams-coding-drills
+- date: '2026-11-21'
+  minutes: 30
+  title: 'LLD lesson · Academy E4: Behavioural patterns'
+  detail: 'Academy E4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-21'
+  minutes: 60
+  title: LLD · Design a Vending Machine
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-vending-machine
+- date: '2026-11-21'
+  minutes: 30
+  title: Timed DSA · Linked lists, intervals · Merge k Sorted Lists
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - merge-k-sorted-lists
+- date: '2026-11-22'
+  minutes: 30
+  title: 'HLD lesson · Academy F4: Case studies: URL shortener, rate limiter, notification system'
+  detail: 'Academy F4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-22'
+  minutes: 60
+  title: System design mock with Claude (unseen problem)
+  detail: 'Ask Claude in chat for an unseen system design mock: 45 minutes, scored out of 10; Run the checklist: requirements, estimates, API, data model, architecture, deep dives, failures; 15: Log the
+    score and the gaps in Mock progress'
+- date: '2026-11-22'
+  minutes: 30
+  title: 'Weekly gate · week 4: JVM internals and modern Java + Linked lists, intervals'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-11-23'
+  minutes: 25
+  title: DSA · Trees · Binary Tree Zigzag Level Order Traversal
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - binary-tree-zigzag-level-order-traversal
+- date: '2026-11-23'
+  minutes: 20
+  title: 'Concept · Academy B1: Threads: lifecycle, creation, interruption'
+  detail: 'Academy B1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-24'
+  minutes: 25
+  title: DSA · Trees · Kth Smallest Element in a BST
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - kth-smallest-element-in-a-bst
+- date: '2026-11-24'
+  minutes: 20
+  title: 'Concept · Academy B2: Locks: synchronized, ReentrantLock, deadlock'
+  detail: 'Academy B2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-25'
+  minutes: 25
+  title: DSA · Trees · Time to Burn a Binary Tree
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - amount-of-time-for-binary-tree-to-be-infected
+- date: '2026-11-25'
+  minutes: 20
+  title: Concept · Write code that deadlocks, then fix it
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-create-and-fix-deadlock
+- date: '2026-11-26'
+  minutes: 25
+  title: DSA · Trees · Convert BST to Sorted Doubly Linked List
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - convert-binary-search-tree-to-sorted-doubly-linked-list
+- date: '2026-11-26'
+  minutes: 20
+  title: 'Concept · Academy A6: The Java Memory Model: happens-before and volatile'
+  detail: 'Academy A6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-27'
+  minutes: 25
+  title: DSA · Trees · Width of a binary tree
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - maximum-width-of-binary-tree
+- date: '2026-11-27'
+  minutes: 20
+  title: Concept · volatile and synchronized across CPU architectures
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - java-volatile-and-synchronized
+- date: '2026-11-28'
+  minutes: 30
+  title: 'LLD lesson · Academy E5: The LLD interview method'
+  detail: 'Academy E5: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-28'
+  minutes: 60
+  title: LLD · Design a Rate Limiter
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-rate-limiter
+- date: '2026-11-28'
+  minutes: 30
+  title: Timed DSA · Trees · Binary Tree Maximum Path Sum
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - binary-tree-maximum-path-sum
+- date: '2026-11-29'
+  minutes: 30
+  title: 'HLD lesson · Academy F5: Case studies: chat, news feed, collaborative editor'
+  detail: 'Academy F5: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-11-29'
+  minutes: 60
+  title: HLD · Design Microsoft Teams Messaging
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-chat-application
+- date: '2026-11-29'
+  minutes: 30
+  title: 'Weekly gate · week 5: Concurrency 1: threads, locks, memory model + Trees'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-11-30'
+  minutes: 25
+  title: DSA · Heaps, top-K · Top K Frequent Elements
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - top-k-frequent-elements
+- date: '2026-11-30'
+  minutes: 20
+  title: 'Concept · Academy B3: Atomics, CAS and concurrent collections'
+  detail: 'Academy B3: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-01'
+  minutes: 25
+  title: DSA · Heaps, top-K · Top K Frequent Error Codes
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - top-k-frequent-words
+- date: '2026-12-01'
+  minutes: 20
+  title: 'Concept · Academy B4: Executors and sizing thread pools'
+  detail: 'Academy B4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-02'
+  minutes: 25
+  title: DSA · Heaps, top-K · Single-Threaded CPU
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - single-threaded-cpu
+- date: '2026-12-02'
+  minutes: 20
+  title: Concept · Runnable vs Callable, Future, FutureTask and CompletableFuture
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - runnable-callable-future-completablefuture
+- date: '2026-12-03'
+  minutes: 25
+  title: DSA · Heaps, top-K · Implement a PriorityQueue (min-heap) without libraries
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - implement-min-heap
+- date: '2026-12-03'
+  minutes: 20
+  title: 'Concept · Academy B5: CompletableFuture and async composition'
+  detail: 'Academy B5: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-04'
+  minutes: 25
+  title: DSA · Heaps, top-K · Maximum product of K chosen elements
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - maximum-product-of-k-elements
+- date: '2026-12-04'
+  minutes: 20
+  title: 'Concept · Academy B6: Virtual threads and structured concurrency'
+  detail: 'Academy B6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-05'
+  minutes: 30
+  title: 'LLD lesson · Academy E6: LLD case studies: parking lot, LRU cache, rate limiter, notification system'
+  detail: 'Academy E6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-05'
+  minutes: 60
+  title: LLD mock with Claude (unseen problem)
+  detail: 'Ask Claude in chat for an unseen LLD mock: 45 minutes, scored; Classes first, patterns named, one key method coded, concurrency discussed; 15: Log the score and the gaps in Mock progress'
+- date: '2026-12-05'
+  minutes: 30
+  title: Timed DSA · Heaps, top-K · Find Median from Data Stream
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - find-median-from-data-stream
+- date: '2026-12-06'
+  minutes: 30
+  title: 'HLD lesson · Academy F6: Case studies: distributed cache, metrics & monitoring'
+  detail: 'Academy F6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-06'
+  minutes: 60
+  title: HLD · Design a distributed cache optimised for a given task
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-distributed-cache
+- date: '2026-12-06'
+  minutes: 30
+  title: 'Weekly gate · week 6: Concurrency 2: atomics, executors, futures + Heaps, top-K'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-12-07'
+  minutes: 25
+  title: 'DSA · Graphs: BFS and DFS · Number of Islands (with dynamic constraints)'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - number-of-islands
+- date: '2026-12-07'
+  minutes: 20
+  title: 'Concept · Academy D2: Spring core: IoC container, scopes, profiles'
+  detail: 'Academy D2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-08'
+  minutes: 25
+  title: 'DSA · Graphs: BFS and DFS · Max Area of Island'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - max-area-of-island
+- date: '2026-12-08'
+  minutes: 20
+  title: 'Concept · Academy L4: Spring bean lifecycle'
+  detail: 'Academy L4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-09'
+  minutes: 25
+  title: 'DSA · Graphs: BFS and DFS · Rotting Oranges'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - rotting-oranges
+- date: '2026-12-09'
+  minutes: 20
+  title: Concept · Spring Boot, ApplicationContext types and the bean lifecycle
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - spring-applicationcontext-and-bean-lifecycle
+- date: '2026-12-10'
+  minutes: 25
+  title: 'DSA · Graphs: BFS and DFS · Pacific Atlantic Water Flow'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - pacific-atlantic-water-flow
+- date: '2026-12-10'
+  minutes: 20
+  title: Concept · @Autowired and dependency injection in Spring Boot
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - spring-autowired-and-dependency-injection
+- date: '2026-12-11'
+  minutes: 25
+  title: 'DSA · Graphs: BFS and DFS · Shortest Bridge'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - shortest-bridge
+- date: '2026-12-11'
+  minutes: 20
+  title: Concept · What is Spring?
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - what-is-spring-framework
+- date: '2026-12-12'
+  minutes: 30
+  title: 'LLD lesson · Academy B7: Classic problems: producer-consumer, bounded queue, concurrent LRU, rate limiter'
+  detail: 'Academy B7: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-12'
+  minutes: 60
+  title: LLD · Multi-Threaded Buffered Queue
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-bounded-blocking-queue
+- date: '2026-12-12'
+  minutes: 30
+  title: 'Timed DSA · Graphs: BFS and DFS · Word Ladder (min single-character transformations)'
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - word-ladder
+- date: '2026-12-13'
+  minutes: 30
+  title: 'HLD lesson · Academy Q8: Scaling databases: replicas, partitioning, sharding, caching, CQRS'
+  detail: 'Academy Q8: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-13'
+  minutes: 60
+  title: HLD · Design a TikTok-style Google News
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-short-video-news-feed
+- date: '2026-12-13'
+  minutes: 30
+  title: 'Weekly gate · week 7: Spring core: IoC, DI, bean lifecycle + Graphs: BFS and DFS'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-12-14'
+  minutes: 25
+  title: 'DSA · Graphs: topological sort, union-find, shortest paths · Course Schedule II'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - course-schedule-ii
+- date: '2026-12-14'
+  minutes: 20
+  title: 'Concept · Academy D3: Spring AOP and the proxy traps'
+  detail: 'Academy D3: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-15'
+  minutes: 25
+  title: 'DSA · Graphs: topological sort, union-find, shortest paths · Is Graph Bipartite?'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - is-graph-bipartite
+- date: '2026-12-15'
+  minutes: 20
+  title: 'Concept · Spring AOP: where it is used and the advice types'
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - spring-aop-and-advice-types
+- date: '2026-12-16'
+  minutes: 25
+  title: 'DSA · Graphs: topological sort, union-find, shortest paths · Earliest timestamp when all users are connected'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - the-earliest-moment-when-everyone-become-friends
+- date: '2026-12-16'
+  minutes: 20
+  title: 'Concept · Academy D4: Spring Boot internals: auto-configuration and starters'
+  detail: 'Academy D4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-17'
+  minutes: 25
+  title: 'DSA · Graphs: topological sort, union-find, shortest paths · Shortest Path Between Two Vertices in a Weighted Graph'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - dijkstra-shortest-path
+- date: '2026-12-17'
+  minutes: 20
+  title: 'Concept · Academy L5: Spring Boot startup'
+  detail: 'Academy L5: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-18'
+  minutes: 25
+  title: 'DSA · Graphs: topological sort, union-find, shortest paths · Cheapest Flights Within K Stops'
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - cheapest-flights-within-k-stops
+- date: '2026-12-18'
+  minutes: 20
+  title: 'Concept · Academy D9: Extending Spring: post-processors, custom starters'
+  detail: 'Academy D9: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-19'
+  minutes: 30
+  title: 'LLD lesson · Academy D1: Build your own DI container'
+  detail: 'Academy D1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-19'
+  minutes: 60
+  title: LLD · Design an Elevator System
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-elevator-system
+- date: '2026-12-19'
+  minutes: 30
+  title: 'Timed DSA · Graphs: topological sort, union-find, shortest paths · Alien Dictionary'
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - alien-dictionary
+- date: '2026-12-20'
+  minutes: 30
+  title: 'HLD lesson · Academy S8: Microservices: why, how, and what it costs'
+  detail: 'Academy S8: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-20'
+  minutes: 60
+  title: System design mock with Claude (unseen problem)
+  detail: 'Ask Claude in chat for an unseen system design mock: 45 minutes, scored out of 10; Run the checklist: requirements, estimates, API, data model, architecture, deep dives, failures; 15: Log the
+    score and the gaps in Mock progress'
+- date: '2026-12-20'
+  minutes: 30
+  title: 'Weekly gate · week 8: Spring AOP and Boot internals + Graphs: topological sort, union-find, shortest paths'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week'
+- date: '2026-12-21'
+  minutes: 25
+  title: DSA · Backtracking, tries · Generate Parentheses
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - generate-parentheses
+- date: '2026-12-21'
+  minutes: 20
+  title: 'Concept · Academy S2: Servlets & JSP: a thread per request'
+  detail: 'Academy S2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-22'
+  minutes: 25
+  title: DSA · Backtracking, tries · Letter Combinations of a Phone Number
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - letter-combinations-of-a-phone-number
+- date: '2026-12-22'
+  minutes: 20
+  title: Concept · Servlets, the servlet lifecycle and DispatcherServlet
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - servlets-and-dispatcherservlet
+- date: '2026-12-23'
+  minutes: 25
+  title: DSA · Backtracking, tries · Restore IP Addresses
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - restore-ip-addresses
+- date: '2026-12-23'
+  minutes: 20
+  title: 'Concept · Academy D5: Spring MVC: the request pipeline'
+  detail: 'Academy D5: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-24'
+  minutes: 25
+  title: DSA · Backtracking, tries · Multilingual Dictionary on a Trie
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - implement-trie-ii-prefix-tree
+- date: '2026-12-24'
+  minutes: 20
+  title: 'Concept · Academy L6: HTTP request lifecycle in Spring MVC'
+  detail: 'Academy L6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-25'
+  minutes: 25
+  title: DSA · Backtracking, tries · Top-3 Words by Prefix (with wildcard)
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - search-suggestions-system
+- date: '2026-12-25'
+  minutes: 20
+  title: 'Concept · Academy D7: Spring Security: filter chain and JWT'
+  detail: 'Academy D7: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-26'
+  minutes: 30
+  title: 'LLD lesson · Academy C4: The optimisation playbook: brute force to optimal, out loud'
+  detail: 'Academy C4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-26'
+  minutes: 60
+  title: LLD · Design a Notification System
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-notification-system
+- date: '2026-12-26'
+  minutes: 30
+  title: Timed DSA · Backtracking, tries · Calculator / expression evaluation variant
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - basic-calculator
+- date: '2026-12-27'
+  minutes: 30
+  title: 'HLD lesson · Academy S9: Cloud native & event-driven systems'
+  detail: 'Academy S9: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-27'
+  minutes: 60
+  title: HLD · Design a distributed queue with multiple producers and consumers
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-distributed-message-queue
+- date: '2026-12-27'
+  minutes: 30
+  title: 'Weekly gate · week 9: Web layer and security + Backtracking, tries'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week; Bonus: say your story for this week''s behavioural question out loud
+    (STAR, 2 minutes)'
+  questions:
+  - walk-through-current-work
+- date: '2026-12-28'
+  minutes: 25
+  title: DSA · Dynamic programming 1 · Best Time to Buy and Sell Stock
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - best-time-to-buy-and-sell-stock
+- date: '2026-12-28'
+  minutes: 20
+  title: 'Concept · Academy D6: Data: JPA, Hibernate and @Transactional'
+  detail: 'Academy D6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-29'
+  minutes: 25
+  title: DSA · Dynamic programming 1 · Kadane's algorithm with hashmap follow-up
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - maximum-subarray
+- date: '2026-12-29'
+  minutes: 20
+  title: 'Concept · Transactions in Spring: @Transactional'
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - spring-transactional-management
+- date: '2026-12-30'
+  minutes: 25
+  title: DSA · Dynamic programming 1 · Decode Ways
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - decode-ways
+- date: '2026-12-30'
+  minutes: 20
+  title: 'Concept · Academy L7: JPA entity and transaction lifecycle'
+  detail: 'Academy L7: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2026-12-31'
+  minutes: 25
+  title: DSA · Dynamic programming 1 · Delete and Earn
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - delete-and-earn
+- date: '2026-12-31'
+  minutes: 20
+  title: Concept · Hibernate save vs persist vs update vs merge
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - hibernate-save-vs-persist-vs-update-vs-merge
+- date: '2027-01-01'
+  minutes: 25
+  title: DSA · Dynamic programming 1 · Partition Equal Subset Sum
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - partition-equal-subset-sum
+- date: '2027-01-01'
+  minutes: 20
+  title: Concept · Connection Pooling and the DB Connection Process
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - jdbc-connection-pooling
+- date: '2027-01-02'
+  minutes: 30
+  title: 'LLD lesson · Academy H2: Interview technique: think aloud, test, recover'
+  detail: 'Academy H2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-02'
+  minutes: 60
+  title: LLD mock with Claude (unseen problem)
+  detail: 'Ask Claude in chat for an unseen LLD mock: 45 minutes, scored; Classes first, patterns named, one key method coded, concurrency discussed; 15: Log the score and the gaps in Mock progress'
+- date: '2027-01-02'
+  minutes: 30
+  title: Timed DSA · Dynamic programming 1 · Maximum Profit in Job Scheduling
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - maximum-profit-in-job-scheduling
+- date: '2027-01-03'
+  minutes: 30
+  title: 'HLD lesson · Academy Q6: Transactions, isolation, locking and MVCC'
+  detail: 'Academy Q6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-03'
+  minutes: 60
+  title: HLD · Design a Payment Service
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-payment-system
+- date: '2027-01-03'
+  minutes: 30
+  title: 'Weekly gate · week 10: Data: JPA, transactions, pooling + Dynamic programming 1'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week; Bonus: say your story for this week''s behavioural question out loud
+    (STAR, 2 minutes)'
+  questions:
+  - most-challenging-project
+- date: '2027-01-04'
+  minutes: 25
+  title: DSA · Dynamic programming 2, greedy · Edit Distance
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - edit-distance
+- date: '2027-01-04'
+  minutes: 20
+  title: 'Concept · Academy Q2: Aggregation, GROUP BY, subqueries and CTEs'
+  detail: 'Academy Q2: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-05'
+  minutes: 25
+  title: DSA · Dynamic programming 2, greedy · Longest Palindromic Substring
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - longest-palindromic-substring
+- date: '2027-01-05'
+  minutes: 20
+  title: 'Concept · Academy Q3: Window functions'
+  detail: 'Academy Q3: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-06'
+  minutes: 25
+  title: DSA · Dynamic programming 2, greedy · Count grid paths (right / diagonal moves) through checkpoints
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - grid-paths-with-checkpoints
+- date: '2027-01-06'
+  minutes: 20
+  title: 'Concept · Academy Q4: SQL interview patterns: top-N per group, gaps and islands, running totals'
+  detail: 'Academy Q4: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-07'
+  minutes: 25
+  title: DSA · Dynamic programming 2, greedy · Split array into groups of 5 consecutive numbers
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - hand-of-straights
+- date: '2027-01-07'
+  minutes: 20
+  title: Concept · SQL basics and scenario-based queries
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - sql-scenario-based-queries
+- date: '2027-01-08'
+  minutes: 25
+  title: DSA · Dynamic programming 2, greedy · Heaters
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - heaters
+- date: '2027-01-08'
+  minutes: 20
+  title: Concept · Second Highest Salary
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - second-highest-salary
+- date: '2027-01-09'
+  minutes: 30
+  title: 'LLD lesson · Academy C1: From constraints to the expected complexity'
+  detail: 'Academy C1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-09'
+  minutes: 60
+  title: LLD · Design a Multi-module Logging Framework
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-logging-framework
+- date: '2027-01-09'
+  minutes: 30
+  title: Timed DSA · Dynamic programming 2, greedy · Russian Doll / box stacking (with rotation)
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - russian-doll-envelopes
+- date: '2027-01-10'
+  minutes: 30
+  title: 'HLD lesson · Academy F7: DAGs: workflow orchestration and schedulers'
+  detail: 'Academy F7: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-10'
+  minutes: 60
+  title: HLD · Design a Distributed Job Scheduler
+  detail: '5: Requirements, including how correct and what fails halfway; 5: Estimates out loud: QPS, peak, storage; 10: API and data model; 15: Draw the architecture; 15: Two deep dives: the scarce resource,
+    and what breaks after the write; 10: Compare with the model answer and list what you missed'
+  questions:
+  - design-job-scheduler
+- date: '2027-01-10'
+  minutes: 30
+  title: 'Weekly gate · week 11: SQL you write by hand + Dynamic programming 2, greedy'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week; Bonus: say your story for this week''s behavioural question out loud
+    (STAR, 2 minutes)'
+  questions:
+  - tell-me-about-a-conflict
+- date: '2027-01-11'
+  minutes: 25
+  title: DSA · Design data structures · LRU Cache
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - lru-cache
+- date: '2027-01-11'
+  minutes: 20
+  title: 'Concept · Academy Q5: Indexes and reading EXPLAIN'
+  detail: 'Academy Q5: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-12'
+  minutes: 25
+  title: DSA · Design data structures · Insert Delete GetRandom O(1)
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - insert-delete-getrandom-o1
+- date: '2027-01-12'
+  minutes: 20
+  title: Concept · SQL query optimization
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - sql-query-optimization
+- date: '2027-01-13'
+  minutes: 25
+  title: DSA · Design data structures · Logger Rate Limiter (suppress duplicates in both directions)
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - logger-rate-limiter
+- date: '2027-01-13'
+  minutes: 20
+  title: 'Concept · Academy Q6: Transactions, isolation, locking and MVCC'
+  detail: 'Academy Q6: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-14'
+  minutes: 25
+  title: DSA · Design data structures · Max Stack (without popMax)
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - max-stack
+- date: '2027-01-14'
+  minutes: 20
+  title: 'Concept · Academy Q7: Query performance in practice: N+1, pagination, batching, pooling'
+  detail: 'Academy Q7: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-15'
+  minutes: 25
+  title: DSA · Design data structures · Moving average of last n values (excluding k largest)
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - moving-average-from-data-stream
+- date: '2027-01-15'
+  minutes: 20
+  title: Concept · Preventing SQL Injection
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - sql-injection-prevention
+- date: '2027-01-16'
+  minutes: 30
+  title: 'LLD lesson · Academy H1: Java idioms for coding interviews'
+  detail: 'Academy H1: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-16'
+  minutes: 60
+  title: LLD · Undo/Redo for a Text Editor
+  detail: '10: Requirements and scope out loud, including what can happen concurrently; 15: Class diagram: entities (nouns) first, then services; 10: Name each pattern and where it goes; 20: Code the core
+    classes and the one key method in the Playground; 5: Compare with the model answer and list what you missed'
+  questions:
+  - design-undo-redo-text-editor
+- date: '2027-01-16'
+  minutes: 30
+  title: Timed DSA · Design data structures · LFU Cache (variant with score-based eviction)
+  detail: '2: Read it and say the brute force and its complexity out loud; 25: Solve it in the Playground with a timer, no hints; If stuck at 25 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - lfu-cache
+- date: '2027-01-17'
+  minutes: 30
+  title: 'HLD lesson · Academy F8: Case study: design a sports betting platform'
+  detail: 'Academy F8: read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking'
+- date: '2027-01-17'
+  minutes: 60
+  title: System design mock with Claude (unseen problem)
+  detail: 'Ask Claude in chat for an unseen system design mock: 45 minutes, scored out of 10; Run the checklist: requirements, estimates, API, data model, architecture, deep dives, failures; 15: Log the
+    score and the gaps in Mock progress'
+- date: '2027-01-17'
+  minutes: 30
+  title: 'Weekly gate · week 12: Database internals + Design data structures'
+  detail: '15: Answer this week''s 5 concept items out loud, 1 minute each, no notes, in 4 layers; 15: Re-solve one of this week''s DSA problems from a blank file; Pass = 4 of 5 concepts clear and the problem
+    solved; Fail = next Saturday''s timed DSA slot repeats this week''s weakest problem, and the missed concepts go first next week; Bonus: say your story for this week''s behavioural question out loud
+    (STAR, 2 minutes)'
+  questions:
+  - tell-me-about-a-failure
+- date: '2027-01-18'
+  minutes: 25
+  title: DSA · Re-solve, timed · Subarray Sum Equals K
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - subarray-sum-equals-k
+- date: '2027-01-18'
+  minutes: 20
+  title: 'Concept · Microservices patterns: API gateway, service discovery, circuit breaker, saga'
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - microservices-design-patterns
+- date: '2027-01-19'
+  minutes: 25
+  title: DSA · Re-solve, timed · Course Schedule II
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - course-schedule-ii
+- date: '2027-01-19'
+  minutes: 20
+  title: Concept · Kafka architecture
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - kafka-architecture
+- date: '2027-01-20'
+  minutes: 25
+  title: DSA · Re-solve, timed · Top K Frequent Elements
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - top-k-frequent-elements
+- date: '2027-01-20'
+  minutes: 20
+  title: Concept · OAuth and JWT tokens
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - oauth-and-jwt
+- date: '2027-01-21'
+  minutes: 25
+  title: DSA · Re-solve, timed · Edit Distance
+  detail: '2: Read it and say the brute force and its complexity out loud; 20: Solve it in the Playground with a timer, no hints; If stuck at 20 minutes, read only the Approach section of the model answer,
+    then finish it yourself; 3: Write the pattern and the complexity in one line in your notes'
+  questions:
+  - edit-distance
+- date: '2027-01-21'
+  minutes: 20
+  title: Concept · How would you optimise a slow API?
+  detail: '8: Answer out loud in 4 layers: what it is, how it works inside, where you used it, what goes wrong; 8: Open the model answer: compare, then say every follow-up answer out loud; 4: Write one
+    line for each layer you missed'
+  questions:
+  - optimize-slow-api
+- date: '2027-01-22'
+  minutes: 45
+  title: Review · the 3 problems you flagged hardest
+  detail: Re-solve each from a blank file, 15 minutes each; Say the pattern before you code
+  questions:
+  - why-are-you-looking-for-a-change
+- date: '2027-01-23'
+  minutes: 60
+  title: Final LLD mock with Claude
+  detail: 'Ask Claude in chat for an unseen LLD mock: 45 minutes, scored; Classes first, patterns named, one key method coded, concurrency discussed; 15: Log the score and the gaps in Mock progress'
+- date: '2027-01-23'
+  minutes: 60
+  title: Review · concepts you failed in any weekly gate
+  detail: Answer each out loud in 4 layers; Re-read only the layer you missed
+- date: '2027-01-24'
+  minutes: 60
+  title: Final system design mock with Claude
+  detail: 'Ask Claude in chat for an unseen system design mock: 45 minutes, scored out of 10; Run the checklist: requirements, estimates, API, data model, architecture, deep dives, failures; 15: Log the
+    score and the gaps in Mock progress'
+- date: '2027-01-24'
+  minutes: 60
+  title: Rest and readiness check
+  detail: 'Read the requirements checklist and numbers card once; Prepare 3 stories: hardest project, conflict, failure; Stop by evening and sleep well'

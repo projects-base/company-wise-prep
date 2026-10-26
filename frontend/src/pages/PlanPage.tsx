@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronRight } from 'lucide-react'
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { ChevronRight, ScrollText } from 'lucide-react'
 import { api, type PlanDay, type PlanItem, type Session } from '../api'
 import { useCampaign } from '../App'
 import { Bar, CheckDot, companyLabel, Difficulty, fmtDate, localToday, Meta, Status, TypeTag, useLoad } from '../ui'
@@ -33,6 +35,8 @@ export default function PlanPage() {
         </div>
       </header>
 
+      {c.guide && <Guide text={c.guide} />}
+
       <div className="card pad" style={{ marginBottom: 8 }}>
         <div className="row" style={{ justifyContent: 'space-between' }}>
           <span style={{ fontWeight: 600 }}>
@@ -46,9 +50,15 @@ export default function PlanPage() {
           <Bar value={doneCount} max={scheduled.length} />
         </div>
         <p className="hint">
-          Ordered by how often and how recently each question was reported at{' '}
-          {Object.keys(c.companies).map(companyLabel).join(', ')}. Dates are targets, not deadlines — Today always serves the next unfinished
-          item.
+          {c.guide ? (
+            'Every day is fixed by the syllabus in the guide above. Dates are targets: Today always serves the next unfinished session.'
+          ) : (
+            <>
+              Ordered by how often and how recently each question was reported at{' '}
+              {Object.keys(c.companies).map(companyLabel).join(', ')}. Dates are targets, not deadlines — Today always serves the next
+              unfinished item.
+            </>
+          )}
         </p>
       </div>
 
@@ -122,6 +132,48 @@ export default function PlanPage() {
   )
 }
 
+const md = { table: ({ children }: { children?: React.ReactNode }) => <div className="table-wrap"><table>{children}</table></div> }
+
+/** The plan's rules and map: folded after the first visit so the days stay in view. */
+function Guide({ text }: { text: string }) {
+  const key = 'plan.guide.seen'
+  const [open] = useState(() => {
+    try {
+      const seen = localStorage.getItem(key) === '1'
+      localStorage.setItem(key, '1')
+      return !seen
+    } catch {
+      return true
+    }
+  })
+  return (
+    <details className="card pad fold guide" open={open} style={{ marginBottom: 12 }}>
+      <summary>
+        <ScrollText size={16} /> The rules and the map <ChevronRight size={16} className="chev" />
+      </summary>
+      <div className="prose guide-body">
+        <Markdown remarkPlugins={[remarkGfm]} components={md}>
+          {text}
+        </Markdown>
+      </div>
+    </details>
+  )
+}
+
+/** "Academy D2" in a step becomes a link to that lesson. */
+function withLessonLinks(text: string) {
+  return text.split(/(Academy [A-Z]\d+[A-Z]?)\b/).map((part, i) => {
+    const m = part.match(/^Academy ([A-Z]\d+[A-Z]?)$/)
+    return m ? (
+      <Link key={i} to={`/academy/${m[1]}`}>
+        {part}
+      </Link>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    )
+  })
+}
+
 /** "a; b. C" → steps. A leading "30:" is that step's minutes. */
 export function sessionSteps(detail: string): { min?: number; text: string }[] {
   return detail
@@ -181,7 +233,7 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
                 <label className={ticks.includes(i) ? 'ticked' : ''}>
                   <input type="checkbox" checked={ticks.includes(i)} onChange={() => flip(i)} />
                   {st.min != null && <span className="pill">{st.min}m</span>}
-                  <span>{st.text}</span>
+                  <span>{withLessonLinks(st.text)}</span>
                 </label>
               </li>
             ))}
@@ -214,10 +266,15 @@ function Row({ item, done }: { item: PlanItem; done: boolean }) {
 function groupByWeek(days: PlanDay[]) {
   const today = localToday()
   const out: { label: string; range: string; days: PlanDay[]; current: boolean }[] = []
-  for (let i = 0; i < days.length; i += 7) {
-    const chunk = days.slice(i, i + 7)
+  // Calendar weeks, Monday to Sunday, so "week 2" means the same dates everywhere.
+  const chunks: PlanDay[][] = []
+  for (const d of days) {
+    if (!chunks.length || new Date(`${d.date}T00:00:00`).getDay() === 1) chunks.push([])
+    chunks[chunks.length - 1].push(d)
+  }
+  for (const [i, chunk] of chunks.entries()) {
     out.push({
-      label: `Week ${i / 7 + 1}`,
+      label: `Week ${i + 1}`,
       range: `${fmtDate(chunk[0].date, { day: 'numeric', month: 'short' })} – ${fmtDate(chunk[chunk.length - 1].date, { day: 'numeric', month: 'short' })}`,
       days: chunk,
       current: chunk.some((d) => d.date === today),
