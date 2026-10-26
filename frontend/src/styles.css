@@ -955,3 +955,30 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 .test-result { display: inline-flex; align-items: center; gap: 6px; font-size: 0.86rem; }
 .test-result.ok { color: var(--ok); } .test-result.bad { color: var(--bad); }
 .settings-privacy { margin-top: 18px; }
+
+/* Lifeline: help beside the page, not instead of it */
+.lifeline-fab { position: fixed; right: 20px; bottom: 20px; z-index: 40; display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--text); font: inherit; font-weight: 600; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.15s ease, border-color 0.15s ease; }
+.lifeline-fab:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+.lifeline-fab b { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 0 7px; font-size: 0.78rem; }
+.lifeline { position: fixed; top: 0; right: 0; bottom: 0; z-index: 50; width: min(400px, 100vw); display: flex; flex-direction: column; gap: 12px; padding: 16px; background: var(--surface); border-left: 1px solid var(--line); box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08); animation: lifeline-in 0.2s ease-out; }
+@keyframes lifeline-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+.lifeline-head { display: flex; align-items: center; gap: 8px; color: var(--accent); }
+.lifeline-head strong { color: var(--text); }
+.lifeline-used { font-size: 0.82rem; flex: 1; }
+.lifeline-rungs { display: flex; gap: 6px; flex-wrap: wrap; }
+.lifeline-log { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding-right: 4px; }
+.lifeline-empty { font-size: 0.9rem; line-height: 1.55; margin: 0; }
+.lifeline-q { align-self: flex-end; margin-left: auto; width: fit-content; max-width: 85%; background: var(--accent-soft); color: var(--accent-2); padding: 6px 10px; border-radius: 10px 10px 2px 10px; font-size: 0.88rem; font-weight: 600; }
+.lifeline-a { margin-top: 6px; background: var(--surface-2); border-radius: 10px; padding: 8px 12px; font-size: 0.92rem; line-height: 1.55; overflow-wrap: anywhere; }
+.lifeline-a p { margin: 6px 0; }
+.lifeline-a ul, .lifeline-a ol { margin: 6px 0; padding-left: 20px; }
+.lifeline-a pre { overflow-x: auto; font-size: 0.82rem; }
+.lifeline-by { font-size: 0.75rem; margin-top: 4px; }
+.lifeline-note { font-size: 0.78rem; margin-top: 4px; }
+.lifeline-thinking { animation: lifeline-pulse 1.2s ease-in-out infinite; }
+@keyframes lifeline-pulse { 50% { opacity: 0.45; } }
+.lifeline-ask { display: flex; gap: 6px; }
+.lifeline-ask input { flex: 1; min-width: 0; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--bg); color: var(--text); font: inherit; }
+.lifeline-google { font-size: 0.8rem; display: inline-flex; align-items: center; gap: 4px; align-self: flex-start; }
+@media (max-width: 640px) { .lifeline-fab { right: 16px; bottom: 16px; } .lifeline { top: auto; height: 75vh; border-left: 0; border-top: 1px solid var(--line); border-radius: 16px 16px 0 0; } }
+@media (prefers-reduced-motion: reduce) { .lifeline, .lifeline-thinking { animation: none; } .lifeline-fab { transition: none; } .lifeline-fab:hover { transform: none; } }

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Check, ExternalLink, Eye, Star } from 'lucide-react'
 import { AnswerJudge } from '../AnswerJudge'
+import { Lifeline } from '../Lifeline'
 import { AnswerProse } from '../AnswerProse'
 import { api, leetcodeUrl, type Action, type Challenge } from '../api'
 import Workspace from '../code/Workspace'
@@ -165,6 +166,7 @@ export default function QuestionPage() {
           )}
 
           {q.type !== 'DSA' && <AnswerJudge key={q.slug} slug={q.slug} />}
+          <Lifeline key={`lifeline-${q.slug}`} context="question" refId={q.slug} title={q.title} />
 
           {q.answer && <Answer key={q.slug} text={q.answer} id={q.slug} />}
 

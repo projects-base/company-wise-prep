@@ -8,6 +8,7 @@ import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, Play } from 'lucide-r
 import { api, type Ref } from '../api'
 import { LevelChip, Status, useLoad, MdLink } from '../ui'
 import { useFeatures } from '../features'
+import { Lifeline } from '../Lifeline'
 import { ModeToggle, StepperView, useStepper } from '../Stepper'
 
 const slugify = (s: string) =>
@@ -208,6 +209,7 @@ export default function ModulePage() {
           </ol>
         </aside>
       )}
+      <Lifeline key={m.id} context="lesson" refId={m.id} title={m.title} />
     </div>
   )
 }

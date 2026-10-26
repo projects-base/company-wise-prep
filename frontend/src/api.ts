@@ -319,6 +319,17 @@ function request(path: string, init?: RequestInit): Promise<Response> {
   })
 }
 
+/** Help while studying (lifeline.LifelineService): a hint ladder plus your own doubts. */
+export type LifelineKind = 'NUDGE' | 'IDEA' | 'EXPLAIN' | 'ASK'
+export type LifelineRequest = {
+  context: 'question' | 'lesson'
+  ref: string
+  kind: LifelineKind
+  doubt?: string
+  history?: { q: string; a: string }[]
+}
+export type LifelineHelp = { mode: 'claude' | 'gemini' | 'offline'; text: string; note: string | null }
+
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await request(path, init)
   if (!res.ok) throw new Error(`${init?.method ?? 'GET'} ${path} failed: ${res.status}`)
@@ -340,6 +351,8 @@ export const api = {
       body: JSON.stringify({ answer }),
     }),
   reviewHistory: (slug: string) => call<number[]>(`/api/questions/${slug}/reviews`),
+  lifeline: (req: LifelineRequest) =>
+    call<LifelineHelp>('/api/lifeline', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req) }),
   settings: () => call<Settings>('/api/settings'),
   saveSettings: (s: Partial<{ reviewer: string; claudeKey: string; claudeModel: string; geminiKey: string; geminiModel: string }>) =>
     call<Settings>('/api/settings', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(s) }),

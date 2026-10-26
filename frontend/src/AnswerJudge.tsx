@@ -18,6 +18,15 @@ const Recognition: any = typeof window !== 'undefined' ? (window as any).SpeechR
 const REVIEWER_LABEL: Record<string, string> = { claude: 'Claude', gemini: 'Gemini', both: 'Claude + Gemini', offline: 'Offline check' }
 const NAME: Record<string, string> = { claude: 'Claude', gemini: 'Gemini', offline: 'Offline' }
 
+const WIN_H = 'Click in the box and press Win + H to use Windows voice typing instead.'
+const SPEECH_ERRORS: Record<string, string> = {
+  'not-allowed': `Microphone access is blocked. Click the lock icon left of the address bar → Microphone → Allow, then reload. ${WIN_H}`,
+  'service-not-allowed': `This browser won't run speech recognition here. Use Edge or Google Chrome. ${WIN_H}`,
+  'audio-capture': `No microphone was found. Check it is plugged in and selected in Windows sound settings. ${WIN_H}`,
+  network: `The browser's speech service could not be reached. It needs internet, and only works in Edge and Google Chrome (not Brave, Opera or other Chromium browsers). ${WIN_H}`,
+  'language-not-supported': 'Indian English is not available in this browser; switched to US English. Press Speak again.',
+}
+
 const tone = (s: number | null) => (s == null ? '' : s >= 7.5 ? 'ok' : s >= 5 ? 'warn' : 'bad')
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length
 
@@ -34,6 +43,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
   const [practising, setPractising] = useState<string | null>(null)
   const rec = useRef<any>(null)
   const wanted = useRef(false)
+  const lang = useRef('en-IN')
 
   useEffect(() => {
     if (!listening) return
@@ -45,7 +55,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
   const start = () => {
     if (!Recognition) return
     const r = new Recognition()
-    r.lang = 'en-IN'
+    r.lang = lang.current
     r.continuous = true
     r.interimResults = true
     r.onresult = (e: any) => {
@@ -71,17 +81,28 @@ export function AnswerJudge({ slug }: { slug: string }) {
       } else setListening(false)
     }
     r.onerror = (e: any) => {
-      if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
-        setError('Microphone access was blocked. Allow it in the browser, or type your answer.')
-        wanted.current = false
+      // A pause in speech is normal: keep listening.
+      if (e.error === 'no-speech' || e.error === 'aborted') return
+      wanted.current = false
+      setListening(false)
+      if (e.error === 'language-not-supported' && r.lang !== 'en-US') {
+        r.lang = 'en-US'
+        lang.current = 'en-US'
       }
+      setError(SPEECH_ERRORS[e.error] ?? `Speech recognition stopped (${e.error}). ${WIN_H}`)
     }
     rec.current = r
     wanted.current = true
     setSeconds(0)
     setListening(true)
     setError(null)
-    r.start()
+    try {
+      r.start()
+    } catch (e) {
+      wanted.current = false
+      setListening(false)
+      setError(`Could not start the microphone (${e instanceof Error ? e.message : e}). ${WIN_H}`)
+    }
   }
 
   function stop() {
@@ -142,7 +163,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
               value={text + (interim ? ` ${interim}` : '')}
               onChange={(e) => setText(e.target.value)}
               readOnly={listening}
-              placeholder={Recognition ? 'Press the mic and speak, or type here…' : 'Type your answer here…'}
+              placeholder={listening ? 'Listening… start talking' : 'Press Speak and talk, or type here. Win + H (Windows voice typing) also works.'}
               rows={6}
             />
             <div className="judge-bar">
@@ -152,7 +173,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
                 </button>
               ) : (
                 <span className="muted" style={{ fontSize: '0.82rem' }}>
-                  This browser has no speech-to-text; use Edge or Chrome to speak.
+                  No speech-to-text in this browser: click the box and press Win + H, or use Edge / Chrome.
                 </span>
               )}
               {listening && (
