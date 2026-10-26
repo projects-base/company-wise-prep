@@ -5,6 +5,7 @@ import { api, type AnswerReview } from './api'
 import { Link } from 'react-router-dom'
 import { useFeatures } from './features'
 import { celebrate, recordActivity } from './rewards'
+import { startRecording, type Recording } from './recorder'
 
 /**
  * Answer a theory question out loud (browser speech-to-text) or by typing, then have it judged:
@@ -27,6 +28,27 @@ const SPEECH_ERRORS: Record<string, string> = {
   'language-not-supported': 'Indian English is not available in this browser; switched to US English. Press Speak again.',
 }
 
+// Which speech-to-text to use: the browser's own (live words) or a recording Gemini transcribes
+// (works on any browser and network that can reach Gemini). Remembered per browser.
+type Engine = 'browser' | 'gemini'
+const ENGINE_KEY = 'judge.speech'
+const readEngine = (): Engine => {
+  try {
+    const v = localStorage.getItem(ENGINE_KEY)
+    if (v === 'browser' || v === 'gemini') return v
+  } catch {
+    /* storage unavailable */
+  }
+  return Recognition ? 'browser' : 'gemini'
+}
+const saveEngine = (e: Engine) => {
+  try {
+    localStorage.setItem(ENGINE_KEY, e)
+  } catch {
+    /* storage unavailable */
+  }
+}
+
 const tone = (s: number | null) => (s == null ? '' : s >= 7.5 ? 'ok' : s >= 5 ? 'warn' : 'bad')
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length
 
@@ -44,6 +66,13 @@ export function AnswerJudge({ slug }: { slug: string }) {
   const rec = useRef<any>(null)
   const wanted = useRef(false)
   const lang = useRef('en-IN')
+  const [engine, setEngineState] = useState<Engine>(readEngine)
+  const [transcribing, setTranscribing] = useState(false)
+  const recording = useRef<Recording | null>(null)
+  const setEngine = (e: Engine) => {
+    setEngineState(e)
+    saveEngine(e)
+  }
 
   useEffect(() => {
     if (!listening) return
@@ -89,6 +118,12 @@ export function AnswerJudge({ slug }: { slug: string }) {
         r.lang = 'en-US'
         lang.current = 'en-US'
       }
+      // The browser's speech service is unreachable or refused: switch to recording + Gemini for good.
+      if (e.error === 'network' || e.error === 'service-not-allowed') {
+        setEngine('gemini')
+        setError("This browser's speech service can't be reached from here, so the mic now records and Gemini writes it out. Press Record and speak.")
+        return
+      }
       setError(SPEECH_ERRORS[e.error] ?? `Speech recognition stopped (${e.error}). ${WIN_H}`)
     }
     rec.current = r
@@ -108,7 +143,40 @@ export function AnswerJudge({ slug }: { slug: string }) {
   function stop() {
     wanted.current = false
     rec.current?.stop()
+    recording.current?.cancel()
+    recording.current = null
     setListening(false)
+  }
+
+  const record = async () => {
+    setError(null)
+    try {
+      recording.current = await startRecording()
+      setSeconds(0)
+      setListening(true)
+    } catch (e) {
+      const blocked = e instanceof DOMException && (e.name === 'NotAllowedError' || e.name === 'SecurityError')
+      setError(blocked ? SPEECH_ERRORS['not-allowed'] : e instanceof DOMException && e.name === 'NotFoundError' ? SPEECH_ERRORS['audio-capture']
+        : `Could not start the microphone (${e instanceof Error ? e.message : e}). ${WIN_H}`)
+    }
+  }
+
+  const finishRecording = async () => {
+    const r = recording.current
+    recording.current = null
+    setListening(false)
+    if (!r) return
+    setTranscribing(true)
+    try {
+      const res = await api.transcribe(await r.stop())
+      if (res.error) setError(res.error)
+      else if (res.text) setText((t) => (t ? `${t.trimEnd()} ` : '') + res.text!.trim())
+      else setError('No speech was heard. Check the right microphone is selected in Windows sound settings.')
+    } catch (e) {
+      setError(`Transcription failed (${e instanceof Error ? e.message : e}). ${WIN_H}`)
+    } finally {
+      setTranscribing(false)
+    }
   }
 
   const judge = async () => {
@@ -162,19 +230,37 @@ export function AnswerJudge({ slug }: { slug: string }) {
             <textarea
               value={text + (interim ? ` ${interim}` : '')}
               onChange={(e) => setText(e.target.value)}
-              readOnly={listening}
-              placeholder={listening ? 'Listening… start talking' : 'Press Speak and talk, or type here. Win + H (Windows voice typing) also works.'}
+              readOnly={listening || transcribing}
+              placeholder={
+                listening
+                  ? engine === 'gemini' ? 'Recording… talk, then press Stop to see the text' : 'Listening… start talking'
+                  : transcribing ? 'Gemini is writing out what you said…'
+                  : `Press ${engine === 'gemini' ? 'Record' : 'Speak'} and talk, or type here. Win + H (Windows voice typing) also works.`
+              }
               rows={6}
             />
             <div className="judge-bar">
-              {Recognition ? (
+              {engine === 'gemini' ? (
+                <button className={`btn ${listening ? 'danger' : ''}`} onClick={listening ? finishRecording : record} disabled={transcribing}>
+                  {listening ? <MicOff size={15} /> : <Mic size={15} />} {listening ? 'Stop' : transcribing ? 'Writing it out…' : 'Record'}
+                </button>
+              ) : (
                 <button className={`btn ${listening ? 'danger' : ''}`} onClick={listening ? stop : start}>
                   {listening ? <MicOff size={15} /> : <Mic size={15} />} {listening ? 'Stop' : 'Speak'}
                 </button>
-              ) : (
-                <span className="muted" style={{ fontSize: '0.82rem' }}>
-                  No speech-to-text in this browser: click the box and press Win + H, or use Edge / Chrome.
-                </span>
+              )}
+              {!listening && !transcribing && (
+                <button
+                  className="link-btn judge-engine"
+                  title="Live words use the browser's speech service; Record sends the audio to Gemini (your key) to write it out"
+                  onClick={() => {
+                    setError(null)
+                    setEngine(engine === 'gemini' ? 'browser' : 'gemini')
+                  }}
+                  hidden={!Recognition && engine === 'gemini'}
+                >
+                  {engine === 'gemini' ? 'Use live browser speech' : 'Use Gemini transcription'}
+                </button>
               )}
               {listening && (
                 <span className={`judge-timer num ${seconds > 120 ? 'over' : ''}`}>
@@ -185,7 +271,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
               <span className="muted num" style={{ fontSize: '0.8rem' }}>
                 {n} words
               </span>
-              <button className="btn primary" onClick={judge} disabled={busy || n < 5}>
+              <button className="btn primary" onClick={judge} disabled={busy || transcribing || (listening && engine === 'gemini') || n < 5}>
                 <Gavel size={15} /> {busy ? (ai ? `${REVIEWER_LABEL[reviewer]} is reading…` : 'Checking…') : 'Judge'}
               </button>
             </div>

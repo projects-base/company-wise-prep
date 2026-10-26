@@ -8,6 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -71,6 +72,24 @@ public class GeminiGateway {
 		} catch (IOException e) {
 			throw new GeminiException("Gemini's reply was not valid JSON");
 		}
+	}
+
+	/**
+	 * Speech to text for the answer box, for browsers whose own speech service is unavailable
+	 * (blocked network, Brave, Firefox). {@code audio} is a short WAV recording.
+	 */
+	public String transcribe(byte[] audio, String mimeType) {
+		String key = settings.apiKey(Provider.GEMINI)
+				.orElseThrow(() -> new GeminiException("Transcription needs a Gemini API key (Settings)."));
+		Map<String, Object> body = Map.of("contents", List.of(Map.of("role", "user", "parts", List.of(
+				Map.of("inlineData", Map.of("mimeType", mimeType, "data", Base64.getEncoder().encodeToString(audio))),
+				Map.of("text", """
+						Transcribe this recording word for word, in English. It is a candidate answering a Java \
+						backend interview question, often with an Indian accent. Spell technical terms the way \
+						they are written in code (ApplicationContext, BeanPostProcessor, @Transactional, \
+						CompletableFuture, HashMap). Leave out filler sounds (um, uh). Reply with only the \
+						transcript, or with nothing if there is no speech.""")))));
+		return call(key, body).map(String::trim).orElse("");
 	}
 
 	/** A tiny request to check the key and model work (Settings → Test). */

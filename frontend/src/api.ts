@@ -351,6 +351,8 @@ export const api = {
       body: JSON.stringify({ answer }),
     }),
   reviewHistory: (slug: string) => call<number[]>(`/api/questions/${slug}/reviews`),
+  transcribe: (wav: Blob) =>
+    call<{ text: string | null; error: string | null }>('/api/transcribe', { method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: wav }),
   lifeline: (req: LifelineRequest) =>
     call<LifelineHelp>('/api/lifeline', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req) }),
   settings: () => call<Settings>('/api/settings'),
