@@ -52,7 +52,13 @@ export interface ProviderSettings {
   keySource: 'settings' | 'environment' | null
   model: string
   defaultModel: string
+  /** Tried in order when the main model is busy or failing (Gemini only). */
+  fallbacks: string[]
+  defaultFallbacks: string[]
 }
+
+export type ModelCheck = { model: string; ok: boolean; message: string; millis: number }
+export type ProviderTest = { ok: boolean; model: string; message: string; checks: ModelCheck[] | null }
 
 export interface Settings {
   reviewer: 'auto' | 'claude' | 'gemini' | 'both' | 'offline'
@@ -356,10 +362,10 @@ export const api = {
   lifeline: (req: LifelineRequest) =>
     call<LifelineHelp>('/api/lifeline', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req) }),
   settings: () => call<Settings>('/api/settings'),
-  saveSettings: (s: Partial<{ reviewer: string; claudeKey: string; claudeModel: string; geminiKey: string; geminiModel: string }>) =>
+  saveSettings: (s: Partial<{ reviewer: string; claudeKey: string; claudeModel: string; geminiKey: string; geminiModel: string; geminiFallbacks: string }>) =>
     call<Settings>('/api/settings', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(s) }),
   testProvider: (p: 'claude' | 'gemini') =>
-    call<{ ok: boolean; model: string; message: string }>(`/api/settings/test/${p}`, { method: 'POST' }),
+    call<ProviderTest>(`/api/settings/test/${p}`, { method: 'POST' }),
   progress: (slug: string, action: Action, notes?: string) =>
     call<Progress>(`/api/questions/${slug}/progress`, {
       method: 'PUT',

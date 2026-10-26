@@ -5,7 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -44,14 +46,17 @@ public class SettingsService {
 		AUTO, CLAUDE, GEMINI, BOTH, OFFLINE
 	}
 
-	public record ProviderView(boolean keySet, String keyHint, String keySource, String model, String defaultModel) {
+	/** {@code fallbacks}: models tried in order when the main one is busy or failing (Gemini only). */
+	public record ProviderView(boolean keySet, String keyHint, String keySource, String model, String defaultModel,
+			List<String> fallbacks, List<String> defaultFallbacks) {
 	}
 
 	public record View(String reviewer, String effective, ProviderView claude, ProviderView gemini, boolean encrypted) {
 	}
 
-	/** Null fields are left alone; an empty key removes the saved one. */
-	public record Update(String reviewer, String claudeKey, String claudeModel, String geminiKey, String geminiModel) {
+	/** Null fields are left alone; an empty value removes the saved one (back to the default). */
+	public record Update(String reviewer, String claudeKey, String claudeModel, String geminiKey, String geminiModel,
+			String geminiFallbacks) {
 	}
 
 	private static final String ENC = "enc:v1:";
@@ -60,16 +65,19 @@ public class SettingsService {
 	private final AppSettingRepository repo;
 	private final String claudeDefault;
 	private final String geminiDefault;
+	private final List<String> geminiFallbacksDefault;
 	private final SecretKeySpec cipherKey;
 	private final SecureRandom random = new SecureRandom();
 
 	public SettingsService(AppSettingRepository repo,
 			@Value("${prep.claude.model:claude-opus-5-5}") String claudeDefault,
 			@Value("${prep.gemini.model:gemini-3.6-flash}") String geminiDefault,
+			@Value("${prep.gemini.fallbacks:gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.8-flash}") String geminiFallbacks,
 			@Value("${prep.auth.token-secret:}") String secret) {
 		this.repo = repo;
 		this.claudeDefault = claudeDefault;
 		this.geminiDefault = geminiDefault;
+		this.geminiFallbacksDefault = split(geminiFallbacks);
 		this.cipherKey = secret == null || secret.isBlank() ? null : new SecretKeySpec(sha256(secret), "AES");
 	}
 
@@ -84,6 +92,17 @@ public class SettingsService {
 	@Transactional(readOnly = true)
 	public String model(Provider p) {
 		return read(p.id + ".model").orElse(p == Provider.CLAUDE ? claudeDefault : geminiDefault);
+	}
+
+	/** Models to try, in order, after the main one. Claude has none: its SDK retries overloads itself. */
+	@Transactional(readOnly = true)
+	public List<String> fallbacks(Provider p) {
+		if (p == Provider.CLAUDE) return List.of();
+		return read(p.id + ".fallbacks").map(SettingsService::split).orElse(geminiFallbacksDefault);
+	}
+
+	private static List<String> split(String csv) {
+		return Arrays.stream(csv.split("[,\\s]+")).map(String::trim).filter(m -> !m.isEmpty()).distinct().limit(6).toList();
 	}
 
 	@Transactional(readOnly = true)
@@ -122,6 +141,11 @@ public class SettingsService {
 		key(Provider.GEMINI, u.geminiKey());
 		model(Provider.CLAUDE, u.claudeModel());
 		model(Provider.GEMINI, u.geminiModel());
+		if (u.geminiFallbacks() != null) {
+			List<String> list = split(u.geminiFallbacks());
+			if (list.isEmpty()) repo.deleteById("gemini.fallbacks");
+			else write("gemini.fallbacks", String.join(",", list));
+		}
 		return view();
 	}
 
@@ -143,7 +167,8 @@ public class SettingsService {
 		String hint = key.map(k -> k.length() > 8 ? "…" + k.substring(k.length() - 4) : "set").orElse(null);
 		String source = saved.isPresent() ? "settings" : key.isPresent() ? "environment" : null;
 		return new ProviderView(key.isPresent(), hint, source, model(p),
-				p == Provider.CLAUDE ? claudeDefault : geminiDefault);
+				p == Provider.CLAUDE ? claudeDefault : geminiDefault, fallbacks(p),
+				p == Provider.CLAUDE ? List.of() : geminiFallbacksDefault);
 	}
 
 	private Optional<String> read(String name) {

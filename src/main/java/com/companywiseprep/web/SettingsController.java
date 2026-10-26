@@ -1,5 +1,6 @@
 package com.companywiseprep.web;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,19 +40,31 @@ public class SettingsController {
 		return settings.update(update);
 	}
 
-	public record TestResult(boolean ok, String model, String message) {
+	public record TestResult(boolean ok, String model, String message, List<GeminiGateway.ModelCheck> checks) {
 	}
 
-	/** Sends one tiny request with the saved key, so a wrong key or model shows up here, not mid-practice. */
+	/**
+	 * Sends one tiny request with the saved key, so a wrong key or model shows up here, not
+	 * mid-practice. For Gemini every model in the fallback chain is checked.
+	 */
 	@PostMapping("/test/{provider}")
 	public TestResult test(@PathVariable String provider) {
-		boolean isClaude = provider.toLowerCase(Locale.ROOT).startsWith("claude");
-		String model = isClaude ? claude.model() : gemini.model();
+		if (provider.toLowerCase(Locale.ROOT).startsWith("claude")) {
+			try {
+				return new TestResult(true, claude.model(), "Connected. The model replied: " + claude.ping(), null);
+			} catch (RuntimeException e) {
+				return new TestResult(false, claude.model(), e.getMessage(), null);
+			}
+		}
 		try {
-			String reply = isClaude ? claude.ping() : gemini.ping();
-			return new TestResult(true, model, "Connected. The model replied: " + reply);
+			List<GeminiGateway.ModelCheck> checks = gemini.ping();
+			long ok = checks.stream().filter(GeminiGateway.ModelCheck::ok).count();
+			String message = checks.get(0).ok() ? "Connected. " + ok + " of " + checks.size() + " models answered."
+					: ok > 0 ? "The main model failed, but " + ok + " fallback model(s) answered, so reviews will still work."
+					: "No model answered: " + checks.get(0).message();
+			return new TestResult(ok > 0, gemini.model(), message, checks);
 		} catch (RuntimeException e) {
-			return new TestResult(false, model, e.getMessage());
+			return new TestResult(false, gemini.model(), e.getMessage(), null);
 		}
 	}
 }

@@ -30,13 +30,13 @@ class SettingsServiceTest {
 			return s;
 		});
 		doAnswer(i -> rows.remove(i.<String>getArgument(0))).when(repo).deleteById(anyString());
-		return new SettingsService(repo, "claude-opus-5-5", "gemini-3.8-flash", secret);
+		return new SettingsService(repo, "claude-opus-5-5", "gemini-3.8-flash", "gemini-a, gemini-b", secret);
 	}
 
 	@Test
 	void keysAreEncryptedAtRestAndNeverShownBack() {
 		SettingsService s = service("a-long-random-app-token-secret");
-		s.update(new Update("gemini", null, null, "AIza-test-key-abcd1234", null));
+		s.update(new Update("gemini", null, null, "AIza-test-key-abcd1234", null, null));
 
 		assertThat(rows.get("gemini.key")).startsWith("enc:v1:").doesNotContain("AIza");
 		assertThat(s.apiKey(Provider.GEMINI)).contains("AIza-test-key-abcd1234");
@@ -49,14 +49,27 @@ class SettingsServiceTest {
 	@Test
 	void anEmptyKeyRemovesItAndTheReviewerFallsBack() {
 		SettingsService s = service("");
-		s.update(new Update("both", "sk-ant-test-0000", null, null, "gemini-custom"));
+		s.update(new Update("both", "sk-ant-test-0000", null, null, "gemini-custom", null));
 		assertThat(rows.get("anthropic.key")).startsWith("plain:");
 		assertThat(s.effectiveReviewer()).isEqualTo(SettingsService.Reviewer.CLAUDE);
 		assertThat(s.model(Provider.GEMINI)).isEqualTo("gemini-custom");
 
-		s.update(new Update(null, "", null, null, ""));
+		s.update(new Update(null, "", null, null, "", null));
 		assertThat(s.apiKey(Provider.CLAUDE)).isEmpty();
 		assertThat(s.model(Provider.GEMINI)).isEqualTo("gemini-3.8-flash");
 		assertThat(s.effectiveReviewer()).isEqualTo(SettingsService.Reviewer.OFFLINE);
+	}
+
+	@Test
+	void fallbacksAreAnOrderedListThatResetsWhenCleared() {
+		SettingsService s = service("");
+		assertThat(s.fallbacks(Provider.GEMINI)).containsExactly("gemini-a", "gemini-b");
+		assertThat(s.fallbacks(Provider.CLAUDE)).isEmpty();
+
+		s.update(new Update(null, null, null, null, null, " gemini-x,\ngemini-y , gemini-x "));
+		assertThat(s.fallbacks(Provider.GEMINI)).containsExactly("gemini-x", "gemini-y");
+
+		s.update(new Update(null, null, null, null, null, ""));
+		assertThat(s.fallbacks(Provider.GEMINI)).containsExactly("gemini-a", "gemini-b");
 	}
 }

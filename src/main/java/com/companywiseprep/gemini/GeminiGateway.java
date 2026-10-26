@@ -6,12 +6,21 @@ import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpTimeoutException;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Component;
 
@@ -29,6 +38,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class GeminiGateway {
 
+	private static final Logger log = LoggerFactory.getLogger(GeminiGateway.class);
+	private static final Pattern RETRY_IN = Pattern.compile("retry in (\\d+h\\d+m|\\d+h|\\d+m)");
 	private static final String BASE = "https://generativelanguage.googleapis.com/v1beta/models/";
 
 	private final SettingsService settings;
@@ -92,44 +103,74 @@ public class GeminiGateway {
 		return call(key, body).map(String::trim).orElse("");
 	}
 
-	/** A tiny request to check the key and model work (Settings → Test). */
-	public String ping() {
+	/** One model's answer to the Settings test. */
+	public record ModelCheck(String model, boolean ok, String message, long millis) {
+	}
+
+	/** Checks every model in the chain on its own (no fallback), so Settings → Test shows which ones work. */
+	public List<ModelCheck> ping() {
 		String key = settings.apiKey(Provider.GEMINI).orElseThrow(() -> new IllegalStateException("No Gemini API key is set."));
-		return call(key, Map.of("contents", List.of(Map.of("role", "user",
-				"parts", List.of(Map.of("text", "Reply with just the word OK."))))))
-				.map(String::trim).orElse("(blocked)");
+		Map<String, Object> body = Map.of("contents", List.of(Map.of("role", "user",
+				"parts", List.of(Map.of("text", "Reply with just the word OK.")))));
+		List<ModelCheck> out = new ArrayList<>();
+		for (String model : chain()) {
+			long t0 = System.nanoTime();
+			try {
+				String reply = call(key, model, body).map(String::trim).orElse("(blocked)");
+				out.add(new ModelCheck(model, true, "Replied: " + reply, (System.nanoTime() - t0) / 1_000_000));
+			} catch (GeminiException e) {
+				out.add(new ModelCheck(model, false, e.getMessage(), (System.nanoTime() - t0) / 1_000_000));
+			}
+		}
+		return out;
+	}
+
+	/** The main model, then the fallbacks in order, without repeats. */
+	public List<String> chain() {
+		Set<String> models = new LinkedHashSet<>();
+		models.add(model());
+		models.addAll(settings.fallbacks(Provider.GEMINI));
+		return List.copyOf(models);
 	}
 
 	/**
-	 * Overload (503) and rate limits (429) are usually brief: retry twice with a back-off, then try
-	 * the lighter model once, so a busy moment at Google doesn't fail the review.
+	 * Walks the model chain: a busy model (503) or one out of quota (429) gets one retry, then the
+	 * next model is tried; a missing model (404), a server error or a timeout moves straight on.
+	 * A bad key or a bad request stops at once, since every model would fail the same way.
 	 */
 	private Optional<String> call(String key, Map<String, Object> body) {
-		String model = model();
-		GeminiException last = null;
-		for (int attempt = 0; attempt < 3; attempt++) {
-			try {
-				return call(key, model, body);
-			} catch (Busy e) {
-				last = e;
-				pause(attempt == 0 ? 2_000 : 5_000);
+		List<String> models = chain();
+		List<String> failures = new ArrayList<>();
+		for (String model : models) {
+			for (int attempt = 0; attempt < 2; attempt++) {
+				try {
+					Optional<String> reply = call(key, model, body);
+					if (!failures.isEmpty()) log.info("Gemini answered with fallback {} after: {}", model, failures);
+					return reply;
+				} catch (Busy e) {
+					if (attempt == 0) pause(2_000);
+					else failures.add(e.getMessage());
+				} catch (Skip e) {
+					failures.add(e.getMessage());
+					break;
+				}
 			}
 		}
-		if (!model.equals(FALLBACK_MODEL)) {
-			try {
-				return call(key, FALLBACK_MODEL, body);
-			} catch (Busy e) {
-				throw new GeminiException(last.getMessage() + " (" + FALLBACK_MODEL + " was busy too; try again in a minute)");
-			}
-		}
-		throw last;
+		throw new GeminiException(models.size() == 1 ? failures.get(0)
+				: "All " + models.size() + " Gemini models failed. " + String.join(" | ", failures)
+						+ ". Try again in a minute, or change the models in Settings");
 	}
 
-	private static final String FALLBACK_MODEL = "gemini-3.5-flash-lite";
-
-	/** HTTP 503 or 429: worth retrying. */
+	/** HTTP 503 or 429: worth one retry before moving on. */
 	private static class Busy extends GeminiException {
 		Busy(String message) {
+			super(message);
+		}
+	}
+
+	/** This model can't answer (missing, server error, timeout): go to the next one. */
+	private static class Skip extends GeminiException {
+		Skip(String message) {
 			super(message);
 		}
 	}
@@ -147,7 +188,7 @@ public class GeminiGateway {
 		try {
 			HttpRequest req = HttpRequest.newBuilder()
 					.uri(URI.create(BASE + URLEncoder.encode(model, StandardCharsets.UTF_8) + ":generateContent"))
-					.timeout(Duration.ofSeconds(90))
+					.timeout(Duration.ofSeconds(60))
 					.header("Content-Type", "application/json")
 					.header("x-goog-api-key", key)
 					.POST(HttpRequest.BodyPublishers.ofString(json.writeValueAsString(body)))
@@ -157,7 +198,14 @@ public class GeminiGateway {
 			if (res.statusCode() / 100 != 2) {
 				String msg = root.path("error").path("message").asText("");
 				String text = "Gemini (" + model + ") returned HTTP " + res.statusCode() + (msg.isBlank() ? "" : ": " + msg);
+				// A used-up daily quota won't come back in seconds: no retry, go to the next model.
+				if (res.statusCode() == 429 && msg.contains("per day")) {
+					Matcher wait = RETRY_IN.matcher(msg);
+					throw new Skip("Gemini (" + model + "): free daily quota used up"
+							+ (wait.find() ? ", resets in " + wait.group(1) : ""));
+				}
 				if (res.statusCode() == 503 || res.statusCode() == 429) throw new Busy(text);
+				if (res.statusCode() == 404 || res.statusCode() >= 500) throw new Skip(text);
 				throw new GeminiException(text);
 			}
 			JsonNode parts = root.path("candidates").path(0).path("content").path("parts");
@@ -166,6 +214,8 @@ public class GeminiGateway {
 				if (!p.path("thought").asBoolean(false)) out.append(p.path("text").asText(""));
 			}
 			return out.isEmpty() ? Optional.empty() : Optional.of(out.toString());
+		} catch (HttpTimeoutException e) {
+			throw new Skip("Gemini (" + model + ") took too long");
 		} catch (IOException e) {
 			throw new GeminiException("Could not reach Gemini: " + e.getMessage());
 		} catch (InterruptedException e) {

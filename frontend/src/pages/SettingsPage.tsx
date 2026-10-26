@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Check, ExternalLink, KeyRound, Lock, PlugZap, Trash2, X } from 'lucide-react'
-import { api, type ProviderSettings, type Settings } from '../api'
+import { api, type ProviderSettings, type Settings, type ProviderTest } from '../api'
 import { useFeatures } from '../features'
 import { Status, useLoad } from '../ui'
 
@@ -102,7 +102,8 @@ function ProviderCard({ id, title, p, keyUrl, cost, onSave }: {
 }) {
   const [key, setKey] = useState('')
   const [model, setModel] = useState(p.model)
-  const [test, setTest] = useState<{ ok: boolean; message: string } | null>(null)
+  const [test, setTest] = useState<ProviderTest | null>(null)
+  const [fallbacks, setFallbacks] = useState(p.fallbacks.join(', '))
   const [testing, setTesting] = useState(false)
   const keyField = id === 'claude' ? 'claudeKey' : 'geminiKey'
   const modelField = id === 'claude' ? 'claudeModel' : 'geminiModel'
@@ -113,7 +114,7 @@ function ProviderCard({ id, title, p, keyUrl, cost, onSave }: {
     try {
       setTest(await api.testProvider(id))
     } catch (e) {
-      setTest({ ok: false, message: e instanceof Error ? e.message : 'Test failed' })
+      setTest({ ok: false, model: p.model, message: e instanceof Error ? e.message : 'Test failed', checks: null })
     } finally {
       setTesting(false)
     }
@@ -185,9 +186,29 @@ function ProviderCard({ id, title, p, keyUrl, cost, onSave }: {
         <span className="field-hint muted">Default: {p.defaultModel}. {cost}</span>
       </label>
 
+      {id === 'gemini' && (
+        <label className="field">
+          <span>Fallback models, in order</span>
+          <div className="row" style={{ gap: 8 }}>
+            <input value={fallbacks} onChange={(e) => setFallbacks(e.target.value)} spellCheck={false} placeholder="model-a, model-b, model-c" />
+            <button className="btn" disabled={fallbacks.trim() === p.fallbacks.join(', ')} onClick={() => onSave({ geminiFallbacks: fallbacks })}>
+              Save
+            </button>
+            {p.fallbacks.join(',') !== p.defaultFallbacks.join(',') && (
+              <button className="btn ghost" onClick={() => { setFallbacks(p.defaultFallbacks.join(', ')); void onSave({ geminiFallbacks: '' }) }}>
+                Reset
+              </button>
+            )}
+          </div>
+          <span className="field-hint muted">
+            When {p.model} is busy, out of quota or failing, these are tried one by one, so a review or transcript still comes back.
+          </span>
+        </label>
+      )}
+
       <div className="row" style={{ gap: 10, flexWrap: 'wrap' }}>
         <button className="btn" disabled={!p.keySet || testing} onClick={runTest}>
-          <PlugZap size={14} /> {testing ? 'Testing…' : 'Test connection'}
+          <PlugZap size={14} /> {testing ? 'Testing every model…' : 'Test connection'}
         </button>
         {test && (
           <span className={`test-result ${test.ok ? 'ok' : 'bad'}`}>
@@ -195,6 +216,19 @@ function ProviderCard({ id, title, p, keyUrl, cost, onSave }: {
           </span>
         )}
       </div>
+      {test?.checks && (
+        <ol className="model-checks">
+          {test.checks.map((c, i) => (
+            <li key={c.model} className={c.ok ? 'ok' : 'bad'}>
+              {c.ok ? <Check size={13} /> : <X size={13} />}
+              <code>{c.model}</code>
+              <span className="muted">{i === 0 ? 'main' : `fallback ${i}`}</span>
+              <span className="muted num">{(c.millis / 1000).toFixed(1)} s</span>
+              {!c.ok && <span className="model-check-why">{c.message.replace(/^Gemini \([^)]*\) returned /, '')}</span>}
+            </li>
+          ))}
+        </ol>
+      )}
     </section>
   )
 }

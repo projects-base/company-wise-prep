@@ -983,3 +983,8 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 @media (max-width: 640px) { .lifeline-fab { right: 16px; bottom: 16px; } .lifeline { top: auto; height: 75vh; border-left: 0; border-top: 1px solid var(--line); border-radius: 16px 16px 0 0; } }
 @media (prefers-reduced-motion: reduce) { .lifeline, .lifeline-thinking { animation: none; } .lifeline-fab { transition: none; } .lifeline-fab:hover { transform: none; } }
 .judge-engine { margin-top: 0; font-size: 0.8rem; }
+.model-checks { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 6px; font-size: 0.86rem; }
+.model-checks li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--surface-2); }
+.model-checks li.ok svg { color: var(--ok); }
+.model-checks li.bad svg { color: var(--bad); }
+.model-check-why { flex-basis: 100%; color: var(--text-2); font-size: 0.8rem; overflow-wrap: anywhere; }
