@@ -111,6 +111,20 @@ class AppTest {
 	}
 
 	@Test
+	void aTheoryAnswerIsReviewedOfflineAndItsScoreKept() throws Exception {
+		String body = "{\"answer\":\"The application context is the IoC container; in my project I used post construct to warm a cache.\"}";
+		mvc.perform(post("/api/questions/spring-applicationcontext-and-bean-lifecycle/review")
+				.contentType(MediaType.APPLICATION_JSON).content(body))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.mode", is("offline")))
+				.andExpect(jsonPath("$.layers", hasSize(4)))
+				.andExpect(jsonPath("$.history", hasSize(greaterThan(0))));
+		mvc.perform(post("/api/questions/spring-applicationcontext-and-bean-lifecycle/review")
+				.contentType(MediaType.APPLICATION_JSON).content("{\"answer\":\"\"}"))
+				.andExpect(status().isBadRequest());
+	}
+
+	@Test
 	void archivedCampaignsAreHiddenButStillReachable() throws Exception {
 		mvc.perform(get("/api/campaigns"))
 				.andExpect(jsonPath("$[*].id", hasItem("backend-2027-01")))

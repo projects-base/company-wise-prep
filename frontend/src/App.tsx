@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Celebrations } from './rewards'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
-import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
+import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, PanelLeftClose, PanelLeftOpen, Settings2 } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import LoginPage from './pages/LoginPage'
 import { FeaturesContext } from './features'
@@ -11,6 +11,7 @@ import PlanPage from './pages/PlanPage'
 import BankPage from './pages/BankPage'
 import QuestionPage from './pages/QuestionPage'
 import CompaniesPage from './pages/CompaniesPage'
+import SettingsPage from './pages/SettingsPage'
 import CompanyPage from './pages/CompanyPage'
 import AcademyPage from './pages/AcademyPage'
 import ModulePage from './pages/ModulePage'
@@ -28,6 +29,7 @@ const NAV = [
   { to: '/bank', label: 'Question bank', icon: Library },
   { to: '/playground', label: 'Playground', icon: Code2 },
   { to: '/companies', label: 'Companies', icon: Building2 },
+  { to: '/settings', label: 'Settings', icon: Settings2 },
 ]
 
 export default function App() {
@@ -43,6 +45,7 @@ export default function App() {
   // 'checking' until the server says whether a login is needed (only on the hosted app).
   const [auth, setAuth] = useState<'checking' | 'login' | 'ok' | 'down'>('checking')
   const [codeRunner, setCodeRunner] = useState(true)
+  const [reviewer, setReviewer] = useState('offline')
   const [navCollapsed, setNavCollapsed] = useState(() => {
     try {
       return localStorage.getItem('nav.collapsed') === '1'
@@ -66,6 +69,7 @@ export default function App() {
       .authStatus()
       .then((s) => {
         setCodeRunner(s.codeRunner !== false)
+        setReviewer(s.reviewer ?? 'offline')
         setAuth(s.authRequired && !s.authenticated ? 'login' : 'ok')
       })
       .catch(() => setAuth('down'))
@@ -110,7 +114,7 @@ export default function App() {
   const daysLeft = campaign ? Math.max(0, daysBetween(localToday(), campaign.interview)) : null
 
   return (
-    <FeaturesContext.Provider value={{ codeRunner }}>
+    <FeaturesContext.Provider value={{ codeRunner, reviewer, setReviewer }}>
     <CampaignContext.Provider value={campaign}>
       <div className={`shell ${navCollapsed ? 'nav-collapsed' : ''}`}>
         <aside className="sidebar">
@@ -164,6 +168,7 @@ export default function App() {
             <Route path="/playground" element={<PlaygroundPage />} />
             <Route path="/companies" element={<CompaniesPage />} />
             <Route path="/companies/:slug" element={<CompanyPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>
         <Celebrations />

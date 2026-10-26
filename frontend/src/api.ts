@@ -28,6 +28,40 @@ export interface Session {
   questions: string[]
 }
 
+/** A judged theory answer (review.AnswerReview). Layer scores are 0-10; null = nothing to compare. */
+export interface AnswerReview {
+  mode: 'claude' | 'gemini' | 'offline'
+  score: number
+  verdict: string
+  layers: { key: string; name: string; score: number | null; comment: string }[]
+  covered: string[]
+  missed: string[]
+  mistakes: string[]
+  improvedAnswer: string | null
+  followUp: string | null
+  note: string | null
+  history: number[]
+  /** Gemini's review when both reviewers are on. */
+  second: AnswerReview | null
+}
+
+export interface ProviderSettings {
+  keySet: boolean
+  /** Last four characters only; the key itself never comes back from the server. */
+  keyHint: string | null
+  keySource: 'settings' | 'environment' | null
+  model: string
+  defaultModel: string
+}
+
+export interface Settings {
+  reviewer: 'auto' | 'claude' | 'gemini' | 'both' | 'offline'
+  effective: string
+  claude: ProviderSettings
+  gemini: ProviderSettings
+  encrypted: boolean
+}
+
 export interface PlanItem {
   slug: string
   title: string
@@ -299,6 +333,18 @@ export const api = {
   company: (slug: string) => call<CompanyView>(`/api/companies/${slug}`),
   questions: () => call<QuestionSummary[]>('/api/questions'),
   question: (slug: string) => call<QuestionView>(`/api/questions/${slug}`),
+  review: (slug: string, answer: string) =>
+    call<AnswerReview>(`/api/questions/${slug}/review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answer }),
+    }),
+  reviewHistory: (slug: string) => call<number[]>(`/api/questions/${slug}/reviews`),
+  settings: () => call<Settings>('/api/settings'),
+  saveSettings: (s: Partial<{ reviewer: string; claudeKey: string; claudeModel: string; geminiKey: string; geminiModel: string }>) =>
+    call<Settings>('/api/settings', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(s) }),
+  testProvider: (p: 'claude' | 'gemini') =>
+    call<{ ok: boolean; model: string; message: string }>(`/api/settings/test/${p}`, { method: 'POST' }),
   progress: (slug: string, action: Action, notes?: string) =>
     call<Progress>(`/api/questions/${slug}/progress`, {
       method: 'PUT',
@@ -334,7 +380,7 @@ export const api = {
       body: JSON.stringify({ code, stdin }),
     }),
   authStatus: () =>
-    call<{ authRequired: boolean; authenticated: boolean; codeRunner: boolean }>('/api/auth/status'),
+    call<{ authRequired: boolean; authenticated: boolean; codeRunner: boolean; reviewer?: string }>('/api/auth/status'),
   login: async (password: string): Promise<{ ok: true } | { ok: false; message: string }> => {
     const res = await request('/api/auth/login', {
       method: 'POST',

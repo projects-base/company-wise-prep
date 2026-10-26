@@ -1,5 +1,6 @@
 package com.companywiseprep.auth;
 
+import com.companywiseprep.settings.SettingsService;
 import java.time.Instant;
 
 import org.springframework.http.HttpStatus;
@@ -17,24 +18,28 @@ public class AuthController {
 
 	private final AuthService auth;
 	private final boolean codeRunner;
+	private final SettingsService settings;
 
 	public AuthController(AuthService auth,
-			@org.springframework.beans.factory.annotation.Value("${prep.code-runner.enabled:true}") boolean codeRunner) {
+			@org.springframework.beans.factory.annotation.Value("${prep.code-runner.enabled:true}") boolean codeRunner,
+			SettingsService settings) {
 		this.auth = auth;
 		this.codeRunner = codeRunner;
+		this.settings = settings;
 	}
 
 	/**
 	 * Public: tells the UI whether to show a login screen and which features this server has.
 	 * Also Render's health check.
 	 */
-	public record Status(boolean authRequired, boolean authenticated, boolean codeRunner) {
+	public record Status(boolean authRequired, boolean authenticated, boolean codeRunner, String reviewer) {
 	}
 
 	@GetMapping("/status")
 	public Status status(@RequestHeader(name = "Authorization", required = false) String header) {
 		String token = header != null && header.startsWith("Bearer ") ? header.substring(7).trim() : null;
-		return new Status(auth.enabled(), !auth.enabled() || auth.valid(token), codeRunner);
+		return new Status(auth.enabled(), !auth.enabled() || auth.valid(token), codeRunner,
+				auth.enabled() && !auth.valid(token) ? "offline" : settings.view().effective());
 	}
 
 	public record LoginRequest(String password) {

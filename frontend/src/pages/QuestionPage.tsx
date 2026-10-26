@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Check, ExternalLink, Eye, Star } from 'lucide-react'
+import { AnswerJudge } from '../AnswerJudge'
 import { AnswerProse } from '../AnswerProse'
 import { api, leetcodeUrl, type Action, type Challenge } from '../api'
 import Workspace from '../code/Workspace'
@@ -162,6 +163,8 @@ export default function QuestionPage() {
               </ul>
             </section>
           )}
+
+          {q.type !== 'DSA' && <AnswerJudge key={q.slug} slug={q.slug} />}
 
           {q.answer && <Answer key={q.slug} text={q.answer} id={q.slug} />}
 

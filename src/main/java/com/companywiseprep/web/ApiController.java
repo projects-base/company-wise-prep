@@ -16,9 +16,13 @@ import com.companywiseprep.campaign.CampaignConfig;
 import com.companywiseprep.campaign.CampaignService;
 import com.companywiseprep.data.DataImporter;
 import com.companywiseprep.progress.ProgressService;
+import com.companywiseprep.review.AnswerReview;
+import com.companywiseprep.review.AnswerReviewService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @RestController
 @RequestMapping("/api")
@@ -29,14 +33,16 @@ public class ApiController {
 	private final ProgressService progress;
 	private final DataImporter importer;
 	private final AcademyService academy;
+	private final AnswerReviewService reviews;
 
 	public ApiController(BankService bank, CampaignService campaigns, ProgressService progress,
-			DataImporter importer, AcademyService academy) {
+			DataImporter importer, AcademyService academy, AnswerReviewService reviews) {
 		this.bank = bank;
 		this.campaigns = campaigns;
 		this.progress = progress;
 		this.importer = importer;
 		this.academy = academy;
+		this.reviews = reviews;
 	}
 
 	@GetMapping("/companies")
@@ -65,6 +71,21 @@ public class ApiController {
 	@PutMapping("/questions/{slug}/progress")
 	public ProgressService.View updateProgress(@PathVariable String slug, @Valid @RequestBody ProgressRequest req) {
 		return progress.apply(slug, req.action(), req.notes());
+	}
+
+	public record ReviewRequest(@NotBlank @Size(max = 10_000) String answer) {
+	}
+
+	/** Judges a theory answer (spoken or typed) against the model answer. */
+	@PostMapping("/questions/{slug}/review")
+	public AnswerReview review(@PathVariable String slug, @Valid @RequestBody ReviewRequest req) {
+		return reviews.review(slug, req.answer());
+	}
+
+	/** Past review scores for a question, oldest first. */
+	@GetMapping("/questions/{slug}/reviews")
+	public List<Double> reviewHistory(@PathVariable String slug) {
+		return reviews.history(slug);
 	}
 
 	@GetMapping("/campaigns")

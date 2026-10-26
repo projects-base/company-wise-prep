@@ -58,3 +58,9 @@ prep:
   judge:
     heap: ${JUDGE_HEAP:512m}
     parallel: ${JUDGE_PARALLEL:0}
+  # Answer reviewers. Keys and models are set on the Settings page (or ANTHROPIC_API_KEY /
+  # GEMINI_API_KEY in the environment); these are the default models.
+  claude:
+    model: ${CLAUDE_MODEL:claude-opus-5-5}
+  gemini:
+    model: ${GEMINI_MODEL:gemini-3.8-flash}
