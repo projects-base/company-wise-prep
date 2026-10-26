@@ -29,3 +29,9 @@ sightings:
   seen_on: 2018-02
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 (technical round 2; invite said system design and SQL)
+  seen_on: 2026-10
+  confidence: verified
+  source: Akhil's own TR2 interview, 2026-10-26

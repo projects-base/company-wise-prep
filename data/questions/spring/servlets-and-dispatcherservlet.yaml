@@ -1,0 +1,25 @@
+slug: servlets-and-dispatcherservlet
+title: Servlets, the servlet lifecycle and DispatcherServlet
+type: SPRING
+difficulty: easy
+tags:
+- servlet
+- spring-mvc
+- dispatcherservlet
+- web
+leetcode: null
+prompt: |
+  What is a servlet and its lifecycle? How does Spring MVC use servlets (DispatcherServlet)?
+follow_ups:
+- Filter vs HandlerInterceptor.
+- Is a servlet thread-safe? One instance, many threads.
+academy:
+- S2
+- L6
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 (technical round 2; invite said system design and SQL)
+  seen_on: 2026-10
+  confidence: verified
+  source: Akhil's own TR2 interview, 2026-10-26

@@ -952,6 +952,241 @@ drills:
             3. **Timeouts and circuit breakers**, gateways and pods pre-scaled before kickoff, rate limit per user.
             - Bonus: wallet partitioned by `user_id` so no single row is hot.
 
+    - title: TR2 actual (Spring & Java)
+      date: "2026-10-26"
+      out_of: 8
+      questions:
+        - q: "What is Spring Boot, and what does @SpringBootApplication do?"
+          model: |
+            **Spring plus opinions: auto-configuration, starters, an embedded server and externalised config, so an app runs with almost no setup.**
+            - `@SpringBootApplication` = `@Configuration` + `@EnableAutoConfiguration` + `@ComponentScan`.
+            - Auto-configuration is conditional, and your own bean wins over the default.
+
+            ```java
+            @SpringBootApplication
+            public class BetApp {
+                public static void main(String[] args) { SpringApplication.run(BetApp.class, args); }
+            }
+
+            // Roughly what a starter's auto-configuration looks like
+            @AutoConfiguration
+            @ConditionalOnClass(DataSource.class)
+            class DataSourceAutoConfig {
+                @Bean @ConditionalOnMissingBean          // skipped if you define your own DataSource
+                DataSource dataSource(DataSourceProperties p) { return p.initializeDataSourceBuilder().build(); }
+            }
+            ```
+          followups:
+            - q: "How do you see which auto-configurations were applied?"
+              a: "Run with `--debug` (or `debug=true`) for the conditions report, or hit Actuator's `/actuator/conditions`."
+            - q: "How do you switch off one auto-configuration?"
+              a: "`@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)` or `spring.autoconfigure.exclude` in properties. Usually just defining your own bean is enough."
+            - q: "How does Spring Boot find auto-configurations?"
+              a: "It reads `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` in each starter jar (formerly `spring.factories`), then evaluates the `@Conditional...` annotations."
+            - q: "Order of property sources?"
+              a: "Command-line args beat environment variables, which beat `application-{profile}.yml`, which beats `application.yml`. Profiles via `spring.profiles.active`."
+
+        - q: "What is the ApplicationContext, and what types of context are there?"
+          model: |
+            **The IoC container: it creates, wires and manages beans, and adds events, i18n, the Environment and AOP on top of the basic BeanFactory.**
+            - `BeanFactory` is minimal and lazy; `ApplicationContext` extends it and creates singletons **eagerly** at startup, so wiring errors show up at boot.
+            - Types: `AnnotationConfigApplicationContext` (Java config), `ClassPathXmlApplicationContext` / `FileSystemXmlApplicationContext` (XML), `WebApplicationContext` (web), `GenericApplicationContext`.
+            - Spring Boot picks by app type: **NONE** → `AnnotationConfigApplicationContext`, **SERVLET** → `AnnotationConfigServletWebServerApplicationContext`, **REACTIVE** → `AnnotationConfigReactiveWebServerApplicationContext`.
+
+            ```java
+            // Plain Spring, no Boot
+            var ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+            BetService bets = ctx.getBean(BetService.class);
+            ctx.close();                                   // runs @PreDestroy callbacks
+
+            // Boot
+            ConfigurableApplicationContext ctx2 = SpringApplication.run(BetApp.class, args);
+            ```
+          followups:
+            - q: "BeanFactory vs ApplicationContext in one line?"
+              a: "BeanFactory only creates and wires beans, lazily. ApplicationContext adds eager singletons, events, i18n, Environment/profiles, resource loading and automatic BeanPostProcessor registration (so AOP works). You always use ApplicationContext."
+            - q: "Can there be more than one context? Parent and child?"
+              a: "Yes. Classic Spring MVC had a root context (services, repositories) and a child `WebApplicationContext` per DispatcherServlet (controllers). A child sees the parent's beans, not the reverse. Boot normally uses one context."
+            - q: "How do you react when the context is ready?"
+              a: "`@EventListener(ApplicationReadyEvent.class)`, or implement `CommandLineRunner` / `ApplicationRunner`."
+
+        - q: "Walk through the Spring bean lifecycle."
+          model: |
+            **Instantiate → inject dependencies → Aware callbacks → BeanPostProcessor before → init → BeanPostProcessor after → ready → destroy on shutdown.**
+            1. Constructor, then dependency injection.
+            2. `BeanNameAware`, `BeanFactoryAware`, `ApplicationContextAware`.
+            3. `postProcessBeforeInitialization`.
+            4. `@PostConstruct` → `afterPropertiesSet()` → custom `initMethod`.
+            5. `postProcessAfterInitialization`: **AOP proxies are created here**.
+            6. Shutdown: `@PreDestroy` → `destroy()` → `destroyMethod`.
+
+            ```java
+            @Component
+            class OddsCache {
+                private final OddsClient client;
+                OddsCache(OddsClient client) { this.client = client; }   // 1. construct + inject
+
+                @PostConstruct void warmUp()  { client.loadAll(); }        // 4. init: deps are ready here
+                @PreDestroy   void flush()    { client.close(); }          // 6. on shutdown
+            }
+            ```
+          followups:
+            - q: "Why not do the warm-up in the constructor?"
+              a: "Field and setter injection happen after the constructor, and proxies don't exist yet. `@PostConstruct` runs once every dependency is injected."
+            - q: "What are the bean scopes?"
+              a: "singleton (default, one per context), prototype (new on every request for the bean), and for web: request, session, application, websocket."
+            - q: "You inject a prototype bean into a singleton. What happens?"
+              a: "It's injected once, so the singleton keeps the same instance. Fix: `ObjectProvider<T>.getObject()`, `@Lookup` method, or a scoped proxy."
+            - q: "Does Spring call @PreDestroy on prototype beans?"
+              a: "No. Spring hands the prototype over and stops managing it, so you clean it up yourself."
+
+        - q: "IoC vs dependency injection: what is the difference?"
+          model: |
+            **IoC is the principle: the framework, not your code, creates objects and controls their lifecycle. DI is how Spring does it: dependencies are handed in from outside.**
+            - Kinds: constructor, setter, field. **Constructor injection** is preferred: final fields, explicit required dependencies, easy to test, and cycles fail fast.
+
+            ```java
+            // Without IoC: the class builds its own dependency (tightly coupled, hard to test)
+            class BetService { private final PaymentGateway gw = new RazorpayGateway(); }
+
+            // With DI: Spring passes it in; a test passes a mock
+            @Service
+            class BetService {
+                private final PaymentGateway gw;
+                BetService(PaymentGateway gw) { this.gw = gw; }          // single constructor: no @Autowired needed
+            }
+            ```
+          followups:
+            - q: "Two beans implement PaymentGateway. Which gets injected?"
+              a: "Startup fails with NoUniqueBeanDefinitionException unless you mark one `@Primary` or pick with `@Qualifier(\"razorpay\")`. You can also inject `List<PaymentGateway>` or `Map<String, PaymentGateway>` to get all."
+            - q: "Why is field injection discouraged?"
+              a: "The field can't be final, the class can't be built without Spring (hard to unit test), and required dependencies are hidden."
+            - q: "How does Spring handle circular dependencies?"
+              a: "With constructor injection it fails at startup (good: it's a design smell). Spring Boot 2.6+ forbids cycles by default. Fix by splitting the class, or `@Lazy` on one side as a last resort."
+
+        - q: "What is AOP, where do you use it, and what are the advice types?"
+          model: |
+            **AOP pulls cross-cutting code (transactions, logging, security) out of business methods into an aspect that Spring applies through a proxy.**
+            - Used for: `@Transactional`, `@Cacheable`, `@Async`, `@PreAuthorize`, logging and metrics, retries.
+            - Advice types: `@Before`, `@AfterReturning`, `@AfterThrowing`, `@After` (like finally), `@Around` (wraps the call, can change or skip it).
+            - Terms: aspect = the module; join point = a method call; pointcut = which calls; weaving = applying it (Spring: at runtime, with proxies).
+
+            ```java
+            @Aspect @Component
+            class TimingAspect {
+                @Around("execution(* com.entain.bet..*Service.*(..))")
+                Object time(ProceedingJoinPoint pjp) throws Throwable {
+                    long t = System.nanoTime();
+                    try { return pjp.proceed(); }                          // the real method runs here
+                    finally { log.info("{} took {} ms", pjp.getSignature(), (System.nanoTime() - t) / 1_000_000); }
+                }
+
+                @AfterThrowing(pointcut = "execution(* com.entain.wallet..*(..))", throwing = "ex")
+                void alert(Exception ex) { metrics.increment("wallet.errors"); }
+            }
+            ```
+          followups:
+            - q: "Why does @Transactional not work when a method calls another method in the same class?"
+              a: "Self-invocation: `this.place()` calls the real object, not the proxy, so no advice runs. Fix: move the method to another bean, or inject the bean into itself (`@Lazy`), or use AspectJ weaving."
+            - q: "JDK dynamic proxy vs CGLIB?"
+              a: "JDK proxies implement the bean's interfaces; CGLIB subclasses the class. Spring Boot defaults to CGLIB. CGLIB can't proxy final classes or final/private methods, so advice on them silently does nothing."
+            - q: "Which advice would you use for retries, and why?"
+              a: "`@Around`: it's the only one that can call `proceed()` again, or not at all. In practice use Spring Retry's `@Retryable` or Resilience4j, which are built on it."
+            - q: "Spring AOP vs AspectJ?"
+              a: "Spring AOP is proxy-based, runtime, method calls on Spring beans only. AspectJ weaves bytecode (compile or load time) and also handles fields, constructors and self-calls."
+
+        - q: "What is a servlet, its lifecycle, and how does Spring MVC use it?"
+          model: |
+            **A Java class the container (Tomcat) calls for HTTP requests: `init()` once, `service()` for every request on a pool thread, `destroy()` once.**
+            - One instance serves many threads, so never keep request state in fields.
+            - Spring MVC has one front controller, `DispatcherServlet`: HandlerMapping → HandlerAdapter → your `@Controller` → message converters (JSON) or ViewResolver.
+
+            ```java
+            @WebServlet("/health")
+            public class HealthServlet extends HttpServlet {
+                private int count;                                         // shared across threads: a race
+                @Override protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+                    res.setContentType("text/plain");
+                    res.getWriter().write("UP");
+                }
+            }
+            ```
+          followups:
+            - q: "Filter vs HandlerInterceptor?"
+              a: "A Filter is servlet-level: it runs before DispatcherServlet for every request (auth tokens, CORS, logging, compression). A HandlerInterceptor is Spring MVC: it runs around controllers and knows which handler was chosen (preHandle, postHandle, afterCompletion)."
+            - q: "How many threads does Tomcat use, and what if they run out?"
+              a: "Default max 200 worker threads (`server.tomcat.threads.max`). When busy, requests queue up to `accept-count`, then connections are refused. Slow downstream calls exhaust them, so use timeouts. Java 21 virtual threads (`spring.threads.virtual.enabled=true`) lift this limit."
+            - q: "Is a Spring @Controller thread-safe?"
+              a: "It's a singleton, like a servlet, so it is safe only if it holds no mutable state. Keep request data in local variables."
+
+        - q: "Runnable vs Callable, Future vs FutureTask vs CompletableFuture?"
+          model: |
+            **Runnable returns nothing and can't throw checked exceptions; Callable returns a value and can throw.**
+            - `Future`: handle from `executor.submit()`. `get()` **blocks**; also `cancel()`, `isDone()`.
+            - `FutureTask`: a concrete `RunnableFuture` wrapping a Callable or Runnable, so a Thread or Executor can run it. It's what `submit()` uses inside.
+            - `CompletableFuture`: **non-blocking composition**. Give it your own executor; the common ForkJoinPool is shared by the whole JVM.
+
+            ```java
+            ExecutorService pool = Executors.newFixedThreadPool(8);
+
+            Runnable audit = () -> log.info("bet placed");                 // no result
+            Callable<BigDecimal> odds = () -> oddsClient.price(selId);     // result, may throw
+            Future<BigDecimal> f = pool.submit(odds);
+            BigDecimal price = f.get(200, TimeUnit.MILLISECONDS);          // blocks, with a timeout
+
+            FutureTask<BigDecimal> task = new FutureTask<>(odds);
+            new Thread(task).start();  task.get();
+
+            CompletableFuture<User> user   = CompletableFuture.supplyAsync(() -> users.find(id), pool);
+            CompletableFuture<Wallet> wall = CompletableFuture.supplyAsync(() -> wallets.find(id), pool);
+            BetSlipView view = user.thenCombine(wall, BetSlipView::new)    // two calls in parallel
+                .orTimeout(300, TimeUnit.MILLISECONDS)
+                .exceptionally(ex -> BetSlipView.fallback())
+                .join();
+            ```
+          followups:
+            - q: "thenApply vs thenCompose vs thenCombine?"
+              a: "thenApply maps the result (like `map`). thenCompose chains a call that itself returns a CompletableFuture (like `flatMap`, avoids nesting). thenCombine joins two independent futures when both finish."
+            - q: "exceptionally vs handle vs whenComplete?"
+              a: "exceptionally runs only on failure and returns a fallback. handle runs on both and can transform either. whenComplete sees both but can't change the result (side effects such as logging)."
+            - q: "execute() vs submit()?"
+              a: "execute(Runnable) returns nothing, and an exception goes to the thread's uncaught handler. submit returns a Future, and the exception is captured and rethrown wrapped in ExecutionException from get()."
+            - q: "How do you wait for many futures?"
+              a: "`CompletableFuture.allOf(f1, f2, f3).join()`, then read each; `anyOf` for the first. With plain executors, `invokeAll`."
+            - q: "How does @Async relate to this?"
+              a: "`@Async` methods run on a Spring TaskExecutor through a proxy and can return `CompletableFuture<T>`. Configure the executor bean, and remember self-invocation skips it."
+
+        - q: "What is SQL injection? PreparedStatement vs Statement?"
+          model: |
+            **Injection is user input concatenated into SQL that changes the query. A PreparedStatement sends the SQL with `?` placeholders first and binds values as data, so input is never parsed as SQL.**
+            - `Statement`: string built at runtime, compiled every time, injectable.
+            - `PreparedStatement`: precompiled and reusable, typed setters, safe.
+
+            ```java
+            // Vulnerable: name = "x' OR '1'='1" returns every user
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM users WHERE name = '" + name + "'");
+
+            // Safe: the value is bound, never parsed as SQL
+            try (PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE name = ?")) {
+                ps.setString(1, name);
+                try (ResultSet r = ps.executeQuery()) { /* ... */ }
+            }
+
+            // Spring
+            jdbc.query("SELECT * FROM bet WHERE user_id = ?", mapper, userId);
+            em.createQuery("FROM Bet b WHERE b.userId = :u", Bet.class).setParameter("u", userId);
+            ```
+          followups:
+            - q: "Can a PreparedStatement bind a column name for ORDER BY?"
+              a: "No. Placeholders bind values only, not identifiers. Map the user's choice through a whitelist: `Map.of(\"date\", \"placed_at\", \"stake\", \"stake\")`, and reject anything else."
+            - q: "Is JPA / Hibernate automatically safe?"
+              a: "Only with parameters. JPQL or native queries built by string concatenation are still injectable. Use `:named` parameters, Criteria API or Spring Data derived queries."
+            - q: "Besides prepared statements, what else limits the damage?"
+              a: "A least-privilege DB user (no DROP, no access to other schemas), input validation, never showing raw SQL errors to users, and a WAF as an extra layer."
+            - q: "Why is a PreparedStatement also faster?"
+              a: "The DB can parse and plan the SQL once and reuse it with new values; batching (`addBatch` / `executeBatch`) cuts round trips for bulk inserts."
+
 # Interview-day brush-up: a timed, tickable checklist (Brush-up tab). No new material on the day.
 # Distilled from dossier §7b, the mocks and the drills. Claude's notes (claimed).
 brushup:

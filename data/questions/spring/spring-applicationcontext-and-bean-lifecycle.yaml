@@ -1,0 +1,29 @@
+slug: spring-applicationcontext-and-bean-lifecycle
+title: Spring Boot, ApplicationContext types and the bean lifecycle
+type: SPRING
+difficulty: medium
+tags:
+- spring
+- spring-boot
+- ioc
+- applicationcontext
+- bean-lifecycle
+leetcode: null
+prompt: |
+  What is Spring Boot? What is the ApplicationContext, what kinds of context are there, and what is the lifecycle of a Spring bean?
+follow_ups:
+- BeanFactory vs ApplicationContext.
+- Where do BeanPostProcessors fit, and how do AOP proxies get created?
+- 'Bean scopes: singleton, prototype, request, session.'
+academy:
+- D2
+- D4
+- L4
+- L5
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 (technical round 2; invite said system design and SQL)
+  seen_on: 2026-10
+  confidence: verified
+  source: Akhil's own TR2 interview, 2026-10-26

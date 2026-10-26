@@ -1,0 +1,26 @@
+slug: spring-aop-and-advice-types
+title: 'Spring AOP: where it is used and the advice types'
+type: SPRING
+difficulty: medium
+tags:
+- spring
+- aop
+- proxy
+- cross-cutting
+leetcode: null
+prompt: |
+  What is AOP, where do you use it, and what are the types of advice?
+follow_ups:
+- JDK dynamic proxy vs CGLIB.
+- Why does self-invocation skip @Transactional or @Async?
+- 'Pointcut, join point, aspect, weaving: define each.'
+academy:
+- D3
+- S5
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 (technical round 2; invite said system design and SQL)
+  seen_on: 2026-10
+  confidence: verified
+  source: Akhil's own TR2 interview, 2026-10-26

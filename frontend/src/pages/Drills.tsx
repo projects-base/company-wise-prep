@@ -19,7 +19,8 @@ const tone = (score?: number, outOf = 1) => (score == null ? '' : score / outOf 
  */
 export function Drills({ d }: { d: any }) {
   const rounds: any[] = d.rounds ?? []
-  const [at, setAt] = useState(0)
+  // The newest round first: it is the one being worked on.
+  const [at, setAt] = useState(Math.max(0, rounds.length - 1))
   const [all, setAll] = useState(false)
   const r = rounds[at]
   if (!r) return <p className="muted">No drills yet.</p>
@@ -95,6 +96,21 @@ function DrillCard({ n, q, forced }: { n: number; q: any; forced: boolean }) {
                   {q.model ?? ''}
                 </Markdown>
               </div>
+              {(q.followups ?? []).length > 0 && (
+                <div className="drill-follow">
+                  <div className="tldr-label">They may ask next</div>
+                  {q.followups.map((f: any, i: number) => (
+                    <details key={i}>
+                      <summary>{f.q}</summary>
+                      <div className="prose">
+                        <Markdown remarkPlugins={[remarkGfm]} components={md}>
+                          {f.a ?? ''}
+                        </Markdown>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              )}
               {!forced && (
                 <button className="link-btn" onClick={() => setOpen(false)}>
                   Hide and try again

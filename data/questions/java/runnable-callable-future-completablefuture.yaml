@@ -1,0 +1,27 @@
+slug: runnable-callable-future-completablefuture
+title: Runnable vs Callable, Future, FutureTask and CompletableFuture
+type: JAVA
+difficulty: medium
+tags:
+- java
+- concurrency
+- executor
+- future
+- completablefuture
+leetcode: null
+prompt: |
+  Difference between Runnable and Callable. What are Future, FutureTask and CompletableFuture, and when do you use each?
+follow_ups:
+- thenApply vs thenCompose vs thenCombine.
+- Why give CompletableFuture its own executor instead of the common pool?
+- How do you handle exceptions and timeouts in a CompletableFuture chain?
+academy:
+- B4
+- B5
+sightings:
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 (technical round 2; invite said system design and SQL)
+  seen_on: 2026-10
+  confidence: verified
+  source: Akhil's own TR2 interview, 2026-10-26

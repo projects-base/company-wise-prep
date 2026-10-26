@@ -8,7 +8,9 @@ tags:
 leetcode: null
 prompt: |
   How to prevent SQL injection.
-follow_ups: []
+follow_ups:
+- PreparedStatement vs Statement in JDBC: why does a prepared statement stop injection?
+- Where can injection still happen (dynamic ORDER BY / table names, native queries built by string concatenation)?
 academy: []
 sightings:
 - company: tower-research
@@ -23,3 +25,9 @@ sightings:
   seen_on: 2026-10
   confidence: claimed
   source: HR call relayed by Akhil, 2026-10-12
+- company: entain
+  role: Software Development Engineer II (Entain India, Hyderabad)
+  round: TR2 (technical round 2; invite said system design and SQL)
+  seen_on: 2026-10
+  confidence: verified
+  source: Akhil's own TR2 interview, 2026-10-26

@@ -555,11 +555,28 @@ Bank questions to re-read if time allows: [ticket booking](../../questions/hld/d
 Moved to the **Mock progress** tab on this page: score trend, skill-by-skill grid, gap flip cards
 and next steps. The data lives in `company.yaml` under `mocks:` and is updated after each mock.
 
+### 7d. What TR2 actually asked (26 Oct 2026, verified)
+
+The invite and HR named system design, LLD, DB design, SQL performance and SQL. The round itself
+was **core Spring and Java**, from Akhil's own account the same day:
+
+- Spring Boot; the ApplicationContext and its types; the bean lifecycle; DI and IoC.
+- AOP: where it is used, and the advice types.
+- Servlets.
+- Runnable vs Callable, Future, FutureTask, CompletableFuture.
+- SQL injection; PreparedStatement vs Statement in JDBC.
+
+**Lesson for later rounds:** the topic list on an Entain invite is not the whole syllabus. Keep a
+Spring and Java core refresh (Academy D2, D3, D4, L4, S2, B4, B5) in the plan alongside design.
+Model answers are in the **Rapid-fire drills** tab, round "TR2 actual (Spring & Java)"; each
+question is in the bank with a verified Entain sighting.
+
 ## 8. Sources
 
 All accessed 2026-10-08.
 
 - HR email, 2026-10-08, relayed by Akhil: round-3 focus areas (verified).
+- TR2 interview, 2026-10-26, Akhil's own account: the questions in §7d (verified).
 - Round-2 invite, Sep 2026, relayed by Akhil: Java Concepts, Coding Concepts, Problem Solving
   (verified).
 - Insider tip from a current Entain/Ivy India employee, relayed by Akhil 2026-09-16 (claimed).
