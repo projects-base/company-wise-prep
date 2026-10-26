@@ -65,7 +65,7 @@ public class SettingsService {
 
 	public SettingsService(AppSettingRepository repo,
 			@Value("${prep.claude.model:claude-opus-5-5}") String claudeDefault,
-			@Value("${prep.gemini.model:gemini-3.8-flash}") String geminiDefault,
+			@Value("${prep.gemini.model:gemini-3.6-flash}") String geminiDefault,
 			@Value("${prep.auth.token-secret:}") String secret) {
 		this.repo = repo;
 		this.claudeDefault = claudeDefault;

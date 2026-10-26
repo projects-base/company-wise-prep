@@ -63,4 +63,4 @@ prep:
   claude:
     model: ${CLAUDE_MODEL:claude-opus-5-5}
   gemini:
-    model: ${GEMINI_MODEL:gemini-3.8-flash}
+    model: ${GEMINI_MODEL:gemini-3.6-flash}
