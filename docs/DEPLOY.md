@@ -29,7 +29,49 @@ The API runs submitted Java code, so it must never be reachable without a login:
 
 Reset the `neondb_owner` password if it was ever shared. Copy the **pooled** connection host.
 
-## 2. Render (API)
+## 2a. Google Cloud Run (API, current)
+
+Cloud Run builds the same Dockerfile, sleeps when idle and wakes on the first request (10-20 s),
+so a single user stays inside its monthly free tier, which does not expire after the $300 trial.
+The service runs in `asia-southeast1` (Singapore), next to Neon, with 1 GiB, so the code runner is
+on. No keep-alive: `RENDER_EXTERNAL_URL` isn't set there, so `KeepAlive` stays off, which is what
+lets it sleep.
+
+One-time setup (you):
+
+1. [console.cloud.google.com](https://console.cloud.google.com): create a project (e.g.
+   `company-wise-prep`) and link a billing account (needs a card; the free tier still applies).
+   Billing → **Budgets & alerts** → a monthly budget of ₹100 with email alerts.
+2. Install the CLI (`winget install Google.CloudSDK`), open a new terminal, then:
+   `gcloud auth login` and `gcloud config set project <project-id>`.
+3. Enable the services once:
+   `gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com`
+
+Deploy (`.gcloudignore` keeps `.env` and the UI out of the upload):
+
+```powershell
+.\deploy-gcp.ps1
+```
+
+The first deploy asks to create an Artifact Registry repository: answer yes. Then add the secrets
+once, in the console (Cloud Run → the service → **Edit & deploy new revision → Variables &
+secrets**) or with `gcloud run services update company-wise-prep-api --region asia-southeast1
+--update-env-vars ...`. Later deploys keep them.
+
+| Variable | Value |
+|---|---|
+| `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` | same as on Render (Neon pooled URL) |
+| `APP_PASSWORD` | your login password |
+| `APP_TOKEN_SECRET` | **copy Render's value** (Render → Environment). Keys saved on the Settings page are encrypted with it; a new value means re-entering them and logging in again |
+| `CORS_ORIGINS` | the Netlify URL |
+
+Check `<url>/api/auth/status`, then point Netlify's `VITE_API_BASE` at the Cloud Run URL and
+redeploy the UI. Once it works, suspend the Render service.
+
+Updating: run `.\deploy-gcp.ps1` after pushing backend changes (or connect the repo under Cloud
+Run → **Set up continuous deployment** to deploy on every push to `main`).
+
+## 2. Render (API, previous)
 
 1. Dashboard → **New → Blueprint** → choose the GitHub repo. Render reads `render.yaml`
    (Docker, **free** plan, Singapore region, health check `/api/auth/status`). The free

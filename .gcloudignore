@@ -1,0 +1,18 @@
+# What `gcloud run deploy --source .` must NOT upload (mirrors .dockerignore).
+# .env holds local secrets: never upload it.
+.git
+.gitignore
+.gcloudignore
+.env
+.env.*
+!.env.example
+.local
+.local-run.log
+.idea
+.vscode
+.claude
+target
+frontend
+src/main/resources/static
+data/_staging
+**/*.log
