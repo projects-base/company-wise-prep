@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, Check, ExternalLink, Flame, Info, RotateCcw, Sparkles } from 'lucide-react'
 import { api, leetcodeUrl, type PlanItem } from '../api'
+import { HotBadge } from '../HotBadge'
 import { useCampaign } from '../App'
 import { readTicks, SessionRow, sessionSteps } from './PlanPage'
 import { celebrate, recordActivity, TICKS_CHANGED, useStreak } from '../rewards'
@@ -259,6 +260,7 @@ function FocusCard({ item, onDone }: { item: PlanItem; onDone: () => void }) {
         <TypeTag type={item.type} />
         <Difficulty value={item.difficulty} />
         <span>~{item.minutes} min</span>
+        <HotBadge slug={item.slug} max={4} />
       </Meta>
       <Link to={`/q/${item.slug}`} className="focus-title">
         {item.title}

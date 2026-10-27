@@ -22,6 +22,8 @@ Slugs are lowercase-kebab: `tower-research`, `lru-cache`, `design-rate-limiter`.
 slug: tower-research
 name: Tower Research Capital
 aliases: [Tower]
+leetcode_company: Tower Research Capital  # optional: folder name in liquidslr/leetcode-company-wise-problems
+                                   # for the "LeetCode frequency" tab; default: matched by name/aliases
 researched_on: 2026-10-07          # last time the research ran
 domain_notes: Low-latency trading; C++ heavy, Java for some infra.
 values:                            # what they say they look for — used for behavioural prep

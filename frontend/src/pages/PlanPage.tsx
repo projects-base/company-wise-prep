@@ -4,6 +4,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { ChevronRight, ScrollText } from 'lucide-react'
 import { api, type PlanDay, type PlanItem, type Session } from '../api'
+import { HotBadge } from '../HotBadge'
 import { useCampaign } from '../App'
 import { celebrate, recordActivity, TICKS_CHANGED } from '../rewards'
 import { Bar, CheckDot, companyLabel, Difficulty, fmtDate, localToday, Meta, Status, TypeTag, useLoad } from '../ui'
@@ -228,6 +229,7 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
         <button className="session-head" onClick={() => setOpen(!open)} aria-expanded={open}>
           <ChevronRight size={15} className={`chev ${open ? 'open' : ''}`} />
           <span className="title">{session.title}</span>
+          {session.questions.map((q) => <HotBadge key={q} slug={q} />)}
           {steps.length > 1 && (
             <span className="muted num" style={{ fontSize: '0.8rem' }}>
               {Math.min(ticks.length, steps.length)}/{steps.length} steps
@@ -260,7 +262,8 @@ function Row({ item, done }: { item: PlanItem; done: boolean }) {
       <div className="grow">
         <Link to={`/q/${item.slug}`} className="title">
           {item.title}
-        </Link>
+        </Link>{' '}
+        <HotBadge slug={item.slug} />
       </div>
       <Meta>
         <TypeTag type={item.type} />

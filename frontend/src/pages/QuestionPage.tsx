@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Check, ExternalLink, Eye, Star } from 'lucide-react'
 import { AnswerJudge } from '../AnswerJudge'
 import { Lifeline } from '../Lifeline'
+import { HotBadge } from '../HotBadge'
 import { AnswerProse } from '../AnswerProse'
 import { api, leetcodeUrl, type Action, type Challenge } from '../api'
 import Workspace from '../code/Workspace'
@@ -140,6 +141,7 @@ export default function QuestionPage() {
             <TypeTag type={q.type} />
             <Difficulty value={q.difficulty} />
             {q.tags.length > 0 && <span>{q.tags.slice(0, 5).join(' · ')}</span>}
+            <HotBadge slug={q.slug} max={5} />
           </Meta>
           <h1 style={{ marginTop: 10 }}>{q.title}</h1>
 

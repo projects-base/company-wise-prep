@@ -9,13 +9,15 @@ import { fmtDate, MdLink, Status, useLoad } from '../ui'
 import { MockProgress } from './MockProgress'
 import { Drills } from './Drills'
 import { BrushUp } from './BrushUp'
+import { Frequency } from './Frequency'
 
-type Tab = 'strategy' | 'progress' | 'drills' | 'brushup' | 'loop' | 'stack' | 'postings' | 'sources'
+type Tab = 'strategy' | 'progress' | 'drills' | 'brushup' | 'frequency' | 'loop' | 'stack' | 'postings' | 'sources'
 const TABS: [Tab, string][] = [
   ['strategy', 'Strategy'],
   ['progress', 'Mock progress'],
   ['drills', 'Rapid-fire drills'],
   ['brushup', "Today's brush-up"],
+  ['frequency', 'LeetCode frequency'],
   ['loop', 'Interview loop'],
   ['stack', 'Tech stack'],
   ['postings', 'Job postings'],
@@ -70,6 +72,7 @@ export default function CompanyPage() {
       {tab === 'progress' && d.mocks && <MockProgress m={d.mocks} />}
       {tab === 'drills' && d.drills && <Drills d={d.drills} />}
       {tab === 'brushup' && d.brushup && <BrushUp b={d.brushup} />}
+      {tab === 'frequency' && <Frequency slug={c.slug} name={c.name} />}
       {tab === 'loop' && <Loop name={c.name} d={d} official={official} />}
       {tab === 'stack' && <TechStack d={d} />}
       {tab === 'postings' && <Postings official={official} />}

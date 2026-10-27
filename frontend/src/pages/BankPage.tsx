@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Code2, Search, Star } from 'lucide-react'
+import { HotBadge } from '../HotBadge'
 import { api } from '../api'
 import { CheckDot, companyLabel, CompanyPills, Difficulty, Status, TypeTag, useLoad } from '../ui'
 
@@ -164,6 +165,7 @@ export default function BankPage() {
                     </span>
                   )}
                   {q.starred && <Star size={13} style={{ marginLeft: 6, verticalAlign: -1, color: 'var(--warn)' }} fill="currentColor" />}
+                  <HotBadge slug={q.slug} />
                 </td>
                 <td>
                   <TypeTag type={q.type} />

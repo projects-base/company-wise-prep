@@ -988,3 +988,17 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 .model-checks li.ok svg { color: var(--ok); }
 .model-checks li.bad svg { color: var(--bad); }
 .model-check-why { flex-basis: 100%; color: var(--text-2); font-size: 0.8rem; overflow-wrap: anywhere; }
+
+/* LeetCode frequency */
+.hot-badge { display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); font-size: 0.74rem; font-weight: 600; white-space: nowrap; vertical-align: 1px; }
+.hot-badge b { font-weight: 700; opacity: 0.8; }
+.freq-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.freq-folder { display: inline-flex; align-items: center; gap: 8px; font-size: 0.86rem; }
+.freq-folder select { padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--surface); color: var(--text); font: inherit; max-width: 220px; }
+.freq-stats { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-2); }
+.freq-list .list-row { gap: 10px; }
+.freq-rank { width: 28px; text-align: right; font-size: 0.8rem; }
+.freq-topics { font-size: 0.76rem; margin-top: 2px; }
+.freq-meter { width: 70px; height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; flex-shrink: 0; }
+.freq-meter span { display: block; height: 100%; background: var(--warn); border-radius: 3px; }
+@media (max-width: 640px) { .freq-meter, .freq-topics { display: none; } }

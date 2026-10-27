@@ -325,6 +325,24 @@ function request(path: string, init?: RequestInit): Promise<Response> {
   })
 }
 
+/** LeetCode company-tag frequency, read live from GitHub (frequency.FrequencyService). */
+export type FreqWindow = 'thirty-days' | 'three-months' | 'six-months' | 'older' | 'all'
+export type FreqRow = {
+  title: string
+  leetcode: string
+  difficulty: string
+  frequency: number
+  acceptance: number
+  topics: string[]
+  link: string
+  /** The bank question for this problem, if there is one. */
+  question: string | null
+  done: boolean
+}
+export type FreqList = { folder: string; window: FreqWindow; source: string; fetchedAt: string; rows: FreqRow[]; inBank: number; done: number }
+export type HotTag = { company: string; frequency: number }
+export type Hot = { companies: string[]; tags: Record<string, HotTag[]> }
+
 /** Help while studying (lifeline.LifelineService): a hint ladder plus your own doubts. */
 export type LifelineKind = 'NUDGE' | 'IDEA' | 'EXPLAIN' | 'ASK'
 export type LifelineRequest = {
@@ -359,6 +377,12 @@ export const api = {
   reviewHistory: (slug: string) => call<number[]>(`/api/questions/${slug}/reviews`),
   transcribe: (wav: Blob) =>
     call<{ text: string | null; error: string | null }>('/api/transcribe', { method: 'POST', headers: { 'Content-Type': 'audio/wav' }, body: wav }),
+  companyFrequency: (slug: string, window: FreqWindow, folder?: string) =>
+    call<{ folder: string | null; list: FreqList | null }>(
+      `/api/companies/${slug}/frequency?window=${window}${folder ? `&folder=${encodeURIComponent(folder)}` : ''}`,
+    ),
+  frequencyFolders: () => call<string[]>('/api/frequency/folders'),
+  hot: () => call<Hot>('/api/frequency/hot'),
   lifeline: (req: LifelineRequest) =>
     call<LifelineHelp>('/api/lifeline', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(req) }),
   settings: () => call<Settings>('/api/settings'),
