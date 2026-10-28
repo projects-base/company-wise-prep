@@ -134,9 +134,13 @@ class AppTest {
 
 	@Test
 	void theGeneralPlanFixesEveryDayWithSessionsAndAGuide() throws Exception {
-		clock.set(LocalDate.of(2026, 10, 27));
+		clock.set(LocalDate.of(2026, 11, 2));
 		mvc.perform(get("/api/campaigns/backend-2027-01/today"))
-				.andExpect(jsonPath("$.sessions", hasSize(2)))
+				// Core: the Academy lesson (the floor) and the DSA problem; stretch: the out-loud question.
+				.andExpect(jsonPath("$.sessions", hasSize(3)))
+				.andExpect(jsonPath("$.sessions[0].floor", is(true)))
+				.andExpect(jsonPath("$.sessions[2].tier", is("stretch")))
+				.andExpect(jsonPath("$.budget", is(60)))
 				.andExpect(jsonPath("$.items[*].slug", hasItem("two-sum")))
 				.andExpect(jsonPath("$.campaign.guide", not(is(""))));
 	}

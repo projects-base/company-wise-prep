@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookOpen, Check, ExternalLink, Flame, Info, RotateCcw, Sparkles } from 'lucide-react'
+import { ArrowRight, BookOpen, Check, Clock, ExternalLink, Flame, Info, RotateCcw, Sparkles, Star } from 'lucide-react'
 import { api, leetcodeUrl, type PlanItem } from '../api'
 import { HotBadge } from '../HotBadge'
 import { useCampaign } from '../App'
@@ -25,6 +25,7 @@ export default function TodayPage() {
   const { data: academy } = useLoad(() => api.academy(), [])
   const streak = useStreak()
   const [, bump] = useState(0)
+  const [short, setShort] = useState(false)
   const day = t ? dayProgress(t.date, t.sessions ?? []) : { done: 0, total: 0 }
 
   // Re-count when a step is ticked; the first time every step of the day is done, celebrate it.
@@ -60,6 +61,15 @@ export default function TodayPage() {
     reload()
   }
   const sessions = t.sessions ?? []
+  const core = sessions.filter((s) => s.tier !== 'stretch')
+  const extra = sessions.filter((s) => s.tier === 'stretch')
+  const floor = sessions.find((s) => s.floor)
+  const stretchMinutes = extra.reduce((m, s) => m + s.minutes, 0)
+  // Questions of stretch sessions are shown under Stretch, not as today's focus.
+  const stretchSlugs = new Set(extra.flatMap((s) => s.questions))
+  const coreSlugs = new Set(core.flatMap((s) => s.questions))
+  const focusItems = t.items.filter((i) => coreSlugs.has(i.slug) || !stretchSlugs.has(i.slug))
+  const stretchItems = t.items.filter((i) => stretchSlugs.has(i.slug) && !coreSlugs.has(i.slug))
   const minutes = sessions.length > 0 ? t.budget : t.items.reduce((m, i) => m + i.minutes, 0)
   const path = academy?.paths[0]
   const nextLesson = path?.next ? academy?.tracks.flatMap((tr) => tr.modules).find((m) => m.id === path.next) : undefined
@@ -72,7 +82,7 @@ export default function TodayPage() {
           <h1 style={{ marginTop: 6 }}>{greeting()}</h1>
           <p className="sub">
             {t.items.length > 0 || sessions.length > 0
-              ? `About ${minutes} minutes today${t.weekend ? ' — a design day' : ''}.`
+              ? `About ${minutes} minutes today${stretchMinutes ? `, +${stretchMinutes} if you have more time` : ''}${t.weekend ? ' — a design day' : ''}.`
               : 'Nothing new scheduled today.'}
           </p>
         </div>
@@ -119,16 +129,31 @@ export default function TodayPage() {
               ~{minutes} of {t.budget} min
             </span>
           </div>
+          {sessions.length > 0 && floor && (
+            <div className={`floor-bar ${short ? 'on' : ''}`}>
+              <Clock size={16} />
+              {short ? (
+                <span>
+                  <strong>Short day:</strong> just this one. It keeps your streak; anything else waits for Sunday's catch-up.
+                </span>
+              ) : (
+                <span>Short on time?</span>
+              )}
+              <button className="btn sm" onClick={() => setShort(!short)}>
+                {short ? 'Show the full day' : 'Do just this'}
+              </button>
+            </div>
+          )}
           {sessions.length > 0 && (
             <div className="card" style={{ marginBottom: 12 }}>
               <div className="list" style={{ padding: '0 16px' }}>
-                {sessions.map((s, n) => (
-                  <SessionRow key={n} session={s} date={t.date} />
+                {(short && floor ? [floor] : core).map((s) => (
+                  <SessionRow key={s.title} session={s} date={t.date} />
                 ))}
               </div>
             </div>
           )}
-          {t.items.length === 0 && sessions.length > 0 ? null : t.items.length === 0 ? (
+          {short ? null : focusItems.length === 0 && sessions.length > 0 ? null : focusItems.length === 0 ? (
             <div className="card">
               <div className="empty">
                 <Check size={22} />
@@ -137,7 +162,30 @@ export default function TodayPage() {
               </div>
             </div>
           ) : (
-            t.items.map((i) => <FocusCard key={i.slug} item={i} onDone={() => act(i.slug, 'DONE')} />)
+            focusItems.map((i) => <FocusCard key={i.slug} item={i} onDone={() => act(i.slug, 'DONE')} />)
+          )}
+
+          {!short && extra.length > 0 && (
+            <section className="section stretch">
+              <div className="section-head">
+                <h2>
+                  <Star size={17} style={{ verticalAlign: -2 }} /> Stretch
+                </h2>
+                <span className="muted" style={{ fontSize: '0.86rem' }}>
+                  Have more time? +{stretchMinutes} min. Skipping it never puts you behind.
+                </span>
+              </div>
+              <div className="card" style={{ marginBottom: 12 }}>
+                <div className="list" style={{ padding: '0 16px' }}>
+                  {extra.map((s) => (
+                    <SessionRow key={s.title} session={s} date={t.date} open={false} />
+                  ))}
+                </div>
+              </div>
+              {stretchItems.map((i) => (
+                <FocusCard key={i.slug} item={i} onDone={() => act(i.slug, 'DONE')} />
+              ))}
+            </section>
           )}
 
           <section className="section">
@@ -289,11 +337,12 @@ function FocusCard({ item, onDone }: { item: PlanItem; onDone: () => void }) {
   )
 }
 
-/** Ticked steps over all steps of today's fixed sessions (a session with no steps counts as one). */
-function dayProgress(date: string, sessions: { title: string; detail: string | null }[]) {
+/** Ticked steps over all steps of today's core sessions: the day is complete when core is done. */
+function dayProgress(date: string, sessions: { title: string; detail: string | null; tier?: string }[]) {
   let done = 0
   let total = 0
   for (const s of sessions) {
+    if (s.tier === 'stretch') continue
     const n = Math.max(1, sessionSteps(s.detail ?? '').length)
     total += n
     done += Math.min(n, readTicks(`ticks.${date}.${s.title}`).length)

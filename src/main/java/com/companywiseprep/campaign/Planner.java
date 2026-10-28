@@ -65,7 +65,8 @@ public final class Planner {
 				LocalDate day = d;
 				List<Plan.Item> items = sessions.stream().flatMap(x -> x.questions().stream()).distinct()
 						.filter(bySlug::containsKey).map(slug -> item(bySlug.get(slug), c).on(day)).toList();
-				int minutes = sessions.stream().mapToInt(CampaignConfig.Session::minutes).sum();
+				// The day's budget is its core sessions; stretch is extra time on a good day.
+				int minutes = sessions.stream().filter(CampaignConfig.Session::core).mapToInt(CampaignConfig.Session::minutes).sum();
 				days.add(new Plan.Day(d, kind, isWeekend, minutes > 0 ? minutes : budget, items, sessions));
 				continue;
 			}

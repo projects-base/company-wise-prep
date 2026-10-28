@@ -27,9 +27,20 @@ public record CampaignConfig(
 
 	/**
 	 * A session fixed to a date in campaign.yaml ({@code sessions:}). On that date it replaces the
-	 * planner's picks; {@code questions} are bank slugs scheduled with it.
+	 * planner's picks; {@code questions} are bank slugs scheduled with it. {@code tier} is "core" (the
+	 * plan is built on these) or "stretch" (optional extra); {@code floor} marks the minimum session
+	 * for a bad day.
 	 */
-	public record Session(LocalDate date, int minutes, String title, String detail, List<String> questions) {
+	public record Session(LocalDate date, int minutes, String title, String detail, List<String> questions,
+			String tier, boolean floor) {
+
+		public Session(LocalDate date, int minutes, String title, String detail, List<String> questions) {
+			this(date, minutes, title, detail, questions, "core", false);
+		}
+
+		public boolean core() {
+			return !"stretch".equals(tier);
+		}
 	}
 
 	public static CampaignConfig from(Campaign c) {
@@ -55,7 +66,8 @@ public record CampaignConfig(
 				Yaml.str(y.get("notes")),
 				Yaml.maps(y.get("sessions")).stream()
 						.map(m -> new Session(LocalDate.parse(Yaml.str(m.get("date"))), intOr(m.get("minutes"), 0),
-								Yaml.str(m.get("title")), Yaml.str(m.get("detail")), Yaml.strings(m.get("questions"))))
+								Yaml.str(m.get("title")), Yaml.str(m.get("detail")), Yaml.strings(m.get("questions")),
+								"stretch".equals(Yaml.str(m.get("tier"))) ? "stretch" : "core", Boolean.TRUE.equals(m.get("floor"))))
 						.toList(),
 				Yaml.str(y.get("guide")),
 				Boolean.TRUE.equals(y.get("archived")));

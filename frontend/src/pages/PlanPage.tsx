@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { ChevronRight, ScrollText } from 'lucide-react'
+import { BookOpen, ChevronRight, ScrollText } from 'lucide-react'
 import { api, type PlanDay, type PlanItem, type Session } from '../api'
 import { HotBadge } from '../HotBadge'
 import { useCampaign } from '../App'
@@ -222,6 +222,7 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
     window.dispatchEvent(new Event(TICKS_CHANGED))
   }
   const done = steps.length > 0 && ticks.length >= steps.length
+  const lessonId = /^Scratch · Academy ([A-Z]\d+B?):/.exec(session.title)?.[1]
 
   return (
     <div className={`list-row session-row ${done ? 'done' : ''}`}>
@@ -229,6 +230,7 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
         <button className="session-head" onClick={() => setOpen(!open)} aria-expanded={open}>
           <ChevronRight size={15} className={`chev ${open ? 'open' : ''}`} />
           <span className="title">{session.title}</span>
+          {session.tier === 'stretch' && <span className="pill tier-stretch">Stretch</span>}
           {session.questions.map((q) => <HotBadge key={q} slug={q} />)}
           {steps.length > 1 && (
             <span className="muted num" style={{ fontSize: '0.8rem' }}>
@@ -236,6 +238,11 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
             </span>
           )}
         </button>
+        {lessonId && open && (
+          <Link to={`/academy/${lessonId}`} className="btn sm session-lesson">
+            <BookOpen size={14} /> Open lesson {lessonId}
+          </Link>
+        )}
         {open && steps.length > 0 && (
           <ul className="session-steps">
             {steps.map((st, i) => (

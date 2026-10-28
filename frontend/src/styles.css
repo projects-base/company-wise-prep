@@ -1002,3 +1002,11 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 .freq-meter { width: 70px; height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; flex-shrink: 0; }
 .freq-meter span { display: block; height: 100%; background: var(--warn); border-radius: 3px; }
 @media (max-width: 640px) { .freq-meter, .freq-topics { display: none; } }
+
+/* Plan tiers: core, stretch, floor */
+.pill.tier-stretch { background: var(--accent-soft); color: var(--accent); margin-left: 4px; }
+.floor-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 12px; margin-bottom: 10px; border-radius: var(--radius-sm); border: 1px dashed var(--line-strong); color: var(--text-2); font-size: 0.88rem; }
+.floor-bar .btn { margin-left: auto; }
+.floor-bar.on { border-style: solid; border-color: var(--warn); background: var(--warn-soft); color: var(--text); }
+.section.stretch .section-head { flex-wrap: wrap; gap: 6px; }
+.session-lesson { margin: 4px 0 6px 22px; }

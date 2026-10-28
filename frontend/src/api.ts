@@ -26,6 +26,10 @@ export interface Session {
   title: string
   detail: string | null
   questions: string[]
+  /** core = the plan is built on these; stretch = optional extra on a good day. */
+  tier?: 'core' | 'stretch'
+  /** The minimum for a bad day (usually the Academy lesson). */
+  floor?: boolean
 }
 
 /** A judged theory answer (review.AnswerReview). Layer scores are 0-10; null = nothing to compare. */
