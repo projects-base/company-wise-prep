@@ -16,8 +16,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.companywiseprep.academy.AcademyModule;
 import com.companywiseprep.academy.AcademyModuleRepository;
@@ -60,11 +64,13 @@ public class DataImporter implements ApplicationRunner {
 	private final CodeChallengeRepository challenges;
 	private final ImportStateRepository state;
 	private final EntityManager em;
+	private final TransactionTemplate ownTransaction;
 
 	public DataImporter(@Value("${prep.data-dir}") Path dataDir, CompanyRepository companies,
 			QuestionRepository questions, SightingRepository sightings, CampaignRepository campaigns,
 			AcademyTrackRepository tracks, AcademyModuleRepository modules, AcademyPathRepository paths,
-			CodeChallengeRepository challenges, ImportStateRepository state, EntityManager em) {
+			CodeChallengeRepository challenges, ImportStateRepository state, EntityManager em,
+			PlatformTransactionManager tx) {
 		this.dataDir = dataDir;
 		this.companies = companies;
 		this.questions = questions;
@@ -76,6 +82,8 @@ public class DataImporter implements ApplicationRunner {
 		this.challenges = challenges;
 		this.state = state;
 		this.em = em;
+		this.ownTransaction = new TransactionTemplate(tx);
+		this.ownTransaction.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
 	}
 
 	public record Summary(int companies, int questions, int sightings, int campaigns, int modules, int lessons,
@@ -90,7 +98,8 @@ public class DataImporter implements ApplicationRunner {
 	@Transactional
 	public void run(ApplicationArguments args) {
 		String fingerprint = fingerprint();
-		ImportState last = state.findById(ImportState.ID).orElse(null);
+		// Waits here while another instance on the same database imports; then re-reads its result.
+		ImportState last = lock();
 		if (last != null && fingerprint.equals(last.getFingerprint()) && questions.count() > 0) {
 			log.info("data/ unchanged since {} — skipping import (POST /api/admin/reload forces one)",
 					last.getImportedAt());
@@ -102,8 +111,25 @@ public class DataImporter implements ApplicationRunner {
 				s.lessons(), s.challenges(), dataDir.toAbsolutePath());
 	}
 
+	/**
+	 * Locks the state row for the rest of the current transaction (creating it first if this is a
+	 * new database) and returns it with the fingerprint of the last finished import, if any.
+	 */
+	private ImportState lock() {
+		if (state.findById(ImportState.ID).isEmpty()) {
+			try {
+				ownTransaction.executeWithoutResult(t -> state.saveAndFlush(new ImportState()));
+			} catch (DataIntegrityViolationException e) {
+				// Another instance created it at the same moment: fine, lock theirs.
+			}
+		}
+		ImportState row = state.lockById(ImportState.ID).orElseThrow();
+		return row.getFingerprint() == null ? null : row;
+	}
+
 	@Transactional
 	public Summary importAll() {
+		lock();
 		if (!Files.isDirectory(dataDir)) {
 			throw new IllegalStateException("Data directory not found: " + dataDir.toAbsolutePath()
 					+ " (start the app from the repo root or set prep.data-dir)");
@@ -147,7 +173,7 @@ public class DataImporter implements ApplicationRunner {
 		em.flush();
 		em.clear();
 
-		ImportState done = state.findById(ImportState.ID).orElseGet(ImportState::new);
+		ImportState done = state.findById(ImportState.ID).orElseThrow();
 		done.setFingerprint(fingerprint());
 		done.setImportedAt(java.time.Instant.now());
 		state.save(done);

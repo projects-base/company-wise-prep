@@ -1,6 +1,8 @@
-# Netlify: the React UI. The API runs on Render (render.yaml).
-# Set VITE_API_BASE in Netlify → Site configuration → Environment variables to the Render URL,
-# e.g. https://company-wise-prep-api.onrender.com
+# Netlify: the React UI. The API runs on Cloud Run (deploy-gcp.ps1) with Render as a backup.
+# Set VITE_API_BASE in Netlify → Site configuration → Environment variables to both API URLs,
+# main first, comma-separated, e.g.
+#   https://company-wise-prep-api-xxxx.a.run.app,https://company-wise-prep-api.onrender.com
+# The UI uses the first that answers and moves to the next only if it is unreachable.
 [build]
   base = "frontend"
   command = "npm ci && npm run build"

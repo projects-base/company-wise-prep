@@ -284,9 +284,15 @@ export type Action = 'DONE' | 'UNDO' | 'REMEMBERED' | 'FORGOT' | 'STAR' | 'UNSTA
 
 /**
  * Where the API lives. Empty = same origin (local: Spring serves the UI; dev: Vite proxies /api).
- * On Netlify, VITE_API_BASE is the Render URL.
+ * On Netlify, VITE_API_BASE lists the API hosts, comma-separated, main first (Cloud Run, then
+ * Render). Both share one database and token secret, so either can serve any request.
  */
-const BASE = ((import.meta.env.VITE_API_BASE as string | undefined) ?? '').replace(/\/$/, '')
+const BASES = ((import.meta.env.VITE_API_BASE as string | undefined) ?? '')
+  .split(',')
+  .map((b) => b.trim().replace(/\/$/, ''))
+  .filter(Boolean)
+if (BASES.length === 0) BASES.push('')
+const ACTIVE_KEY = 'cwp.api'
 const TOKEN_KEY = 'cwp.token'
 
 /** The hosted app's login token. Locally there is none and the server doesn't ask for one. */
@@ -316,17 +322,49 @@ export const session = {
 
 export const LOGGED_OUT_EVENT = 'cwp:logged-out'
 
-function request(path: string, init?: RequestInit): Promise<Response> {
+function activeHost(): number {
+  try {
+    const n = Number(sessionStorage.getItem(ACTIVE_KEY))
+    return Number.isInteger(n) && n >= 0 && n < BASES.length ? n : 0
+  } catch {
+    return 0
+  }
+}
+
+/**
+ * Tries the host that worked last, then the others. Only a hard failure moves on: unreachable,
+ * or 502/503/504 from the platform. A slow answer (a host waking from sleep) is still an answer.
+ */
+async function request(path: string, init?: RequestInit): Promise<Response> {
   const headers = new Headers(init?.headers)
   const token = session.get()
   if (token) headers.set('Authorization', `Bearer ${token}`)
-  return fetch(BASE + path, { ...init, headers }).then((res) => {
+  const start = activeHost()
+  let failure: unknown = null
+  for (let k = 0; k < BASES.length; k++) {
+    const i = (start + k) % BASES.length
+    let res: Response
+    try {
+      res = await fetch(BASES[i] + path, { ...init, headers })
+    } catch (e) {
+      failure = e
+      continue
+    }
+    if ([502, 503, 504].includes(res.status) && k < BASES.length - 1) continue
+    if (i !== start) {
+      try {
+        sessionStorage.setItem(ACTIVE_KEY, String(i))
+      } catch {
+        /* not remembered */
+      }
+    }
     if (res.status === 401 && !path.startsWith('/api/auth/')) {
       session.clear()
       window.dispatchEvent(new Event(LOGGED_OUT_EVENT))
     }
     return res
-  })
+  }
+  throw failure instanceof Error ? failure : new Error('No API host could be reached')
 }
 
 /** LeetCode company-tag frequency, read live from GitHub (frequency.FrequencyService). */

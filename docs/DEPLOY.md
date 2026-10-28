@@ -68,6 +68,17 @@ secrets**) or with `gcloud run services update company-wise-prep-api --region as
 Check `<url>/api/auth/status`, then point Netlify's `VITE_API_BASE` at the Cloud Run URL and
 redeploy the UI. Once it works, suspend the Render service.
 
+### Both hosts at once (Cloud Run main, Render backup)
+
+Both services use the **same** Neon database, `APP_PASSWORD` and `APP_TOKEN_SECRET`, so data,
+logins and saved keys are identical on either. Netlify's `VITE_API_BASE` lists both, main first:
+`https://<cloud-run-url>,https://<render-url>`; the UI switches to Render only when Cloud Run is
+unreachable or returns 502/503/504, and remembers the working host for the browser session. Add the
+Netlify URL to `CORS_ORIGINS` on both. Render runs with `KEEP_ALIVE_URL` empty (render.yaml), so it
+sleeps and stays inside its free hours; the first request after a failover waits for it to wake (~1
+minute). When both start together, the startup import takes a database row lock, so one imports and
+the other waits and skips it.
+
 Updating: run `.\deploy-gcp.ps1` after pushing backend changes (or connect the repo under Cloud
 Run → **Set up continuous deployment** to deploy on every push to `main`).
 
