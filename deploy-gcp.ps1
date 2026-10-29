@@ -15,6 +15,9 @@ $ErrorActionPreference = 'Stop'
 $gcloud = (Get-Command gcloud -ErrorAction SilentlyContinue).Source
 if (-not $gcloud) { $gcloud = Join-Path $env:LOCALAPPDATA 'Google\Cloud SDK\google-cloud-sdk\bin\gcloud.cmd' }
 if (-not (Test-Path $gcloud)) { throw 'gcloud not found: install the Google Cloud CLI (docs/DEPLOY.md)' }
+# gcloud prints progress on stderr, which Windows PowerShell turns into errors under 'Stop':
+# judge it by its exit code instead.
+$ErrorActionPreference = 'Continue'
 
 # 1 GiB fits the API plus one judge JVM, so Run/Submit work on the hosted app too.
 # max-instances 1: one user, and it caps the bill. min-instances 0: sleeps when idle (free).
