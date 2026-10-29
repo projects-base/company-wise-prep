@@ -11,19 +11,24 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 
+# gcloud is on PATH after a new terminal; until then, use the default per-user install.
+$gcloud = (Get-Command gcloud -ErrorAction SilentlyContinue).Source
+if (-not $gcloud) { $gcloud = Join-Path $env:LOCALAPPDATA 'Google\Cloud SDK\google-cloud-sdk\bin\gcloud.cmd' }
+if (-not (Test-Path $gcloud)) { throw 'gcloud not found: install the Google Cloud CLI (docs/DEPLOY.md)' }
+
 # 1 GiB fits the API plus one judge JVM, so Run/Submit work on the hosted app too.
 # max-instances 1: one user, and it caps the bill. min-instances 0: sleeps when idle (free).
 $javaOpts = '-Xmx400m -Xss512k -XX:+UseSerialGC -XX:MaxMetaspaceSize=160m -XX:TieredStopAtLevel=1'
-gcloud run deploy $Service `
+& $gcloud run deploy $Service `
     --source . `
     --region $Region `
     --memory 1Gi --cpu 1 `
     --min-instances 0 --max-instances 1 `
     --concurrency 20 --timeout 300 `
     --cpu-boost `
-    --allow-unauthenticated `
+    --allow-unauthenticated --quiet `
     --update-env-vars "AUTH_ENABLED=true,CODE_RUNNER_ENABLED=true,JUDGE_HEAP=256m,JUDGE_PARALLEL=1,JAVA_OPTS=$javaOpts"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-$url = gcloud run services describe $Service --region $Region --format 'value(status.url)'
+$url = & $gcloud run services describe $Service --region $Region --format 'value(status.url)'
 Write-Host "API: $url  (check $url/api/auth/status)"
