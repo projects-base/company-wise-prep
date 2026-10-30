@@ -34,8 +34,7 @@ Reset the `neondb_owner` password if it was ever shared. Copy the **pooled** con
 Cloud Run builds the same Dockerfile, sleeps when idle and wakes on the first request (10-20 s),
 so a single user stays inside its monthly free tier, which does not expire after the $300 trial.
 The service runs in `asia-southeast1` (Singapore), next to Neon, with 1 GiB, so the code runner is
-on. No keep-alive: `RENDER_EXTERNAL_URL` isn't set there, so `KeepAlive` stays off, which is what
-lets it sleep.
+on. It sleeps whenever the UI isn't open and in use (see "Staying awake"), which is what keeps it free.
 
 One-time setup (you):
 
@@ -74,7 +73,7 @@ Both services use the **same** Neon database, `APP_PASSWORD` and `APP_TOKEN_SECR
 logins and saved keys are identical on either. Netlify's `VITE_API_BASE` lists both, main first:
 `https://<cloud-run-url>,https://<render-url>`; the UI switches to Render only when Cloud Run is
 unreachable or returns 502/503/504, and remembers the working host for the browser session. Add the
-Netlify URL to `CORS_ORIGINS` on both. Render runs with `KEEP_ALIVE_URL` empty (render.yaml), so it
+Netlify URL to `CORS_ORIGINS` on both. Only the host the UI is using gets keep-alive pings, so Render
 sleeps and stays inside its free hours; the first request after a failover waits for it to wake (~1
 minute). When both start together, the startup import takes a database row lock, so one imports and
 the other waits and skips it.
@@ -126,15 +125,13 @@ companies from `/prep-company` land in `data/`, so the next Render start imports
 
 ## Staying awake
 
-The free plan stops the service after 15 minutes without requests; the next request then waits
-about a minute. The app keeps itself awake (`KeepAlive`): every 10 minutes it calls its own public
-URL (`RENDER_EXTERNAL_URL`, which Render sets) at `/api/auth/status`. That endpoint needs no login
-and doesn't touch the database, so Neon can still suspend while you're not studying. Nothing to
-configure. To turn it off, add `KEEP_ALIVE_URL` with an empty value; `KEEP_ALIVE_INTERVAL` (e.g.
-`PT5M`) changes the period.
-
-Running all month uses about 744 of the free plan's 750 instance hours, so this fits only if it is
-your only free Render service.
+Both hosts stop the API after ~15 minutes without requests, and the next request waits for a cold
+start (Cloud Run 20-30 s, Render about a minute). The **UI** keeps it awake while you study
+(`frontend/src/keepAlive.ts`): every 10 minutes it calls `/api/auth/status` (no login, no
+database, so Neon can still suspend) on the host it is using, but only while the tab is visible and
+you have clicked, typed or scrolled in the last 30 minutes. Coming back after a break pings at once,
+so the API is waking while you read. Close the tab or walk away and the API sleeps, so a tab left
+open overnight costs nothing. Locally (same-origin UI) it does nothing.
 
 ## Memory
 

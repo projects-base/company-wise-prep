@@ -29,8 +29,6 @@ services:
         generateValue: true   # signs login tokens; Render generates a random one
       - key: CORS_ORIGINS
         sync: false           # your Netlify URL, e.g. https://company-wise-prep.netlify.app
-      - key: KEEP_ALIVE_URL
-        value: ""            # backup host since Cloud Run: let it sleep so it stays inside the free hours
       - key: AUTH_ENABLED
         value: "true"
       - key: CODE_RUNNER_ENABLED

@@ -292,6 +292,11 @@ const BASES = ((import.meta.env.VITE_API_BASE as string | undefined) ?? '')
   .map((b) => b.trim().replace(/\/$/, ''))
   .filter(Boolean)
 if (BASES.length === 0) BASES.push('')
+/** True on Netlify (the API is on another host); false when Spring or Vite serves the UI. */
+export const hosted = BASES[0] !== ''
+let lastCall = 0
+/** When the last request reached an API host (ms since epoch); keepAlive skips a ping after one. */
+export const lastApiCall = () => lastCall
 const ACTIVE_KEY = 'cwp.api'
 const TOKEN_KEY = 'cwp.token'
 
@@ -351,6 +356,7 @@ async function request(path: string, init?: RequestInit): Promise<Response> {
       continue
     }
     if ([502, 503, 504].includes(res.status) && k < BASES.length - 1) continue
+    lastCall = Date.now()
     if (i !== start) {
       try {
         sessionStorage.setItem(ACTIVE_KEY, String(i))
