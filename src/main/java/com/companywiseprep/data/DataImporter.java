@@ -14,8 +14,7 @@ import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -43,13 +42,13 @@ import com.companywiseprep.code.CodeChallengeRepository;
 import jakarta.persistence.EntityManager;
 
 /**
- * Loads data/ into the database on start-up and on demand.
+ * Loads data/ into the database on start-up (before the port opens) and on demand.
  *
  * The files are the source of truth for content, so an import replaces every content table.
  * Progress is keyed by slug in its own table and is never touched here.
  */
 @Component
-public class DataImporter implements ApplicationRunner {
+public class DataImporter implements SmartInitializingSingleton {
 
 	private static final Logger log = LoggerFactory.getLogger(DataImporter.class);
 
@@ -91,12 +90,16 @@ public class DataImporter implements ApplicationRunner {
 	}
 
 	/**
+	 * Runs once every bean exists but before the web server opens its port. Cloud Run gives full CPU
+	 * only until the port opens (or while a request runs); an import started later is throttled for
+	 * many minutes and Neon kills its idle transaction.
+	 *
 	 * Transactional itself: calling importAll() from here is a self-invocation, which skips the
 	 * proxy, so importAll()'s own @Transactional would never apply (CURRICULUM D3).
 	 */
 	@Override
 	@Transactional
-	public void run(ApplicationArguments args) {
+	public void afterSingletonsInstantiated() {
 		String fingerprint = fingerprint();
 		// Waits here while another instance on the same database imports; then re-reads its result.
 		ImportState last = lock();
