@@ -4,9 +4,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { Diagram, mermaidSource } from '../Diagram'
 import remarkGfm from 'remark-gfm'
-import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, Play } from 'lucide-react'
-import { api, type Ref } from '../api'
-import { LevelChip, Status, useLoad, MdLink } from '../ui'
+import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, ListTree, Play, X } from 'lucide-react'
+import { api, type ModuleSummary, type Ref } from '../api'
+
+import { LevelTree } from '../LessonTree'
+import { PATH_KEY } from './AcademyPage'
+import { Bar, LevelChip, Status, useLoad, MdLink } from '../ui'
 import { useFeatures } from '../features'
 import { Lifeline } from '../Lifeline'
 import { ModeToggle, StepperView, useStepper } from '../Stepper'
@@ -52,6 +55,8 @@ export default function ModulePage() {
   }
 
   return (
+    <div className="course">
+    <CourseNav current={m.id} refresh={m.done} />
     <div className="reader">
       <article>
         <header className="reader-head">
@@ -211,6 +216,61 @@ export default function ModulePage() {
       )}
       <Lifeline key={m.id} context="lesson" refId={m.id} title={m.title} />
     </div>
+    </div>
+  )
+}
+
+/**
+ * The course outline beside the lesson: the chosen path as a level → section → lesson tree, so any
+ * lesson is one click away. On narrow screens it folds into a "Lessons" button that opens a drawer.
+ */
+function CourseNav({ current, refresh }: { current: string; refresh: boolean }) {
+  const { data } = useLoad(() => api.academy(), [refresh])
+  const [open, setOpen] = useState(false)
+  useEffect(() => setOpen(false), [current])
+  useEffect(() => {
+    document.querySelector(`.course-nav [data-lesson="${current}"]`)?.scrollIntoView({ block: 'nearest' })
+  }, [current, data])
+  if (!data) return <aside className="course-nav" aria-label="Lessons" />
+
+  let chosen = 'zero-to-pro'
+  try {
+    chosen = localStorage.getItem(PATH_KEY) ?? chosen
+  } catch {
+    /* default path */
+  }
+  const path =
+    data.paths.find((p) => p.id === chosen && p.modules.includes(current)) ??
+    data.paths.find((p) => p.modules.includes(current)) ??
+    data.paths[0]
+  const byId = new Map<string, ModuleSummary>(data.tracks.flatMap((t) => t.modules).map((m) => [m.id, m]))
+
+  return (
+    <>
+      <button className="btn sm course-nav-open" onClick={() => setOpen(true)}>
+        <ListTree size={15} /> Lessons
+      </button>
+      <aside className={`course-nav ${open ? 'open' : ''}`} aria-label="Lessons">
+        <div className="course-nav-head">
+          <div>
+            <Link to="/academy" className="eyebrow">
+              {path.title.replace(' (start here)', '')}
+            </Link>
+            <div className="course-nav-progress">
+              <Bar value={path.done} max={path.modules.length} />
+              <span className="num">
+                {path.done}/{path.modules.length}
+              </span>
+            </div>
+          </div>
+          <button className="icon-btn course-nav-close" onClick={() => setOpen(false)} aria-label="Close the lesson list">
+            <X size={16} />
+          </button>
+        </div>
+        <LevelTree ids={path.modules} byId={byId} tracks={data.tracks} next={path.next} current={current} compact />
+      </aside>
+      {open && <div className="course-nav-scrim" onClick={() => setOpen(false)} />}
+    </>
   )
 }
 
