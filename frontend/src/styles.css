@@ -1126,3 +1126,12 @@ html { scroll-behavior: smooth; }
   .tree-children { padding-left: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { .tree-chev { transition: none; } }
+
+/* Browse-by-track cards: codes are wider than the old ids, so give them a column of their own. */
+.track h3 { font-size: 1rem; }
+.track-progress { gap: 10px; font-size: 0.8rem; }
+.track-progress .bar { flex: 1; }
+.track li a { align-items: baseline; padding: 3px 6px; margin: 0 -6px; border-radius: 6px; line-height: 1.4; }
+.track li a.next { background: var(--accent-soft); color: var(--text); }
+.track li .id { flex: none; min-width: 22px; text-align: right; font-size: 0.78rem; font-weight: 600; }
+.track li a.done .id { color: var(--ok); font-size: 0.85rem; }

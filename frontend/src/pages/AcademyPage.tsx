@@ -137,10 +137,39 @@ export default function AcademyPage() {
         <div className="section-head">
           <h2>Browse by track</h2>
         </div>
-        <div className="tree">
-          {data.tracks.map((t) => (
-            <TrackNode key={t.id} track={t} next={path?.next ?? null} />
-          ))}
+        <div className="tracks">
+          {data.tracks.map((t) => {
+            const done = t.modules.filter((m) => m.done).length
+            return (
+              <div key={t.id} className="card track">
+                <div className="row" style={{ justifyContent: 'space-between', gap: 8 }}>
+                  <h3>{t.title}</h3>
+                  <span className="track-code">{t.code}</span>
+                </div>
+                <p className="track-desc">{t.description}</p>
+                <div className="row track-progress">
+                  <Bar value={done} max={t.modules.length} />
+                  <span className="muted num">
+                    {done}/{t.modules.length}
+                  </span>
+                </div>
+                <ul>
+                  {t.modules.map((m, i) => (
+                    <li key={m.id}>
+                      <Link
+                        to={`/academy/${m.id}`}
+                        title={m.code}
+                        className={`${m.done ? 'done' : ''} ${m.id === path?.next ? 'next' : ''}`}
+                      >
+                        <span className="id">{m.done ? '✓' : i + 1}</span>
+                        <span>{m.title}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
         </div>
       </section>
     </div>
@@ -209,27 +238,6 @@ function OrderList({ ids, byId, trackTitle, next }: { ids: string[]; byId: Map<s
         return m ? <LessonRow key={id} m={m} step={i + 1} next={next} sub={trackTitle.get(m.trackId)} /> : null
       })}
     </div>
-  )
-}
-
-function TrackNode({ track, next }: { track: Track; next: string | null }) {
-  const done = track.modules.filter((m) => m.done).length
-  return (
-    <Node
-      open={track.modules.some((m) => m.id === next)}
-      head={
-        <>
-          <span className="tree-title">{track.title}</span>
-          <span className="track-code">{track.code}</span>
-          <Progress done={done} total={track.modules.length} />
-        </>
-      }
-    >
-      <p className="track-desc tree-desc">{track.description}</p>
-      {track.modules.map((m) => (
-        <LessonRow key={m.id} m={m} next={next} />
-      ))}
-    </Node>
   )
 }
 
