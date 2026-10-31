@@ -16,7 +16,7 @@ Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with
 | Day | Core |
 |---|---|
 | **Saturday** (2 h) | **Two** scratch lessons 60 + **LLD** design 60 (timed DSA 30 is stretch) |
-| **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–3: two lessons, 2 h) |
+| **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–3: two lessons, 2 h); stretch: **Capstone** milestone 60 |
 
 The Today page shows core first, stretch below it, and a **Short on time? Do just this** button for
 the floor.
@@ -60,6 +60,15 @@ JAVA-FUND-3 and a step number, and practice follows what they covered.
 | 11 | 11 – 17 Jan | Event-driven, schedulers, case studies, betting platform, modular monoliths, reactive, GC diagnosis | DP 2, greedy | Undo/redo editor | Payment system |
 | 12 | 18 – 24 Jan | Profiling, extending Spring, shipping a feature, AI engineering: LLMs, prompting, RAG, MCP, agents | Design data structures | **Mock (LLD)** | **Mock (system design)** |
 | 13 | 25 – 31 Jan | Evals, Spring AI, AI-native, what's next (Mon–Thu) | Re-solves, timed | Final LLD mock | Final system design mock |
+
+## The capstone (Sunday stretch)
+
+One real Spring Boot service, **TicketHub** (event-ticket booking), built in your own repo over 12 Sundays:
+plain-Java domain → in-memory engine → Boot skeleton → REST done properly → Postgres + JPA with seat locking
+→ tests that prove no double booking → hold expiry → security → Redis → Kafka via outbox + Resilience4j →
+Docker/Kubernetes → README, load test and the interview story. Each milestone (Academy CAPSTONE-1 … 12) only
+uses what the week's lessons taught. It is stretch: skip a week and the plan is still on time; the next
+milestone starts from the previous tag.
 
 ## When you fall behind
 

@@ -223,7 +223,7 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
   }
   const done = steps.length > 0 && ticks.length >= steps.length
   // "Scratch · Step 12 of 104 · JAVA-JVM-2: …" — the API opens a lesson by its code as well as its id.
-  const lessonId = /^Scratch · Step \d+ of \d+ · ([A-Z]+(?:-[A-Z]+)*-\d+):/.exec(session.title)?.[1]
+  const lessonId = /^(?:Scratch · Step \d+ of \d+|Capstone) · ([A-Z]+(?:-[A-Z]+)*-\d+):/.exec(session.title)?.[1]
 
   return (
     <div className={`list-row session-row ${done ? 'done' : ''}`}>

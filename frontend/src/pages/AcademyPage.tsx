@@ -57,7 +57,8 @@ export default function AcademyPage() {
           <div className="eyebrow">Academy</div>
           <h1 style={{ marginTop: 6 }}>From scratch to architect</h1>
           <p className="sub">
-            {data.total} lessons of about 25 minutes, each building only on what came before.
+            {data.paths[0]?.modules.length ?? data.total} lessons of about 25 minutes, each building only on what came before
+            {data.paths.some((p) => p.id === 'capstone') && ', plus a 12-milestone weekend capstone'}.
           </p>
         </div>
         <div style={{ minWidth: 200 }}>

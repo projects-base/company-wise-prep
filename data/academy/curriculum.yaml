@@ -190,6 +190,24 @@ tracks:
       - {id: H3, title: "Debugging and production habits", level: 2, minutes: 20, prerequisites: []}
       - {id: H4, title: "System design interview kit: method, numbers, patterns, practice", level: 4, minutes: 30, prerequisites: [F1, F3]}
 
+  - id: K
+    title: "Capstone: TicketHub"
+    code: CAPSTONE
+    description: One Spring Boot service you grow every weekend, in your own repo — an event-ticket booking API with seat locking, caching, Kafka events, security and Docker. Each milestone uses only what the lessons have taught so far. Spec in docs/CAPSTONE.md.
+    modules:
+      - {id: K1, title: "Domain model in plain Java, with tests", level: 2, minutes: 60, prerequisites: [J4]}
+      - {id: K2, title: "In-memory booking engine: collections, streams, thread-safe holds, JSON seed", level: 2, minutes: 60, prerequisites: [K1, J7, J8, B1]}
+      - {id: K3, title: "Spring Boot skeleton: DI, configuration, profiles, read-only endpoints", level: 3, minutes: 60, prerequisites: [K2, D2]}
+      - {id: K4, title: "REST API done properly: validation, problem details, idempotency key, pagination", level: 3, minutes: 60, prerequisites: [K3, W2]}
+      - {id: K5, title: "PostgreSQL with Flyway and JPA; optimistic locking on seats", level: 3, minutes: 60, prerequisites: [K4, D6, Q6]}
+      - {id: K6, title: "Tests that prove it: slices, Testcontainers, the double-booking race, N+1 fix", level: 3, minutes: 60, prerequisites: [K5, D12]}
+      - {id: K7, title: "Hold expiry job and pricing strategies", level: 3, minutes: 60, prerequisites: [K6, B4, E4]}
+      - {id: K8, title: "Security: JWT resource server, roles, ownership checks; virtual threads", level: 4, minutes: 60, prerequisites: [K7, D7, B6]}
+      - {id: K9, title: "Redis: cached event pages and seat map, hold TTL; Actuator health and metrics", level: 4, minutes: 60, prerequisites: [K8, I2, D8]}
+      - {id: K10, title: "Kafka via the transactional outbox; idempotent consumer; Resilience4j on payments", level: 4, minutes: 60, prerequisites: [K9, I1, I3]}
+      - {id: K11, title: "Ship it: Dockerfile, Compose for the whole stack, Kubernetes manifests with probes", level: 4, minutes: 60, prerequisites: [K10, I4]}
+      - {id: K12, title: "Polish and tell it: README and diagram, a load test, the STAR story, a 5-minute demo", level: 5, minutes: 60, prerequisites: [K11]}
+
 paths:
   - id: zero-to-pro
     title: Zero to Pro (start here)
@@ -211,3 +229,7 @@ paths:
     title: Backend from scratch
     description: The full story, start to finish — why each technology exists, then how it works.
     modules: [S0, W1, S1, S2, S3, S4, S5, D1, S6, S7, D2, D3, D4, D5, D6, S7B, S8, S9, S10, S11, S12, S13]
+  - id: capstone
+    title: "Capstone: TicketHub"
+    description: The weekend build, milestone by milestone. One hour each Sunday; your repo, your commits, your interview story.
+    modules: [K1, K2, K3, K4, K5, K6, K7, K8, K9, K10, K11, K12]

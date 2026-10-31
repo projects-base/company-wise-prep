@@ -26,6 +26,8 @@ mods = {m['id']: m for t in cur['tracks'] for m in t['modules']}
 # Display code: the track's code plus the position in the track (JAVA-JVM-3), as the app shows it.
 CODE = {m['id']: f"{t.get('code', t['id'])}-{i + 1}" for t in cur['tracks'] for i, m in enumerate(t['modules'])}
 PATH = next(p['modules'] for p in cur['paths'] if p['id'] == 'zero-to-pro')
+# The weekend build (docs/CAPSTONE.md): one milestone a week, Sunday stretch, in Akhil's own repo.
+CAPSTONE = next(p['modules'] for p in cur['paths'] if p['id'] == 'capstone')
 
 
 def Q(slug):
@@ -108,6 +110,10 @@ MOCK_LLD = ("Ask Claude in chat for an unseen LLD mock: 45 minutes, scored; "
 MOCK_HLD = ("Ask Claude in chat for an unseen system design mock: 35 minutes, scored out of 10; "
             "Run the checklist: requirements, estimates, API, data model, architecture, deep dives, failures; "
             "10: Log the score and the gaps in Mock progress")
+CAPSTONE_DETAIL = ("Open Academy {code} and read Goal, What you build and Acceptance criteria; "
+                   "45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); "
+                   "Run the tests until the acceptance criteria pass; "
+                   "5: Commit and tag it as the milestone says, then say the interview angle out loud once")
 REVIEW = ("10: Say 5 things from this week's lessons out loud, 1 minute each, no notes; "
           "5: Note the one you couldn't explain: it goes first next week; "
           "Catch-up: if a core session this week is unfinished, do it now instead (anything still left is dropped, not carried)")
@@ -181,6 +187,9 @@ for k, (pattern, wd, timed, qs, lld, hld, beh) in enumerate(W):
         review['detail'] = REVIEW + "; Bonus: say your story for this week's behavioural question out loud (STAR, 2 minutes)"
         review['questions'] = [Q(beh)]
     add(sun, review)
+    kid = CAPSTONE[k]
+    add(sun, dict(minutes=60, title=f'Capstone · {CODE[kid]}: {mods[kid]["title"]}', detail=CAPSTONE_DETAIL.format(code=CODE[kid])),
+        tier='stretch')
 
 # Week 13
 monday = WEEK1_MONDAY + dt.timedelta(weeks=12)
@@ -232,6 +241,7 @@ print('sessions', len(sessions), 'days', len(days), days[0], days[-1])
 print('lessons', sum(1 for s in sessions if s['title'].startswith('Scratch · Step')),
       'dsa', sum(1 for s in sessions if 'DSA' in s['title']), 'lld', sum(1 for s in sessions if s['title'].startswith('LLD ·')),
       'hld', sum(1 for s in sessions if s['title'].startswith('HLD ·')), 'mocks', sum(1 for s in sessions if 'mock' in s['title'].lower()),
-      'stretch', sum(1 for s in sessions if s['tier'] == 'stretch'))
+      'stretch', sum(1 for s in sessions if s['tier'] == 'stretch'),
+      'capstone', sum(1 for s in sessions if s['title'].startswith('Capstone')))
 print('core minutes per day:', sorted({core(d) for d in days}), '| days without a floor:',
       [d for d in days if not any(s.get('floor') for s in sessions if s['date'] == d)])

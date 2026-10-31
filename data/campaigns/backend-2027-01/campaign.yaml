@@ -37,7 +37,7 @@ guide: |
   | Day | Core |
   |---|---|
   | **Saturday** (2 h) | **Two** scratch lessons 60 + **LLD** design 60 (timed DSA 30 is stretch) |
-  | **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–3: two lessons, 2 h) |
+  | **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–3: two lessons, 2 h); stretch: **Capstone** milestone 60 |
 
   The Today page shows core first, stretch below it, and a **Short on time? Do just this** button for
   the floor.
@@ -81,6 +81,15 @@ guide: |
   | 11 | 11 – 17 Jan | Event-driven, schedulers, case studies, betting platform, modular monoliths, reactive, GC diagnosis | DP 2, greedy | Undo/redo editor | Payment system |
   | 12 | 18 – 24 Jan | Profiling, extending Spring, shipping a feature, AI engineering: LLMs, prompting, RAG, MCP, agents | Design data structures | **Mock (LLD)** | **Mock (system design)** |
   | 13 | 25 – 31 Jan | Evals, Spring AI, AI-native, what's next (Mon–Thu) | Re-solves, timed | Final LLD mock | Final system design mock |
+
+  ## The capstone (Sunday stretch)
+
+  One real Spring Boot service, **TicketHub** (event-ticket booking), built in your own repo over 12 Sundays:
+  plain-Java domain → in-memory engine → Boot skeleton → REST done properly → Postgres + JPA with seat locking
+  → tests that prove no double booking → hold expiry → security → Redis → Kafka via outbox + Resilience4j →
+  Docker/Kubernetes → README, load test and the interview story. Each milestone (Academy CAPSTONE-1 … 12) only
+  uses what the week's lessons taught. It is stretch: skip a week and the plan is still on time; the next
+  milestone starts from the previous tag.
 
   ## When you fall behind
 
@@ -270,6 +279,12 @@ sessions:
   title: 'Weekly review · week 1: Arrays, hashing, two pointers'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-11-08'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-1: Domain model in plain Java, with tests'
+  detail: 'Open Academy CAPSTONE-1 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-11-09'
   tier: core
   floor: true
@@ -432,6 +447,12 @@ sessions:
   title: 'Weekly review · week 2: Sliding window, prefix sums'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-11-15'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-2: In-memory booking engine: collections, streams, thread-safe holds, JSON seed'
+  detail: 'Open Academy CAPSTONE-2 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-11-16'
   tier: core
   floor: true
@@ -594,6 +615,12 @@ sessions:
   title: 'Weekly review · week 3: Stacks, binary search'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-11-22'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-3: Spring Boot skeleton: DI, configuration, profiles, read-only endpoints'
+  detail: 'Open Academy CAPSTONE-3 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-11-23'
   tier: core
   floor: true
@@ -751,6 +778,12 @@ sessions:
   title: 'Weekly review · week 4: Linked lists, intervals'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-11-29'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-4: REST API done properly: validation, problem details, idempotency key, pagination'
+  detail: 'Open Academy CAPSTONE-4 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-11-30'
   tier: core
   floor: true
@@ -908,6 +941,12 @@ sessions:
   title: 'Weekly review · week 5: Trees'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-12-06'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-5: PostgreSQL with Flyway and JPA; optimistic locking on seats'
+  detail: 'Open Academy CAPSTONE-5 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-12-07'
   tier: core
   floor: true
@@ -1065,6 +1104,12 @@ sessions:
   title: 'Weekly review · week 6: Heaps, top-K'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-12-13'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-6: Tests that prove it: slices, Testcontainers, the double-booking race, N+1 fix'
+  detail: 'Open Academy CAPSTONE-6 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-12-14'
   tier: core
   floor: true
@@ -1222,6 +1267,12 @@ sessions:
   title: 'Weekly review · week 7: Graphs: BFS and DFS'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-12-20'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-7: Hold expiry job and pricing strategies'
+  detail: 'Open Academy CAPSTONE-7 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-12-21'
   tier: core
   floor: true
@@ -1379,6 +1430,12 @@ sessions:
   title: 'Weekly review · week 8: Graphs: topological sort, union-find, shortest paths'
   detail: '10: Say 5 things from this week''s lessons out loud, 1 minute each, no notes; 5: Note the one you couldn''t explain: it goes first next week; Catch-up: if a core session this week is unfinished,
     do it now instead (anything still left is dropped, not carried)'
+- date: '2026-12-27'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-8: Security: JWT resource server, roles, ownership checks; virtual threads'
+  detail: 'Open Academy CAPSTONE-8 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2026-12-28'
   tier: core
   floor: true
@@ -1538,6 +1595,12 @@ sessions:
     do it now instead (anything still left is dropped, not carried); Bonus: say your story for this week''s behavioural question out loud (STAR, 2 minutes)'
   questions:
   - walk-through-current-work
+- date: '2027-01-03'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-9: Redis: cached event pages and seat map, hold TTL; Actuator health and metrics'
+  detail: 'Open Academy CAPSTONE-9 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2027-01-04'
   tier: core
   floor: true
@@ -1692,6 +1755,12 @@ sessions:
     do it now instead (anything still left is dropped, not carried); Bonus: say your story for this week''s behavioural question out loud (STAR, 2 minutes)'
   questions:
   - most-challenging-project
+- date: '2027-01-10'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-10: Kafka via the transactional outbox; idempotent consumer; Resilience4j on payments'
+  detail: 'Open Academy CAPSTONE-10 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2027-01-11'
   tier: core
   floor: true
@@ -1851,6 +1920,12 @@ sessions:
     do it now instead (anything still left is dropped, not carried); Bonus: say your story for this week''s behavioural question out loud (STAR, 2 minutes)'
   questions:
   - tell-me-about-a-conflict
+- date: '2027-01-17'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-11: Ship it: Dockerfile, Compose for the whole stack, Kubernetes manifests with probes'
+  detail: 'Open Academy CAPSTONE-11 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2027-01-18'
   tier: core
   floor: true
@@ -2005,6 +2080,12 @@ sessions:
     do it now instead (anything still left is dropped, not carried); Bonus: say your story for this week''s behavioural question out loud (STAR, 2 minutes)'
   questions:
   - tell-me-about-a-failure
+- date: '2027-01-24'
+  tier: stretch
+  minutes: 60
+  title: 'Capstone · CAPSTONE-12: Polish and tell it: README and diagram, a load test, the STAR story, a 5-minute demo'
+  detail: 'Open Academy CAPSTONE-12 and read Goal, What you build and Acceptance criteria; 45: Build it in your TicketHub repo, following the Steps (Hints only when stuck); Run the tests until the acceptance
+    criteria pass; 5: Commit and tag it as the milestone says, then say the interview angle out loud once'
 - date: '2027-01-25'
   tier: core
   floor: true
