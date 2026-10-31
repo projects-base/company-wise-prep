@@ -18,6 +18,9 @@ public class AcademyTrack {
 
 	private String title;
 
+	/** Display prefix, e.g. JAVA-JVM; a lesson shows as JAVA-JVM-3. */
+	private String code;
+
 	@Column(length = 2000)
 	private String description;
 

@@ -19,6 +19,9 @@ public class AcademyModule {
 
 	private String trackId;
 
+	/** Display code: the track code plus the position in the track (JAVA-JVM-3). The id stays the key. */
+	private String code;
+
 	private String title;
 
 	/** 1 Explorer … 5 Architect. */

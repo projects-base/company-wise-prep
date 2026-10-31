@@ -4,7 +4,8 @@ Run from the repo root: python tools/backend-plan/generate.py . (edit the tables
 
 Every day has tiers: core sessions (the schedule is built on these alone), stretch sessions
 (optional, they never put you behind) and one floor session (the minimum that keeps a bad day
-alive: the day's Academy lesson). The Academy's "Zero to Pro" path runs one lesson a day, in order;
+alive: the day's Academy lesson). The Academy's "Zero to Pro" path runs in order: one lesson a day,
+two on Saturdays and on the first three Sundays, so all of it fits by week 13;
 the DSA, the stretch question and the weekend designs follow the topics the lessons have covered."""
 import datetime as dt
 import glob
@@ -22,6 +23,8 @@ for f in glob.glob(os.path.join(ROOT, 'data', 'questions', '*', '*.yaml')):
     bank[q['slug']] = q
 cur = yaml.safe_load(open(os.path.join(ROOT, 'data', 'academy', 'curriculum.yaml'), encoding='utf-8'))
 mods = {m['id']: m for t in cur['tracks'] for m in t['modules']}
+# Display code: the track's code plus the position in the track (JAVA-JVM-3), as the app shows it.
+CODE = {m['id']: f"{t.get('code', t['id'])}-{i + 1}" for t in cur['tracks'] for i, m in enumerate(t['modules'])}
 PATH = next(p['modules'] for p in cur['paths'] if p['id'] == 'zero-to-pro')
 
 
@@ -74,7 +77,7 @@ W = [
      ['llm-cost-caching-and-observability', 'zero-downtime-schema-migrations', 'sql-injection-prevention', 'java-serialization', 'deep-vs-shallow-copy'],
      'MOCK', 'MOCK', 'tell-me-about-a-failure'),
 ]
-# Week 13: Mon-Thu re-solves (the lessons finish on Monday), Fri-Sun review and final mocks.
+# Week 13: Mon-Thu the last lessons and re-solves, Fri-Sun review and final mocks.
 W13_DSA = ['subarray-sum-equals-k', 'course-schedule-ii', 'top-k-frequent-elements', 'edit-distance']
 W13_STRETCH = ['polymorphism-and-static-method-overriding', 'java-final-and-synchronized-methods', 'comparable-vs-comparator', 'collection-vs-collections']
 
@@ -120,16 +123,21 @@ def add(day, s, tier='core', floor=False):
     sessions.append({**row, **s})
 
 
-def lesson(day):
+step = 0
+
+
+def lesson(day, floor=True):
+    global step
     mid = next(lessons)
-    m = mods[mid]
-    add(day, dict(minutes=30, title=f'Scratch · Academy {mid}: {m["title"]}', detail=LESSON_DETAIL), floor=True)
+    step += 1
+    add(day, dict(minutes=30, title=f'Scratch · Step {step} of {len(PATH)} · {CODE[mid]}: {mods[mid]["title"]}',
+                  detail=LESSON_DETAIL), floor=floor)
 
 
-def dsa(day, pattern, slug, timed=False):
+def dsa(day, pattern, slug, timed=False, tier='core'):
     solve = 25 if timed else 22
     add(day, dict(minutes=30, title=f'{"Timed DSA" if timed else "DSA"} · {pattern} · {bank[Q(slug)]["title"]}',
-                  detail=DSA_DETAIL.format(solve=solve), questions=[slug]))
+                  detail=DSA_DETAIL.format(solve=solve), questions=[slug]), tier=tier)
 
 
 def stretch(day, slug):
@@ -155,12 +163,15 @@ for k, (pattern, wd, timed, qs, lld, hld, beh) in enumerate(W):
         stretch(day, qs[i])
     sat, sun = monday + dt.timedelta(days=5), monday + dt.timedelta(days=6)
     lesson(sat)
+    lesson(sat, floor=False)
     if lld == 'MOCK':
         add(sat, dict(minutes=60, title='LLD mock with Claude (unseen problem)', detail=MOCK_LLD))
     else:
         add(sat, dict(minutes=60, title=f'LLD · {bank[Q(lld)]["title"]}', detail=LLD_DETAIL, questions=[lld]))
-    dsa(sat, pattern, timed, timed=True)
+    dsa(sat, pattern, timed, timed=True, tier='stretch')
     lesson(sun)
+    if k < 3:
+        lesson(sun, floor=False)  # the 18 fundamentals lessons added in Oct 2026 need three more slots
     if hld == 'MOCK':
         add(sun, dict(minutes=45, title='System design mock with Claude (unseen problem)', detail=MOCK_HLD))
     else:
@@ -175,12 +186,7 @@ for k, (pattern, wd, timed, qs, lld, hld, beh) in enumerate(W):
 monday = WEEK1_MONDAY + dt.timedelta(weeks=12)
 for i, (p, s) in enumerate(zip(W13_DSA, W13_STRETCH)):
     day = monday + dt.timedelta(days=i)
-    if i == 0:
-        lesson(day)
-    else:
-        add(day, dict(minutes=30, title='Scratch · re-read the lesson you found hardest',
-                      detail="Pick it from your weekly review notes; Answer its Check yourself questions out loud first; Say the 2-minute summary without looking"),
-            floor=True)
+    lesson(day)
     dsa(day, 'Re-solve, timed', p)
     stretch(day, s)
 fri, sat, sun = (monday + dt.timedelta(days=d) for d in (4, 5, 6))
@@ -223,7 +229,7 @@ with open(OUT, 'w', encoding='utf-8', newline='\n') as f:
 days = sorted({s['date'] for s in sessions})
 core = lambda d: sum(s['minutes'] for s in sessions if s['date'] == d and s['tier'] == 'core')
 print('sessions', len(sessions), 'days', len(days), days[0], days[-1])
-print('lessons', sum(1 for s in sessions if s['title'].startswith('Scratch · Academy')),
+print('lessons', sum(1 for s in sessions if s['title'].startswith('Scratch · Step')),
       'dsa', sum(1 for s in sessions if 'DSA' in s['title']), 'lld', sum(1 for s in sessions if s['title'].startswith('LLD ·')),
       'hld', sum(1 for s in sessions if s['title'].startswith('HLD ·')), 'mocks', sum(1 for s in sessions if 'mock' in s['title'].lower()),
       'stretch', sum(1 for s in sessions if s['tier'] == 'stretch'))

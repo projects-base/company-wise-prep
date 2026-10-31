@@ -162,10 +162,10 @@ function Guide({ text }: { text: string }) {
   )
 }
 
-/** "Academy D2" in a step becomes a link to that lesson. */
+/** "Academy SPRING-BOOT-2" (or an old id like "Academy D2") in a step becomes a link to that lesson. */
 function withLessonLinks(text: string) {
-  return text.split(/(Academy [A-Z]\d+[A-Z]?)\b/).map((part, i) => {
-    const m = part.match(/^Academy ([A-Z]\d+[A-Z]?)$/)
+  return text.split(/(Academy (?:[A-Z]+(?:-[A-Z]+)*-\d+|[A-Z]\d+B?))\b/).map((part, i) => {
+    const m = part.match(/^Academy ([A-Z]+(?:-[A-Z]+)*-\d+|[A-Z]\d+B?)$/)
     return m ? (
       <Link key={i} to={`/academy/${m[1]}`}>
         {part}
@@ -222,7 +222,8 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
     window.dispatchEvent(new Event(TICKS_CHANGED))
   }
   const done = steps.length > 0 && ticks.length >= steps.length
-  const lessonId = /^Scratch · Academy ([A-Z]\d+B?):/.exec(session.title)?.[1]
+  // "Scratch · Step 12 of 104 · JAVA-JVM-2: …" — the API opens a lesson by its code as well as its id.
+  const lessonId = /^Scratch · Step \d+ of \d+ · ([A-Z]+(?:-[A-Z]+)*-\d+):/.exec(session.title)?.[1]
 
   return (
     <div className={`list-row session-row ${done ? 'done' : ''}`}>

@@ -1,6 +1,6 @@
 ## Where we are
 
-In S7, Spring Boot made one application cheap to start: auto-configuration, starters and an
+In BE-STORY-8, Spring Boot made one application cheap to start: auto-configuration, starters and an
 embedded server in one runnable jar. But a company is never just one application. This lesson is
 about the era (roughly the 2000s) when large companies tried to connect *many* applications to each
 other, and what that taught us before microservices arrived.
@@ -51,7 +51,7 @@ Service: InventoryService
 The shop now depends on two operations, not on forty tables. The ERP can change its tables freely.
 
 The general rule: **depend on a contract, not on someone else's internals.** That rule survived
-every era after this one. Microservices (S8) keep it; they change *where the smarts live*.
+every era after this one. Microservices (BE-STORY-10) keep it; they change *where the smarts live*.
 
 ## How SOA was usually built: SOAP and WSDL
 
@@ -116,7 +116,7 @@ Now:
   down, every integration is down.
 - Testing a flow means standing up the bus, which only the integration team knows how to do.
 
-This is the same shape of pain you saw in S4 (EJB): a heavy central container that does useful
+This is the same shape of pain you saw in BE-STORY-5 (EJB): a heavy central container that does useful
 things but slows every team down. The general lesson: **central governance helps consistency, but
 a central component that every change must pass through becomes a central bottleneck.**
 
@@ -274,5 +274,5 @@ A good answer hits:
 
 ## Next
 
-S8, Microservices: keep the contracts, drop the central bus, and give each team its own service.
+BE-STORY-10, Microservices: keep the contracts, drop the central bus, and give each team its own service.
 That solves the bottleneck, then hands you the network as a new problem.

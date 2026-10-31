@@ -72,7 +72,7 @@ export default function AcademyPage() {
           {next ? (
             <div className="card raised continue-card">
               <div>
-                <div className="eyebrow">{path.done === 0 ? 'Start here' : 'Continue'} · step {path.modules.indexOf(next.id) + 1} of {path.modules.length}</div>
+                <div className="eyebrow">{path.done === 0 ? 'Start here' : 'Continue'} · Step {path.modules.indexOf(next.id) + 1} of {path.modules.length} · {next.code}</div>
                 <Link to={`/academy/${next.id}`} className="title">
                   {next.title}
                 </Link>
@@ -109,7 +109,9 @@ export default function AcademyPage() {
             return (
               <div key={t.id} className="card track">
                 <div className="row" style={{ justifyContent: 'space-between' }}>
-                  <h3>{t.title}</h3>
+                  <h3>
+                    {t.title} <span className="track-code">{t.code}</span>
+                  </h3>
                   <span className="muted num" style={{ fontSize: '0.8rem' }}>
                     {done}/{t.modules.length}
                   </span>
@@ -120,7 +122,7 @@ export default function AcademyPage() {
                   {t.modules.map((m) => (
                     <li key={m.id}>
                       <Link to={`/academy/${m.id}`} className={m.done ? 'done' : ''}>
-                        <span className="id">{m.done ? '✓' : m.id}</span>
+                        <span className="id">{m.done ? '✓' : m.code}</span>
                         <span>{m.title}</span>
                       </Link>
                     </li>
@@ -172,7 +174,9 @@ function PathList({
                 <span className="step-no">{m.done ? <Check size={13} strokeWidth={3} /> : n}</span>
                 <span>
                   <div className="step-title">{m.title}</div>
-                  <div className="step-track">{trackTitle.get(m.trackId)}</div>
+                  <div className="step-track">
+                    <span className="num">{m.code}</span> · {trackTitle.get(m.trackId)}
+                  </div>
                 </span>
                 <span className="muted num" style={{ fontSize: '0.82rem' }}>
                   {m.written ? `${m.minutes} min` : 'soon'}

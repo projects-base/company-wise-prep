@@ -272,7 +272,9 @@ export default function TodayPage() {
           {nextLesson && path && (
             <div className="card side-card">
               <div className="row" style={{ justifyContent: 'space-between' }}>
-                <span className="eyebrow">Continue learning</span>
+                <span className="eyebrow">
+                  Step {path.modules.indexOf(nextLesson.id) + 1} of {path.modules.length} · {nextLesson.code}
+                </span>
                 <BookOpen size={16} className="muted" />
               </div>
               <Link to={`/academy/${nextLesson.id}`} className="continue-link">

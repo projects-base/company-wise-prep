@@ -16,7 +16,9 @@ minutes and prerequisites from `curriculum.yaml`, so **the file has no H1** — 
    this lesson is the natural next step.
 6. **At most one analogy per concept**, and say where the analogy breaks.
 7. **Say why before how.** Every mechanism starts with the problem it solves.
-8. **Accurate over impressive.** No invented numbers, dates or company claims. If unsure, leave
+8. **Refer to other lessons by display code** (JAVA-JVM-2, SPRING-BOOT-6): the track's `code` in
+   curriculum.yaml plus the lesson's position in that track. Never by internal id (A2, D6).
+9. **Accurate over impressive.** No invented numbers, dates or company claims. If unsure, leave
    it out or say "roughly". Java code targets Java 21 and must compile.
 
 ## Sections, in this order

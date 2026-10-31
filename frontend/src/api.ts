@@ -189,6 +189,8 @@ export interface QuestionView {
 
 export interface ModuleSummary {
   id: string
+  /** What the UI shows: track code + position, e.g. JAVA-JVM-3 (the id stays the stable key). */
+  code: string
   trackId: string
   title: string
   level: number
@@ -201,7 +203,7 @@ export interface ModuleSummary {
 
 export interface AcademyOverview {
   paths: { id: string; title: string; description: string; modules: string[]; done: number; next: string | null }[]
-  tracks: { id: string; title: string; description: string; modules: ModuleSummary[] }[]
+  tracks: { id: string; code: string; title: string; description: string; modules: ModuleSummary[] }[]
   done: number
   total: number
   written: number
@@ -209,6 +211,7 @@ export interface AcademyOverview {
 
 export interface Ref {
   id: string
+  code: string
   title: string
   done: boolean
 }

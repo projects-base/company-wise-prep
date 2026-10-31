@@ -213,7 +213,7 @@ class AppTest {
 
 		mvc.perform(get("/api/academy/modules/A1"))
 				.andExpect(jsonPath("$.module.ready", is(true)))
-				.andExpect(jsonPath("$.previous.id", is("S0")))
+				.andExpect(jsonPath("$.previous.id", is("J1")))
 				.andExpect(jsonPath("$.unlocks[*].id", hasItem("A2")));
 		mvc.perform(get("/api/academy/modules/A2")).andExpect(jsonPath("$.module.ready", is(false)));
 
@@ -224,5 +224,18 @@ class AppTest {
 		mvc.perform(post("/api/admin/reload"));
 		mvc.perform(get("/api/academy")).andExpect(jsonPath("$.done", is(1)));
 		mvc.perform(get("/api/academy/modules/NOPE")).andExpect(status().isNotFound());
+	}
+
+	/** Display codes are the track's code plus the lesson's position in it; ids stay the stable key. */
+	@Test
+	void lessonsShowReadableCodesAndOpenByEither() throws Exception {
+		mvc.perform(get("/api/academy"))
+				.andExpect(jsonPath("$.tracks[?(@.id == 'A')].code", hasItem("JAVA-JVM")))
+				.andExpect(jsonPath("$.tracks[*].modules[?(@.id == 'A2')].code", hasItem("JAVA-JVM-2")))
+				.andExpect(jsonPath("$.tracks[*].modules[?(@.id == 'S7B')].code", hasItem("BE-STORY-9")));
+		mvc.perform(get("/api/academy/modules/JAVA-JVM-2"))
+				.andExpect(jsonPath("$.module.id", is("A2")))
+				.andExpect(jsonPath("$.module.code", is("JAVA-JVM-2")))
+				.andExpect(jsonPath("$.prerequisites[*].code", hasItem("JAVA-JVM-1")));
 	}
 }

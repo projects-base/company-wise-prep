@@ -70,7 +70,7 @@ export default function ModulePage() {
           </nav>
           <h1>{m.title}</h1>
           <div className="meta">
-            <span className="num">{m.id}</span>
+            <span className="num code-chip">{m.code}</span>
             <span className="sep" />
             <LevelChip level={m.level} />
             <span className="sep" />
@@ -160,7 +160,7 @@ export default function ModulePage() {
             {v.previous ? (
               <Link to={`/academy/${v.previous.id}`}>
                 <span className="dir">
-                  <ArrowLeft size={13} /> Previous
+                  <ArrowLeft size={13} /> Step {v.pathPosition - 1} · {v.previous.code}
                 </span>
                 <span className="t">{v.previous.title}</span>
               </Link>
@@ -170,7 +170,7 @@ export default function ModulePage() {
             {v.next && (
               <Link to={`/academy/${v.next.id}`} className="next">
                 <span className="dir">
-                  Next <ArrowRight size={13} />
+                  Step {v.pathPosition + 1} · {v.next.code} <ArrowRight size={13} />
                 </span>
                 <span className="t">{v.next.title}</span>
               </Link>

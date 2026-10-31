@@ -40,11 +40,11 @@ public class AcademyService {
 	/**
 	 * @param ready every prerequisite is done — a suggestion, never a lock
 	 */
-	public record ModuleSummary(String id, String trackId, String title, int level, int minutes,
+	public record ModuleSummary(String id, String code, String trackId, String title, int level, int minutes,
 			List<String> prerequisites, boolean written, boolean done, boolean ready) {
 	}
 
-	public record TrackView(String id, String title, String description, List<ModuleSummary> modules) {
+	public record TrackView(String id, String code, String title, String description, List<ModuleSummary> modules) {
 	}
 
 	/** @param next the first module on the path that isn't done yet (null when finished) */
@@ -55,7 +55,7 @@ public class AcademyService {
 	public record Overview(List<PathView> paths, List<TrackView> tracks, int done, int total, int written) {
 	}
 
-	public record Ref(String id, String title, boolean done) {
+	public record Ref(String id, String code, String title, boolean done) {
 	}
 
 	public record ModuleView(ModuleSummary module, String trackTitle, String lesson, List<Ref> prerequisites,
@@ -72,7 +72,7 @@ public class AcademyService {
 				.collect(Collectors.groupingBy(ModuleSummary::trackId));
 		List<TrackView> trackViews = tracks.findAll().stream()
 				.sorted(Comparator.comparingInt(AcademyTrack::getOrdinal))
-				.map(t -> new TrackView(t.getId(), t.getTitle(), t.getDescription(),
+				.map(t -> new TrackView(t.getId(), t.getCode(), t.getTitle(), t.getDescription(),
 						byTrack.getOrDefault(t.getId(), List.of())))
 				.toList();
 		List<PathView> pathViews = paths.findAll().stream()
@@ -90,12 +90,13 @@ public class AcademyService {
 	}
 
 	@Transactional(readOnly = true)
-	public ModuleView module(String id) {
-		AcademyModule m = modules.findById(id).orElseThrow(() -> new NotFoundException("No module " + id));
+	public ModuleView module(String idOrCode) {
+		AcademyModule m = find(idOrCode);
+		String id = m.getId();
 		Set<String> done = doneIds();
 		Map<String, AcademyModule> byId = modules.findAll().stream()
 				.collect(Collectors.toMap(AcademyModule::getId, Function.identity()));
-		Function<String, Ref> ref = x -> byId.containsKey(x) ? new Ref(x, byId.get(x).getTitle(), done.contains(x)) : null;
+		Function<String, Ref> ref = x -> byId.containsKey(x) ? new Ref(x, byId.get(x).getCode(), byId.get(x).getTitle(), done.contains(x)) : null;
 
 		List<String> path = paths.findById(MAIN_PATH).map(p -> split(p.getModules())).orElse(List.of());
 		int pos = path.indexOf(id);
@@ -114,8 +115,9 @@ public class AcademyService {
 	}
 
 	@Transactional
-	public ModuleSummary setDone(String id, boolean isDone) {
-		AcademyModule m = modules.findById(id).orElseThrow(() -> new NotFoundException("No module " + id));
+	public ModuleSummary setDone(String idOrCode, boolean isDone) {
+		AcademyModule m = find(idOrCode);
+		String id = m.getId();
 		LessonProgress p = progress.findById(id).orElseGet(() -> new LessonProgress(id));
 		p.setDone(isDone);
 		p.setDoneOn(isDone ? LocalDate.now(clock) : null);
@@ -124,9 +126,15 @@ public class AcademyService {
 		return summary(m, doneIds());
 	}
 
+	/** By id (A2) or display code (JAVA-JVM-2), so links written with either work. */
+	private AcademyModule find(String idOrCode) {
+		return modules.findById(idOrCode).or(() -> modules.findByCode(idOrCode))
+				.orElseThrow(() -> new NotFoundException("No module " + idOrCode));
+	}
+
 	private ModuleSummary summary(AcademyModule m, Set<String> done) {
 		List<String> pre = split(m.getPrerequisites());
-		return new ModuleSummary(m.getId(), m.getTrackId(), m.getTitle(), m.getLevel(), m.getMinutes(), pre,
+		return new ModuleSummary(m.getId(), m.getCode(), m.getTrackId(), m.getTitle(), m.getLevel(), m.getMinutes(), pre,
 				!m.getLesson().isBlank(), done.contains(m.getId()), done.containsAll(pre));
 	}
 

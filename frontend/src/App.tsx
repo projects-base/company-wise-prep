@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Celebrations } from './rewards'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
-import { Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, PanelLeftClose, PanelLeftOpen, Settings2 } from 'lucide-react'
+import { BookOpenText, Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, Monitor, Moon, PanelLeftClose, PanelLeftOpen, Settings2, Sun } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import { startKeepAlive } from './keepAlive'
+import { applyTheme, savedTheme, type Theme } from './theme'
 import LoginPage from './pages/LoginPage'
 import { FeaturesContext } from './features'
 import { daysBetween, localToday } from './ui'
@@ -158,6 +159,7 @@ export default function App() {
               )}
             </div>
           )}
+          <ThemePicker />
         </aside>
         <main className={`main ${pathname.startsWith('/q/') ? 'main-tight' : ''}`}>
           <Routes>
@@ -177,5 +179,34 @@ export default function App() {
       </div>
     </CampaignContext.Provider>
     </FeaturesContext.Provider>
+  )
+}
+
+const THEME_OPTIONS: { theme: Theme; label: string; Icon: typeof Sun }[] = [
+  { theme: 'auto', label: 'Match the device', Icon: Monitor },
+  { theme: 'light', label: 'Light', Icon: Sun },
+  { theme: 'paper', label: 'Paper (sepia, for long reading)', Icon: BookOpenText },
+  { theme: 'dark', label: 'Dark', Icon: Moon },
+]
+
+function ThemePicker() {
+  const [theme, setTheme] = useState<Theme>(savedTheme)
+  return (
+    <div className="theme-picker" role="group" aria-label="Colour theme">
+      {THEME_OPTIONS.map(({ theme: t, label, Icon }) => (
+        <button
+          key={t}
+          aria-pressed={theme === t}
+          title={label}
+          aria-label={label}
+          onClick={() => {
+            applyTheme(t)
+            setTheme(t)
+          }}
+        >
+          <Icon size={15} />
+        </button>
+      ))}
+    </div>
   )
 }

@@ -1,32 +1,35 @@
 /* ─────────────────────────────────────────────────────────────
-   Design tokens. One accent, a neutral scale, semantic colours used
-   sparingly (difficulty, type dots). Light and dark share every token.
+   Design tokens: a calm study palette. Warm paper neutrals, one muted
+   teal accent, low-saturation semantic colours, so nothing on screen
+   competes with the lesson. Themes: auto (follows the device), light,
+   dark and paper (sepia, easiest on the eyes for long reading). Every
+   theme sets every token; theme.ts puts data-theme on <html>.
    ───────────────────────────────────────────────────────────── */
 :root {
-  --bg: #f8f8f7;
-  --surface: #ffffff;
-  --surface-2: #f2f2f0;
-  --sunken: #f4f4f2;
-  --line: #e7e6e3;
-  --line-strong: #d6d5d1;
-  --text: #18181b;
-  --text-2: #52525b;
-  --text-3: #8a8a93;
-  --accent: #4f46e5;
-  --accent-2: #4338ca;
-  --accent-soft: #eef0ff;
+  --bg: #f6f5f1;
+  --surface: #fffefb;
+  --surface-2: #f1efe9;
+  --sunken: #f3f1ec;
+  --line: #e6e3db;
+  --line-strong: #d5d1c7;
+  --text: #1f2328;
+  --text-2: #4b5157;
+  --text-3: #858b90;
+  --accent: #2f6f7e;
+  --accent-2: #255b68;
+  --accent-soft: #e5eff0;
   --accent-ink: #ffffff;
-  --ok: #15803d;
-  --ok-soft: #e8f6ec;
-  --warn: #b45309;
-  --warn-soft: #fdf3e3;
-  --bad: #b91c1c;
-  --t-dsa: #4f46e5;
-  --t-design: #9333ea;
-  --t-concept: #d97706;
-  --t-behav: #059669;
-  --code-bg: #f4f4f2;
-  --shadow: 0 1px 2px rgba(24, 24, 27, 0.04), 0 4px 16px rgba(24, 24, 27, 0.04);
+  --ok: #3f7d4f;
+  --ok-soft: #e8f2ea;
+  --warn: #a8641a;
+  --warn-soft: #f8efe1;
+  --bad: #b0413e;
+  --t-dsa: #2f6f7e;
+  --t-design: #7a5ea8;
+  --t-concept: #b07a2a;
+  --t-behav: #3f8a6b;
+  --code-bg: #f3f1ec;
+  --shadow: 0 1px 2px rgba(31, 35, 40, 0.04), 0 4px 16px rgba(31, 35, 40, 0.04);
   --radius: 12px;
   --radius-sm: 8px;
   --sidebar: 236px;
@@ -34,33 +37,90 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f0f11;
-    --surface: #17171a;
-    --surface-2: #1e1e22;
-    --sunken: #131316;
-    --line: #26262b;
-    --line-strong: #34343a;
-    --text: #f1f1f3;
-    --text-2: #b4b4bd;
-    --text-3: #7c7c86;
-    --accent: #8b8cf8;
-    --accent-2: #a5a6fb;
-    --accent-soft: #1f1f3a;
-    --accent-ink: #0f0f1f;
-    --ok: #4ade80;
-    --ok-soft: #12261a;
-    --warn: #fbbf24;
-    --warn-soft: #2a2010;
-    --bad: #f87171;
-    --t-dsa: #8b8cf8;
-    --t-design: #c084fc;
-    --t-concept: #fbbf24;
-    --t-behav: #34d399;
-    --code-bg: #1b1b1f;
+  :root:not([data-theme='light']):not([data-theme='paper']) {
+    --bg: #121416;
+    --surface: #181b1e;
+    --surface-2: #1f2326;
+    --sunken: #15181a;
+    --line: #262a2e;
+    --line-strong: #343a3f;
+    --text: #e6e8ea;
+    --text-2: #a9b0b6;
+    --text-3: #757d84;
+    --accent: #7fb7c4;
+    --accent-2: #9ccad5;
+    --accent-soft: #1b2a2e;
+    --accent-ink: #0d1a1d;
+    --ok: #7fbf8e;
+    --ok-soft: #15241a;
+    --warn: #e0b06a;
+    --warn-soft: #2a2214;
+    --bad: #e08a86;
+    --t-dsa: #7fb7c4;
+    --t-design: #b9a2e0;
+    --t-concept: #e0b06a;
+    --t-behav: #7fc4a5;
+    --code-bg: #1a1d20;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
     color-scheme: dark;
   }
+}
+
+:root[data-theme='dark'] {
+  --bg: #121416;
+  --surface: #181b1e;
+  --surface-2: #1f2326;
+  --sunken: #15181a;
+  --line: #262a2e;
+  --line-strong: #343a3f;
+  --text: #e6e8ea;
+  --text-2: #a9b0b6;
+  --text-3: #757d84;
+  --accent: #7fb7c4;
+  --accent-2: #9ccad5;
+  --accent-soft: #1b2a2e;
+  --accent-ink: #0d1a1d;
+  --ok: #7fbf8e;
+  --ok-soft: #15241a;
+  --warn: #e0b06a;
+  --warn-soft: #2a2214;
+  --bad: #e08a86;
+  --t-dsa: #7fb7c4;
+  --t-design: #b9a2e0;
+  --t-concept: #e0b06a;
+  --t-behav: #7fc4a5;
+  --code-bg: #1a1d20;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+}
+
+/* Paper: sepia for long reading sessions. */
+:root[data-theme='paper'] {
+  --bg: #f3ead8;
+  --surface: #faf4e6;
+  --surface-2: #efe5d0;
+  --sunken: #f0e7d4;
+  --line: #e2d6bd;
+  --line-strong: #d3c4a6;
+  --text: #3a3128;
+  --text-2: #5e5246;
+  --text-3: #8f8270;
+  --accent: #3d6b6e;
+  --accent-2: #2f5658;
+  --accent-soft: #e4e6d6;
+  --accent-ink: #faf4e6;
+  --ok: #4d7a45;
+  --ok-soft: #e6ead2;
+  --warn: #9c5f1c;
+  --warn-soft: #f2e2c6;
+  --bad: #a3433b;
+  --t-dsa: #3d6b6e;
+  --t-design: #79608f;
+  --t-concept: #a37228;
+  --t-behav: #4a8064;
+  --code-bg: #f0e7d4;
+  --shadow: 0 1px 2px rgba(58, 49, 40, 0.05), 0 4px 16px rgba(58, 49, 40, 0.05);
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -312,7 +372,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .toc a:hover { color: var(--text); text-decoration: none; }
 .toc a.on { color: var(--accent); border-left-color: var(--accent); }
 
-.prose { font-size: 1.02rem; line-height: 1.75; color: var(--text); }
+.prose { font-size: 1.04rem; line-height: 1.78; color: var(--text); max-width: 72ch; }
 .prose > * + * { margin-top: 1.05em; }
 .prose h2 { font-size: 1.35rem; font-weight: 650; margin-top: 2.2em; scroll-margin-top: 24px; }
 .prose h3 { font-size: 1.08rem; margin-top: 1.7em; scroll-margin-top: 24px; }
@@ -1010,3 +1070,15 @@ details.fold[open] summary svg { transform: rotate(180deg); }
 .floor-bar.on { border-style: solid; border-color: var(--warn); background: var(--warn-soft); color: var(--text); }
 .section.stretch .section-head { flex-wrap: wrap; gap: 6px; }
 .session-lesson { margin: 4px 0 6px 22px; }
+
+/* Section codes (JAVA-JVM-3) and the theme picker. */
+.track-code, .code-chip { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text-3); background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; vertical-align: middle; font-variant-numeric: tabular-nums; }
+.theme-picker { display: flex; gap: 2px; padding: 3px; margin-top: 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--sunken); }
+.theme-picker button { flex: 1; display: grid; place-items: center; padding: 5px 0; border: 0; border-radius: 6px; background: transparent; color: var(--text-3); cursor: pointer; }
+.theme-picker button[aria-pressed='true'] { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
+.nav-collapsed .theme-picker { flex-direction: column; }
+/* Phones: 16px text stops iOS zooming into inputs; calmer motion everywhere. */
+@media (max-width: 760px) { body { font-size: 16px; } .prose { font-size: 1.02rem; } }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (max-width: 760px) { .theme-picker { margin: 0 0 0 auto; flex: none; } .theme-picker button { padding: 5px 7px; } }

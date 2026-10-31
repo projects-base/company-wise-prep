@@ -271,6 +271,7 @@ public class DataImporter implements SmartInitializingSingleton {
 			AcademyTrack track = new AcademyTrack();
 			track.setId(Yaml.str(ty.get("id")));
 			track.setTitle(Yaml.str(ty.get("title")));
+			track.setCode(ty.get("code") == null ? track.getId() : Yaml.str(ty.get("code")));
 			track.setDescription(Yaml.str(ty.get("description")));
 			track.setOrdinal(t++);
 			trackList.add(track);
@@ -283,6 +284,7 @@ public class DataImporter implements SmartInitializingSingleton {
 				mod.setLevel(my.get("level") instanceof Number n ? n.intValue() : 1);
 				mod.setMinutes(my.get("minutes") instanceof Number n ? n.intValue() : 25);
 				mod.setPrerequisites(String.join(",", Yaml.strings(my.get("prerequisites"))));
+				mod.setCode(track.getCode() + "-" + (m + 1));
 				mod.setOrdinal(m++);
 				Path lesson = dir.resolve("lessons").resolve(mod.getId() + ".md");
 				mod.setLesson(Files.exists(lesson) ? read(lesson) : "");
