@@ -492,6 +492,57 @@ export const api = {
     return { ok: false, message: 'Wrong password.' }
   },
   reload: () => call<{ companies: number; questions: number }>('/api/admin/reload', { method: 'POST' }),
+  readiness: (campaign?: string) => call<Readiness>(`/api/insights/readiness${campaign ? `?campaign=${campaign}` : ''}`),
+  week: (campaign?: string, date?: string) =>
+    call<WeekReport>(`/api/insights/week?${new URLSearchParams({ ...(campaign && { campaign }), ...(date && { date }) })}`),
+  wins: () => call<Win[]>('/api/insights/wins'),
+  stories: () => call<Story[]>('/api/stories'),
+  saveStory: (s: StoryDraft, id?: number) =>
+    call<Story>(id ? `/api/stories/${id}` : '/api/stories', {
+      method: id ? 'PUT' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(s),
+    }),
+  deleteStory: async (id: number) => {
+    const res = await request(`/api/stories/${id}`, { method: 'DELETE' })
+    if (!res.ok) throw new Error(`DELETE story failed: ${res.status}`)
+  },
 }
+
+/** Progress page (insights.InsightsService): evidence computed from what you have done. */
+export type ReadinessArea = {
+  key: string
+  name: string
+  score: number
+  status: 'ready' | 'getting-there' | 'gap'
+  lessons: { done: number; total: number }
+  practice: { done: number; total: number }
+  judged: { average: number | null; count: number }
+  stories: number | null
+  trend: number | null
+  next: { kind: 'lesson' | 'practice' | 'redo' | 'story'; label: string; link: string } | null
+}
+export type Readiness = { areas: ReadinessArea[]; overall: number }
+export type WeekReport = {
+  from: string
+  to: string
+  lessons: { done: number; planned: number }
+  practice: { done: number; planned: number }
+  answers: { average: number | null; count: number }
+  improved: { slug: string; title: string; from: number; to: number }[]
+  weakest: { slug: string; title: string; score: number }[]
+  activeDays: number
+}
+export type Win = { date: string; kind: 'LESSON' | 'QUESTION' | 'ANSWER' | 'STORY'; title: string; link: string }
+export type StoryDraft = {
+  title: string
+  situation: string
+  task: string
+  action: string
+  result: string
+  learned: string
+  questions: string[]
+}
+export type Story = StoryDraft & { id: number; createdAt: string; updatedAt: string }
 
 export const leetcodeUrl = (slug: string) => `https://leetcode.com/problems/${slug}/`

@@ -91,13 +91,15 @@ export function ModeToggle({ s }: { s: StepperState }) {
 }
 
 /** The reader. `render` turns Markdown into the page's own elements (diagrams, Run buttons…). */
-export function StepperView({ s, render, full, onFinish, finishLabel }: {
+export function StepperView({ s, render, full, onFinish, finishLabel, middle }: {
   s: StepperState
   render: (md: string) => ReactNode
   /** The whole text, used in "Show all" mode. */
   full: string
   onFinish?: () => void
   finishLabel?: string
+  /** Shown between Back and Next (the lesson page puts "Mark lesson complete" here). */
+  middle?: ReactNode
 }) {
   const top = useRef<HTMLDivElement>(null)
   const { parts, step } = s
@@ -119,7 +121,14 @@ export function StepperView({ s, render, full, onFinish, finishLabel }: {
   const go = (n: number) => {
     if (n < 0 || n >= parts.length) return
     s.setStep(n)
-    requestAnimationFrame(() => top.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+    // Turn the page: if you have scrolled past the start of the parts, jump straight back to it (no
+    // long smooth scroll); if it is still on screen, stay put. The phone's sticky top bar is allowed for.
+    requestAnimationFrame(() => {
+      const y = top.current?.getBoundingClientRect().top ?? 0
+      const bar = document.querySelector('.sidebar')
+      const offset = bar && getComputedStyle(bar).position === 'sticky' ? bar.getBoundingClientRect().height : 0
+      if (y < offset) window.scrollTo({ top: window.scrollY + y - offset - 8, behavior: 'instant' })
+    })
   }
   const part = parts[step]
   const left = Math.max(1, Math.round(parts.slice(step).reduce((n, p) => n + p.words, 0) / WPM))
@@ -161,6 +170,7 @@ export function StepperView({ s, render, full, onFinish, finishLabel }: {
         ) : (
           <span />
         )}
+        {!last && middle}
         {!last ? (
           <button className="btn lg primary" onClick={() => go(step + 1)}>
             Next: {parts[step + 1].title} <ArrowRight size={16} />

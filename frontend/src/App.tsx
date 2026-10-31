@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Celebrations } from './rewards'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
-import { BookOpenText, Building2, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, Monitor, Moon, PanelLeftClose, PanelLeftOpen, Settings2, Sun } from 'lucide-react'
+import { BookOpenText, Building2, ChartNoAxesColumnIncreasing, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, Monitor, Moon, PanelLeftClose, PanelLeftOpen, Settings2, Sun } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import { startKeepAlive } from './keepAlive'
 import { applyTheme, savedTheme, type Theme } from './theme'
@@ -18,6 +18,7 @@ import CompanyPage from './pages/CompanyPage'
 import AcademyPage from './pages/AcademyPage'
 import ModulePage from './pages/ModulePage'
 import PlaygroundPage from './pages/PlaygroundPage'
+import ProgressPage from './pages/ProgressPage'
 
 const CampaignContext = createContext<CampaignConfig | null>(null)
 export const useCampaign = () => useContext(CampaignContext)
@@ -28,6 +29,7 @@ const NAV = [
   { to: '/', label: 'Today', icon: CalendarCheck2, end: true },
   { to: '/plan', label: 'Plan', icon: CalendarRange },
   { to: '/academy', label: 'Academy', icon: GraduationCap },
+  { to: '/progress', label: 'Progress', icon: ChartNoAxesColumnIncreasing },
   { to: '/bank', label: 'Question bank', icon: Library },
   { to: '/playground', label: 'Playground', icon: Code2 },
   { to: '/companies', label: 'Companies', icon: Building2 },
@@ -172,6 +174,8 @@ export default function App() {
             <Route path="/playground" element={<PlaygroundPage />} />
             <Route path="/companies" element={<CompaniesPage />} />
             <Route path="/companies/:slug" element={<CompanyPage />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/progress/:tab" element={<ProgressPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>

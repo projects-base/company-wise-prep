@@ -372,7 +372,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .toc a:hover { color: var(--text); text-decoration: none; }
 .toc a.on { color: var(--accent); border-left-color: var(--accent); }
 
-.prose { font-size: 1.04rem; line-height: 1.78; color: var(--text); max-width: 72ch; }
+.prose { font-size: 1.04rem; line-height: 1.78; color: var(--text); }
 .prose > * + * { margin-top: 1.05em; }
 .prose h2 { font-size: 1.35rem; font-weight: 650; margin-top: 2.2em; scroll-margin-top: 24px; }
 .prose h3 { font-size: 1.08rem; margin-top: 1.7em; scroll-margin-top: 24px; }
@@ -1185,4 +1185,70 @@ html { scroll-behavior: smooth; }
   .tree.compact .tree-lesson { grid-template-columns: 14px minmax(0, 1fr) auto; }
   .tree.compact .tree-lesson-title { grid-column: 2; grid-row: 1; }
   .tree.compact .tree-meta { grid-column: 3; grid-row: 1; }
+}
+/* Back · Mark complete · Next: the middle button stays centred, the row wraps on phones. */
+.stepper-nav > .btn:not(.lg):not(:first-child) { margin: 0 auto; }
+/* Keep "Stuck?" clear of the hosting badge Netlify can show in the bottom-right corner. */
+.lifeline-fab { bottom: 76px; }
+@media (max-width: 640px) { .lifeline-fab { bottom: 72px; } }
+
+/* Progress page: readiness, week, wins, stories. */
+.readiness-overall { display: flex; align-items: center; gap: 20px; padding: 18px 20px; margin-bottom: 14px; }
+.readiness-ring { --p: 0; flex: none; width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center;
+  background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--surface-2) 0); }
+.readiness-ring::before { content: ''; grid-area: 1 / 1; width: 60px; height: 60px; border-radius: 50%; background: var(--surface); }
+.readiness-ring span { grid-area: 1 / 1; z-index: 1; font-size: 1.35rem; font-weight: 700; }
+.readiness-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.area-card { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+.area-card h3 { font-size: 1rem; }
+.area-score { display: flex; align-items: baseline; gap: 6px; }
+.area-score .num { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+.area-trend { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 0.82rem; font-weight: 600; }
+.area-trend.up, .week-row .up { color: var(--ok); }
+.area-trend.down, .week-row .down { color: var(--warn); }
+.area-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 2px 0 0; font-size: 0.86rem; }
+.area-facts dt { color: var(--text-3); }
+.area-facts dd { margin: 0; text-align: right; }
+.area-next { margin-top: auto; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 8px; padding: 10px 12px;
+  border-radius: var(--radius-sm); background: var(--accent-soft); color: var(--text); font-size: 0.88rem; text-decoration: none !important; }
+.area-next .eyebrow { grid-column: 1 / -1; color: var(--accent); }
+.area-next svg { color: var(--accent); grid-row: 2; grid-column: 2; }
+.area-next.done { background: var(--ok-soft); color: var(--ok); display: block; }
+.week-head { gap: 12px; margin-bottom: 14px; }
+.week-head h2 { font-size: 1.15rem; }
+.week-stats { grid-template-columns: repeat(4, 1fr); }
+.week-note { color: var(--text-2); margin: 14px 0 18px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.week-list { padding: 16px 18px; }
+.week-list h3 { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; margin-bottom: 8px; }
+.week-row { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-top: 1px solid var(--line); color: var(--text); font-size: 0.9rem; }
+.week-row .num { white-space: nowrap; font-weight: 600; }
+.wins { display: grid; gap: 18px; margin-top: 18px; }
+.wins-day { display: grid; gap: 6px; }
+.win { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: var(--radius-sm); background: var(--surface);
+  border: 1px solid var(--line); color: var(--text); font-size: 0.9rem; text-decoration: none !important; }
+.win svg { flex: none; color: var(--accent); }
+.win-answer svg { color: var(--t-concept); }
+.win-story svg { color: var(--t-behav); }
+.win-question svg { color: var(--ok); }
+.stories { display: grid; gap: 12px; }
+.story { padding: 18px 20px; }
+.story h3 { font-size: 1rem; }
+.star { display: grid; gap: 10px; margin: 12px 0 0; }
+.star dt { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); }
+.star dd { margin: 2px 0 0; white-space: pre-wrap; line-height: 1.6; }
+.story-qs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.story-qs.pick .pill { cursor: pointer; border: 1px solid var(--line); background: var(--surface); font: inherit; font-size: 0.8rem; }
+.story-qs.pick .pill.accent { border-color: var(--accent); }
+.story-form { display: grid; gap: 14px; padding: 20px; }
+.story-form label { display: grid; gap: 6px; }
+.story-form label > span, .story-form legend { font-size: 0.82rem; font-weight: 600; color: var(--text-2); }
+.story-form input, .story-form textarea { width: 100%; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px;
+  background: var(--surface-2); color: var(--text); font: inherit; font-size: 16px; resize: vertical; }
+.story-form input:focus, .story-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.story-form fieldset { border: 0; padding: 0; margin: 0; }
+@media (max-width: 760px) {
+  .week-stats { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: minmax(0, 1fr); }
+  .readiness-overall { align-items: flex-start; }
 }

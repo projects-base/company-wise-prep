@@ -25,7 +25,7 @@ public class CorsConfig {
 		List<String> allowed = Arrays.stream(origins.split(",")).map(String::trim).filter(s -> !s.isEmpty()).toList();
 		CorsConfiguration cors = new CorsConfiguration();
 		cors.setAllowedOrigins(allowed);
-		cors.setAllowedMethods(List.of("GET", "POST", "PUT", "OPTIONS"));
+		cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		cors.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 		cors.setAllowCredentials(false);
 		cors.setMaxAge(3600L);

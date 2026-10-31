@@ -109,6 +109,11 @@ export default function ModulePage() {
               s={s}
               full={v.lesson ?? ''}
               onFinish={m.done ? undefined : toggle}
+              middle={!m.done && m.written ? (
+                <button className="btn" onClick={toggle}>
+                  <Check size={15} /> Mark lesson complete
+                </button>
+              ) : undefined}
               finishLabel="Mark lesson complete"
               render={(md) => (
             <Markdown
@@ -152,9 +157,11 @@ export default function ModulePage() {
 
         <footer className="lesson-foot">
           <div className="row">
-            <button className={`btn lg ${m.done ? '' : 'primary'}`} onClick={toggle} disabled={!m.written && !m.done}>
-              <Check size={16} /> {m.done ? 'Completed — undo' : 'Mark lesson complete'}
-            </button>
+            {(m.done || s.mode === 'all' || !s.usable) && (
+              <button className={`btn lg ${m.done ? '' : 'primary'}`} onClick={toggle} disabled={!m.written && !m.done}>
+                <Check size={16} /> {m.done ? 'Completed — undo' : 'Mark lesson complete'}
+              </button>
+            )}
             {v.unlocks.length > 0 && (
               <span className="muted" style={{ fontSize: '0.86rem' }}>
                 Unlocks <Refs refs={v.unlocks} />
