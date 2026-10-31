@@ -24,7 +24,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 /**
  * Help while studying, without leaving the page: a nudge, the key idea, a full explanation, or an
- * answer to your own doubt, grounded in the question's model answer or the lesson you are on.
+ * answer to your own doubt, grounded in the question's model answer or the lesson you are on. From any
+ * other page ("general") it answers doubts only, from the model's own knowledge.
  * Uses the same AI as the answer judge (Settings); without a key it falls back to hints taken
  * from the model answer itself.
  */
@@ -62,6 +63,11 @@ public class LifelineService {
 			- ASK: answer their doubt directly and briefly (at most 150 words), then stop. If it is off-topic \
 			for backend interviews, say so in one line.
 
+			When the reference says GENERAL, there is no reference material: they are on another page of their \
+			study app (named in <page>) and may ask about anything in backend engineering, Java, Spring, SQL, \
+			system design, DSA, interviews or their study plan. Answer from your own knowledge in at most 250 \
+			words; if you are not sure of a fact (a version, a default), say so instead of guessing.
+
 			Plain Indian English, short sentences, Markdown. No preamble like "Great question".""";
 
 	private static final int MAX_REFERENCE = 12_000;
@@ -85,7 +91,13 @@ public class LifelineService {
 	public Help help(String context, String ref, Kind kind, String doubt, List<Turn> history) {
 		String title;
 		String reference;
-		if ("lesson".equals(context)) {
+		boolean general = "general".equals(context);
+		if (general) {
+			// No page content to ground in, so no hint ladder: every request is a doubt.
+			title = ref;
+			reference = null;
+			kind = Kind.ASK;
+		} else if ("lesson".equals(context)) {
 			AcademyModule m = modules.findById(ref).orElseThrow(() -> new NotFoundException("No lesson " + ref));
 			title = m.getTitle();
 			reference = m.getLesson();
@@ -94,7 +106,7 @@ public class LifelineService {
 			title = q.getTitle() + (q.getPrompt() == null ? "" : "\n" + q.getPrompt().trim());
 			reference = q.getAnswer();
 		}
-		String prompt = prompt(title, reference, kind, doubt, history);
+		String prompt = prompt(title, general ? "GENERAL" : reference, kind, doubt, history);
 
 		List<String> notes = new ArrayList<>();
 		Reviewer use = settings.effectiveReviewer();
@@ -111,7 +123,9 @@ public class LifelineService {
 		if (text == null) {
 			text = offline(kind, reference);
 			mode = "offline";
-			if (notes.isEmpty()) notes.add("Hints from the model answer. Add a Gemini or Claude key in Settings for a tutor that answers your own doubts.");
+			if (notes.isEmpty() && !general) {
+				notes.add("Hints from the model answer. Add a Gemini or Claude key in Settings for a tutor that answers your own doubts.");
+			}
 		}
 		return new Help(mode, text, notes.isEmpty() ? null : String.join(" ", notes));
 	}

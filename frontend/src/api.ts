@@ -397,7 +397,7 @@ export type Hot = { companies: string[]; tags: Record<string, HotTag[]> }
 /** Help while studying (lifeline.LifelineService): a hint ladder plus your own doubts. */
 export type LifelineKind = 'NUDGE' | 'IDEA' | 'EXPLAIN' | 'ASK'
 export type LifelineRequest = {
-  context: 'question' | 'lesson'
+  context: 'question' | 'lesson' | 'general'
   ref: string
   kind: LifelineKind
   doubt?: string

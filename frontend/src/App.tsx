@@ -6,6 +6,7 @@ import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import { startKeepAlive } from './keepAlive'
 import { applyTheme, savedTheme, type Theme } from './theme'
 import LoginPage from './pages/LoginPage'
+import { Lifeline } from './Lifeline'
 import { FeaturesContext } from './features'
 import { daysBetween, localToday } from './ui'
 import TodayPage from './pages/TodayPage'
@@ -24,6 +25,22 @@ const CampaignContext = createContext<CampaignConfig | null>(null)
 export const useCampaign = () => useContext(CampaignContext)
 
 const STORAGE_KEY = 'cwp.campaign'
+
+/** What Ask AI is told about the page you are on. Lessons and questions have their own grounded Lifeline. */
+function pageLabel(pathname: string): string | null {
+  if (/^\/academy\/[^/]+/.test(pathname) || pathname.startsWith('/q/')) return null
+  if (pathname.startsWith('/companies/')) return `Company page: ${decodeURIComponent(pathname.split('/')[2] ?? '')}`
+  const labels: [string, string][] = [
+    ['/plan', 'The 13-week plan page'],
+    ['/academy', 'Academy overview (lesson paths)'],
+    ['/progress', 'Progress page (readiness, weekly report, wins, stories)'],
+    ['/bank', 'Question bank'],
+    ['/playground', 'Java coding playground'],
+    ['/companies', 'Companies list'],
+    ['/settings', 'Settings (AI keys and models)'],
+  ]
+  return labels.find(([p]) => pathname.startsWith(p))?.[1] ?? "Today page (today's study sessions)"
+}
 
 const NAV = [
   { to: '/', label: 'Today', icon: CalendarCheck2, end: true },
@@ -163,6 +180,7 @@ export default function App() {
           )}
           <ThemePicker />
         </aside>
+        {pageLabel(pathname) && <Lifeline context="general" refId={pageLabel(pathname)!} title={pageLabel(pathname)!} />}
         <main className={`main ${pathname.startsWith('/q/') ? 'main-tight' : ''}`}>
           <Routes>
             <Route path="/" element={<TodayPage />} />

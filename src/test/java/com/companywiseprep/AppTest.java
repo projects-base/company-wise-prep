@@ -1,5 +1,6 @@
 package com.companywiseprep;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
@@ -224,6 +225,19 @@ class AppTest {
 		mvc.perform(post("/api/admin/reload"));
 		mvc.perform(get("/api/academy")).andExpect(jsonPath("$.done", is(1)));
 		mvc.perform(get("/api/academy/modules/NOPE")).andExpect(status().isNotFound());
+	}
+
+	/** Ask AI works on any page: "general" has no reference material and only answers doubts. */
+	@Test
+	void askAiAnswersDoubtsFromAnyPage() throws Exception {
+		mvc.perform(post("/api/lifeline").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"context\":\"general\",\"ref\":\"Plan page\",\"kind\":\"NUDGE\",\"doubt\":\"What is a floor day?\"}"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.mode", is("offline")))
+				.andExpect(jsonPath("$.text", containsString("Gemini or Claude key")));
+		mvc.perform(post("/api/lifeline").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"context\":\"elsewhere\",\"ref\":\"x\",\"kind\":\"ASK\"}"))
+				.andExpect(status().isBadRequest());
 	}
 
 	/** Display codes are the track's code plus the lesson's position in it; ids stay the stable key. */

@@ -7,7 +7,8 @@ import { api, type LifelineHelp, type LifelineKind } from './api'
 /**
  * A help panel that slides in beside the question or lesson, so getting unstuck never means
  * leaving the page. Help comes in rungs (a nudge, the key idea, the full explanation) so you
- * take only as much as you need, plus a box for your own doubts.
+ * take only as much as you need, plus a box for your own doubts. On every other page it is "Ask AI"
+ * (context general): no rungs, just doubts, and the conversation follows you between pages.
  */
 
 const RUNGS: { kind: LifelineKind; label: string; icon: typeof Lightbulb }[] = [
@@ -20,7 +21,8 @@ const BY: Record<string, string> = { claude: 'Claude', gemini: 'Gemini', offline
 
 type Entry = { q: string; help?: LifelineHelp; error?: string }
 
-export function Lifeline({ context, refId, title }: { context: 'question' | 'lesson'; refId: string; title: string }) {
+export function Lifeline({ context, refId, title }: { context: 'question' | 'lesson' | 'general'; refId: string; title: string }) {
+  const general = context === 'general'
   const [open, setOpen] = useState(false)
   const [entries, setEntries] = useState<Entry[]>([])
   const [doubt, setDoubt] = useState('')
@@ -55,38 +57,49 @@ export function Lifeline({ context, refId, title }: { context: 'question' | 'les
   }
 
   const used = entries.length
-  const google = `https://www.google.com/search?udm=50&q=${encodeURIComponent(`Explain for a senior Java backend interview: ${title}`)}`
+  const lastDoubt = [...entries].reverse().find((e) => e.q)?.q
+  const google = `https://www.google.com/search?udm=50&q=${encodeURIComponent(
+    general ? `For a senior Java backend interview: ${doubt.trim() || lastDoubt || 'how to prepare'}` : `Explain for a senior Java backend interview: ${title}`,
+  )}`
 
   // Portalled to <body>: an animated (transformed) page wrapper would otherwise trap the fixed panel.
   return createPortal(
     <>
       {!open && (
-        <button className="lifeline-fab" onClick={() => setOpen(true)} aria-label="Open Lifeline: hints and doubts">
-          <LifeBuoy size={18} /> <span>Stuck?</span>
+        <button className="lifeline-fab" onClick={() => setOpen(true)} aria-label={general ? 'Ask AI a doubt' : 'Open Lifeline: hints and doubts'}>
+          {general ? <Sparkles size={18} /> : <LifeBuoy size={18} />} <span>{general ? 'Ask AI' : 'Stuck?'}</span>
           {used > 0 && <b className="num">{used}</b>}
         </button>
       )}
       {open && (
         <aside className="lifeline" aria-label="Lifeline">
           <div className="lifeline-head">
-            <LifeBuoy size={18} />
-            <strong>Lifeline</strong>
-            <span className="muted lifeline-used">{used === 0 ? 'Take only the help you need' : `${used} used`}</span>
+            {general ? <Sparkles size={18} /> : <LifeBuoy size={18} />}
+            <strong>{general ? 'Ask AI' : 'Lifeline'}</strong>
+            <span className="muted lifeline-used">
+              {general ? `On: ${title}` : used === 0 ? 'Take only the help you need' : `${used} used`}
+            </span>
             <button className="btn ghost sm" onClick={() => setOpen(false)} aria-label="Close Lifeline">
               <X size={16} />
             </button>
           </div>
 
-          <div className="lifeline-rungs">
+          {!general && <div className="lifeline-rungs">
             {RUNGS.map((r) => (
               <button key={r.kind} className="btn sm" disabled={busy} onClick={() => ask(r.kind)}>
                 <r.icon size={14} /> {r.label}
               </button>
             ))}
-          </div>
+          </div>}
 
           <div className="lifeline-log">
-            {entries.length === 0 && (
+            {entries.length === 0 && general && (
+              <p className="muted lifeline-empty">
+                Any doubt, any time: Java, Spring, SQL, system design, DSA, interviews, or how to use your plan. Short answers, so
+                you get back to studying.
+              </p>
+            )}
+            {entries.length === 0 && !general && (
               <p className="muted lifeline-empty">
                 Try to recall first. Then take a <strong>nudge</strong>, and climb to the <strong>key idea</strong> or a full{' '}
                 <strong>explanation</strong> only if you still need it. Or type your own doubt below.
@@ -118,7 +131,7 @@ export function Lifeline({ context, refId, title }: { context: 'question' | 'les
               void ask('ASK', doubt)
             }}
           >
-            <input value={doubt} onChange={(e) => setDoubt(e.target.value)} placeholder="Ask a doubt about this page…" maxLength={2000} />
+            <input value={doubt} onChange={(e) => setDoubt(e.target.value)} placeholder={general ? 'Ask anything: Java, Spring, system design, your plan…' : 'Ask a doubt about this page…'} maxLength={2000} />
             <button className="btn primary sm" disabled={busy || !doubt.trim()} aria-label="Ask">
               <Send size={14} />
             </button>

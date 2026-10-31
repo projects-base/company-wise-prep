@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-/** The Lifeline panel: hints and doubts on the question or lesson being studied. */
+/** Ask AI: hints and doubts on the question or lesson being studied, or any doubt from any other page. */
 @RestController
 @RequestMapping("/api/lifeline")
 public class LifelineController {
@@ -30,7 +30,7 @@ public class LifelineController {
 	}
 
 	public record HelpRequest(
-			@NotNull @Pattern(regexp = "question|lesson") String context,
+			@NotNull @Pattern(regexp = "question|lesson|general") String context,
 			@NotBlank @Size(max = 200) String ref,
 			@NotNull Kind kind,
 			@Size(max = 2_000) String doubt,
