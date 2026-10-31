@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, Check, ChevronRight, ListOrdered, Network } from 'lucide-react'
 import { api, type ModuleSummary } from '../api'
 import { Bar, LevelChip, LEVELS, Status, useLoad } from '../ui'
 
 const PATH_KEY = 'cwp.academyPath'
+const VIEW_KEY = 'cwp.academyView'
+
+type Track = { id: string; code: string; title: string; description: string; modules: ModuleSummary[] }
 
 export default function AcademyPage() {
   const { data, error } = useLoad(() => api.academy(), [])
@@ -15,6 +18,22 @@ export default function AcademyPage() {
       return 'zero-to-pro'
     }
   })
+
+  const [view, setView] = useState<'tree' | 'order'>(() => {
+    try {
+      return localStorage.getItem(VIEW_KEY) === 'order' ? 'order' : 'tree'
+    } catch {
+      return 'tree'
+    }
+  })
+  const chooseView = (v: 'tree' | 'order') => {
+    setView(v)
+    try {
+      localStorage.setItem(VIEW_KEY, v)
+    } catch {
+      /* not remembered in private mode */
+    }
+  }
 
   if (!data) return <div className="container"><Status error={error} /></div>
 
@@ -95,7 +114,22 @@ export default function AcademyPage() {
             </div>
           )}
 
-          <PathList ids={path.modules} byId={byId} trackTitle={trackTitle} next={path.next} />
+          <div className="row tree-toolbar">
+            <span className="eyebrow">{path.modules.length} lessons</span>
+            <div className="segmented small" role="tablist" aria-label="Path view">
+              <button role="tab" aria-selected={view === 'tree'} onClick={() => chooseView('tree')}>
+                <Network size={14} /> By level
+              </button>
+              <button role="tab" aria-selected={view === 'order'} onClick={() => chooseView('order')}>
+                <ListOrdered size={14} /> In order
+              </button>
+            </div>
+          </div>
+          {view === 'tree' ? (
+            <LevelTree ids={path.modules} byId={byId} tracks={data.tracks} next={path.next} />
+          ) : (
+            <OrderList ids={path.modules} byId={byId} trackTitle={trackTitle} next={path.next} />
+          )}
         </>
       )}
 
@@ -103,89 +137,139 @@ export default function AcademyPage() {
         <div className="section-head">
           <h2>Browse by track</h2>
         </div>
-        <div className="tracks">
-          {data.tracks.map((t) => {
-            const done = t.modules.filter((m) => m.done).length
-            return (
-              <div key={t.id} className="card track">
-                <div className="row" style={{ justifyContent: 'space-between' }}>
-                  <h3>
-                    {t.title} <span className="track-code">{t.code}</span>
-                  </h3>
-                  <span className="muted num" style={{ fontSize: '0.8rem' }}>
-                    {done}/{t.modules.length}
-                  </span>
-                </div>
-                <p className="track-desc">{t.description}</p>
-                <Bar value={done} max={t.modules.length} />
-                <ul>
-                  {t.modules.map((m) => (
-                    <li key={m.id}>
-                      <Link to={`/academy/${m.id}`} className={m.done ? 'done' : ''}>
-                        <span className="id">{m.done ? '✓' : m.code}</span>
-                        <span>{m.title}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          })}
+        <div className="tree">
+          {data.tracks.map((t) => (
+            <TrackNode key={t.id} track={t} next={path?.next ?? null} />
+          ))}
         </div>
       </section>
     </div>
   )
 }
 
-function PathList({
-  ids,
-  byId,
-  trackTitle,
-  next,
-}: {
-  ids: string[]
-  byId: Map<string, ModuleSummary>
-  trackTitle: Map<string, string>
-  next: string | null
-}) {
-  // Group consecutive modules of the same level, so the rising curve is visible.
-  const groups: { level: number; items: { m: ModuleSummary; n: number }[] }[] = []
-  ids.forEach((id, i) => {
-    const m = byId.get(id)
-    if (!m) return
-    const last = groups[groups.length - 1]
-    if (last && last.level === m.level) last.items.push({ m, n: i + 1 })
-    else groups.push({ level: m.level, items: [{ m, n: i + 1 }] })
-  })
-
+/** Zero to Pro as a tree: level → section → lessons, each lesson keeping its step number. */
+function LevelTree({ ids, byId, tracks, next }: { ids: string[]; byId: Map<string, ModuleSummary>; tracks: Track[]; next: string | null }) {
+  const step = new Map(ids.map((id, i) => [id, i + 1]))
+  const levels = [...new Set(ids.map((id) => byId.get(id)?.level ?? 0))].filter(Boolean).sort((a, b) => a - b)
   return (
-    <div style={{ marginTop: 8 }}>
-      {groups.map((g, gi) => (
-        <div key={gi}>
-          <div className="level-head">
-            <span className="eyebrow">
-              Level {g.level} · {LEVELS[g.level]}
-            </span>
-            <span className="line" />
-          </div>
-          <div className="card">
-            {g.items.map(({ m, n }) => (
-              <Link key={m.id} to={`/academy/${m.id}`} className={`step ${m.done ? 'done' : ''} ${m.id === next ? 'next' : ''}`}>
-                <span className="step-no">{m.done ? <Check size={13} strokeWidth={3} /> : n}</span>
-                <span>
-                  <div className="step-title">{m.title}</div>
-                  <div className="step-track">
-                    <span className="num">{m.code}</span> · {trackTitle.get(m.trackId)}
-                  </div>
+    <div className="tree">
+      {levels.map((level) => {
+        const inLevel = ids.map((id) => byId.get(id)!).filter((m) => m && m.level === level)
+        const done = inLevel.filter((m) => m.done).length
+        const open = inLevel.some((m) => m.id === next) || (done > 0 && done < inLevel.length)
+        return (
+          <Node
+            key={level}
+            open={open}
+            head={
+              <>
+                <span className="tree-level-badge">L{level}</span>
+                <span className="tree-title">
+                  Level {level} · {LEVELS[level]}
                 </span>
-                <span className="muted num" style={{ fontSize: '0.82rem' }}>
-                  {m.written ? `${m.minutes} min` : 'soon'}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      ))}
+                <Progress done={done} total={inLevel.length} />
+              </>
+            }
+          >
+            {tracks
+              .map((t) => ({ t, ms: inLevel.filter((m) => m.trackId === t.id) }))
+              .filter(({ ms }) => ms.length > 0)
+              .sort((a, b) => step.get(a.ms[0].id)! - step.get(b.ms[0].id)!)
+              .map(({ t, ms }) => (
+                <Node
+                  key={t.id}
+                  nested
+                  open={open && ms.some((m) => !m.done)}
+                  head={
+                    <>
+                      <span className="tree-title">{t.title}</span>
+                      <span className="track-code">{t.code}</span>
+                      <Progress done={ms.filter((m) => m.done).length} total={ms.length} />
+                    </>
+                  }
+                >
+                  {ms.map((m) => (
+                    <LessonRow key={m.id} m={m} step={step.get(m.id)} next={next} />
+                  ))}
+                </Node>
+              ))}
+          </Node>
+        )
+      })}
     </div>
+  )
+}
+
+/** The path as one numbered sequence, the order the plan follows. */
+function OrderList({ ids, byId, trackTitle, next }: { ids: string[]; byId: Map<string, ModuleSummary>; trackTitle: Map<string, string>; next: string | null }) {
+  return (
+    <div className="card tree-flat">
+      {ids.map((id, i) => {
+        const m = byId.get(id)
+        return m ? <LessonRow key={id} m={m} step={i + 1} next={next} sub={trackTitle.get(m.trackId)} /> : null
+      })}
+    </div>
+  )
+}
+
+function TrackNode({ track, next }: { track: Track; next: string | null }) {
+  const done = track.modules.filter((m) => m.done).length
+  return (
+    <Node
+      open={track.modules.some((m) => m.id === next)}
+      head={
+        <>
+          <span className="tree-title">{track.title}</span>
+          <span className="track-code">{track.code}</span>
+          <Progress done={done} total={track.modules.length} />
+        </>
+      }
+    >
+      <p className="track-desc tree-desc">{track.description}</p>
+      {track.modules.map((m) => (
+        <LessonRow key={m.id} m={m} next={next} />
+      ))}
+    </Node>
+  )
+}
+
+function Node({ head, children, open, nested }: { head: ReactNode; children: ReactNode; open: boolean; nested?: boolean }) {
+  return (
+    <details className={`tree-node ${nested ? 'nested' : 'card'}`} open={open}>
+      <summary>
+        <ChevronRight size={15} className="tree-chev" />
+        {head}
+      </summary>
+      <div className="tree-children">{children}</div>
+    </details>
+  )
+}
+
+function Progress({ done, total }: { done: number; total: number }) {
+  return (
+    <span className="tree-progress">
+      <span className="num">
+        {done}/{total}
+      </span>
+      <Bar value={done} max={total} />
+    </span>
+  )
+}
+
+function LessonRow({ m, step, next, sub }: { m: ModuleSummary; step?: number; next: string | null; sub?: string }) {
+  return (
+    <Link to={`/academy/${m.id}`} className={`tree-lesson ${m.done ? 'done' : ''} ${m.id === next ? 'next' : ''}`}>
+      <span className="tree-dot">{m.done ? <Check size={12} strokeWidth={3} /> : null}</span>
+      <span className="tree-code num">{m.code}</span>
+      <span className="tree-lesson-title">
+        {m.title}
+        {sub && <span className="tree-sub"> · {sub}</span>}
+      </span>
+      {m.id === next && <span className="pill tree-next">Next</span>}
+      <span className="tree-meta num">
+        {step ? `Step ${step} · ` : ''}
+        {m.written ? `${m.minutes} min` : 'soon'}
+      </span>
+    </Link>
   )
 }
