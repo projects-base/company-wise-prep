@@ -56,14 +56,14 @@ People browse **events** (a concert, a match), each held at a **venue** with num
 | 1 | 1 | Domain model in plain Java, with tests | JAVA-FUND-2…5 |
 | 2 | 2 | In-memory booking engine: collections, streams, thread-safe holds, JSON seed | JAVA-FUND-6…8, JAVA-CONC-1 |
 | 3 | 3 | Spring Boot skeleton: DI, configuration, profiles, read-only endpoints | SPRING-BOOT-2, BE-STORY-8 |
-| 4 | 4 | REST API done properly: validation, problem details, idempotency key, pagination | WEB-API-2, SPRING-BOOT-6 |
-| 5 | 5 | PostgreSQL with Flyway and JPA; optimistic locking on seats | DB-SQL-4, SPRING-BOOT-7, DB-SQL-6 |
-| 6 | 6 | Tests that prove it: slices, Testcontainers, the double-booking race, N+1 fix | SPRING-BOOT-8, DB-SQL-7 |
+| 4 | 4 | REST API done properly: validation, problem details, idempotency key, pagination | WEB-API-3, SPRING-BOOT-6 |
+| 5 | 5 | PostgreSQL with Flyway and JPA; optimistic locking on seats | DB-SQL-5, SPRING-BOOT-7, DB-SQL-7 |
+| 6 | 6 | Tests that prove it: slices, Testcontainers, the double-booking race, N+1 fix | SPRING-BOOT-8, DB-SQL-8 |
 | 7 | 7 | Hold expiry job and pricing strategies | JAVA-CONC-4, LLD-DESIGN-2…4 |
 | 8 | 8 | Security: JWT resource server, roles, ownership checks; virtual threads | SPRING-BOOT-9, JAVA-CONC-6 |
 | 9 | 9 | Redis: cached event pages and seat-map, hold TTL; Actuator health and metrics | DIST-SYS-1, SPRING-BOOT-11 |
 | 10 | 10 | Kafka via the transactional outbox; idempotent consumer; Resilience4j on payments | DIST-SYS-2, DIST-SYS-3 |
-| 11 | 11 | Ship it: Dockerfile, Compose for the whole stack, Kubernetes manifests with probes | DIST-SYS-4 |
+| 11 | 11 | Ship it: Dockerfile, Compose for the whole stack, Kubernetes manifests with probes | DIST-SYS-5 |
 | 12 | 12 | Polish and tell it: README + diagram, a load test, the STAR story, a 5-minute demo | everything |
 
 ## Every milestone file has these sections, in order

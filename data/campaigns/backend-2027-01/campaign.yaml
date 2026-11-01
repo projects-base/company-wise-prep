@@ -21,7 +21,7 @@ notes: 'A general plan, not tied to one company: the whole Academy from scratch,
 guide: |
   ## The goal
 
-  By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 104 Academy lessons) and
+  By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 110 Academy lessons) and
   can walk into any SDE II / Senior Java backend loop: DSA coding, LLD, HLD / system design, and deep
   Java and Spring Boot internals, answered at the depth an experienced interviewer expects.
   Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with stretch.
@@ -37,7 +37,7 @@ guide: |
   | Day | Core |
   |---|---|
   | **Saturday** (2 h) | **Two** scratch lessons 60 + **LLD** design 60 (timed DSA 30 is stretch) |
-  | **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–3: two lessons, 2 h); stretch: **Capstone** milestone 60 |
+  | **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–9: two lessons, 2 h); stretch: **Capstone** milestone 60 |
 
   The Today page shows core first, stretch below it, and a **Short on time? Do just this** button for
   the floor.
@@ -68,16 +68,16 @@ guide: |
   | Week | Dates | Scratch lessons | DSA pattern | LLD (Sat) | HLD (Sun) |
   |---|---|---|---|---|---|
   | 0 | Sun 1 Nov | Foundations (BE-STORY-1) + kickoff | — | — | — |
-  | 1 | 2 – 8 Nov | JDK/JRE/JVM, how Java runs, OOP, equals/hashCode, exceptions, generics | Arrays, hashing, two pointers | Parking lot | URL shortener |
-  | 2 | 9 – 15 Nov | Collections internals, JVM memory, complexity, streams, SOLID, threads, I/O and Jackson | Sliding window, prefix sums | Vending machine | Unique ID generator |
-  | 3 | 16 – 22 Nov | HTTP in depth, CGI → servlets → MVC, DI container, J2EE → Spring, IoC, bean lifecycle | Stacks, binary search | Singleton and factory | Image hosting |
-  | 4 | 23 – 29 Nov | AOP, Boot internals and startup, annotations, MVC pipeline, REST API design | Linked lists, intervals | Logging framework | Idempotent API |
-  | 5 | 30 Nov – 6 Dec | SQL basics → window functions, JDBC, HTTP lifecycle, JPA, indexes, isolation | Trees | Pluggable cache eviction | Ticket booking |
-  | 6 | 7 – 13 Dec | Query performance, SQL patterns, JPA lifecycle, testing, Java 8→25, class loading, GC | Heaps, top-K | Bounded blocking queue | Distributed cache |
-  | 7 | 14 – 20 Dec | Memory model, locks, atomics, executors, optimisation playbook, interview technique, patterns | Graphs: BFS and DFS | Notification system | Chat application |
-  | 8 | 21 – 27 Dec | Design patterns, LLD method and cases, CompletableFuture, virtual threads, Spring Security | Topological sort, union-find, Dijkstra | Rate limiter | News feed |
-  | 9 | 28 Dec – 3 Jan | OAuth2/OIDC, Actuator, debugging, building blocks, Redis, Kafka, scaling databases, design method | Backtracking, tries | Elevator | Message queue |
-  | 10 | 4 – 10 Jan | Design kit, SOA → microservices, service communication, resilience, Docker/K8s, distributed theory | DP 1 | **Mock (LLD)** | **Mock (system design)** |
+  | 1 | 2 – 8 Nov | JDK/JRE/JVM, how Java runs, OOP, equals/hashCode, complexity, Java idioms, exceptions, generics | Arrays, hashing, two pointers | Parking lot | URL shortener |
+  | 2 | 9 – 15 Nov | Collections internals, JVM memory, hidden costs, streams, SOLID, threads, I/O and Jackson | Sliding window, prefix sums | Vending machine | Unique ID generator |
+  | 3 | 16 – 22 Nov | HTTP in depth, sockets and TCP, CGI → servlets → MVC, DI container, J2EE → Spring, IoC | Stacks, binary search | Singleton and factory | Image hosting |
+  | 4 | 23 – 29 Nov | Bean lifecycle, AOP, Boot internals and startup, annotations, MVC pipeline, REST API design | Linked lists, intervals | Logging framework | Idempotent API |
+  | 5 | 30 Nov – 6 Dec | SQL basics, data modeling and normalization, window functions, JDBC, JPA, indexes, isolation | Trees | Pluggable cache eviction | Ticket booking |
+  | 6 | 7 – 13 Dec | Query performance, SQL patterns, JPA lifecycle, testing, Java 8→25, class loading, GC, memory model | Heaps, top-K | Bounded blocking queue | Distributed cache |
+  | 7 | 14 – 20 Dec | Locks, atomics, executors, optimisation playbook, interview technique, design patterns | Graphs: BFS and DFS | Notification system | Chat application |
+  | 8 | 21 – 27 Dec | LLD method and cases, CompletableFuture, virtual threads, Spring Security, OAuth2, web security, Actuator | Topological sort, union-find, Dijkstra | Rate limiter | News feed |
+  | 9 | 28 Dec – 3 Jan | Debugging, building blocks, Redis, Kafka, scaling databases, NoSQL, design method and kit, SOA | Backtracking, tries | Elevator | Message queue |
+  | 10 | 4 – 10 Jan | Microservices, service communication, resilience, Linux and the OS, Docker/K8s, CI/CD, distributed theory | DP 1 | **Mock (LLD)** | **Mock (system design)** |
   | 11 | 11 – 17 Jan | Event-driven, schedulers, case studies, betting platform, modular monoliths, reactive, GC diagnosis | DP 2, greedy | Undo/redo editor | Payment system |
   | 12 | 18 – 24 Jan | Profiling, extending Spring, shipping a feature, AI engineering: LLMs, prompting, RAG, MCP, agents | Design data structures | **Mock (LLD)** | **Mock (system design)** |
   | 13 | 25 – 31 Jan | Evals, Spring AI, AI-native, what's next (Mon–Thu) | Re-solves, timed | Final LLD mock | Final system design mock |
@@ -101,7 +101,7 @@ guide: |
 
   ## Done means
 
-  All 104 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
+  All 110 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
   6 mocks logged with the last three at 7/10 or better, and every weekday's concept said out loud on the
   days you did stretch.
 sessions:
@@ -109,7 +109,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 1 of 104 · BE-STORY-1: Foundations: computers, programs, networks, the request'
+  title: 'Scratch · Step 1 of 110 · BE-STORY-1: Foundations: computers, programs, networks, the request'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-01'
   tier: core
@@ -121,7 +121,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 2 of 104 · JAVA-FUND-1: JDK, JRE and JVM: from source file to running program'
+  title: 'Scratch · Step 2 of 110 · JAVA-FUND-1: JDK, JRE and JVM: from source file to running program'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-02'
   tier: core
@@ -143,7 +143,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 3 of 104 · JAVA-JVM-1: How Java runs: javac, bytecode, interpreter, JIT'
+  title: 'Scratch · Step 3 of 110 · JAVA-JVM-1: How Java runs: javac, bytecode, interpreter, JIT'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-03'
   tier: core
@@ -165,7 +165,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 4 of 104 · LIFECYCLE-1: Java program and class lifecycle'
+  title: 'Scratch · Step 4 of 110 · LIFECYCLE-1: Java program and class lifecycle'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-04'
   tier: core
@@ -187,7 +187,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 5 of 104 · JAVA-FUND-2: OOP for real: classes, inheritance, polymorphism, interfaces vs abstract classes'
+  title: 'Scratch · Step 5 of 110 · JAVA-FUND-2: OOP for real: classes, inheritance, polymorphism, interfaces vs abstract classes'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-05'
   tier: core
@@ -209,7 +209,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 6 of 104 · JAVA-FUND-3: equals, hashCode, Comparable and immutability'
+  title: 'Scratch · Step 6 of 110 · JAVA-FUND-3: equals, hashCode, Comparable and immutability'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-06'
   tier: core
@@ -231,12 +231,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 7 of 104 · DSA-CPLX-1: From constraints to the expected complexity'
+  title: 'Scratch · Step 7 of 110 · DSA-CPLX-1: From constraints to the expected complexity'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-07'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 8 of 104 · INTV-TIPS-1: Java idioms for coding interviews'
+  title: 'Scratch · Step 8 of 110 · INTV-TIPS-1: Java idioms for coding interviews'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-07'
   tier: core
@@ -258,12 +258,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 9 of 104 · JAVA-FUND-4: Exceptions: checked vs unchecked, try-with-resources, designing errors'
+  title: 'Scratch · Step 9 of 110 · JAVA-FUND-4: Exceptions: checked vs unchecked, try-with-resources, designing errors'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-08'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 10 of 104 · JAVA-FUND-5: Generics: type safety, wildcards and type erasure'
+  title: 'Scratch · Step 10 of 110 · JAVA-FUND-5: Generics: type safety, wildcards and type erasure'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-08'
   tier: core
@@ -289,7 +289,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 11 of 104 · JAVA-FUND-6: Collections internals: ArrayList, HashMap, TreeMap, LinkedHashMap'
+  title: 'Scratch · Step 11 of 110 · JAVA-FUND-6: Collections internals: ArrayList, HashMap, TreeMap, LinkedHashMap'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-09'
   tier: core
@@ -311,7 +311,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 12 of 104 · JAVA-JVM-2: JVM memory areas: heap, stack, metaspace'
+  title: 'Scratch · Step 12 of 110 · JAVA-JVM-2: JVM memory areas: heap, stack, metaspace'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-10'
   tier: core
@@ -333,7 +333,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 13 of 104 · DSA-CPLX-2: Hidden time costs'
+  title: 'Scratch · Step 13 of 110 · DSA-CPLX-2: Hidden time costs'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-11'
   tier: core
@@ -355,7 +355,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 14 of 104 · DSA-CPLX-3: Where memory goes in Java solutions'
+  title: 'Scratch · Step 14 of 110 · DSA-CPLX-3: Where memory goes in Java solutions'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-12'
   tier: core
@@ -377,7 +377,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 15 of 104 · JAVA-FUND-7: Lambdas, functional interfaces, Streams and Optional'
+  title: 'Scratch · Step 15 of 110 · JAVA-FUND-7: Lambdas, functional interfaces, Streams and Optional'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-13'
   tier: core
@@ -399,12 +399,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 16 of 104 · LLD-DESIGN-1: SOLID, by violation and refactor'
+  title: 'Scratch · Step 16 of 110 · LLD-DESIGN-1: SOLID, by violation and refactor'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-14'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 17 of 104 · JAVA-CONC-1: Threads: lifecycle, creation, interruption'
+  title: 'Scratch · Step 17 of 110 · JAVA-CONC-1: Threads: lifecycle, creation, interruption'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-14'
   tier: core
@@ -426,12 +426,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 18 of 104 · LIFECYCLE-2: Thread lifecycle'
+  title: 'Scratch · Step 18 of 110 · LIFECYCLE-2: Thread lifecycle'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-15'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 19 of 104 · JAVA-FUND-8: I/O, NIO and JSON with Jackson: serialization done right'
+  title: 'Scratch · Step 19 of 110 · JAVA-FUND-8: I/O, NIO and JSON with Jackson: serialization done right'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-15'
   tier: core
@@ -457,7 +457,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 20 of 104 · WEB-API-1: HTTP in depth: methods, status codes, headers, caching, HTTPS/TLS'
+  title: 'Scratch · Step 20 of 110 · WEB-API-1: HTTP in depth: methods, status codes, headers, caching, HTTPS/TLS'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-16'
   tier: core
@@ -479,7 +479,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 21 of 104 · BE-STORY-2: CGI: a process per request'
+  title: 'Scratch · Step 21 of 110 · WEB-API-2: Sockets and TCP in Java: from ServerSocket to NIO and WebSockets'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-17'
   tier: core
@@ -501,7 +501,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 22 of 104 · BE-STORY-3: Servlets & JSP: a thread per request'
+  title: 'Scratch · Step 22 of 110 · BE-STORY-2: CGI: a process per request'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-18'
   tier: core
@@ -523,7 +523,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 23 of 104 · BE-STORY-4: MVC & Struts: the front controller'
+  title: 'Scratch · Step 23 of 110 · BE-STORY-3: Servlets & JSP: a thread per request'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-19'
   tier: core
@@ -545,7 +545,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 24 of 104 · SPRING-BOOT-1: Build your own DI container'
+  title: 'Scratch · Step 24 of 110 · BE-STORY-4: MVC & Struts: the front controller'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-20'
   tier: core
@@ -567,12 +567,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 25 of 104 · BE-STORY-5: J2EE & EJB 2: the heavyweight container'
+  title: 'Scratch · Step 25 of 110 · SPRING-BOOT-1: Build your own DI container'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-21'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 26 of 104 · BE-STORY-6: Spring & Hibernate: POJOs, DI, AOP, ORM'
+  title: 'Scratch · Step 26 of 110 · BE-STORY-5: J2EE & EJB 2: the heavyweight container'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-21'
   tier: core
@@ -594,12 +594,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 27 of 104 · SPRING-BOOT-2: Spring core: IoC container, scopes, profiles'
+  title: 'Scratch · Step 27 of 110 · BE-STORY-6: Spring & Hibernate: POJOs, DI, AOP, ORM'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-22'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 28 of 104 · LIFECYCLE-3: Spring bean lifecycle'
+  title: 'Scratch · Step 28 of 110 · SPRING-BOOT-2: Spring core: IoC container, scopes, profiles'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-22'
   tier: core
@@ -625,7 +625,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 29 of 104 · SPRING-BOOT-3: Spring AOP and the proxy traps'
+  title: 'Scratch · Step 29 of 110 · LIFECYCLE-3: Spring bean lifecycle'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-23'
   tier: core
@@ -647,7 +647,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 30 of 104 · BE-STORY-7: Annotations, Java config & Maven'
+  title: 'Scratch · Step 30 of 110 · SPRING-BOOT-3: Spring AOP and the proxy traps'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-24'
   tier: core
@@ -669,7 +669,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 31 of 104 · BE-STORY-8: Spring Boot: convention over configuration'
+  title: 'Scratch · Step 31 of 110 · BE-STORY-7: Annotations, Java config & Maven'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-25'
   tier: core
@@ -691,7 +691,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 32 of 104 · SPRING-BOOT-4: Spring Boot internals: auto-configuration and starters'
+  title: 'Scratch · Step 32 of 110 · BE-STORY-8: Spring Boot: convention over configuration'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-26'
   tier: core
@@ -713,7 +713,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 33 of 104 · LIFECYCLE-4: Spring Boot startup'
+  title: 'Scratch · Step 33 of 110 · SPRING-BOOT-4: Spring Boot internals: auto-configuration and starters'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-27'
   tier: core
@@ -735,12 +735,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 34 of 104 · SPRING-BOOT-5: Spring Boot annotations, grouped by job'
+  title: 'Scratch · Step 34 of 110 · LIFECYCLE-4: Spring Boot startup'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-28'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 35 of 104 · SPRING-BOOT-6: Spring MVC: the request pipeline'
+  title: 'Scratch · Step 35 of 110 · SPRING-BOOT-5: Spring Boot annotations, grouped by job'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-28'
   tier: core
@@ -762,7 +762,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 36 of 104 · WEB-API-2: REST API design: resources, idempotency, versioning, pagination, errors'
+  title: 'Scratch · Step 36 of 110 · SPRING-BOOT-6: Spring MVC: the request pipeline'
+  detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
+- date: '2026-11-29'
+  tier: core
+  minutes: 30
+  title: 'Scratch · Step 37 of 110 · WEB-API-3: REST API design: resources, idempotency, versioning, pagination, errors'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-29'
   tier: core
@@ -788,7 +793,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 37 of 104 · DB-SQL-1: Relational model and SQL basics: SELECT and JOINs'
+  title: 'Scratch · Step 38 of 110 · DB-SQL-1: Relational model and SQL basics: SELECT and JOINs'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-11-30'
   tier: core
@@ -810,7 +815,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 38 of 104 · DB-SQL-2: Aggregation, GROUP BY, subqueries and CTEs'
+  title: 'Scratch · Step 39 of 110 · DB-SQL-2: Aggregation, GROUP BY, subqueries and CTEs'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-01'
   tier: core
@@ -832,7 +837,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 39 of 104 · DB-SQL-3: Window functions'
+  title: 'Scratch · Step 40 of 110 · DB-SQL-3: Data modeling: keys, relationships, normalization and when to denormalize'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-02'
   tier: core
@@ -854,7 +859,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 40 of 104 · DB-SQL-4: JDBC: connections, PreparedStatement, transactions and HikariCP'
+  title: 'Scratch · Step 41 of 110 · DB-SQL-4: Window functions'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-03'
   tier: core
@@ -876,7 +881,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 41 of 104 · LIFECYCLE-5: HTTP request lifecycle in Spring MVC'
+  title: 'Scratch · Step 42 of 110 · DB-SQL-5: JDBC: connections, PreparedStatement, transactions and HikariCP'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-04'
   tier: core
@@ -898,12 +903,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 42 of 104 · SPRING-BOOT-7: Data: JPA, Hibernate and @Transactional'
+  title: 'Scratch · Step 43 of 110 · LIFECYCLE-5: HTTP request lifecycle in Spring MVC'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-05'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 43 of 104 · DB-SQL-5: Indexes and reading EXPLAIN'
+  title: 'Scratch · Step 44 of 110 · SPRING-BOOT-7: Data: JPA, Hibernate and @Transactional'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-05'
   tier: core
@@ -925,7 +930,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 44 of 104 · DB-SQL-6: Transactions, isolation, locking and MVCC'
+  title: 'Scratch · Step 45 of 110 · DB-SQL-6: Indexes and reading EXPLAIN'
+  detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
+- date: '2026-12-06'
+  tier: core
+  minutes: 30
+  title: 'Scratch · Step 46 of 110 · DB-SQL-7: Transactions, isolation, locking and MVCC'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-06'
   tier: core
@@ -951,7 +961,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 45 of 104 · DB-SQL-7: Query performance in practice: N+1, pagination, batching, pooling'
+  title: 'Scratch · Step 47 of 110 · DB-SQL-8: Query performance in practice: N+1, pagination, batching, pooling'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-07'
   tier: core
@@ -973,7 +983,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 46 of 104 · DB-SQL-8: SQL interview patterns: top-N per group, gaps and islands, running totals'
+  title: 'Scratch · Step 48 of 110 · DB-SQL-9: SQL interview patterns: top-N per group, gaps and islands, running totals'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-08'
   tier: core
@@ -995,7 +1005,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 47 of 104 · LIFECYCLE-6: JPA entity and transaction lifecycle'
+  title: 'Scratch · Step 49 of 110 · LIFECYCLE-6: JPA entity and transaction lifecycle'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-09'
   tier: core
@@ -1017,7 +1027,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 48 of 104 · SPRING-BOOT-8: Testing Spring Boot: JUnit 5, Mockito, test slices, Testcontainers'
+  title: 'Scratch · Step 50 of 110 · SPRING-BOOT-8: Testing Spring Boot: JUnit 5, Mockito, test slices, Testcontainers'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-10'
   tier: core
@@ -1039,7 +1049,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 49 of 104 · JAVA-JVM-3: Java 8 → 11 → 17 → 21 → 25: what changed and why'
+  title: 'Scratch · Step 51 of 110 · JAVA-JVM-3: Java 8 → 11 → 17 → 21 → 25: what changed and why'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-11'
   tier: core
@@ -1061,12 +1071,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 50 of 104 · JAVA-JVM-4: Class loading and delegation'
+  title: 'Scratch · Step 52 of 110 · JAVA-JVM-4: Class loading and delegation'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-12'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 51 of 104 · JAVA-JVM-5: Garbage collection: generations and collectors'
+  title: 'Scratch · Step 53 of 110 · JAVA-JVM-5: Garbage collection: generations and collectors'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-12'
   tier: core
@@ -1088,7 +1098,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 52 of 104 · LIFECYCLE-7: Object and GC lifecycle'
+  title: 'Scratch · Step 54 of 110 · LIFECYCLE-7: Object and GC lifecycle'
+  detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
+- date: '2026-12-13'
+  tier: core
+  minutes: 30
+  title: 'Scratch · Step 55 of 110 · JAVA-JVM-6: The Java Memory Model: happens-before and volatile'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-13'
   tier: core
@@ -1114,7 +1129,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 53 of 104 · JAVA-JVM-6: The Java Memory Model: happens-before and volatile'
+  title: 'Scratch · Step 56 of 110 · JAVA-CONC-2: Locks: synchronized, ReentrantLock, deadlock'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-14'
   tier: core
@@ -1136,7 +1151,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 54 of 104 · JAVA-CONC-2: Locks: synchronized, ReentrantLock, deadlock'
+  title: 'Scratch · Step 57 of 110 · JAVA-CONC-3: Atomics, CAS and concurrent collections'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-15'
   tier: core
@@ -1158,7 +1173,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 55 of 104 · JAVA-CONC-3: Atomics, CAS and concurrent collections'
+  title: 'Scratch · Step 58 of 110 · JAVA-CONC-4: Executors and sizing thread pools'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-16'
   tier: core
@@ -1180,7 +1195,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 56 of 104 · JAVA-CONC-4: Executors and sizing thread pools'
+  title: 'Scratch · Step 59 of 110 · DSA-CPLX-4: The optimisation playbook: brute force to optimal, out loud'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-17'
   tier: core
@@ -1202,7 +1217,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 57 of 104 · DSA-CPLX-4: The optimisation playbook: brute force to optimal, out loud'
+  title: 'Scratch · Step 60 of 110 · DSA-CPLX-5: Amortised analysis'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-18'
   tier: core
@@ -1224,12 +1239,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 58 of 104 · DSA-CPLX-5: Amortised analysis'
+  title: 'Scratch · Step 61 of 110 · INTV-TIPS-2: Interview technique: think aloud, test, recover'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-19'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 59 of 104 · INTV-TIPS-2: Interview technique: think aloud, test, recover'
+  title: 'Scratch · Step 62 of 110 · LLD-DESIGN-2: Creational patterns'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-19'
   tier: core
@@ -1251,7 +1266,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 60 of 104 · LLD-DESIGN-2: Creational patterns'
+  title: 'Scratch · Step 63 of 110 · LLD-DESIGN-3: Structural patterns'
+  detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
+- date: '2026-12-20'
+  tier: core
+  minutes: 30
+  title: 'Scratch · Step 64 of 110 · LLD-DESIGN-4: Behavioural patterns'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-20'
   tier: core
@@ -1277,7 +1297,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 61 of 104 · LLD-DESIGN-3: Structural patterns'
+  title: 'Scratch · Step 65 of 110 · LLD-DESIGN-5: The LLD interview method'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-21'
   tier: core
@@ -1299,7 +1319,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 62 of 104 · LLD-DESIGN-4: Behavioural patterns'
+  title: 'Scratch · Step 66 of 110 · LLD-DESIGN-6: LLD case studies: parking lot, LRU cache, rate limiter, notification system'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-22'
   tier: core
@@ -1321,7 +1341,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 63 of 104 · LLD-DESIGN-5: The LLD interview method'
+  title: 'Scratch · Step 67 of 110 · JAVA-CONC-5: CompletableFuture and async composition'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-23'
   tier: core
@@ -1343,7 +1363,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 64 of 104 · LLD-DESIGN-6: LLD case studies: parking lot, LRU cache, rate limiter, notification system'
+  title: 'Scratch · Step 68 of 110 · JAVA-CONC-6: Virtual threads and structured concurrency'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-24'
   tier: core
@@ -1365,7 +1385,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 65 of 104 · JAVA-CONC-5: CompletableFuture and async composition'
+  title: 'Scratch · Step 69 of 110 · JAVA-CONC-7: Classic problems: producer-consumer, bounded queue, concurrent LRU, rate limiter'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-25'
   tier: core
@@ -1387,12 +1407,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 66 of 104 · JAVA-CONC-6: Virtual threads and structured concurrency'
+  title: 'Scratch · Step 70 of 110 · SPRING-BOOT-9: Spring Security: filter chain and JWT'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-26'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 67 of 104 · JAVA-CONC-7: Classic problems: producer-consumer, bounded queue, concurrent LRU, rate limiter'
+  title: 'Scratch · Step 71 of 110 · SPRING-BOOT-10: OAuth2 and OpenID Connect: delegated login done right'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-26'
   tier: core
@@ -1414,7 +1434,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 68 of 104 · SPRING-BOOT-9: Spring Security: filter chain and JWT'
+  title: 'Scratch · Step 72 of 110 · WEB-API-4: Web application security: OWASP Top 10, password storage, secrets and TLS'
+  detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
+- date: '2026-12-27'
+  tier: core
+  minutes: 30
+  title: 'Scratch · Step 73 of 110 · SPRING-BOOT-11: Production readiness: Actuator, metrics, testing'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-27'
   tier: core
@@ -1440,7 +1465,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 69 of 104 · SPRING-BOOT-10: OAuth2 and OpenID Connect: delegated login done right'
+  title: 'Scratch · Step 74 of 110 · INTV-TIPS-3: Debugging and production habits'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-28'
   tier: core
@@ -1462,7 +1487,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 70 of 104 · SPRING-BOOT-11: Production readiness: Actuator, metrics, testing'
+  title: 'Scratch · Step 75 of 110 · SYS-DES-1: Building blocks: load balancers, caches, queues, databases'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-29'
   tier: core
@@ -1484,7 +1509,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 71 of 104 · INTV-TIPS-3: Debugging and production habits'
+  title: 'Scratch · Step 76 of 110 · DIST-SYS-1: Redis in depth: data types, TTL, eviction, persistence, distributed locks'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-30'
   tier: core
@@ -1506,7 +1531,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 72 of 104 · SYS-DES-1: Building blocks: load balancers, caches, queues, databases'
+  title: 'Scratch · Step 77 of 110 · DIST-SYS-2: Kafka in depth: partitions, consumer groups, offsets, delivery guarantees'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2026-12-31'
   tier: core
@@ -1528,7 +1553,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 73 of 104 · DIST-SYS-1: Redis in depth: data types, TTL, eviction, persistence, distributed locks'
+  title: 'Scratch · Step 78 of 110 · DB-SQL-10: Scaling databases: replicas, partitioning, sharding, caching, CQRS'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-01'
   tier: core
@@ -1550,12 +1575,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 74 of 104 · DIST-SYS-2: Kafka in depth: partitions, consumer groups, offsets, delivery guarantees'
+  title: 'Scratch · Step 79 of 110 · DB-SQL-11: NoSQL: key-value, document, wide-column, search; choosing a database'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-02'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 75 of 104 · DB-SQL-9: Scaling databases: replicas, partitioning, sharding, caching, CQRS'
+  title: 'Scratch · Step 80 of 110 · SYS-DES-2: The system design method and estimation'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-02'
   tier: core
@@ -1577,7 +1602,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 76 of 104 · SYS-DES-2: The system design method and estimation'
+  title: 'Scratch · Step 81 of 110 · INTV-TIPS-4: System design interview kit: method, numbers, patterns, practice'
+  detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
+- date: '2027-01-03'
+  tier: core
+  minutes: 30
+  title: 'Scratch · Step 82 of 110 · BE-STORY-9: SOA & the enterprise service bus'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-03'
   tier: core
@@ -1605,7 +1635,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 77 of 104 · INTV-TIPS-4: System design interview kit: method, numbers, patterns, practice'
+  title: 'Scratch · Step 83 of 110 · BE-STORY-10: Microservices: why, how, and what it costs'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-04'
   tier: core
@@ -1627,7 +1657,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 78 of 104 · BE-STORY-9: SOA & the enterprise service bus'
+  title: 'Scratch · Step 84 of 110 · WEB-API-5: Microservice communication: API gateway, service discovery, REST vs gRPC vs events'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-05'
   tier: core
@@ -1649,7 +1679,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 79 of 104 · BE-STORY-10: Microservices: why, how, and what it costs'
+  title: 'Scratch · Step 85 of 110 · DIST-SYS-3: Resilience patterns: timeouts, retries, circuit breaker, bulkhead, saga, outbox'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-06'
   tier: core
@@ -1671,7 +1701,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 80 of 104 · WEB-API-3: Microservice communication: API gateway, service discovery, REST vs gRPC vs events'
+  title: 'Scratch · Step 86 of 110 · DIST-SYS-4: Linux and the OS for backend engineers: processes, memory, files, the commands'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-07'
   tier: core
@@ -1693,7 +1723,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 81 of 104 · DIST-SYS-3: Resilience patterns: timeouts, retries, circuit breaker, bulkhead, saga, outbox'
+  title: 'Scratch · Step 87 of 110 · DIST-SYS-5: Docker and Kubernetes for a backend engineer'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-08'
   tier: core
@@ -1715,12 +1745,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 82 of 104 · DIST-SYS-4: Docker and Kubernetes for a backend engineer'
+  title: 'Scratch · Step 88 of 110 · DIST-SYS-6: Git, CI/CD and safe deployments: branching, pipelines, blue-green, canary, flags'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-09'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 83 of 104 · SYS-DES-3: Distributed theory: CAP, consistency, consensus'
+  title: 'Scratch · Step 89 of 110 · SYS-DES-3: Distributed theory: CAP, consistency, consensus'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-09'
   tier: core
@@ -1739,7 +1769,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 84 of 104 · SYS-DES-4: Case studies: URL shortener, rate limiter, notification system'
+  title: 'Scratch · Step 90 of 110 · SYS-DES-4: Case studies: URL shortener, rate limiter, notification system'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-10'
   tier: core
@@ -1765,7 +1795,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 85 of 104 · BE-STORY-11: Cloud native & event-driven systems'
+  title: 'Scratch · Step 91 of 110 · BE-STORY-11: Cloud native & event-driven systems'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-11'
   tier: core
@@ -1787,7 +1817,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 86 of 104 · SYS-DES-5: DAGs: workflow orchestration and schedulers'
+  title: 'Scratch · Step 92 of 110 · SYS-DES-5: DAGs: workflow orchestration and schedulers'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-12'
   tier: core
@@ -1809,7 +1839,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 87 of 104 · SYS-DES-6: Case studies: distributed cache, metrics & monitoring'
+  title: 'Scratch · Step 93 of 110 · SYS-DES-6: Case studies: distributed cache, metrics & monitoring'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-13'
   tier: core
@@ -1831,7 +1861,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 88 of 104 · SYS-DES-7: Case studies: chat, news feed, collaborative editor'
+  title: 'Scratch · Step 94 of 110 · SYS-DES-7: Case studies: chat, news feed, collaborative editor'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-14'
   tier: core
@@ -1853,7 +1883,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 89 of 104 · SYS-DES-8: Case study: design a sports betting platform'
+  title: 'Scratch · Step 95 of 110 · SYS-DES-8: Case study: design a sports betting platform'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-15'
   tier: core
@@ -1875,12 +1905,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 90 of 104 · BE-STORY-12: The pendulum: modular monoliths'
+  title: 'Scratch · Step 96 of 110 · BE-STORY-12: The pendulum: modular monoliths'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-16'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 91 of 104 · BE-STORY-13: Reactive programming → virtual threads'
+  title: 'Scratch · Step 97 of 110 · BE-STORY-13: Reactive programming → virtual threads'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-16'
   tier: core
@@ -1902,7 +1932,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 92 of 104 · JAVA-JVM-7: Diagnosing GC and memory leaks'
+  title: 'Scratch · Step 98 of 110 · JAVA-JVM-7: Diagnosing GC and memory leaks'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-17'
   tier: core
@@ -1930,7 +1960,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 93 of 104 · JAVA-JVM-8: Profiling: JFR, flame graphs, JMH'
+  title: 'Scratch · Step 99 of 110 · JAVA-JVM-8: Profiling: JFR, flame graphs, JMH'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-18'
   tier: core
@@ -1952,7 +1982,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 94 of 104 · SPRING-BOOT-12: Extending Spring: post-processors, custom starters'
+  title: 'Scratch · Step 100 of 110 · SPRING-BOOT-12: Extending Spring: post-processors, custom starters'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-19'
   tier: core
@@ -1974,7 +2004,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 95 of 104 · SPRING-BOOT-13: Shipping a feature: the playbook'
+  title: 'Scratch · Step 101 of 110 · SPRING-BOOT-13: Shipping a feature: the playbook'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-20'
   tier: core
@@ -1996,7 +2026,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 96 of 104 · AI-ENG-1: How LLMs work, enough to reason about them'
+  title: 'Scratch · Step 102 of 110 · AI-ENG-1: How LLMs work, enough to reason about them'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-21'
   tier: core
@@ -2018,7 +2048,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 97 of 104 · AI-ENG-2: Using the models: prompting, structured output, tools, caching'
+  title: 'Scratch · Step 103 of 110 · AI-ENG-2: Using the models: prompting, structured output, tools, caching'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-22'
   tier: core
@@ -2040,12 +2070,12 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 98 of 104 · AI-ENG-3: RAG: retrieval-augmented generation'
+  title: 'Scratch · Step 104 of 110 · AI-ENG-3: RAG: retrieval-augmented generation'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-23'
   tier: core
   minutes: 30
-  title: 'Scratch · Step 99 of 104 · AI-ENG-4: MCP: the Model Context Protocol'
+  title: 'Scratch · Step 105 of 110 · AI-ENG-4: MCP: the Model Context Protocol'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-23'
   tier: core
@@ -2064,7 +2094,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 100 of 104 · AI-ENG-5: Agents and DAG workflows'
+  title: 'Scratch · Step 106 of 110 · AI-ENG-5: Agents and DAG workflows'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-24'
   tier: core
@@ -2090,7 +2120,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 101 of 104 · AI-ENG-6: Evals and safety'
+  title: 'Scratch · Step 107 of 110 · AI-ENG-6: Evals and safety'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-25'
   tier: core
@@ -2112,7 +2142,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 102 of 104 · AI-ENG-7: Spring AI and the Claude Java SDK'
+  title: 'Scratch · Step 108 of 110 · AI-ENG-7: Spring AI and the Claude Java SDK'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-26'
   tier: core
@@ -2134,7 +2164,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 103 of 104 · BE-STORY-14: AI-native applications'
+  title: 'Scratch · Step 109 of 110 · BE-STORY-14: AI-native applications'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-27'
   tier: core
@@ -2156,7 +2186,7 @@ sessions:
   tier: core
   floor: true
   minutes: 30
-  title: 'Scratch · Step 104 of 104 · BE-STORY-15: What''s next, and how to keep up'
+  title: 'Scratch · Step 110 of 110 · BE-STORY-15: What''s next, and how to keep up'
   detail: Read it in one-part-at-a-time mode; Answer its Check yourself questions out loud before reading the answers; Say the 2-minute summary out loud without looking
 - date: '2027-01-28'
   tier: core

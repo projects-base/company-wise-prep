@@ -222,7 +222,7 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
     window.dispatchEvent(new Event(TICKS_CHANGED))
   }
   const done = steps.length > 0 && ticks.length >= steps.length
-  // "Scratch · Step 12 of 104 · JAVA-JVM-2: …" — the API opens a lesson by its code as well as its id.
+  // "Scratch · Step 12 of 110 · JAVA-JVM-2: …" — the API opens a lesson by its code as well as its id.
   const lessonId = /^(?:Scratch · Step \d+ of \d+|Capstone) · ([A-Z]+(?:-[A-Z]+)*-\d+):/.exec(session.title)?.[1]
 
   return (

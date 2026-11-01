@@ -1,6 +1,6 @@
 ## The goal
 
-By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 104 Academy lessons) and
+By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 110 Academy lessons) and
 can walk into any SDE II / Senior Java backend loop: DSA coding, LLD, HLD / system design, and deep
 Java and Spring Boot internals, answered at the depth an experienced interviewer expects.
 Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with stretch.
@@ -16,7 +16,7 @@ Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with
 | Day | Core |
 |---|---|
 | **Saturday** (2 h) | **Two** scratch lessons 60 + **LLD** design 60 (timed DSA 30 is stretch) |
-| **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–3: two lessons, 2 h); stretch: **Capstone** milestone 60 |
+| **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–9: two lessons, 2 h); stretch: **Capstone** milestone 60 |
 
 The Today page shows core first, stretch below it, and a **Short on time? Do just this** button for
 the floor.
@@ -47,16 +47,16 @@ JAVA-FUND-3 and a step number, and practice follows what they covered.
 | Week | Dates | Scratch lessons | DSA pattern | LLD (Sat) | HLD (Sun) |
 |---|---|---|---|---|---|
 | 0 | Sun 1 Nov | Foundations (BE-STORY-1) + kickoff | — | — | — |
-| 1 | 2 – 8 Nov | JDK/JRE/JVM, how Java runs, OOP, equals/hashCode, exceptions, generics | Arrays, hashing, two pointers | Parking lot | URL shortener |
-| 2 | 9 – 15 Nov | Collections internals, JVM memory, complexity, streams, SOLID, threads, I/O and Jackson | Sliding window, prefix sums | Vending machine | Unique ID generator |
-| 3 | 16 – 22 Nov | HTTP in depth, CGI → servlets → MVC, DI container, J2EE → Spring, IoC, bean lifecycle | Stacks, binary search | Singleton and factory | Image hosting |
-| 4 | 23 – 29 Nov | AOP, Boot internals and startup, annotations, MVC pipeline, REST API design | Linked lists, intervals | Logging framework | Idempotent API |
-| 5 | 30 Nov – 6 Dec | SQL basics → window functions, JDBC, HTTP lifecycle, JPA, indexes, isolation | Trees | Pluggable cache eviction | Ticket booking |
-| 6 | 7 – 13 Dec | Query performance, SQL patterns, JPA lifecycle, testing, Java 8→25, class loading, GC | Heaps, top-K | Bounded blocking queue | Distributed cache |
-| 7 | 14 – 20 Dec | Memory model, locks, atomics, executors, optimisation playbook, interview technique, patterns | Graphs: BFS and DFS | Notification system | Chat application |
-| 8 | 21 – 27 Dec | Design patterns, LLD method and cases, CompletableFuture, virtual threads, Spring Security | Topological sort, union-find, Dijkstra | Rate limiter | News feed |
-| 9 | 28 Dec – 3 Jan | OAuth2/OIDC, Actuator, debugging, building blocks, Redis, Kafka, scaling databases, design method | Backtracking, tries | Elevator | Message queue |
-| 10 | 4 – 10 Jan | Design kit, SOA → microservices, service communication, resilience, Docker/K8s, distributed theory | DP 1 | **Mock (LLD)** | **Mock (system design)** |
+| 1 | 2 – 8 Nov | JDK/JRE/JVM, how Java runs, OOP, equals/hashCode, complexity, Java idioms, exceptions, generics | Arrays, hashing, two pointers | Parking lot | URL shortener |
+| 2 | 9 – 15 Nov | Collections internals, JVM memory, hidden costs, streams, SOLID, threads, I/O and Jackson | Sliding window, prefix sums | Vending machine | Unique ID generator |
+| 3 | 16 – 22 Nov | HTTP in depth, sockets and TCP, CGI → servlets → MVC, DI container, J2EE → Spring, IoC | Stacks, binary search | Singleton and factory | Image hosting |
+| 4 | 23 – 29 Nov | Bean lifecycle, AOP, Boot internals and startup, annotations, MVC pipeline, REST API design | Linked lists, intervals | Logging framework | Idempotent API |
+| 5 | 30 Nov – 6 Dec | SQL basics, data modeling and normalization, window functions, JDBC, JPA, indexes, isolation | Trees | Pluggable cache eviction | Ticket booking |
+| 6 | 7 – 13 Dec | Query performance, SQL patterns, JPA lifecycle, testing, Java 8→25, class loading, GC, memory model | Heaps, top-K | Bounded blocking queue | Distributed cache |
+| 7 | 14 – 20 Dec | Locks, atomics, executors, optimisation playbook, interview technique, design patterns | Graphs: BFS and DFS | Notification system | Chat application |
+| 8 | 21 – 27 Dec | LLD method and cases, CompletableFuture, virtual threads, Spring Security, OAuth2, web security, Actuator | Topological sort, union-find, Dijkstra | Rate limiter | News feed |
+| 9 | 28 Dec – 3 Jan | Debugging, building blocks, Redis, Kafka, scaling databases, NoSQL, design method and kit, SOA | Backtracking, tries | Elevator | Message queue |
+| 10 | 4 – 10 Jan | Microservices, service communication, resilience, Linux and the OS, Docker/K8s, CI/CD, distributed theory | DP 1 | **Mock (LLD)** | **Mock (system design)** |
 | 11 | 11 – 17 Jan | Event-driven, schedulers, case studies, betting platform, modular monoliths, reactive, GC diagnosis | DP 2, greedy | Undo/redo editor | Payment system |
 | 12 | 18 – 24 Jan | Profiling, extending Spring, shipping a feature, AI engineering: LLMs, prompting, RAG, MCP, agents | Design data structures | **Mock (LLD)** | **Mock (system design)** |
 | 13 | 25 – 31 Jan | Evals, Spring AI, AI-native, what's next (Mon–Thu) | Re-solves, timed | Final LLD mock | Final system design mock |
@@ -80,6 +80,6 @@ milestone starts from the previous tag.
 
 ## Done means
 
-All 104 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
+All 110 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
 6 mocks logged with the last three at 7/10 or better, and every weekday's concept said out loud on the
 days you did stretch.

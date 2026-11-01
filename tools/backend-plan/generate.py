@@ -5,7 +5,7 @@ Run from the repo root: python tools/backend-plan/generate.py . (edit the tables
 Every day has tiers: core sessions (the schedule is built on these alone), stretch sessions
 (optional, they never put you behind) and one floor session (the minimum that keeps a bad day
 alive: the day's Academy lesson). The Academy's "Zero to Pro" path runs in order: one lesson a day,
-two on Saturdays and on the first three Sundays, so all of it fits by week 13;
+two on Saturdays and on the Sundays of weeks 1-9, so all of it fits by week 13;
 the DSA, the stretch question and the weekend designs follow the topics the lessons have covered."""
 import datetime as dt
 import glob
@@ -176,8 +176,8 @@ for k, (pattern, wd, timed, qs, lld, hld, beh) in enumerate(W):
         add(sat, dict(minutes=60, title=f'LLD · {bank[Q(lld)]["title"]}', detail=LLD_DETAIL, questions=[lld]))
     dsa(sat, pattern, timed, timed=True, tier='stretch')
     lesson(sun)
-    if k < 3:
-        lesson(sun, floor=False)  # the 18 fundamentals lessons added in Oct 2026 need three more slots
+    if k < 9:
+        lesson(sun, floor=False)  # the 24 lessons added since Oct 2026 need nine more slots
     if hld == 'MOCK':
         add(sun, dict(minutes=45, title='System design mock with Claude (unseen problem)', detail=MOCK_HLD))
     else:

@@ -251,5 +251,10 @@ class AppTest {
 				.andExpect(jsonPath("$.module.id", is("A2")))
 				.andExpect(jsonPath("$.module.code", is("JAVA-JVM-2")))
 				.andExpect(jsonPath("$.prerequisites[*].code", hasItem("JAVA-JVM-1")));
+		// Sockets sit right after HTTP, so REST design moved to WEB-API-3.
+		mvc.perform(get("/api/academy/modules/WEB-API-2"))
+				.andExpect(jsonPath("$.module.id", is("W4")))
+				.andExpect(jsonPath("$.module.ready", is(false)));
+		mvc.perform(get("/api/academy/modules/WEB-API-3")).andExpect(jsonPath("$.module.id", is("W2")));
 	}
 }
