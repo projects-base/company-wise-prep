@@ -1188,6 +1188,13 @@ html { scroll-behavior: smooth; }
 }
 /* Back · Mark complete · Next: the middle button stays centred, the row wraps on phones. */
 .stepper-nav > .btn:not(.lg):not(:first-child) { margin: 0 auto; }
+.stepper-mid { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 0 auto; }
+.part-toggle.on, .btn.lesson-done { color: var(--ok); border-color: var(--ok); background: var(--ok-soft); }
+.toc-tick { color: var(--ok); margin-right: 5px; vertical-align: -1px; }
+@media (max-width: 640px) {
+  /* Phones: Back and Next on one row, the two completion buttons on their own row below. */
+  .stepper-mid { order: 3; width: 100%; }
+}
 /* Keep "Stuck?" clear of the hosting badge Netlify can show in the bottom-right corner. */
 .lifeline-fab { bottom: 76px; }
 @media (max-width: 640px) { .lifeline-fab { bottom: 72px; } }

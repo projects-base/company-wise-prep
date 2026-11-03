@@ -121,6 +121,14 @@ public class ApiController {
 		return academy.setDone(id, req.done());
 	}
 
+	public record PartProgressRequest(String part, boolean done) {
+	}
+
+	@PutMapping("/academy/modules/{id}/parts")
+	public List<String> modulePart(@PathVariable String id, @RequestBody PartProgressRequest req) {
+		return academy.setPartDone(id, req.part(), req.done());
+	}
+
 	/** Re-read data/ after /prep-company or a manual edit, without restarting. */
 	@PostMapping("/admin/reload")
 	public DataImporter.Summary reload() {

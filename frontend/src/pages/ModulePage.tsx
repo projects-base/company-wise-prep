@@ -45,6 +45,9 @@ export default function ModulePage() {
   )
   const s = useStepper(v?.lesson ?? '', id)
   const active = useActiveHeading(headings.map(slugify), s.mode === 'all' ? v?.lesson : undefined)
+  // Parts ticked off, saved on the server so phone and desktop agree; updated optimistically.
+  const [partsDone, setPartsDone] = useState<Set<string>>(new Set())
+  useEffect(() => setPartsDone(new Set(v?.partsDone ?? [])), [v])
 
   if (!v) return <div className="container"><Status error={error} /></div>
   const m = v.module
@@ -52,6 +55,19 @@ export default function ModulePage() {
   const toggle = async () => {
     await api.moduleDone(m.id, !m.done)
     reload()
+  }
+  const tickPart = (title: string, done: boolean) => {
+    const before = partsDone
+    const next = new Set(before)
+    if (done) next.add(title)
+    else next.delete(title)
+    setPartsDone(next)
+    api.modulePart(m.id, title, done).then((list) => setPartsDone(new Set(list)), () => setPartsDone(before))
+  }
+  const finish = async () => {
+    const lastPart = s.parts[s.parts.length - 1]
+    if (lastPart && !partsDone.has(lastPart.title)) tickPart(lastPart.title, true)
+    await toggle()
   }
 
   return (
@@ -108,12 +124,27 @@ export default function ModulePage() {
             <StepperView
               s={s}
               full={v.lesson ?? ''}
-              onFinish={m.done ? undefined : toggle}
-              middle={!m.done && m.written ? (
-                <button className="btn" onClick={toggle}>
-                  <Check size={15} /> Mark lesson complete
+              onFinish={m.done ? undefined : finish}
+              doneParts={partsDone}
+              onPartDone={tickPart}
+              middle={
+                <button className={`btn sm ${m.done ? 'lesson-done' : ''}`} onClick={toggle}>
+                  <Check size={15} /> {m.done ? 'Completed — undo' : 'Mark lesson complete'}
                 </button>
-              ) : undefined}
+              }
+              lastAction={
+                m.done ? (
+                  v.next ? (
+                    <Link to={`/academy/${v.next.id}`} className="btn lg primary">
+                      Next lesson: {v.next.code} <ArrowRight size={16} />
+                    </Link>
+                  ) : (
+                    <span className="pill ok">
+                      <Check size={12} /> Last lesson on the path
+                    </span>
+                  )
+                ) : undefined
+              }
               finishLabel="Mark lesson complete"
               render={(md) => (
             <Markdown
@@ -157,7 +188,8 @@ export default function ModulePage() {
 
         <footer className="lesson-foot">
           <div className="row">
-            {(m.done || s.mode === 'all' || !s.usable) && (
+            {/* In one-part-at-a-time mode the complete / undo button sits between Back and Next instead. */}
+            {(s.mode === 'all' || !s.usable) && (
               <button className={`btn lg ${m.done ? '' : 'primary'}`} onClick={toggle} disabled={!m.written && !m.done}>
                 <Check size={16} /> {m.done ? 'Completed — undo' : 'Mark lesson complete'}
               </button>
@@ -200,13 +232,14 @@ export default function ModulePage() {
                   <li key={i}>
                     <a
                       href={`#${slugify(p.title)}`}
-                      className={`${s.step === i ? 'on' : ''} ${i < s.step ? 'seen' : ''}`}
+                      className={`${s.step === i ? 'on' : ''} ${partsDone.has(p.title) ? 'seen' : ''}`}
                       onClick={(e) => {
                         e.preventDefault()
                         s.setStep(i)
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                       }}
                     >
+                      {partsDone.has(p.title) && <Check size={12} strokeWidth={3} className="toc-tick" />}
                       {p.title}
                     </a>
                   </li>

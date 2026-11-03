@@ -227,6 +227,30 @@ class AppTest {
 		mvc.perform(get("/api/academy/modules/NOPE")).andExpect(status().isNotFound());
 	}
 
+	/** Each "## " part of a lesson can be ticked off on its own; that never completes the lesson by itself. */
+	@Test
+	void lessonPartsAreTickedOffSeparately() throws Exception {
+		mvc.perform(put("/api/academy/modules/JAVA-JVM-1/parts").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"part\":\"The problem\",\"done\":true}"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", hasItem("The problem")));
+		mvc.perform(put("/api/academy/modules/A1/parts").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"part\":\"Where we are\",\"done\":true}"))
+				.andExpect(jsonPath("$", hasSize(2)));
+		mvc.perform(get("/api/academy/modules/A1"))
+				.andExpect(jsonPath("$.partsDone", hasItem("Where we are")))
+				.andExpect(jsonPath("$.module.done", is(false)));
+
+		mvc.perform(put("/api/academy/modules/A1/parts").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"part\":\"The problem\",\"done\":false}"))
+				.andExpect(jsonPath("$", hasSize(1)));
+		// Marking the whole lesson done keeps the ticks, so undoing it doesn't lose them.
+		mvc.perform(put("/api/academy/modules/A1/progress").contentType(MediaType.APPLICATION_JSON).content("{\"done\":true}"));
+		mvc.perform(get("/api/academy/modules/A1")).andExpect(jsonPath("$.partsDone", hasItem("Where we are")));
+		mvc.perform(put("/api/academy/modules/A1/parts").contentType(MediaType.APPLICATION_JSON).content("{\"part\":\" \",\"done\":true}"))
+				.andExpect(status().isBadRequest());
+	}
+
 	/** Ask AI works on any page: "general" has no reference material and only answers doubts. */
 	@Test
 	void askAiAnswersDoubtsFromAnyPage() throws Exception {

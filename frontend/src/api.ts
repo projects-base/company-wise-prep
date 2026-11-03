@@ -226,6 +226,8 @@ export interface ModuleView {
   next: Ref | null
   pathPosition: number
   pathLength: number
+  /** Titles of the "## " parts ticked off. */
+  partsDone: string[]
 }
 
 export type Verdict = 'ACCEPTED' | 'WRONG_ANSWER' | 'RUNTIME_ERROR' | 'TIME_LIMIT' | 'COMPILE_ERROR'
@@ -454,6 +456,12 @@ export const api = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ done }),
+    }),
+  modulePart: (id: string, part: string, done: boolean) =>
+    call<string[]>(`/api/academy/modules/${id}/parts`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ part, done }),
     }),
   challenge: (slug: string) => call<Challenge>(`/api/code/${slug}`),
   solution: (slug: string) => call<{ code: string }>(`/api/code/${slug}/solution`),

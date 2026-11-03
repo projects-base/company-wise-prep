@@ -5,12 +5,15 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +62,7 @@ public class AcademyService {
 	}
 
 	public record ModuleView(ModuleSummary module, String trackTitle, String lesson, List<Ref> prerequisites,
-			List<Ref> unlocks, Ref previous, Ref next, int pathPosition, int pathLength) {
+			List<Ref> unlocks, Ref previous, Ref next, int pathPosition, int pathLength, List<String> partsDone) {
 	}
 
 	@Transactional(readOnly = true)
@@ -111,7 +114,29 @@ public class AcademyService {
 		String trackTitle = tracks.findById(m.getTrackId()).map(AcademyTrack::getTitle).orElse(m.getTrackId());
 		return new ModuleView(summary(m, done), trackTitle, m.getLesson(),
 				split(m.getPrerequisites()).stream().map(ref).filter(r -> r != null).toList(),
-				unlocks, prev, next, pos + 1, path.size());
+				unlocks, prev, next, pos + 1, path.size(),
+				progress.findById(id).map(AcademyService::parts).orElse(List.of()));
+	}
+
+	/** Ticks one "## " part of a lesson on or off; the lesson's own done flag is left alone. */
+	@Transactional
+	public List<String> setPartDone(String idOrCode, String part, boolean isDone) {
+		String title = part == null ? "" : part.strip();
+		if (title.isEmpty() || title.contains("\n")) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "part must be a single non-blank title");
+		String id = find(idOrCode).getId();
+		LessonProgress p = progress.findById(id).orElseGet(() -> new LessonProgress(id));
+		Set<String> parts = new LinkedHashSet<>(parts(p));
+		if (isDone) parts.add(title);
+		else parts.remove(title);
+		p.setPartsDone(String.join("\n", parts));
+		p.setUpdatedAt(Instant.now(clock));
+		progress.save(p);
+		return List.copyOf(parts);
+	}
+
+	private static List<String> parts(LessonProgress p) {
+		return p.getPartsDone() == null || p.getPartsDone().isBlank() ? List.of()
+				: Arrays.stream(p.getPartsDone().split("\n")).filter(s -> !s.isBlank()).toList();
 	}
 
 	@Transactional

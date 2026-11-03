@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { ArrowLeft, ArrowRight, Check, Rows3, StretchHorizontal } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, Circle, Rows3, StretchHorizontal } from 'lucide-react'
 
 /**
  * Long Markdown (a lesson, a model answer) read one "## " part at a time: a segmented progress
@@ -91,15 +91,21 @@ export function ModeToggle({ s }: { s: StepperState }) {
 }
 
 /** The reader. `render` turns Markdown into the page's own elements (diagrams, Run buttons…). */
-export function StepperView({ s, render, full, onFinish, finishLabel, middle }: {
+export function StepperView({ s, render, full, onFinish, finishLabel, middle, doneParts, onPartDone, lastAction }: {
   s: StepperState
   render: (md: string) => ReactNode
   /** The whole text, used in "Show all" mode. */
   full: string
   onFinish?: () => void
   finishLabel?: string
-  /** Shown between Back and Next (the lesson page puts "Mark lesson complete" here). */
+  /** Shown between Back and Next on every part (the lesson page puts its complete / undo button here). */
   middle?: ReactNode
+  /** Parts ticked off, by title. Without it, parts before the current one count as read. */
+  doneParts?: Set<string>
+  /** Ticks a part on or off. When given, Next also ticks the part you are leaving. */
+  onPartDone?: (title: string, done: boolean) => void
+  /** Replaces the finish button on the last part. */
+  lastAction?: ReactNode
 }) {
   const top = useRef<HTMLDivElement>(null)
   const { parts, step } = s
@@ -133,6 +139,7 @@ export function StepperView({ s, render, full, onFinish, finishLabel, middle }: 
   const part = parts[step]
   const left = Math.max(1, Math.round(parts.slice(step).reduce((n, p) => n + p.words, 0) / WPM))
   const last = step === parts.length - 1
+  const partDone = !!doneParts?.has(part.title)
 
   return (
     <div className="stepper" ref={top}>
@@ -145,7 +152,7 @@ export function StepperView({ s, render, full, onFinish, finishLabel, middle }: 
               aria-selected={i === step}
               aria-label={`Part ${i + 1}: ${p.title}`}
               title={`${i + 1}. ${p.title}`}
-              className={`seg ${i < step ? 'done' : ''} ${i === step ? 'on' : ''}`}
+              className={`seg ${(doneParts ? doneParts.has(p.title) : i < step) ? 'done' : ''} ${i === step ? 'on' : ''}`}
               onClick={() => go(i)}
             />
           ))}
@@ -170,11 +177,34 @@ export function StepperView({ s, render, full, onFinish, finishLabel, middle }: 
         ) : (
           <span />
         )}
-        {!last && middle}
+        {(onPartDone || middle) && (
+          <div className="stepper-mid">
+            {onPartDone && (
+              <button
+                className={`btn sm part-toggle ${partDone ? 'on' : ''}`}
+                aria-pressed={partDone}
+                onClick={() => onPartDone(part.title, !partDone)}
+                title={partDone ? 'Untick this part' : 'Tick this part off'}
+              >
+                {partDone ? <CheckCircle2 size={15} /> : <Circle size={15} />} {partDone ? 'Part done' : 'Mark part done'}
+              </button>
+            )}
+            {/* On the last part the finish button already completes the lesson. */}
+            {(!last || !onFinish) && middle}
+          </div>
+        )}
         {!last ? (
-          <button className="btn lg primary" onClick={() => go(step + 1)}>
+          <button
+            className="btn lg primary"
+            onClick={() => {
+              if (onPartDone && !partDone) onPartDone(part.title, true)
+              go(step + 1)
+            }}
+          >
             Next: {parts[step + 1].title} <ArrowRight size={16} />
           </button>
+        ) : lastAction ? (
+          lastAction
         ) : onFinish ? (
           <button className="btn lg primary" onClick={onFinish}>
             <Check size={16} /> {finishLabel ?? 'Done'}
