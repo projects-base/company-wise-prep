@@ -72,6 +72,9 @@ milestone starts from the previous tag.
 
 ## When you fall behind
 
+- **Week 1 power cut (3–4 Nov, cyclone):** those sessions moved to Thu 5 – Sun 8 Nov. Saturday and Sunday each carry three
+  lessons (2 h 30 core) this week only, and everything from Mon 9 Nov is unchanged.
+
 - **A missed day:** Sunday's catch-up slot takes the most important core session (DSA before lesson
   before design). Do not double up on Monday.
 - **A whole week lost** (illness, release crunch): do floors only that week, skip its LLD and HLD, and

@@ -10,6 +10,7 @@ the DSA, the stretch question and the weekend designs follow the topics the less
 import datetime as dt
 import glob
 import os
+import re
 import sys
 
 import yaml
@@ -210,6 +211,46 @@ add(sun, dict(minutes=45, title='Rest and readiness check',
               detail="Read the requirements checklist and numbers card once; Prepare 3 stories: hardest project, conflict, failure; Stop by evening and sleep well"))
 
 assert next(lessons, None) is None, 'every Academy lesson is scheduled'
+
+# Power cut, Tue 3 and Wed 4 Nov 2026 (cyclone): the week catches up by Sunday, so Mon 9 Nov onwards is untouched.
+# Weekend core grows by 30 minutes (the guide's limit); the two later DSA and spoken sessions become stretch.
+CATCH_UP = {
+    'Scratch · Step 3 of': ('2026-11-05', 'core'), 'Scratch · Step 4 of': ('2026-11-06', 'core'),
+    'Scratch · Step 5 of': ('2026-11-07', 'core'), 'Scratch · Step 6 of': ('2026-11-07', 'core'),
+    'Scratch · Step 8 of': ('2026-11-08', 'core'),
+    'DSA · Arrays, hashing, two pointers · 3Sum': ('2026-11-05', 'core'),
+    'DSA · Arrays, hashing, two pointers · Container With Most Water': ('2026-11-06', 'core'),
+    'DSA · Arrays, hashing, two pointers · Longest Consecutive Sequence': ('2026-11-07', 'stretch'),
+    'DSA · Arrays, hashing, two pointers · Group Anagrams': ('2026-11-08', 'stretch'),
+}
+SPOKEN_CATCH_UP = {'2026-11-03': '2026-11-05', '2026-11-04': '2026-11-06', '2026-11-05': '2026-11-07', '2026-11-06': '2026-11-08'}
+moved = 0
+for s in sessions:
+    target = next((v for k, v in CATCH_UP.items() if s['title'].startswith(k)), None)
+    if target is None and s['title'].startswith('Say it out loud') and s['date'] in SPOKEN_CATCH_UP:
+        target = (SPOKEN_CATCH_UP[s['date']], 'stretch')
+    if target:
+        s['date'], s['tier'] = target
+        s.pop('floor', None)
+        moved += 1
+assert moved == 13, moved
+for day in ('2026-11-03', '2026-11-04'):
+    sessions.append({'date': day, 'tier': 'core', 'floor': True, 'minutes': 0, 'title': 'Power cut · this day moved to later this week',
+                     'detail': 'Nothing to do: these sessions now sit on Thu 5 to Sun 8 Nov'})
+
+
+def step_of(s):
+    m = re.match(r'Scratch · Step (\d+) of', s['title'])
+    return int(m.group(1)) if m else 10 ** 6
+
+
+# Each day reads core before stretch and lessons in order; the stable sort keeps every other session where it was.
+sessions.sort(key=lambda s: (s['date'], s['tier'] != 'core', step_of(s)))
+for day in ('2026-11-05', '2026-11-06', '2026-11-07', '2026-11-08'):
+    todays = [s for s in sessions if s['date'] == day]
+    for s in todays:
+        s.pop('floor', None)
+    todays[0]['floor'] = True                    # the floor is the next lesson in order, so a bad day skips nothing
 
 GUIDE = open(os.path.join(os.path.dirname(__file__), 'guide.md'), encoding='utf-8').read()
 
