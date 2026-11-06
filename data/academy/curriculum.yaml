@@ -142,6 +142,8 @@ tracks:
       - {id: I5, title: "Linux and the OS for backend engineers: processes, memory, files, the commands", level: 3, minutes: 30, prerequisites: [B1, W4]}
       - {id: I4, title: "Docker and Kubernetes for a backend engineer", level: 3, minutes: 30, prerequisites: [S8]}
       - {id: I6, title: "Git, CI/CD and safe deployments: branching, pipelines, blue-green, canary, flags", level: 3, minutes: 25, prerequisites: [I4]}
+      - {id: I7, title: "Observability in production: logs, metrics, traces, Grafana, SLOs", level: 4, minutes: 30, prerequisites: [D8, I6]}
+      - {id: I8, title: "Cloud for backend engineers: AWS core services and the Azure map", level: 4, minutes: 30, prerequisites: [F1, I4]}
 
   - id: G
     title: AI Engineering
@@ -218,7 +220,7 @@ paths:
   - id: zero-to-pro
     title: Zero to Pro (start here)
     description: One gentle route through everything — each module only uses what earlier ones taught. Levels rise from 1 (Explorer) to 5 (Architect).
-    modules: [S0, J1, A1, L1, J2, J3, C1, H1, J4, J5, J6, A2, C3, C2, J7, E1, B1, L3, J8, W1, W4, S1, S2, S3, D1, S4, S5, D2, L4, D3, S6, S7, D4, L5, D11, D5, W2, Q1, Q2, Q10, Q3, Q9, L6, D6, Q5, Q6, Q7, Q4, L7, D12, A7, A3, A4, L2, A6, B2, B3, B4, C4, C5, H2, E2, E3, E4, E5, E6, B5, B6, B7, D7, D13, W5, D8, H3, F1, I2, I1, Q8, Q11, F3, H4, S7B, S8, W3, I3, I5, I4, I6, F2, F4, S9, F7, F6, F5, F8, S10, S11, A5, A8, D9, D10, G1, G2, G3, G4, G5, G6, G7, S12, S13]
+    modules: [S0, J1, A1, L1, J2, J3, C1, H1, J4, J5, J6, A2, C3, C2, J7, E1, B1, L3, J8, W1, W4, S1, S2, S3, D1, S4, S5, D2, L4, D3, S6, S7, D4, L5, D11, D5, W2, Q1, Q2, Q10, Q3, Q9, L6, D6, Q5, Q6, Q7, Q4, L7, D12, A7, A3, A4, L2, A6, B2, B3, B4, C4, C5, H2, E2, E3, E4, E5, E6, B5, B6, B7, D7, D13, W5, D8, H3, F1, I2, I1, Q8, Q11, F3, H4, S7B, S8, W3, I3, I5, I4, I6, I7, I8, F2, F4, S9, F7, F6, F5, F8, S10, S11, A5, A8, D9, D10, G1, G2, G3, G4, G5, G6, G7, S12, S13]
   - id: entain
     title: Entain interview path
     description: For the 13 Oct Entain SDE II round — HR named system design, database performance and scalability, and SQL. SQL first, then database internals, then betting-domain design.

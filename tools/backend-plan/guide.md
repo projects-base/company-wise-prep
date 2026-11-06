@@ -1,6 +1,6 @@
 ## The goal
 
-By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 110 Academy lessons) and
+By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 112 Academy lessons) and
 can walk into any SDE II / Senior Java backend loop: DSA coding, LLD, HLD / system design, and deep
 Java and Spring Boot internals, answered at the depth an experienced interviewer expects.
 Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with stretch.
@@ -16,7 +16,7 @@ Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with
 | Day | Core |
 |---|---|
 | **Saturday** (2 h) | **Two** scratch lessons 60 + **LLD** design 60 (timed DSA 30 is stretch) |
-| **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–9: two lessons, 2 h); stretch: **Capstone** milestone 60 |
+| **Sunday** (1 h 30) | Scratch lesson 30 + **HLD** case study 45 + **weekly review and catch-up** 15 (weeks 1–11: two lessons, 2 h); stretch: **Capstone** milestone 60 |
 
 The Today page shows core first, stretch below it, and a **Short on time? Do just this** button for
 the floor.
@@ -56,7 +56,7 @@ JAVA-FUND-3 and a step number, and practice follows what they covered.
 | 7 | 14 – 20 Dec | Locks, atomics, executors, optimisation playbook, interview technique, design patterns | Graphs: BFS and DFS | Notification system | Chat application |
 | 8 | 21 – 27 Dec | LLD method and cases, CompletableFuture, virtual threads, Spring Security, OAuth2, web security, Actuator | Topological sort, union-find, Dijkstra | Rate limiter | News feed |
 | 9 | 28 Dec – 3 Jan | Debugging, building blocks, Redis, Kafka, scaling databases, NoSQL, design method and kit, SOA | Backtracking, tries | Elevator | Message queue |
-| 10 | 4 – 10 Jan | Microservices, service communication, resilience, Linux and the OS, Docker/K8s, CI/CD, distributed theory | DP 1 | **Mock (LLD)** | **Mock (system design)** |
+| 10 | 4 – 10 Jan | Microservices, service communication, resilience, Linux and the OS, Docker/K8s, CI/CD and Jenkins, observability, cloud (AWS and Azure), distributed theory | DP 1 | **Mock (LLD)** | **Mock (system design)** |
 | 11 | 11 – 17 Jan | Event-driven, schedulers, case studies, betting platform, modular monoliths, reactive, GC diagnosis | DP 2, greedy | Undo/redo editor | Payment system |
 | 12 | 18 – 24 Jan | Profiling, extending Spring, shipping a feature, AI engineering: LLMs, prompting, RAG, MCP, agents | Design data structures | **Mock (LLD)** | **Mock (system design)** |
 | 13 | 25 – 31 Jan | Evals, Spring AI, AI-native, what's next (Mon–Thu) | Re-solves, timed | Final LLD mock | Final system design mock |
@@ -83,6 +83,6 @@ milestone starts from the previous tag.
 
 ## Done means
 
-All 110 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
+All 112 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
 6 mocks logged with the last three at 7/10 or better, and every weekday's concept said out loud on the
 days you did stretch.

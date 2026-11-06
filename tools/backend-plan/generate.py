@@ -137,7 +137,9 @@ def lesson(day, floor=True):
     global step
     mid = next(lessons)
     step += 1
-    add(day, dict(minutes=30, title=f'Scratch · Step {step} of {len(PATH)} · {CODE[mid]}: {mods[mid]["title"]}',
+    # Ticks are saved in the browser by date and title, so week 1 keeps the total it started with.
+    total = 110 if day <= dt.date(2026, 11, 8) else len(PATH)
+    add(day, dict(minutes=30, title=f'Scratch · Step {step} of {total} · {CODE[mid]}: {mods[mid]["title"]}',
                   detail=LESSON_DETAIL), floor=floor)
 
 
@@ -177,8 +179,8 @@ for k, (pattern, wd, timed, qs, lld, hld, beh) in enumerate(W):
         add(sat, dict(minutes=60, title=f'LLD · {bank[Q(lld)]["title"]}', detail=LLD_DETAIL, questions=[lld]))
     dsa(sat, pattern, timed, timed=True, tier='stretch')
     lesson(sun)
-    if k < 9:
-        lesson(sun, floor=False)  # the 24 lessons added since Oct 2026 need nine more slots
+    if k < 11:
+        lesson(sun, floor=False)  # the 26 lessons added since Oct 2026 need eleven more slots
     if hld == 'MOCK':
         add(sun, dict(minutes=45, title='System design mock with Claude (unseen problem)', detail=MOCK_HLD))
     else:
