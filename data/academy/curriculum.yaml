@@ -104,6 +104,7 @@ tracks:
       - {id: W2, title: "REST API design: resources, idempotency, versioning, pagination, errors", level: 3, minutes: 25, prerequisites: [W1, D5]}
       - {id: W5, title: "Web application security: OWASP Top 10, password storage, secrets and TLS", level: 3, minutes: 30, prerequisites: [W2, D7]}
       - {id: W3, title: "Microservice communication: API gateway, service discovery, REST vs gRPC vs events", level: 4, minutes: 25, prerequisites: [W2, S8]}
+      - {id: W6, title: "API styles in depth: REST vs gRPC vs GraphQL", level: 4, minutes: 35, prerequisites: [W3]}
 
   - id: E
     title: SOLID → Design Patterns → LLD
@@ -147,6 +148,7 @@ tracks:
       - {id: I7, title: "Observability in production: logs, metrics, traces, Grafana, SLOs", level: 4, minutes: 30, prerequisites: [D8, I6]}
       - {id: I8, title: "Cloud for backend engineers: AWS core services and the Azure map", level: 4, minutes: 30, prerequisites: [F1, I4]}
       - {id: I9, title: "Batch and stream processing: Spring Batch, OLTP vs OLAP, Kafka Streams, Flink", level: 4, minutes: 35, prerequisites: [I1, F7]}
+      - {id: I10, title: "Performance and load testing: models, Little's Law, Gatling, capacity", level: 4, minutes: 35, prerequisites: [I7]}
 
   - id: G
     title: AI Engineering
@@ -200,6 +202,7 @@ tracks:
       - {id: H2, title: "Interview technique: think aloud, test, recover", level: 1, minutes: 20, prerequisites: []}
       - {id: H3, title: "Debugging and production habits", level: 2, minutes: 20, prerequisites: []}
       - {id: H4, title: "System design interview kit: method, numbers, patterns, practice", level: 4, minutes: 30, prerequisites: [F1, F3]}
+      - {id: H5, title: "Senior working skills: design docs, ADRs, estimation, reviews, incidents, threat modelling", level: 3, minutes: 35, prerequisites: [H3]}
 
   - id: K
     title: "Capstone: TicketHub"
@@ -243,7 +246,7 @@ paths:
   - id: going-further
     title: Going further
     description: Extra depth outside the dated plan. Read these any time after their prerequisites.
-    modules: [E7, F9, I9]
+    modules: [W6, E7, F9, I9, I10, H5]
   - id: capstone
     title: "Capstone: TicketHub"
     description: The weekend build, milestone by milestone. One hour each Sunday; your repo, your commits, your interview story.
