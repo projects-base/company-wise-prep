@@ -1,6 +1,6 @@
 ## The goal
 
-By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 112 Academy lessons) and
+By **Mon 1 Feb 2027** you have learned backend from scratch to architect (all 112 lessons on the Zero to Pro path) and
 can walk into any SDE II / Senior Java backend loop: DSA coding, LLD, HLD / system design, and deep
 Java and Spring Boot internals, answered at the depth an experienced interviewer expects.
 Thirteen weeks plus a kickoff day: about 8½ hours a week of core, up to 11 with stretch.
@@ -83,6 +83,6 @@ milestone starts from the previous tag.
 
 ## Done means
 
-All 112 Academy lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
+All 112 Zero to Pro lessons, about 70 DSA problems solved alone, 10 LLD designs and 10 HLD case studies,
 6 mocks logged with the last three at 7/10 or better, and every weekday's concept said out loud on the
 days you did stretch.

@@ -116,6 +116,7 @@ tracks:
       - {id: E4, title: "Behavioural patterns", level: 3, minutes: 30, prerequisites: [E1]}
       - {id: E5, title: "The LLD interview method", level: 4, minutes: 25, prerequisites: [E2, E3, E4]}
       - {id: E6, title: "LLD case studies: parking lot, LRU cache, rate limiter, notification system", level: 4, minutes: 30, prerequisites: [E5]}
+      - {id: E7, title: "DDD and hexagonal architecture: bounded contexts, aggregates, ports and adapters", level: 4, minutes: 35, prerequisites: [E5, S8]}
 
   - id: F
     title: HLD & System Design
@@ -130,6 +131,7 @@ tracks:
       - {id: F6, title: "Case studies: distributed cache, metrics & monitoring", level: 5, minutes: 30, prerequisites: [F4]}
       - {id: F5, title: "Case studies: chat, news feed, collaborative editor", level: 5, minutes: 30, prerequisites: [F4, F2]}
       - {id: F8, title: "Case study: design a sports betting platform", level: 5, minutes: 35, prerequisites: [F4, Q8]}
+      - {id: F9, title: "Multi-tenant SaaS design: isolation models, row-level security, noisy neighbours", level: 5, minutes: 35, prerequisites: [F3, Q6, Q8]}
 
   - id: I
     title: Distributed Building Blocks
@@ -144,6 +146,7 @@ tracks:
       - {id: I6, title: "Git, CI/CD and safe deployments: branching, pipelines, blue-green, canary, flags", level: 3, minutes: 25, prerequisites: [I4]}
       - {id: I7, title: "Observability in production: logs, metrics, traces, Grafana, SLOs", level: 4, minutes: 30, prerequisites: [D8, I6]}
       - {id: I8, title: "Cloud for backend engineers: AWS core services and the Azure map", level: 4, minutes: 30, prerequisites: [F1, I4]}
+      - {id: I9, title: "Batch and stream processing: Spring Batch, OLTP vs OLAP, Kafka Streams, Flink", level: 4, minutes: 35, prerequisites: [I1, F7]}
 
   - id: G
     title: AI Engineering
@@ -237,6 +240,10 @@ paths:
     title: Backend from scratch
     description: The full story, start to finish — why each technology exists, then how it works.
     modules: [S0, W1, S1, S2, S3, S4, S5, D1, S6, S7, D2, D3, D4, D5, D6, S7B, S8, S9, S10, S11, S12, S13]
+  - id: going-further
+    title: Going further
+    description: Extra depth outside the dated plan. Read these any time after their prerequisites.
+    modules: [E7, F9, I9]
   - id: capstone
     title: "Capstone: TicketHub"
     description: The weekend build, milestone by milestone. One hour each Sunday; your repo, your commits, your interview story.

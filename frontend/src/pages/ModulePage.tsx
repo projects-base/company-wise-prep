@@ -140,7 +140,7 @@ export default function ModulePage() {
                     </Link>
                   ) : (
                     <span className="pill ok">
-                      <Check size={12} /> Last lesson on the path
+                      <Check size={12} /> {v.pathPosition > 0 ? 'Last lesson on the path' : 'Lesson complete'}
                     </span>
                   )
                 ) : undefined
