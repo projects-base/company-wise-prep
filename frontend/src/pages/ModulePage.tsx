@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { Diagram, mermaidSource } from '../Diagram'
 import remarkGfm from 'remark-gfm'
-import { ArrowLeft, ArrowRight, Check, ChevronRight, Info, ListTree, Play, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, ChevronRight, Copy, Info, ListTree, Play, X } from 'lucide-react'
 import { api, type ModuleSummary, type Ref } from '../api'
 
 import { LevelTree } from '../LessonTree'
@@ -26,6 +26,26 @@ function textOf(node: ReactNode): string {
   if (Array.isArray(node)) return node.map(textOf).join('')
   if (isValidElement<{ children?: ReactNode }>(node)) return textOf(node.props.children)
   return ''
+}
+
+function CopyButton({ text }: { text: string }) {
+  const [state, setState] = useState<'idle' | 'copied' | 'failed'>('idle')
+  useEffect(() => {
+    if (state === 'idle') return
+    const t = setTimeout(() => setState('idle'), 1500)
+    return () => clearTimeout(t)
+  }, [state])
+  const copy = () =>
+    navigator.clipboard
+      .writeText(text.replace(/\n$/, ''))
+      .then(() => setState('copied'))
+      .catch(() => setState('failed'))
+  return (
+    <button className="btn sm" onClick={copy} aria-label="Copy code">
+      {state === 'copied' ? <Check size={13} /> : <Copy size={13} />}
+      {state === 'copied' ? 'Copied' : state === 'failed' ? 'Copy failed' : 'Copy'}
+    </button>
+  )
 }
 
 export default function ModulePage() {
@@ -162,11 +182,14 @@ export default function ModulePage() {
                   const runnable = codeRunner && lang.includes('language-java') && /static\s+void\s+main\s*\(/.test(code)
                   return (
                     <div className="code-block">
-                      {runnable && (
-                        <button className="btn sm run-btn" onClick={() => navigate('/playground', { state: { code } })}>
-                          <Play size={13} /> Run
-                        </button>
-                      )}
+                      <div className="code-actions">
+                        <CopyButton text={code} />
+                        {runnable && (
+                          <button className="btn sm" onClick={() => navigate('/playground', { state: { code } })}>
+                            <Play size={13} /> Run
+                          </button>
+                        )}
+                      </div>
                       <pre>{children}</pre>
                     </div>
                   )

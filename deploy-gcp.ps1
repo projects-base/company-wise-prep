@@ -11,6 +11,13 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 
+# `--source .` uploads the current folder. From anywhere else gcloud finds no Dockerfile or .gcloudignore
+# and would package that whole folder, .env files included, so always run from this script's folder.
+Set-Location -LiteralPath $PSScriptRoot
+if (-not (Test-Path -LiteralPath '.gcloudignore') -or -not (Test-Path -LiteralPath 'Dockerfile')) {
+    throw "Dockerfile or .gcloudignore is missing from $PSScriptRoot; refusing to upload"
+}
+
 # gcloud is on PATH after a new terminal; until then, use the default per-user install.
 $gcloud = (Get-Command gcloud -ErrorAction SilentlyContinue).Source
 if (-not $gcloud) { $gcloud = Join-Path $env:LOCALAPPDATA 'Google\Cloud SDK\google-cloud-sdk\bin\gcloud.cmd' }

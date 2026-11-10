@@ -571,7 +571,7 @@ textarea.io { max-height: none; width: 100%; resize: vertical; color: var(--text
 
 /* Runnable code blocks in lessons */
 .code-block { position: relative; }
-.code-block .run-btn { position: absolute; top: 8px; right: 8px; z-index: 1; opacity: 0.92; }
+.code-block .code-actions { position: absolute; top: 8px; right: 8px; z-index: 1; display: flex; gap: 6px; opacity: 0.92; }
 .code-block pre { margin: 0; }
 .prose .code-block + * { margin-top: 1.05em; }
 
