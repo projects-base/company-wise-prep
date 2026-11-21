@@ -519,7 +519,13 @@ export const api = {
   },
   notes: (campaign?: string) => call<NotesOverview>(`/api/notes${campaign ? `?campaign=${campaign}` : ''}`),
   lessonNotes: (moduleId: string) => call<LessonNotes>(`/api/notes/lessons/${moduleId}`),
-  addHighlight: (h: { moduleId: string; section: string | null; quote: string; note?: string | null }) =>
+  addHighlight: (h: {
+    moduleId: string
+    section: string | null
+    quote: string
+    prefix: string | null
+    note?: string | null
+  }) =>
     call<Note>('/api/notes/highlights', { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(h) }),
   addSnippet: (s: { moduleId: string | null; code: string; output?: string | null; note?: string | null }) =>
     call<Note>('/api/notes/snippets', { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(s) }),
@@ -562,6 +568,8 @@ export type Note = {
   /** The "## " heading a highlight sits under. */
   section: string | null
   quote: string | null
+  /** Lesson text just before the quote (whitespace removed), to mark the right occurrence. */
+  prefix: string | null
   note: string | null
   code: string | null
   output: string | null

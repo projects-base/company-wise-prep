@@ -2,136 +2,65 @@ import { useEffect, useRef, useState, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
 import { Download, Highlighter, NotebookPen, Pencil, StickyNote, Trash, X } from 'lucide-react'
 import { api, type LessonNotes, type LessonSummary, type Mistake, type Note, type SummaryDraft } from './api'
+import { compact, normaliseSection, PREFIX_LENGTH } from './highlights'
 
 /**
  * Lesson notes on a lesson page: select text to highlight it (optionally with a margin note), see highlights marked
- * in the lesson, and keep a notes panel with the highlights, the 4-field summary and the lesson's quiz mistakes.
+ * in the lesson (highlights.ts), and keep a notes panel with the highlights, the 4-field summary and the lesson's
+ * quiz mistakes.
  */
 
 export const QUOTE_MAX = 1000
 export const NOTE_MAX = 4000
 const SUMMARY_MAX = 2000
 
-// ── Marking highlights in the rendered lesson ──────────────────────────────────────────────
-
-/** The few hast shapes the plugin touches (react-markdown's tree after remark-rehype). */
-type HText = { type: 'text'; value: string }
-type HElement = { type: 'element'; tagName: string; properties: Record<string, unknown>; children: HNode[] }
-type HNode = HText | HElement | { type: string; children?: HNode[] }
-type HParent = { children: HNode[] }
-
-const isText = (n: HNode): n is HText => n.type === 'text'
-const isElement = (n: HNode): n is HElement => n.type === 'element'
-const hasChildren = (n: HNode): n is HNode & HParent => Array.isArray((n as HParent).children)
-const hastText = (n: HNode): string => (isText(n) ? n.value : hasChildren(n) ? n.children.map(hastText).join('') : '')
-
-type Range = { start: number; end: number; id: number; num: number; last: boolean }
-
-/**
- * A rehype plugin that wraps each highlight's quote in <mark class="hl">, inside its own section ("## " heading).
- * Whitespace is ignored when matching, because a browser selection and the rendered text break lines differently.
- * Code blocks and headings are never marked; a quote that is no longer in the lesson is simply not marked.
- *
- * @param startSection the section the Markdown starts in (the part's title in one-part-at-a-time mode)
- */
-export function highlightPlugin(highlights: Note[], startSection: string | null) {
-  return () => (tree: HParent) => {
-    if (!highlights.length) return
-    const segs: { node: HText; parent: HParent; section: string | null }[] = []
-    let section = startSection
-    const walk = (parent: HParent) => {
-      for (const child of parent.children) {
-        if (isText(child)) segs.push({ node: child, parent, section })
-        else if (isElement(child) && child.tagName === 'h2') section = hastText(child).trim()
-        else if (isElement(child) && child.tagName === 'pre') continue
-        else if (hasChildren(child)) walk(child)
-      }
-    }
-    walk(tree)
-
-    const ranges = new Map<HText, Range[]>()
-    highlights.forEach((h, i) => {
-      const needle = (h.quote ?? '').replace(/\s+/g, '')
-      if (!needle) return
-      const pool = segs.filter((s) => !h.section || s.section === h.section.trim())
-      // Whitespace-free text of the pool, with each character's segment and offset.
-      let flat = ''
-      const where: [number, number][] = []
-      pool.forEach((s, si) => {
-        for (let o = 0; o < s.node.value.length; o++) {
-          if (/\s/.test(s.node.value[o])) continue
-          flat += s.node.value[o]
-          where.push([si, o])
-        }
-      })
-      const at = flat.indexOf(needle)
-      if (at < 0) return
-      const first = where[at]
-      const lastChar = where[at + needle.length - 1]
-      const mine: [HText, Range][] = []
-      for (let si = first[0]; si <= lastChar[0]; si++) {
-        const node = pool[si].node
-        const start = si === first[0] ? first[1] : 0
-        const end = si === lastChar[0] ? lastChar[1] + 1 : node.value.length
-        if (end > start) mine.push([node, { start, end, id: h.id, num: i + 1, last: si === lastChar[0] }])
-      }
-      const overlaps = mine.some(([node, r]) => (ranges.get(node) ?? []).some((o) => r.start < o.end && o.start < r.end))
-      if (overlaps) return
-      for (const [node, r] of mine) ranges.set(node, [...(ranges.get(node) ?? []), r])
-    })
-
-    const parents = new Set(segs.filter((s) => ranges.has(s.node)).map((s) => s.parent))
-    for (const parent of parents) {
-      parent.children = parent.children.flatMap((child) =>
-        isText(child) && ranges.has(child) ? split(child, ranges.get(child)!) : [child],
-      )
-    }
-  }
-}
-
-function split(node: HText, ranges: Range[]): HNode[] {
-  const out: HNode[] = []
-  let pos = 0
-  for (const r of [...ranges].sort((a, b) => a.start - b.start)) {
-    if (r.start > pos) out.push({ type: 'text', value: node.value.slice(pos, r.start) })
-    out.push({
-      type: 'element',
-      tagName: 'mark',
-      properties: { className: ['hl'], dataHl: String(r.id), title: 'Your highlight: open it in My notes' },
-      children: [{ type: 'text', value: node.value.slice(r.start, r.end) }],
-    })
-    if (r.last) {
-      out.push({ type: 'element', tagName: 'sup', properties: { className: ['hl-num'], dataHl: String(r.id) }, children: [
-        { type: 'text', value: String(r.num) },
-      ] })
-    }
-    pos = r.end
-  }
-  if (pos < node.value.length) out.push({ type: 'text', value: node.value.slice(pos) })
-  return out
-}
-
 /** The "## " heading a node sits under: the nearest h2 before it, looking outwards from the node. */
 function sectionOf(node: Node, root: HTMLElement): string | null {
   let el: Element | null = node.nodeType === Node.ELEMENT_NODE ? (node as Element) : node.parentElement
   while (el && el !== root) {
-    if (el.tagName === 'H2') return el.textContent?.trim() || null
+    if (el.tagName === 'H2') return normaliseSection(el.textContent)
     for (let p = el.previousElementSibling; p; p = p.previousElementSibling) {
-      if (p.tagName === 'H2') return p.textContent?.trim() || null
+      if (p.tagName === 'H2') return normaliseSection(p.textContent)
     }
     el = el.parentElement
   }
   return null
 }
 
+/** The selected text without the numbers of highlights it crosses (their <sup> markers are not lesson text). */
+function selectedText(range: Range, sel: Selection): string {
+  const frag = range.cloneContents()
+  const markers = frag.querySelectorAll('sup.hl-num')
+  if (!markers.length) return sel.toString()
+  markers.forEach((n) => n.remove())
+  // textContent runs blocks together; keep a line break between them, as Selection.toString would.
+  frag.querySelectorAll('p, li, div, blockquote, tr, h3, h4, h5, h6').forEach((el) => el.append('\n'))
+  return frag.textContent ?? ''
+}
+
+/** A little text just before the selection in its block (whitespace removed), so a repeated quote marks the right one. */
+function prefixOf(range: Range, root: HTMLElement): string | null {
+  const node = range.startContainer
+  const start = node.nodeType === Node.ELEMENT_NODE ? (node as Element) : node.parentElement
+  const block = start?.closest('p, li, td, th, blockquote, dd, dt, h3, h4, h5, h6')
+  if (!block || !root.contains(block)) return null
+  const before = document.createRange()
+  before.setStart(block, 0)
+  before.setEnd(range.startContainer, range.startOffset)
+  const frag = before.cloneContents()
+  frag.querySelectorAll('sup.hl-num').forEach((n) => n.remove())
+  const text = compact(frag.textContent ?? '')
+  return text ? text.slice(-PREFIX_LENGTH) : null
+}
+
 // ── The selection toolbar ──────────────────────────────────────────────────────────────────
 
-type Picked = { quote: string; section: string | null; top: number; left: number }
+type Picked = { quote: string; section: string | null; prefix: string | null; top: number; left: number }
 
 /** A small toolbar above selected lesson text: Highlight, or Add note (a highlight with a margin note). */
 export function SelectionToolbar({ container, onSave }: {
   container: RefObject<HTMLElement | null>
-  onSave: (quote: string, section: string | null, note: string | null) => Promise<void>
+  onSave: (quote: string, section: string | null, prefix: string | null, note: string | null) => Promise<void>
 }) {
   const [picked, setPicked] = useState<Picked | null>(null)
   const [writing, setWriting] = useState(false)
@@ -142,6 +71,7 @@ export function SelectionToolbar({ container, onSave }: {
   writingRef.current = writing
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined
     const close = () => {
       setPicked(null)
       setWriting(false)
@@ -151,7 +81,8 @@ export function SelectionToolbar({ container, onSave }: {
     const check = (e: Event) => {
       if (bar.current?.contains(e.target as Node)) return
       // After the browser has updated the selection.
-      setTimeout(() => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
         const sel = window.getSelection()
         const root = container.current
         if (!sel || sel.isCollapsed || !sel.rangeCount || !root) {
@@ -162,12 +93,12 @@ export function SelectionToolbar({ container, onSave }: {
         const inside = root.contains(range.commonAncestorContainer)
         const start = range.startContainer.parentElement
         if (!inside || start?.closest('.quiz, .stepper-nav, .stepper-bar, .code-actions, button')) return
-        const quote = sel.toString().trim()
+        const quote = selectedText(range, sel).trim()
         if (quote.length < 3) return
         const rect = range.getBoundingClientRect()
         const top = rect.top > 60 ? rect.top - 46 : rect.bottom + 8
         const left = Math.max(12, Math.min(window.innerWidth - 300, rect.left + rect.width / 2 - 120))
-        setPicked({ quote, section: sectionOf(range.startContainer, root), top, left })
+        setPicked({ quote, section: sectionOf(range.startContainer, root), prefix: prefixOf(range, root), top, left })
         setWriting(false)
         setNote('')
         setError(null)
@@ -185,6 +116,7 @@ export function SelectionToolbar({ container, onSave }: {
     document.addEventListener('keyup', onKey)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
+      clearTimeout(timer)
       document.removeEventListener('mouseup', check)
       document.removeEventListener('touchend', check)
       document.removeEventListener('keyup', onKey)
@@ -196,7 +128,7 @@ export function SelectionToolbar({ container, onSave }: {
   const tooLong = picked.quote.length > QUOTE_MAX
   const save = async (withNote: string | null) => {
     try {
-      await onSave(picked.quote, picked.section, withNote)
+      await onSave(picked.quote, picked.section, picked.prefix, withNote)
       window.getSelection()?.removeAllRanges()
       setPicked(null)
       setWriting(false)
@@ -258,11 +190,13 @@ export function downloadText(filename: string, text: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 
-export function NotesPanel({ moduleId, code, data, reload, tab, setTab, focusId, onClose }: {
+export function NotesPanel({ moduleId, code, data, reload, onSummarySaved, tab, setTab, focusId, onClose }: {
   moduleId: string
   code: string
   data: LessonNotes | null
   reload: () => void
+  /** Each saved summary, so the page's notes stay current (reopening the panel must not show older text). */
+  onSummarySaved: (s: LessonSummary | null) => void
   tab: NotesTab
   setTab: (t: NotesTab) => void
   /** A highlight to scroll to (clicked in the lesson text). */
@@ -271,6 +205,7 @@ export function NotesPanel({ moduleId, code, data, reload, tab, setTab, focusId,
 }) {
   const [status, setStatus] = useState<string>('')
   const [exportError, setExportError] = useState<string | null>(null)
+  const summary = useSummaryDraft(moduleId, data ? data.summary : undefined, onSummarySaved, setStatus)
   const highlights = data?.highlights ?? []
   const snippets = data?.snippets ?? []
   const mistakes = data?.mistakes ?? []
@@ -332,7 +267,7 @@ export function NotesPanel({ moduleId, code, data, reload, tab, setTab, focusId,
             )}
           </>
         ) : tab === 'summary' ? (
-          <SummaryEditor key={moduleId} moduleId={moduleId} initial={data.summary} onStatus={setStatus} />
+          <SummaryEditor {...summary} />
         ) : (
           <MistakeList mistakes={mistakes} />
         )}
@@ -444,43 +379,88 @@ const SUMMARY_FIELDS: { key: keyof SummaryDraft; label: string; placeholder: str
   { key: 'line', label: 'Interview line', placeholder: 'Your 30-second answer' },
 ]
 
-/** The 4-field lesson summary, autosaved a moment after you stop typing (and when you leave). */
-export function SummaryEditor({ moduleId, initial, onStatus }: {
-  moduleId: string
-  initial: LessonSummary | null
-  onStatus: (s: string) => void
-}) {
-  const [draft, setDraft] = useState<SummaryDraft>({
-    idea: initial?.idea ?? '',
-    inside: initial?.inside ?? '',
-    trap: initial?.trap ?? '',
-    line: initial?.line ?? '',
-  })
-  const pending = useRef<SummaryDraft | null>(null)
+const toDraft = (s: LessonSummary | null): SummaryDraft => ({
+  idea: s?.idea ?? '',
+  inside: s?.inside ?? '',
+  trap: s?.trap ?? '',
+  line: s?.line ?? '',
+})
+
+/**
+ * Saves summary drafts one request at a time: while a save is in flight, newer drafts replace each other and the
+ * latest goes out when it returns, so an older draft can never land after a newer one.
+ */
+function summarySaver(moduleId: string, onSaved: (s: LessonSummary | null) => void, onStatus: (s: string) => void) {
+  let queued: SummaryDraft | null = null
+  let inFlight = false
+  const pump = () => {
+    if (inFlight || !queued) return
+    const draft = queued
+    queued = null
+    inFlight = true
+    onStatus('Saving…')
+    api
+      .saveSummary(moduleId, draft)
+      .then(
+        (saved) => {
+          const empty = !saved.idea && !saved.inside && !saved.trap && !saved.line
+          onSaved(empty ? null : saved)
+          if (!queued) onStatus(`Saved ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`)
+        },
+        () => onStatus('Not saved — type again to retry'),
+      )
+      .finally(() => {
+        inFlight = false
+        pump()
+      })
+  }
+  return (draft: SummaryDraft) => {
+    queued = draft
+    pump()
+  }
+}
+
+/**
+ * The summary draft for a lesson, owned by the notes panel so it survives switching tabs. Autosaves 800 ms after
+ * typing stops, on blur, and when the panel closes; each saved summary is pushed up to the page's notes.
+ */
+function useSummaryDraft(moduleId: string, loaded: LessonSummary | null | undefined,
+  onSaved: (s: LessonSummary | null) => void, onStatus: (s: string) => void) {
+  const [draft, setDraft] = useState<SummaryDraft | null>(loaded === undefined ? null : toDraft(loaded))
+  // The notes may still be loading when the panel opens.
+  useEffect(() => {
+    if (draft === null && loaded !== undefined) setDraft(toDraft(loaded))
+  }, [loaded, draft])
+  const callbacks = useRef({ onSaved, onStatus })
+  callbacks.current = { onSaved, onStatus }
+  const save = useRef<((d: SummaryDraft) => void) | null>(null)
+  if (!save.current) {
+    save.current = summarySaver(moduleId, (s) => callbacks.current.onSaved(s), (s) => callbacks.current.onStatus(s))
+  }
+  const unsaved = useRef<SummaryDraft | null>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const flush = () => {
     clearTimeout(timer.current)
-    const d = pending.current
-    if (!d) return
-    pending.current = null
-    onStatus('Saving…')
-    api.saveSummary(moduleId, d).then(
-      () => onStatus(`Saved ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`),
-      () => onStatus('Not saved — type again to retry'),
-    )
+    if (!unsaved.current) return
+    save.current!(unsaved.current)
+    unsaved.current = null
   }
-  // Leaving the tab or the lesson saves what was typed.
   useEffect(() => () => flush(), []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const change = (key: keyof SummaryDraft, value: string) => {
-    const next = { ...draft, [key]: value }
+    const next = { ...(draft ?? toDraft(null)), [key]: value }
     setDraft(next)
-    pending.current = next
+    unsaved.current = next
     clearTimeout(timer.current)
     timer.current = setTimeout(flush, 800)
   }
+  return { draft, change, flush }
+}
 
+/** The 4-field lesson summary form; the draft and its saving live in the notes panel. */
+function SummaryEditor({ draft, change, flush }: ReturnType<typeof useSummaryDraft>) {
+  if (!draft) return <p className="muted">Loading…</p>
   return (
     <div className="notes-summary">
       <p className="muted notes-hint">Lesson summary: write it after the lesson, without peeking.</p>

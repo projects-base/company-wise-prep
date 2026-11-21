@@ -1,13 +1,14 @@
-import { Children, isValidElement, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { Children, createContext, isValidElement, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { AnimBlock, animSource } from '../Anim'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { Diagram, mermaidSource } from '../Diagram'
-import { parseQuiz, QuizBlock, QuizReporterContext, quizSource, type QuizReporter } from '../Quiz'
+import { QuizBlock, quizQuestions, QuizReporterContext, quizSource, type QuizReporter } from '../Quiz'
 import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Copy, Info, ListTree, NotebookPen, Play, X } from 'lucide-react'
-import { api, type ModuleSummary, type Ref } from '../api'
-import { highlightPlugin, NotesPanel, SelectionToolbar, type NotesTab } from '../LessonNotes'
+import { api, type LessonNotes, type Mistake, type ModuleSummary, type Ref } from '../api'
+import { highlightPlugin } from '../highlights'
+import { NotesPanel, SelectionToolbar, type NotesTab } from '../LessonNotes'
 
 import { LevelTree } from '../LessonTree'
 import { PATH_KEY } from './AcademyPage'
@@ -50,17 +51,70 @@ function CopyButton({ text }: { text: string }) {
   )
 }
 
+/** What a lesson's code blocks need from the page: whether code can run, and how to open it in the Playground. */
+const LessonCodeContext = createContext<{ codeRunner: boolean; run: (code: string) => void }>({
+  codeRunner: false,
+  run: () => {},
+})
+
+function LessonHeading({ children }: { children?: ReactNode }) {
+  return <h2 id={slugify(textOf(children))}>{children}</h2>
+}
+
+/** A fenced block: a diagram, an animation, a quiz, or code with Copy (and Run for a Java main). */
+function LessonPre({ children }: { children?: ReactNode }) {
+  const { codeRunner, run } = useContext(LessonCodeContext)
+  const diagram = mermaidSource(children)
+  if (diagram !== null) return <Diagram source={diagram} />
+  const anim = animSource(children)
+  if (anim !== null) return <AnimBlock source={anim} />
+  const quiz = quizSource(children)
+  if (quiz !== null) return <QuizBlock source={quiz} />
+  const code = textOf(children)
+  const child = Children.toArray(children)[0]
+  const lang = isValidElement<{ className?: string }>(child) ? child.props.className ?? '' : ''
+  const runnable = codeRunner && lang.includes('language-java') && /static\s+void\s+main\s*\(/.test(code)
+  return (
+    <div className="code-block">
+      <div className="code-actions">
+        <CopyButton text={code} />
+        {runnable && (
+          <button className="btn sm" onClick={() => run(code)}>
+            <Play size={13} /> Run
+          </button>
+        )}
+      </div>
+      <pre>{children}</pre>
+    </div>
+  )
+}
+
+/**
+ * Module-level and therefore stable: components created inside the page would be a new type on every render, and
+ * React would remount every quiz (losing the answer), diagram and animation each time the page re-renders.
+ */
+const LESSON_COMPONENTS = { h2: LessonHeading, pre: LessonPre, a: MdLink }
+const REMARK_PLUGINS = [remarkGfm]
+
 /** What other pages can pass when they open a lesson: a quiz to retry, or the notes panel on a tab. */
 export type LessonLinkState = { quiz?: string; notes?: NotesTab } | null
+
+const upsertMistake = (list: Mistake[], m: Mistake) =>
+  list.some((x) => x.id === m.id) ? list.map((x) => (x.id === m.id ? m : x)) : [m, ...list]
 
 const PANEL_KEY = 'notes.panel'
 
 export default function ModulePage() {
   const { id = '' } = useParams()
   const { data: v, error, reload } = useLoad(() => api.module(id), [id])
-  const notes = useLoad(() => api.lessonNotes(id), [id])
+  const notesLoad = useLoad(() => api.lessonNotes(id), [id])
+  // A local copy, so quiz answers and summary saves update it without reloading (and re-rendering) the lesson.
+  const [notesState, setNotes] = useState<LessonNotes | null>(null)
+  useEffect(() => setNotes(notesLoad.data), [notesLoad.data])
+  // Never show (or autosave into) the previous lesson's notes while this one loads.
+  const notes = notesState && notesState.moduleId === v?.module.id ? notesState : null
   const navigate = useNavigate()
-  const linkState = useLocation().state as LessonLinkState
+  const location = useLocation()
   const { codeRunner } = useFeatures()
   const prose = useRef<HTMLDivElement>(null)
   const [panelOpen, setPanelOpen] = useState(() => {
@@ -80,12 +134,40 @@ export default function ModulePage() {
       /* not remembered in a private window */
     }
   }
+  // A quiz to retry, or a notes tab to open, arrives once in the link's state. It is taken into local state and the
+  // history entry is cleared, so a reload, Back or any re-render cannot jump to the quiz again.
+  const [retry, setRetry] = useState<string | undefined>(undefined)
+  useEffect(() => setRetry(undefined), [id])
   useEffect(() => {
-    if (linkState?.notes) {
+    const linkState = location.state as LessonLinkState
+    if (!linkState?.quiz && !linkState?.notes) return
+    if (linkState.quiz) setRetry(linkState.quiz)
+    if (linkState.notes) {
       setTab(linkState.notes)
       setPanelOpen(true)
     }
-  }, [linkState?.notes, id])
+    navigate(location.pathname, { replace: true, state: null })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.key])
+  const code = useMemo(
+    () => ({
+      codeRunner,
+      run: (source: string) =>
+        navigate('/playground', { state: { code: source, lesson: v ? { id: v.module.id, code: v.module.code } : undefined } }),
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [codeRunner, navigate, v?.module.id, v?.module.code],
+  )
+  // One plugin list per section and set of highlights: the plugin walks the whole tree, so don't rebuild it per render.
+  const highlights = notes?.highlights
+  const pluginsFor = useMemo(() => {
+    const cache = new Map<string, ReturnType<typeof highlightPlugin>[]>()
+    return (section: string | null) => {
+      const key = section ?? '' // a normalised section is never empty
+      if (!cache.has(key)) cache.set(key, [highlightPlugin(highlights ?? [], section)])
+      return cache.get(key)!
+    }
+  }, [highlights])
 
   const headings = useMemo(
     () =>
@@ -98,15 +180,14 @@ export default function ModulePage() {
   )
   const s = useStepper(v?.lesson ?? '', id)
   // Retry from the mistakes notebook: open the part that holds the quiz (the quiz scrolls itself into view).
-  const retry = linkState?.quiz
+  const lessonReady = v?.module.id === id && s.parts.length > 0
   useEffect(() => {
-    if (!retry || s.mode !== 'step') return
-    const i = s.parts.findIndex((p) =>
-      [...p.body.matchAll(/```quiz\s*\n([\s\S]*?)```/g)].some((q) => parseQuiz(q[1].trim())?.question === retry),
-    )
+    if (!retry || !lessonReady || s.mode !== 'step') return
+    const i = s.parts.findIndex((p) => quizQuestions(p.body).includes(retry))
     if (i >= 0) s.setStep(i)
+    else setRetry(undefined) // the quiz is no longer in the lesson
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [retry, s.parts, s.mode])
+  }, [retry, lessonReady, s.parts, s.mode])
   const active = useActiveHeading(headings.map(slugify), s.mode === 'all' ? v?.lesson : undefined)
   // Parts ticked off, saved on the server so phone and desktop agree; updated optimistically.
   const [partsDone, setPartsDone] = useState<Set<string>>(new Set())
@@ -114,11 +195,11 @@ export default function ModulePage() {
 
   if (!v) return <div className="container"><Status error={error} /></div>
   const m = v.module
-  const highlights = notes.data?.highlights ?? []
-  const noteCount = highlights.length + (notes.data?.snippets.length ?? 0)
+  const noteCount = (notes?.highlights.length ?? 0) + (notes?.snippets.length ?? 0)
 
   const reporter: QuizReporter = {
     focus: retry,
+    onFocused: () => setRetry(undefined),
     report: async (spec, picked) => {
       const chosen = spec.options[picked]
       const correct = spec.options.find((o) => o.correct)
@@ -132,14 +213,14 @@ export default function ModulePage() {
         level,
         right: !!chosen.correct,
       })
-      notes.reload()
       if (!result) return null
+      setNotes((prev) => (prev && prev.moduleId === m.id ? { ...prev, mistakes: upsertMistake(prev.mistakes, result) } : prev))
       return chosen.correct ? 'fixed' : 'saved'
     },
   }
-  const saveHighlight = async (quote: string, section: string | null, note: string | null) => {
-    await api.addHighlight({ moduleId: m.id, section, quote, note })
-    notes.reload()
+  const saveHighlight = async (quote: string, section: string | null, prefix: string | null, note: string | null) => {
+    const saved = await api.addHighlight({ moduleId: m.id, section, quote, prefix, note })
+    setNotes((prev) => (prev && prev.moduleId === m.id ? { ...prev, highlights: [...prev.highlights, saved] } : prev))
   }
   // Clicking a marked highlight opens it in the notes panel.
   const openHighlight = (e: React.MouseEvent) => {
@@ -230,6 +311,7 @@ export default function ModulePage() {
 
         {m.written ? (
           <QuizReporterContext.Provider value={reporter}>
+          <LessonCodeContext.Provider value={code}>
           <div className="prose" ref={prose} onClick={openHighlight}>
             <SelectionToolbar container={prose} onSave={saveHighlight} />
             <StepperView
@@ -259,46 +341,16 @@ export default function ModulePage() {
               finishLabel="Mark lesson complete"
               render={(md) => (
             <Markdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[highlightPlugin(highlights, sectionFor(md))]}
-              components={{
-                h2: ({ children }) => <h2 id={slugify(textOf(children))}>{children}</h2>,
-                pre: ({ children }) => {
-                  const diagram = mermaidSource(children)
-                  if (diagram !== null) return <Diagram source={diagram} />
-                  const anim = animSource(children)
-                  if (anim !== null) return <AnimBlock source={anim} />
-                  const quiz = quizSource(children)
-                  if (quiz !== null) return <QuizBlock source={quiz} />
-                  const code = textOf(children)
-                  const child = Children.toArray(children)[0]
-                  const lang = isValidElement<{ className?: string }>(child) ? child.props.className ?? '' : ''
-                  const runnable = codeRunner && lang.includes('language-java') && /static\s+void\s+main\s*\(/.test(code)
-                  return (
-                    <div className="code-block">
-                      <div className="code-actions">
-                        <CopyButton text={code} />
-                        {runnable && (
-                          <button
-                            className="btn sm"
-                            onClick={() => navigate('/playground', { state: { code, lesson: { id: m.id, code: m.code } } })}
-                          >
-                            <Play size={13} /> Run
-                          </button>
-                        )}
-                      </div>
-                      <pre>{children}</pre>
-                    </div>
-                  )
-                },
-                a: MdLink,
-              }}
+              remarkPlugins={REMARK_PLUGINS}
+              rehypePlugins={pluginsFor(sectionFor(md))}
+              components={LESSON_COMPONENTS}
             >
               {md}
             </Markdown>
               )}
             />
           </div>
+          </LessonCodeContext.Provider>
           </QuizReporterContext.Provider>
         ) : (
           <div className="callout">
@@ -377,10 +429,12 @@ export default function ModulePage() {
       )}
       {panelOpen && m.written && (
         <NotesPanel
+          key={m.id}
           moduleId={m.id}
           code={m.code}
-          data={notes.data}
-          reload={notes.reload}
+          data={notes}
+          reload={notesLoad.reload}
+          onSummarySaved={(summary) => setNotes((prev) => (prev && prev.moduleId === m.id ? { ...prev, summary } : prev))}
           tab={tab}
           setTab={setTab}
           focusId={focusId}

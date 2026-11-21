@@ -33,6 +33,31 @@ export function quizSource(children: ReactNode): string | null {
   return Children.toArray(code.props.children).join('').trim()
 }
 
+/**
+ * The questions of the ```quiz blocks in raw Markdown. Fences follow CommonMark: three or more backticks or tildes,
+ * closed by a fence of the same character at least as long, so a quiz written with ```` is found too.
+ */
+export function quizQuestions(markdown: string): string[] {
+  const out: string[] = []
+  let open: { fence: string; quiz: boolean; body: string[] } | null = null
+  for (const line of markdown.split('\n')) {
+    if (!open) {
+      const m = /^\s{0,3}(`{3,}|~{3,})\s*([^\s`]*)/.exec(line)
+      if (m) open = { fence: m[1], quiz: m[2] === 'quiz', body: [] }
+      continue
+    }
+    const close = /^\s{0,3}(`{3,}|~{3,})\s*$/.exec(line)
+    if (close && close[1][0] === open.fence[0] && close[1].length >= open.fence.length) {
+      const q = open.quiz ? parseQuiz(open.body.join('\n').trim()) : null
+      if (q) out.push(q.question)
+      open = null
+    } else {
+      open.body.push(line)
+    }
+  }
+  return out
+}
+
 export function parseQuiz(source: string): QuizSpec | null {
   try {
     const q = JSON.parse(source) as QuizSpec
@@ -51,6 +76,8 @@ export interface QuizReporter {
   report: (spec: QuizSpec, picked: number) => Promise<QuizOutcome>
   /** The question to scroll to and mark (Retry from the mistakes notebook). */
   focus?: string
+  /** Called once the focused quiz has scrolled into view, so the page can drop the request. */
+  onFocused?: () => void
 }
 
 export const QuizReporterContext = createContext<QuizReporter | null>(null)
@@ -67,9 +94,16 @@ export function Quiz({ spec }: { spec: QuizSpec }) {
   const reporter = useContext(QuizReporterContext)
   const box = useRef<HTMLDivElement>(null)
   const focused = !!reporter?.focus && reporter.focus === spec.question
+  // Scroll to a retried quiz once, keep it marked, and tell the page it has been shown.
+  const [marked, setMarked] = useState(false)
+  const scrolled = useRef(false)
   useEffect(() => {
-    if (focused) box.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [focused])
+    if (!focused || scrolled.current) return
+    scrolled.current = true
+    setMarked(true)
+    box.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    reporter?.onFocused?.()
+  }, [focused, reporter])
   const answered = picked !== null
   const right = answered && !!spec.options[picked].correct
   const pick = (i: number) => {
@@ -79,7 +113,7 @@ export function Quiz({ spec }: { spec: QuizSpec }) {
     reporter?.report(spec, i).then(setOutcome, () => setOutcome(null))
   }
   return (
-    <div className={`quiz ${focused ? 'focus' : ''}`} role="group" aria-label="Quick check" ref={box}>
+    <div className={`quiz ${marked ? 'focus' : ''}`} role="group" aria-label="Quick check" ref={box}>
       <div className="quiz-q">
         <HelpCircle size={16} aria-hidden />
         <span>{spec.question}</span>
