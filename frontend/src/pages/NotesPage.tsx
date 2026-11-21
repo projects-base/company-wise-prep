@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Download, Search } from 'lucide-react'
-import { api, type ExportScope, type LessonNotes, type NoteHitKind, type NoteSearch } from '../api'
+import { api, type ExportScope, type LessonNotes, type NoteHit, type NoteHitKind, type NoteSearch } from '../api'
 import { useCampaign } from '../App'
 import { downloadText } from '../LessonNotes'
 import type { LessonLinkState } from './ModulePage'
@@ -173,7 +173,7 @@ function SearchResults({ hits, error }: { hits: NoteSearch | null; error: string
             </div>
             <Link
               to={h.link}
-              state={hitState(h.kind)}
+              state={hitState(h)}
               className="notes-hit-text"
             >
               {h.text}
@@ -185,9 +185,10 @@ function SearchResults({ hits, error }: { hits: NoteSearch | null; error: string
   )
 }
 
-/** Opens the lesson's notes panel on the matching tab. */
-function hitState(kind: NoteHitKind): LessonLinkState {
-  return kind === 'SUMMARY' ? { notes: 'summary' } : kind === 'HIGHLIGHT' ? { notes: 'highlights' } : null
+/** Opens the lesson on the matching notes tab, or at the quiz for a mistake (as Retry now does). */
+function hitState(h: NoteHit): LessonLinkState {
+  if (h.kind === 'MISTAKE') return { quiz: h.text }
+  return h.kind === 'SUMMARY' ? { notes: 'summary' } : h.kind === 'HIGHLIGHT' ? { notes: 'highlights' } : null
 }
 
 function LessonCard({ l }: { l: LessonNotes }) {
@@ -257,6 +258,11 @@ function ExportPanel({ lessons, campaignId, campaignStart }: {
   const tracks = useMemo(() => [...new Map(lessons.map((l) => [l.trackId, l.trackTitle])).entries()], [lessons])
   const thisWeek = campaignStart ? planWeek(campaignStart, localToday()) : null
   const [choice, setChoice] = useState<ScopeChoice>(thisWeek ? 'this-week' : 'all')
+  // The campaign can load after the page; default to this week then, unless a scope was already picked.
+  const picked = useRef(false)
+  useEffect(() => {
+    if (!picked.current) setChoice(thisWeek ? 'this-week' : 'all')
+  }, [thisWeek])
   const [week, setWeek] = useState<string>('')
   const [track, setTrack] = useState<string>('')
   const [lesson, setLesson] = useState<string>('')
@@ -291,7 +297,10 @@ function ExportPanel({ lessons, campaignId, campaignStart }: {
   const option = (value: ScopeChoice, label: string, disabled = false) => (
     <label className={disabled ? 'muted' : ''}>
       <input type="radio" name="scope" value={value} checked={choice === value} disabled={disabled}
-        onChange={() => setChoice(value)} />
+        onChange={() => {
+          picked.current = true
+          setChoice(value)
+        }} />
       {label}
     </label>
   )

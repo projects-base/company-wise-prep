@@ -108,7 +108,7 @@ function MistakeCard({ m }: { m: Mistake }) {
       )}
       <div className="row mistake-foot">
         <span className="muted">
-          {m.moduleCode} Â·{' '}
+          {m.moduleCode} ·{' '}
           {m.fixed && m.fixedAt
             ? `fixed on retry ${day(m.fixedAt)}`
             : `wrong ${day(m.lastWrongAt)}${m.wrongCount > 1 ? ` (${m.wrongCount} times)` : ''}`}
