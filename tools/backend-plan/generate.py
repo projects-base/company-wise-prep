@@ -40,8 +40,12 @@ at = PATH.index(next(m for m in PATH if CODE[m] == 'SPRING-BOOT-8')) + 1
 PATH[at:at] = EARLY
 BUILD = list(next(p['modules'] for p in cur['paths'] if p['id'] == 'ai-build'))
 
+# Lessons pinned to a week: each DSA pattern lesson opens the week whose DSA problems need it, and the behavioural
+# lesson and the system design kit land before the 17 Jan applications checkpoint. A pinned lesson becomes the second lesson of that week.
+PINNED = {'T1': 1, 'T2': 3, 'T3': 4, 'T4': 5, 'H6': 7, 'F1': 7, 'F3': 8, 'H4': 8, 'H2': 8, 'T5': 9, 'T6': 10}
+
 # One queue: lessons in path order, each milestone right after the last of its prerequisites.
-QUEUE = [('L', m) for m in PATH]
+QUEUE = [('L', m) for m in PATH if m not in PINNED]
 for b in BUILD:
     after = max(i for i, (_, m) in enumerate(QUEUE) if m in mods[b]['prerequisites'])
     QUEUE.insert(after + 1, ('P', b))
@@ -87,6 +91,10 @@ DSA = [
     ('Hard mixed, timed (re-solve)', ['minimum-window-substring', 'word-ladder', 'trapping-rain-water'], ['generate-parentheses', 'rotting-oranges']),
     ('Hard mixed, timed (re-solve)', ['subarray-sum-equals-k', 'search-in-rotated-sorted-array', 'partition-equal-subset-sum'],
      ['kth-smallest-element-in-a-bst', 'insert-delete-getrandom-o1']),
+    ('Hard mixed, timed (re-solve)', ['longest-consecutive-sequence', 'pacific-atlantic-water-flow', 'hand-of-straights'],
+     ['group-anagrams', 'cheapest-flights-within-k-stops']),
+    ('Hard mixed, timed (re-solve)', ['implement-trie-ii-prefix-tree', 'meeting-rooms-iii', 'lfu-cache'],
+     ['valid-parentheses', 'reverse-linked-list-ii']),
 ]
 # Say it out loud (stretch on Tue, Thu, Fri), roughly following the topics the lessons have reached.
 SPOKEN = [
@@ -110,15 +118,19 @@ SPOKEN = [
     ['comparable-vs-comparator', 'collection-vs-collections', 'polymorphism-and-static-method-overriding'],
     ['java-final-and-synchronized-methods', 'deep-vs-shallow-copy', 'java-reflection'],
     ['java-final-finally-finalize', 'how-to-synchronize-a-class', 'tcp-vs-udp'],
+    ['java-streams-coding-drills', 'messaging-systems-fundamentals', 'sql-optimization-performance-scalability'],
+    ['system-design-database-scalability-performance-techniques', 'diagnose-low-cache-hit-ratio', 'lock-free-stack-atomic-reference'],
 ]
 # Sunday core (60 min): one design in this order, or a scored mock (MOCK_WEEKS, then finals on the last two Sundays).
 DESIGNS = ['design-parking-lot', 'design-url-shortener', 'design-vending-machine', 'design-unique-id-generator',
            'design-logging-framework', 'design-idempotent-api', 'design-cache-pluggable-eviction', 'design-ticket-booking',
-           'design-rate-limiter', 'design-chat-application', 'design-notification-system', 'design-payment-system',
-           'design-elevator-system', 'design-distributed-message-queue']
+           'design-rate-limiter', 'design-chat-application', 'design-proximity-service',
+           'design-distributed-key-value-store', 'design-payment-system', 'design-file-system', 'design-web-crawler',
+           'design-notification-system', 'design-elevator-system']
 # Sunday stretch from week 3: the designs without a core Sunday, for a free hour.
-EXTRA_DESIGNS = ['singleton-and-factory-patterns', 'design-image-hosting-service', 'design-bounded-blocking-queue',
-                 'design-distributed-cache', 'design-short-video-news-feed', 'design-undo-redo-text-editor']
+EXTRA_DESIGNS = ['singleton-and-factory-patterns', 'design-employee-cab-service', 'design-image-hosting-service',
+                 'design-distributed-message-queue', 'design-bounded-blocking-queue', 'design-distributed-cache',
+                 'design-short-video-news-feed', 'design-undo-redo-text-editor']
 # Weekly review bonus: a behavioural story, rehearsed before and during the first weeks of applications.
 STORY = {6: 'walk-through-current-work', 7: 'why-are-you-looking-for-a-change', 8: 'most-challenging-project',
          9: 'tell-me-about-a-conflict', 10: 'tell-me-about-a-failure'}
@@ -164,7 +176,7 @@ BUILD_DETAIL = ("Open Academy {code} and read Goal, What you build and Acceptanc
                 "Run the acceptance checks until they pass; "
                 "5: Commit and tag it, then say the interview angle out loud once; "
                 "Bad day: do the first 30 minutes and finish it in Saturday's catch-up slot")
-APPLY = ("Checkpoint: Java, Spring and Spring Boot, SQL and JPA, testing, the system design kit and 8 DSA patterns are done; "
+APPLY = ("Checkpoint: Java, Spring and Spring Boot, SQL and JPA, the system design kit, your behavioural stories, 4 DSA pattern lessons and 8 weeks of DSA problems are done; "
          "Update your resume with impact numbers and start applying this week (the job shortlist); "
          "From now on, each real interview's questions go into the Sunday review")
 
@@ -220,8 +232,7 @@ def design(day, key):
     if key in ('MOCK_HLD', 'FINAL_HLD'):
         title = ('Final system' if key.startswith('FINAL') else 'System') + ' design mock with Claude (unseen problem)'
         return dict(minutes=60, title=title, detail=MOCK_HLD)
-    lld = not any(w in key for w in ('url', 'id-generator', 'idempotent', 'booking', 'chat', 'image', 'distributed',
-                                     'news-feed', 'payment', 'message-queue'))
+    lld = bank[Q(key)]['type'] == 'LLD'
     return dict(minutes=60, title=f'{"LLD" if lld else "HLD"} · {bank[Q(key)]["title"]}',
                 detail=LLD_DETAIL if lld else HLD_DETAIL, questions=[key])
 
@@ -232,6 +243,10 @@ while queue:
     assert k < len(DSA) and k < len(SPOKEN), 'add DSA and SPOKEN rows for the extra weeks'
     monday = WEEK1_MONDAY + dt.timedelta(weeks=k)
     mon, tue, wed, thu, fri = (monday + dt.timedelta(days=d) for d in range(5))
+    due = [pid for pid, pin_week in PINNED.items() if pin_week == k + 1]
+    if due:
+        first = next(i for i, (kind, _) in enumerate(queue) if kind == 'L')
+        queue[first + 1:first + 1] = [('L', pid) for pid in due]   # in PINNED order, so prerequisites come first
     pattern, core_dsa, extra_dsa = DSA[k]
     assert len(core_dsa) == 3 and len(extra_dsa) == 2 and len(SPOKEN[k]) == 3, k
     for day, problem, question in ((mon, extra_dsa[0], None), (tue, core_dsa[0], SPOKEN[k][0]), (wed, extra_dsa[1], None),
@@ -262,7 +277,7 @@ while queue:
 weeks = k
 LAST_DAY = last_day
 dsa_core = sum(1 for s in sessions if s['title'].startswith(('DSA', 'Timed DSA')) and s['tier'] == 'core')
-assert step == len(PATH) == 119, step
+assert step == len(PATH), (step, len(PATH))
 assert sum(1 for s in sessions if s['title'].startswith('Build ·')) == len(BUILD) == 10
 add(KICKOFF, dict(minutes=20, title=f'Kickoff · the restarted plan (23 Nov to {LAST_DAY:%d %b})',
                   detail=("5: Read The rules and the week on the Plan page; "

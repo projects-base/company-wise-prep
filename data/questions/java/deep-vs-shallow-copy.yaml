@@ -9,7 +9,8 @@ leetcode: null
 prompt: |
   Explain deep vs shallow copy.
 follow_ups: []
-academy: []
+academy:
+- J3
 sightings:
 - company: tower-research
   role: SDE 1 (Backend Post Trade, Java)

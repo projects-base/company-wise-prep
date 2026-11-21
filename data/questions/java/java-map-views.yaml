@@ -11,7 +11,7 @@ prompt: |
   Do you know views in Java Maps? Explain keySet(), values() and entrySet() and how changes propagate.
 follow_ups: []
 academy:
-- H1
+- J6
 - B3
 sightings:
 - company: entain

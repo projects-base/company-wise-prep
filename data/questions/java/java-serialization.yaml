@@ -10,7 +10,7 @@ prompt: |
   Explain serialisation in Java (Serializable, serialVersionUID, transient).
 follow_ups: []
 academy:
-- A3
+- J8
 sightings:
 - company: entain
   role: Software Engineer, ~2 yrs exp (Entain India)

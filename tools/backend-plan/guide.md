@@ -1,7 +1,7 @@
 ## The goal
 
 Restarted on **Mon 23 Nov 2026**. By **mid-January** you are interview-ready on what most loops ask first (Java,
-Spring Boot, SQL and JPA, testing, the system design kit and 8 DSA patterns) and start applying, because January to
+Spring Boot, SQL and JPA, the system design kit, your behavioural stories and the first DSA patterns) and start applying, because January to
 March is when the new hiring budgets open. The AI lessons follow straight after, and the **AI Build** project
 (TriageDesk, docs/AI-PROJECT.md) gives you hands-on LLM, RAG, MCP, agent, Kafka, observability and Terraform
 experience you can defend in an interview. By **{END}** you have done all {LESSONS} lessons on the Zero to Pro path
@@ -52,9 +52,7 @@ Stuck on a page? Use **Stuck?** (the Lifeline): nudge first, key idea next, full
 
 ## The {WEEKS}-week map
 
-The lessons run the Academy's *Zero to Pro* path in order, except that the system design kit (SYS-DES-1, SYS-DES-2,
-INTV-TIPS-4), interview technique (INTV-TIPS-2), the glossary (REFERENCE-1) and the AI lessons (AI-ENG-1 to 7) come
-right after testing, so the kit is done before the applications start and the AI Build can begin. The other
+The lessons run the Academy's *Zero to Pro* path in order, with a few pinned to a week: each DSA pattern lesson\n(DSA-PAT-1 to 6) opens the week whose problems need it, and the system design kit (SYS-DES-1, SYS-DES-2, INTV-TIPS-4),\ninterview technique (INTV-TIPS-2) and the behavioural lesson (INTV-TIPS-6) land before the applications start. The\nglossary (REFERENCE-1) and the AI lessons (AI-ENG-1 to 7) come right after testing, so the AI Build can begin. The other
 reference pages sit next to the lessons they summarise: the pattern catalog (REFERENCE-2) after the patterns, the
 architecture styles (REFERENCE-3) after DDD and hexagonal, and the tools map (REFERENCE-4) after Terraform. Weeks
 1–12 take one DSA pattern each; later weeks are interview-level problems, timed.
