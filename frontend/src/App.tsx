@@ -1,7 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Celebrations } from './rewards'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
-import { BookOpenText, Building2, ChartNoAxesColumnIncreasing, CalendarCheck2, CalendarRange, Code2, GraduationCap, Library, Monitor, Moon, PanelLeftClose, PanelLeftOpen, Settings2, Sun } from 'lucide-react'
+import {
+  BookOpenText, Building2, ChartNoAxesColumnIncreasing, CalendarCheck2, CalendarRange, CircleAlert, Code2, GraduationCap, Library,
+  Monitor, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, Settings2, Sun,
+} from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import { startKeepAlive } from './keepAlive'
 import { applyTheme, savedTheme, type Theme } from './theme'
@@ -20,6 +23,8 @@ import AcademyPage from './pages/AcademyPage'
 import ModulePage from './pages/ModulePage'
 import PlaygroundPage from './pages/PlaygroundPage'
 import ProgressPage from './pages/ProgressPage'
+import NotesPage from './pages/NotesPage'
+import MistakesPage from './pages/MistakesPage'
 
 const CampaignContext = createContext<CampaignConfig | null>(null)
 export const useCampaign = () => useContext(CampaignContext)
@@ -34,6 +39,8 @@ function pageLabel(pathname: string): string | null {
     ['/plan', 'The plan page'],
     ['/academy', 'Academy overview (lesson paths)'],
     ['/progress', 'Progress page (readiness, weekly report, wins, stories)'],
+    ['/notes', 'My notes (lesson highlights, summaries, Playground snippets, cheat-sheet export)'],
+    ['/mistakes', 'Mistakes notebook (quiz questions answered wrongly in lessons)'],
     ['/bank', 'Question bank'],
     ['/playground', 'Java coding playground'],
     ['/companies', 'Companies list'],
@@ -47,6 +54,8 @@ const NAV = [
   { to: '/plan', label: 'Plan', icon: CalendarRange },
   { to: '/academy', label: 'Academy', icon: GraduationCap },
   { to: '/progress', label: 'Progress', icon: ChartNoAxesColumnIncreasing },
+  { to: '/notes', label: 'My notes', icon: NotebookPen },
+  { to: '/mistakes', label: 'Mistakes', icon: CircleAlert },
   { to: '/bank', label: 'Question bank', icon: Library },
   { to: '/playground', label: 'Playground', icon: Code2 },
   { to: '/companies', label: 'Companies', icon: Building2 },
@@ -194,6 +203,8 @@ export default function App() {
             <Route path="/companies/:slug" element={<CompanyPage />} />
             <Route path="/progress" element={<ProgressPage />} />
             <Route path="/progress/:tab" element={<ProgressPage />} />
+            <Route path="/notes" element={<NotesPage />} />
+            <Route path="/mistakes" element={<MistakesPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>

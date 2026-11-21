@@ -64,6 +64,16 @@ class HostedModeTest {
 	}
 
 	@Test
+	void lessonNotesNeedALogin() throws Exception {
+		mvc.perform(get("/api/notes")).andExpect(status().isUnauthorized());
+		mvc.perform(get("/api/notes/export").param("scope", "all")).andExpect(status().isUnauthorized());
+		mvc.perform(post("/api/notes/highlights").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"moduleId\":\"J1\",\"quote\":\"x\"}")).andExpect(status().isUnauthorized());
+		String token = login("correct horse battery");
+		mvc.perform(get("/api/notes").header("Authorization", "Bearer " + token)).andExpect(status().isOk());
+	}
+
+	@Test
 	void forgedOrTamperedTokensAreRejected() throws Exception {
 		String token = login("correct horse battery");
 		String expiry = token.substring(0, token.indexOf('.'));
