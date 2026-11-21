@@ -3,6 +3,7 @@ import { AnimBlock, animSource } from '../Anim'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { Diagram, mermaidSource } from '../Diagram'
+import { QuizBlock, quizSource } from '../Quiz'
 import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Copy, Info, ListTree, Play, X } from 'lucide-react'
 import { api, type ModuleSummary, type Ref } from '../api'
@@ -176,6 +177,8 @@ export default function ModulePage() {
                   if (diagram !== null) return <Diagram source={diagram} />
                   const anim = animSource(children)
                   if (anim !== null) return <AnimBlock source={anim} />
+                  const quiz = quizSource(children)
+                  if (quiz !== null) return <QuizBlock source={quiz} />
                   const code = textOf(children)
                   const child = Children.toArray(children)[0]
                   const lang = isValidElement<{ className?: string }>(child) ? child.props.className ?? '' : ''

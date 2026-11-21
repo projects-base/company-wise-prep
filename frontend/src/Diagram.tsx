@@ -2,6 +2,7 @@ import { Children, isValidElement, useEffect, useId, useLayoutEffect, useMemo, u
 import { ListOrdered, Maximize2, Minus, Plus, Workflow, X } from 'lucide-react'
 import { FlowSteps, parseSequence } from './FlowSteps'
 import { AnimBlock, animSource } from './Anim'
+import { QuizBlock, quizSource } from './Quiz'
 
 type MermaidApi = typeof import('mermaid').default
 
@@ -211,5 +212,7 @@ export function MdPre({ children }: { children?: ReactNode }) {
   const source = mermaidSource(children)
   if (source !== null) return <Diagram source={source} />
   const anim = animSource(children)
-  return anim !== null ? <AnimBlock source={anim} /> : <pre>{children}</pre>
+  if (anim !== null) return <AnimBlock source={anim} />
+  const quiz = quizSource(children)
+  return quiz !== null ? <QuizBlock source={quiz} /> : <pre>{children}</pre>
 }

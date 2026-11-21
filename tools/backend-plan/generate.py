@@ -2,12 +2,14 @@
 
 Run from the repo root: python tools/backend-plan/generate.py . (edit the tables or guide.md, then rerun).
 
-Restarted on Mon 23 Nov 2026 for 16 weeks (lessons end Fri 12 Mar 2027). Weekends belong to the Masai AI-ML
-course, so the backend work sits on weekdays: 60 minutes of core a day (two lessons, or a lesson and a DSA
-problem), one 60-minute design on Sunday, and a Saturday catch-up slot. Every day has tiers: core sessions (the
-schedule is built on these alone), stretch sessions (optional, they never put you behind) and one floor session
-(the minimum that keeps a bad day alive). The Academy's "Zero to Pro" path runs in order, except that the system
-design kit and interview technique move up so they are done before the January applications start."""
+Restarted on Mon 23 Nov 2026. Weekends belong to the Masai AI-ML course, so the backend work sits on weekdays:
+60 minutes of core a day (two lessons, a lesson and a DSA problem, or one AI Build milestone on a Monday or
+Wednesday), one 60-minute design on Sunday, and a Saturday catch-up slot. The plan runs as many weeks as the
+lessons and milestones need. Every day has tiers: core sessions (the schedule is built on these alone), stretch
+sessions (optional, they never put you behind) and one floor session (the minimum that keeps a bad day alive).
+The Academy's "Zero to Pro" path runs in order, except that the system design kit, interview technique, the
+glossary and the AI lessons move up so they are done before and while the January applications run. Each AI
+Build milestone (docs/AI-PROJECT.md) is scheduled on the first Monday or Wednesday after its prerequisites."""
 import datetime as dt
 import glob
 import os
@@ -28,13 +30,21 @@ mods = {m['id']: m for t in cur['tracks'] for m in t['modules']}
 # Display code: the track's code plus the position in the track (JAVA-JVM-3), as the app shows it.
 CODE = {m['id']: f"{t.get('code', t['id'])}-{i + 1}" for t in cur['tracks'] for i, m in enumerate(t['modules'])}
 PATH = list(next(p['modules'] for p in cur['paths'] if p['id'] == 'zero-to-pro'))
-# Building blocks, the design method, the interview kit and interview technique have no later prerequisites, so
-# they move up to right after testing (SPRING-BOOT-8): done by mid-January, when the applications start.
-EARLY = ['F1', 'F3', 'H4', 'H2']
+# Building blocks, the design method, the interview kit, interview technique, the glossary and the AI lessons have
+# no later prerequisites, so they move up to right after testing (SPRING-BOOT-8): the kit is done by mid-January,
+# when the applications start, and the AI lessons follow so the AI Build project can start.
+EARLY = ['F1', 'F3', 'H4', 'H2', 'R1', 'G1', 'G2', 'G7', 'G3', 'G4', 'G5', 'G6']
 for m in EARLY:
     PATH.remove(m)
 at = PATH.index(next(m for m in PATH if CODE[m] == 'SPRING-BOOT-8')) + 1
 PATH[at:at] = EARLY
+BUILD = list(next(p['modules'] for p in cur['paths'] if p['id'] == 'ai-build'))
+
+# One queue: lessons in path order, each milestone right after the last of its prerequisites.
+QUEUE = [('L', m) for m in PATH]
+for b in BUILD:
+    after = max(i for i, (_, m) in enumerate(QUEUE) if m in mods[b]['prerequisites'])
+    QUEUE.insert(after + 1, ('P', b))
 
 
 def Q(slug):
@@ -44,11 +54,9 @@ def Q(slug):
 
 KICKOFF = dt.date(2026, 11, 22)         # Sunday: a 20-minute kickoff
 WEEK1_MONDAY = dt.date(2026, 11, 23)
-WEEKS = 16
-INTERVIEW = dt.date(2027, 3, 15)        # every topic covered; applications start in mid-January
 APPLY_WEEK = 8                          # Sun 17 Jan: the checkpoint that starts the applications
 MASAI_BACKLOG_WEEKS = 3                 # a weekday evening for the Masai backlog, until it is clear
-DOUBLE_FRIDAYS = {3, 5}                 # two lessons that Friday (114 lessons in 112 weekday slots); its DSA turns stretch
+MOCK_WEEKS = {9: 'MOCK_LLD', 10: 'MOCK_HLD', 13: 'MOCK_LLD', 14: 'MOCK_HLD'}  # finals take the last two Sundays
 
 # Weeks 1-12: one DSA pattern a week. Three problems are core (Tue, Thu, Fri), two are stretch (Mon, Wed).
 DSA = [
@@ -73,6 +81,12 @@ DSA = [
     ('Hard mixed, timed', ['merge-k-sorted-lists', 'binary-tree-maximum-path-sum', 'find-median-from-data-stream'], ['course-schedule-ii', 'top-k-frequent-elements']),
     ('Hard mixed, timed', ['word-ladder', 'alien-dictionary', 'basic-calculator'], ['number-of-islands', 'edit-distance']),
     ('Hard mixed, timed', ['maximum-profit-in-job-scheduling', 'russian-doll-envelopes', 'lfu-cache'], ['lru-cache', 'longest-substring-without-repeating-characters']),
+    # Any further weeks: timed re-solves of the patterns interviews ask most, from a blank file.
+    ('Hard mixed, timed (re-solve)', ['number-of-islands', 'lru-cache', 'merge-intervals'], ['3sum', 'koko-eating-bananas']),
+    ('Hard mixed, timed (re-solve)', ['course-schedule-ii', 'edit-distance', 'top-k-frequent-elements'], ['meeting-rooms-ii', 'decode-ways']),
+    ('Hard mixed, timed (re-solve)', ['minimum-window-substring', 'word-ladder', 'trapping-rain-water'], ['generate-parentheses', 'rotting-oranges']),
+    ('Hard mixed, timed (re-solve)', ['subarray-sum-equals-k', 'search-in-rotated-sorted-array', 'partition-equal-subset-sum'],
+     ['kth-smallest-element-in-a-bst', 'insert-delete-getrandom-o1']),
 ]
 # Say it out loud (stretch on Tue, Thu, Fri), roughly following the topics the lessons have reached.
 SPOKEN = [
@@ -92,17 +106,19 @@ SPOKEN = [
     ['cap-theorem', 'idempotency-in-payment-systems', 'debug-java-memory-issues'],
     ['optimize-slow-api', 'debugging-across-microservices', 'zero-downtime-schema-migrations'],
     ['llm-cost-caching-and-observability', 'sql-injection-prevention', 'java-serialization'],
+    ['maven-build-lifecycle', 'hexagonal-architecture', 'cqrs'],
+    ['comparable-vs-comparator', 'collection-vs-collections', 'polymorphism-and-static-method-overriding'],
+    ['java-final-and-synchronized-methods', 'deep-vs-shallow-copy', 'java-reflection'],
+    ['java-final-finally-finalize', 'how-to-synchronize-a-class', 'tcp-vs-udp'],
 ]
-# Sunday core (60 min): one design, or a scored mock. Mocks start once the applications do.
-SUNDAY = ['design-parking-lot', 'design-url-shortener', 'design-vending-machine', 'design-unique-id-generator',
-          'design-logging-framework', 'design-idempotent-api', 'design-cache-pluggable-eviction', 'design-ticket-booking',
-          'MOCK_LLD', 'MOCK_HLD', 'design-rate-limiter', 'design-chat-application', 'MOCK_LLD', 'MOCK_HLD',
-          'FINAL_LLD', 'FINAL_HLD']
-# Sunday stretch: the designs that have no core Sunday, for a free hour.
-SUNDAY_STRETCH = {3: 'singleton-and-factory-patterns', 4: 'design-image-hosting-service', 5: 'design-bounded-blocking-queue',
-                  6: 'design-distributed-cache', 7: 'design-notification-system', 8: 'design-short-video-news-feed',
-                  11: 'design-elevator-system', 12: 'design-distributed-message-queue', 13: 'design-undo-redo-text-editor',
-                  14: 'design-payment-system'}
+# Sunday core (60 min): one design in this order, or a scored mock (MOCK_WEEKS, then finals on the last two Sundays).
+DESIGNS = ['design-parking-lot', 'design-url-shortener', 'design-vending-machine', 'design-unique-id-generator',
+           'design-logging-framework', 'design-idempotent-api', 'design-cache-pluggable-eviction', 'design-ticket-booking',
+           'design-rate-limiter', 'design-chat-application', 'design-notification-system', 'design-payment-system',
+           'design-elevator-system', 'design-distributed-message-queue']
+# Sunday stretch from week 3: the designs without a core Sunday, for a free hour.
+EXTRA_DESIGNS = ['singleton-and-factory-patterns', 'design-image-hosting-service', 'design-bounded-blocking-queue',
+                 'design-distributed-cache', 'design-short-video-news-feed', 'design-undo-redo-text-editor']
 # Weekly review bonus: a behavioural story, rehearsed before and during the first weeks of applications.
 STORY = {6: 'walk-through-current-work', 7: 'why-are-you-looking-for-a-change', 8: 'most-challenging-project',
          9: 'tell-me-about-a-conflict', 10: 'tell-me-about-a-failure'}
@@ -143,12 +159,17 @@ MASAI = ("Live class; "
          "Missed lectures first while there is a backlog")
 MASAI_BACKLOG = ("Watch one missed Masai lecture or finish one pending assignment; "
                  "Backlog already clear? Skip this session")
+BUILD_DETAIL = ("Open Academy {code} and read Goal, What you build and Acceptance criteria; "
+                "45: Build it in your TriageDesk repo, following the Steps (Hints only when stuck); "
+                "Run the acceptance checks until they pass; "
+                "5: Commit and tag it, then say the interview angle out loud once; "
+                "Bad day: do the first 30 minutes and finish it in Saturday's catch-up slot")
 APPLY = ("Checkpoint: Java, Spring and Spring Boot, SQL and JPA, testing, the system design kit and 8 DSA patterns are done; "
          "Update your resume with impact numbers and start applying this week (the job shortlist); "
          "From now on, each real interview's questions go into the Sunday review")
 
 sessions = []
-lessons = iter(PATH)
+queue = list(QUEUE)
 step = 0
 
 
@@ -160,11 +181,23 @@ def add(day, s, tier='core', floor=False):
 
 
 def lesson(day, floor=False):
+    """Schedules the first lesson still in the queue (a milestone at the head waits for a Monday or Wednesday)."""
     global step
-    mid = next(lessons)
+    i = next(i for i, (kind, _) in enumerate(queue) if kind == 'L')
+    mid = queue.pop(i)[1]
     step += 1
     add(day, dict(minutes=30, title=f'Scratch · Step {step} of {len(PATH)} · {CODE[mid]}: {mods[mid]["title"]}',
                   detail=LESSON_DETAIL), floor=floor)
+
+
+def build(day):
+    pid = queue.pop(0)[1]
+    add(day, dict(minutes=60, title=f'Build · {CODE[pid]}: {mods[pid]["title"]}', detail=BUILD_DETAIL.format(code=CODE[pid])),
+        floor=True)
+
+
+def lessons_left():
+    return any(kind == 'L' for kind, _ in queue)
 
 
 def dsa(day, pattern, slug, tier='core'):
@@ -188,54 +221,77 @@ def design(day, key):
         title = ('Final system' if key.startswith('FINAL') else 'System') + ' design mock with Claude (unseen problem)'
         return dict(minutes=60, title=title, detail=MOCK_HLD)
     lld = not any(w in key for w in ('url', 'id-generator', 'idempotent', 'booking', 'chat', 'image', 'distributed',
-                                     'news-feed', 'payment'))
+                                     'news-feed', 'payment', 'message-queue'))
     return dict(minutes=60, title=f'{"LLD" if lld else "HLD"} · {bank[Q(key)]["title"]}',
                 detail=LLD_DETAIL if lld else HLD_DETAIL, questions=[key])
 
 
-add(KICKOFF, dict(minutes=20, title='Kickoff · the restarted plan (23 Nov to 12 Mar)',
+# Weekdays first: as many weeks as the lessons and milestones need.
+k = 0
+while queue:
+    assert k < len(DSA) and k < len(SPOKEN), 'add DSA and SPOKEN rows for the extra weeks'
+    monday = WEEK1_MONDAY + dt.timedelta(weeks=k)
+    mon, tue, wed, thu, fri = (monday + dt.timedelta(days=d) for d in range(5))
+    pattern, core_dsa, extra_dsa = DSA[k]
+    assert len(core_dsa) == 3 and len(extra_dsa) == 2 and len(SPOKEN[k]) == 3, k
+    for day, problem, question in ((mon, extra_dsa[0], None), (tue, core_dsa[0], SPOKEN[k][0]), (wed, extra_dsa[1], None),
+                                   (thu, core_dsa[1], SPOKEN[k][1]), (fri, core_dsa[2], SPOKEN[k][2])):
+        if not queue:
+            break
+        if question is None:
+            # Mon and Wed: a milestone if one is due, else two lessons (stretch: a DSA problem).
+            if queue[0][0] == 'P':
+                build(day)
+            else:
+                lesson(day, floor=True)
+                if lessons_left():
+                    lesson(day)               # a milestone that just became due waits for the next Mon/Wed
+            dsa(day, pattern, problem, tier='stretch')
+        else:
+            # Tue, Thu, Fri: a lesson and a DSA problem (stretch: say it out loud); a milestone only once lessons run out.
+            if lessons_left():
+                lesson(day, floor=True)
+            else:
+                build(day)
+            dsa(day, pattern, problem)
+            spoken(day, question)
+        last_day = day
+    if k + 1 <= MASAI_BACKLOG_WEEKS:
+        add(wed, dict(minutes=45, title='Masai · backlog: one missed lecture or assignment', detail=MASAI_BACKLOG))
+    k += 1
+weeks = k
+LAST_DAY = last_day
+dsa_core = sum(1 for s in sessions if s['title'].startswith(('DSA', 'Timed DSA')) and s['tier'] == 'core')
+assert step == len(PATH) == 119, step
+assert sum(1 for s in sessions if s['title'].startswith('Build ·')) == len(BUILD) == 10
+add(KICKOFF, dict(minutes=20, title=f'Kickoff · the restarted plan (23 Nov to {LAST_DAY:%d %b})',
                   detail=("5: Read The rules and the week on the Plan page; "
-                          "5: Put your fixed weekday slot in your calendar for every weekday until 12 Mar; "
+                          f"5: Put your fixed weekday slot in your calendar for every weekday until {LAST_DAY:%d %b}; "
                           "5: Write down your Masai backlog: missed lectures and pending assignments; "
                           "5: Open Two Sum (Tuesday's problem) and say the brute force out loud")), floor=True)
 
-for k in range(WEEKS):
+# Weekends: Masai, the Saturday catch-up slot, and Sunday's design or mock plus the weekly review.
+designs, extras = iter(DESIGNS), iter(EXTRA_DESIGNS)
+for k in range(weeks):
     week = k + 1
-    monday = WEEK1_MONDAY + dt.timedelta(weeks=k)
-    mon, tue, wed, thu, fri, sat, sun = (monday + dt.timedelta(days=d) for d in range(7))
-    pattern, core_dsa, extra_dsa = DSA[k]
-    assert len(core_dsa) == 3 and len(extra_dsa) == 2 and len(SPOKEN[k]) == 3, week
-    # Mon and Wed: two lessons (stretch: a DSA problem). Tue, Thu, Fri: a lesson and a DSA problem (stretch: say it out loud).
-    for day, extra in ((mon, extra_dsa[0]), (wed, extra_dsa[1])):
-        lesson(day, floor=True)
-        lesson(day)
-        dsa(day, pattern, extra, tier='stretch')
-    for day, problem, question in zip((tue, thu, fri), core_dsa, SPOKEN[k]):
-        lesson(day, floor=True)
-        if day == fri and week in DOUBLE_FRIDAYS:
-            lesson(day)
-            dsa(day, pattern, problem, tier='stretch')
-        else:
-            dsa(day, pattern, problem)
-        spoken(day, question)
-    if week <= MASAI_BACKLOG_WEEKS:
-        add(wed, dict(minutes=45, title='Masai · backlog: one missed lecture or assignment', detail=MASAI_BACKLOG))
+    sat = WEEK1_MONDAY + dt.timedelta(weeks=k, days=5)
+    sun = sat + dt.timedelta(days=1)
     add(sat, dict(minutes=0, title='Masai · live class and assignment', detail=MASAI), floor=True)
     add(sat, dict(minutes=30, title='Catch-up · only if a weekday session is unfinished', detail=CATCH_UP), tier='stretch')
     add(sun, dict(minutes=0, title='Masai · live class and assignment', detail=MASAI))
-    add(sun, design(sun, SUNDAY[k]))
-    review = dict(minutes=15, title=f'Weekly review · week {week}: {pattern}', detail=REVIEW)
+    key = ('FINAL_LLD' if week == weeks - 1 else 'FINAL_HLD' if week == weeks else MOCK_WEEKS.get(week) or next(designs))
+    add(sun, design(sun, key))
+    review = dict(minutes=15, title=f'Weekly review · week {week}: {DSA[k][0]}', detail=REVIEW)
     if week == APPLY_WEEK:
         review['detail'] = REVIEW + '; ' + APPLY
     if week in STORY:
         review['detail'] += "; Bonus: say your story for this week's behavioural question out loud (STAR, 2 minutes)"
         review['questions'] = [Q(STORY[week])]
     add(sun, review, floor=True)
-    if week in SUNDAY_STRETCH:
-        add(sun, design(sun, SUNDAY_STRETCH[week]), tier='stretch')
+    extra = next(extras, None) if week >= 3 else None
+    if extra:
+        add(sun, design(sun, extra), tier='stretch')
 
-assert next(lessons, None) is None, 'every Academy lesson is scheduled'
-assert step == len(PATH) == 114, step
 
 
 def step_of(s):
@@ -248,34 +304,41 @@ sessions.sort(key=lambda s: (s['date'], s['tier'] != 'core', step_of(s)))
 
 guide = open(os.path.join(os.path.dirname(__file__), 'guide.md'), encoding='utf-8').read()
 rows = []
-for k in range(WEEKS):
+for k in range(weeks):
     monday = WEEK1_MONDAY + dt.timedelta(weeks=k)
     end = monday + dt.timedelta(days=6)
-    steps = [s for s in sessions if s['title'].startswith('Scratch') and monday.isoformat() <= s['date'] <= end.isoformat()]
-    first, last = steps[0]['title'].split(' · ')[2], steps[-1]['title'].split(' · ')[2]
-    sunday = next(s['title'] for s in sessions if s['date'] == end.isoformat() and s['tier'] == 'core'
-                  and s['minutes'] == 60)
-    rows.append(f"| {k + 1} | {monday:%d %b} – {end:%d %b} | {step_of(steps[0])}–{step_of(steps[-1])}: "
-                f"{first.split(':')[0]} … {last.split(':')[0]} | {DSA[k][0]} | {sunday.replace(' (unseen problem)', '')} |")
-MAP = ('| Week | Dates | Lessons (steps: first … last) | DSA | Sunday design |\n|---|---|---|---|---|\n' + '\n'.join(rows))
-assert '{MAP}' in guide
-guide = guide.replace('{MAP}', MAP)
+    week_of = [s for s in sessions if monday.isoformat() <= s['date'] <= end.isoformat()]
+    steps = [s for s in week_of if s['title'].startswith('Scratch')]
+    lessons_cell = '—'
+    if steps:
+        first, last = steps[0]['title'].split(' · ')[2], steps[-1]['title'].split(' · ')[2]
+        lessons_cell = f"{step_of(steps[0])}–{step_of(steps[-1])}: {first.split(':')[0]} … {last.split(':')[0]}"
+    builds = ', '.join(s['title'].split(' · ')[1].split(':')[0] for s in week_of if s['title'].startswith('Build ·')) or '—'
+    sunday = next(s['title'] for s in week_of if s['date'] == end.isoformat() and s['tier'] == 'core' and s['minutes'] == 60)
+    rows.append(f"| {k + 1} | {monday:%d %b} – {end:%d %b} | {lessons_cell} | {builds} | {DSA[k][0]} | "
+                f"{sunday.replace(' (unseen problem)', '')} |")
+MAP = ('| Week | Dates | Lessons (steps: first … last) | AI Build | DSA | Sunday design |\n|---|---|---|---|---|---|\n'
+       + '\n'.join(rows))
+for key, value in {'{MAP}': MAP, '{LESSONS}': str(len(PATH)), '{MILESTONES}': str(len(BUILD)), '{WEEKS}': str(weeks),
+                   '{END}': f'{LAST_DAY:%a %d %b %Y}', '{DSA_CORE}': str(dsa_core)}.items():
+    assert key in guide, key
+    guide = guide.replace(key, value)
 
 header = {
     'id': 'backend-2027-01',
-    'name': 'Backend SDE II / Senior: 16-week plan (23 Nov 2026 to 12 Mar 2027)',
+    'name': f'Backend SDE II / Senior: {weeks}-week plan (23 Nov 2026 to {LAST_DAY:%d %b %Y})',
     'role': 'SDE II / Senior Software Engineer, Java backend (any product company)',
     'companies': {c: 1.0 for c in sorted({s['company'] for q in bank.values() for s in q.get('sightings') or []})},
     'start': KICKOFF.isoformat(),
-    'interview': INTERVIEW.isoformat(),
+    'interview': (LAST_DAY + dt.timedelta(days=3)).isoformat(),
     'minutes': {'weekday': 60, 'weekend': 60},
     'review_days': 3,
     'notes': ('A general plan, not tied to one company: the whole Academy from scratch, DSA, LLD, HLD and system design, '
               'Java and Spring Boot internals. Weekdays carry it; weekends belong to the Masai AI-ML course. '
-              'Applications start in mid-January; every lesson is done by Fri 12 Mar 2027.'),
+              f'Applications start in mid-January; every lesson and AI Build milestone is done by {LAST_DAY:%a %d %b %Y}.'),
 }
 with open(OUT, 'w', encoding='utf-8', newline='\n') as f:
-    f.write('# Generated by tools/backend-plan/generate.py (16 weeks + a kickoff day). Each date is a fixed session;\n'
+    f.write(f'# Generated by tools/backend-plan/generate.py ({weeks} weeks + a kickoff day). Each date is a fixed session;\n'
             '# tier core = the plan, stretch = optional, floor = the minimum for a bad day. Rules and the map: guide below.\n')
     f.write(yaml.safe_dump(header, sort_keys=False, allow_unicode=True, width=120))
     f.write('guide: |\n' + ''.join('  ' + line if line.strip() else '\n' for line in guide.splitlines(True)))
@@ -288,9 +351,11 @@ core = lambda d: sum(s['minutes'] for s in sessions if s['date'] == d and s['tie
 print('sessions', len(sessions), 'days', len(days), days[0], days[-1])
 print('lessons', sum(1 for s in sessions if s['title'].startswith('Scratch · Step')),
       'dsa core', sum(1 for s in sessions if s['title'].startswith(('DSA', 'Timed DSA')) and s['tier'] == 'core'),
+      'builds', sum(1 for s in sessions if s['title'].startswith('Build ·')),
       'designs', sum(1 for s in sessions if s['title'][:5] in ('LLD ·', 'HLD ·') and s['tier'] == 'core'),
       'mocks', sum(1 for s in sessions if 'mock with Claude' in s['title']),
       'stretch', sum(1 for s in sessions if s['tier'] == 'stretch'))
 print('core minutes per day:', sorted({core(d) for d in days}), '| days without a floor:',
       [d for d in days if not any(s.get('floor') for s in sessions if s['date'] == d)])
-print('early lessons at steps', [i + 1 for i, m in enumerate(PATH) if m in EARLY])
+print('weeks', weeks, 'last weekday', LAST_DAY, '| early lessons at steps', [i + 1 for i, m in enumerate(PATH) if m in EARLY])
+print('builds:', [(s['date'], s['title'].split(':')[0]) for s in sessions if s['title'].startswith('Build ·')])
