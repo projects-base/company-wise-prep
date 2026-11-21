@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import CodeMirror, { keymap, type Extension } from '@uiw/react-codemirror'
+import CodeMirror, { keymap, type Extension, type ViewUpdate } from '@uiw/react-codemirror'
 import { java } from '@codemirror/lang-java'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { Prec } from '@codemirror/state'
@@ -16,18 +16,20 @@ function usePrefersDark() {
   return dark
 }
 
-/** Java editor that follows the system theme. Ctrl/Cmd+Enter runs, +Shift submits. */
+/** Java editor that follows the system theme. Ctrl/Cmd+Enter runs, +Shift submits. `onSelect` gets the selected text. */
 export default function CodeEditor({
   value,
   onChange,
   onRun,
   onSubmit,
+  onSelect,
   height = '100%',
 }: {
   value: string
   onChange: (v: string) => void
   onRun?: () => void
   onSubmit?: () => void
+  onSelect?: (selected: string) => void
   height?: string
 }) {
   const dark = usePrefersDark()
@@ -48,6 +50,11 @@ export default function CodeEditor({
       theme={dark ? oneDark : 'light'}
       extensions={extensions}
       onChange={onChange}
+      onUpdate={onSelect && ((u: ViewUpdate) => {
+        if (!u.selectionSet) return
+        const { from, to } = u.state.selection.main
+        onSelect(u.state.sliceDoc(from, to))
+      })}
       basicSetup={{ tabSize: 4, foldGutter: true, highlightActiveLine: true, autocompletion: true }}
       indentWithTab
     />

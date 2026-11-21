@@ -1,12 +1,13 @@
-import { Children, isValidElement, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { Children, isValidElement, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { AnimBlock, animSource } from '../Anim'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import { Diagram, mermaidSource } from '../Diagram'
-import { QuizBlock, quizSource } from '../Quiz'
+import { parseQuiz, QuizBlock, QuizReporterContext, quizSource, type QuizReporter } from '../Quiz'
 import remarkGfm from 'remark-gfm'
-import { ArrowLeft, ArrowRight, Check, ChevronRight, Copy, Info, ListTree, Play, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, ChevronRight, Copy, Info, ListTree, NotebookPen, Play, X } from 'lucide-react'
 import { api, type ModuleSummary, type Ref } from '../api'
+import { highlightPlugin, NotesPanel, SelectionToolbar, type NotesTab } from '../LessonNotes'
 
 import { LevelTree } from '../LessonTree'
 import { PATH_KEY } from './AcademyPage'
@@ -49,11 +50,42 @@ function CopyButton({ text }: { text: string }) {
   )
 }
 
+/** What other pages can pass when they open a lesson: a quiz to retry, or the notes panel on a tab. */
+export type LessonLinkState = { quiz?: string; notes?: NotesTab } | null
+
+const PANEL_KEY = 'notes.panel'
+
 export default function ModulePage() {
   const { id = '' } = useParams()
   const { data: v, error, reload } = useLoad(() => api.module(id), [id])
+  const notes = useLoad(() => api.lessonNotes(id), [id])
   const navigate = useNavigate()
+  const linkState = useLocation().state as LessonLinkState
   const { codeRunner } = useFeatures()
+  const prose = useRef<HTMLDivElement>(null)
+  const [panelOpen, setPanelOpen] = useState(() => {
+    try {
+      return localStorage.getItem(PANEL_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
+  const [tab, setTab] = useState<NotesTab>('highlights')
+  const [focusId, setFocusId] = useState<number | null>(null)
+  const openPanel = (open: boolean) => {
+    setPanelOpen(open)
+    try {
+      localStorage.setItem(PANEL_KEY, open ? '1' : '0')
+    } catch {
+      /* not remembered in a private window */
+    }
+  }
+  useEffect(() => {
+    if (linkState?.notes) {
+      setTab(linkState.notes)
+      setPanelOpen(true)
+    }
+  }, [linkState?.notes, id])
 
   const headings = useMemo(
     () =>
@@ -65,6 +97,16 @@ export default function ModulePage() {
     [v?.lesson],
   )
   const s = useStepper(v?.lesson ?? '', id)
+  // Retry from the mistakes notebook: open the part that holds the quiz (the quiz scrolls itself into view).
+  const retry = linkState?.quiz
+  useEffect(() => {
+    if (!retry || s.mode !== 'step') return
+    const i = s.parts.findIndex((p) =>
+      [...p.body.matchAll(/```quiz\s*\n([\s\S]*?)```/g)].some((q) => parseQuiz(q[1].trim())?.question === retry),
+    )
+    if (i >= 0) s.setStep(i)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [retry, s.parts, s.mode])
   const active = useActiveHeading(headings.map(slugify), s.mode === 'all' ? v?.lesson : undefined)
   // Parts ticked off, saved on the server so phone and desktop agree; updated optimistically.
   const [partsDone, setPartsDone] = useState<Set<string>>(new Set())
@@ -72,6 +114,43 @@ export default function ModulePage() {
 
   if (!v) return <div className="container"><Status error={error} /></div>
   const m = v.module
+  const highlights = notes.data?.highlights ?? []
+  const noteCount = highlights.length + (notes.data?.snippets.length ?? 0)
+
+  const reporter: QuizReporter = {
+    focus: retry,
+    report: async (spec, picked) => {
+      const chosen = spec.options[picked]
+      const correct = spec.options.find((o) => o.correct)
+      const level = spec.level && ['easy', 'medium', 'hard'].includes(spec.level) ? spec.level : null
+      const result = await api.quizAttempt({
+        moduleId: m.id,
+        question: spec.question,
+        chosen: chosen.text,
+        correct: correct?.text ?? null,
+        why: correct?.why ?? chosen.why ?? null,
+        level,
+        right: !!chosen.correct,
+      })
+      notes.reload()
+      if (!result) return null
+      return chosen.correct ? 'fixed' : 'saved'
+    },
+  }
+  const saveHighlight = async (quote: string, section: string | null, note: string | null) => {
+    await api.addHighlight({ moduleId: m.id, section, quote, note })
+    notes.reload()
+  }
+  // Clicking a marked highlight opens it in the notes panel.
+  const openHighlight = (e: React.MouseEvent) => {
+    const hl = (e.target as Element).closest('[data-hl]')
+    if (!hl) return
+    setFocusId(Number(hl.getAttribute('data-hl')))
+    setTab('highlights')
+    openPanel(true)
+  }
+  /** The section a piece of Markdown starts in: the part's title in one-part-at-a-time mode. */
+  const sectionFor = (md: string) => (s.mode === 'step' && s.parts[s.step]?.body === md ? s.parts[s.step].title : null)
 
   const toggle = async () => {
     await api.moduleDone(m.id, !m.done)
@@ -126,8 +205,17 @@ export default function ModulePage() {
               </>
             )}
           </div>
-          <div style={{ marginTop: 16 }}>
+          <div className="row" style={{ marginTop: 16 }}>
             <ModeToggle s={s} />
+            {m.written && (
+              <button
+                className={`btn sm notes-toggle ${panelOpen ? 'on' : ''}`}
+                aria-pressed={panelOpen}
+                onClick={() => openPanel(!panelOpen)}
+              >
+                <NotebookPen size={14} /> My notes{noteCount > 0 && <span className="num"> · {noteCount}</span>}
+              </button>
+            )}
           </div>
           {v.prerequisites.length > 0 && !m.ready && (
             <div className="callout warn" style={{ marginTop: 18 }}>
@@ -141,7 +229,9 @@ export default function ModulePage() {
         </header>
 
         {m.written ? (
-          <div className="prose">
+          <QuizReporterContext.Provider value={reporter}>
+          <div className="prose" ref={prose} onClick={openHighlight}>
+            <SelectionToolbar container={prose} onSave={saveHighlight} />
             <StepperView
               s={s}
               full={v.lesson ?? ''}
@@ -170,6 +260,7 @@ export default function ModulePage() {
               render={(md) => (
             <Markdown
               remarkPlugins={[remarkGfm]}
+              rehypePlugins={[highlightPlugin(highlights, sectionFor(md))]}
               components={{
                 h2: ({ children }) => <h2 id={slugify(textOf(children))}>{children}</h2>,
                 pre: ({ children }) => {
@@ -188,7 +279,10 @@ export default function ModulePage() {
                       <div className="code-actions">
                         <CopyButton text={code} />
                         {runnable && (
-                          <button className="btn sm" onClick={() => navigate('/playground', { state: { code } })}>
+                          <button
+                            className="btn sm"
+                            onClick={() => navigate('/playground', { state: { code, lesson: { id: m.id, code: m.code } } })}
+                          >
                             <Play size={13} /> Run
                           </button>
                         )}
@@ -205,6 +299,7 @@ export default function ModulePage() {
               )}
             />
           </div>
+          </QuizReporterContext.Provider>
         ) : (
           <div className="callout">
             <Info size={18} />
@@ -279,6 +374,18 @@ export default function ModulePage() {
                 ))}
           </ol>
         </aside>
+      )}
+      {panelOpen && m.written && (
+        <NotesPanel
+          moduleId={m.id}
+          code={m.code}
+          data={notes.data}
+          reload={notes.reload}
+          tab={tab}
+          setTab={setTab}
+          focusId={focusId}
+          onClose={() => openPanel(false)}
+        />
       )}
       <Lifeline key={m.id} context="lesson" refId={m.id} title={m.title} />
     </div>

@@ -413,6 +413,8 @@ async function call<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>
 }
 
+const JSON_HEADERS = { 'Content-Type': 'application/json' }
+
 export const api = {
   campaigns: () => call<CampaignConfig[]>('/api/campaigns'),
   today: (id: string) => call<Today>(`/api/campaigns/${id}/today`),
@@ -515,7 +517,113 @@ export const api = {
     const res = await request(`/api/stories/${id}`, { method: 'DELETE' })
     if (!res.ok) throw new Error(`DELETE story failed: ${res.status}`)
   },
+  notes: (campaign?: string) => call<NotesOverview>(`/api/notes${campaign ? `?campaign=${campaign}` : ''}`),
+  lessonNotes: (moduleId: string) => call<LessonNotes>(`/api/notes/lessons/${moduleId}`),
+  addHighlight: (h: { moduleId: string; section: string | null; quote: string; note?: string | null }) =>
+    call<Note>('/api/notes/highlights', { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(h) }),
+  addSnippet: (s: { moduleId: string | null; code: string; output?: string | null; note?: string | null }) =>
+    call<Note>('/api/notes/snippets', { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(s) }),
+  editNote: (id: number, note: string | null) =>
+    call<Note>(`/api/notes/${id}`, { method: 'PUT', headers: JSON_HEADERS, body: JSON.stringify({ note }) }),
+  deleteNote: async (id: number) => {
+    const res = await request(`/api/notes/${id}`, { method: 'DELETE' })
+    if (!res.ok) throw new Error(`DELETE note failed: ${res.status}`)
+  },
+  saveSummary: (moduleId: string, s: SummaryDraft) =>
+    call<LessonSummary>(`/api/notes/lessons/${moduleId}/summary`, {
+      method: 'PUT',
+      headers: JSON_HEADERS,
+      body: JSON.stringify(s),
+    }),
+  /** Resolves to the mistake as it now stands, or null when a right answer had nothing to fix. */
+  quizAttempt: async (a: QuizAttempt): Promise<Mistake | null> => {
+    const res = await request('/api/notes/quiz-attempts', { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(a) })
+    if (!res.ok) throw new Error(`POST quiz attempt failed: ${res.status}`)
+    return res.status === 204 ? null : ((await res.json()) as Mistake)
+  },
+  mistakes: () => call<Mistake[]>('/api/notes/mistakes'),
+  searchNotes: (q: string) => call<NoteSearch>(`/api/notes/search?q=${encodeURIComponent(q)}`),
+  exportNotes: async (scope: ExportScope, id?: string, campaign?: string): Promise<{ filename: string; markdown: string }> => {
+    const params = new URLSearchParams({ scope, ...(id && { id }), ...(campaign && { campaign }) })
+    const res = await request(`/api/notes/export?${params}`)
+    if (!res.ok) throw new Error(`Export failed: ${res.status}`)
+    const filename = /filename="?([^";]+)"?/.exec(res.headers.get('Content-Disposition') ?? '')?.[1] ?? 'cheatsheet.md'
+    return { filename, markdown: await res.text() }
+  },
 }
+
+
+/** Lesson notes (notes.NoteService, MistakeService, NotebookService): what you wrote while studying. */
+export type NoteKind = 'HIGHLIGHT' | 'SNIPPET' | 'SUMMARY'
+export type Note = {
+  id: number
+  moduleId: string | null
+  kind: NoteKind
+  /** The "## " heading a highlight sits under. */
+  section: string | null
+  quote: string | null
+  note: string | null
+  code: string | null
+  output: string | null
+  createdAt: string
+  updatedAt: string
+}
+export type SummaryDraft = { idea: string | null; inside: string | null; trap: string | null; line: string | null }
+export type LessonSummary = SummaryDraft & { updatedAt: string | null }
+export type Mistake = {
+  id: number
+  moduleId: string
+  moduleCode: string
+  moduleTitle: string | null
+  trackId: string | null
+  question: string
+  chosen: string | null
+  correct: string | null
+  why: string | null
+  level: 'easy' | 'medium' | 'hard' | null
+  wrongCount: number
+  fixed: boolean
+  firstWrongAt: string
+  lastWrongAt: string
+  fixedAt: string | null
+}
+export type LessonNotes = {
+  moduleId: string
+  code: string
+  title: string
+  trackId: string
+  trackTitle: string
+  /** The plan week the lesson is first scheduled in (numbered as on the Plan page), when known. */
+  week: number | null
+  weekFrom: string | null
+  weekTo: string | null
+  summary: LessonSummary | null
+  highlights: Note[]
+  snippets: Note[]
+  mistakes: Mistake[]
+}
+export type NotesOverview = { lessons: LessonNotes[]; general: Note[] }
+export type NoteHitKind = 'HIGHLIGHT' | 'SUMMARY' | 'SNIPPET' | 'MISTAKE'
+export type NoteHit = {
+  kind: NoteHitKind
+  id: number
+  moduleId: string | null
+  moduleCode: string | null
+  moduleTitle: string | null
+  text: string
+  link: string
+}
+export type NoteSearch = { hits: NoteHit[]; counts: Record<NoteHitKind, number> }
+export type QuizAttempt = {
+  moduleId: string
+  question: string
+  chosen: string
+  correct: string | null
+  why: string | null
+  level: 'easy' | 'medium' | 'hard' | null
+  right: boolean
+}
+export type ExportScope = 'lesson' | 'track' | 'week' | 'all'
 
 /** Progress page (insights.InsightsService): evidence computed from what you have done. */
 export type ReadinessArea = {
