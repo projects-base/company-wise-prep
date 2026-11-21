@@ -1,0 +1,27 @@
+slug: cqrs
+title: 'CQRS: command query responsibility segregation'
+type: DOMAIN
+difficulty: medium
+tags:
+- architecture
+- cqrs
+- event-driven
+- distributed-systems
+leetcode: null
+prompt: |
+  What is CQRS? How do you keep the read side in sync with the write side, and when would you not use it?
+follow_ups:
+- How does CQRS relate to event sourcing?
+- How do you handle a user who writes and then immediately reads stale data?
+- How do you rebuild a read model?
+academy:
+- Q8
+- S8
+- I1
+sightings:
+- company: undisclosed
+  role: Java backend (SDE II / Senior)
+  round: Technical interview
+  seen_on: 2026-11
+  confidence: claimed
+  source: Interview question relayed by Akhil, 2026-11-21 (company not recorded yet)

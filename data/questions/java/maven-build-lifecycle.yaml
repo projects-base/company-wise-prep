@@ -1,0 +1,26 @@
+slug: maven-build-lifecycle
+title: Explain the Maven build lifecycle
+type: JAVA
+difficulty: medium
+tags:
+- maven
+- build
+- tooling
+leetcode: null
+prompt: |
+  Explain the Maven lifecycle. What happens when you run `mvn clean install`, and how do phases, plugins and goals relate?
+follow_ups:
+- What is the difference between mvn install and mvn deploy?
+- Two libraries need different versions of the same jar. Which one does Maven pick, and how do you control it?
+- What do the dependency scopes compile, provided, runtime and test mean?
+- What is the difference between -DskipTests and -Dmaven.test.skip=true?
+academy:
+- J9
+- S6
+sightings:
+- company: undisclosed
+  role: Java backend (SDE II / Senior)
+  round: Technical interview
+  seen_on: 2026-11
+  confidence: claimed
+  source: Interview question relayed by Akhil, 2026-11-21 (company not recorded yet)

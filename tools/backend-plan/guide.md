@@ -3,7 +3,7 @@
 Restarted on **Mon 23 Nov 2026**. By **mid-January** you are interview-ready on what most loops ask first (Java,
 Spring Boot, SQL and JPA, testing, the system design kit and 8 DSA patterns) and start applying, because January to
 March is when the new hiring budgets open. By **Fri 12 Mar 2027** you have learned backend from scratch to architect
-(all 112 lessons on the Zero to Pro path) while the interviews are running.
+(all 114 lessons on the Zero to Pro path) while the interviews are running.
 
 Weekends belong to the **Masai AI-ML course**, so this plan lives on weekdays: about 5 hours a week of core, plus one
 design on Sunday.
@@ -16,7 +16,7 @@ design on Sunday.
 | **Tue** | Lesson 30 + DSA 30 | the lesson | Say it out loud |
 | **Wed** | 2 scratch lessons (60); weeks 1–3 also a Masai backlog session (45) | the first lesson | a DSA problem |
 | **Thu** | Lesson 30 + DSA 30 | the lesson | Say it out loud |
-| **Fri** | Lesson 30 + DSA 30 | the lesson | Say it out loud |
+| **Fri** | Lesson 30 + DSA 30 (weeks 3 and 5: 2 lessons, the DSA becomes stretch) | the lesson | Say it out loud |
 | **Sat** | **Masai:** live class and assignment | Masai | Catch-up slot (30), only if a weekday session is unfinished |
 | **Sun** | **Masai** + one design or mock (60) + weekly review (15) | the review | one more design |
 
@@ -72,5 +72,5 @@ applications start. Weeks 1–12 take one DSA pattern each; weeks 13–16 are in
 
 ## Done means
 
-All 112 Zero to Pro lessons, 48 DSA problems solved alone (more with stretch), 10 designs, 6 mocks logged with the
+All 114 Zero to Pro lessons, 46 DSA problems solved alone (more with stretch), 10 designs, 6 mocks logged with the
 last three at 7/10 or better, and the behavioural stories rehearsed before the applications start.

@@ -48,6 +48,7 @@ WEEKS = 16
 INTERVIEW = dt.date(2027, 3, 15)        # every topic covered; applications start in mid-January
 APPLY_WEEK = 8                          # Sun 17 Jan: the checkpoint that starts the applications
 MASAI_BACKLOG_WEEKS = 3                 # a weekday evening for the Masai backlog, until it is clear
+DOUBLE_FRIDAYS = {3, 5}                 # two lessons that Friday (114 lessons in 112 weekday slots); its DSA turns stretch
 
 # Weeks 1-12: one DSA pattern a week. Three problems are core (Tue, Thu, Fri), two are stretch (Mon, Wed).
 DSA = [
@@ -211,7 +212,11 @@ for k in range(WEEKS):
         dsa(day, pattern, extra, tier='stretch')
     for day, problem, question in zip((tue, thu, fri), core_dsa, SPOKEN[k]):
         lesson(day, floor=True)
-        dsa(day, pattern, problem)
+        if day == fri and week in DOUBLE_FRIDAYS:
+            lesson(day)
+            dsa(day, pattern, problem, tier='stretch')
+        else:
+            dsa(day, pattern, problem)
         spoken(day, question)
     if week <= MASAI_BACKLOG_WEEKS:
         add(wed, dict(minutes=45, title='Masai · backlog: one missed lecture or assignment', detail=MASAI_BACKLOG))
@@ -230,7 +235,7 @@ for k in range(WEEKS):
         add(sun, design(sun, SUNDAY_STRETCH[week]), tier='stretch')
 
 assert next(lessons, None) is None, 'every Academy lesson is scheduled'
-assert step == len(PATH) == 112, step
+assert step == len(PATH) == 114, step
 
 
 def step_of(s):

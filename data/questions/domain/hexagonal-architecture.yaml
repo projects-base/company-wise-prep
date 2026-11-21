@@ -1,0 +1,25 @@
+slug: hexagonal-architecture
+title: Hexagonal architecture (ports and adapters)
+type: DOMAIN
+difficulty: medium
+tags:
+- architecture
+- ddd
+- clean-architecture
+leetcode: null
+prompt: |
+  Explain hexagonal architecture. How would you structure a Spring Boot service that way, and when is it not worth it?
+follow_ups:
+- How is it different from a classic layered (controller, service, repository) architecture?
+- Where do JPA entities and Spring annotations belong?
+- How does it help testing?
+academy:
+- E7
+- E1
+sightings:
+- company: undisclosed
+  role: Java backend (SDE II / Senior)
+  round: Technical interview
+  seen_on: 2026-11
+  confidence: claimed
+  source: Interview question relayed by Akhil, 2026-11-21 (company not recorded yet)
