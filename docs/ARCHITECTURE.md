@@ -24,6 +24,7 @@ new target company re-ranks the plan without duplicating anything.
 | research | `ResearchJob`, `DraftQuestion`, `ReviewQueue` | All Claude output lands here first |
 | academy | `Track`, `Module` (+ prerequisite edges), `Lesson`, `Lab`, `Lifecycle`, `Gotcha`, `Era`, `DecisionCard`, `ChallengeCard`, `ScaleStage`, `Lab` (build/break/case/debate/drill), `CaseStudy`, `Incident` | Content is Markdown in the repo |
 | identity | `User` | Google sign-in + email allowlist |
+| notes | `LessonNote` (highlight / Playground snippet / summary), `QuizMistake` | Personal, so database only; keyed by module id |
 
 Carried over from DPT: progress is one JSON doc per user with a `revision` (stale write → 409);
 replace-imports `flush()` between delete and insert (Hibernate orders inserts before deletes).
