@@ -13,8 +13,13 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.companywiseprep.academy.AcademyModule;
 import com.companywiseprep.academy.AcademyModuleRepository;
@@ -30,11 +35,14 @@ public class MistakeService {
 	private final QuizMistakeRepository mistakes;
 	private final AcademyModuleRepository modules;
 	private final Clock clock;
+	private final TransactionTemplate tx;
 
-	public MistakeService(QuizMistakeRepository mistakes, AcademyModuleRepository modules, Clock clock) {
+	public MistakeService(QuizMistakeRepository mistakes, AcademyModuleRepository modules, Clock clock,
+			PlatformTransactionManager transactions) {
 		this.mistakes = mistakes;
 		this.modules = modules;
 		this.clock = clock;
+		this.tx = new TransactionTemplate(transactions);
 	}
 
 	public record Attempt(String moduleId, String question, String chosen, String correct, String why, String level,
@@ -53,9 +61,29 @@ public class MistakeService {
 		}
 	}
 
-	/** @return the mistake as it now stands, or empty when a right answer had nothing to fix */
-	@Transactional
-	public Optional<MistakeView> record(Attempt a) {
+	/**
+	 * Each attempt runs in its own transaction. Two first wrong answers for one quiz can race (a double click, two tabs):
+	 * the loser's insert hits the unique constraint, so it is retried once, and the retry finds the winner's row.
+	 *
+	 * @return the mistake as it now stands, or empty when a right answer had nothing to fix
+	 */
+	public Optional<MistakeView> record(Attempt attempt) {
+		Attempt a = clean(attempt);
+		try {
+			return tx.execute(status -> apply(a));
+		} catch (DataIntegrityViolationException raced) {
+			return tx.execute(status -> apply(a));
+		}
+	}
+
+	private static Attempt clean(Attempt a) {
+		String question = Text.trim(a.question());
+		if (question == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "question must not be blank");
+		return new Attempt(a.moduleId(), question, Text.clean(a.chosen()), Text.clean(a.correct()), Text.clean(a.why()),
+				a.level(), a.right());
+	}
+
+	private Optional<MistakeView> apply(Attempt a) {
 		AcademyModule m = modules.findById(a.moduleId()).orElseThrow(() -> new NotFoundException("No module " + a.moduleId()));
 		String key = key(a.question());
 		Optional<QuizMistake> existing = mistakes.findByModuleIdAndQuizKey(m.getId(), key);
@@ -76,7 +104,7 @@ public class MistakeService {
 			fresh.setFirstWrongAt(now);
 			return fresh;
 		});
-		q.setQuestion(a.question().strip());
+		q.setQuestion(a.question());
 		q.setChosen(a.chosen());
 		q.setCorrect(a.correct());
 		q.setWhy(a.why());
