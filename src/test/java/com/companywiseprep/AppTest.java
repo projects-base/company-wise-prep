@@ -135,7 +135,7 @@ class AppTest {
 
 	@Test
 	void theGeneralPlanFixesEveryDayWithSessionsAndAGuide() throws Exception {
-		clock.set(LocalDate.of(2026, 11, 2));
+		clock.set(LocalDate.of(2026, 11, 24));
 		mvc.perform(get("/api/campaigns/backend-2027-01/today"))
 				// Core: the Academy lesson (the floor) and the DSA problem; stretch: the out-loud question.
 				.andExpect(jsonPath("$.sessions", hasSize(3)))

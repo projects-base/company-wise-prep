@@ -31,7 +31,7 @@ function pageLabel(pathname: string): string | null {
   if (/^\/academy\/[^/]+/.test(pathname) || pathname.startsWith('/q/')) return null
   if (pathname.startsWith('/companies/')) return `Company page: ${decodeURIComponent(pathname.split('/')[2] ?? '')}`
   const labels: [string, string][] = [
-    ['/plan', 'The 13-week plan page'],
+    ['/plan', 'The plan page'],
     ['/academy', 'Academy overview (lesson paths)'],
     ['/progress', 'Progress page (readiness, weekly report, wins, stories)'],
     ['/bank', 'Question bank'],

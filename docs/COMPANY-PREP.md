@@ -189,7 +189,7 @@ sessions:                       # optional fixed sessions; on their date they re
 ```
 
 A campaign that fixes every day with `sessions` is a syllabus rather than a ranked queue; the
-general 13-week plan `backend-2027-01` is generated that way.
+general 16-week plan `backend-2027-01` is generated that way.
 
 The app's `Planner` turns this into the day-by-day plan using §4 (weekdays: DSA with every 4th
 slot a concept/behavioural item; weekends: LLD/HLD; the last `review_days` review-only).

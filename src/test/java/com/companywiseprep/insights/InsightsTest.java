@@ -42,8 +42,8 @@ import com.companywiseprep.review.ReviewAttemptRepository;
 @AutoConfigureMockMvc
 class InsightsTest {
 
-	/** Wednesday of week 1 of the backend plan (Mon 2 – Sun 8 Nov 2026). */
-	static final LocalDate DAY = LocalDate.of(2026, 11, 4);
+	/** Wednesday of week 1 of the backend plan (Mon 23 – Sun 29 Nov 2026). */
+	static final LocalDate DAY = LocalDate.of(2026, 11, 25);
 	static final Instant NOON = DAY.atTime(12, 0).toInstant(ZoneOffset.UTC);
 	static final String PLAN = "backend-2027-01";
 
@@ -120,12 +120,12 @@ class InsightsTest {
 		attempts.save(new ReviewAttempt("jvm-internals", NOON, "gemini", 7, "better"));
 		attempts.save(new ReviewAttempt("oop-four-pillars", NOON, "gemini", 3, "weak"));
 		mvc.perform(get("/api/insights/week").param("campaign", PLAN))
-				.andExpect(jsonPath("$.from", is("2026-11-02")))
-				.andExpect(jsonPath("$.to", is("2026-11-08")))
-				.andExpect(jsonPath("$.lessons.planned", is(9)))
+				.andExpect(jsonPath("$.from", is("2026-11-23")))
+				.andExpect(jsonPath("$.to", is("2026-11-29")))
+				.andExpect(jsonPath("$.lessons.planned", is(7)))
 				.andExpect(jsonPath("$.lessons.done", is(1)))
 				.andExpect(jsonPath("$.practice.done", is(1)))
-				.andExpect(jsonPath("$.practice.planned", greaterThan(4)))
+				.andExpect(jsonPath("$.practice.planned", is(4))) // core: 3 DSA problems and the Sunday design
 				.andExpect(jsonPath("$.answers.count", is(2)))
 				.andExpect(jsonPath("$.improved[0].slug", is("jvm-internals")))
 				.andExpect(jsonPath("$.improved[0].from", is(4.0)))
@@ -144,7 +144,7 @@ class InsightsTest {
 				.andExpect(jsonPath("$[0].kind", is("LESSON")))
 				.andExpect(jsonPath("$[0].link", is("/academy/J1")))
 				.andExpect(jsonPath("$[1].kind", is("ANSWER")))
-				.andExpect(jsonPath("$[1].date", is("2026-11-01")));
+				.andExpect(jsonPath("$[1].date", is("2026-11-22")));
 	}
 
 	@Test
