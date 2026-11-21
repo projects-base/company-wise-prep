@@ -60,6 +60,7 @@ KICKOFF = dt.date(2026, 11, 22)         # Sunday: a 20-minute kickoff
 WEEK1_MONDAY = dt.date(2026, 11, 23)
 APPLY_WEEK = 8                          # Sun 17 Jan: the checkpoint that starts the applications
 MASAI_BACKLOG_WEEKS = 3                 # a weekday evening for the Masai backlog, until it is clear
+LONG_WORDS = 2400                       # prose words above which a lesson is "long" (see lesson())
 MOCK_WEEKS = {9: 'MOCK_LLD', 10: 'MOCK_HLD', 13: 'MOCK_LLD', 14: 'MOCK_HLD'}  # finals take the last two Sundays
 
 # Weeks 1-12: one DSA pattern a week. Three problems are core (Tue, Thu, Fri), two are stretch (Mon, Wed).
@@ -95,6 +96,7 @@ DSA = [
      ['group-anagrams', 'cheapest-flights-within-k-stops']),
     ('Hard mixed, timed (re-solve)', ['implement-trie-ii-prefix-tree', 'meeting-rooms-iii', 'lfu-cache'],
      ['valid-parentheses', 'reverse-linked-list-ii']),
+    ('Hard mixed, timed (re-solve)', ['word-ladder', 'merge-k-sorted-lists', 'edit-distance'], ['two-sum', 'search-suggestions-system']),
 ]
 # Say it out loud (stretch on Tue, Thu, Fri), roughly following the topics the lessons have reached.
 SPOKEN = [
@@ -120,6 +122,7 @@ SPOKEN = [
     ['java-final-finally-finalize', 'how-to-synchronize-a-class', 'tcp-vs-udp'],
     ['java-streams-coding-drills', 'messaging-systems-fundamentals', 'sql-optimization-performance-scalability'],
     ['system-design-database-scalability-performance-techniques', 'diagnose-low-cache-hit-ratio', 'lock-free-stack-atomic-reference'],
+    ['cqrs', 'hexagonal-architecture', 'maven-build-lifecycle'],
 ]
 # Sunday core (60 min): one design in this order, or a scored mock (MOCK_WEEKS, then finals on the last two Sundays).
 DESIGNS = ['design-parking-lot', 'design-url-shortener', 'design-vending-machine', 'design-unique-id-generator',
@@ -192,10 +195,29 @@ def add(day, s, tier='core', floor=False):
     sessions.append({**row, **s})
 
 
-def lesson(day, floor=False):
-    """Schedules the first lesson still in the queue (a milestone at the head waits for a Monday or Wednesday)."""
+def prose_words(mid):
+    text = open(os.path.join(ROOT, 'data', 'academy', 'lessons', f'{mid}.md'), encoding='utf-8').read()
+    return len(re.findall(r"[A-Za-z0-9'’-]+", re.sub(r'^```.*?^```', '', text, flags=re.S | re.M)))
+
+
+# A long lesson fills a whole 30-minute slot on its own, so two of them never share a Monday or Wednesday.
+LONG = {m for m in PATH if prose_words(m) > LONG_WORDS}
+
+
+def lesson(day, floor=False, after=None):
+    """Schedules the first lesson still in the queue (a milestone at the head waits for a Monday or Wednesday).
+    As the second lesson of a day after a long one (`after`), it takes the next short lesson within a few places
+    instead (looking up to eight ahead), as long as that lesson does not depend on any lesson it jumps over."""
     global step
-    i = next(i for i, (kind, _) in enumerate(queue) if kind == 'L')
+    lessons = [i for i, (kind, _) in enumerate(queue) if kind == 'L']
+    i = lessons[0]
+    if after is not None and (after in LONG or queue[i][1] in LONG):
+        for j in lessons[1:9]:
+            cand = queue[j][1]
+            jumped = {m for k, m in queue[:j] if k == 'L'}   # every lesson the candidate would overtake
+            if cand not in LONG and not jumped & set(mods[cand]['prerequisites']):
+                i = j
+                break
     mid = queue.pop(i)[1]
     step += 1
     add(day, dict(minutes=30, title=f'Scratch · Step {step} of {len(PATH)} · {CODE[mid]}: {mods[mid]["title"]}',
@@ -258,9 +280,10 @@ while queue:
             if queue[0][0] == 'P':
                 build(day)
             else:
+                first = next(m for kind, m in queue if kind == 'L')
                 lesson(day, floor=True)
                 if lessons_left():
-                    lesson(day)               # a milestone that just became due waits for the next Mon/Wed
+                    lesson(day, after=first)  # a milestone that just became due waits for the next Mon/Wed
             dsa(day, pattern, problem, tier='stretch')
         else:
             # Tue, Thu, Fri: a lesson and a DSA problem (stretch: say it out loud); a milestone only once lessons run out.

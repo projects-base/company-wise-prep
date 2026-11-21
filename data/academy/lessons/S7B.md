@@ -209,70 +209,50 @@ gained and what you lost (hint: one central place to see all flows).
 
 ## Gotchas
 
-- **Confusing SOA with SOAP.** SOA is the idea (services with contracts); SOAP is one wire format
-  used to build it. You can do service orientation with JSON over HTTP.
-- **Business rules in the pipe.** Any rule in the integration layer has no clear owner and is hard
-  to test. Keep rules in the service that owns the data.
-- **A central team as a required hop.** If every cross-system change needs one team, that team sets
-  your delivery speed. Give teams ownership of their own integrations.
-- **Throwing away the good parts.** Contracts, versioned interfaces and messaging all came from this
-  era and are still right. The lesson is "dumb pipes", not "no contracts".
-- **Thinking a modern broker can't become an ESB.** Put routing rules, transformations and business
-  logic into Kafka stream jobs or an API gateway, and you have rebuilt the smart pipe.
+- **SOA is not SOAP.** SOA is services behind contracts; SOAP is one wire format. JSON over HTTP works too.
+- **Business rules in the pipe** have no owner and are hard to test; keep them in the service that owns the data.
+- **A central team as a required hop** sets everyone's delivery speed; let teams own their integrations.
+- **Keep the good parts:** contracts, versioned interfaces and messaging. The lesson is "dumb pipes", not "no contracts".
+- **Modern brokers can become an ESB:** business logic in Kafka stream jobs or an API gateway rebuilds the smart pipe.
 
 ## In interviews
 
-SOA itself is rarely asked by name now. It shows up as integration and communication questions:
+SOA is rarely asked by name now; it shows up as integration and communication questions.
 
 - [Integrate a central HR system with many local HR systems](#/q/design-central-hr-system-integration)
-  is exactly this era's problem: many systems, different formats, one source of truth.
-- [Microservices communication: gRPC vs REST vs events](#/q/microservices-communication-grpc-vs-rest-eda)
-  often opens with "why not just put a bus in the middle?"
-- [Design a Configuration Service](#/q/design-configuration-service): a central service many
-  systems depend on, where the bottleneck question comes up.
+- [Microservices communication: gRPC vs REST vs events](#/q/microservices-communication-grpc-vs-rest-eda): often opens with
+  "why not just put a bus in the middle?"
+- [Design a Configuration Service](#/q/design-configuration-service)
 
-Typical follow-ups:
+Follow-ups:
 
-- *"What's the difference between an ESB and Kafka?"* Strong answer: Kafka is a log that stores and
-  delivers events; it does not (by itself) transform or apply business rules. The difference is
-  where the logic lives. You can still misuse either.
-- *"How do you avoid point-to-point spaghetti without a central bus?"* Strong answer: published
-  contracts, events for one-to-many notifications, an API gateway for edge concerns only, and clear
-  ownership of each integration.
+- *"ESB vs Kafka?"* Kafka stores and delivers events; by itself it does not transform or apply business rules. The
+  difference is where the logic lives, and either can be misused.
+- *"Avoid spaghetti without a central bus?"* Published contracts, events for one-to-many notifications, a gateway for edge
+  concerns only, and clear ownership of each integration.
 
 ## Explain it in 2 minutes
 
 **Prompt:** "What was SOA, why did ESBs fall out of favour, and what did microservices keep?"
 
-A good answer hits:
-
-1. The pain: point-to-point integration between many enterprise systems.
-2. SOA: business functions as services with contracts; usually SOAP/WSDL in practice.
-3. ESB: one central bus for routing, transformation and protocol bridging.
-4. The new pain: business logic crept into the bus; a central team became a bottleneck and a single
-   point of failure.
-5. The reaction: "smart endpoints, dumb pipes" (Lewis and Fowler, 2014).
-6. What survived: contracts, reuse through APIs, messaging.
+1. Pain: point-to-point integration between many systems.
+2. SOA: services with contracts, usually SOAP/WSDL; the ESB centralised routing, transformation and bridging.
+3. Business logic crept into the bus; its team became a bottleneck and a single point of failure.
+4. Reaction: "smart endpoints, dumb pipes" (Lewis and Fowler, 2014).
+5. Survived: contracts, reuse through APIs, messaging.
 
 ## Check yourself
 
 1. How many point-to-point links can 8 systems need, and how many connections with a bus?
-2. Name three things an ESB typically did.
-3. Why is putting a "gold customer" rule in the ESB a problem?
-4. Is SOAP required for SOA?
-5. Give one example of turning a modern tool into a "smart pipe".
+2. Why is a "gold customer" rule in the ESB a problem?
+3. Give one example of turning a modern tool into a "smart pipe".
 
 ### Answers
 
-1. Up to 8·7/2 = 28 links; with a bus, 8 connections (one each).
-2. Any three of: routing, transformation, protocol bridging, orchestration.
-3. The rule belongs to the team that owns customers; in the bus it has no clear owner, is hard to
-   test, and every change waits on the integration team.
-4. No. SOAP is one implementation; SOA is the idea of services behind contracts.
-5. For example, business rules in an API gateway's routing config, or order logic in a stream job
-   that sits between services instead of inside one.
+1. Up to 8·7/2 = 28 links; with a bus, 8.
+2. It belongs to the team that owns customers; in the bus it has no owner, is hard to test, and changes wait on one team.
+3. Business rules in an API gateway's routing config, or order logic in a stream job between services.
 
 ## Next
 
-BE-STORY-10, Microservices: keep the contracts, drop the central bus, and give each team its own service.
-That solves the bottleneck, then hands you the network as a new problem.
+BE-STORY-10, Microservices: keep the contracts, drop the bus, give each team its own service, and inherit the network as a problem.
