@@ -329,4 +329,95 @@ class NotesTest {
 		mvc.perform(get("/api/notes/export").param("scope", "week").param("id", "2")).andExpect(status().isBadRequest());
 		mvc.perform(get("/api/notes/export").param("scope", "track").param("id", "NOPE")).andExpect(status().isNotFound());
 	}
+
+	@Test
+	void aWeekOutsideTheCapIsRejected() throws Exception {
+		mvc.perform(get("/api/notes/export").param("scope", "week").param("id", "521").param("campaign", PLAN))
+				.andExpect(status().isBadRequest());
+		mvc.perform(get("/api/notes/export").param("scope", "week").param("id", "0").param("campaign", PLAN))
+				.andExpect(status().isBadRequest());
+		mvc.perform(get("/api/notes/export").param("scope", "week").param("id", "520").param("campaign", PLAN))
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	void exportFilenamesAreSlugSafe() {
+		assertThat(NotebookService.filename("Weird Code/../x ")).isEqualTo("cheatsheet-weird-code-x.md");
+		assertThat(NotebookService.filename("--JAVA_FUND-1--")).isEqualTo("cheatsheet-java-fund-1.md");
+		assertThat(NotebookService.filename("ü/")).isEqualTo("cheatsheet-notes.md");
+	}
+
+	// ── Review fixes ──────────────────────────────────────────────────────────────────────────
+
+	@Test
+	void twoSummaryRowsForOneLessonCollapseToOneOnTheNextSave() throws Exception {
+		for (String idea : new String[] {"first", "second"}) {
+			LessonNote row = new LessonNote();
+			row.setModuleId("J1");
+			row.setKind(NoteKind.SUMMARY);
+			row.setFields("{\"idea\":\"" + idea + "\"}");
+			row.setCreatedAt(NOON);
+			row.setUpdatedAt(NOON);
+			notes.save(row);
+		}
+		// The oldest row is the one read.
+		mvc.perform(get("/api/notes/lessons/J1")).andExpect(jsonPath("$.summary.idea", is("first")));
+
+		send(put("/api/notes/lessons/J1/summary"), "{\"idea\":\"merged\"}").andExpect(status().isOk());
+		assertThat(notes.count()).isEqualTo(1);
+		mvc.perform(get("/api/notes/lessons/J1")).andExpect(jsonPath("$.summary.idea", is("merged")));
+	}
+
+	@Test
+	void anAllBlankSummaryDeletesTheRow() throws Exception {
+		send(put("/api/notes/lessons/J1/summary"), "{\"idea\":\"x\"}").andExpect(status().isOk());
+		send(put("/api/notes/lessons/J1/summary"), "{\"idea\":\"  \",\"trap\":\"\"}").andExpect(status().isOk());
+		assertThat(notes.count()).isZero();
+		mvc.perform(get("/api/notes/lessons/J1")).andExpect(jsonPath("$.summary", nullValue()));
+	}
+
+	@Test
+	void aSummaryIsNotEditedThroughTheNoteEndpoint() throws Exception {
+		send(put("/api/notes/lessons/J1/summary"), "{\"idea\":\"x\"}");
+		long id = notes.findAll().get(0).getId();
+		send(put("/api/notes/" + id), "{\"note\":\"y\"}").andExpect(status().isBadRequest());
+	}
+
+	@Test
+	void editingOrDeletingAMissingNoteIs404() throws Exception {
+		send(put("/api/notes/999999"), "{\"note\":\"y\"}").andExpect(status().isNotFound());
+		mvc.perform(delete("/api/notes/999999")).andExpect(status().isNotFound());
+	}
+
+	@Test
+	void nulCharactersAreStrippedBeforeSaving() throws Exception {
+		send(post("/api/notes/highlights"), "{\"moduleId\":\"J1\",\"section\":\"S\\u0000\",\"quote\":\"by\\u0000tecode\","
+				+ "\"note\":\"n\\u0000\",\"prefix\":\"p\\u0000\"}").andExpect(status().isOk());
+		send(post("/api/notes/snippets"), "{\"code\":\"a\\u0000b\",\"output\":\"o\\u0000\"}").andExpect(status().isOk());
+		send(put("/api/notes/lessons/J1/summary"), "{\"idea\":\"i\\u0000\"}").andExpect(status().isOk());
+		quiz("J1", "Q\\u0000?", "c\\u0000", false).andExpect(status().isOk());
+
+		assertThat(notes.findAll()).allSatisfy(n -> assertThat(String.join("|", String.valueOf(n.getSection()),
+				String.valueOf(n.getQuote()), String.valueOf(n.getNote()), String.valueOf(n.getCode()),
+				String.valueOf(n.getOutput()), String.valueOf(n.getFields()), String.valueOf(n.getPrefix())))
+				.doesNotContain("\u0000"));
+		assertThat(mistakes.findAll().get(0).getQuestion()).isEqualTo("Q?");
+		assertThat(mistakes.findAll().get(0).getChosen()).isEqualTo("c");
+	}
+
+	@Test
+	void aHighlightKeepsItsPrefixContext() throws Exception {
+		send(post("/api/notes/highlights"), "{\"moduleId\":\"J1\",\"quote\":\"bytecode\",\"prefix\":\"The JVM runs\"}")
+				.andExpect(jsonPath("$.prefix", is("The JVM runs")));
+		send(post("/api/notes/highlights"), "{\"moduleId\":\"J1\",\"quote\":\"ok\",\"prefix\":\"" + "p".repeat(201) + "\"}")
+				.andExpect(status().isBadRequest());
+	}
+
+	@Test
+	void aSummaryThatSerialisesTooLongIsRejectedNotA500() throws Exception {
+		// Control characters escape to six characters each in JSON: 4 × 2,000 of them is far past the column.
+		String escaped = "\\u0001".repeat(2_000);
+		send(put("/api/notes/lessons/J1/summary"), "{\"idea\":\"%1$s\",\"inside\":\"%1$s\",\"trap\":\"%1$s\",\"line\":\"%1$s\"}"
+				.formatted(escaped)).andExpect(status().isBadRequest());
+	}
 }

@@ -57,16 +57,18 @@ public class NotesController {
 		return notebook.lesson(moduleId);
 	}
 
+	/** @param prefix a little lesson text just before the quote, so the right occurrence is marked when it repeats */
 	public record HighlightRequest(
 			@NotBlank @Size(max = 64) String moduleId,
 			@Size(max = 300) String section,
 			@NotBlank @Size(max = 1_000) String quote,
+			@Size(max = 200) String prefix,
 			@Size(max = 4_000) String note) {
 	}
 
 	@PostMapping("/highlights")
 	public NoteView highlight(@Valid @RequestBody HighlightRequest req) {
-		return notes.highlight(req.moduleId(), req.section(), req.quote(), req.note());
+		return notes.highlight(req.moduleId(), req.section(), req.quote(), req.prefix(), req.note());
 	}
 
 	/** @param moduleId the lesson the Playground was opened from; null saves to general notes */

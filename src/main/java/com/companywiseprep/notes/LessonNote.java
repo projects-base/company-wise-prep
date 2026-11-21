@@ -46,6 +46,10 @@ public class LessonNote {
 	@Column(length = 1_000)
 	private String quote;
 
+	/** A few characters of lesson text just before the quote (whitespace removed), to mark the right occurrence. */
+	@Column(length = 200)
+	private String prefix;
+
 	@Column(length = 4_000)
 	private String note;
 
@@ -56,7 +60,7 @@ public class LessonNote {
 	private String output;
 
 	/** SUMMARY only: the four fields as JSON, so later fields need no schema change. */
-	@Column(length = 10_000)
+	@Column(length = 20_000)
 	private String fields;
 
 	private Instant createdAt;

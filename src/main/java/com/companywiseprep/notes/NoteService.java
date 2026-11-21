@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NoteService {
 
 	private static final ObjectMapper JSON = new ObjectMapper();
+	/** The summary's JSON column; four 2,000-character fields can escape past it (control characters become \\uXXXX). */
+	static final int FIELDS_MAX = 20_000;
 
 	private final LessonNoteRepository notes;
 	private final AcademyModuleRepository modules;
@@ -34,12 +37,13 @@ public class NoteService {
 		this.clock = clock;
 	}
 
-	public record NoteView(long id, String moduleId, NoteKind kind, String section, String quote, String note, String code,
-			String output, Instant createdAt, Instant updatedAt) {
+	/** @param prefix lesson text just before a highlight's quote, whitespace removed, to find the right occurrence */
+	public record NoteView(long id, String moduleId, NoteKind kind, String section, String quote, String prefix, String note,
+			String code, String output, Instant createdAt, Instant updatedAt) {
 
 		static NoteView of(LessonNote n) {
-			return new NoteView(n.getId(), n.getModuleId(), n.getKind(), n.getSection(), n.getQuote(), n.getNote(), n.getCode(),
-					n.getOutput(), n.getCreatedAt(), n.getUpdatedAt());
+			return new NoteView(n.getId(), n.getModuleId(), n.getKind(), n.getSection(), n.getQuote(), n.getPrefix(), n.getNote(),
+					n.getCode(), n.getOutput(), n.getCreatedAt(), n.getUpdatedAt());
 		}
 	}
 
@@ -48,21 +52,20 @@ public class NoteService {
 
 		static final List<String> FIELDS = List.of("idea", "inside", "trap", "line");
 
-		boolean blank() {
-			return values().stream().allMatch(v -> v == null || v.isBlank());
-		}
-
 		List<String> values() {
 			return Arrays.asList(idea, inside, trap, line);
 		}
 	}
 
 	@Transactional
-	public NoteView highlight(String moduleId, String section, String quote, String note) {
+	public NoteView highlight(String moduleId, String section, String quote, String prefix, String note) {
+		String q = Text.trim(quote);
+		if (q == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "quote must not be blank");
 		LessonNote n = create(requireModule(moduleId), NoteKind.HIGHLIGHT);
-		n.setSection(trim(section));
-		n.setQuote(quote.strip());
-		n.setNote(trim(note));
+		n.setSection(Text.trim(section));
+		n.setQuote(q);
+		n.setPrefix(Text.trim(prefix));
+		n.setNote(Text.trim(note));
 		return NoteView.of(notes.save(n));
 	}
 
@@ -70,9 +73,12 @@ public class NoteService {
 	@Transactional
 	public NoteView snippet(String moduleId, String code, String output, String note) {
 		LessonNote n = create(moduleId == null || moduleId.isBlank() ? null : requireModule(moduleId), NoteKind.SNIPPET);
-		n.setCode(code);
-		n.setOutput(output == null || output.isEmpty() ? null : output);
-		n.setNote(trim(note));
+		String c = Text.clean(code);
+		if (c == null || c.isBlank()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "code must not be blank");
+		String out = Text.clean(output);
+		n.setCode(c);
+		n.setOutput(out == null || out.isEmpty() ? null : out);
+		n.setNote(Text.trim(note));
 		return NoteView.of(notes.save(n));
 	}
 
@@ -83,7 +89,7 @@ public class NoteService {
 		if (n.getKind() == NoteKind.SUMMARY) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Edit a summary by its lesson");
 		}
-		n.setNote(trim(note));
+		n.setNote(Text.trim(note));
 		n.setUpdatedAt(Instant.now(clock));
 		return NoteView.of(notes.save(n));
 	}
@@ -93,20 +99,27 @@ public class NoteService {
 		notes.delete(find(id));
 	}
 
-	/** Autosave: one summary row per lesson, replaced on every save; all four fields blank removes it. */
+	/**
+	 * Autosave: one summary row per lesson, replaced on every save; all four fields blank removes it. The oldest row is
+	 * the summary (the one {@link NotebookService} reads); any extra row, e.g. from two first saves racing, is removed here.
+	 */
 	@Transactional
 	public Summary saveSummary(String moduleId, Summary s) {
 		String id = requireModule(moduleId);
-		LessonNote row = notes.findFirstByModuleIdAndKind(id, NoteKind.SUMMARY).orElse(null);
-		if (s.blank()) {
+		List<LessonNote> rows = notes.findByModuleIdAndKindOrderByIdAsc(id, NoteKind.SUMMARY);
+		if (rows.size() > 1) notes.deleteAll(rows.subList(1, rows.size()));
+		LessonNote row = rows.isEmpty() ? null : rows.get(0);
+		Map<String, String> fields = new LinkedHashMap<>();
+		List<String> values = s.values();
+		for (int i = 0; i < Summary.FIELDS.size(); i++) fields.put(Summary.FIELDS.get(i), Text.trim(values.get(i)));
+		if (fields.values().stream().allMatch(Objects::isNull)) {
 			if (row != null) notes.delete(row);
 			return new Summary(null, null, null, null, null);
 		}
+		String json = write(fields);
+		if (json.length() > FIELDS_MAX) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The summary is too long");
 		if (row == null) row = create(id, NoteKind.SUMMARY);
-		Map<String, String> fields = new LinkedHashMap<>();
-		List<String> values = s.values();
-		for (int i = 0; i < Summary.FIELDS.size(); i++) fields.put(Summary.FIELDS.get(i), trim(values.get(i)));
-		row.setFields(write(fields));
+		row.setFields(json);
 		row.setUpdatedAt(Instant.now(clock));
 		return summary(notes.save(row));
 	}
@@ -132,10 +145,6 @@ public class NoteService {
 	private String requireModule(String moduleId) {
 		if (moduleId == null || !modules.existsById(moduleId)) throw new NotFoundException("No module " + moduleId);
 		return moduleId;
-	}
-
-	private static String trim(String s) {
-		return s == null || s.isBlank() ? null : s.strip();
 	}
 
 	private static String write(Map<String, String> fields) {

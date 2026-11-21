@@ -32,6 +32,8 @@ import com.companywiseprep.web.NotFoundException;
 public class NotebookService {
 
 	static final int MAX_HITS = 100;
+	/** Ten years of weekly plan; anything beyond is a typo or a probe. */
+	static final int MAX_WEEK = 520;
 	private static final DateTimeFormatter DAY_MONTH = DateTimeFormatter.ofPattern("d MMM", Locale.ENGLISH);
 
 	private final LessonNoteRepository notes;
@@ -101,8 +103,9 @@ public class NotebookService {
 	private static LessonNotes group(LessonCatalog.Snapshot s, String id, List<LessonNote> rows, List<MistakeView> mistakes) {
 		AcademyModule m = s.module(id).orElseThrow();
 		LessonCatalog.PlanWeek w = s.weekOf(id).orElse(null);
-		Summary summary = rows.stream().filter(n -> n.getKind() == NoteKind.SUMMARY).findFirst().map(NoteService::summary)
-				.orElse(null);
+		// The oldest row is the summary, the same one NoteService.saveSummary updates.
+		Summary summary = rows.stream().filter(n -> n.getKind() == NoteKind.SUMMARY).min(Comparator.comparing(LessonNote::getId))
+				.map(NoteService::summary).orElse(null);
 		return new LessonNotes(id, m.getCode(), m.getTitle(), m.getTrackId(), s.trackTitle(m), w == null ? null : w.number(),
 				w == null ? null : w.from(), w == null ? null : w.to(), summary, of(rows, NoteKind.HIGHLIGHT),
 				of(rows, NoteKind.SNIPPET), mistakes);
@@ -208,16 +211,22 @@ public class NotebookService {
 			boolean withGeneral) {
 		Overview o = overview(s, inScope);
 		String md = CheatSheet.render(title, today, o.lessons(), withGeneral ? o.general() : List.of());
-		return new Export("cheatsheet-" + slug.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "-") + ".md", md);
+		return new Export(filename(slug), md);
+	}
+
+	/** cheatsheet-&lt;slug&gt;.md with only a-z, 0-9 and single inner dashes, so any track or lesson code is a safe name. */
+	static String filename(String slug) {
+		String safe = slug.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "-").replaceAll("^-+|-+$", "");
+		return "cheatsheet-" + (safe.isEmpty() ? "notes" : safe) + ".md";
 	}
 
 	private static int weekNumber(String id) {
 		try {
 			int n = Integer.parseInt(id == null ? "" : id.strip());
-			if (n >= 1) return n;
+			if (n >= 1 && n <= MAX_WEEK) return n;
 		} catch (NumberFormatException e) {
 			// falls through to the 400 below
 		}
-		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id must be a plan week number (1, 2, …)");
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id must be a plan week number from 1 to " + MAX_WEEK);
 	}
 }

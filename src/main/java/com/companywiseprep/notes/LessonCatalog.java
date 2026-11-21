@@ -87,12 +87,20 @@ class LessonCatalog {
 		/** The plan week a lesson is first scheduled in, if it is in the plan at all. */
 		Optional<PlanWeek> weekOf(String moduleId) {
 			LocalDate d = firstPlanned.get(moduleId);
-			return d == null || planStart == null ? Optional.empty() : Optional.of(week(numberOf(d)));
+			return inPlan(d) ? Optional.of(week(numberOf(d))) : Optional.empty();
 		}
 
 		/** Lessons scheduled in a week, in plan order. */
 		List<String> lessonsIn(int week) {
-			return firstPlanned.keySet().stream().filter(id -> numberOf(firstPlanned.get(id)) == week).sorted(order()).toList();
+			return firstPlanned.keySet().stream()
+					.filter(id -> inPlan(firstPlanned.get(id)) && numberOf(firstPlanned.get(id)) == week)
+					.sorted(order())
+					.toList();
+		}
+
+		/** A session dated before the plan starts belongs to no week. */
+		private boolean inPlan(LocalDate d) {
+			return d != null && planStart != null && !d.isBefore(planStart);
 		}
 
 		PlanWeek week(int n) {
