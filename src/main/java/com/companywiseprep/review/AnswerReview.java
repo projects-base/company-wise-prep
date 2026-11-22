@@ -25,7 +25,7 @@ public record AnswerReview(
 	public record Layer(String key, String name, Double score, String comment) {
 	}
 
-	AnswerReview withHistory(List<Double> history) {
+	public AnswerReview withHistory(List<Double> history) {
 		return new AnswerReview(mode, score, verdict, layers, covered, missed, mistakes, improvedAnswer, followUp, note,
 				history, second);
 	}
