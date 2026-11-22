@@ -24,7 +24,24 @@ new target company re-ranks the plan without duplicating anything.
 | research | `ResearchJob`, `DraftQuestion`, `ReviewQueue` | All Claude output lands here first |
 | academy | `Track`, `Module` (+ prerequisite edges), `Lesson`, `Lab`, `Lifecycle`, `Gotcha`, `Era`, `DecisionCard`, `ChallengeCard`, `ScaleStage`, `Lab` (build/break/case/debate/drill), `CaseStudy`, `Incident` | Content is Markdown in the repo |
 | identity | `User` | Google sign-in + email allowlist |
-| notes | `LessonNote` (highlight / Playground snippet / summary), `QuizMistake` | Personal, so database only; keyed by module id |
+| notes | `LessonNote` (highlight / Playground snippet / summary), `QuizMistake`, `ReviewCard` + `ReviewLog` (flashcards, SM-2 style), `ExplanationAttempt` | Personal, so database only; keyed by module id |
+
+**Notes, Phase 2** (`docs/superpowers/specs/2026-11-22-lesson-notes-phase2-design.md`):
+- **Flashcards.** One `ReviewCard` per source (`sourceKind` + `sourceId`, unique): a highlight or a Playground snippet by
+  hand, every quiz mistake and every saved explanation automatically. The source id is not a foreign key, so deleting a
+  highlight keeps its card; a fixed mistake keeps its card too. Card writes are race-safe the `MistakeService` way
+  (unique constraint, one retry); grading is guarded by "must be due" plus an `@Version` column.
+- **Spaced repetition.** `Scheduler` is a pure function (state, grade, time from the injected `Clock`): new cards take
+  10 min / 1 / 4 / 9 days, later reviews multiply by 1.2 / ease / ease × 1.3, ease starts at 2.5 with a 1.3 floor,
+  intervals cap at 180 days. `ReviewLog` keeps one row per grade (streak, stats, and history for a later FSRS).
+- **Explain it.** `ReviewEngine` (in `review`) holds the reviewer prompt, the Claude / Gemini / both / offline choice
+  and the reply parsing; question reviews (`AnswerReviewService`) and lesson explanations (`ExplanationService`) both
+  call it. The lesson reference is its Markdown without quiz / anim / mermaid blocks, capped at 12,000 characters. No
+  transaction is held while the reviewer works.
+- **Concepts.** `[[Concept]]` links are parsed from note text on request (`ConceptIndex`), not stored. Gaps are terms
+  from the Reference glossary (lesson R1) taught in lessons marked done (`LessonProgress`) that no note links.
+- API: `/api/review/*` (cards, queue, grade, stats), `/api/notes/lessons/{id}/explanations`,
+  `/api/notes/explanations/{id}/save`, `/api/concepts` and `/api/concepts/detail?name=`.
 
 Carried over from DPT: progress is one JSON doc per user with a `revision` (stale write → 409);
 replace-imports `flush()` between delete and insert (Hibernate orders inserts before deletes).

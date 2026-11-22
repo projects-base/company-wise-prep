@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.companywiseprep.academy.AcademyModule;
 import com.companywiseprep.academy.AcademyTrack;
+import com.companywiseprep.notes.ExplanationService.ExplanationView;
 import com.companywiseprep.notes.MistakeService.MistakeView;
 import com.companywiseprep.notes.NoteService.NoteView;
 import com.companywiseprep.notes.NoteService.Summary;
@@ -37,31 +38,36 @@ public class NotebookService {
 	private static final DateTimeFormatter DAY_MONTH = DateTimeFormatter.ofPattern("d MMM", Locale.ENGLISH);
 
 	private final LessonNoteRepository notes;
+	private final ExplanationAttemptRepository explanations;
 	private final QuizMistakeRepository mistakes;
 	private final MistakeService mistakeViews;
 	private final LessonCatalog catalog;
 	private final Clock clock;
 
-	public NotebookService(LessonNoteRepository notes, QuizMistakeRepository mistakes, MistakeService mistakeViews,
-			LessonCatalog catalog, Clock clock) {
+	public NotebookService(LessonNoteRepository notes, ExplanationAttemptRepository explanations, QuizMistakeRepository mistakes,
+			MistakeService mistakeViews, LessonCatalog catalog, Clock clock) {
 		this.notes = notes;
+		this.explanations = explanations;
 		this.mistakes = mistakes;
 		this.mistakeViews = mistakeViews;
 		this.catalog = catalog;
 		this.clock = clock;
 	}
 
-	/** Everything written for one lesson. {@code week} is the plan week it is first scheduled in, when known. */
+	/**
+	 * Everything written for one lesson. {@code week} is the plan week it is first scheduled in, when known;
+	 * {@code explanations} are the improved explanations saved to notes.
+	 */
 	public record LessonNotes(String moduleId, String code, String title, String trackId, String trackTitle, Integer week,
 			LocalDate weekFrom, LocalDate weekTo, Summary summary, List<NoteView> highlights, List<NoteView> snippets,
-			List<MistakeView> mistakes) {
+			List<MistakeView> mistakes, List<ExplanationView> explanations) {
 	}
 
 	/** @param general Playground snippets saved outside any lesson */
 	public record Overview(List<LessonNotes> lessons, List<NoteView> general) {
 	}
 
-	/** kind is HIGHLIGHT, SNIPPET, SUMMARY or MISTAKE. */
+	/** kind is HIGHLIGHT, SNIPPET, SUMMARY, EXPLANATION or MISTAKE. */
 	public record Hit(String kind, long id, String moduleId, String moduleCode, String moduleTitle, String text, String link) {
 	}
 
@@ -76,7 +82,8 @@ public class NotebookService {
 		LessonCatalog.Snapshot s = catalog.load(null);
 		if (s.module(moduleId).isEmpty()) throw new NotFoundException("No module " + moduleId);
 		return group(s, moduleId, notes.findByModuleIdOrderByCreatedAtAsc(moduleId),
-				mistakeViews.views(mistakes.findAll().stream().filter(m -> moduleId.equals(m.getModuleId())).toList()));
+				mistakeViews.views(mistakes.findAll().stream().filter(m -> moduleId.equals(m.getModuleId())).toList()),
+				saved().stream().filter(e -> moduleId.equals(e.moduleId())).toList());
 	}
 
 	@Transactional(readOnly = true)
@@ -90,17 +97,22 @@ public class NotebookService {
 				.collect(Collectors.groupingBy(LessonNote::getModuleId));
 		Map<String, List<MistakeView>> mistakesByLesson = mistakeViews.views(mistakes.findAll()).stream()
 				.collect(Collectors.groupingBy(MistakeView::moduleId));
-		List<LessonNotes> lessons = Stream.concat(byLesson.keySet().stream(), mistakesByLesson.keySet().stream()).distinct()
+		Map<String, List<ExplanationView>> explanationsByLesson = saved().stream()
+				.collect(Collectors.groupingBy(ExplanationView::moduleId));
+		List<LessonNotes> lessons = Stream.of(byLesson.keySet(), mistakesByLesson.keySet(), explanationsByLesson.keySet())
+				.flatMap(Set::stream).distinct()
 				.filter(id -> s.module(id).isPresent())
 				.filter(inScope)
 				.sorted(s.order())
-				.map(id -> group(s, id, byLesson.getOrDefault(id, List.of()), mistakesByLesson.getOrDefault(id, List.of())))
+				.map(id -> group(s, id, byLesson.getOrDefault(id, List.of()), mistakesByLesson.getOrDefault(id, List.of()),
+						explanationsByLesson.getOrDefault(id, List.of())))
 				.toList();
 		List<NoteView> general = all.stream().filter(n -> n.getModuleId() == null).map(NoteView::of).toList();
 		return new Overview(lessons, general);
 	}
 
-	private static LessonNotes group(LessonCatalog.Snapshot s, String id, List<LessonNote> rows, List<MistakeView> mistakes) {
+	private static LessonNotes group(LessonCatalog.Snapshot s, String id, List<LessonNote> rows, List<MistakeView> mistakes,
+			List<ExplanationView> explained) {
 		AcademyModule m = s.module(id).orElseThrow();
 		LessonCatalog.PlanWeek w = s.weekOf(id).orElse(null);
 		// The oldest row is the summary, the same one NoteService.saveSummary updates.
@@ -108,7 +120,12 @@ public class NotebookService {
 				.map(NoteService::summary).orElse(null);
 		return new LessonNotes(id, m.getCode(), m.getTitle(), m.getTrackId(), s.trackTitle(m), w == null ? null : w.number(),
 				w == null ? null : w.from(), w == null ? null : w.to(), summary, of(rows, NoteKind.HIGHLIGHT),
-				of(rows, NoteKind.SNIPPET), mistakes);
+				of(rows, NoteKind.SNIPPET), mistakes, explained);
+	}
+
+	/** The saved explanations, oldest first. */
+	private List<ExplanationView> saved() {
+		return explanations.findBySavedAtNotNullOrderByCreatedAtAsc().stream().map(ExplanationView::of).toList();
 	}
 
 	private static List<NoteView> of(List<LessonNote> rows, NoteKind kind) {
@@ -135,13 +152,16 @@ public class NotebookService {
 			};
 			if (text != null) hits.add(hit(s, n.getKind().name(), n.getId(), n.getModuleId(), text));
 		}
+		for (ExplanationView e : saved().reversed()) {
+			if (matches(q, e.improved())) hits.add(hit(s, "EXPLANATION", e.id(), e.moduleId(), e.improved()));
+		}
 		for (MistakeView m : mistakeViews.views(mistakes.findAll())) {
 			if (matches(q, m.question(), m.chosen(), m.correct(), m.why())) {
 				hits.add(hit(s, "MISTAKE", m.id(), m.moduleId(), m.question()));
 			}
 		}
 		Map<String, Integer> counts = new LinkedHashMap<>();
-		Stream.of("HIGHLIGHT", "SUMMARY", "SNIPPET", "MISTAKE").forEach(k -> counts.put(k, 0));
+		Stream.of("HIGHLIGHT", "SUMMARY", "SNIPPET", "EXPLANATION", "MISTAKE").forEach(k -> counts.put(k, 0));
 		hits.forEach(h -> counts.merge(h.kind(), 1, Integer::sum));
 		return new SearchResult(hits.stream().limit(MAX_HITS).toList(), counts);
 	}

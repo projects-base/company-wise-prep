@@ -33,7 +33,7 @@ class MistakeRaceTest {
 	@Test
 	void aConcurrentFirstWrongAnswerIsMergedIntoTheExistingMistake() {
 		Attempt wrong = new Attempt("J1", "Which tool runs bytecode?", "javac", "java", "The launcher starts the JVM.", null,
-				false);
+				false, null);
 		service.record(wrong);
 
 		// The next lookup misses the row (as if the other request had not committed yet); later lookups see it.

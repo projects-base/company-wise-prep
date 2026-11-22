@@ -35,7 +35,8 @@ class ConceptIndexTest {
 
 	@Test
 	void oneItemCountsOnceForAConceptEvenWhenItRepeatsIt() {
-		ConceptIndex idx = ConceptIndex.of(List.of(item(1, "[[HashMap]] then [[hashmap]]", "[[ HashMap ]]"), item(2, "[[HashMap]]")));
+		ConceptIndex idx = ConceptIndex.of(List.of(item(1, "[[HashMap]] then [[hashmap]]", "[[ HashMap ]]"),
+				item(2, "[[HashMap]]")));
 		assertThat(idx.concepts()).containsExactly(new Concept("hashmap", "HashMap", 2));
 	}
 

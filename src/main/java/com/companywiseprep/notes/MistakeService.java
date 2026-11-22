@@ -27,26 +27,30 @@ import com.companywiseprep.web.NotFoundException;
 
 /**
  * The mistakes notebook, filled automatically from ```quiz answers on lesson pages. A wrong answer opens (or re-opens)
- * the quiz's mistake; a right answer closes it as fixed; a right answer with nothing open stores nothing.
+ * the quiz's mistake; a right answer closes it as fixed; a right answer with nothing open stores nothing. The first wrong
+ * answer also makes the mistake's review card, which stays when the mistake is fixed (recall still counts).
  */
 @Service
 public class MistakeService {
 
 	private final QuizMistakeRepository mistakes;
 	private final AcademyModuleRepository modules;
+	private final CardService cards;
 	private final Clock clock;
 	private final TransactionTemplate tx;
 
-	public MistakeService(QuizMistakeRepository mistakes, AcademyModuleRepository modules, Clock clock,
+	public MistakeService(QuizMistakeRepository mistakes, AcademyModuleRepository modules, CardService cards, Clock clock,
 			PlatformTransactionManager transactions) {
 		this.mistakes = mistakes;
 		this.modules = modules;
+		this.cards = cards;
 		this.clock = clock;
 		this.tx = new TransactionTemplate(transactions);
 	}
 
+	/** @param code the quiz's code lines joined, or null; it goes on the review card's front, not into the notebook */
 	public record Attempt(String moduleId, String question, String chosen, String correct, String why, String level,
-			boolean right) {
+			boolean right, String code) {
 	}
 
 	public record MistakeView(long id, String moduleId, String moduleCode, String moduleTitle, String trackId, String question,
@@ -63,7 +67,8 @@ public class MistakeService {
 
 	/**
 	 * Each attempt runs in its own transaction. Two first wrong answers for one quiz can race (a double click, two tabs):
-	 * the loser's insert hits the unique constraint, so it is retried once, and the retry finds the winner's row.
+	 * the loser's insert (of the mistake or its card) hits a unique constraint, so it is retried once, and the retry finds
+	 * the winner's rows.
 	 *
 	 * @return the mistake as it now stands, or empty when a right answer had nothing to fix
 	 */
@@ -80,7 +85,7 @@ public class MistakeService {
 		String question = Text.trim(a.question());
 		if (question == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "question must not be blank");
 		return new Attempt(a.moduleId(), question, Text.clean(a.chosen()), Text.clean(a.correct()), Text.clean(a.why()),
-				a.level(), a.right());
+				a.level(), a.right(), Text.clean(a.code()));
 	}
 
 	private Optional<MistakeView> apply(Attempt a) {
@@ -113,7 +118,9 @@ public class MistakeService {
 		q.setLastWrongAt(now);
 		q.setFixed(false);
 		q.setFixedAt(null);
-		return Optional.of(MistakeView.of(mistakes.save(q), m));
+		QuizMistake saved = mistakes.save(q);
+		cards.forMistake(saved, a.code());
+		return Optional.of(MistakeView.of(saved, m));
 	}
 
 	/** Open mistakes first, newest first within each group. */

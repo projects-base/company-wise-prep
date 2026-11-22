@@ -18,7 +18,7 @@ final class CheatSheet {
 
 	static String render(String title, String date, List<LessonNotes> lessons, List<NoteView> general) {
 		StringBuilder md = new StringBuilder("# Cheat sheet · ").append(title).append("\n\n")
-				.append("_From your own notes, highlights, summaries and mistakes · ").append(date).append("_\n");
+				.append("_From your own notes, highlights, summaries, explanations and mistakes · ").append(date).append("_\n");
 		if (lessons.isEmpty() && general.isEmpty()) {
 			return md.append("\nNo notes yet for this scope. Highlight a sentence or write a lesson summary first.\n").toString();
 		}
@@ -47,6 +47,10 @@ final class CheatSheet {
 				if (h.section() != null) md.append(">\n> — *").append(h.section()).append("*\n");
 				if (h.note() != null) md.append('\n').append(h.note()).append('\n');
 			}
+		}
+		if (!l.explanations().isEmpty()) {
+			md.append("\n### My explanation\n");
+			l.explanations().forEach(e -> md.append('\n').append(e.improved().strip()).append('\n'));
 		}
 		if (!l.snippets().isEmpty()) {
 			md.append("\n### From the Playground\n");

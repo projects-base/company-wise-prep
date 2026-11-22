@@ -118,14 +118,15 @@ public class NotesController {
 			@Size(max = 1_000) String correct,
 			@Size(max = 4_000) String why,
 			@Pattern(regexp = "easy|medium|hard") String level,
-			boolean right) {
+			boolean right,
+			@Size(max = 4_000) String code) {
 	}
 
 	/** A ```quiz answer on a lesson page: 200 with the mistake as it now stands, or 204 when there was nothing to record. */
 	@PostMapping("/quiz-attempts")
 	public ResponseEntity<MistakeView> quizAttempt(@Valid @RequestBody QuizAttemptRequest req) {
 		return mistakes.record(new MistakeService.Attempt(req.moduleId(), req.question(), req.chosen(), req.correct(), req.why(),
-				req.level(), req.right()))
+				req.level(), req.right(), req.code()))
 				.map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.noContent().build());
 	}
