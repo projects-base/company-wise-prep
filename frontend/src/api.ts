@@ -556,6 +556,32 @@ export const api = {
     const filename = /filename="?([^";]+)"?/.exec(res.headers.get('Content-Disposition') ?? '')?.[1] ?? 'cheatsheet.md'
     return { filename, markdown: await res.text() }
   },
+  /** Flashcards and the daily review (notes.CardService, ReviewService). */
+  cards: (moduleId?: string) => call<Card[]>(`/api/review/cards${moduleId ? `?moduleId=${encodeURIComponent(moduleId)}` : ''}`),
+  makeCard: (c: { sourceKind: 'HIGHLIGHT' | 'SNIPPET'; sourceId: number; front?: string | null; back?: string | null }) =>
+    call<Card>('/api/review/cards', { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(c) }),
+  editCard: (id: number, c: { front: string; back: string | null; suspended: boolean }) =>
+    call<Card>(`/api/review/cards/${id}`, { method: 'PUT', headers: JSON_HEADERS, body: JSON.stringify(c) }),
+  deleteCard: async (id: number) => {
+    const res = await request(`/api/review/cards/${id}`, { method: 'DELETE' })
+    if (!res.ok) throw new Error(`DELETE card failed: ${res.status}`)
+  },
+  reviewQueue: () => call<Card[]>('/api/review/queue'),
+  gradeCard: (id: number, grade: Grade) =>
+    call<Card>(`/api/review/cards/${id}/grade`, { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify({ grade }) }),
+  reviewStats: () => call<ReviewStats>('/api/review/stats'),
+  /** Explain it in your words (notes.ExplanationService). */
+  explain: (moduleId: string, text: string) =>
+    call<ExplanationResult>(`/api/notes/lessons/${moduleId}/explanations`, {
+      method: 'POST',
+      headers: JSON_HEADERS,
+      body: JSON.stringify({ text }),
+    }),
+  explanations: (moduleId: string) => call<Explanation[]>(`/api/notes/lessons/${moduleId}/explanations`),
+  saveExplanation: (id: number) => call<Explanation>(`/api/notes/explanations/${id}/save`, { method: 'POST' }),
+  /** Linked concepts (notes.ConceptService). */
+  concepts: () => call<ConceptOverview>('/api/concepts'),
+  concept: (name: string) => call<ConceptDetail>(`/api/concepts/detail?name=${encodeURIComponent(name)}`),
 }
 
 
@@ -609,9 +635,11 @@ export type LessonNotes = {
   highlights: Note[]
   snippets: Note[]
   mistakes: Mistake[]
+  /** Improved explanations saved to notes, oldest first. */
+  explanations: Explanation[]
 }
 export type NotesOverview = { lessons: LessonNotes[]; general: Note[] }
-export type NoteHitKind = 'HIGHLIGHT' | 'SUMMARY' | 'SNIPPET' | 'MISTAKE'
+export type NoteHitKind = 'HIGHLIGHT' | 'SUMMARY' | 'SNIPPET' | 'EXPLANATION' | 'MISTAKE'
 export type NoteHit = {
   kind: NoteHitKind
   id: number
@@ -630,8 +658,73 @@ export type QuizAttempt = {
   why: string | null
   level: 'easy' | 'medium' | 'hard' | null
   right: boolean
+  /** The quiz's code lines joined; shown on the mistake's review card. */
+  code: string | null
 }
 export type ExportScope = 'lesson' | 'track' | 'week' | 'all'
+
+/** A flashcard (notes.CardService.CardView). Intervals are in minutes. */
+export type CardSource = 'HIGHLIGHT' | 'MISTAKE' | 'SNIPPET' | 'EXPLANATION'
+export type Grade = 'AGAIN' | 'HARD' | 'GOOD' | 'EASY'
+export type Card = {
+  id: number
+  sourceKind: CardSource
+  sourceId: number | null
+  moduleId: string | null
+  moduleCode: string | null
+  moduleTitle: string | null
+  front: string
+  back: string | null
+  due: string
+  intervalMinutes: number
+  ease: number
+  reps: number
+  lapses: number
+  suspended: boolean
+  createdAt: string
+  updatedAt: string
+  /** The interval each grade would give, for the button labels. */
+  next: Record<Grade, number>
+}
+export type ReviewStats = {
+  dueNow: number
+  streak: number
+  reviewedToday: boolean
+  knownWell: number
+  active: number
+  week: { date: string; count: number }[]
+}
+export type Explanation = {
+  id: number
+  moduleId: string
+  createdAt: string
+  mode: string
+  score: number
+  text: string
+  improved: string | null
+  saved: boolean
+}
+export type ExplanationResult = { id: number; review: AnswerReview }
+export type ConceptCount = { name: string; count: number }
+export type ConceptGap = { term: string; moduleId: string; moduleCode: string; moduleTitle: string }
+export type ConceptOverview = { concepts: ConceptCount[]; gaps: ConceptGap[] }
+export type ConceptItem = {
+  kind: 'HIGHLIGHT' | 'SNIPPET' | 'SUMMARY' | 'EXPLANATION'
+  id: number
+  moduleId: string | null
+  moduleCode: string | null
+  moduleTitle: string | null
+  text: string
+  link: string
+}
+export type ConceptDetail = {
+  name: string
+  count: number
+  items: ConceptItem[]
+  lessons: { moduleId: string; code: string; title: string; excerpt: string }[]
+  mistakes: Mistake[]
+  related: ConceptCount[]
+}
 
 /** Progress page (insights.InsightsService): evidence computed from what you have done. */
 export type ReadinessArea = {

@@ -4,6 +4,7 @@ import { Download, Search } from 'lucide-react'
 import { api, type ExportScope, type LessonNotes, type NoteHit, type NoteHitKind, type NoteSearch } from '../api'
 import { useCampaign } from '../App'
 import { downloadText } from '../LessonNotes'
+import { LinkedText } from '../LinkedText'
 import type { LessonLinkState } from './ModulePage'
 import { daysBetween, fmtDate, localToday, Status, useLoad } from '../ui'
 
@@ -11,12 +12,14 @@ const KIND_LABEL: Record<NoteHitKind, string> = {
   HIGHLIGHT: 'highlights',
   SUMMARY: 'summaries',
   SNIPPET: 'snippets',
+  EXPLANATION: 'explanations',
   MISTAKE: 'mistakes',
 }
 const KIND_PILL: Record<NoteHitKind, string> = {
   HIGHLIGHT: 'Highlight',
   SUMMARY: 'Summary',
   SNIPPET: 'Playground',
+  EXPLANATION: 'Explanation',
   MISTAKE: 'Mistake',
 }
 const short = (iso: string) => fmtDate(iso, { day: 'numeric', month: 'short' })
@@ -89,6 +92,10 @@ export default function NotesPage() {
           <h1>My notes</h1>
           <p className="sub">Your highlights, summaries, Playground snippets and quiz mistakes, in plan order.</p>
         </div>
+        <div className="row">
+          <Link to="/review" className="btn sm">Daily review</Link>
+          <Link to="/concepts" className="btn sm">Concepts</Link>
+        </div>
       </header>
 
       <div className="notes-page">
@@ -137,7 +144,7 @@ export default function NotesPage() {
                   <h2 className="eyebrow">General notes (from the Playground)</h2>
                   {data.general.map((n) => (
                     <div key={n.id} className="card pad notes-card">
-                      {n.note && <p>{n.note}</p>}
+                      {n.note && <p><LinkedText text={n.note} /></p>}
                       <pre className="notes-code"><code>{n.code}</code></pre>
                       {n.output && <pre className="notes-code out">{n.output}</pre>}
                     </div>
@@ -211,7 +218,7 @@ function LessonCard({ l }: { l: LessonNotes }) {
           {SUMMARY_ROWS.filter(([k]) => l.summary?.[k]).map(([k, label]) => (
             <div key={k}>
               <dt>{label}</dt>
-              <dd>{l.summary?.[k]}</dd>
+              <dd><LinkedText text={l.summary?.[k] ?? ''} /></dd>
             </div>
           ))}
         </dl>
@@ -228,7 +235,7 @@ function LessonCard({ l }: { l: LessonNotes }) {
           {shown.map((h) => (
             <li key={h.id}>
               <q>{h.quote}</q>
-              {h.note && <span className="muted"> — {h.note}</span>}
+              {h.note && <span className="muted"> — <LinkedText text={h.note} /></span>}
             </li>
           ))}
           {l.highlights.length > shown.length && (

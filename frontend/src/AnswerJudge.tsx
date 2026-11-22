@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Markdown from 'react-markdown'
 import { AlertTriangle, Check, Gavel, Mic, MicOff, RotateCcw, Sparkles, Volume2, X } from 'lucide-react'
 import { api, type AnswerReview } from './api'
@@ -53,6 +53,26 @@ const tone = (s: number | null) => (s == null ? '' : s >= 7.5 ? 'ok' : s >= 5 ? 
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length
 
 export function AnswerJudge({ slug }: { slug: string }) {
+  return (
+    <SpokenJudge
+      heading={<><Gavel size={18} style={{ verticalAlign: -3 }} /> Judge my answer</>}
+      intro={'Answer as in the interview, out loud, about 60–90 seconds: '
+        + 'what it is → how it works → where you used it → what goes wrong.'}
+      submitLabel="Judge"
+      submit={(text) => api.review(slug, text)}
+    />
+  )
+}
+
+/** The speak-or-type box and the 4-layer result, for anything the app's reviewer can judge (an answer, an explanation). */
+export function SpokenJudge({ heading, intro, submitLabel, submit, extra }: {
+  heading: ReactNode
+  intro: string
+  submitLabel: string
+  submit: (text: string) => Promise<AnswerReview>
+  /** More actions beside the result's Try again, e.g. Save to notes. */
+  extra?: (review: AnswerReview) => ReactNode
+}) {
   const { reviewer } = useFeatures()
   const ai = reviewer !== 'offline'
   const [text, setText] = useState('')
@@ -185,7 +205,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
     setError(null)
     try {
       const prefix = practising ? `(Answering the follow-up: ${practising})\n` : ''
-      const r = await api.review(slug, prefix + text)
+      const r = await submit(prefix + text)
       setReview(r)
       const days = recordActivity()
       if (r.score >= 8) celebrate('Strong answer!', days > 1 ? `${r.score}/10 · ${days}-day streak` : `${r.score}/10`)
@@ -207,9 +227,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
   return (
     <section className="section judge">
       <div className="section-head">
-        <h2>
-          <Gavel size={18} style={{ verticalAlign: -3 }} /> Judge my answer
-        </h2>
+        <h2>{heading}</h2>
         <Link to="/settings" className={`pill ${ai ? 'accent' : ''}`} title="Change the reviewer in Settings">
           {REVIEWER_LABEL[reviewer] ?? 'Offline check'}
         </Link>
@@ -222,9 +240,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
               <strong>Follow-up:</strong> {practising}
             </p>
           ) : (
-            <p className="muted" style={{ marginTop: 0 }}>
-              Answer as in the interview, out loud, about 60–90 seconds: what it is → how it works → where you used it → what goes wrong.
-            </p>
+            <p className="muted" style={{ marginTop: 0 }}>{intro}</p>
           )}
           <div className="judge-input">
             <textarea
@@ -272,7 +288,7 @@ export function AnswerJudge({ slug }: { slug: string }) {
                 {n} words
               </span>
               <button className="btn primary" onClick={judge} disabled={busy || transcribing || (listening && engine === 'gemini') || n < 5}>
-                <Gavel size={15} /> {busy ? (ai ? `${REVIEWER_LABEL[reviewer]} is reading…` : 'Checking…') : 'Judge'}
+                <Gavel size={15} /> {busy ? (ai ? `${REVIEWER_LABEL[reviewer]} is reading…` : 'Checking…') : submitLabel}
               </button>
             </div>
           </div>
@@ -280,12 +296,19 @@ export function AnswerJudge({ slug }: { slug: string }) {
         </div>
       )}
 
-      {review && <Result r={review} onAgain={() => again()} onFollowUp={() => again(review.followUp)} />}
+      {review && (
+        <Result r={review} onAgain={() => again()} onFollowUp={() => again(review.followUp)} extra={extra?.(review)} />
+      )}
     </section>
   )
 }
 
-function Result({ r: top, onAgain, onFollowUp }: { r: AnswerReview; onAgain: () => void; onFollowUp: () => void }) {
+function Result({ r: top, onAgain, onFollowUp, extra }: {
+  r: AnswerReview
+  onAgain: () => void
+  onFollowUp: () => void
+  extra?: ReactNode
+}) {
   const [which, setWhich] = useState(0)
   const r = which === 1 && top.second ? { ...top.second, history: top.history, note: top.note } : top
   const speak = () => {
@@ -404,6 +427,7 @@ function Result({ r: top, onAgain, onFollowUp }: { r: AnswerReview; onAgain: () 
           </div>
         )}
         <div className="row" style={{ gap: 8, marginLeft: 'auto' }}>
+          {extra}
           <button className="btn" onClick={onAgain}>
             <RotateCcw size={14} /> Try again
           </button>

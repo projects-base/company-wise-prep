@@ -6,9 +6,10 @@ import { Diagram, mermaidSource } from '../Diagram'
 import { QuizBlock, quizQuestions, QuizReporterContext, quizSource, type QuizReporter } from '../Quiz'
 import remarkGfm from 'remark-gfm'
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Copy, Info, ListTree, NotebookPen, Play, X } from 'lucide-react'
-import { api, type LessonNotes, type Mistake, type ModuleSummary, type Ref } from '../api'
+import { api, type Card, type LessonNotes, type Mistake, type ModuleSummary, type Ref } from '../api'
 import { highlightPlugin } from '../highlights'
-import { NotesPanel, SelectionToolbar, type NotesTab } from '../LessonNotes'
+import { NotesPanel, SelectionToolbar, type CardDraft, type NotesTab } from '../LessonNotes'
+import { ExplainIt } from '../ExplainIt'
 
 import { LevelTree } from '../LessonTree'
 import { PATH_KEY } from './AcademyPage'
@@ -113,6 +114,14 @@ export default function ModulePage() {
   useEffect(() => setNotes(notesLoad.data), [notesLoad.data])
   // Never show (or autosave into) the previous lesson's notes while this one loads.
   const notes = notesState && notesState.moduleId === v?.module.id ? notesState : null
+  // The lesson's flashcards, for the "Flashcard on" chips; kept locally as cards are made.
+  const cardsLoad = useLoad(() => api.cards(id), [id])
+  const [cardsState, setCards] = useState<{ moduleId: string; list: Card[] } | null>(null)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => setCards(cardsLoad.data ? { moduleId: id, list: cardsLoad.data } : null), [cardsLoad.data])
+  const cards = cardsState && cardsState.moduleId === v?.module.id ? cardsState.list : []
+  const addCard = (c: Card) =>
+    setCards((prev) => (prev ? { ...prev, list: [...prev.list.filter((x) => x.id !== c.id), c] } : prev))
   const navigate = useNavigate()
   const location = useLocation()
   const { codeRunner } = useFeatures()
@@ -212,16 +221,29 @@ export default function ModulePage() {
         why: correct?.why ?? chosen.why ?? null,
         level,
         right: !!chosen.correct,
+        code: spec.code?.length ? spec.code.join('\n') : null,
       })
       if (!result) return null
       setNotes((prev) => (prev && prev.moduleId === m.id ? { ...prev, mistakes: upsertMistake(prev.mistakes, result) } : prev))
       return chosen.correct ? 'fixed' : 'saved'
     },
   }
-  const saveHighlight = async (quote: string, section: string | null, prefix: string | null, note: string | null) => {
+  const saveHighlight = async (quote: string, section: string | null, prefix: string | null, note: string | null,
+    card?: CardDraft) => {
     const saved = await api.addHighlight({ moduleId: m.id, section, quote, prefix, note })
     setNotes((prev) => (prev && prev.moduleId === m.id ? { ...prev, highlights: [...prev.highlights, saved] } : prev))
+    if (!card) return
+    try {
+      addCard(await api.makeCard({ sourceKind: 'HIGHLIGHT', sourceId: saved.id, front: card.front, back: card.back || null }))
+    } catch {
+      // The highlight is saved; show it in the notes panel, where its Make flashcard button tries again.
+      setFocusId(saved.id)
+      setTab('highlights')
+      openPanel(true)
+    }
   }
+  // At the end of the lesson: below everything in full mode, on the last part in one-part-at-a-time mode.
+  const atEnd = s.mode === 'all' || !s.usable || s.step === s.parts.length - 1
   // Clicking a marked highlight opens it in the notes panel.
   const openHighlight = (e: React.MouseEvent) => {
     const hl = (e.target as Element).closest('[data-hl]')
@@ -350,6 +372,19 @@ export default function ModulePage() {
               )}
             />
           </div>
+          {atEnd && (
+            <ExplainIt
+              key={m.id}
+              moduleId={m.id}
+              code={m.code}
+              title={m.title}
+              onSaved={(e) => {
+                setNotes((prev) => (prev && prev.moduleId === m.id
+                  ? { ...prev, explanations: [...prev.explanations.filter((x) => x.id !== e.id), e] } : prev))
+                cardsLoad.reload()
+              }}
+            />
+          )}
           </LessonCodeContext.Provider>
           </QuizReporterContext.Provider>
         ) : (
@@ -433,6 +468,8 @@ export default function ModulePage() {
           moduleId={m.id}
           code={m.code}
           data={notes}
+          cards={cards}
+          onCardMade={addCard}
           reload={notesLoad.reload}
           onSummarySaved={(summary) => setNotes((prev) => (prev && prev.moduleId === m.id ? { ...prev, summary } : prev))}
           tab={tab}

@@ -1402,3 +1402,77 @@ sup.hl-num { display: inline-grid; place-items: center; min-width: 16px; height:
 .pg-save-what { border: 0; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 0.9rem; }
 .pg-save-what label { display: inline-flex; align-items: center; gap: 8px; }
 .pg-save-done { display: flex; align-items: center; gap: 6px; color: var(--ok); }
+
+/* ── Lesson notes, Phase 2: flashcards, review, explain it, concepts ── */
+.nav-badge { margin-left: auto; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; display: grid;
+  place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 0.72rem; font-weight: 700; }
+.nav-collapsed .nav-badge { display: none; }
+.card-editor { display: grid; gap: 6px; width: 100%; margin-top: 8px; }
+.card-editor-label { font-size: 0.74rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--text-3); }
+.sel-bar .card-editor { margin-top: 0; }
+.concept-link { color: var(--accent); font-weight: 600; text-decoration: underline dotted; text-underline-offset: 3px; }
+.pg-save-card { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 0.9rem; }
+
+.explain-it { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
+.explain-it .section { margin-top: 6px; }
+
+.review-page { display: grid; gap: 18px; }
+.review-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.review-head h1 { font-size: 1.5rem; }
+.review-progress { margin: 10px 0 18px; }
+.review-card { padding: 26px 28px; display: grid; gap: 14px; }
+.review-source { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 0.84rem; }
+.review-front .review-text { font-size: 1.3rem; line-height: 1.4; font-weight: 600; }
+.review-text > :first-child { margin-top: 0; }
+.review-text > :last-child { margin-bottom: 0; }
+.review-text pre { background: var(--code-bg); padding: 10px 12px; border-radius: var(--radius-sm); overflow-x: auto;
+  font-size: 0.86rem; font-weight: 400; }
+.review-rule { border: 0; border-top: 1px dashed var(--line-strong); margin: 0; }
+.review-back { display: grid; gap: 6px; line-height: 1.55; }
+.review-show { justify-self: start; }
+.review-show kbd { font: inherit; font-size: 0.74rem; padding: 1px 6px; border-radius: 5px; border: 1px solid currentColor;
+  opacity: 0.8; }
+.review-grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.review-grade { height: auto; padding: 10px 8px; flex-direction: column; gap: 2px; font-weight: 650; }
+.review-grade span { font-size: 0.78rem; font-weight: 500; color: var(--text-3); }
+.review-grade.again { color: var(--bad); }
+.review-grade.hard { color: var(--warn); }
+.review-grade.good { color: var(--accent); }
+.review-grade.easy { color: var(--ok); }
+.review-keys { font-size: 0.8rem; margin-top: 10px; }
+.review-done { display: grid; gap: 10px; justify-items: start; }
+.review-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.review-hint { font-size: 0.78rem; margin-top: 4px; }
+.review-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 8px; }
+.review-day { display: grid; justify-items: center; gap: 3px; font-size: 0.72rem; }
+.review-day-bar { width: 100%; max-width: 22px; height: 44px; display: flex; align-items: flex-end;
+  background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.review-day-bar > span { display: block; width: 100%; background: var(--accent); border-radius: 4px 4px 0 0; }
+.review-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.review-row { display: grid; gap: 8px; }
+.review-row.suspended { opacity: 0.6; }
+@media (max-width: 720px) {
+  .review-stats { grid-template-columns: 1fr; }
+  .review-grades { grid-template-columns: repeat(2, 1fr); }
+  .review-card { padding: 18px; }
+}
+
+.concepts-page { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+.concept-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+.concept-where { display: grid; gap: 10px; }
+.concept-hit { display: grid; gap: 2px; padding: 12px 14px; color: var(--text); }
+.concept-hit:hover { border-color: var(--accent); text-decoration: none; }
+.concept-hit-title { font-weight: 600; }
+.concept-hit .muted { font-size: 0.86rem; overflow-wrap: anywhere; }
+.concept-side { display: grid; gap: 10px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); }
+.concept-side hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; width: 100%; }
+.concept-side p { margin: 0; font-size: 0.86rem; }
+.concept-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.concept-chips .chip { display: inline-flex; align-items: center; text-decoration: none; }
+.concept-ranks, .concept-list, .concept-gaps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.concept-ranks li, .concept-gaps li { display: flex; justify-content: space-between; gap: 10px; font-size: 0.9rem; }
+.concept-list li { display: grid; grid-template-columns: minmax(120px, 1fr) 2fr 32px; align-items: center; gap: 12px; }
+.concept-list strong { text-align: right; }
+@media (max-width: 900px) { .concepts-page { grid-template-columns: 1fr; } }

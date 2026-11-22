@@ -188,6 +188,8 @@ function SaveToNotes({ code, selected, output, lesson, onClose }: {
   const [what, setWhat] = useState<'selection' | 'file'>(hasSelection ? 'selection' : 'file')
   const [withOutput, setWithOutput] = useState(output !== null)
   const [note, setNote] = useState('')
+  const [withCard, setWithCard] = useState(false)
+  const [cardError, setCardError] = useState<string | null>(null)
   const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle')
   const [error, setError] = useState<string | null>(null)
   const snippet = what === 'selection' && hasSelection ? selected : code
@@ -197,12 +199,17 @@ function SaveToNotes({ code, selected, output, lesson, onClose }: {
     setState('saving')
     setError(null)
     try {
-      await api.addSnippet({
+      const saved = await api.addSnippet({
         moduleId: lesson?.id ?? null,
         code: snippet,
         output: withOutput ? output : null,
         note: note.trim() || null,
       })
+      // The card's front and back are built from the snippet on the server. The snippet is saved either way, so a
+      // failed card is reported, not retried with a second snippet.
+      if (withCard) {
+        await api.makeCard({ sourceKind: 'SNIPPET', sourceId: saved.id }).catch((e: Error) => setCardError(e.message))
+      }
       setState('saved')
     } catch (e) {
       setError((e as Error).message)
@@ -221,8 +228,10 @@ function SaveToNotes({ code, selected, output, lesson, onClose }: {
       {state === 'saved' ? (
         <>
           <p className="pg-save-done">
-            <CheckCircle2 size={15} /> Saved to {lesson ? lesson.code : 'your general notes'}.
+            <CheckCircle2 size={15} /> Saved to {lesson ? lesson.code : 'your general notes'}
+            {withCard && !cardError ? ', with a review card' : ''}.
           </p>
+          {cardError && <p className="error">The review card was not made: {cardError}</p>}
           <div className="row">
             <Link to="/notes" className="btn sm">Open my notes</Link>
             <button className="btn sm ghost" onClick={onClose}>Close</button>
@@ -253,7 +262,10 @@ function SaveToNotes({ code, selected, output, lesson, onClose }: {
           </fieldset>
           <label className="io-label" htmlFor="pg-note">Your note</label>
           <textarea id="pg-note" rows={3} maxLength={NOTE_MAX} value={note} onChange={(e) => setNote(e.target.value)}
-            placeholder="What did this show you?" />
+            placeholder="What did this show you? [[Concept]] links it to a concept page." />
+          <label className="pg-save-card">
+            <input type="checkbox" checked={withCard} onChange={(e) => setWithCard(e.target.checked)} /> Also make a review card
+          </label>
           <p className="hint">Goes to {lesson ? lesson.code : 'general notes (not opened from a lesson)'}</p>
           {tooLong && <p className="error">That is more than 20,000 characters; select less.</p>}
           {error && <p className="error">Not saved: {error}</p>}

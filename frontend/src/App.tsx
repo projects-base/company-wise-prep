@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { Celebrations } from './rewards'
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import {
-  BookOpenText, Building2, ChartNoAxesColumnIncreasing, CalendarCheck2, CalendarRange, CircleAlert, Code2, GraduationCap, Library,
-  Monitor, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, Settings2, Sun,
+  BookOpenText, Building2, ChartNoAxesColumnIncreasing, CalendarCheck2, CalendarRange, CircleAlert, Code2, GraduationCap, Layers,
+  Library, Monitor, Moon, NotebookPen, PanelLeftClose, PanelLeftOpen, Settings2, Sun, Waypoints,
 } from 'lucide-react'
 import { api, LOGGED_OUT_EVENT, type CampaignConfig } from './api'
 import { startKeepAlive } from './keepAlive'
@@ -25,6 +25,8 @@ import PlaygroundPage from './pages/PlaygroundPage'
 import ProgressPage from './pages/ProgressPage'
 import NotesPage from './pages/NotesPage'
 import MistakesPage from './pages/MistakesPage'
+import ReviewPage, { REVIEW_CHANGED } from './pages/ReviewPage'
+import ConceptsPage from './pages/ConceptsPage'
 
 const CampaignContext = createContext<CampaignConfig | null>(null)
 export const useCampaign = () => useContext(CampaignContext)
@@ -41,6 +43,8 @@ function pageLabel(pathname: string): string | null {
     ['/progress', 'Progress page (readiness, weekly report, wins, stories)'],
     ['/notes', 'My notes (lesson highlights, summaries, Playground snippets, cheat-sheet export)'],
     ['/mistakes', 'Mistakes notebook (quiz questions answered wrongly in lessons)'],
+    ['/review', 'Daily review (spaced-repetition flashcards from highlights, mistakes and explanations)'],
+    ['/concepts', 'Concepts (the [[Concept]] links across notes, related concepts and gaps)'],
     ['/bank', 'Question bank'],
     ['/playground', 'Java coding playground'],
     ['/companies', 'Companies list'],
@@ -55,7 +59,9 @@ const NAV = [
   { to: '/academy', label: 'Academy', icon: GraduationCap },
   { to: '/progress', label: 'Progress', icon: ChartNoAxesColumnIncreasing },
   { to: '/notes', label: 'My notes', icon: NotebookPen },
+  { to: '/review', label: 'Review', icon: Layers },
   { to: '/mistakes', label: 'Mistakes', icon: CircleAlert },
+  { to: '/concepts', label: 'Concepts', icon: Waypoints },
   { to: '/bank', label: 'Question bank', icon: Library },
   { to: '/playground', label: 'Playground', icon: Code2 },
   { to: '/companies', label: 'Companies', icon: Building2 },
@@ -112,6 +118,15 @@ export default function App() {
     if (auth === 'ok') api.campaigns().then(setCampaigns).catch(() => setCampaigns([]))
   }, [auth])
   useEffect(() => (auth === 'ok' ? startKeepAlive() : undefined), [auth])
+  // The Review link's badge: cards due now, refreshed on each page change and after every grade.
+  const [due, setDue] = useState(0)
+  useEffect(() => {
+    if (auth !== 'ok') return
+    const refresh = () => api.reviewStats().then((s) => setDue(s.dueNow), () => setDue(0))
+    refresh()
+    window.addEventListener(REVIEW_CHANGED, refresh)
+    return () => window.removeEventListener(REVIEW_CHANGED, refresh)
+  }, [auth, pathname])
   // Braces matter: newer Chromium returns a Promise from scrollTo, which React would treat as a cleanup.
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -163,9 +178,10 @@ export default function App() {
           </div>
           <nav className="nav" aria-label="Main">
             {NAV.filter((n) => codeRunner || n.to !== '/playground').map(({ to, label, icon: Icon, end }) => (
-              <NavLink key={to} to={to} end={end} title={label}>
+              <NavLink key={to} to={to} end={end} title={to === '/review' && due > 0 ? `${label}: ${due} due` : label}>
                 <Icon size={18} strokeWidth={1.9} />
                 <span>{label}</span>
+                {to === '/review' && due > 0 && <span className="nav-badge num" aria-label={`${due} due`}>{due}</span>}
               </NavLink>
             ))}
           </nav>
@@ -205,6 +221,8 @@ export default function App() {
             <Route path="/progress/:tab" element={<ProgressPage />} />
             <Route path="/notes" element={<NotesPage />} />
             <Route path="/mistakes" element={<MistakesPage />} />
+            <Route path="/review" element={<ReviewPage />} />
+            <Route path="/concepts" element={<ConceptsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </main>

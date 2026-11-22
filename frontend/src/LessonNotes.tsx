@@ -1,18 +1,64 @@
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
-import { Download, Highlighter, NotebookPen, Pencil, StickyNote, Trash, X } from 'lucide-react'
-import { api, type LessonNotes, type LessonSummary, type Mistake, type Note, type SummaryDraft } from './api'
+import { Copy, Download, Highlighter, NotebookPen, Pencil, StickyNote, Trash, X } from 'lucide-react'
+import { api, type Card, type LessonNotes, type LessonSummary, type Mistake, type Note, type SummaryDraft } from './api'
 import { compact, normaliseSection, PREFIX_LENGTH } from './highlights'
+import { LinkedText } from './LinkedText'
 
 /**
  * Lesson notes on a lesson page: select text to highlight it (optionally with a margin note), see highlights marked
- * in the lesson (highlights.ts), and keep a notes panel with the highlights, the 4-field summary and the lesson's
- * quiz mistakes.
+ * in the lesson (highlights.ts), turn a highlight into a flashcard, and keep a notes panel with the highlights, the
+ * 4-field summary and the lesson's quiz mistakes.
  */
 
 export const QUOTE_MAX = 1000
 export const NOTE_MAX = 4000
 const SUMMARY_MAX = 2000
+export const FRONT_MAX = 1000
+export const BACK_MAX = 4000
+
+/** A card for a new highlight. */
+export type CardDraft = { front: string; back: string }
+
+/** The suggested front for a highlight's card: the first half of the quote to finish from memory (cloze style). */
+export function suggestFront(quote: string, section: string | null): string {
+  const words = quote.trim().split(/\s+/)
+  const lead = words.slice(0, Math.max(3, Math.min(12, Math.floor(words.length / 2)))).join(' ')
+  return `${section ? `${section}: ` : ''}finish the thought: "${lead} …"`
+}
+
+/** The default back of a highlight's card: the quote, then the margin note. */
+export const cardBack = (quote: string, note: string | null) => (note ? `${quote}\n\nMy note: ${note}` : quote)
+
+/** Front and back of a flashcard, the front pre-filled with a suggestion. */
+export function CardEditor({ initial, onSave, onCancel, idPrefix }: {
+  initial: CardDraft
+  onSave: (c: CardDraft) => Promise<void> | void
+  onCancel: () => void
+  idPrefix: string
+}) {
+  const [front, setFront] = useState(initial.front)
+  const [back, setBack] = useState(initial.back)
+  return (
+    <form
+      className="card-editor"
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (front.trim()) onSave({ front: front.trim(), back: back.trim() })
+      }}
+    >
+      <label htmlFor={`${idPrefix}-front`} className="card-editor-label">Front: the question</label>
+      <textarea id={`${idPrefix}-front`} rows={2} autoFocus maxLength={FRONT_MAX} value={front}
+        onChange={(e) => setFront(e.target.value)} />
+      <label htmlFor={`${idPrefix}-back`} className="card-editor-label">Back: the answer</label>
+      <textarea id={`${idPrefix}-back`} rows={3} maxLength={BACK_MAX} value={back} onChange={(e) => setBack(e.target.value)} />
+      <div className="row">
+        <button type="submit" className="btn sm primary" disabled={!front.trim()}>Make card</button>
+        <button type="button" className="btn sm ghost" onClick={onCancel}>Cancel</button>
+      </div>
+    </form>
+  )
+}
 
 /** The "## " heading a node sits under: the nearest h2 before it, looking outwards from the node. */
 function sectionOf(node: Node, root: HTMLElement): string | null {
@@ -57,13 +103,18 @@ function prefixOf(range: Range, root: HTMLElement): string | null {
 
 type Picked = { quote: string; section: string | null; prefix: string | null; top: number; left: number }
 
-/** A small toolbar above selected lesson text: Highlight, or Add note (a highlight with a margin note). */
+/**
+ * A small toolbar above selected lesson text: Highlight, Add note (a highlight with a margin note), or Make flashcard
+ * (a highlight with a review card).
+ */
 export function SelectionToolbar({ container, onSave }: {
   container: RefObject<HTMLElement | null>
-  onSave: (quote: string, section: string | null, prefix: string | null, note: string | null) => Promise<void>
+  onSave: (quote: string, section: string | null, prefix: string | null, note: string | null, card?: CardDraft) => Promise<void>
 }) {
   const [picked, setPicked] = useState<Picked | null>(null)
-  const [writing, setWriting] = useState(false)
+  const [mode, setMode] = useState<'note' | 'card' | null>(null)
+  const writing = mode !== null
+  const setWriting = (on: boolean) => setMode(on ? 'note' : null)
   const [note, setNote] = useState('')
   const [error, setError] = useState<string | null>(null)
   const bar = useRef<HTMLDivElement>(null)
@@ -126,9 +177,9 @@ export function SelectionToolbar({ container, onSave }: {
 
   if (!picked) return null
   const tooLong = picked.quote.length > QUOTE_MAX
-  const save = async (withNote: string | null) => {
+  const save = async (withNote: string | null, card?: CardDraft) => {
     try {
-      await onSave(picked.quote, picked.section, picked.prefix, withNote)
+      await onSave(picked.quote, picked.section, picked.prefix, withNote, card)
       window.getSelection()?.removeAllRanges()
       setPicked(null)
       setWriting(false)
@@ -143,6 +194,9 @@ export function SelectionToolbar({ container, onSave }: {
       aria-label="Selected text">
       {tooLong ? (
         <span className="sel-bar-msg">Select under 1,000 characters to highlight</span>
+      ) : mode === 'card' ? (
+        <CardEditor idPrefix="sel-card" initial={{ front: suggestFront(picked.quote, picked.section), back: picked.quote }}
+          onSave={(c) => save(null, c)} onCancel={() => setMode(null)} />
       ) : writing ? (
         <form
           className="sel-bar-note"
@@ -167,6 +221,9 @@ export function SelectionToolbar({ container, onSave }: {
           <button type="button" onClick={() => setWriting(true)}>
             <StickyNote size={14} /> Add note
           </button>
+          <button type="button" onClick={() => setMode('card')}>
+            <Copy size={14} /> Make flashcard
+          </button>
         </>
       )}
       {error && <span className="sel-bar-msg error">Not saved: {error}</span>}
@@ -190,10 +247,14 @@ export function downloadText(filename: string, text: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 
-export function NotesPanel({ moduleId, code, data, reload, onSummarySaved, tab, setTab, focusId, onClose }: {
+export function NotesPanel({ moduleId, code, data, cards, onCardMade, reload, onSummarySaved, tab, setTab, focusId,
+  onClose }: {
   moduleId: string
   code: string
   data: LessonNotes | null
+  /** The lesson's review cards, for the "Flashcard on" chips. */
+  cards: Card[]
+  onCardMade: (c: Card) => void
   reload: () => void
   /** Each saved summary, so the page's notes stay current (reopening the panel must not show older text). */
   onSummarySaved: (s: LessonSummary | null) => void
@@ -209,7 +270,9 @@ export function NotesPanel({ moduleId, code, data, reload, onSummarySaved, tab, 
   const highlights = data?.highlights ?? []
   const snippets = data?.snippets ?? []
   const mistakes = data?.mistakes ?? []
+  const explanations = data?.explanations ?? []
   const openMistakes = mistakes.filter((m) => !m.fixed).length
+  const carded = (kind: Card['sourceKind'], id: number) => cards.some((c) => c.sourceKind === kind && c.sourceId === id)
 
   const exportLesson = async () => {
     setExportError(null)
@@ -252,15 +315,34 @@ export function NotesPanel({ moduleId, code, data, reload, onSummarySaved, tab, 
             )}
             <ol className="notes-list">
               {highlights.map((h, i) => (
-                <HighlightItem key={h.id} h={h} num={i + 1} focus={focusId === h.id} onChange={reload} />
+                <HighlightItem key={h.id} h={h} num={i + 1} focus={focusId === h.id} onChange={reload}
+                  hasCard={carded('HIGHLIGHT', h.id)} onCardMade={onCardMade} />
               ))}
             </ol>
+            {explanations.length > 0 && (
+              <>
+                <div className="eyebrow notes-sub">My explanation</div>
+                <ul className="notes-list">
+                  {explanations.map((e) => (
+                    <li key={e.id} className="notes-item">
+                      <div className="notes-item-main">
+                        <p className="notes-note">{e.improved && <LinkedText text={e.improved} />}</p>
+                        <div className="notes-item-meta">
+                          <span className="muted">Checked {e.score}/10</span>
+                          {carded('EXPLANATION', e.id) && <span className="pill accent">Flashcard on</span>}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             {snippets.length > 0 && (
               <>
                 <div className="eyebrow notes-sub">From the Playground</div>
                 <ul className="notes-list">
                   {snippets.map((n) => (
-                    <SnippetItem key={n.id} n={n} onChange={reload} />
+                    <SnippetItem key={n.id} n={n} onChange={reload} hasCard={carded('SNIPPET', n.id)} />
                   ))}
                 </ul>
               </>
@@ -283,8 +365,16 @@ export function NotesPanel({ moduleId, code, data, reload, onSummarySaved, tab, 
   )
 }
 
-function HighlightItem({ h, num, focus, onChange }: { h: Note; num: number; focus: boolean; onChange: () => void }) {
+function HighlightItem({ h, num, focus, onChange, hasCard, onCardMade }: {
+  h: Note
+  num: number
+  focus: boolean
+  onChange: () => void
+  hasCard: boolean
+  onCardMade: (c: Card) => void
+}) {
   const [editing, setEditing] = useState(false)
+  const [carding, setCarding] = useState(false)
   const [text, setText] = useState(h.note ?? '')
   const [error, setError] = useState<string | null>(null)
   const item = useRef<HTMLLIElement>(null)
@@ -300,8 +390,16 @@ function HighlightItem({ h, num, focus, onChange }: { h: Note; num: number; focu
       setError((e as Error).message)
     }
   }
+  const makeCard = async (c: CardDraft) => {
+    try {
+      onCardMade(await api.makeCard({ sourceKind: 'HIGHLIGHT', sourceId: h.id, front: c.front, back: c.back || null }))
+      setCarding(false)
+    } catch (e) {
+      setError((e as Error).message)
+    }
+  }
   const remove = async () => {
-    if (!window.confirm('Delete this highlight and its note?')) return
+    if (!window.confirm('Delete this highlight and its note? Its flashcard, if any, stays.')) return
     try {
       await api.deleteNote(h.id)
       onChange()
@@ -325,10 +423,22 @@ function HighlightItem({ h, num, focus, onChange }: { h: Note; num: number; focu
             </div>
           </div>
         ) : h.note ? (
-          <p className="notes-note"><strong>My note:</strong> {h.note}</p>
+          <p className="notes-note"><strong>My note:</strong> <LinkedText text={h.note} /></p>
         ) : null}
+        {carding && (
+          <CardEditor idPrefix={`card-${h.id}`}
+            initial={{ front: suggestFront(h.quote ?? '', h.section), back: cardBack(h.quote ?? '', h.note) }}
+            onSave={makeCard} onCancel={() => setCarding(false)} />
+        )}
         <div className="notes-item-meta">
           {h.section && <span className="muted">{h.section}</span>}
+          {hasCard ? (
+            <span className="pill accent">Flashcard on</span>
+          ) : !carding && (
+            <button className="btn sm ghost" onClick={() => setCarding(true)}>
+              <Copy size={13} /> Make flashcard
+            </button>
+          )}
           {!editing && (
             <button className="btn sm ghost" onClick={() => setEditing(true)}>
               <Pencil size={13} /> {h.note ? 'Edit note' : 'Add a note'}
@@ -344,7 +454,7 @@ function HighlightItem({ h, num, focus, onChange }: { h: Note; num: number; focu
   )
 }
 
-function SnippetItem({ n, onChange }: { n: Note; onChange: () => void }) {
+function SnippetItem({ n, onChange, hasCard }: { n: Note; onChange: () => void; hasCard: boolean }) {
   const [error, setError] = useState<string | null>(null)
   const remove = async () => {
     if (!window.confirm('Delete this saved snippet?')) return
@@ -358,10 +468,11 @@ function SnippetItem({ n, onChange }: { n: Note; onChange: () => void }) {
   return (
     <li className="notes-item">
       <div className="notes-item-main">
-        {n.note && <p className="notes-note">{n.note}</p>}
+        {n.note && <p className="notes-note"><LinkedText text={n.note} /></p>}
         <pre className="notes-code"><code>{n.code}</code></pre>
         {n.output && <pre className="notes-code out">{n.output}</pre>}
         <div className="notes-item-meta">
+          {hasCard && <span className="pill accent">Flashcard on</span>}
           <button className="btn sm ghost" onClick={remove} aria-label="Delete this snippet">
             <Trash size={13} />
           </button>
