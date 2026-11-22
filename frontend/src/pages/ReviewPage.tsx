@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -44,7 +44,9 @@ export function interval(minutes: number): string {
 
 /** Card text is Markdown (code fences from quizzes and snippets); [[Concept]] becomes a link to its page. */
 function CardText({ text }: { text: string }) {
-  const md = text.replace(/\[\[([^[\]\n]{1,100})\]\]/g, (_, name: string) => `[${name.trim()}](#${conceptHref(name)})`)
+  // Only outside code: fenced blocks and inline code keep [[...]] as written.
+  const md = text.split(/(```[\s\S]*?```|`[^`\n]*`)/).map((part, i) => (i % 2 === 1 ? part
+    : part.replace(/\[\[([^[\]\n]{1,100})\]\]/g, (_, name: string) => `[${name.trim()}](#${conceptHref(name)})`))).join('')
   return (
     <div className="review-text">
       <Markdown remarkPlugins={[remarkGfm]} components={{ a: MdLink }}>{md}</Markdown>
@@ -77,6 +79,8 @@ function Session({ onGraded }: { onGraded: () => void }) {
   const [index, setIndex] = useState(0)
   const [shown, setShown] = useState(false)
   const [busy, setBusy] = useState(false)
+  // Two quick keypresses must send one grade; state updates too late to stop the second.
+  const grading = useRef(false)
   const [again, setAgain] = useState(0)
 
   const load = useCallback(() => {
@@ -92,7 +96,8 @@ function Session({ onGraded }: { onGraded: () => void }) {
 
   const card = queue && index < queue.length ? queue[index] : null
   const grade = useCallback(async (g: Grade) => {
-    if (!card || busy) return
+    if (!card || grading.current) return
+    grading.current = true
     setBusy(true)
     setError(null)
     try {
@@ -105,9 +110,10 @@ function Session({ onGraded }: { onGraded: () => void }) {
     } catch (e) {
       setError((e as Error).message)
     } finally {
+      grading.current = false
       setBusy(false)
     }
-  }, [card, busy, onGraded])
+  }, [card, onGraded])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -281,7 +287,11 @@ function CardRow({ c, onChange }: { c: Card; onChange: () => void }) {
           <textarea id={`b-${c.id}`} rows={4} maxLength={BACK_MAX} value={back} onChange={(e) => setBack(e.target.value)} />
           <div className="row">
             <button type="submit" className="btn sm primary" disabled={!front.trim()}>Save</button>
-            <button type="button" className="btn sm ghost" onClick={() => setEditing(false)}>Cancel</button>
+            <button type="button" className="btn sm ghost" onClick={() => {
+              setFront(c.front)
+              setBack(c.back ?? '')
+              setEditing(false)
+            }}>Cancel</button>
           </div>
         </form>
       ) : (

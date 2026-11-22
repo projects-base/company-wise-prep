@@ -372,19 +372,18 @@ export default function ModulePage() {
               )}
             />
           </div>
-          {atEnd && (
-            <ExplainIt
-              key={m.id}
-              moduleId={m.id}
-              code={m.code}
-              title={m.title}
-              onSaved={(e) => {
-                setNotes((prev) => (prev && prev.moduleId === m.id
-                  ? { ...prev, explanations: [...prev.explanations.filter((x) => x.id !== e.id), e] } : prev))
-                cardsLoad.reload()
-              }}
-            />
-          )}
+          <ExplainIt
+            key={m.id}
+            moduleId={m.id}
+            code={m.code}
+            title={m.title}
+            hidden={!atEnd}
+            onSaved={(e) => {
+              setNotes((prev) => (prev && prev.moduleId === m.id
+                ? { ...prev, explanations: [...prev.explanations.filter((x) => x.id !== e.id), e] } : prev))
+              cardsLoad.reload()
+            }}
+          />
           </LessonCodeContext.Provider>
           </QuizReporterContext.Provider>
         ) : (

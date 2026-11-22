@@ -569,7 +569,9 @@ export const api = {
   reviewQueue: () => call<Card[]>('/api/review/queue'),
   gradeCard: (id: number, grade: Grade) =>
     call<Card>(`/api/review/cards/${id}/grade`, { method: 'POST', headers: JSON_HEADERS, body: JSON.stringify({ grade }) }),
-  reviewStats: () => call<ReviewStats>('/api/review/stats'),
+  /** In the browser's time zone, so "today" and the streak follow the viewer, not the server. */
+  reviewStats: () =>
+    call<ReviewStats>(`/api/review/stats?zone=${encodeURIComponent(Intl.DateTimeFormat().resolvedOptions().timeZone)}`),
   /** Explain it in your words (notes.ExplanationService). */
   explain: (moduleId: string, text: string) =>
     call<ExplanationResult>(`/api/notes/lessons/${moduleId}/explanations`, {

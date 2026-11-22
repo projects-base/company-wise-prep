@@ -118,6 +118,7 @@ export function SelectionToolbar({ container, onSave }: {
   const [note, setNote] = useState('')
   const [error, setError] = useState<string | null>(null)
   const bar = useRef<HTMLDivElement>(null)
+  const saving = useRef(false)
   const writingRef = useRef(writing)
   writingRef.current = writing
 
@@ -177,7 +178,10 @@ export function SelectionToolbar({ container, onSave }: {
 
   if (!picked) return null
   const tooLong = picked.quote.length > QUOTE_MAX
+  // A double click or a second Enter must not save the highlight (and its card) twice.
   const save = async (withNote: string | null, card?: CardDraft) => {
+    if (saving.current) return
+    saving.current = true
     try {
       await onSave(picked.quote, picked.section, picked.prefix, withNote, card)
       window.getSelection()?.removeAllRanges()
@@ -186,6 +190,8 @@ export function SelectionToolbar({ container, onSave }: {
       setNote('')
     } catch (e) {
       setError((e as Error).message)
+    } finally {
+      saving.current = false
     }
   }
 

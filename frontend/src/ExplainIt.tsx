@@ -8,10 +8,12 @@ import { SpokenJudge } from './AnswerJudge'
  * against the lesson (the 4 layers, misconceptions, an improved version), then save the improved version to notes,
  * where it also becomes a review card.
  */
-export function ExplainIt({ moduleId, code, title, onSaved }: {
+export function ExplainIt({ moduleId, code, title, hidden, onSaved }: {
   moduleId: string
   code: string
   title: string
+  /** Hidden, not unmounted, away from the lesson's end, so the typed text and the result survive Back / Next. */
+  hidden: boolean
   onSaved: (e: Explanation) => void
 }) {
   const [attempt, setAttempt] = useState<number | null>(null)
@@ -31,7 +33,7 @@ export function ExplainIt({ moduleId, code, title, onSaved }: {
   }
 
   return (
-    <div className="explain-it">
+    <div className="explain-it" hidden={hidden}>
       <div className="eyebrow">{code} · end of lesson</div>
       <SpokenJudge
         heading={<><MessageSquareText size={18} style={{ verticalAlign: -3 }} /> Explain it in your words: {title}</>}

@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 /** [[Concept]] in note text (the same rule as notes.ConceptIndex on the server: no brackets or line breaks inside). */
 const LINK = /\[\[([^[\]\n]{1,100})\]\]/g
 
-export const conceptHref = (name: string) => `/concepts?name=${encodeURIComponent(name.trim().replace(/\s+/g, ' '))}`
+/** Parentheses are escaped too, so the link also survives inside a Markdown link target. */
+export const conceptHref = (name: string) =>
+  `/concepts?name=${encodeURIComponent(name.trim().replace(/\s+/g, ' ')).replace(/\(/g, '%28').replace(/\)/g, '%29')}`
 
 /** The text with [[Concept]] shown as the bare name, for places that are already a link. */
 export const unlinked = (text: string) => text.replace(LINK, (_, name: string) => name.trim())
