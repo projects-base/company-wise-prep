@@ -14,6 +14,8 @@ public interface ReviewCardRepository extends JpaRepository<ReviewCard, Long> {
 
 	List<ReviewCard> findBySuspendedFalse();
 
+	List<ReviewCard> findBySourceKind(CardSource sourceKind);
+
 	List<ReviewCard> findByModuleIdOrderByIdAsc(String moduleId);
 
 	List<ReviewCard> findAllByOrderByIdAsc();

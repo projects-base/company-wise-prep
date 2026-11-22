@@ -5,12 +5,14 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -35,14 +37,16 @@ public class CardService {
 
 	private final ReviewCardRepository cards;
 	private final LessonNoteRepository notes;
+	private final QuizMistakeRepository mistakes;
 	private final AcademyModuleRepository modules;
 	private final Clock clock;
 	private final TransactionTemplate tx;
 
-	public CardService(ReviewCardRepository cards, LessonNoteRepository notes, AcademyModuleRepository modules, Clock clock,
-			PlatformTransactionManager transactions) {
+	public CardService(ReviewCardRepository cards, LessonNoteRepository notes, QuizMistakeRepository mistakes,
+			AcademyModuleRepository modules, Clock clock, PlatformTransactionManager transactions) {
 		this.cards = cards;
 		this.notes = notes;
+		this.mistakes = mistakes;
 		this.modules = modules;
 		this.clock = clock;
 		this.tx = new TransactionTemplate(transactions);
@@ -110,21 +114,47 @@ public class CardService {
 		cards.save(c);
 	}
 
-	@Transactional
-	public CardView edit(long id, String front, String back, boolean suspended) {
-		ReviewCard c = find(id);
-		String f = Text.trim(front);
-		if (f == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "front must not be blank");
-		c.setFront(f);
-		c.setBack(Text.trim(back));
-		c.setSuspended(suspended);
-		c.setUpdatedAt(Instant.now(clock));
-		return view(cards.save(c));
+	/**
+	 * Open mistakes recorded before cards existed (Phase 1) get their card. Idempotent: a mistake with a card is skipped,
+	 * and two callers racing meet at the unique constraint.
+	 */
+	public void backfillMistakes() {
+		raceSafe(() -> {
+			Set<Long> carded = cards.findBySourceKind(CardSource.MISTAKE).stream().map(ReviewCard::getSourceId)
+					.collect(Collectors.toSet());
+			mistakes.findByFixedFalse().stream().filter(q -> !carded.contains(q.getId())).forEach(q -> forMistake(q, null));
+			return null;
+		});
 	}
 
-	@Transactional
+	public CardView edit(long id, String front, String back, boolean suspended) {
+		String f = Text.trim(front);
+		if (f == null) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "front must not be blank");
+		return unraced(id, () -> {
+			ReviewCard c = find(id);
+			c.setFront(f);
+			c.setBack(Text.trim(back));
+			c.setSuspended(suspended);
+			c.setUpdatedAt(Instant.now(clock));
+			return view(cards.saveAndFlush(c));
+		});
+	}
+
 	public void delete(long id) {
-		cards.delete(find(id));
+		unraced(id, () -> {
+			cards.delete(find(id));
+			cards.flush();
+			return null;
+		});
+	}
+
+	/** A change that meets a grade of the same card (the version column) is refused with 409, as a second grade is. */
+	<T> T unraced(long id, Supplier<T> work) {
+		try {
+			return tx.execute(status -> work.get());
+		} catch (OptimisticLockingFailureException raced) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, "Card " + id + " changed at the same time; try again");
+		}
 	}
 
 	/** All cards, or one lesson's, oldest first. */
@@ -177,7 +207,7 @@ public class CardService {
 		int room = FRONT_MAX - head.length() - tail.length();
 		if (code == null || code.isBlank() || room < 20) return fit(lead, FRONT_MAX);
 		String c = code.strip();
-		return head + (c.length() > room ? c.substring(0, room - 1) + "…" : c) + tail;
+		return head + (c.length() > room ? Text.cut(c, room - 1) + "…" : c) + tail;
 	}
 
 	private static String joined(String... parts) {
@@ -186,6 +216,6 @@ public class CardService {
 	}
 
 	private static String fit(String s, int max) {
-		return s == null || s.length() <= max ? s : s.substring(0, max - 1) + "…";
+		return s == null || s.length() <= max ? s : Text.cut(s, max - 1) + "…";
 	}
 }

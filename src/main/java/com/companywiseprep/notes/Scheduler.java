@@ -10,10 +10,10 @@ import java.util.Map;
  * time out.
  *
  * A new card (never recalled, or reset by Again) takes fixed first steps: Again 10 minutes, Hard 1 day, Good 4 days,
- * Easy 9 days. After that Hard multiplies the interval by 1.2, Good by the ease, Easy by ease × 1.3, and Again resets
- * the card to 10 minutes and counts a lapse. Every grade moves the ease the same way (Again −0.2, Hard −0.15,
- * Easy +0.15, never below 1.3); a multiplier uses the ease from before the grade. Intervals after the first steps are
- * whole days, at least one, at most 180.
+ * Easy 9 days; the ease does not move. Once graduated, Hard multiplies the interval by 1.2, Good by the ease, Easy by
+ * ease × 1.3, and Again resets the card to 10 minutes and counts a lapse; the ease moves (Again −0.2, Hard −0.15,
+ * Easy +0.15, never below 1.3), and a multiplier uses the ease from before the grade. A graduated card's interval is in
+ * whole days, grows by at least one day, and stops at 180.
  */
 final class Scheduler {
 
@@ -35,12 +35,13 @@ final class Scheduler {
 	}
 
 	static Next next(State s, Grade g, Instant now) {
-		double ease = Math.max(MIN_EASE, round2(s.ease() + switch (g) {
+		double step = switch (g) {
 			case AGAIN -> -0.2;
 			case HARD -> -0.15;
 			case GOOD -> 0;
 			case EASY -> 0.15;
-		}));
+		};
+		double ease = s.reps() == 0 ? s.ease() : Math.max(MIN_EASE, round2(s.ease() + step));
 		State next;
 		if (g == Grade.AGAIN) {
 			next = new State(0, s.reps() > 0 ? s.lapses() + 1 : s.lapses(), ease, AGAIN_MINUTES);
@@ -70,7 +71,8 @@ final class Scheduler {
 			case GOOD -> s.ease();
 			default -> s.ease() * 1.3;
 		};
-		long days = Math.max(1, Math.round((double) s.intervalMinutes() / DAY * factor));
+		long previous = Math.max(1, Math.round((double) s.intervalMinutes() / DAY));
+		long days = Math.max(previous + 1, Math.round(previous * factor));
 		return Math.min(MAX_INTERVAL, days * DAY);
 	}
 

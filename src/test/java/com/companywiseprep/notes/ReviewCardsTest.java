@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.Duration;
+import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.ResultActions;
@@ -224,5 +225,66 @@ class ReviewCardsTest extends StudyTestBase {
 		mvc.perform(get("/api/review/queue"))
 				.andExpect(jsonPath("$[0].front", containsString("First?")))
 				.andExpect(jsonPath("$[1].front", is("Second?")));
+	}
+
+	// ── The viewer's time zone ────────────────────────────────────────────────────────────────
+
+	@Test
+	void statsCountDaysInTheTimeZoneTheBrowserSends() throws Exception {
+		String a = highlightCard("A?");
+		grade(a, "AGAIN"); // 25 Nov 12:00 UTC: the 25th in both zones
+		String b = highlightCard("B?");
+		ReviewCard due = cards.findById(Long.parseLong(b)).orElseThrow();
+		due.setDue(Instant.parse("2026-11-26T10:00:00Z")); // the 26th in both zones
+		cards.save(due);
+		clock.now = Instant.parse("2026-11-25T19:00:00Z"); // still the 25th in UTC, already 00:30 on the 26th in India
+
+		mvc.perform(get("/api/review/stats").param("zone", "UTC"))
+				.andExpect(jsonPath("$.reviewedToday", is(true)))
+				.andExpect(jsonPath("$.streak", is(1)))
+				.andExpect(jsonPath("$.week[0].date", is("2026-11-25")))
+				.andExpect(jsonPath("$.week[*].count", contains(1, 1, 0, 0, 0, 0, 0)));
+		mvc.perform(get("/api/review/stats").param("zone", "Asia/Kolkata"))
+				.andExpect(jsonPath("$.reviewedToday", is(false)))
+				.andExpect(jsonPath("$.streak", is(1)))
+				.andExpect(jsonPath("$.week[0].date", is("2026-11-26")))
+				.andExpect(jsonPath("$.week[*].count", contains(2, 0, 0, 0, 0, 0, 0)));
+	}
+
+	@Test
+	void anUnknownTimeZoneIsRejected() throws Exception {
+		mvc.perform(get("/api/review/stats").param("zone", "Mars/Olympus")).andExpect(status().isBadRequest());
+		mvc.perform(get("/api/review/stats")).andExpect(status().isOk());
+	}
+
+	// ── Mistakes from before flashcards ───────────────────────────────────────────────────────
+
+	@Test
+	void openMistakesWithoutACardGetOneOnceWhenTheQueueIsRead() throws Exception {
+		QuizMistake open = mistake("Which loop is amortised O(n)?", false);
+		mistake("Which map keeps insertion order?", true);
+
+		mvc.perform(get("/api/review/queue"))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(jsonPath("$[0].sourceKind", is("MISTAKE")))
+				.andExpect(jsonPath("$[0].sourceId", is(open.getId().intValue())))
+				.andExpect(jsonPath("$[0].front", is("Which loop is amortised O(n)?")));
+		mvc.perform(get("/api/review/queue")).andExpect(jsonPath("$", hasSize(1)));
+		mvc.perform(get("/api/review/stats")).andExpect(jsonPath("$.dueNow", is(1)));
+		assertThat(cards.count()).isEqualTo(1);
+	}
+
+	/** A mistake saved before cards existed: straight into the table, no card. */
+	private QuizMistake mistake(String question, boolean fixed) {
+		QuizMistake q = new QuizMistake();
+		q.setModuleId("D1");
+		q.setQuizKey(MistakeService.key(question));
+		q.setQuestion(question);
+		q.setCorrect("The two-pointer loop");
+		q.setWrongCount(1);
+		q.setFixed(fixed);
+		q.setFirstWrongAt(NOON);
+		q.setLastWrongAt(NOON);
+		return mistakes.save(q);
 	}
 }

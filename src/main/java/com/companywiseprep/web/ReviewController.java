@@ -1,5 +1,7 @@
 package com.companywiseprep.web;
 
+import java.time.DateTimeException;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.companywiseprep.notes.CardService;
 import com.companywiseprep.notes.CardService.CardView;
@@ -93,8 +96,18 @@ public class ReviewController {
 		return review.grade(id, req.grade());
 	}
 
+	/** @param zone the browser's IANA time zone (Asia/Kolkata), so "today" and the streak follow the viewer */
 	@GetMapping("/stats")
-	public ReviewService.Stats stats() {
-		return review.stats();
+	public ReviewService.Stats stats(@RequestParam(required = false) String zone) {
+		return review.stats(zone(zone));
+	}
+
+	private static ZoneId zone(String id) {
+		if (id == null || id.isBlank()) return null;
+		try {
+			return ZoneId.of(id);
+		} catch (DateTimeException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unknown time zone " + id);
+		}
 	}
 }

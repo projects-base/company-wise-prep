@@ -75,8 +75,7 @@ public class ExplanationService {
 		a.setScore(ReviewEngine.trendScore(review));
 		a.setText(said);
 		String improved = Text.trim(review.improvedAnswer());
-		a.setImproved(improved == null || improved.length() <= CardService.BACK_MAX ? improved
-				: improved.substring(0, CardService.BACK_MAX));
+		a.setImproved(Text.cut(improved, CardService.BACK_MAX));
 		ExplanationAttempt saved = attempts.save(a);
 		return new ExplanationResult(saved.getId(), review.withHistory(history(m.getId())));
 	}
@@ -118,6 +117,6 @@ public class ExplanationService {
 	static String reference(String lesson) {
 		if (lesson == null) return "";
 		String text = lesson.replaceAll("(?s)(`{3,})(quiz|anim|mermaid)\\b.*?\\1", "").replaceAll("\\n{3,}", "\n\n").strip();
-		return text.length() <= REFERENCE_MAX ? text : text.substring(0, REFERENCE_MAX);
+		return Text.cut(text, REFERENCE_MAX);
 	}
 }

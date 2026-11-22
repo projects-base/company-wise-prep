@@ -35,7 +35,7 @@ class SchedulerTest {
 		assertThat(n.due()).isEqualTo(NOW.plus(Duration.ofMinutes(10)));
 		assertThat(n.state().reps()).isZero();
 		assertThat(n.state().lapses()).as("a card never learned has not lapsed").isZero();
-		assertThat(n.state().ease()).isEqualTo(2.3);
+		assertThat(n.state().ease()).isEqualTo(2.5);
 	}
 
 	@Test
@@ -44,7 +44,7 @@ class SchedulerTest {
 		assertThat(n.state().intervalMinutes()).isEqualTo(DAY);
 		assertThat(n.due()).isEqualTo(NOW.plus(Duration.ofDays(1)));
 		assertThat(n.state().reps()).isEqualTo(1);
-		assertThat(n.state().ease()).isEqualTo(2.35);
+		assertThat(n.state().ease()).isEqualTo(2.5);
 	}
 
 	@Test
@@ -59,7 +59,7 @@ class SchedulerTest {
 	void easyOnANewCardIsNineDays() {
 		Next n = Scheduler.next(State.NEW, Grade.EASY, NOW);
 		assertThat(n.state().intervalMinutes()).isEqualTo(9 * DAY);
-		assertThat(n.state().ease()).isEqualTo(2.65);
+		assertThat(n.state().ease()).isEqualTo(2.5);
 	}
 
 	@Test
@@ -103,9 +103,23 @@ class SchedulerTest {
 	}
 
 	@Test
-	void intervalsRoundToWholeDaysAndNeverDropBelowOne() {
-		assertThat(Scheduler.next(learned(1, 1.3), Grade.HARD, NOW).state().intervalMinutes()).isEqualTo(DAY);
+	void intervalsRoundToWholeDays() {
 		assertThat(Scheduler.next(learned(3, 2.5), Grade.HARD, NOW).state().intervalMinutes()).isEqualTo(4 * DAY); // 3.6
+	}
+
+	@Test
+	void aGraduatedCardAlwaysGrowsByAtLeastADay() {
+		assertThat(Scheduler.next(learned(1, 1.3), Grade.GOOD, NOW).state().intervalMinutes()).isEqualTo(2 * DAY);
+		assertThat(Scheduler.next(learned(1, 2.5), Grade.HARD, NOW).state().intervalMinutes()).isEqualTo(2 * DAY);
+		assertThat(Scheduler.next(learned(179, 1.3), Grade.HARD, NOW).state().intervalMinutes()).isEqualTo(180 * DAY);
+	}
+
+	@Test
+	void repeatedAgainOnANewCardLeavesEaseAlone() {
+		State s = State.NEW;
+		for (int i = 0; i < 5; i++) s = Scheduler.next(s, Grade.AGAIN, NOW).state();
+		assertThat(s.ease()).isEqualTo(2.5);
+		assertThat(s.lapses()).isZero();
 	}
 
 	@Test
@@ -122,10 +136,10 @@ class SchedulerTest {
 	}
 
 	@Test
-	void repeatedEasyKeepsRaisingEase() {
+	void repeatedEasyRaisesEaseOnceTheCardHasGraduated() {
 		State s = State.NEW;
 		for (int i = 0; i < 4; i++) s = Scheduler.next(s, Grade.EASY, NOW).state();
-		assertThat(s.ease()).isEqualTo(3.1);
+		assertThat(s.ease()).isEqualTo(2.95);
 		assertThat(s.reps()).isEqualTo(4);
 	}
 

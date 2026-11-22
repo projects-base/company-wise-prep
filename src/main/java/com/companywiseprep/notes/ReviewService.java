@@ -9,11 +9,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,7 +29,7 @@ public class ReviewService {
 	private final ReviewLogRepository logs;
 	private final CardService cardViews;
 	private final Clock clock;
-	private final TransactionTemplate tx;
+	private final TransactionTemplate read;
 
 	public ReviewService(ReviewCardRepository cards, ReviewLogRepository logs, CardService cardViews, Clock clock,
 			PlatformTransactionManager transactions) {
@@ -39,7 +37,8 @@ public class ReviewService {
 		this.logs = logs;
 		this.cardViews = cardViews;
 		this.clock = clock;
-		this.tx = new TransactionTemplate(transactions);
+		this.read = new TransactionTemplate(transactions);
+		this.read.setReadOnly(true);
 	}
 
 	public record DayDue(LocalDate date, int count) {
@@ -52,10 +51,11 @@ public class ReviewService {
 	public record Stats(int dueNow, int streak, boolean reviewedToday, int knownWell, int active, List<DayDue> week) {
 	}
 
-	/** Active cards due now, the longest-waiting first. */
-	@Transactional(readOnly = true)
+	/** Active cards due now, the longest-waiting first (after giving older open mistakes their cards). */
 	public List<CardView> queue() {
-		return cardViews.views(cards.findBySuspendedFalseAndDueLessThanEqualOrderByDueAscIdAsc(Instant.now(clock)));
+		cardViews.backfillMistakes();
+		return read.execute(status ->
+				cardViews.views(cards.findBySuspendedFalseAndDueLessThanEqualOrderByDueAscIdAsc(Instant.now(clock))));
 	}
 
 	/**
@@ -63,28 +63,27 @@ public class ReviewService {
 	 * cannot schedule it twice; the version column catches two grades racing.
 	 */
 	public CardView grade(long id, Grade grade) {
-		try {
-			return tx.execute(status -> {
-				ReviewCard c = cardViews.find(id);
-				Instant now = Instant.now(clock);
-				if (c.isSuspended() || c.getDue().isAfter(now)) {
-					throw new ResponseStatusException(HttpStatus.CONFLICT, "Card " + id + " is not due");
-				}
-				c.apply(Scheduler.next(c.state(), grade, now));
-				c.setUpdatedAt(now);
-				ReviewCard saved = cards.saveAndFlush(c);
-				logs.save(new ReviewLog(saved.getId(), grade, now, saved.getIntervalMinutes(), saved.getEase()));
-				return cardViews.view(saved);
-			});
-		} catch (OptimisticLockingFailureException raced) {
-			throw new ResponseStatusException(HttpStatus.CONFLICT, "Card " + id + " was graded at the same time");
-		}
+		return cardViews.unraced(id, () -> {
+			ReviewCard c = cardViews.find(id);
+			Instant now = Instant.now(clock);
+			if (c.isSuspended() || c.getDue().isAfter(now)) {
+				throw new ResponseStatusException(HttpStatus.CONFLICT, "Card " + id + " is not due");
+			}
+			c.apply(Scheduler.next(c.state(), grade, now));
+			c.setUpdatedAt(now);
+			ReviewCard saved = cards.saveAndFlush(c);
+			logs.save(new ReviewLog(saved.getId(), grade, now, saved.getIntervalMinutes(), saved.getEase()));
+			return cardViews.view(saved);
+		});
 	}
 
-	@Transactional(readOnly = true)
-	public Stats stats() {
-		Instant now = Instant.now(clock);
-		ZoneId zone = clock.getZone();
+	/** @param zone the viewer's time zone, for what "today" means; null is the server's */
+	public Stats stats(ZoneId zone) {
+		cardViews.backfillMistakes();
+		return read.execute(status -> stats(Instant.now(clock), zone == null ? clock.getZone() : zone));
+	}
+
+	private Stats stats(Instant now, ZoneId zone) {
 		LocalDate today = LocalDate.ofInstant(now, zone);
 		List<ReviewCard> active = cards.findBySuspendedFalse();
 		int dueNow = (int) active.stream().filter(c -> !c.getDue().isAfter(now)).count();
