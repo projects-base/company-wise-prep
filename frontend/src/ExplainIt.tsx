@@ -40,6 +40,7 @@ export function ExplainIt({ moduleId, code, title, hidden, onSaved }: {
         intro={'Type it or speak it, as you would in an interview: '
           + 'what it is → how it works → where you would use it → what goes wrong.'}
         submitLabel="Check my explanation"
+        paused={hidden}
         submit={async (text) => {
           const r = await api.explain(moduleId, text)
           setAttempt(r.id)

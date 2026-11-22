@@ -65,13 +65,15 @@ export function AnswerJudge({ slug }: { slug: string }) {
 }
 
 /** The speak-or-type box and the 4-layer result, for anything the app's reviewer can judge (an answer, an explanation). */
-export function SpokenJudge({ heading, intro, submitLabel, submit, extra }: {
+export function SpokenJudge({ heading, intro, submitLabel, submit, extra, paused }: {
   heading: ReactNode
   intro: string
   submitLabel: string
   submit: (text: string) => Promise<AnswerReview>
   /** More actions beside the result's Try again, e.g. Save to notes. */
   extra?: (review: AnswerReview) => ReactNode
+  /** True while the box is hidden (a lesson's earlier parts): the mic stops, keeping what was already said. */
+  paused?: boolean
 }) {
   const { reviewer } = useFeatures()
   const ai = reviewer !== 'offline'
@@ -198,6 +200,13 @@ export function SpokenJudge({ heading, intro, submitLabel, submit, extra }: {
       setTranscribing(false)
     }
   }
+
+  // Leaving the box mid-recording: keep the words so far (live speech) or transcribe what was recorded.
+  useEffect(() => {
+    if (!paused) return
+    if (recording.current) void finishRecording()
+    else if (wanted.current) stop()
+  }, [paused])
 
   const judge = async () => {
     stop()
