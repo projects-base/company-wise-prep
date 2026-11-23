@@ -1,9 +1,10 @@
 ## Where we are
 
 In BE-STORY-8, Spring Boot made one application cheap to start: auto-configuration, starters and an
-embedded server in one runnable jar. But a company is never just one application. This lesson is
-about the era (roughly the 2000s) when large companies tried to connect *many* applications to each
-other, and what that taught us before microservices arrived.
+embedded server in one runnable jar. But a company is never just one application.
+
+This lesson is about the era (roughly the 2000s) when large companies tried to connect *many*
+applications to each other, and what that taught us before microservices arrived.
 
 ## The problem
 
@@ -28,9 +29,16 @@ system directly to each other system it needs:
 ```
 
 With 5 systems there can be up to 10 point-to-point links (n·(n−1)/2). With 20 systems, up to 190.
-Each link has its own data format, its own protocol, its own error handling, and usually its own
-developer who has since left. Teams call this **spaghetti integration**. Changing one system's
-data format can break several others, and nobody has a full map.
+
+Each link has its own:
+
+- data format;
+- protocol;
+- error handling;
+- developer, who has usually since left.
+
+Teams call this **spaghetti integration**. Changing one system's data format can break several others,
+and nobody has a full map.
 
 That is the pain this era set out to fix.
 
@@ -50,8 +58,10 @@ Service: InventoryService
 
 The shop now depends on two operations, not on forty tables. The ERP can change its tables freely.
 
-The general rule: **depend on a contract, not on someone else's internals.** That rule survived
-every era after this one. Microservices (BE-STORY-10) keep it; they change *where the smarts live*.
+The general rule: **depend on a contract, not on someone else's internals.**
+
+That rule survived every era after this one. Microservices (BE-STORY-10) keep it; they change *where
+the smarts live*.
 
 ## How SOA was usually built: SOAP and WSDL
 
@@ -64,13 +74,15 @@ In practice, most SOA programmes of the 2000s used **web services** built on XML
   messaging, transactions and more).
 
 A SOAP call is a fairly large XML envelope for a small request. That verbosity and the size of the
-WS-\* family are part of why later teams moved to plain JSON over HTTP. In Java, this era gave us
-JAX-WS for SOAP services.
+WS-\* family are part of why later teams moved to plain JSON over HTTP.
+
+In Java, this era gave us JAX-WS for SOAP services.
 
 ## The invention: the enterprise service bus (ESB)
 
-Contracts alone do not solve the spaghetti. Something still has to connect the systems. The
-**enterprise service bus (ESB)** is a central piece of middleware that every system plugs into once.
+Contracts alone do not solve the spaghetti. Something still has to connect the systems.
+
+The **enterprise service bus (ESB)** is a central piece of middleware that every system plugs into once.
 The bus then does the work of moving messages between them:
 
 ```text
@@ -87,19 +99,28 @@ Now each system has one connection (to the bus), not one per partner. A typical 
 - **Protocol bridging**: receive over HTTP, deliver over a message queue or FTP file drop.
 - **Orchestration**: run a multi-step business process across services.
 
-Products of the period included IBM's WebSphere ESB and Message Broker, Oracle Service Bus,
-TIBCO, and the open-source Mule ESB and Apache ServiceMix. Apache Camel (an integration library,
-not a whole bus) implements the same patterns and is still widely used.
+Products of the period included:
+
+- IBM's WebSphere ESB and Message Broker;
+- Oracle Service Bus;
+- TIBCO;
+- the open-source Mule ESB and Apache ServiceMix.
+
+Apache Camel (an integration library, not a whole bus) implements the same patterns and is still widely used.
 
 Analogy: the ESB is a telephone switchboard. Everybody calls the operator, and the operator connects
-and translates. **Where it breaks:** a switchboard operator does not decide *business policy*. An ESB
-was often allowed to, and that is where the trouble started.
+and translates.
+
+**Where it breaks:** a switchboard operator does not decide *business policy*. An ESB was often allowed
+to, and that is where the trouble started.
 
 ## The new pain: the smart pipe becomes the bottleneck
 
-Here is how it went wrong in many companies. The bus was owned by one central **integration team**.
-Every change that crossed two systems needed a change in the bus. Slowly, business logic moved
-into the bus, because it was the one place that saw everything:
+Here is how it went wrong in many companies:
+
+1. The bus was owned by one central **integration team**.
+2. Every change that crossed two systems needed a change in the bus.
+3. Slowly, business logic moved into the bus, because it was the one place that saw everything:
 
 ```text
 ESB flow "PlaceOrder":
@@ -117,20 +138,26 @@ Now:
 - Testing a flow means standing up the bus, which only the integration team knows how to do.
 
 This is the same shape of pain you saw in BE-STORY-5 (EJB): a heavy central container that does useful
-things but slows every team down. The general lesson: **central governance helps consistency, but
-a central component that every change must pass through becomes a central bottleneck.**
+things but slows every team down.
+
+The general lesson: **central governance helps consistency, but a central component that every change
+must pass through becomes a central bottleneck.**
 
 ## The reaction: smart endpoints, dumb pipes
 
 In March 2014, James Lewis and Martin Fowler published the article *Microservices* on
 martinfowler.com. One of the characteristics it describes is **"smart endpoints and dumb pipes"**:
-put the business logic inside the services that own it, and keep the thing between them simple
-(plain HTTP, or a message broker that just delivers messages). It contrasts this directly with
-ESB-style integration.
+
+- put the business logic inside the services that own it;
+- keep the thing between them simple (plain HTTP, or a message broker that just delivers messages).
+
+It contrasts this directly with ESB-style integration.
 
 In 2009, analyst Anne Thomas Manes wrote a widely shared blog post titled *SOA is Dead; Long Live
-Services*: her point was that the *SOA programme* label had failed, while the idea of services
-was still right. Read both originals; they are short.
+Services*. Her point was that the *SOA programme* label had failed, while the idea of services
+was still right.
+
+Read both originals; they are short.
 
 What survived from SOA:
 
@@ -193,8 +220,9 @@ public class MiniBus {
 Run it with `java MiniBus.java`. You should see the ERP receive `ARTICLE_NO` and the CRM receive `sku`.
 
 Now add a business rule *inside the bus*: if `tier` is `GOLD` and `total` is above 500, route
-to a new `fastTrackWarehouse` endpoint as well. Notice where you had to write it: in the bus, not
-in the shop or the CRM.
+to a new `fastTrackWarehouse` endpoint as well.
+
+Notice where you had to write it: in the bus, not in the shop or the CRM.
 
 **Part 2: Debate (design, on paper).** Draw ShopKart's five systems around a central ESB that
 does routing, transformation *and* business rules. Then list what happens when:
@@ -203,9 +231,12 @@ does routing, transformation *and* business rules. Then list what happens when:
 2. the shop needs a new field on orders before a sale next week;
 3. the ESB server needs an upgrade over a weekend.
 
-For each, write who has to act and who waits. Then redraw it with "smart endpoints, dumb pipes":
-the rule lives in the shop or the CRM, and the pipe only delivers. Write two sentences on what you
-gained and what you lost (hint: one central place to see all flows).
+For each, write who has to act and who waits.
+
+Then redraw it with "smart endpoints, dumb pipes": the rule lives in the shop or the CRM, and the pipe
+only delivers.
+
+Write two sentences on what you gained and what you lost (hint: one central place to see all flows).
 
 ## Gotchas
 
