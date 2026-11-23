@@ -230,6 +230,23 @@ export interface ModuleView {
   partsDone: string[]
 }
 
+/** A started lesson as the plan sees it (academy.AcademyService.LessonStatus). */
+export interface LessonStatus {
+  id: string
+  code: string
+  done: boolean
+  /** The lesson's "## " parts, and how many of them are ticked off. */
+  parts: number
+  partsDone: number
+}
+
+/** Steps ticked off in one plan session on one day; key is the title without its "Step N of M · " counter. */
+export interface PlanTick {
+  date: string
+  key: string
+  steps: number[]
+}
+
 export type Verdict = 'ACCEPTED' | 'WRONG_ANSWER' | 'RUNTIME_ERROR' | 'TIME_LIMIT' | 'COMPILE_ERROR'
 
 export interface TestCase {
@@ -419,6 +436,9 @@ export const api = {
   campaigns: () => call<CampaignConfig[]>('/api/campaigns'),
   today: (id: string) => call<Today>(`/api/campaigns/${id}/today`),
   plan: (id: string) => call<PlanResponse>(`/api/campaigns/${id}/plan`),
+  ticks: (id: string) => call<PlanTick[]>(`/api/campaigns/${id}/ticks`),
+  setTicks: (id: string, tick: PlanTick) =>
+    call<PlanTick>(`/api/campaigns/${id}/ticks`, { method: 'PUT', headers: JSON_HEADERS, body: JSON.stringify(tick) }),
   companies: () => call<CompanySummary[]>('/api/companies'),
   company: (slug: string) => call<CompanyView>(`/api/companies/${slug}`),
   questions: () => call<QuestionSummary[]>('/api/questions'),
@@ -452,6 +472,7 @@ export const api = {
       body: JSON.stringify({ action, notes }),
     }),
   academy: () => call<AcademyOverview>('/api/academy'),
+  lessonStatus: () => call<LessonStatus[]>('/api/academy/progress'),
   module: (id: string) => call<ModuleView>(`/api/academy/modules/${id}`),
   moduleDone: (id: string, done: boolean) =>
     call<ModuleSummary>(`/api/academy/modules/${id}/progress`, {

@@ -2,16 +2,18 @@ import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { BookOpen, ChevronRight, ScrollText } from 'lucide-react'
+import { BookOpen, Check, ChevronRight, ScrollText } from 'lucide-react'
 import { api, type PlanDay, type PlanItem, type Session } from '../api'
 import { HotBadge } from '../HotBadge'
 import { useCampaign } from '../App'
 import { celebrate, recordActivity, TICKS_CHANGED } from '../rewards'
+import { saveTicks, sessionLesson, sessionStatus, usePlanState, usePlanSync } from '../planSync'
 import { Bar, CheckDot, companyLabel, Difficulty, fmtDate, localToday, Meta, Status, TypeTag, useLoad } from '../ui'
 
 export default function PlanPage() {
   const campaign = useCampaign()
   const { data, error } = useLoad(() => (campaign ? api.plan(campaign.id) : Promise.resolve(null)), [campaign?.id])
+  usePlanSync(campaign)
   const [showBeyond, setShowBeyond] = useState(false)
 
   if (!campaign) return <div className="container"><p className="muted">No campaign yet.</p></div>
@@ -188,31 +190,20 @@ export function sessionSteps(detail: string): { min?: number; text: string }[] {
     })
 }
 
-export const readTicks = (k: string): number[] => {
-  try {
-    return JSON.parse(localStorage.getItem(k) ?? '[]')
-  } catch {
-    return []
-  }
-}
-
 /**
- * A fixed session: the title, then its detail as steps to tick off (remembered in this browser),
- * so a long sentence of instructions becomes a short checklist.
+ * A fixed session: the title, then its detail as steps to tick off (kept on the server), so a long sentence of
+ * instructions becomes a short checklist. A session ticks itself when the lesson it names is done, or every question it
+ * lists is; its boxes are read-only then.
  */
 export function SessionRow({ session, date, open: startOpen = true }: { session: Session; date?: string; open?: boolean }) {
   const steps = sessionSteps(session.detail ?? '')
-  const key = `ticks.${date ?? ''}.${session.title}`
-  const [ticks, setTicks] = useState<number[]>(() => readTicks(key))
+  const day = date ?? session.date
+  const status = sessionStatus(usePlanState(), day, session)
+  const ticks = status.auto ? steps.map((_, i) => i) : status.ticks
   const [open, setOpen] = useState(startOpen)
   const flip = (i: number) => {
     const next = ticks.includes(i) ? ticks.filter((t) => t !== i) : [...ticks, i]
-    setTicks(next)
-    try {
-      localStorage.setItem(key, JSON.stringify(next))
-    } catch {
-      /* private window: not remembered */
-    }
+    saveTicks(day, session.title, next)
     if (next.length > ticks.length) {
       const days = recordActivity()
       if (steps.length > 0 && next.length === steps.length) {
@@ -221,9 +212,8 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
     }
     window.dispatchEvent(new Event(TICKS_CHANGED))
   }
-  const done = steps.length > 0 && ticks.length >= steps.length
-  // "Scratch · Step 12 of 110 · JAVA-JVM-2: …" — the API opens a lesson by its code as well as its id.
-  const lessonId = /^(?:Scratch · Step \d+ of \d+|Capstone) · ([A-Z]+(?:-[A-Z]+)*-\d+):/.exec(session.title)?.[1]
+  const done = status.auto !== null || (steps.length > 0 && ticks.length >= steps.length)
+  const lessonId = sessionLesson(session.title)
 
   return (
     <div className={`list-row session-row ${done ? 'done' : ''}`}>
@@ -233,6 +223,17 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
           <span className="title">{session.title}</span>
           {session.tier === 'stretch' && <span className="pill tier-stretch">Stretch</span>}
           {session.questions.map((q) => <HotBadge key={q} slug={q} />)}
+          {status.auto ? (
+            <span className="pill ok">
+              <Check size={12} strokeWidth={3} /> {status.auto === 'lesson' ? 'Done in the lesson' : 'Questions done'}
+            </span>
+          ) : (
+            status.parts && (
+              <span className="muted num" style={{ fontSize: '0.8rem' }}>
+                {status.parts.done}/{status.parts.total} parts
+              </span>
+            )
+          )}
           {steps.length > 1 && (
             <span className="muted num" style={{ fontSize: '0.8rem' }}>
               {Math.min(ticks.length, steps.length)}/{steps.length} steps
@@ -249,7 +250,12 @@ export function SessionRow({ session, date, open: startOpen = true }: { session:
             {steps.map((st, i) => (
               <li key={i}>
                 <label className={ticks.includes(i) ? 'ticked' : ''}>
-                  <input type="checkbox" checked={ticks.includes(i)} onChange={() => flip(i)} />
+                  <input
+                    type="checkbox"
+                    checked={ticks.includes(i)}
+                    disabled={status.auto !== null || !status.loaded}
+                    onChange={() => flip(i)}
+                  />
                   {st.min != null && <span className="pill">{st.min}m</span>}
                   <span>{withLessonLinks(st.text)}</span>
                 </label>

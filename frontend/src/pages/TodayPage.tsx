@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpen, Check, Clock, ExternalLink, Flame, Info, RotateCcw, Sparkles, Star } from 'lucide-react'
-import { api, leetcodeUrl, type PlanItem } from '../api'
+import { api, leetcodeUrl, type PlanItem, type Session } from '../api'
 import { HotBadge } from '../HotBadge'
 import { useCampaign } from '../App'
-import { readTicks, SessionRow, sessionSteps } from './PlanPage'
+import { SessionRow, sessionSteps } from './PlanPage'
+import { getPlanSync, refreshPlanSync, sessionStatus, usePlanSync } from '../planSync'
 import { celebrate, recordActivity, TICKS_CHANGED, useStreak } from '../rewards'
 import { CompanyPills, Difficulty, fmtDate, LevelChip, Meta, Ring, Status, TypeTag, useLoad } from '../ui'
 import { CalendarClock } from 'lucide-react'
@@ -24,15 +25,16 @@ export default function TodayPage() {
   )
   const { data: academy } = useLoad(() => api.academy(), [])
   const streak = useStreak()
-  const [, bump] = useState(0)
   const [short, setShort] = useState(false)
+  // Re-renders when ticks, lesson progress or done questions change.
+  usePlanSync(campaign)
   const day = t ? dayProgress(t.date, t.sessions ?? []) : { done: 0, total: 0 }
 
-  // Re-count when a step is ticked; the first time every step of the day is done, celebrate it.
+  // When a step is ticked by hand and that completes the day, celebrate it once. Sessions that ticked themselves (a lesson
+  // or questions done elsewhere) count, but loading the page never celebrates.
   useEffect(() => {
     if (!t) return
     const on = () => {
-      bump((n) => n + 1)
       const p = dayProgress(t.date, t.sessions ?? [])
       const flag = `daydone.${t.date}`
       try {
@@ -59,6 +61,7 @@ export default function TodayPage() {
       if (action === 'DONE') celebrate('Marked done', s > 1 ? `${s}-day streak` : undefined)
     }
     reload()
+    if (campaign) refreshPlanSync(campaign).catch((e) => console.error('Plan ticks could not be loaded', e))
   }
   const sessions = t.sessions ?? []
   const core = sessions.filter((s) => s.tier !== 'stretch')
@@ -339,15 +342,20 @@ function FocusCard({ item, onDone }: { item: PlanItem; onDone: () => void }) {
   )
 }
 
-/** Ticked steps over all steps of today's core sessions: the day is complete when core is done. */
-function dayProgress(date: string, sessions: { title: string; detail: string | null; tier?: string }[]) {
+/**
+ * Ticked steps over all steps of today's core sessions: the day is complete when core is done. A session that ticked
+ * itself (its lesson or all its questions done) counts in full.
+ */
+function dayProgress(date: string, sessions: Session[]) {
+  const state = getPlanSync()
   let done = 0
   let total = 0
   for (const s of sessions) {
     if (s.tier === 'stretch') continue
     const n = Math.max(1, sessionSteps(s.detail ?? '').length)
+    const status = sessionStatus(state, date, s)
     total += n
-    done += Math.min(n, readTicks(`ticks.${date}.${s.title}`).length)
+    done += status.auto ? n : Math.min(n, status.ticks.length)
   }
   return { done, total }
 }
