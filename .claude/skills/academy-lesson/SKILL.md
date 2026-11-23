@@ -53,6 +53,8 @@ one or two concepts a ```quiz. Minimums per lesson (from the template):
   `stage`); algorithm animations come from `tools/anim/build.py`.
 - **One runnable Java 21 example** (a full class with `main`) where code is involved, and a Lab with a
   **break it** step that says what failure to watch for.
+- **Scannable text** (template rule 11): no paragraph over 2–3 short sentences; lists of facts, steps, examples
+  and trade-offs are bullets with the key term in bold; story hooks and analogies stay as short prose.
 - Short sections: the app's one-part-at-a-time mode shows one `##` section per screen, so each `##` is one idea.
 - End sections stay: Gotchas, In interviews (only existing bank slugs, `[Title](#/q/slug)`), Explain it in
   2 minutes, Check yourself with `### Answers`, Next.

@@ -23,6 +23,11 @@ minutes and prerequisites from `curriculum.yaml`, so **the file has no H1** — 
 10. **Interactive, not a wall of text.** One learner reads these alone, so every lesson makes him do
     something every few minutes (see "Interactive elements" below): predict before reading, click a
     quiz, watch the flow move, run the code, break it.
+11. **Scannable, not paragraphs.** One idea per paragraph, at most 2–3 short sentences. Anything that is a list
+    in disguise becomes bullets: what something *is given* or *has*, steps in order (numbered), causes and
+    effects, examples, and trade-offs (labelled bullets such as **Good:** / **Cost:** / **When:** / **Watch out:**).
+    Put the defined term in bold at the start of its bullet. Nest at most one level. Keep short prose where it
+    reads better: the story hook, a one-line Predict, an analogy, and a sentence that links two ideas.
 
 ## Interactive elements
 
