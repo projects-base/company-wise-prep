@@ -251,6 +251,27 @@ class AppTest {
 				.andExpect(status().isBadRequest());
 	}
 
+	/** What the plan reads to tick lesson sessions off by itself: per started lesson, done and parts ticked of parts. */
+	@Test
+	void lessonProgressIsListedForThePlan() throws Exception {
+		mvc.perform(get("/api/academy/progress")).andExpect(jsonPath("$", hasSize(0)));
+		mvc.perform(put("/api/academy/modules/A1/parts").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"part\":\"Where we are\",\"done\":true}"));
+		mvc.perform(put("/api/academy/modules/A1/parts").contentType(MediaType.APPLICATION_JSON)
+				.content("{\"part\":\"A part that was renamed\",\"done\":true}"));
+
+		mvc.perform(get("/api/academy/progress"))
+				.andExpect(jsonPath("$", hasSize(1)))
+				.andExpect(jsonPath("$[0].id", is("A1")))
+				.andExpect(jsonPath("$[0].code", is("JAVA-JVM-1")))
+				.andExpect(jsonPath("$[0].done", is(false)))
+				.andExpect(jsonPath("$[0].partsDone", is(1)))
+				.andExpect(jsonPath("$[0].parts", greaterThan(1)));
+
+		mvc.perform(put("/api/academy/modules/A1/progress").contentType(MediaType.APPLICATION_JSON).content("{\"done\":true}"));
+		mvc.perform(get("/api/academy/progress")).andExpect(jsonPath("$[0].done", is(true)));
+	}
+
 	/** Ask AI works on any page: "general" has no reference material and only answers doubts. */
 	@Test
 	void askAiAnswersDoubtsFromAnyPage() throws Exception {

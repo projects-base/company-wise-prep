@@ -108,6 +108,11 @@ public class ApiController {
 		return academy.overview();
 	}
 
+	@GetMapping("/academy/progress")
+	public List<AcademyService.LessonStatus> lessonStatus() {
+		return academy.lessonStatus();
+	}
+
 	@GetMapping("/academy/modules/{id}")
 	public AcademyService.ModuleView module(@PathVariable String id) {
 		return academy.module(id);

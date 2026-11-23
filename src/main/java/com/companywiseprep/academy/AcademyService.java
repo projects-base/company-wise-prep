@@ -65,6 +65,27 @@ public class AcademyService {
 			List<Ref> unlocks, Ref previous, Ref next, int pathPosition, int pathLength, List<String> partsDone) {
 	}
 
+	/** A started lesson as the plan sees it: done, and how many of its current "## " parts are ticked off. */
+	public record LessonStatus(String id, String code, boolean done, int parts, int partsDone) {
+	}
+
+	/** Every lesson with progress (done, or a part ticked), so plan sessions naming a lesson can follow it. */
+	@Transactional(readOnly = true)
+	public List<LessonStatus> lessonStatus() {
+		Map<String, LessonProgress> byId = progress.findAll().stream()
+				.collect(Collectors.toMap(LessonProgress::getModuleId, Function.identity()));
+		return modules.findAllById(byId.keySet()).stream()
+				.sorted(Comparator.comparingInt(AcademyModule::getOrdinal))
+				.map(m -> {
+					List<String> titles = LessonParts.titles(m.getLesson());
+					LessonProgress p = byId.get(m.getId());
+					// Ticks on parts since renamed or removed don't count.
+					int ticked = (int) parts(p).stream().filter(titles::contains).count();
+					return new LessonStatus(m.getId(), m.getCode(), p.isDone(), titles.size(), ticked);
+				})
+				.toList();
+	}
+
 	@Transactional(readOnly = true)
 	public Overview overview() {
 		Set<String> done = doneIds();
