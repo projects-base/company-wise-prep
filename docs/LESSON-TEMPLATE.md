@@ -26,8 +26,9 @@ minutes and prerequisites from `curriculum.yaml`, so **the file has no H1** — 
 11. **Scannable, not paragraphs.** One idea per paragraph, at most 2–3 short sentences. Anything that is a list
     in disguise becomes bullets: what something *is given* or *has*, steps in order (numbered), causes and
     effects, examples, and trade-offs (labelled bullets such as **Good:** / **Cost:** / **When:** / **Watch out:**).
-    Put the defined term in bold at the start of its bullet. Nest at most one level. Keep short prose where it
-    reads better: the story hook, a one-line Predict, an analogy, and a sentence that links two ideas.
+    Put the defined term in bold at the start of its bullet. Nest at most one level. Prose is fine for the story
+    hook, a Predict, an analogy or a linking sentence, but **every paragraph, story hooks included, is at most 2
+    sentences** (about 40 words): split it, and pull any list inside it (problems, tools, symptoms) into bullets.
 
 ## Interactive elements
 

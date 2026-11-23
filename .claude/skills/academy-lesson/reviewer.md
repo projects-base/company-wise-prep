@@ -27,7 +27,7 @@ Check, and report each problem with the line number and a concrete fix:
 - A diagram that adds nothing (decorative) or is too big (over about 12 nodes).
 
 **Style** (judgement)
-- A paragraph of 4+ sentences or 55+ words that is really a list (facts, steps, examples, trade-offs) and should
+- A paragraph of 3+ sentences or 45+ words (story hooks included), or one that is really a list (facts, steps, examples, trade-offs) and should
   be bullets (template rule 11).
 - Section order, one idea per `##`, short sentences, "why before how", at most one analogy per concept, length
   roughly 1,200–2,200 words plus code.
