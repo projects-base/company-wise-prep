@@ -4,6 +4,7 @@ type: BEHAVIORAL
 difficulty: medium
 tags:
 - googleyness
+- disagreement
 leetcode: null
 prompt: |
   How would you handle people who disagree with the majority decision on a non-work matter?
@@ -16,3 +17,9 @@ sightings:
   seen_on: 2026-09
   confidence: claimed
   source: https://leetcode.com/discuss/post/8522064/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: VP / country head round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/

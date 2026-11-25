@@ -1,0 +1,29 @@
+slug: design-system-for-sudden-load
+title: Design a system that copes with sudden load
+type: HLD
+difficulty: medium
+tags:
+- burst-traffic
+- scalability
+- load-shedding
+- load-balancing
+leetcode: null
+prompt: |
+  How would you design a distributed system which can cope with sudden load? [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- H4
+- I3
+sightings:
+- company: deliveroo
+  role: Software Engineer (backend)
+  round: Onsite distributed system design (month estimated)
+  seen_on: 2019-02
+  confidence: claimed
+  source: https://www.glassdoor.ie/Interview/Deliveroo-Interview-E1053365-RVW24742699.htm
+- company: deliveroo
+  role: Software Engineer
+  round: System design (month estimated)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW88734943.htm

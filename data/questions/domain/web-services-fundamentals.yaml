@@ -6,6 +6,8 @@ tags:
 - rest
 - soap
 - web-services
+- http
+- mcq
 leetcode: null
 prompt: |
   Questions on web services: how you design, build and consume them.
@@ -21,3 +23,21 @@ sightings:
   seen_on: 2018-02
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: Online assessment (HackerRank)
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Bengaluru)
+  round: Online assessment (HackerRank)
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/
+- company: deliveroo
+  role: Senior Software Engineer (UK)
+  round: Online assessment (HackerRank, 3 sections)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer

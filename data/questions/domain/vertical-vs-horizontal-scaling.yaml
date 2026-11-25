@@ -1,0 +1,19 @@
+slug: vertical-vs-horizontal-scaling
+title: Vertical vs horizontal scaling
+type: DOMAIN
+difficulty: easy
+tags:
+- scalability
+leetcode: null
+prompt: |
+  What is the difference between vertical and horizontal scaling?
+follow_ups: []
+academy:
+- F1
+sightings:
+- company: deliveroo
+  role: Senior Machine Learning Engineer (London)
+  round: Technical screen
+  seen_on: 2022-10
+  confidence: claimed
+  source: https://www.glassdoor.com.br/Entrevista/Deliveroo-Entrevista-E1053365-RVW70089554.htm

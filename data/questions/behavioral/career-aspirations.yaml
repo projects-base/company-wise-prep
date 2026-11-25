@@ -1,0 +1,19 @@
+slug: career-aspirations
+title: What are your career aspirations?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- motivation
+leetcode: null
+prompt: |
+  A range of questions about how you handle certain situations and what your career aspirations are.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Software Engineer II (London)
+  round: Behavioural (month estimated)
+  seen_on: 2021-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm

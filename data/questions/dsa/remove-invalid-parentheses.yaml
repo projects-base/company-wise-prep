@@ -1,0 +1,27 @@
+slug: remove-invalid-parentheses
+title: Remove Invalid Parentheses
+type: DSA
+difficulty: hard
+tags:
+- backtracking
+- bfs
+- string
+leetcode: remove-invalid-parentheses
+prompt: |
+  Remove the minimum number of invalid parentheses and return all valid results.
+follow_ups: []
+academy:
+- T5
+sightings:
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, August 2026 snapshot)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.talentd.in/fleetcode/companies/deliveroo
+- company: deliveroo
+  role: Campus (Amaravathi, India)
+  round: On-campus DSA
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW90167710.htm

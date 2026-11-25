@@ -1,0 +1,24 @@
+slug: extract-service-from-monolith
+title: Pull an identity service out of a monolith safely
+type: HLD
+difficulty: hard
+tags:
+- strangler
+- monolith
+- microservices
+- auth
+- migration
+leetcode: null
+prompt: |
+  Design discussion: how would you pull an identity service out of a monolith safely? [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- S8
+- I3
+sightings:
+- company: deliveroo
+  role: Senior Platform Engineer
+  round: Design (month estimated)
+  seen_on: 2018-10
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Platform-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm

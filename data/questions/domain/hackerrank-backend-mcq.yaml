@@ -1,0 +1,45 @@
+slug: hackerrank-backend-mcq
+title: 'HackerRank MCQs: REST, testing, microservices, system design and distributed systems'
+type: DOMAIN
+difficulty: medium
+tags:
+- mcq
+- rest
+- testing
+- microservices
+- system-design
+- distributed-systems
+leetcode: null
+prompt: |
+  The first HackerRank section is multiple choice: 15 questions in 20 minutes (one 2024 report says 30) on REST APIs, testing, microservices, system design, distributed systems and algorithms. Know the fundamentals well enough to answer in about 80 seconds each.
+follow_ups: []
+academy:
+- W2
+- D12
+- S8
+- F2
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: HackerRank OA
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.sg/Interview/Deliveroo-Interview-E1053365-RVW89142622.htm
+- company: deliveroo
+  role: Senior Software Engineer (UK)
+  round: HackerRank OA, section 1
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer
+- company: deliveroo
+  role: SDE II / SSE (Hyderabad)
+  round: HackerRank OA
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718
+- company: deliveroo
+  role: Staff Engineer L6 (India)
+  round: HackerRank OA, section 1
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-experience-l6-staff-engineer-may-2025-india

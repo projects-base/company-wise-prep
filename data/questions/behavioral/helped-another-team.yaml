@@ -1,0 +1,18 @@
+slug: helped-another-team
+title: Helping another team outside your responsibilities
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- collaboration
+prompt: |
+  Describe a situation where you helped another team, even though it was outside your main responsibilities.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Security engineering (London, Deliveroo/DoorDash)
+  round: Behavioural round
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroodoordash-interview-experience-security-engineering-role

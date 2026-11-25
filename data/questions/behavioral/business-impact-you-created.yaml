@@ -1,0 +1,19 @@
+slug: business-impact-you-created
+title: What impact have you created?
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- impact
+- metrics
+prompt: |
+  What impact have you created? Explain it in numbers: cost reduction, time efficiency and so on.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer L5
+  round: Behavioural round
+  seen_on: 2024-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/

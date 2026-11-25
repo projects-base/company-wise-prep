@@ -1,0 +1,21 @@
+slug: implement-fixed-size-ring-buffer
+title: Implement a fixed-size ring buffer
+type: LLD
+difficulty: medium
+tags:
+- ring-buffer
+- array
+- design
+leetcode: null
+prompt: |
+  Implement a fixed-size ring buffer.
+follow_ups: []
+academy:
+- B7
+sightings:
+- company: deliveroo
+  role: Not shown (engineering)
+  round: Coding
+  seen_on: 2021-07
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW77013751.htm

@@ -1,0 +1,18 @@
+slug: prioritising-multiple-tasks
+title: Managing and prioritising tasks
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- prioritisation
+prompt: |
+  Tell me about a time you had to manage and prioritise several tasks.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: Behavioural round
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/

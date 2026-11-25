@@ -1,0 +1,22 @@
+slug: production-high-cpu-troubleshooting
+title: 'A production service shows high CPU utilisation: what do you do?'
+type: DOMAIN
+difficulty: medium
+tags:
+- production
+- profiling
+- incident
+leetcode: null
+prompt: |
+  How would you deal with a production service demonstrating high CPU utilisation?
+follow_ups: []
+academy:
+- A8
+- H3
+sightings:
+- company: deliveroo
+  role: Staff Software Engineer
+  round: Interview loop (month estimated)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Staff-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,33.htm

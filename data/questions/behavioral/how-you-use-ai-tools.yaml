@@ -5,6 +5,7 @@ difficulty: easy
 tags:
 - ai
 - why-microsoft
+- productivity
 leetcode: null
 prompt: |
   Why Microsoft? How are AI tools helping you in your projects? One non-technical skill you want to improve.
@@ -17,3 +18,9 @@ sightings:
   seen_on: 2026-03
   confidence: claimed
   source: https://leetcode.com/discuss/post/7636712/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: VP / country head round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/

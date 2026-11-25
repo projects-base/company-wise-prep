@@ -8,6 +8,7 @@ tags:
 - inheritance
 - polymorphism
 - abstraction
+- karat
 leetcode: null
 prompt: |
   Explain the four principles of OOP (encapsulation, abstraction, inheritance, polymorphism) with Java examples. Reported with simple code-fixing and logic tests in a backend-focused technical round.
@@ -23,3 +24,9 @@ sightings:
   seen_on: 2026-01
   confidence: claimed
   source: https://www.glassdoor.com/Interview/T-Mobile-Software-Engineer-Interview-Questions-EI_IE9302.0,8_KO9,26.htm
+- company: deliveroo
+  role: Software Engineer (London)
+  round: Karat screen (month estimated)
+  seen_on: 2023-03
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW74185299.htm

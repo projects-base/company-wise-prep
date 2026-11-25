@@ -1,0 +1,19 @@
+slug: architecture-setback-and-recovery
+title: Architecture, setbacks and how you handled them
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- architecture
+- setback
+prompt: |
+  Walk through an architecture you worked on, the setbacks you met and how you handled them.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer L5
+  round: Behavioural round
+  seen_on: 2024-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/

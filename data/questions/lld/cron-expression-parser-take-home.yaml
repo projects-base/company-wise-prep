@@ -1,0 +1,144 @@
+slug: cron-expression-parser-take-home
+title: 'Deliveroo take-home: cron expression parser'
+type: LLD
+difficulty: medium
+tags:
+- take-home
+- parsing
+- cron
+- cli
+- extensibility
+- strategy-pattern
+- tdd
+- unit-tests
+- pair-programming
+prompt: |
+  Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.
+  Handle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.
+  Print a table with the field name in the first 14 columns and the times as a space-separated list after it.
+  Example input: "*/15 0 1,15 * 1-5 /usr/bin/find" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.
+  Spend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.
+follow_ups:
+- 'Live round: accept day names such as MON-FRI in place of 1-7'
+- 'Live round: add an optional year field'
+- 'Live round: support further operators on some of the cron fields'
+- 'Live round: extend the solution two or three times, adding a unit test for each extension and re-running
+  the suite'
+- Support wrap-around / cyclic notation.
+- Optional year field.
+- Day and month names.
+- Arguments for the command.
+- Print the next n occurrences.
+academy:
+- E4
+- E5
+- D12
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: Take-home + live extension round
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: Take-home + live extension round (3 extensions)
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Bengaluru)
+  round: Take-home + live extension round (2 extensions)
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/
+- company: deliveroo
+  role: Senior Software Engineer L5
+  round: Take-home + live extension round (year field)
+  seen_on: 2024-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/
+- company: deliveroo
+  role: Software Engineer (Hyderabad)
+  round: Take-home + live extension round
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6373806/Deliveroo-oror-Delhivery-oror-ScryAI-oror-GeoServe/
+- company: deliveroo
+  role: Software Engineer
+  round: Take-home (public repo, Java)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://github.com/AlexanderVerheecke/DeliverooTakeHome
+- company: deliveroo
+  role: Software Engineer
+  round: Take-home (public repo, Java)
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://github.com/SilentBlades/DeliverooAssignment
+- company: deliveroo
+  role: Software Engineer
+  round: Take-home (public repo, Java)
+  seen_on: 2025-07
+  confidence: claimed
+  source: https://github.com/yogi2103/Cron-Parser
+- company: deliveroo
+  role: Software Engineer
+  round: Take-home (public repo, Java)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://github.com/shashwatj1234-oss/cron-parser
+- company: deliveroo
+  role: Senior Data Engineer
+  round: Take-home (public repo, Python)
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://github.com/alza-bitz/cron-expression-parser
+- company: deliveroo
+  role: Software Engineer (location not stated)
+  round: Take-home + live coding
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://static.glassdoor.it/Interview/Deliveroo-Interview-E1053365-RVW97734993.htm
+- company: deliveroo
+  role: Data Engineer
+  round: Take-home
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://static.glassdoor.it/Interview/Deliveroo-Data-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,23.htm
+- company: deliveroo
+  role: Software Engineer
+  round: HackerRank + take-home
+  seen_on: 2025-01
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW96480242.htm
+- company: deliveroo
+  role: Senior Software Engineer
+  round: Take-home extension (month estimated)
+  seen_on: 2024-05
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Home-assignment-Cron-expression-parser-Extend-the-cron-expression-to-support-MON-THU-for-weekdays-QTN_7462741.htm
+- company: deliveroo
+  role: Software Engineer
+  round: Coding round (month estimated)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/1-Add-a-wrap-around-notation-for-this-cron-parser-2-All-for-alphanumerics-for-days-of-week-and-months-QTN_8610377.htm
+- company: deliveroo
+  role: Senior Platform Engineer
+  round: Pair programming (month estimated)
+  seen_on: 2018-12
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/To-add-a-new-feature-to-my-cron-parser-to-allow-days-of-the-week-by-name-QTN_2909409.htm
+- company: deliveroo
+  role: SDE-2
+  round: Coding
+  seen_on: 2023-08
+  confidence: claimed
+  source: https://interviewbytes.io/bytes/23479
+- company: deliveroo
+  role: Software Engineer (India)
+  round: Take-home + extension round (month estimated)
+  seen_on: 2022-11
+  confidence: claimed
+  source: https://www.teamblind.com/post/deliveroo-india-interview-cxq1kpsn

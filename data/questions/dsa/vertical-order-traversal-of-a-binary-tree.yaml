@@ -1,0 +1,29 @@
+slug: vertical-order-traversal-of-a-binary-tree
+title: Vertical Order Traversal of a Binary Tree
+type: DSA
+difficulty: hard
+tags:
+- binary-tree
+- bfs
+- sorting
+- tree
+- hashmap
+leetcode: vertical-order-traversal-of-a-binary-tree
+prompt: |
+  Return the vertical order traversal of a binary tree, sorting nodes that share a row and column by value.
+follow_ups: []
+academy:
+- T4
+sightings:
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, August 2026 snapshot)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.talentd.in/fleetcode/companies/deliveroo
+- company: deliveroo
+  role: Software Engineer, campus (Hyderabad)
+  round: Round 1, DSA (month estimated)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.co.nz/Interview/Deliveroo-Interview-E1053365-RVW89819495.htm

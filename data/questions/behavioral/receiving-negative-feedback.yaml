@@ -30,3 +30,9 @@ sightings:
   seen_on: 2026-03
   confidence: claimed
   source: https://leetcode.com/discuss/post/7619101/
+- company: deliveroo
+  role: Software Engineer (London)
+  round: Behavioural (month estimated)
+  seen_on: 2019-11
+  confidence: claimed
+  source: https://www.glassdoor.sg/Interview/Deliveroo-Interview-E1053365-RVW30501012.htm

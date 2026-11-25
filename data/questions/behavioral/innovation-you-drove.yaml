@@ -16,3 +16,9 @@ sightings:
   seen_on: 2026-04
   confidence: claimed
   source: https://leetcode.com/discuss/post/8099724/
+- company: deliveroo
+  role: iOS Engineer (India)
+  round: Behavioural round
+  seen_on: 2023-08
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios

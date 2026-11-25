@@ -1,0 +1,213 @@
+slug: deliveroo
+name: Deliveroo
+aliases: [Deliveroo India, Roofoods]
+leetcode_company: Deliveroo
+researched_on: 2026-11-25
+domain_notes: >-
+  Food and grocery delivery marketplace (consumers, riders, restaurants), part of DoorDash since 2 Oct 2025.
+  Hyderabad is Deliveroo's only engineering hub in India (the Bengaluru hub closed in Feb 2026; the India page says over
+  400 people). Backend work is mostly Go and Ruby on AWS with PostgreSQL, DynamoDB, Redis and Kafka; no Hyderabad posting
+  read mentions Java. DoorDash, Wolt and Deliveroo are moving to one technology stack ("significant work remains", Oct
+  2026), and DoorDash runs its own Hyderabad hub and job board, so check which company's process applies.
+values:                            # both sets: the values page changed in Nov 2026, the interview guide still names the old six
+  - name: "Current (shared with DoorDash and Wolt): start from the ideal customer experience; break problems into input drivers; speed and bias to action; seek disconfirming evidence; small improvements compound; company > team > self; best idea wins, then commit; embrace new technology; plan for the long term"
+    source: https://careers.deliveroo.co.uk/our-values/
+  - name: "Older six (still named in the backend guide): live and breathe our marketplace; play to win; celebrate difference; champion big and small innovations; obsess about operational excellence; be curious and intellectually honest"
+    source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+roles:
+  - role: Software Engineer II (Hyderabad, backend)
+    level: SE II
+    loop:
+      - round: Recruiter prescreen
+        type: HIRING_MANAGER
+        duration_min: 30
+        assesses: Informal chat about you and the role, 20 to 45 minutes.
+        confidence: claimed
+        source: https://careers.deliveroo.co.uk/interview-guide-for-engineers/
+        seen_on: 2026-03
+      - round: HackerRank technical screen (backend)
+        type: DSA
+        duration_min: 90
+        assesses: >-
+          Three timed sections, no going back. 15 multiple-choice questions in 20 minutes (testing, system design,
+          microservices, REST, problem-solving), then 70 minutes of algorithms and REST API coding in your strongest
+          language. Candidates report a rate limiter variation and a paginated REST API task.
+        confidence: claimed
+        source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+        seen_on: 2026-02
+      - round: Coding interview (take-home extension, or live HackerRank)
+        type: LLD
+        duration_min: 60
+        assesses: >-
+          Option 1: a home task submitted at least 48 hours before (reported: a cron expression parser, max 3 hours), then
+          10-15 minutes of walkthrough and 25-30 minutes extending it live in your own IDE. Option 2: a 50-minute live
+          HackerRank problem. Judged on coding, problem-solving, communication and testing. No AI. Which option
+          Hyderabad SE II gets is not published.
+        confidence: claimed
+        source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+        seen_on: 2026-02
+      - round: Architecture interview
+        type: HLD
+        duration_min: 60
+        assesses: >-
+          Design a system from a product brief that "you could hand off to an engineering team": requirements, persistence,
+          communication, production challenges, edge cases. 45 minutes of design, no AI. Most-reported prompt: 6 million
+          free burgers claimed in 10 minutes.
+        confidence: claimed
+        source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+        seen_on: 2026-02
+      - round: Behavioural interview
+        type: BEHAVIORAL
+        duration_min: 60
+        assesses: >-
+          STAR stories on communication, leadership, problem-solving, flexibility, initiative, organisation and decision
+          making. One L5 candidate reported a rejection on this round alone.
+        confidence: claimed
+        source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+        seen_on: 2026-02
+      - round: Hiring committee and team allocation (no interview)
+        type: HIRING_MANAGER
+        assesses: A calibrated group reads the whole process and decides; a team is then matched.
+        confidence: claimed
+        source: https://careers.deliveroo.co.uk/interview-guide-for-engineers/
+        seen_on: 2026-03
+      - round: "Reported, Hyderabad Senior Engineer: HackerRank, cron take-home with live extensions, flash-sale design, behavioural"
+        type: LLD
+        assesses: 15 MCQs and a rate limiter; at most two or three extensions, each with a test; pushback during behavioural.
+        confidence: claimed
+        source: https://leetcode.com/discuss/interview-experience/7082718/
+        seen_on: 2025-08
+      - round: "Reported, London L4/L5 (looks like DoorDash's AI-allowed format)"
+        type: LLD
+        assesses: MCQs, bug fix and feature addition with AI allowed, an AI coding round, LeetCode, behavioural, team matching.
+        confidence: claimed
+        source: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27.htm
+        seen_on: 2026-05
+    bar: >-
+      No SE II bar is published for India. A London SE II posting (Oct 2026) describes goals across your team, system health
+      and monitoring, code review, influence on the roadmap in your domain and interviewing others. Inference: a clean,
+      tested, extensible solution and a practical design with failure modes matter more than algorithm speed.
+official:
+  hiring_process:
+    - step: Posting text
+      detail: "Hyderabad postings say the interview typically includes 3-4 stages and link the interview guide for engineers."
+      source: https://job-boards.greenhouse.io/deliveroo/jobs/8311914
+    - step: Coding interview rules
+      detail: Submit the take-home at least 48 hours before; AI-generated submissions are rejected; no ChatGPT or Copilot in the live part.
+      source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+    - step: GenAI policy (conflicts with the backend guide on take-homes; follow the stricter rule and ask)
+      detail: AI allowed on take-homes if disclosed unless told otherwise; not allowed in live interviews.
+      source: https://careers.deliveroo.co.uk/using-generative-ai-in-your-interview-process/
+  interview_tips:
+    - text: Use your strongest coding language; submit before time runs out; cover happy and sad paths; say when the main task is done.
+      source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+    - text: >-
+        Architecture: clarify quickly, start high level, iterate and note risks; pick technology you have run in production
+        and justify it; cover scale, reliability, failure modes and how you would gain confidence before rollout.
+      source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+    - text: Practice ideas named by Deliveroo engineers - a social media site, theatre booking, food delivery.
+      source: https://deliveroo.engineering/2022/01/14/preparing-for-the-deliveroo-architecture-interview.html
+    - text: >-
+        Behavioural examples the company publishes - a missed deadline and what you learned; a challenge you made sure was
+        completed; a difference of opinion with a colleague and how you concluded.
+      source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/
+  job_postings:
+    - title: Senior Software Engineer
+      team: not stated
+      location: Hyderabad (hybrid, 3 days)
+      url: https://job-boards.greenhouse.io/deliveroo/jobs/8311914
+      accessed: 2026-11-24
+      required: ["Go, Ruby/Rails, Python, Scala and Rust are the languages used", "PostgreSQL or MySQL", "Redis, DynamoDB, Elasticsearch", "20k+ requests per minute", "well-tested code"]
+      preferred: []
+      skills: [go, ruby, python, scala, rust, postgresql, mysql, redis, dynamodb, elasticsearch, scalability, testing]
+    - title: Staff Software Engineer
+      team: not stated
+      location: Hyderabad
+      url: https://job-boards.greenhouse.io/deliveroo/jobs/8202442
+      accessed: 2026-11-24
+      required: ["Proficiency in, or a strong desire to learn, Go, Ruby, Python, Scala, Rust", PostgreSQL, "Redis, DynamoDB, Elasticsearch", "20k+ requests per minute"]
+      preferred: []
+      skills: [go, ruby, python, scala, rust, postgresql, redis, dynamodb, elasticsearch, scalability, testing]
+    - title: Software Engineer (archived, closed)
+      team: logistics
+      location: Hyderabad
+      url: https://web.archive.org/web/20240301121801/https://careers.deliveroo.co.uk/role/5091928-software-engineer/
+      accessed: 2026-11-24
+      required: ["2+ years, any language with interest in learning Go, Ruby/Rails, Python, Scala or Rust", "PostgreSQL or MySQL", "Redis, DynamoDB, Elasticsearch, Memcache"]
+      preferred: []
+      skills: [go, ruby, python, scala, rust, postgresql, mysql, redis, dynamodb, elasticsearch, scalability, testing]
+    - title: Senior Software Engineer (archived, closed)
+      team: not stated
+      location: Hyderabad
+      url: https://web.archive.org/web/20250622081756/https://careers.deliveroo.co.uk/role/senior-software-engineer-92ef59ba2a65/
+      accessed: 2026-11-24
+      required: ["Any language with interest in Go, Ruby/Rails, Python, Scala or Rust", "PostgreSQL or MySQL", "Redis, DynamoDB, Elasticsearch"]
+      preferred: []
+      skills: [go, ruby, python, scala, rust, postgresql, mysql, redis, dynamodb, elasticsearch, scalability, testing]
+    - title: Software Engineer II (Backend), Home Page & Merchandising Platform (level reference only)
+      team: Home Page & Merchandising
+      location: London
+      url: https://job-boards.greenhouse.io/deliveroo/jobs/8266845
+      accessed: 2026-11-24
+      required: ["Any modern language (Go, Ruby/Rails, Python, Scala or Rust)", "PostgreSQL or MySQL", "Redis, DynamoDB, Elasticsearch", monitoring]
+      preferred: []
+      skills: [go, ruby, python, scala, rust, postgresql, mysql, redis, dynamodb, elasticsearch, observability]
+  skill_frequency:                 # over the 4 Deliveroo Hyderabad backend texts above (the London one is left out)
+    go: 4
+    ruby: 4
+    python: 4
+    scala: 4
+    rust: 4
+    postgresql: 4
+    redis: 4
+    dynamodb: 4
+    elasticsearch: 4
+    scalability: 4
+    testing: 4
+    mysql: 3
+    java: 0
+tech_stack:
+  - {name: Go, category: language, importance: core, evidence: "All 6 product groups in the engineers' guide; Hyderabad postings; Go guild", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/, https://deliveroo.engineering/2025/11/06/engineering-at-deliveroo-india.html]}
+  - {name: Ruby / Rails, category: framework, importance: core, evidence: "All 6 product groups in the engineers' guide; Hyderabad Senior posting", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/, https://job-boards.greenhouse.io/deliveroo/jobs/8311914]}
+  - {name: "Python, Scala, Rust", category: language, importance: common, evidence: "Hyderabad postings", sources: [https://job-boards.greenhouse.io/deliveroo/jobs/8311914]}
+  - {name: PostgreSQL / Aurora, category: datastore, importance: core, evidence: "All 6 product groups; every Hyderabad posting", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/, https://job-boards.greenhouse.io/deliveroo/jobs/8311914]}
+  - {name: DynamoDB, category: datastore, importance: core, evidence: "All 6 product groups; every Hyderabad posting; Streams plus Lambda post", sources: [https://deliveroo.engineering/2022/06/21/dynamodb-aggregation.html]}
+  - {name: Redis, category: datastore, importance: core, evidence: "4 product groups; every Hyderabad posting", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/]}
+  - {name: Elasticsearch, category: datastore, importance: common, evidence: "Every Hyderabad posting", sources: [https://job-boards.greenhouse.io/deliveroo/jobs/8311914]}
+  - {name: Snowflake, category: datastore, importance: common, evidence: "4 product groups", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/]}
+  - {name: Kafka, category: messaging, importance: core, evidence: "All 6 product groups; 'primary method of communication' (2022)", sources: [https://deliveroo.engineering/2022/01/13/multi-dispatch-event-logging.html]}
+  - {name: SQS, category: messaging, importance: common, evidence: "2 product groups", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/]}
+  - {name: REST APIs, category: framework, importance: core, evidence: "A HackerRank section is REST coding", sources: [https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/]}
+  - {name: AWS, category: cloud, importance: core, evidence: "Engineers' guide and infrastructure posts", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/]}
+  - {name: ECS on EC2 (Spot), category: infra, importance: core, evidence: "Engineering blog, Sep 2025", sources: [https://deliveroo.engineering/2025/09/12/cost-optimisation-in-ecs.html]}
+  - {name: Terraform, category: tool, importance: common, evidence: "2 product groups", sources: [https://careers.deliveroo.co.uk/interview-guide-for-engineers/]}
+  - {name: Datadog, category: observability, importance: common, evidence: "Blog, Jan 2022 (old)", sources: [https://deliveroo.engineering/2022/01/13/multi-dispatch-event-logging.html]}
+  - {name: "AI coding tools (Cursor, Windsurf, Gemini Code Assist)", category: ai-tools, importance: common, evidence: "India engineering post, Nov 2025", sources: [https://deliveroo.engineering/2025/11/06/engineering-at-deliveroo-india.html]}
+  - {name: Service-oriented architecture (hundreds of services), category: architecture-pattern, importance: core, evidence: "Architecture interview post, Jan 2022", sources: [https://deliveroo.engineering/2022/01/14/preparing-for-the-deliveroo-architecture-interview.html]}
+  - {name: Event-driven architecture over Kafka, category: architecture-pattern, importance: core, evidence: "Multi-dispatch event post, Jan 2022", sources: [https://deliveroo.engineering/2022/01/13/multi-dispatch-event-logging.html]}
+  - {name: Stream aggregation, category: architecture-pattern, importance: mentioned, evidence: "DynamoDB aggregation post, Jun 2022", sources: [https://deliveroo.engineering/2022/06/21/dynamodb-aggregation.html]}
+frameworks_to_prepare:
+  revise:
+    - {name: REST API design and HTTP clients, why: "A HackerRank section and MCQs", academy: [W2, W7], plan: "Write the paginated API task in Java's HttpClient from memory, twice."}
+    - {name: PostgreSQL, why: "Every posting", academy: [Q5, Q6], plan: "Explain indexes, isolation and locking for the burger claim."}
+    - {name: Testing, why: "MCQs, take-home and extension rounds are judged on it", academy: [D12], plan: "Write parameterised JUnit 5 tests for the cron parser, happy and sad paths."}
+    - {name: "Microservices, resilience and system design", why: "MCQs and the architecture round", academy: [S8, I3, H4], plan: "One timed design from a blank page, with failure modes and a rollout plan."}
+  learn:
+    - {name: Go, why: "Core language of the job, none in the profile", academy: [], plan: "Tour of Go, then rewrite the rate limiter in Go; be ready for 'are you happy to move to Go?'", resources: [https://go.dev/tour/]}
+    - {name: DynamoDB, why: "Every Hyderabad posting", academy: [Q11], plan: "Know partition and sort keys, GSIs, conditional writes, Streams."}
+    - {name: Kafka, why: "Primary messaging; basic in the profile", academy: [I1], plan: "Partitions, consumer groups, delivery guarantees, then the burger claims queue."}
+    - {name: Redis, why: "Every posting; basic in the profile", academy: [I2], plan: "Atomic decrement, Lua, hot keys, TTL, persistence: what happens if Redis loses data?"}
+    - {name: AWS and ECS, why: "Core cloud; basic in the profile", academy: [I8], plan: "SQS, DynamoDB, ECS vs EKS, ALB, autoscaling, in one page."}
+sources:
+  - {url: https://careers.deliveroo.co.uk/interview-guide-for-engineers/, title: Interview guide for engineers, accessed: 2026-11-24, kind: official}
+  - {url: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/, title: Backend and full-stack interview guide, accessed: 2026-11-24, kind: official}
+  - {url: https://careers.deliveroo.co.uk/how-we-hire/, title: How we hire, accessed: 2026-11-24, kind: official}
+  - {url: https://careers.deliveroo.co.uk/using-generative-ai-in-your-interview-process/, title: GenAI in interviews, accessed: 2026-11-24, kind: official}
+  - {url: https://careers.deliveroo.co.uk/our-values/, title: Values, accessed: 2026-11-24, kind: official}
+  - {url: https://careers.deliveroo.co.uk/locations/india/, title: India location page, accessed: 2026-11-24, kind: official}
+  - {url: https://boards-api.greenhouse.io/v1/boards/deliveroo/jobs, title: Deliveroo job board API, accessed: 2026-11-24, kind: official}
+  - {url: https://job-boards.greenhouse.io/doordashindia/jobs/8411698, title: DoorDash India Software Engineer Backend Hyderabad, accessed: 2026-11-24, kind: official}
+  - {url: https://www.sec.gov/Archives/edgar/data/1792789/000114036125037039/ef20056500_ex99-1.htm, title: DoorDash completes Deliveroo acquisition, accessed: 2026-11-24, kind: official}
+  - {url: https://leetcode.com/discuss/interview-experience/7082718/, title: Hyderabad SSE interview experience, accessed: 2026-11-24, kind: forum}
+  - {url: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/, title: India Staff L6 interview experience, accessed: 2026-11-24, kind: forum}
+  - {url: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27.htm, title: Glassdoor Deliveroo interview questions (search snippets), accessed: 2026-11-24, kind: interview-report}

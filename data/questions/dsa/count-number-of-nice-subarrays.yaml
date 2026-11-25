@@ -1,0 +1,20 @@
+slug: count-number-of-nice-subarrays
+title: Count Number of Nice Subarrays
+type: DSA
+difficulty: medium
+tags:
+- sliding-window
+- prefix-sum
+leetcode: count-number-of-nice-subarrays
+prompt: |
+  Count the continuous subarrays that contain exactly k odd numbers.
+follow_ups: []
+academy:
+- T1
+sightings:
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, August 2026 snapshot)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.talentd.in/fleetcode/companies/deliveroo

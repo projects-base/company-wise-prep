@@ -4,6 +4,7 @@ type: BEHAVIORAL
 difficulty: medium
 tags:
 - googleyness
+- ambiguity
 leetcode: null
 prompt: |
   Describe an ambiguous situation and how you made progress.
@@ -16,3 +17,15 @@ sightings:
   seen_on: 2026-10
   confidence: claimed
   source: https://leetcode.com/discuss/post/8551877/
+- company: deliveroo
+  role: Software Engineer (on-campus, intern + full time)
+  round: Behavioural and HR round
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/
+- company: deliveroo
+  role: Software Engineer (Hyderabad)
+  round: HR round (month estimated)
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW90178879.htm

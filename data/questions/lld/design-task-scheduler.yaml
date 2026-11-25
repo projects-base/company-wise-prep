@@ -6,6 +6,8 @@ tags:
 - dag
 - observer-pattern
 - concurrency
+- scheduler
+- take-home
 leetcode: null
 prompt: |
   One-time and recurring tasks, dependencies (B after A), thread-safe concurrent execution.
@@ -18,3 +20,9 @@ sightings:
   seen_on: 2026-03
   confidence: claimed
   source: https://leetcode.com/discuss/post/7711794/
+- company: deliveroo
+  role: Staff Engineer
+  round: Take-home
+  seen_on: 2024-10
+  confidence: claimed
+  source: https://www.glassdoor.ie/Interview/Deliveroo-Interview-E1053365-RVW91835234.htm

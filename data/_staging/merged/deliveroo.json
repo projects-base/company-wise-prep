@@ -1,0 +1,3590 @@
+[
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter the data and return the result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "http-client",
+   "json",
+   "pagination",
+   "filtering",
+   "sorting",
+   "online-assessment"
+  ],
+  "prompt": "Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.",
+  "follow_ups": [
+   "Handle pagination"
+  ],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Engineer",
+   "round": "Online assessment (HackerRank, 70 min)",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326224/"
+  }
+ },
+ {
+  "slug": "design-authentication-manager",
+  "title": "Design Authentication Manager",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hash-map",
+   "linked-list",
+   "design",
+   "ordered-map"
+  ],
+  "leetcode": "design-authentication-manager",
+  "prompt": "Implement a session-token manager with a fixed time-to-live that supports generate, renew and count of unexpired tokens.",
+  "follow_ups": [
+   "Make it pass with 10^5 queries (a TreeMap/subMap solution was reported to exceed the time limit)",
+   "Clean API design, boundary conditions, test cases and performance"
+  ],
+  "academy": [
+   "J6",
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Engineer",
+   "round": "Coding round (replaced the take-home)",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/7326224/"
+  }
+ },
+ {
+  "slug": "skip-list-basics",
+  "title": "What is a skip list and when would you use one?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "skip-list",
+   "data-structures",
+   "mcq"
+  ],
+  "prompt": "Multiple choice: how does a skip list work, and when would you use one?",
+  "follow_ups": [],
+  "academy": [
+   "J6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a rate limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window",
+   "token-bucket"
+  ],
+  "prompt": "Implement a rate limiter with per-user and per-time-window limits (a LeetCode-medium variation in the online assessment).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718/"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter the data and return the result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "http-client",
+   "json",
+   "pagination",
+   "filtering",
+   "sorting",
+   "online-assessment"
+  ],
+  "prompt": "Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.",
+  "follow_ups": [
+   "Handle pagination"
+  ],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718/"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "Take-home + live extension round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718/"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash sale that gives away 6 million burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "inventory",
+   "rate-limiting",
+   "queue",
+   "idempotency",
+   "high-throughput"
+  ],
+  "prompt": "Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.",
+  "follow_ups": [
+   "How do you throttle traffic?",
+   "How do you lock inventory so that nothing is oversold?",
+   "How do you queue orders and handle failures under eventual consistency?",
+   "How do you make sure all 6 million are claimed within the 10 minutes?",
+   "Which monitoring, logging and failover do you add?",
+   "How would you test it?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "Architecture round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718/"
+  }
+ },
+ {
+  "slug": "what-you-would-do-differently",
+  "title": "What would you do differently now?",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "reflection",
+   "learning"
+  ],
+  "prompt": "For the work you describe: what did you do, how, what did you learn, and how would you do it better now?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "Behavioural round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718/"
+  }
+ },
+ {
+  "slug": "web-services-fundamentals",
+  "title": "Web services fundamentals",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "rest",
+   "http",
+   "mcq"
+  ],
+  "prompt": "Multiple choice on REST API fundamentals.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a rate limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window",
+   "token-bucket"
+  ],
+  "prompt": "Implement a rate limiter with per-user and per-time-window limits (a LeetCode-medium variation in the online assessment).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter the data and return the result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "http-client",
+   "json",
+   "pagination",
+   "filtering",
+   "sorting",
+   "online-assessment"
+  ],
+  "prompt": "Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.",
+  "follow_ups": [
+   "Handle pagination"
+  ],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Take-home + live extension round (3 extensions)",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash sale that gives away 6 million burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "inventory",
+   "rate-limiting",
+   "queue",
+   "idempotency",
+   "high-throughput"
+  ],
+  "prompt": "Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.",
+  "follow_ups": [
+   "How do you throttle traffic?",
+   "How do you lock inventory so that nothing is oversold?",
+   "How do you queue orders and handle failures under eventual consistency?",
+   "How do you make sure all 6 million are claimed within the 10 minutes?",
+   "Which monitoring, logging and failover do you add?",
+   "How would you test it?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "System design",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "guiding-junior-developers",
+  "title": "Mentoring a junior engineer",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "mentoring",
+   "leadership"
+  ],
+  "prompt": "Tell me about a time you mentored a junior engineer.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Behavioural round",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Behavioural round",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "prioritising-multiple-tasks",
+  "title": "Managing and prioritising tasks",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "prioritisation"
+  ],
+  "prompt": "Tell me about a time you had to manage and prioritise several tasks.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Hyderabad, offered L4)",
+   "round": "Behavioural round",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6004996/"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a rate limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window",
+   "token-bucket"
+  ],
+  "prompt": "Implement a rate limiter with per-user and per-time-window limits (a LeetCode-medium variation in the online assessment).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Online assessment (HackerRank, 90 min)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter the data and return the result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "http-client",
+   "json",
+   "pagination",
+   "filtering",
+   "sorting",
+   "online-assessment"
+  ],
+  "prompt": "Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.",
+  "follow_ups": [
+   "Handle pagination"
+  ],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Online assessment (HackerRank, 90 min)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash sale that gives away 6 million burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "inventory",
+   "rate-limiting",
+   "queue",
+   "idempotency",
+   "high-throughput"
+  ],
+  "prompt": "Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.",
+  "follow_ups": [
+   "How do you throttle traffic?",
+   "How do you lock inventory so that nothing is oversold?",
+   "How do you queue orders and handle failures under eventual consistency?",
+   "How do you make sure all 6 million are claimed within the 10 minutes?",
+   "Which monitoring, logging and failover do you add?",
+   "How would you test it?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Architecture / HLD round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "ownership-story",
+  "title": "A time you took ownership",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "ownership"
+  ],
+  "prompt": "Tell me about a time you took ownership.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Behavioural round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-failure",
+  "title": "Tell me about a failure",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "failure"
+  ],
+  "prompt": "Tell me about a failure and how you dealt with it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Behavioural round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "driving-cross-functional-decisions",
+  "title": "Driving a cross-functional decision",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "cross-functional",
+   "influence"
+  ],
+  "prompt": "Tell me about a time you drove a cross-functional decision.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Behavioural round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "design-authentication-manager",
+  "title": "Design Authentication Manager",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hash-map",
+   "linked-list",
+   "design",
+   "ordered-map"
+  ],
+  "leetcode": "design-authentication-manager",
+  "prompt": "Implement a session-token manager with a fixed time-to-live that supports generate, renew and count of unexpired tokens.",
+  "follow_ups": [
+   "Make it pass with 10^5 queries (a TreeMap/subMap solution was reported to exceed the time limit)",
+   "Clean API design, boundary conditions, test cases and performance"
+  ],
+  "academy": [
+   "J6",
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "Coding round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "guiding-junior-developers",
+  "title": "Mentoring a junior engineer",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "mentoring",
+   "leadership"
+  ],
+  "prompt": "Tell me about a time you mentored a junior engineer.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "VP / country head round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "disagree-with-majority-decision",
+  "title": "Handling disagreement",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "disagreement"
+  ],
+  "prompt": "Tell me about a disagreement and how you handled it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "VP / country head round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "VP / country head round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "how-you-use-ai-tools",
+  "title": "How you use AI tools",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ai",
+   "productivity"
+  ],
+  "prompt": "How do you use AI in your work, and how would you use it for team productivity?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer L6 (India)",
+   "round": "VP / country head round",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/"
+  }
+ },
+ {
+  "slug": "web-services-fundamentals",
+  "title": "Web services fundamentals",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "rest",
+   "http",
+   "mcq"
+  ],
+  "prompt": "Multiple choice on REST API fundamentals.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Bengaluru)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter the data and return the result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "http-client",
+   "json",
+   "pagination",
+   "filtering",
+   "sorting",
+   "online-assessment"
+  ],
+  "prompt": "Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.",
+  "follow_ups": [
+   "Handle pagination"
+  ],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Bengaluru)",
+   "round": "Online assessment (HackerRank)",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Bengaluru)",
+   "round": "Take-home + live extension round (2 extensions)",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash sale that gives away 6 million burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "inventory",
+   "rate-limiting",
+   "queue",
+   "idempotency",
+   "high-throughput"
+  ],
+  "prompt": "Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.",
+  "follow_ups": [
+   "How do you throttle traffic?",
+   "How do you lock inventory so that nothing is oversold?",
+   "How do you queue orders and handle failures under eventual consistency?",
+   "How do you make sure all 6 million are claimed within the 10 minutes?",
+   "Which monitoring, logging and failover do you add?",
+   "How would you test it?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Bengaluru)",
+   "round": "System design",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Bengaluru)",
+   "round": "Behavioural round",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/"
+  }
+ },
+ {
+  "slug": "guiding-junior-developers",
+  "title": "Mentoring a junior engineer",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "mentoring",
+   "leadership"
+  ],
+  "prompt": "Tell me about a time you mentored a junior engineer.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5 (Bengaluru)",
+   "round": "Behavioural round",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5",
+   "round": "Take-home + live extension round (year field)",
+   "seen_on": "2024-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash sale that gives away 6 million burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "inventory",
+   "rate-limiting",
+   "queue",
+   "idempotency",
+   "high-throughput"
+  ],
+  "prompt": "Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.",
+  "follow_ups": [
+   "How do you throttle traffic?",
+   "How do you lock inventory so that nothing is oversold?",
+   "How do you queue orders and handle failures under eventual consistency?",
+   "How do you make sure all 6 million are claimed within the 10 minutes?",
+   "Which monitoring, logging and failover do you add?",
+   "How would you test it?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5",
+   "round": "System design (HLD)",
+   "seen_on": "2024-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5",
+   "round": "Behavioural round",
+   "seen_on": "2024-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/"
+  }
+ },
+ {
+  "slug": "architecture-setback-and-recovery",
+  "title": "Architecture, setbacks and how you handled them",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "architecture",
+   "setback"
+  ],
+  "prompt": "Walk through an architecture you worked on, the setbacks you met and how you handled them.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5",
+   "round": "Behavioural round",
+   "seen_on": "2024-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/"
+  }
+ },
+ {
+  "slug": "business-impact-you-created",
+  "title": "What impact have you created?",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "impact",
+   "metrics"
+  ],
+  "prompt": "What impact have you created? Explain it in numbers: cost reduction, time efficiency and so on.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer L5",
+   "round": "Behavioural round",
+   "seen_on": "2024-05",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (Hyderabad)",
+   "round": "Take-home + live extension round",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6373806/Deliveroo-oror-Delhivery-oror-ScryAI-oror-GeoServe/"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash sale that gives away 6 million burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "inventory",
+   "rate-limiting",
+   "queue",
+   "idempotency",
+   "high-throughput"
+  ],
+  "prompt": "Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.",
+  "follow_ups": [
+   "How do you throttle traffic?",
+   "How do you lock inventory so that nothing is oversold?",
+   "How do you queue orders and handle failures under eventual consistency?",
+   "How do you make sure all 6 million are claimed within the 10 minutes?",
+   "Which monitoring, logging and failover do you add?",
+   "How would you test it?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (Hyderabad)",
+   "round": "System design",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/6373806/Deliveroo-oror-Delhivery-oror-ScryAI-oror-GeoServe/"
+  }
+ },
+ {
+  "slug": "web-services-fundamentals",
+  "title": "Web services fundamentals",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "rest",
+   "http",
+   "mcq"
+  ],
+  "prompt": "Multiple choice on REST API fundamentals.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (UK)",
+   "round": "Online assessment (HackerRank, 3 sections)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a rate limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window",
+   "token-bucket"
+  ],
+  "prompt": "Implement a rate limiter with per-user and per-time-window limits (a LeetCode-medium variation in the online assessment).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (UK)",
+   "round": "Online assessment (HackerRank, 3 sections)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter the data and return the result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "http-client",
+   "json",
+   "pagination",
+   "filtering",
+   "sorting",
+   "online-assessment"
+  ],
+  "prompt": "Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.",
+  "follow_ups": [
+   "Handle pagination"
+  ],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (UK)",
+   "round": "Online assessment (HackerRank, 3 sections)",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Security engineering (London, Deliveroo/DoorDash)",
+   "round": "Behavioural round",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroodoordash-interview-experience-security-engineering-role"
+  }
+ },
+ {
+  "slug": "helped-another-team",
+  "title": "Helping another team outside your responsibilities",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "collaboration"
+  ],
+  "prompt": "Describe a situation where you helped another team, even though it was outside your main responsibilities.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Security engineering (London, Deliveroo/DoorDash)",
+   "round": "Behavioural round",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroodoordash-interview-experience-security-engineering-role"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Security engineering (London, Deliveroo/DoorDash)",
+   "round": "Behavioural round",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroodoordash-interview-experience-security-engineering-role"
+  }
+ },
+ {
+  "slug": "filter-dictionary-to-build-menu",
+  "title": "Build a menu by filtering a dictionary with an array",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hash-map",
+   "array"
+  ],
+  "prompt": "Given a dictionary and an array, build a restaurant menu by filtering the dictionary with the array.",
+  "follow_ups": [],
+  "academy": [
+   "J6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "iOS Engineer (India)",
+   "round": "Problem solving",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios"
+  }
+ },
+ {
+  "slug": "helping-an-underperforming-teammate",
+  "title": "Helping an underperforming teammate",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "teamwork"
+  ],
+  "prompt": "Tell me about a time you faced a lacking colleague. What did you do?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "iOS Engineer (India)",
+   "round": "Behavioural round",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "iOS Engineer (India)",
+   "round": "Behavioural round",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios"
+  }
+ },
+ {
+  "slug": "innovation-you-drove",
+  "title": "Something new you introduced",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "innovation"
+  ],
+  "prompt": "Tell me about a time you added something new to your organisation. What were its pros and cons?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "iOS Engineer (India)",
+   "round": "Behavioural round",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios"
+  }
+ },
+ {
+  "slug": "minimum-release-time-with-alternate-dates",
+  "title": "Minimum time to release all products in order",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "greedy",
+   "online-assessment"
+  ],
+  "prompt": "Each product has a release time and an alternate release time. Products must be released in the order of the first array, whatever the alternate times are. Return the minimum time by which all products can be released.",
+  "follow_ups": [],
+  "academy": [
+   "T6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Online assessment (HackerRank, 90 min)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "classify-requests-by-recent-arrival",
+  "title": "Classify requests as resolved or error by arrival time",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hash-map",
+   "rate-limiter",
+   "online-assessment"
+  ],
+  "prompt": "Given an array of request URLs whose index is the arrival time, output \"error\" for a request that arrived less than 5 time units ago and \"resolved\" otherwise.",
+  "follow_ups": [],
+  "academy": [
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Online assessment (HackerRank, 90 min)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "spanning-tree-with-minimum-edge-range",
+  "title": "Spanning tree with the smallest max-min edge difference",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "graph",
+   "union-find",
+   "kruskal",
+   "online-assessment"
+  ],
+  "prompt": "Among all spanning trees of a weighted graph, find the one with the smallest difference between its maximum and minimum edge, and return the sum of its edge weights.",
+  "follow_ups": [],
+  "academy": [
+   "T4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Online assessment (HackerRank, 90 min)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "sum-root-to-leaf-numbers",
+  "title": "Sum Root to Leaf Numbers",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "binary-tree",
+   "dfs"
+  ],
+  "leetcode": "sum-root-to-leaf-numbers",
+  "prompt": "Sum the numbers formed by every root-to-leaf path of a binary tree.",
+  "follow_ups": [
+   "Optimise the string-based DFS"
+  ],
+  "academy": [
+   "T4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Technical interview 1 (DSA)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "smallest-range-covering-elements-from-k-lists",
+  "title": "Smallest Range Covering Elements from K Lists",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "heap",
+   "two-pointers",
+   "sliding-window"
+  ],
+  "leetcode": "smallest-range-covering-elements-from-k-lists",
+  "prompt": "Find the smallest range that includes at least one number from each of k sorted lists.",
+  "follow_ups": [
+   "Improve the k-pointer brute force with a priority queue"
+  ],
+  "academy": [
+   "T3"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Technical interview 1 (DSA)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "find-the-minimum-area-to-cover-all-ones-i",
+  "title": "Find the Minimum Area to Cover All Ones I",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "matrix",
+   "array"
+  ],
+  "leetcode": "find-the-minimum-area-to-cover-all-ones-i",
+  "prompt": "Return the area of the smallest rectangle that contains every 1 in a binary grid.",
+  "follow_ups": [],
+  "academy": [
+   "C4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Technical interview 1 (DSA)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "design-plot-selling-platform",
+  "title": "Design the schema and HLD of a plot-selling platform",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "database-schema",
+   "normalization",
+   "sql",
+   "hld"
+  ],
+  "prompt": "From a long problem statement about a platform that sells plots, signs licence agreements and advertises plots in newspapers: extract the functions, draw a normalised schema with keys, then give the HLD of the licence-agreement signing flow.",
+  "follow_ups": [
+   "Explain the relationships between the tables (one-to-many and so on)",
+   "Write a medium-level SQL query with subqueries",
+   "How do load balancing and several servers give fault tolerance?"
+  ],
+  "academy": [
+   "Q10",
+   "H4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Technical interview 2 (system thinking)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "handling-ambiguity",
+  "title": "Handling ambiguity",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "ambiguity"
+  ],
+  "prompt": "Tell me about a time you worked on an ambiguous project.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Behavioural and HR round",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Behavioural and HR round",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "strengths-and-weaknesses-three-perspectives",
+  "title": "Strengths and weaknesses",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "self-awareness"
+  ],
+  "prompt": "What are your weaknesses, and what have you done to improve?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Behavioural and HR round",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "optimistic-vs-pessimistic-locking",
+  "title": "Why pessimistic rather than optimistic locking?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "database",
+   "locking"
+  ],
+  "prompt": "In your project you solved a concurrency problem with pessimistic locking. Why not optimistic locking, and what would you change if you rebuilt it?",
+  "follow_ups": [],
+  "academy": [
+   "Q6",
+   "L7"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (on-campus, intern + full time)",
+   "round": "Behavioural and HR round",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/"
+  }
+ },
+ {
+  "slug": "design-authentication-manager",
+  "title": "Design Authentication Manager",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hash-map",
+   "linked-list",
+   "design",
+   "ordered-map"
+  ],
+  "leetcode": "design-authentication-manager",
+  "prompt": "Implement a session-token manager with a fixed time-to-live that supports generate, renew and count of unexpired tokens.",
+  "follow_ups": [
+   "Make it pass with 10^5 queries (a TreeMap/subMap solution was reported to exceed the time limit)",
+   "Clean API design, boundary conditions, test cases and performance"
+  ],
+  "academy": [
+   "J6",
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Deliveroo/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "find-words-containing-character",
+  "title": "Find Words Containing Character",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "array",
+   "string"
+  ],
+  "leetcode": "find-words-containing-character",
+  "prompt": "Return the indices of the words that contain a given character.",
+  "follow_ups": [],
+  "academy": [
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Deliveroo/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "logger-rate-limiter",
+  "title": "Logger Rate Limiter",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hash-map",
+   "design"
+  ],
+  "leetcode": "logger-rate-limiter",
+  "prompt": "Print a message only if the same message was not printed in the last 10 seconds.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Deliveroo/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "design-authentication-manager",
+  "title": "Design Authentication Manager",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hash-map",
+   "linked-list",
+   "design",
+   "ordered-map"
+  ],
+  "leetcode": "design-authentication-manager",
+  "prompt": "Implement a session-token manager with a fixed time-to-live that supports generate, renew and count of unexpired tokens.",
+  "follow_ups": [
+   "Make it pass with 10^5 queries (a TreeMap/subMap solution was reported to exceed the time limit)",
+   "Clean API design, boundary conditions, test cases and performance"
+  ],
+  "academy": [
+   "J6",
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (last 30 days, August 2026)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://www.talentd.in/fleetcode/companies/deliveroo"
+  }
+ },
+ {
+  "slug": "logger-rate-limiter",
+  "title": "Logger Rate Limiter",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "hash-map",
+   "design"
+  ],
+  "leetcode": "logger-rate-limiter",
+  "prompt": "Print a message only if the same message was not printed in the last 10 seconds.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (last 6 months, August 2026)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://www.talentd.in/fleetcode/companies/deliveroo"
+  }
+ },
+ {
+  "slug": "find-words-containing-character",
+  "title": "Find Words Containing Character",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "array",
+   "string"
+  ],
+  "leetcode": "find-words-containing-character",
+  "prompt": "Return the indices of the words that contain a given character.",
+  "follow_ups": [],
+  "academy": [
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, August 2026 snapshot)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://www.talentd.in/fleetcode/companies/deliveroo"
+  }
+ },
+ {
+  "slug": "remove-invalid-parentheses",
+  "title": "Remove Invalid Parentheses",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "backtracking",
+   "bfs",
+   "string"
+  ],
+  "leetcode": "remove-invalid-parentheses",
+  "prompt": "Remove the minimum number of invalid parentheses and return all valid results.",
+  "follow_ups": [],
+  "academy": [
+   "T5"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, August 2026 snapshot)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://www.talentd.in/fleetcode/companies/deliveroo"
+  }
+ },
+ {
+  "slug": "vertical-order-traversal-of-a-binary-tree",
+  "title": "Vertical Order Traversal of a Binary Tree",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-tree",
+   "bfs",
+   "sorting"
+  ],
+  "leetcode": "vertical-order-traversal-of-a-binary-tree",
+  "prompt": "Return the vertical order traversal of a binary tree, sorting nodes that share a row and column by value.",
+  "follow_ups": [],
+  "academy": [
+   "T4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, August 2026 snapshot)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://www.talentd.in/fleetcode/companies/deliveroo"
+  }
+ },
+ {
+  "slug": "count-number-of-nice-subarrays",
+  "title": "Count Number of Nice Subarrays",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "sliding-window",
+   "prefix-sum"
+  ],
+  "leetcode": "count-number-of-nice-subarrays",
+  "prompt": "Count the continuous subarrays that contain exactly k odd numbers.",
+  "follow_ups": [],
+  "academy": [
+   "T1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, August 2026 snapshot)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://www.talentd.in/fleetcode/companies/deliveroo"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Take-home (public repo, Java)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://github.com/AlexanderVerheecke/DeliverooTakeHome"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Take-home (public repo, Java)",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://github.com/SilentBlades/DeliverooAssignment"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Take-home (public repo, Java)",
+   "seen_on": "2025-07",
+   "confidence": "claimed",
+   "source": "https://github.com/yogi2103/Cron-Parser"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Take-home (public repo, Java)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://github.com/shashwatj1234-oss/cron-parser"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Deliveroo take-home: cron expression parser",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "cron",
+   "cli",
+   "extensibility",
+   "strategy-pattern",
+   "tdd"
+  ],
+  "prompt": "Write a command-line application, in any language, that parses a cron string and expands each field to show the times at which it runs.\nHandle the standard five time fields (minute, hour, day of month, month, day of week) plus a command; special strings such as @yearly are out of scope. The cron string arrives as one argument on one line.\nPrint a table with the field name in the first 14 columns and the times as a space-separated list after it.\nExample input: \"*/15 0 1,15 * 1-5 /usr/bin/find\" gives minute 0 15 30 45; hour 0; day of month 1 15; month 1..12; day of week 1 2 3 4 5; command /usr/bin/find.\nSpend no more than three hours; a correct subset beats something that does not run or is wrong. Treat the reviewer as a new team member taking over: include tests, a README and run instructions for a clean OS X/Linux machine.",
+  "follow_ups": [
+   "Live round: accept day names such as MON-FRI in place of 1-7",
+   "Live round: add an optional year field",
+   "Live round: support further operators on some of the cron fields",
+   "Live round: extend the solution two or three times, adding a unit test for each extension and re-running the suite"
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Data Engineer",
+   "round": "Take-home (public repo, Python)",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://github.com/alza-bitz/cron-expression-parser"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Design a system where 6,000,000 free burgers are claimed in a marketing campaign that lasts 10 minutes. Users are already logged in; payment and delivery are out of scope; at most one free burger per account. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [
+   "What are the potential bottlenecks and failures, and how will you address them?",
+   "Cover the trade-offs you made and why.",
+   "How will you track the number of vouchers?",
+   "What will you do if a user tries to claim a voucher again?",
+   "What do you do before going live to ensure the system works?",
+   "The system is live: how do you ensure it works properly and services are healthy?"
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (location not stated)",
+   "round": "Final loop, system design",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Deliveroo-Interview-E1053365-RVW97734993.htm"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "System design for the burger distribution process. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (London)",
+   "round": "System design",
+   "seen_on": "2024-12",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Design a free giveaway of one million burgers/coupons where each user is entitled to only one. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (Hyderabad)",
+   "round": "Round 2, system design",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27_IP2.htm"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Design a system where many users come suddenly for some time and apply a coupon that is available in limited quantity. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer L4 (Hyderabad)",
+   "round": "Architecture interview",
+   "seen_on": "2022-10",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.ca/Interview/Deliveroo-Interview-E1053365-RVW85153758.htm"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Design a system to distribute 10 million burgers; handle burst load and talk through the databases. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [
+   "Negotiate requirements such as multi-region support.",
+   "Fairness of distribution."
+  ],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (London)",
+   "round": "System design (month estimated)",
+   "seen_on": "2025-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW95486440.htm"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Design a system to handle a giveaway of burgers.",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer",
+   "round": "System design (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Staff-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,33.htm"
+  }
+ },
+ {
+  "slug": "design-flash-giveaway-free-burgers",
+  "title": "Design a flash giveaway: 6 million free burgers in 10 minutes",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "flash-sale",
+   "burst-traffic",
+   "inventory",
+   "idempotency",
+   "queue",
+   "observability"
+  ],
+  "leetcode": null,
+  "prompt": "Distribute 6 million free burgers in about 10 minutes. The candidate proposed a distributed counter with a queue; questions were mostly about scalability. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I2",
+   "I1",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "SDE-2",
+   "round": "High-level design",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://interviewbytes.io/bytes/23479"
+  }
+ },
+ {
+  "slug": "design-voucher-application-service",
+  "title": "Design a service for applying vouchers",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "vouchers",
+   "idempotency",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "Design a service for applying vouchers. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "Q6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "System design (month estimated)",
+   "seen_on": "2022-05",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW62562400.htm"
+  }
+ },
+ {
+  "slug": "design-system-for-sudden-load",
+  "title": "Design a system that copes with sudden load",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "burst-traffic",
+   "scalability",
+   "load-shedding"
+  ],
+  "leetcode": null,
+  "prompt": "How would you design a distributed system which can cope with sudden load? [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I3"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (backend)",
+   "round": "Onsite distributed system design (month estimated)",
+   "seen_on": "2019-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.ie/Interview/Deliveroo-Interview-E1053365-RVW24742699.htm"
+  }
+ },
+ {
+  "slug": "design-system-for-sudden-load",
+  "title": "Design a system that copes with sudden load",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "burst-traffic",
+   "load-balancing",
+   "scalability"
+  ],
+  "leetcode": null,
+  "prompt": "Design a system to handle heavy traffic efficiently, including how you would split users across servers. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "I3"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "System design (month estimated)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW88734943.htm"
+  }
+ },
+ {
+  "slug": "design-food-delivery-app",
+  "title": "Design a food delivery app (Deliveroo)",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "food-delivery",
+   "geo",
+   "orders"
+  ],
+  "leetcode": null,
+  "prompt": "System design round: design an app for Deliveroo. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H4",
+   "F5"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "System design",
+   "seen_on": "2021-10",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.fr/Entretien/Deliveroo-Entretien-E1053365-RVW55348014.htm"
+  }
+ },
+ {
+  "slug": "design-analytics-logging-library",
+  "title": "Design an analytics logging library",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "library-design",
+   "batching",
+   "concurrency"
+  ],
+  "leetcode": null,
+  "prompt": "System design round where you implement an analytics logging library. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "E5",
+   "E8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Bengaluru)",
+   "round": "Round 3, system design",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm"
+  }
+ },
+ {
+  "slug": "extract-service-from-monolith",
+  "title": "Pull an identity service out of a monolith safely",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "strangler",
+   "monolith",
+   "microservices",
+   "auth",
+   "migration"
+  ],
+  "leetcode": null,
+  "prompt": "Design discussion: how would you pull an identity service out of a monolith safely? [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "S8",
+   "I3"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Platform Engineer",
+   "round": "Design (month estimated)",
+   "seen_on": "2018-10",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Platform-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Take-home: design a cron parser. In the interview, give a quick overview and then code up extensions.",
+  "follow_ups": [
+   "Support wrap-around / cyclic notation.",
+   "Optional year field.",
+   "Day and month names.",
+   "Arguments for the command.",
+   "Print the next n occurrences."
+  ],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (location not stated)",
+   "round": "Take-home + live coding",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Deliveroo-Interview-E1053365-RVW97734993.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Write a program to parse cron expressions, printing out the minutes, hours, days, etc. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Data Engineer",
+   "round": "Take-home",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://static.glassdoor.it/Interview/Deliveroo-Data-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,23.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Cron string parser coding question, in a HackerRank and take-home stage. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "HackerRank + take-home",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW96480242.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Home assignment: cron expression parser. Extend it to support MON-THU for weekdays.",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer",
+   "round": "Take-home extension (month estimated)",
+   "seen_on": "2024-05",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Home-assignment-Cron-expression-parser-Extend-the-cron-expression-to-support-MON-THU-for-weekdays-QTN_7462741.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "1) Add a wrap-around notation for the cron parser. 2) Allow alphanumerics for days of week and months.",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Coding round (month estimated)",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/1-Add-a-wrap-around-notation-for-this-cron-parser-2-All-for-alphanumerics-for-days-of-week-and-months-QTN_8610377.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Add a feature to your cron parser to allow days of the week by name.",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Platform Engineer",
+   "round": "Pair programming (month estimated)",
+   "seen_on": "2018-12",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/To-add-a-new-feature-to-my-cron-parser-to-allow-days-of-the-week-by-name-QTN_2909409.htm"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "Take-home cron parser, then add a few requested features live in the interview. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "SDE-2",
+   "round": "Coding",
+   "seen_on": "2023-08",
+   "confidence": "claimed",
+   "source": "https://interviewbytes.io/bytes/23479"
+  }
+ },
+ {
+  "slug": "cron-expression-parser-take-home",
+  "title": "Take-home: cron expression parser, then live extensions",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "take-home",
+   "parsing",
+   "unit-tests",
+   "extensibility",
+   "pair-programming"
+  ],
+  "leetcode": null,
+  "prompt": "A failed Karat screen led to a take-home: implement a cron string parser. One onsite round asks you to extend it. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "E4",
+   "E5",
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (India)",
+   "round": "Take-home + extension round (month estimated)",
+   "seen_on": "2022-11",
+   "confidence": "claimed",
+   "source": "https://www.teamblind.com/post/deliveroo-india-interview-cxq1kpsn"
+  }
+ },
+ {
+  "slug": "design-task-scheduler",
+  "title": "Design a Task Scheduler (Cron/Airflow-like)",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "scheduler",
+   "take-home"
+  ],
+  "leetcode": null,
+  "prompt": "Home assignment: build a scheduler. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Engineer",
+   "round": "Take-home",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.ie/Interview/Deliveroo-Interview-E1053365-RVW91835234.htm"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window",
+   "hackerrank"
+  ],
+  "leetcode": null,
+  "prompt": "90-minute HackerRank with two problems; one was a logic-based problem about creating a rate limiter.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer II (London)",
+   "round": "HackerRank screen",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm"
+  }
+ },
+ {
+  "slug": "design-rate-limiter",
+  "title": "Design a Rate Limiter",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rate-limiter",
+   "sliding-window",
+   "hackerrank"
+  ],
+  "leetcode": null,
+  "prompt": "A rate-limiting question was asked in the coding challenge.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer / Tech Lead",
+   "round": "Coding challenge (month estimated)",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Rate-limiting-related-question-was-asked-in-coding-challenge-QTN_8707109.htm"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter and return the best result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "pagination",
+   "json",
+   "hackerrank"
+  ],
+  "leetcode": null,
+  "prompt": "Query an API and get results about restaurants. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer II (London)",
+   "round": "HackerRank screen",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm"
+  }
+ },
+ {
+  "slug": "paginated-rest-api-top-result",
+  "title": "Call a paginated REST API, filter and return the best result",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "pagination",
+   "json",
+   "hackerrank"
+  ],
+  "leetcode": null,
+  "prompt": "One API question, alongside 30 MCQs and one medium coding problem. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "W2",
+   "W7",
+   "J8"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "HackerRank OA",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.sg/Interview/Deliveroo-Interview-E1053365-RVW89142622.htm"
+  }
+ },
+ {
+  "slug": "implement-fixed-size-ring-buffer",
+  "title": "Implement a fixed-size ring buffer",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "ring-buffer",
+   "array",
+   "design"
+  ],
+  "leetcode": null,
+  "prompt": "Implement a fixed-size ring buffer.",
+  "follow_ups": [],
+  "academy": [
+   "B7"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Not shown (engineering)",
+   "round": "Coding",
+   "seen_on": "2021-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW77013751.htm"
+  }
+ },
+ {
+  "slug": "ai-assisted-bug-fix-and-feature-addition",
+  "title": "Fix bugs and add a feature in an existing codebase (AI allowed)",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "ai-assisted",
+   "codebase"
+  ],
+  "leetcode": null,
+  "prompt": "After a 15-minute general MCQ, a bug-fixing and feature-addition round on HackerRank; AI use is allowed in both. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H3"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer L4/L5 (London)",
+   "round": "HackerRank round 1",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27.htm"
+  }
+ },
+ {
+  "slug": "ai-coding-build-service-to-requirements",
+  "title": "AI coding interview: generate a service that matches requirements",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "ai-assisted",
+   "product-thinking",
+   "service-design"
+  ],
+  "leetcode": null,
+  "prompt": "AI coding interview assessing how you use AI to generate services that match the requirements, plus product thinking. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "H3",
+   "D10"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer L4/L5 (London)",
+   "round": "Onsite AI coding",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27.htm"
+  }
+ },
+ {
+  "slug": "max-area-of-island",
+  "title": "Max Area of Island",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "grid",
+   "dfs"
+  ],
+  "leetcode": "max-area-of-island",
+  "prompt": "Maximum area in an island.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer, campus (Hyderabad)",
+   "round": "Technical assessment / DSA round (month estimated)",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW94173800.htm"
+  }
+ },
+ {
+  "slug": "vertical-order-traversal-of-a-binary-tree",
+  "title": "Vertical Order Traversal of a Binary Tree",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "tree",
+   "bfs",
+   "hashmap"
+  ],
+  "leetcode": "vertical-order-traversal-of-a-binary-tree",
+  "prompt": "Vertical traversal of a tree.",
+  "follow_ups": [],
+  "academy": [
+   "T4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer, campus (Hyderabad)",
+   "round": "Round 1, DSA (month estimated)",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.nz/Interview/Deliveroo-Interview-E1053365-RVW89819495.htm"
+  }
+ },
+ {
+  "slug": "remove-invalid-parentheses",
+  "title": "Remove Invalid Parentheses",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "backtracking",
+   "bfs",
+   "string"
+  ],
+  "leetcode": "remove-invalid-parentheses",
+  "prompt": "LeetCode 301, Remove Invalid Parentheses.",
+  "follow_ups": [],
+  "academy": [
+   "T5"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Campus (Amaravathi, India)",
+   "round": "On-campus DSA",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW90167710.htm"
+  }
+ },
+ {
+  "slug": "reservoir-sampling-stream",
+  "title": "Uniform Random Element from a Stream in O(1) Space",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "reservoir-sampling",
+   "randomized"
+  ],
+  "leetcode": null,
+  "prompt": "DSA round with two problems; the first was based on reservoir sampling.",
+  "follow_ups": [
+   "The second problem was a modification of the first."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Bengaluru)",
+   "round": "Round 2, DSA",
+   "seen_on": "2024-11",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm"
+  }
+ },
+ {
+  "slug": "longest-common-prefix",
+  "title": "Longest common prefix",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "string"
+  ],
+  "leetcode": "longest-common-prefix",
+  "prompt": "Find the 'lowest common prefix' (candidate's wording).",
+  "follow_ups": [],
+  "academy": [
+   "T5"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Platform Engineer (London)",
+   "round": "Coding",
+   "seen_on": "2018-09",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW24433546.htm"
+  }
+ },
+ {
+  "slug": "hackerrank-backend-mcq",
+  "title": "HackerRank MCQs: REST, testing, microservices, system design and distributed systems",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "mcq",
+   "rest",
+   "testing",
+   "microservices",
+   "system-design",
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "The first HackerRank section is multiple choice: 15 questions in 20 minutes (one 2024 report says 30) on REST APIs, testing, microservices, system design, distributed systems and algorithms. Know the fundamentals well enough to answer in about 80 seconds each.",
+  "follow_ups": [],
+  "academy": [
+   "W2",
+   "D12",
+   "S8",
+   "F2"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (Hyderabad)",
+   "round": "HackerRank OA",
+   "seen_on": "2024-07",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.sg/Interview/Deliveroo-Interview-E1053365-RVW89142622.htm"
+  }
+ },
+ {
+  "slug": "hackerrank-backend-mcq",
+  "title": "HackerRank MCQs: REST, testing, microservices, system design and distributed systems",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "mcq",
+   "rest",
+   "testing",
+   "microservices",
+   "system-design",
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "The first HackerRank section is multiple choice: 15 questions in 20 minutes (one 2024 report says 30) on REST APIs, testing, microservices, system design, distributed systems and algorithms. Know the fundamentals well enough to answer in about 80 seconds each.",
+  "follow_ups": [],
+  "academy": [
+   "W2",
+   "D12",
+   "S8",
+   "F2"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer (UK)",
+   "round": "HackerRank OA, section 1",
+   "seen_on": "2026-01",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer"
+  }
+ },
+ {
+  "slug": "hackerrank-backend-mcq",
+  "title": "HackerRank MCQs: REST, testing, microservices, system design and distributed systems",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "mcq",
+   "rest",
+   "testing",
+   "microservices",
+   "system-design",
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "The first HackerRank section is multiple choice: 15 questions in 20 minutes (one 2024 report says 30) on REST APIs, testing, microservices, system design, distributed systems and algorithms. Know the fundamentals well enough to answer in about 80 seconds each.",
+  "follow_ups": [],
+  "academy": [
+   "W2",
+   "D12",
+   "S8",
+   "F2"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "SDE II / SSE (Hyderabad)",
+   "round": "HackerRank OA",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7082718"
+  }
+ },
+ {
+  "slug": "hackerrank-backend-mcq",
+  "title": "HackerRank MCQs: REST, testing, microservices, system design and distributed systems",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "mcq",
+   "rest",
+   "testing",
+   "microservices",
+   "system-design",
+   "distributed-systems"
+  ],
+  "leetcode": null,
+  "prompt": "The first HackerRank section is multiple choice: 15 questions in 20 minutes (one 2024 report says 30) on REST APIs, testing, microservices, system design, distributed systems and algorithms. Know the fundamentals well enough to answer in about 80 seconds each.",
+  "follow_ups": [],
+  "academy": [
+   "W2",
+   "D12",
+   "S8",
+   "F2"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Engineer L6 (India)",
+   "round": "HackerRank OA, section 1",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-experience-l6-staff-engineer-may-2025-india"
+  }
+ },
+ {
+  "slug": "video-subtitle-threads-crash",
+  "title": "CPU-heavy subtitle jobs crash the system at 10 threads: how do you fix it?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "concurrency",
+   "thread-pool",
+   "queue",
+   "karat"
+  ],
+  "leetcode": null,
+  "prompt": "An application creates subtitles from videos; each job runs in a processor-heavy thread and 10 threads crash the system. How do you fix this? (One of three Karat questions; the other two are not visible.) [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [
+   "B4"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Karat screen (month estimated)",
+   "seen_on": "2022-11",
+   "confidence": "claimed",
+   "source": "https://www.teamblind.com/company/Karat/posts?page=10"
+  }
+ },
+ {
+  "slug": "production-high-cpu-troubleshooting",
+  "title": "A production service shows high CPU utilisation: what do you do?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "production",
+   "profiling",
+   "incident"
+  ],
+  "leetcode": null,
+  "prompt": "How would you deal with a production service demonstrating high CPU utilisation?",
+  "follow_ups": [],
+  "academy": [
+   "A8",
+   "H3"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer",
+   "round": "Interview loop (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Staff-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,33.htm"
+  }
+ },
+ {
+  "slug": "verify-search-returns-correct-answer",
+  "title": "How do you make sure a search request returns the correct answer?",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "testing",
+   "search"
+  ],
+  "leetcode": null,
+  "prompt": "How do you make sure a search request is returning the correct answer?",
+  "follow_ups": [],
+  "academy": [
+   "D12"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer II (London)",
+   "round": "Interview loop",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm"
+  }
+ },
+ {
+  "slug": "vertical-vs-horizontal-scaling",
+  "title": "Vertical vs horizontal scaling",
+  "type": "DOMAIN",
+  "difficulty": "easy",
+  "tags": [
+   "scalability"
+  ],
+  "leetcode": null,
+  "prompt": "What is the difference between vertical and horizontal scaling?",
+  "follow_ups": [],
+  "academy": [
+   "F1"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Machine Learning Engineer (London)",
+   "round": "Technical screen",
+   "seen_on": "2022-10",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com.br/Entrevista/Deliveroo-Entrevista-E1053365-RVW70089554.htm"
+  }
+ },
+ {
+  "slug": "oop-four-pillars",
+  "title": "The four OOP principles",
+  "type": "JAVA",
+  "difficulty": "easy",
+  "tags": [
+   "oop",
+   "karat"
+  ],
+  "leetcode": null,
+  "prompt": "A few questions about OOP before the coding exercise (language not stated). [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (London)",
+   "round": "Karat screen (month estimated)",
+   "seen_on": "2023-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW74185299.htm"
+  }
+ },
+ {
+  "slug": "java-threading-fundamentals",
+  "title": "Java threading fundamentals",
+  "type": "JAVA",
+  "difficulty": "medium",
+  "tags": [
+   "multithreading",
+   "karat"
+  ],
+  "leetcode": null,
+  "prompt": "A few questions about multi-threaded environments (language not stated). [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (London)",
+   "round": "Karat screen (month estimated)",
+   "seen_on": "2023-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW74185299.htm"
+  }
+ },
+ {
+  "slug": "sql-scenario-based-queries",
+  "title": "SQL basics and scenario-based queries",
+  "type": "SQL",
+  "difficulty": "medium",
+  "tags": [
+   "sql",
+   "karat"
+  ],
+  "leetcode": null,
+  "prompt": "A few questions about SQL. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (London)",
+   "round": "Karat screen (month estimated)",
+   "seen_on": "2023-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW74185299.htm"
+  }
+ },
+ {
+  "slug": "sql-scenario-based-queries",
+  "title": "SQL basics and scenario-based queries",
+  "type": "SQL",
+  "difficulty": "medium",
+  "tags": [
+   "sql",
+   "dbms"
+  ],
+  "leetcode": null,
+  "prompt": "Round 3 was a DBMS round with questions from SQL and system design. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer, campus (Hyderabad)",
+   "round": "Round 3, DBMS",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW90167710.htm"
+  }
+ },
+ {
+  "slug": "sql-join-types",
+  "title": "SQL join types; DDL vs DML",
+  "type": "SQL",
+  "difficulty": "easy",
+  "tags": [
+   "sql",
+   "joins"
+  ],
+  "leetcode": null,
+  "prompt": "Technical round focused on SQL, including joins. [Wording partial: read from a search snippet, not the full page.]",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Analytics Engineer",
+   "round": "Technical round (month estimated)",
+   "seen_on": "2024-06",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Analytics-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,28.htm"
+  }
+ },
+ {
+  "slug": "handling-ambiguity",
+  "title": "Handling an ambiguous situation",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "ambiguity"
+  ],
+  "leetcode": null,
+  "prompt": "Discuss a past ambiguous project.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (Hyderabad)",
+   "round": "HR round (month estimated)",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW90178879.htm"
+  }
+ },
+ {
+  "slug": "receiving-negative-feedback",
+  "title": "Receiving negative feedback",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "feedback"
+  ],
+  "leetcode": null,
+  "prompt": "Can you tell us about a time when you received difficult feedback?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (London)",
+   "round": "Behavioural (month estimated)",
+   "seen_on": "2019-11",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.sg/Interview/Deliveroo-Interview-E1053365-RVW30501012.htm"
+  }
+ },
+ {
+  "slug": "change-about-current-workplace",
+  "title": "What would you change about your current workplace?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "culture"
+  ],
+  "leetcode": null,
+  "prompt": "What would you change about your current place of work?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer II (London)",
+   "round": "Behavioural",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm"
+  }
+ },
+ {
+  "slug": "missed-a-deadline",
+  "title": "What would you do if you missed a deadline?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ownership",
+   "delivery"
+  ],
+  "leetcode": null,
+  "prompt": "What would you do if you missed a deadline?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer",
+   "round": "Behavioural",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW93357188.htm"
+  }
+ },
+ {
+  "slug": "guiding-junior-developers",
+  "title": "How do you guide junior developers?",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "mentoring"
+  ],
+  "leetcode": null,
+  "prompt": "How do you guide junior developers?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer",
+   "round": "Behavioural (month estimated)",
+   "seen_on": "2021-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW44703029.htm"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-failure",
+  "title": "A time you failed to do what you were supposed to",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "failure"
+  ],
+  "leetcode": null,
+  "prompt": "How do you learn from failures?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Senior Software Engineer",
+   "round": "Behavioural (month estimated)",
+   "seen_on": "2021-03",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW44703029.htm"
+  }
+ },
+ {
+  "slug": "disagreed-with-leadership",
+  "title": "A time you disagreed with leadership",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict",
+   "leadership"
+  ],
+  "leetcode": null,
+  "prompt": "Tell me about a time you disagreed with leadership.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Software Engineer",
+   "round": "Behavioural (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Staff-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,33.htm"
+  }
+ },
+ {
+  "slug": "career-aspirations",
+  "title": "What are your career aspirations?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "A range of questions about how you handle certain situations and what your career aspirations are.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer II (London)",
+   "round": "Behavioural (month estimated)",
+   "seen_on": "2021-01",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm"
+  }
+ },
+ {
+  "slug": "walk-through-current-work",
+  "title": "Walk through your current work",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "experience"
+  ],
+  "leetcode": null,
+  "prompt": "What are you currently working on?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Software Engineer (London)",
+   "round": "Interview",
+   "seen_on": "2019-04",
+   "confidence": "claimed",
+   "source": "https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW27199887.htm"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "leetcode": null,
+  "prompt": "Handling disagreement.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Staff Engineer L6 (India)",
+   "round": "VP / country head",
+   "seen_on": "2025-05",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-experience-l6-staff-engineer-may-2025-india"
+  }
+ },
+ {
+  "slug": "missed-a-deadline",
+  "title": "What would you do if you missed a deadline?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ownership",
+   "delivery"
+  ],
+  "leetcode": null,
+  "prompt": "What would you do if you missed a deadline?",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Backend engineer (any level)",
+   "round": "Behavioural interview (example question in the company's own interview guide)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Backend engineer (any level)",
+   "round": "Behavioural interview (example question in the company's own interview guide)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [
+   "H6"
+  ],
+  "sighting": {
+   "company": "deliveroo",
+   "role": "Backend engineer (any level)",
+   "round": "Behavioural interview (example question in the company's own interview guide)",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/"
+  }
+ }
+]

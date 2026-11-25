@@ -1,0 +1,43 @@
+slug: design-authentication-manager
+title: Design Authentication Manager
+type: DSA
+difficulty: medium
+tags:
+- hash-map
+- linked-list
+- design
+- ordered-map
+leetcode: design-authentication-manager
+prompt: |
+  Implement a session-token manager with a fixed time-to-live that supports generate, renew and count of unexpired tokens.
+follow_ups:
+- Make it pass with 10^5 queries (a TreeMap/subMap solution was reported to exceed the time limit)
+- Clean API design, boundary conditions, test cases and performance
+academy:
+- J6
+- T1
+sightings:
+- company: deliveroo
+  role: Senior Engineer
+  round: Coding round (replaced the take-home)
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326224/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: Coding round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, October 2026 snapshot)
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Deliveroo/5.%20All.csv
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (last 30 days, August 2026)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.talentd.in/fleetcode/companies/deliveroo

@@ -7,6 +7,7 @@ tags:
 - queue
 - design
 - streaming
+- hash-map
 leetcode: logger-rate-limiter
 prompt: |
   Messages arrive in timestamp order; print only messages unique within the last 10 seconds.
@@ -34,3 +35,15 @@ sightings:
   seen_on: 2026-10
   confidence: claimed
   source: https://leetcode.com/discuss/post/8551527/
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, October 2026 snapshot)
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Deliveroo/5.%20All.csv
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (last 6 months, August 2026)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.talentd.in/fleetcode/companies/deliveroo

@@ -10,6 +10,7 @@ tags:
 - multi-tenant
 - rate-limiter
 - sliding-window
+- hackerrank
 leetcode: null
 prompt: |
   Design a rate limiter (classes, then code one algorithm).
@@ -60,3 +61,39 @@ sightings:
   seen_on: 2026-10
   confidence: claimed
   source: HR call relayed by Akhil, 2026-10-12
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: Online assessment (HackerRank)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: Online assessment (HackerRank)
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: Online assessment (HackerRank, 90 min)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/
+- company: deliveroo
+  role: Senior Software Engineer (UK)
+  round: Online assessment (HackerRank, 3 sections)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer
+- company: deliveroo
+  role: Software Engineer II (London)
+  round: HackerRank screen
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm
+- company: deliveroo
+  role: Senior Software Engineer / Tech Lead
+  round: Coding challenge (month estimated)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Rate-limiting-related-question-was-asked-in-coding-challenge-QTN_8707109.htm

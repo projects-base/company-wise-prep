@@ -1,0 +1,37 @@
+slug: guiding-junior-developers
+title: Mentoring a junior engineer
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- mentoring
+- leadership
+prompt: |
+  Tell me about a time you mentored a junior engineer.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: Behavioural round
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: VP / country head round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Bengaluru)
+  round: Behavioural round
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/
+- company: deliveroo
+  role: Senior Software Engineer
+  round: Behavioural (month estimated)
+  seen_on: 2021-03
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW44703029.htm

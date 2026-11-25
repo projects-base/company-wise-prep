@@ -1,0 +1,19 @@
+slug: what-you-would-do-differently
+title: What would you do differently now?
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- reflection
+- learning
+prompt: |
+  For the work you describe: what did you do, how, what did you learn, and how would you do it better now?
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: Behavioural round
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718/

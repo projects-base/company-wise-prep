@@ -1,0 +1,19 @@
+slug: change-about-current-workplace
+title: What would you change about your current workplace?
+type: BEHAVIORAL
+difficulty: easy
+tags:
+- culture
+leetcode: null
+prompt: |
+  What would you change about your current place of work?
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Software Engineer II (London)
+  round: Behavioural
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm

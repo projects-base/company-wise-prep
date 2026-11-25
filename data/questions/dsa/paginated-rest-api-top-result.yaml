@@ -1,0 +1,70 @@
+slug: paginated-rest-api-top-result
+title: Call a paginated REST API, filter the data and return the result
+type: DSA
+difficulty: medium
+tags:
+- rest-api
+- http-client
+- json
+- pagination
+- filtering
+- sorting
+- online-assessment
+- hackerrank
+prompt: |
+  Given HTTP endpoints, write a program that GETs the data (handling pagination), deserialises it, filters and sorts it and returns the output in the required format. Reported variant: return the finest hotel by rating.
+follow_ups:
+- Handle pagination
+academy:
+- W2
+- W7
+- J8
+sightings:
+- company: deliveroo
+  role: Senior Engineer
+  round: Online assessment (HackerRank, 70 min)
+  seen_on: 2025-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/7326224/
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: Online assessment (HackerRank)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: Online assessment (HackerRank)
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: Online assessment (HackerRank, 90 min)
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Bengaluru)
+  round: Online assessment (HackerRank)
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/
+- company: deliveroo
+  role: Senior Software Engineer (UK)
+  round: Online assessment (HackerRank, 3 sections)
+  seen_on: 2026-01
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-oa-senior-software-engineer
+- company: deliveroo
+  role: Software Engineer II (London)
+  round: HackerRank screen
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: HackerRank OA
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.glassdoor.sg/Interview/Deliveroo-Interview-E1053365-RVW89142622.htm

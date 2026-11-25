@@ -42,3 +42,9 @@ sightings:
   seen_on: 2018-02
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-Senior-Java-Software-Engineer-Interview-Questions-EI_IE341832.0,6_KO7,36.htm
+- company: deliveroo
+  role: Software Engineer (London)
+  round: Interview
+  seen_on: 2019-04
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW27199887.htm

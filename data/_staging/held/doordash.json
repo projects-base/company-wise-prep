@@ -1,0 +1,1975 @@
+[
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-virtual-onsite-rejected-in-three-days"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-onsite-with-an-ai-assisted-coding-round"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-rounds-debugging-food-review-design-ai-coding-with-a-dag-bq"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design & domain knowledge",
+   "seen_on": "2025-10",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-system-design-interview"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design & domain knowledge",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-phone-screen-and-virtual-onsite-interview-2025"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Senior Engineer (Seattle)",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-senior-engineer-details-about-code-craft-and-system-design"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer 2 (Pune, India)",
+   "round": "System design & domain knowledge",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6352727/DoorDash-or-SE2-or-India-or-Rejected/"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a food review, voting and reward system",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "reviews",
+   "voting",
+   "counters",
+   "caching",
+   "schema"
+  ],
+  "prompt": "Design a system in which customers who ordered a food item can review and rate it, others upvote or downvote reviews, the item shows its average rating, and good reviews earn rewards.",
+  "follow_ups": [
+   "How do you enforce one vote per user and prevent duplicate rewards?",
+   "Where do vote counters live, and how do cache and database stay in sync?",
+   "How do you shard for high-volume restaurants?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE2 Backend",
+   "round": "System design & domain knowledge",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5876691/Doordash-onsite-or-SDE2-Backend-or-Reject/"
+  }
+ },
+ {
+  "slug": "order-refund-workflow-dag-engine",
+  "title": "AI Code Craft: order-refund workflow engine over a DAG of rules",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "workflow",
+   "ai-assisted",
+   "rules-engine",
+   "api"
+  ],
+  "prompt": "With your own IDE and AI tools, build a running service that reads an order's status from an API and evaluates a DAG of rules to choose an action (refund, close, escalate). Minimum: a late order triggers a refund.",
+  "follow_ups": [
+   "Support partial refunds",
+   "Repeated upstream API calls: reduce the impact and the user wait time",
+   "Run it, curl it, explain the response and show the refund triggered"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "AI Code Craft",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-virtual-onsite-rejected-in-three-days"
+  }
+ },
+ {
+  "slug": "order-refund-workflow-dag-engine",
+  "title": "AI Code Craft: order-refund workflow engine over a DAG of rules",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "workflow",
+   "ai-assisted",
+   "rules-engine",
+   "api"
+  ],
+  "prompt": "With your own IDE and AI tools, build a running service that reads an order's status from an API and evaluates a DAG of rules to choose an action (refund, close, escalate). Minimum: a late order triggers a refund.",
+  "follow_ups": [
+   "Support partial refunds",
+   "Repeated upstream API calls: reduce the impact and the user wait time",
+   "Run it, curl it, explain the response and show the refund triggered"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "AI Code Craft",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-onsite-with-an-ai-assisted-coding-round"
+  }
+ },
+ {
+  "slug": "order-refund-workflow-dag-engine",
+  "title": "AI Code Craft: order-refund workflow engine over a DAG of rules",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "workflow",
+   "ai-assisted",
+   "rules-engine",
+   "api"
+  ],
+  "prompt": "With your own IDE and AI tools, build a running service that reads an order's status from an API and evaluates a DAG of rules to choose an action (refund, close, escalate). Minimum: a late order triggers a refund.",
+  "follow_ups": [
+   "Support partial refunds",
+   "Repeated upstream API calls: reduce the impact and the user wait time",
+   "Run it, curl it, explain the response and show the refund triggered"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "AI Code Craft",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "order-refund-workflow-dag-engine",
+  "title": "AI Code Craft: order-refund workflow engine over a DAG of rules",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "workflow",
+   "ai-assisted",
+   "rules-engine",
+   "api"
+  ],
+  "prompt": "With your own IDE and AI tools, build a running service that reads an order's status from an API and evaluates a DAG of rules to choose an action (refund, close, escalate). Minimum: a late order triggers a refund.",
+  "follow_ups": [
+   "Support partial refunds",
+   "Repeated upstream API calls: reduce the impact and the user wait time",
+   "Run it, curl it, explain the response and show the refund triggered"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "AI Code Craft",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-rounds-debugging-food-review-design-ai-coding-with-a-dag-bq"
+  }
+ },
+ {
+  "slug": "order-refund-workflow-dag-engine",
+  "title": "AI Code Craft: order-refund workflow engine over a DAG of rules",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "workflow",
+   "ai-assisted",
+   "rules-engine",
+   "api"
+  ],
+  "prompt": "With your own IDE and AI tools, build a running service that reads an order's status from an API and evaluates a DAG of rules to choose an action (refund, close, escalate). Minimum: a late order triggers a refund.",
+  "follow_ups": [
+   "Support partial refunds",
+   "Repeated upstream API calls: reduce the impact and the user wait time",
+   "Run it, curl it, explain the response and show the refund triggered"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "AI Code Craft",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-refund-server-donation-design-and-debugging"
+  }
+ },
+ {
+  "slug": "order-refund-workflow-dag-engine",
+  "title": "AI Code Craft: order-refund workflow engine over a DAG of rules",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "dag",
+   "workflow",
+   "ai-assisted",
+   "rules-engine",
+   "api"
+  ],
+  "prompt": "With your own IDE and AI tools, build a running service that reads an order's status from an API and evaluates a DAG of rules to choose an action (refund, close, escalate). Minimum: a late order triggers a refund.",
+  "follow_ups": [
+   "Support partial refunds",
+   "Repeated upstream API calls: reduce the impact and the user wait time",
+   "Run it, curl it, explain the response and show the refund triggered"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer (USA)",
+   "round": "AI Code Craft",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/7401147"
+  }
+ },
+ {
+  "slug": "resilient-api-aggregator",
+  "title": "Code Craft: aggregate user, payment and address services with partial failure",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "resilience",
+   "timeouts",
+   "retries",
+   "concurrency"
+  ],
+  "prompt": "Implement an endpoint that takes a user id, calls the consumer, payment and address services and returns one combined response. A consumer failure returns 500; payment or address failures return partial data.",
+  "follow_ups": [
+   "Timeouts: retry or drop?",
+   "Check HTTP status as well as exceptions",
+   "Call the services in parallel",
+   "Test each upstream failing on its own"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Code Craft",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-onsite-with-an-ai-assisted-coding-round"
+  }
+ },
+ {
+  "slug": "resilient-api-aggregator",
+  "title": "Code Craft: aggregate user, payment and address services with partial failure",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "resilience",
+   "timeouts",
+   "retries",
+   "concurrency"
+  ],
+  "prompt": "Implement an endpoint that takes a user id, calls the consumer, payment and address services and returns one combined response. A consumer failure returns 500; payment or address failures return partial data.",
+  "follow_ups": [
+   "Timeouts: retry or drop?",
+   "Check HTTP status as well as exceptions",
+   "Call the services in parallel",
+   "Test each upstream failing on its own"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Code Craft",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "resilient-api-aggregator",
+  "title": "Code Craft: aggregate user, payment and address services with partial failure",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "resilience",
+   "timeouts",
+   "retries",
+   "concurrency"
+  ],
+  "prompt": "Implement an endpoint that takes a user id, calls the consumer, payment and address services and returns one combined response. A consumer failure returns 500; payment or address failures return partial data.",
+  "follow_ups": [
+   "Timeouts: retry or drop?",
+   "Check HTTP status as well as exceptions",
+   "Call the services in parallel",
+   "Test each upstream failing on its own"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Code Craft",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-code-craft-bootstrap-and-partial-responses"
+  }
+ },
+ {
+  "slug": "resilient-api-aggregator",
+  "title": "Code Craft: aggregate user, payment and address services with partial failure",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "resilience",
+   "timeouts",
+   "retries",
+   "concurrency"
+  ],
+  "prompt": "Implement an endpoint that takes a user id, calls the consumer, payment and address services and returns one combined response. A consumer failure returns 500; payment or address failures return partial data.",
+  "follow_ups": [
+   "Timeouts: retry or drop?",
+   "Check HTTP status as well as exceptions",
+   "Call the services in parallel",
+   "Test each upstream failing on its own"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4 full stack (Seattle)",
+   "round": "Code Craft",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-e4-full-stack-oct-2026"
+  }
+ },
+ {
+  "slug": "resilient-api-aggregator",
+  "title": "Code Craft: aggregate user, payment and address services with partial failure",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "resilience",
+   "timeouts",
+   "retries",
+   "concurrency"
+  ],
+  "prompt": "Implement an endpoint that takes a user id, calls the consumer, payment and address services and returns one combined response. A consumer failure returns 500; payment or address failures return partial data.",
+  "follow_ups": [
+   "Timeouts: retry or drop?",
+   "Check HTTP status as well as exceptions",
+   "Call the services in parallel",
+   "Test each upstream failing on its own"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE2 Backend",
+   "round": "Code Craft",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5876691/Doordash-onsite-or-SDE2-Backend-or-Reject/"
+  }
+ },
+ {
+  "slug": "debug-round-robin-router",
+  "title": "Debugging round: fix a broken round-robin router",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "load-balancing",
+   "testing"
+  ],
+  "prompt": "Given a round-robin assignment/router implementation with several bugs, find and fix them until all tests pass.",
+  "follow_ups": [
+   "Implement or sketch consistent hashing"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-virtual-onsite-rejected-in-three-days"
+  }
+ },
+ {
+  "slug": "debug-round-robin-router",
+  "title": "Debugging round: fix a broken round-robin router",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "load-balancing",
+   "testing"
+  ],
+  "prompt": "Given a round-robin assignment/router implementation with several bugs, find and fix them until all tests pass.",
+  "follow_ups": [
+   "Implement or sketch consistent hashing"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-onsite-with-an-ai-assisted-coding-round"
+  }
+ },
+ {
+  "slug": "debug-round-robin-router",
+  "title": "Debugging round: fix a broken round-robin router",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "load-balancing",
+   "testing"
+  ],
+  "prompt": "Given a round-robin assignment/router implementation with several bugs, find and fix them until all tests pass.",
+  "follow_ups": [
+   "Implement or sketch consistent hashing"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4",
+   "round": "Debugging",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://www.fastprep.io/experience/2026-doordash-experienced-swe-e4-and-data-analyst-loops-2-experiences-543b5hlgi2"
+  }
+ },
+ {
+  "slug": "debug-round-robin-router",
+  "title": "Debugging round: fix a broken round-robin router",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "load-balancing",
+   "testing"
+  ],
+  "prompt": "Given a round-robin assignment/router implementation with several bugs, find and fix them until all tests pass.",
+  "follow_ups": [
+   "Implement or sketch consistent hashing"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-phone-screen-and-virtual-onsite-interview-2025"
+  }
+ },
+ {
+  "slug": "debug-round-robin-router",
+  "title": "Debugging round: fix a broken round-robin router",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "load-balancing",
+   "testing"
+  ],
+  "prompt": "Given a round-robin assignment/router implementation with several bugs, find and fix them until all tests pass.",
+  "follow_ups": [
+   "Implement or sketch consistent hashing"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE2 Backend",
+   "round": "Debugging",
+   "seen_on": "2024-10",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/post/5876691/Doordash-onsite-or-SDE2-Backend-or-Reject/"
+  }
+ },
+ {
+  "slug": "dasher-payout-service",
+  "title": "Code Craft: Dasher payout service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "oop",
+   "intervals",
+   "sweep-line"
+  ],
+  "prompt": "Build a POST /payout endpoint that takes a dasherId, reads delivery activity from an upstream service and returns the pay, based on time spent on orders with a base rate and a multi-order rate.",
+  "follow_ups": [
+   "Double pay during peak hours",
+   "Overlapping delivery windows, orders at different stages, window boundaries",
+   "The upstream service is slow or fails: what do you do?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Code Craft",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-virtual-onsite-rejected-in-three-days"
+  }
+ },
+ {
+  "slug": "dasher-payout-service",
+  "title": "Code Craft: Dasher payout service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "oop",
+   "intervals",
+   "sweep-line"
+  ],
+  "prompt": "Build a POST /payout endpoint that takes a dasherId, reads delivery activity from an upstream service and returns the pay, based on time spent on orders with a base rate and a multi-order rate.",
+  "follow_ups": [
+   "Double pay during peak hours",
+   "Overlapping delivery windows, orders at different stages, window boundaries",
+   "The upstream service is slow or fails: what do you do?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Senior Engineer (Seattle)",
+   "round": "Code Craft",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-senior-engineer-details-about-code-craft-and-system-design"
+  }
+ },
+ {
+  "slug": "dasher-payout-service",
+  "title": "Code Craft: Dasher payout service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "oop",
+   "intervals",
+   "sweep-line"
+  ],
+  "prompt": "Build a POST /payout endpoint that takes a dasherId, reads delivery activity from an upstream service and returns the pay, based on time spent on orders with a base rate and a multi-order rate.",
+  "follow_ups": [
+   "Double pay during peak hours",
+   "Overlapping delivery windows, orders at different stages, window boundaries",
+   "The upstream service is slow or fails: what do you do?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Mid-level Software Engineer (USA)",
+   "round": "Code Craft",
+   "seen_on": "2025-11",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/usa-doordash-code-craft-round"
+  }
+ },
+ {
+  "slug": "dasher-payout-service",
+  "title": "Code Craft: Dasher payout service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "rest-api",
+   "oop",
+   "intervals",
+   "sweep-line"
+  ],
+  "prompt": "Build a POST /payout endpoint that takes a dasherId, reads delivery activity from an upstream service and returns the pay, based on time spent on orders with a base rate and a multi-order rate.",
+  "follow_ups": [
+   "Double pay during peak hours",
+   "Overlapping delivery windows, orders at different stages, window boundaries",
+   "The upstream service is slow or fails: what do you do?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Code Craft",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-phone-screen-and-virtual-onsite-interview-2025"
+  }
+ },
+ {
+  "slug": "debug-dasher-assignment-service",
+  "title": "Debugging round: Dasher assignment service (random pick and remove)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "hash-map",
+   "random",
+   "code-review"
+  ],
+  "prompt": "A mock service adds Dashers and randomly picks and removes one for a delivery. Find and fix the logic bugs, keep the original time complexity, then fix design and code-quality problems.",
+  "follow_ups": [
+   "Which further test cases would you add?",
+   "As a PR review, what else would you change?",
+   "What would you consider before pushing it to production?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "debug-dasher-assignment-service",
+  "title": "Debugging round: Dasher assignment service (random pick and remove)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "hash-map",
+   "random",
+   "code-review"
+  ],
+  "prompt": "A mock service adds Dashers and randomly picks and removes one for a delivery. Find and fix the logic bugs, keep the original time complexity, then fix design and code-quality problems.",
+  "follow_ups": [
+   "Which further test cases would you add?",
+   "As a PR review, what else would you change?",
+   "What would you consider before pushing it to production?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-rounds-debugging-food-review-design-ai-coding-with-a-dag-bq"
+  }
+ },
+ {
+  "slug": "debug-dasher-assignment-service",
+  "title": "Debugging round: Dasher assignment service (random pick and remove)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "hash-map",
+   "random",
+   "code-review"
+  ],
+  "prompt": "A mock service adds Dashers and randomly picks and removes one for a delivery. Find and fix the logic bugs, keep the original time complexity, then fix design and code-quality problems.",
+  "follow_ups": [
+   "Which further test cases would you add?",
+   "As a PR review, what else would you change?",
+   "What would you consider before pushing it to production?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-refund-server-donation-design-and-debugging"
+  }
+ },
+ {
+  "slug": "debug-dasher-assignment-service",
+  "title": "Debugging round: Dasher assignment service (random pick and remove)",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "hash-map",
+   "random",
+   "code-review"
+  ],
+  "prompt": "A mock service adds Dashers and randomly picks and removes one for a delivery. Find and fix the logic bugs, keep the original time complexity, then fix design and code-quality problems.",
+  "follow_ups": [
+   "Which further test cases would you add?",
+   "As a PR review, what else would you change?",
+   "What would you consider before pushing it to production?"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer (USA)",
+   "round": "Debugging",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/usa-doordash-debugging-onsite"
+  }
+ },
+ {
+  "slug": "design-donations-platform",
+  "title": "Design a donation platform for a 3-day charity event",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "payments",
+   "reliability",
+   "scalability"
+  ],
+  "prompt": "Design a donation platform for a 3-day event (one report: target 100 million dollars), focusing on scalability and reliability.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE",
+   "round": "System design",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-89-doordash-sde"
+  }
+ },
+ {
+  "slug": "design-donations-platform",
+  "title": "Design a donation platform for a 3-day charity event",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "payments",
+   "reliability",
+   "scalability"
+  ],
+  "prompt": "Design a donation platform for a 3-day event (one report: target 100 million dollars), focusing on scalability and reliability.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "System design",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-refund-server-donation-design-and-debugging"
+  }
+ },
+ {
+  "slug": "design-donations-platform",
+  "title": "Design a donation platform for a 3-day charity event",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "payments",
+   "reliability",
+   "scalability"
+  ],
+  "prompt": "Design a donation platform for a 3-day event (one report: target 100 million dollars), focusing on scalability and reliability.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Backend E4",
+   "round": "System design",
+   "seen_on": "2024-04",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-question/5024675/Doordash-or-Onsite-or-2024/"
+  }
+ },
+ {
+  "slug": "design-donations-platform",
+  "title": "Design a donation platform for a 3-day charity event",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "payments",
+   "reliability",
+   "scalability"
+  ],
+  "prompt": "Design a donation platform for a 3-day event (one report: target 100 million dollars), focusing on scalability and reliability.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4",
+   "round": "System design",
+   "seen_on": "2024-08",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/5637233/Doordash-onsite-or-E4-SWE-or-reject/"
+  }
+ },
+ {
+  "slug": "implement-consistent-hashing",
+  "title": "Implement consistent hashing",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "consistent-hashing",
+   "hashing",
+   "tree-map"
+  ],
+  "prompt": "Implement consistent hashing with add_node and get_node (pseudocode when time is short).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging (follow-up)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-virtual-onsite-rejected-in-three-days"
+  }
+ },
+ {
+  "slug": "implement-consistent-hashing",
+  "title": "Implement consistent hashing",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "consistent-hashing",
+   "hashing",
+   "tree-map"
+  ],
+  "prompt": "Implement consistent hashing with add_node and get_node (pseudocode when time is short).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Debugging (follow-up)",
+   "seen_on": "2026-08",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-onsite-with-an-ai-assisted-coding-round"
+  }
+ },
+ {
+  "slug": "implement-consistent-hashing",
+  "title": "Implement consistent hashing",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "consistent-hashing",
+   "hashing",
+   "tree-map"
+  ],
+  "prompt": "Implement consistent hashing with add_node and get_node (pseudocode when time is short).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4",
+   "round": "Debugging (follow-up)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://www.fastprep.io/experience/2026-doordash-experienced-swe-e4-and-data-analyst-loops-2-experiences-543b5hlgi2"
+  }
+ },
+ {
+  "slug": "production-incident-story",
+  "title": "A production incident you handled",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "incident",
+   "ownership"
+  ],
+  "prompt": "Have you caused or handled a major production incident or bug? What happened and how did you fix it?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "production-incident-story",
+  "title": "A production incident you handled",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "incident",
+   "ownership"
+  ],
+  "prompt": "Have you caused or handled a major production incident or bug? What happened and how did you fix it?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-11",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-refund-server-donation-design-and-debugging"
+  }
+ },
+ {
+  "slug": "production-incident-story",
+  "title": "A production incident you handled",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "incident",
+   "ownership"
+  ],
+  "prompt": "Have you caused or handled a major production incident or bug? What happened and how did you fix it?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://www.fastprep.io/experience/2026-doordash-experienced-swe-e4-and-data-analyst-loops-2-experiences-543b5hlgi2"
+  }
+ },
+ {
+  "slug": "closest-dashmart-in-grid",
+  "title": "Closest DashMart for each location in a city grid",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "multi-source-bfs",
+   "matrix"
+  ],
+  "prompt": "Given a grid of open roads, blocked roads and DashMarts, return for each query location the distance to its closest DashMart, or -1 when none is reachable.",
+  "follow_ups": [
+   "Return all equidistant closest locations",
+   "Repeated queries: multi-source BFS",
+   "Find the DashMart that serves the most customers"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Coding",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-phone-interview"
+  }
+ },
+ {
+  "slug": "closest-dashmart-in-grid",
+  "title": "Closest DashMart for each location in a city grid",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "multi-source-bfs",
+   "matrix"
+  ],
+  "prompt": "Given a grid of open roads, blocked roads and DashMarts, return for each query location the distance to its closest DashMart, or -1 when none is reachable.",
+  "follow_ups": [
+   "Return all equidistant closest locations",
+   "Repeated queries: multi-source BFS",
+   "Find the DashMart that serves the most customers"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Coding",
+   "seen_on": "2025-10",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-interview-question"
+  }
+ },
+ {
+  "slug": "closest-dashmart-in-grid",
+  "title": "Closest DashMart for each location in a city grid",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "multi-source-bfs",
+   "matrix"
+  ],
+  "prompt": "Given a grid of open roads, blocked roads and DashMarts, return for each query location the distance to its closest DashMart, or -1 when none is reachable.",
+  "follow_ups": [
+   "Return all equidistant closest locations",
+   "Repeated queries: multi-source BFS",
+   "Find the DashMart that serves the most customers"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Senior Engineer (Seattle)",
+   "round": "Coding",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-senior-engineer-details-about-code-craft-and-system-design"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Backend SDE-2 (India)",
+   "round": "Hiring manager / project deep dive",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-interview-experience-rejected"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Hiring manager / project deep dive",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project-deep-dive"
+  ],
+  "prompt": "Tell me about the most challenging or complex project you worked on and how you handled it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Senior Engineer (Seattle)",
+   "round": "Hiring manager / project deep dive",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-senior-engineer-details-about-code-craft-and-system-design"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE",
+   "round": "Hiring manager / values",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-89-doordash-sde"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-conflict",
+  "title": "Tell me about a conflict",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "conflict"
+  ],
+  "prompt": "Tell me about a conflict with a teammate or stakeholder and how you resolved it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Senior Engineer (Seattle)",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-02",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-senior-engineer-details-about-code-craft-and-system-design"
+  }
+ },
+ {
+  "slug": "how-you-use-ai-tools",
+  "title": "How you use AI tools",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ai",
+   "productivity"
+  ],
+  "prompt": "How do you use AI in your work, and how would you use it for team productivity?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-09",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-five-onsite-rounds-including-a-live-ai-coding-challenge"
+  }
+ },
+ {
+  "slug": "how-you-use-ai-tools",
+  "title": "How you use AI tools",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ai",
+   "productivity"
+  ],
+  "prompt": "How do you use AI in your work, and how would you use it for team productivity?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4 full stack (Seattle)",
+   "round": "Hiring manager / values",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-e4-full-stack-oct-2026"
+  }
+ },
+ {
+  "slug": "design-job-scheduler",
+  "title": "Design a job scheduler",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "scheduler",
+   "partitioning",
+   "reliability"
+  ],
+  "prompt": "Design a job scheduler: requirements, APIs, schema, indexes, partition keys and scaling.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Backend SDE-2 (India)",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-interview-experience-rejected"
+  }
+ },
+ {
+  "slug": "design-job-scheduler",
+  "title": "Design a job scheduler",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "scheduler",
+   "partitioning",
+   "reliability"
+  ],
+  "prompt": "Design a job scheduler: requirements, APIs, schema, indexes, partition keys and scaling.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer E4",
+   "round": "System design & domain knowledge",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://www.fastprep.io/experience/2026-doordash-experienced-swe-e4-and-data-analyst-loops-2-experiences-543b5hlgi2"
+  }
+ },
+ {
+  "slug": "maximum-profit-in-job-scheduling",
+  "title": "Maximum Profit in Job Scheduling",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dp",
+   "binary-search",
+   "intervals"
+  ],
+  "leetcode": "maximum-profit-in-job-scheduling",
+  "prompt": "Choose non-overlapping jobs to maximise profit; reported variant adds a start and end time limit for Dashers.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE",
+   "round": "Phone screen",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-89-doordash-sde"
+  }
+ },
+ {
+  "slug": "maximum-profit-in-job-scheduling",
+  "title": "Maximum Profit in Job Scheduling",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dp",
+   "binary-search",
+   "intervals"
+  ],
+  "leetcode": "maximum-profit-in-job-scheduling",
+  "prompt": "Choose non-overlapping jobs to maximise profit; reported variant adds a start and end time limit for Dashers.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/DoorDash/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "binary-tree-maximum-path-sum",
+  "title": "Binary Tree Maximum Path Sum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-tree",
+   "dfs",
+   "dp"
+  ],
+  "leetcode": "binary-tree-maximum-path-sum",
+  "prompt": "Maximum path sum in a binary tree; reported variant uses live nodes.",
+  "follow_ups": [
+   "Only leaf nodes are live",
+   "A valid path must contain exactly two live nodes",
+   "Any node can be live"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE",
+   "round": "Onsite coding",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-89-doordash-sde"
+  }
+ },
+ {
+  "slug": "binary-tree-maximum-path-sum",
+  "title": "Binary Tree Maximum Path Sum",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "binary-tree",
+   "dfs",
+   "dp"
+  ],
+  "leetcode": "binary-tree-maximum-path-sum",
+  "prompt": "Maximum path sum in a binary tree; reported variant uses live nodes.",
+  "follow_ups": [
+   "Only leaf nodes are live",
+   "A valid path must contain exactly two live nodes",
+   "Any node can be live"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/DoorDash/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "buddy-strings",
+  "title": "Buddy Strings",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "string",
+   "hash-map"
+  ],
+  "leetcode": "buddy-strings",
+  "prompt": "Can two letters of s be swapped so that it equals goal?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE",
+   "round": "Onsite coding",
+   "seen_on": "2025-06",
+   "confidence": "claimed",
+   "source": "https://roundz.substack.com/p/interview-experience-89-doordash-sde"
+  }
+ },
+ {
+  "slug": "buddy-strings",
+  "title": "Buddy Strings",
+  "type": "DSA",
+  "difficulty": "easy",
+  "tags": [
+   "string",
+   "hash-map"
+  ],
+  "leetcode": "buddy-strings",
+  "prompt": "Can two letters of s be swapped so that it equals goal?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/DoorDash/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "design-in-memory-file-system",
+  "title": "Design an in-memory file system",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "trie",
+   "design"
+  ],
+  "leetcode": "design-in-memory-file-system",
+  "prompt": "Implement a file system backed by a trie.",
+  "follow_ups": [
+   "Multithreading",
+   "Serialization"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Onsite coding",
+   "seen_on": "2025-12",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-virtual-onsite-has-been-approved-the-difficulty-level-was-average"
+  }
+ },
+ {
+  "slug": "design-in-memory-file-system",
+  "title": "Design an in-memory file system",
+  "type": "LLD",
+  "difficulty": "hard",
+  "tags": [
+   "trie",
+   "design"
+  ],
+  "leetcode": "design-in-memory-file-system",
+  "prompt": "Implement a file system backed by a trie.",
+  "follow_ups": [
+   "Multithreading",
+   "Serialization"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/DoorDash/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "tell-me-about-a-failure",
+  "title": "Tell me about a failure",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "failure"
+  ],
+  "prompt": "Tell me about a failure and how you dealt with it.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "Hiring manager",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://prachub.com/interview-experiences/doordash-software-engineer-interview-experience-four-round-virtual-onsite-rejected-in-three-days"
+  }
+ },
+ {
+  "slug": "number-of-provinces",
+  "title": "Number of Provinces",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dfs",
+   "union-find"
+  ],
+  "leetcode": "number-of-provinces",
+  "prompt": "Count the connected components (provinces) in an adjacency matrix.",
+  "follow_ups": [
+   "Solve with DFS, then with union-find"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer 2 (Pune, India)",
+   "round": "Technical screen",
+   "seen_on": "2025-01",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6352727/DoorDash-or-SE2-or-India-or-Rejected/"
+  }
+ },
+ {
+  "slug": "nearest-coordinate-binary-search",
+  "title": "Find the nearest coordinate efficiently",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "hash-map",
+   "binary-search",
+   "geometry"
+  ],
+  "prompt": "Given coordinates, find the nearest coordinate efficiently (solved with a hash map and binary search).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Backend SDE-2 (India)",
+   "round": "Technical screen",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-interview-experience-rejected"
+  }
+ },
+ {
+  "slug": "bug-bash-map-based-codebase",
+  "title": "Bug bash: debug a small map-based codebase",
+  "type": "DOMAIN",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "hash-map",
+   "concurrency",
+   "scaling"
+  ],
+  "prompt": "Debug a small codebase that uses maps (C++ in the report), then discuss how to scale it.",
+  "follow_ups": [
+   "Make it multithreaded"
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Backend SDE-2 (India)",
+   "round": "Debugging",
+   "seen_on": "2026-05",
+   "confidence": "claimed",
+   "source": "https://interviewexperiences.in/experience/doordash/doordash-interview-experience-rejected"
+  }
+ },
+ {
+  "slug": "ood-url-management",
+  "title": "Object-oriented design for URL management",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "oop",
+   "design"
+  ],
+  "prompt": "Give an object-oriented design for URL management.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "SDE (India)",
+   "round": "Technical round",
+   "seen_on": "2025-08",
+   "confidence": "claimed",
+   "source": "https://www.jointaro.com/interviews/companies/doordash/experiences/software-development-engineer-sde-india-august-5-2025-no-offer-positive-8702e8bb/"
+  }
+ },
+ {
+  "slug": "walls-and-gates",
+  "title": "Walls and Gates",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "bfs",
+   "matrix"
+  ],
+  "leetcode": "walls-and-gates",
+  "prompt": "Fill each empty room with the distance to its nearest gate.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/DoorDash/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "longest-increasing-path-in-a-matrix",
+  "title": "Longest Increasing Path in a Matrix",
+  "type": "DSA",
+  "difficulty": "hard",
+  "tags": [
+   "dfs",
+   "memoization",
+   "matrix"
+  ],
+  "leetcode": "longest-increasing-path-in-a-matrix",
+  "prompt": "Find the length of the longest strictly increasing path in a matrix.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer",
+   "round": "LeetCode company-tag list (all time, October 2026 snapshot)",
+   "seen_on": "2026-10",
+   "confidence": "claimed",
+   "source": "https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/DoorDash/5.%20All.csv"
+  }
+ },
+ {
+  "slug": "number-of-provinces",
+  "title": "Number of Provinces",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "graph",
+   "dsu"
+  ],
+  "leetcode": "number-of-provinces",
+  "prompt": "Graph/DSU question: Number of Provinces.",
+  "follow_ups": [
+   "Solve with DFS, then discuss the DSU optimisation."
+  ],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer 2 (Pune)",
+   "round": "Technical screen (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6352727/"
+  }
+ },
+ {
+  "slug": "next-greater-element-iii",
+  "title": "Next Greater Element III",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "next-permutation"
+  ],
+  "leetcode": "next-greater-element-iii",
+  "prompt": "Next Greater Element III: brute force first, then the optimal approach.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer 2 (Pune)",
+   "round": "Onsite DSA (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6352727/"
+  }
+ },
+ {
+  "slug": "search-suggestions-system",
+  "title": "Search Suggestions System",
+  "type": "DSA",
+  "difficulty": "medium",
+  "tags": [
+   "trie",
+   "binary-search"
+  ],
+  "leetcode": "search-suggestions-system",
+  "prompt": "Trie question (Search Suggestions System): compare sorting + binary search with a trie, then implement the trie.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer 2 (Pune)",
+   "round": "Onsite DSA (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6352727/"
+  }
+ },
+ {
+  "slug": "design-review-system",
+  "title": "Design a review system",
+  "type": "HLD",
+  "difficulty": "medium",
+  "tags": [
+   "reviews",
+   "ratings"
+  ],
+  "leetcode": null,
+  "prompt": "Design a review system (after project questions).",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer 2 (Pune)",
+   "round": "System design and domain knowledge (month estimated)",
+   "seen_on": "2025-02",
+   "confidence": "claimed",
+   "source": "https://leetcode.com/discuss/interview-experience/6352727/"
+  }
+ },
+ {
+  "slug": "dasher-payout-service",
+  "title": "Dasher payout service",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "code-craft",
+   "payments",
+   "time-intervals"
+  ],
+  "leetcode": null,
+  "prompt": "The Dasher payout problem.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer L4 (India)",
+   "round": "Technical interview (month estimated)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.aced.io/experiences/doordash-software-engineer-interview-a198ff"
+  }
+ },
+ {
+  "slug": "design-donations-platform",
+  "title": "Design the backend for a donations platform",
+  "type": "HLD",
+  "difficulty": "hard",
+  "tags": [
+   "payments",
+   "burst-traffic"
+  ],
+  "leetcode": null,
+  "prompt": "Design the backend system for a donations platform.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer L4 (India)",
+   "round": "Final round, system design (month estimated)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.aced.io/experiences/doordash-software-engineer-interview-a198ff"
+  }
+ },
+ {
+  "slug": "debug-failing-tests-small-codebase",
+  "title": "Debugging round: make the failing tests pass",
+  "type": "LLD",
+  "difficulty": "medium",
+  "tags": [
+   "debugging",
+   "tests"
+  ],
+  "leetcode": null,
+  "prompt": "Given test cases and a small piece of code, fix the failing tests.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer L4 (India)",
+   "round": "Debugging (month estimated)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.aced.io/experiences/doordash-software-engineer-interview-a198ff"
+  }
+ },
+ {
+  "slug": "most-challenging-project",
+  "title": "Most challenging project, end to end",
+  "type": "BEHAVIORAL",
+  "difficulty": "medium",
+  "tags": [
+   "project"
+  ],
+  "leetcode": null,
+  "prompt": "Tell me about a project you worked on.",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer L4 (India)",
+   "round": "Recruiter screen (month estimated)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.aced.io/experiences/doordash-software-engineer-interview-a198ff"
+  }
+ },
+ {
+  "slug": "why-doordash",
+  "title": "Why DoorDash?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "motivation"
+  ],
+  "leetcode": null,
+  "prompt": "Why do you want to work at DoorDash?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer L4 (India)",
+   "round": "Recruiter screen (month estimated)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.aced.io/experiences/doordash-software-engineer-interview-a198ff"
+  }
+ },
+ {
+  "slug": "how-you-use-ai-tools",
+  "title": "How are AI tools helping you?",
+  "type": "BEHAVIORAL",
+  "difficulty": "easy",
+  "tags": [
+   "ai"
+  ],
+  "leetcode": null,
+  "prompt": "How do you use AI at work?",
+  "follow_ups": [],
+  "academy": [],
+  "sighting": {
+   "company": "doordash",
+   "role": "Software Engineer L4 (India)",
+   "round": "Recruiter screen (month estimated)",
+   "seen_on": "2026-07",
+   "confidence": "claimed",
+   "source": "https://www.aced.io/experiences/doordash-software-engineer-interview-a198ff"
+  }
+ }
+]

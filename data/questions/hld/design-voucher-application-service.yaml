@@ -1,0 +1,22 @@
+slug: design-voucher-application-service
+title: Design a service for applying vouchers
+type: HLD
+difficulty: medium
+tags:
+- vouchers
+- idempotency
+- concurrency
+leetcode: null
+prompt: |
+  Design a service for applying vouchers. [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- H4
+- Q6
+sightings:
+- company: deliveroo
+  role: Software Engineer
+  round: System design (month estimated)
+  seen_on: 2022-05
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW62562400.htm

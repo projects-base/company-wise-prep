@@ -1,0 +1,20 @@
+slug: disagreed-with-leadership
+title: A time you disagreed with leadership
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- conflict
+- leadership
+leetcode: null
+prompt: |
+  Tell me about a time you disagreed with leadership.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Staff Software Engineer
+  round: Behavioural (month estimated)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Staff-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,33.htm

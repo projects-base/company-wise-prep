@@ -1,0 +1,22 @@
+slug: ai-coding-build-service-to-requirements
+title: 'AI coding interview: generate a service that matches requirements'
+type: LLD
+difficulty: medium
+tags:
+- ai-assisted
+- product-thinking
+- service-design
+leetcode: null
+prompt: |
+  AI coding interview assessing how you use AI to generate services that match the requirements, plus product thinking. [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- H3
+- D10
+sightings:
+- company: deliveroo
+  role: Software Engineer L4/L5 (London)
+  round: Onsite AI coding
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27.htm

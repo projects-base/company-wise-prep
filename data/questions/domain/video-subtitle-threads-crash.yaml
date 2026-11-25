@@ -1,0 +1,22 @@
+slug: video-subtitle-threads-crash
+title: 'CPU-heavy subtitle jobs crash the system at 10 threads: how do you fix it?'
+type: DOMAIN
+difficulty: medium
+tags:
+- concurrency
+- thread-pool
+- queue
+- karat
+leetcode: null
+prompt: |
+  An application creates subtitles from videos; each job runs in a processor-heavy thread and 10 threads crash the system. How do you fix this? (One of three Karat questions; the other two are not visible.) [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- B4
+sightings:
+- company: deliveroo
+  role: Software Engineer
+  round: Karat screen (month estimated)
+  seen_on: 2022-11
+  confidence: claimed
+  source: https://www.teamblind.com/company/Karat/posts?page=10

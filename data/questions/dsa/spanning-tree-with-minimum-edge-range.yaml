@@ -1,0 +1,21 @@
+slug: spanning-tree-with-minimum-edge-range
+title: Spanning tree with the smallest max-min edge difference
+type: DSA
+difficulty: hard
+tags:
+- graph
+- union-find
+- kruskal
+- online-assessment
+prompt: |
+  Among all spanning trees of a weighted graph, find the one with the smallest difference between its maximum and minimum edge, and return the sum of its edge weights.
+follow_ups: []
+academy:
+- T4
+sightings:
+- company: deliveroo
+  role: Software Engineer (on-campus, intern + full time)
+  round: Online assessment (HackerRank, 90 min)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/

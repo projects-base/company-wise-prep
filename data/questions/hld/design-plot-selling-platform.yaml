@@ -1,0 +1,25 @@
+slug: design-plot-selling-platform
+title: Design the schema and HLD of a plot-selling platform
+type: HLD
+difficulty: medium
+tags:
+- database-schema
+- normalization
+- sql
+- hld
+prompt: |
+  From a long problem statement about a platform that sells plots, signs licence agreements and advertises plots in newspapers: extract the functions, draw a normalised schema with keys, then give the HLD of the licence-agreement signing flow.
+follow_ups:
+- Explain the relationships between the tables (one-to-many and so on)
+- Write a medium-level SQL query with subqueries
+- How do load balancing and several servers give fault tolerance?
+academy:
+- Q10
+- H4
+sightings:
+- company: deliveroo
+  role: Software Engineer (on-campus, intern + full time)
+  round: Technical interview 2 (system thinking)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/

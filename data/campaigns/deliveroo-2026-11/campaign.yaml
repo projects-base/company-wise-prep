@@ -1,0 +1,135 @@
+id: deliveroo-2026-11
+name: Deliveroo Software Engineer II, Hyderabad
+role: Software Engineer II, backend (Deliveroo, Hyderabad)
+companies:
+  deliveroo: 1.0
+start: 2026-11-25
+interview: 2026-12-10        # PLACEHOLDER: no test or interview date known yet (referral stage, 2026-11-24)
+minutes:
+  weekday: 40
+  weekend: 60
+review_days: 1
+notes: >-
+  Referral stage: the interview date above is a placeholder, so treat the dates as a 15-day order of work and move
+  them when a real date arrives. Deliveroo's public board had no open SE II in Hyderabad on 24 Nov 2026, so first ask the
+  referrer for the job link, whether it is on the Deliveroo or the DoorDash board, and whether AI is allowed in the coding
+  round. This is a separate campaign. On these days do only the 25-minute floor of the 23-week plan and keep the weekend
+  Masai classes.
+guide: |
+  ## How this kit works
+
+  - **Order of work:** HackerRank first, then the take-home, then architecture, then behavioural. That is the order of the loop.
+  - **Write your own cron parser.** Deliveroo rejects AI-written submissions and bans AI in live rounds, so read the model answer only after your own version runs.
+  - **Placeholder date:** 10 Dec. When you get a real one, tell Claude and the plan moves.
+  - **Repeat sessions** (the cron drills, the mock, the final review) have no question attached on purpose, so marking a question done never ticks them. Tick them by hand.
+  - **Stretch sessions** are optional; the core ones are the kit.
+
+  ## Ask your referrer first
+
+  - The job link or ID, and which board it is on (Deliveroo or DoorDash India).
+  - Which interview process applies, and whether AI is allowed in the coding round.
+  - Take-home or live coding, and any deadline.
+sessions:
+  - date: 2026-11-25
+    minutes: 40
+    title: "Deliveroo · Ask the referrer, read the dossier, MCQ topics"
+    detail: "5: Message the referrer for the job link, the board and the AI rule; 10: Read the dossier TL;DR and loop; 25: Work through the MCQ topic sheet and note the weak topics"
+    questions: [hackerrank-backend-mcq]
+    floor: true
+  - date: 2026-11-26
+    minutes: 40
+    title: "Deliveroo · HackerRank: rate limiter from a blank editor"
+    detail: "5: Say the options out loud: fixed window, sliding log, sliding window counter, token bucket; 25: Code one with tests; 10: Compare with the model answer"
+    questions: [design-rate-limiter, logger-rate-limiter]
+    floor: true
+  - date: 2026-11-26
+    minutes: 20
+    tier: stretch
+    title: "Deliveroo · Easy warm-ups"
+    detail: "20: Two quick ones, coded and tested"
+    questions: [find-words-containing-character, filter-dictionary-to-build-menu]
+  - date: 2026-11-27
+    minutes: 40
+    title: "Deliveroo · HackerRank: paginated REST API"
+    detail: "5: Read the prompt and say the plan: fetch, page loop, filter, sort, format; 25: Code it with HttpClient, test the logic without the network; 10: Compare with the model answer"
+    questions: [paginated-rest-api-top-result]
+    floor: true
+  - date: 2026-11-28
+    minutes: 60
+    title: "Deliveroo · Cron parser, part 1: your own"
+    detail: "10: Write the requirements and a sample output by hand (field names padded to 14 columns); 40: Parser and field expansion with tests first, no AI; 10: Note what is unfinished"
+    questions: [cron-expression-parser-take-home]
+    floor: true
+  - date: 2026-11-29
+    minutes: 60
+    title: "Deliveroo · Cron parser, part 2: errors, output, README"
+    detail: "25: Error cases and output formatting; 20: Sad-path tests; 15: README and run steps, then run it from a clean folder"
+    floor: true
+  - date: 2026-11-30
+    minutes: 40
+    title: "Deliveroo · Extension drill 1: MON-FRI names and the year field"
+    detail: "5: Walk through your code out loud; 30: Add each extension with a test and re-run the suite; 5: Compare with the model answer"
+    floor: true
+  - date: 2026-12-01
+    minutes: 40
+    title: "Deliveroo · Unseen coding: authentication manager"
+    detail: "5: API and edge cases out loud; 25: Code it, then make it pass 10^5 queries; 10: Compare with the model answer"
+    questions: [design-authentication-manager]
+    floor: true
+  - date: 2026-12-02
+    minutes: 45
+    title: "Deliveroo · Design: 6 million burgers in 10 minutes"
+    detail: "5: Clarify and estimate; 30: Blank-page design out loud; 10: Compare with the model answer and list what you missed"
+    questions: [design-flash-giveaway-free-burgers]
+    floor: true
+  - date: 2026-12-03
+    minutes: 40
+    title: "Deliveroo · Deep dive: no oversell, one per user"
+    detail: "15: Explain sharded counters, Redis and the reconciliation; 15: Optimistic versus pessimistic locking; 10: Say the rollout and load-test plan"
+    questions: [optimistic-vs-pessimistic-locking]
+    floor: true
+  - date: 2026-12-03
+    minutes: 20
+    tier: stretch
+    title: "Deliveroo · Trees and windows"
+    detail: "20: One problem, timed"
+    questions: [vertical-order-traversal-of-a-binary-tree, count-number-of-nice-subarrays]
+  - date: 2026-12-04
+    minutes: 40
+    title: "Deliveroo · Extension drill 2: wrap-around ranges and next occurrences"
+    detail: "5: Say the day-of-month versus day-of-week rule; 30: Implement both with tests; 5: Clean up and commit"
+    floor: true
+  - date: 2026-12-05
+    minutes: 60
+    title: "Deliveroo · Timed HackerRank mock"
+    detail: "15: MCQ round, 15 questions; 40: Rate limiter variation then the paginated API, no notes; 5: Score it and list the gaps"
+    floor: true
+  - date: 2026-12-06
+    minutes: 60
+    title: "Deliveroo · Design mock: sudden load or food delivery"
+    detail: "45: Full architecture round against the clock; 15: Compare, then redraw the weakest part"
+    questions: [design-system-for-sudden-load, design-food-delivery-app]
+    floor: true
+  - date: 2026-12-07
+    minutes: 40
+    title: "Deliveroo · Behavioural: write six stories"
+    detail: "30: STAR notes for a missed deadline, a conflict, a hard challenge, a failure, mentoring and a cross-functional decision; 10: Add a number and the pushback you expect to each"
+    questions: [missed-a-deadline, tell-me-about-a-conflict, most-challenging-project, guiding-junior-developers]
+    floor: true
+  - date: 2026-12-08
+    minutes: 40
+    title: "Deliveroo · Behavioural out loud, and the Go question"
+    detail: "25: Say three stories in two minutes each with interruptions; 10: Answer 'are you happy to move to Go?' and 'what changed after DoorDash?'; 5: Write five questions for them"
+    questions: [business-impact-you-created, driving-cross-functional-decisions, what-you-would-do-differently]
+    floor: true
+  - date: 2026-12-08
+    minutes: 30
+    tier: stretch
+    title: "Deliveroo · If the process is DoorDash's: an AI-assisted session"
+    detail: "30: With your AI tool, fix a bug and add a feature, narrating the plan and verifying every change"
+    questions: [ai-assisted-bug-fix-and-feature-addition, ai-coding-build-service-to-requirements]
+  - date: 2026-12-09
+    minutes: 40
+    title: "Deliveroo · Final review"
+    detail: "15: Re-read your cron code and README; 15: Redraw the burgers design from memory; 10: Say the two best stories out loud"
+    floor: true

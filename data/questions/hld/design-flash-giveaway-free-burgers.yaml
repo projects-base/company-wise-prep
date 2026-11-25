@@ -1,0 +1,114 @@
+slug: design-flash-giveaway-free-burgers
+title: Design a flash sale that gives away 6 million burgers in 10 minutes
+type: HLD
+difficulty: hard
+tags:
+- flash-sale
+- inventory
+- rate-limiting
+- queue
+- idempotency
+- high-throughput
+- burst-traffic
+- observability
+prompt: |
+  Design a system for a campaign in which 6 million burgers are claimed within 10 minutes (one per user), without overselling and with every burger claimed.
+follow_ups:
+- How do you throttle traffic?
+- How do you lock inventory so that nothing is oversold?
+- How do you queue orders and handle failures under eventual consistency?
+- How do you make sure all 6 million are claimed within the 10 minutes?
+- Which monitoring, logging and failover do you add?
+- How would you test it?
+- What are the potential bottlenecks and failures, and how will you address them?
+- Cover the trade-offs you made and why.
+- How will you track the number of vouchers?
+- What will you do if a user tries to claim a voucher again?
+- What do you do before going live to ensure the system works?
+- 'The system is live: how do you ensure it works properly and services are healthy?'
+- Negotiate requirements such as multi-region support.
+- Fairness of distribution.
+academy:
+- H4
+- I2
+- I1
+- Q6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: Architecture round
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Hyderabad, offered L4)
+  round: System design
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/6004996/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: Architecture / HLD round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Bengaluru)
+  round: System design
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/
+- company: deliveroo
+  role: Senior Software Engineer L5
+  round: System design (HLD)
+  seen_on: 2024-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5201706/Deliveroo-SSE-(l5)-Rejected/
+- company: deliveroo
+  role: Software Engineer (Hyderabad)
+  round: System design
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6373806/Deliveroo-oror-Delhivery-oror-ScryAI-oror-GeoServe/
+- company: deliveroo
+  role: Software Engineer (location not stated)
+  round: Final loop, system design
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://static.glassdoor.it/Interview/Deliveroo-Interview-E1053365-RVW97734993.htm
+- company: deliveroo
+  role: Senior Software Engineer (London)
+  round: System design
+  seen_on: 2024-12
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm
+- company: deliveroo
+  role: Software Engineer (Hyderabad)
+  round: Round 2, system design
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://static.glassdoor.it/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27_IP2.htm
+- company: deliveroo
+  role: Software Engineer L4 (Hyderabad)
+  round: Architecture interview
+  seen_on: 2022-10
+  confidence: claimed
+  source: https://www.glassdoor.ca/Interview/Deliveroo-Interview-E1053365-RVW85153758.htm
+- company: deliveroo
+  role: Senior Software Engineer (London)
+  round: System design (month estimated)
+  seen_on: 2025-03
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW95486440.htm
+- company: deliveroo
+  role: Staff Software Engineer
+  round: System design (month estimated)
+  seen_on: 2025-02
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Staff-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,33.htm
+- company: deliveroo
+  role: SDE-2
+  round: High-level design
+  seen_on: 2023-08
+  confidence: claimed
+  source: https://interviewbytes.io/bytes/23479

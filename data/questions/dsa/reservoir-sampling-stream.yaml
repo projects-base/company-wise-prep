@@ -9,7 +9,8 @@ tags:
 leetcode: null
 prompt: |
   An infinite stream is stopped at an arbitrary point; return one of the elements seen so far uniformly at random using O(1) space.
-follow_ups: []
+follow_ups:
+- The second problem was a modification of the first.
 academy: []
 sightings:
 - company: tower-research
@@ -18,3 +19,9 @@ sightings:
   seen_on: 2016-01
   confidence: claimed
   source: https://www.geeksforgeeks.org/?p=131014
+- company: deliveroo
+  role: Senior Software Engineer (Bengaluru)
+  round: Round 2, DSA
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm

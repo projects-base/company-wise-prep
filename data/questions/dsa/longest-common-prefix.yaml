@@ -1,0 +1,19 @@
+slug: longest-common-prefix
+title: Longest common prefix
+type: DSA
+difficulty: easy
+tags:
+- string
+leetcode: longest-common-prefix
+prompt: |
+  Find the 'lowest common prefix' (candidate's wording).
+follow_ups: []
+academy:
+- T5
+sightings:
+- company: deliveroo
+  role: Senior Platform Engineer (London)
+  round: Coding
+  seen_on: 2018-09
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Interview-E1053365-RVW24433546.htm

@@ -1,0 +1,18 @@
+slug: ownership-story
+title: A time you took ownership
+type: BEHAVIORAL
+difficulty: medium
+tags:
+- ownership
+prompt: |
+  Tell me about a time you took ownership.
+follow_ups: []
+academy:
+- H6
+sightings:
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: Behavioural round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/

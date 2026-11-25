@@ -1,0 +1,26 @@
+slug: find-words-containing-character
+title: Find Words Containing Character
+type: DSA
+difficulty: easy
+tags:
+- array
+- string
+leetcode: find-words-containing-character
+prompt: |
+  Return the indices of the words that contain a given character.
+follow_ups: []
+academy:
+- T1
+sightings:
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, October 2026 snapshot)
+  seen_on: 2026-10
+  confidence: claimed
+  source: https://github.com/liquidslr/leetcode-company-wise-problems/blob/main/Deliveroo/5.%20All.csv
+- company: deliveroo
+  role: Software Engineer
+  round: LeetCode company-tag list (all time, August 2026 snapshot)
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://www.talentd.in/fleetcode/companies/deliveroo

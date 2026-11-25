@@ -1,0 +1,22 @@
+slug: smallest-range-covering-elements-from-k-lists
+title: Smallest Range Covering Elements from K Lists
+type: DSA
+difficulty: hard
+tags:
+- heap
+- two-pointers
+- sliding-window
+leetcode: smallest-range-covering-elements-from-k-lists
+prompt: |
+  Find the smallest range that includes at least one number from each of k sorted lists.
+follow_ups:
+- Improve the k-pointer brute force with a priority queue
+academy:
+- T3
+sightings:
+- company: deliveroo
+  role: Software Engineer (on-campus, intern + full time)
+  round: Technical interview 1 (DSA)
+  seen_on: 2024-07
+  confidence: claimed
+  source: https://www.geeksforgeeks.org/interview-experiences/deliveroo-interview-experience-intern-fulltime-on-campus-2024-/

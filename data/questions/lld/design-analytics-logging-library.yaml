@@ -1,0 +1,22 @@
+slug: design-analytics-logging-library
+title: Design an analytics logging library
+type: LLD
+difficulty: medium
+tags:
+- library-design
+- batching
+- concurrency
+leetcode: null
+prompt: |
+  System design round where you implement an analytics logging library. [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- E5
+- E8
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer (Bengaluru)
+  round: Round 3, system design
+  seen_on: 2024-11
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Senior-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,34.htm

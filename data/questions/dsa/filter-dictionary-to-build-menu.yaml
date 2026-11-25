@@ -1,0 +1,19 @@
+slug: filter-dictionary-to-build-menu
+title: Build a menu by filtering a dictionary with an array
+type: DSA
+difficulty: easy
+tags:
+- hash-map
+- array
+prompt: |
+  Given a dictionary and an array, build a restaurant menu by filtering the dictionary with the array.
+follow_ups: []
+academy:
+- J6
+sightings:
+- company: deliveroo
+  role: iOS Engineer (India)
+  round: Problem solving
+  seen_on: 2023-08
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios

@@ -5,6 +5,7 @@ difficulty: medium
 tags:
 - ownership
 - deep-dive
+- project-deep-dive
 leetcode: null
 prompt: |
   Walk through your most challenging project: your role, design considerations, challenges, what you would do differently.
@@ -17,3 +18,33 @@ sightings:
   seen_on: 2025-12
   confidence: claimed
   source: https://leetcode.com/discuss/post/7435112/
+- company: deliveroo
+  role: Staff Software Engineer L6 (India)
+  round: VP / country head round
+  seen_on: 2025-05
+  confidence: claimed
+  source: https://leetcode.com/discuss/post/6857757/deliveroo-interview-experience-l6-staff-wmn08/
+- company: deliveroo
+  role: Senior Software Engineer L5 (Bengaluru)
+  round: Behavioural round
+  seen_on: 2024-06
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/5462024/Deliveroo-or-SSE(L5)-or-Bangalore-or-June-2024-Awaiting-Result/
+- company: deliveroo
+  role: Security engineering (London, Deliveroo/DoorDash)
+  round: Behavioural round
+  seen_on: 2026-08
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroodoordash-interview-experience-security-engineering-role
+- company: deliveroo
+  role: iOS Engineer (India)
+  round: Behavioural round
+  seen_on: 2023-08
+  confidence: claimed
+  source: https://interviewexperiences.in/experience/deliveroo/deliveroo-interview-ios
+- company: deliveroo
+  role: Backend engineer (any level)
+  round: Behavioural interview (example question in the company's own interview guide)
+  seen_on: 2026-02
+  confidence: claimed
+  source: https://careers.deliveroo.co.uk/our-interview-guide-backend-engineering/

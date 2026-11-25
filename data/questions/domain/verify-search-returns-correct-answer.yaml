@@ -1,0 +1,20 @@
+slug: verify-search-returns-correct-answer
+title: How do you make sure a search request returns the correct answer?
+type: DOMAIN
+difficulty: medium
+tags:
+- testing
+- search
+leetcode: null
+prompt: |
+  How do you make sure a search request is returning the correct answer?
+follow_ups: []
+academy:
+- D12
+sightings:
+- company: deliveroo
+  role: Software Engineer II (London)
+  round: Interview loop
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-II-Interview-Questions-EI_IE1053365.0,9_KO10,30.htm

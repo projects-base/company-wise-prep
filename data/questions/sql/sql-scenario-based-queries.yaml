@@ -4,6 +4,8 @@ type: SQL
 difficulty: medium
 tags:
 - sql
+- karat
+- dbms
 leetcode: null
 prompt: |
   SQL basics plus a few scenario-based questions (write queries for a given business scenario).
@@ -27,3 +29,15 @@ sightings:
   seen_on: 2024-01
   confidence: claimed
   source: https://www.glassdoor.com/Interview/Entain-India-Software-Developer-Interview-Questions-EI_IE257530.0,12_KO13,31.htm
+- company: deliveroo
+  role: Software Engineer (London)
+  round: Karat screen (month estimated)
+  seen_on: 2023-03
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW74185299.htm
+- company: deliveroo
+  role: Software Engineer, campus (Hyderabad)
+  round: Round 3, DBMS
+  seen_on: 2024-08
+  confidence: claimed
+  source: https://www.glassdoor.co.uk/Interview/Deliveroo-Interview-E1053365-RVW90167710.htm

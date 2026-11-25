@@ -7,6 +7,7 @@ tags:
 - dfs
 - bfs
 - matrix
+- grid
 leetcode: max-area-of-island
 prompt: |
   Return the size of the largest 4-connected island of 1s in a binary grid.
@@ -21,3 +22,9 @@ sightings:
   seen_on: 2025-02
   confidence: claimed
   source: https://leetcode.com/discuss/post/6375258/
+- company: deliveroo
+  role: Software Engineer, campus (Hyderabad)
+  round: Technical assessment / DSA round (month estimated)
+  seen_on: 2025-01
+  confidence: claimed
+  source: https://www.glassdoor.co.in/Interview/Deliveroo-Interview-E1053365-RVW94173800.htm

@@ -1,0 +1,20 @@
+slug: skip-list-basics
+title: What is a skip list and when would you use one?
+type: DOMAIN
+difficulty: medium
+tags:
+- skip-list
+- data-structures
+- mcq
+prompt: |
+  Multiple choice: how does a skip list work, and when would you use one?
+follow_ups: []
+academy:
+- J6
+sightings:
+- company: deliveroo
+  role: Senior Software Engineer (Hyderabad)
+  round: Online assessment (HackerRank)
+  seen_on: 2025-08
+  confidence: claimed
+  source: https://leetcode.com/discuss/interview-experience/7082718/

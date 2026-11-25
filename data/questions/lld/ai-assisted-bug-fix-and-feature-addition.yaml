@@ -1,0 +1,21 @@
+slug: ai-assisted-bug-fix-and-feature-addition
+title: Fix bugs and add a feature in an existing codebase (AI allowed)
+type: LLD
+difficulty: medium
+tags:
+- debugging
+- ai-assisted
+- codebase
+leetcode: null
+prompt: |
+  After a 15-minute general MCQ, a bug-fixing and feature-addition round on HackerRank; AI use is allowed in both. [Wording partial: read from a search snippet, not the full page.]
+follow_ups: []
+academy:
+- H3
+sightings:
+- company: deliveroo
+  role: Software Engineer L4/L5 (London)
+  round: HackerRank round 1
+  seen_on: 2026-05
+  confidence: claimed
+  source: https://www.glassdoor.com/Interview/Deliveroo-Software-Engineer-Interview-Questions-EI_IE1053365.0,9_KO10,27.htm
